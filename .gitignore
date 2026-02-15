@@ -37,6 +37,9 @@ yarn-error.log*
 # generated slides
 /data/
 
+# claude
+.claude/
+
 # vercel
 .vercel
 
