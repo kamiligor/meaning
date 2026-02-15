@@ -3,6 +3,8 @@
  *
  * Usage:
  *   npx tsx src/scripts/create-post.ts '{"topicTag":"...","headline":"...", ...}'
+ *   npx tsx src/scripts/create-post.ts --file post.json
+ *   cat post.json | npx tsx src/scripts/create-post.ts --stdin
  *
  * Required fields: topicTag, headline, contentBody, quote, hashtags
  * Optional fields get sensible defaults.
@@ -10,6 +12,7 @@
  * Requires TURSO_DATABASE_URL and TURSO_AUTH_TOKEN env vars.
  */
 
+import { readFileSync } from "fs";
 import { createClient } from "@libsql/client";
 import { drizzle } from "drizzle-orm/libsql";
 import { eq } from "drizzle-orm";
@@ -58,9 +61,21 @@ interface PostInput {
 }
 
 async function main() {
-  const jsonArg = process.argv[2];
-  if (!jsonArg) {
-    console.error("Usage: npx tsx src/scripts/create-post.ts '<json>'");
+  let rawJson: string;
+
+  const args = process.argv.slice(2);
+
+  if (args[0] === "--file" && args[1]) {
+    rawJson = readFileSync(args[1], "utf-8");
+  } else if (args[0] === "--stdin") {
+    rawJson = readFileSync(0, "utf-8");
+  } else if (args[0] && !args[0].startsWith("-")) {
+    rawJson = args[0];
+  } else {
+    console.error("Usage:");
+    console.error("  npx tsx src/scripts/create-post.ts '<json>'");
+    console.error("  npx tsx src/scripts/create-post.ts --file post.json");
+    console.error("  cat post.json | npx tsx src/scripts/create-post.ts --stdin");
     console.error("");
     console.error("Required: topicTag, headline, contentBody, quote, hashtags");
     process.exit(1);
@@ -68,7 +83,7 @@ async function main() {
 
   let input: PostInput;
   try {
-    input = JSON.parse(jsonArg);
+    input = JSON.parse(rawJson);
   } catch {
     console.error("Invalid JSON input");
     process.exit(1);
