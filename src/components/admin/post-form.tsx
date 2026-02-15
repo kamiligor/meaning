@@ -22,6 +22,7 @@ interface PostFormData {
   caption: string;
   colorPalette: string;
   logoVariant: string;
+  locale: string;
 }
 
 interface SlideData {
@@ -55,6 +56,7 @@ const DEFAULTS: PostFormData = {
   caption: "",
   colorPalette: "sage",
   logoVariant: "light",
+  locale: "en",
 };
 
 const ICON_OPTIONS = [
@@ -431,6 +433,24 @@ export function PostForm({
                     }`}
                   >
                     {v}
+                  </button>
+                ))}
+              </div>
+            </FieldGroup>
+            <FieldGroup label="Language">
+              <div className="flex gap-3">
+                {(["en", "pl"] as const).map((v) => (
+                  <button
+                    key={v}
+                    type="button"
+                    onClick={() => update("locale", v)}
+                    className={`px-5 py-2.5 rounded-xl border-2 text-sm font-medium uppercase transition ${
+                      data.locale === v
+                        ? "border-[#7B9E8C] bg-[#e8f0eb]/50 text-[#4A5B6A]"
+                        : "border-[#F1F4F6] text-[#8A99A8] hover:border-[#d1d8de]"
+                    }`}
+                  >
+                    {v === "en" ? "English" : "Polski"}
                   </button>
                 ))}
               </div>

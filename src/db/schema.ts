@@ -36,6 +36,9 @@ export const posts = sqliteTable("posts", {
   // Caption
   caption: text("caption"),
 
+  // Locale
+  locale: text("locale").notNull().default("en"),
+
   // Design
   colorPalette: text("color_palette").default("sage"),
   logoVariant: text("logo_variant").default("light"),

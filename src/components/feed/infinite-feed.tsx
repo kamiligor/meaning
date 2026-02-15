@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { useInfinitePosts } from "@/hooks/use-infinite-posts";
 import { PostCard } from "./post-card";
 import { FeedSkeleton } from "./feed-skeleton";
+import { t, type Locale } from "@/lib/i18n";
 
 interface Post {
   id: number;
@@ -18,12 +19,15 @@ interface Post {
 interface InfiniteFeedProps {
   initialPosts: Post[];
   initialCursor: number | null;
+  locale: Locale;
 }
 
-export function InfiniteFeed({ initialPosts, initialCursor }: InfiniteFeedProps) {
+export function InfiniteFeed({ initialPosts, initialCursor, locale }: InfiniteFeedProps) {
+  const d = t(locale);
   const { posts, loading, hasMore, loadMore } = useInfinitePosts({
     initialPosts,
     initialCursor,
+    locale,
   });
   const sentinelRef = useRef<HTMLDivElement>(null);
 
@@ -59,7 +63,7 @@ export function InfiniteFeed({ initialPosts, initialCursor }: InfiniteFeedProps)
       {/* End of feed */}
       {!hasMore && posts.length > 0 && (
         <p className="text-center text-sm text-[#8A99A8] py-8">
-          You&apos;ve seen all the posts
+          {d.endOfFeed}
         </p>
       )}
     </div>

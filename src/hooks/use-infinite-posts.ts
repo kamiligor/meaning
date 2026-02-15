@@ -21,11 +21,13 @@ interface Post {
 interface UseInfinitePostsOptions {
   initialPosts: Post[];
   initialCursor: number | null;
+  locale: string;
 }
 
 export function useInfinitePosts({
   initialPosts,
   initialCursor,
+  locale,
 }: UseInfinitePostsOptions) {
   const [posts, setPosts] = useState<Post[]>(initialPosts);
   const [cursor, setCursor] = useState<number | null>(initialCursor);
@@ -37,7 +39,7 @@ export function useInfinitePosts({
     setLoading(true);
     try {
       const res = await fetch(
-        `/api/posts?status=published&cursor=${cursor}&limit=10`
+        `/api/posts?status=published&locale=${locale}&cursor=${cursor}&limit=10`
       );
       if (!res.ok) return;
       const data = await res.json();
@@ -46,7 +48,7 @@ export function useInfinitePosts({
     } finally {
       setLoading(false);
     }
-  }, [cursor, loading, hasMore]);
+  }, [cursor, loading, hasMore, locale]);
 
   return { posts, loading, hasMore, loadMore };
 }

@@ -9,10 +9,14 @@ export async function GET(request: NextRequest) {
   const cursor = searchParams.get("cursor");
   const limit = Math.min(Number(searchParams.get("limit") || 10), 50);
   const status = searchParams.get("status");
+  const locale = searchParams.get("locale");
 
   const conditions = [];
   if (status) {
     conditions.push(eq(posts.status, status as "draft" | "published"));
+  }
+  if (locale) {
+    conditions.push(eq(posts.locale, locale));
   }
   if (cursor) {
     conditions.push(lt(posts.id, Number(cursor)));
@@ -69,6 +73,7 @@ export async function POST(request: NextRequest) {
         : JSON.stringify(body.hashtags),
       handleBio: body.handleBio,
       caption: body.caption,
+      locale: body.locale || "en",
       colorPalette: body.colorPalette || "sage",
       logoVariant: body.logoVariant || "light",
       status: body.status || "draft",

@@ -57,6 +57,7 @@ interface PostInput {
   caption?: string;
   colorPalette?: string;
   logoVariant?: string;
+  locale?: "en" | "pl";
   status?: "draft" | "published";
 }
 
@@ -130,6 +131,7 @@ async function main() {
       caption: input.caption || "",
       colorPalette: input.colorPalette || "sage",
       logoVariant: input.logoVariant || "light",
+      locale: input.locale || "en",
     })
     .returning();
 

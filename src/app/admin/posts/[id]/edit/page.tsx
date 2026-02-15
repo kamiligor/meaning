@@ -39,6 +39,7 @@ export default async function EditPostPage({
     caption: post.caption || "",
     colorPalette: post.colorPalette || "sage",
     logoVariant: post.logoVariant || "light",
+    locale: post.locale || "en",
   };
 
   return (

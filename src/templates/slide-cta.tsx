@@ -15,6 +15,7 @@ export function SlideCTATemplate(post: Post, palette: ColorPalette) {
   // Show max 4 hashtags on the slide
   const displayTags = hashtags.slice(0, 4);
   const logoVariant = (post.logoVariant === "dark" ? "dark" : "light") as "light" | "dark";
+  const followLabel = post.locale === "pl" ? "Obserwuj" : "Follow";
 
   return (
     <div
@@ -114,7 +115,7 @@ export function SlideCTATemplate(post: Post, palette: ColorPalette) {
           borderRadius: 50,
         }}
       >
-        <span>Follow</span>
+        <span>{followLabel}</span>
         <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
           <path d="M8 3v10M3 8h10" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
         </svg>

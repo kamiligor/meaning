@@ -3,6 +3,7 @@ import { db } from "@/db";
 import { posts, slides } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { CarouselViewer } from "@/components/feed/carousel-viewer";
+import { t, isLocale, type Locale } from "@/lib/i18n";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -39,6 +40,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: post.caption || `${post.topicTag}: ${cleanHeadline}`,
       type: "article",
       publishedTime: post.publishedAt || undefined,
+      locale: post.locale === "pl" ? "pl_PL" : "en_US",
       images: ogImage ? [{ url: ogImage, width: 1080, height: 1350 }] : [],
     },
     twitter: {
@@ -58,6 +60,10 @@ export default async function PostPage({ params }: PageProps) {
 
   if (!post || post.status !== "published") notFound();
 
+  const locale: Locale = isLocale(post.locale) ? post.locale : "en";
+  const d = t(locale);
+  const feedUrl = `/?lang=${locale}`;
+
   const postSlides = await db
     .select()
     .from(slides)
@@ -74,13 +80,15 @@ export default async function PostPage({ params }: PageProps) {
     }
   })();
 
+  const dateLocale = locale === "pl" ? "pl-PL" : "en-US";
+
   return (
     <div className="min-h-screen bg-[#FAFBFC]">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#F1F4F6]">
         <div className="max-w-lg mx-auto px-4 py-4 flex items-center justify-between">
           <Link
-            href="/"
+            href={feedUrl}
             className="text-sm text-[#8A99A8] hover:text-[#7B9E8C] transition flex items-center gap-1"
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -92,9 +100,9 @@ export default async function PostPage({ params }: PageProps) {
                 strokeLinejoin="round"
               />
             </svg>
-            Back
+            {d.back}
           </Link>
-          <a href="/" className="flex flex-col items-center">
+          <a href={feedUrl} className="flex flex-col items-center">
             <span
               className="text-[8px] italic text-[#8A99A8] leading-none"
               style={{ fontFamily: "Georgia, serif" }}
@@ -151,7 +159,7 @@ export default async function PostPage({ params }: PageProps) {
                     className="text-xs text-[#8A99A8]"
                     dateTime={post.publishedAt}
                   >
-                    {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                    {new Date(post.publishedAt).toLocaleDateString(dateLocale, {
                       month: "long",
                       day: "numeric",
                       year: "numeric",
@@ -192,10 +200,10 @@ export default async function PostPage({ params }: PageProps) {
         {/* Back to feed */}
         <div className="mt-10 pt-6 border-t border-[#F1F4F6] text-center">
           <Link
-            href="/"
+            href={feedUrl}
             className="text-sm text-[#7B9E8C] font-semibold hover:text-[#6a8d7b] transition tracking-wider uppercase"
           >
-            &larr; Back to feed
+            &larr; {d.backToFeed}
           </Link>
         </div>
       </main>
