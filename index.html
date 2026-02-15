@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram Carousel - justhavealittlemeaning</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fraunces:wght@400;600;700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  :root {
+    --sage: #7B9E8C;
+    --sage-light: #a3c4b3;
+    --sage-pale: #e8f0eb;
+    --slate: #6B8BA4;
+    --slate-light: #b5cede;
+    --slate-pale: #e9f1f6;
+    --bg-white: #FAFBFC;
+    --bg-cool: #F1F4F6;
+    --text-dark: #1E2A36;
+    --text-mid: #4A5B6A;
+    --text-light: #8A99A8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #e4e8eb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    font-family: 'Outfit', sans-serif;
+    gap: 40px;
+  }
+
+  /* ========== TOOLBAR ========== */
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: rgba(30, 42, 54, 0.95);
+    backdrop-filter: blur(12px);
+    padding: 20px 35px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .toolbar .toolbar-title {
+    color: rgba(255,255,255,0.5);
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-right: 10px;
+  }
+
+  .toolbar .size-info {
+    color: rgba(123,158,140,0.6);
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin-right: 5px;
+  }
+
+  .toolbar button {
+    padding: 10px 22px;
+    border: 1.5px solid rgba(123,158,140,0.4);
+    background: transparent;
+    color: var(--sage-light);
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .toolbar button:hover {
+    background: var(--sage);
+    color: #fff;
+    border-color: var(--sage);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(123,158,140,0.3);
+  }
+
+  .toolbar button.download-all {
+    background: var(--sage);
+    color: #fff;
+    border-color: var(--sage);
+    padding: 10px 30px;
+    letter-spacing: 2px;
+  }
+
+  .toolbar button.download-all:hover {
+    background: #6a8d7b;
+    box-shadow: 0 4px 20px rgba(123,158,140,0.4);
+  }
+
+  .toolbar button:disabled { opacity: 0.4; cursor: wait; }
+
+  .toolbar .status {
+    color: var(--sage-light);
+    font-size: 12px;
+    font-weight: 500;
+    min-width: 140px;
+    text-align: center;
+  }
+
+  /* ========== SLIDE ========== */
+  .slide-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .slide-label {
+    color: #8A99A8;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .slide {
+    width: 1080px;
+    height: 1350px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  /* ========== LOGO COMPONENT ========== */
+  .logo-mark {
+    text-align: center;
+    position: relative;
+    padding: 0 30px;
+    z-index: 2;
+  }
+
+  .logo-mark .bracket-left,
+  .logo-mark .bracket-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 80%;
+    border-style: solid;
+    width: 18px;
+    border-color: var(--sage);
+    opacity: 0.3;
+    border-width: 1.5px;
+  }
+  .logo-mark .bracket-left { left: -12px; border-right: none; border-radius: 5px 0 0 5px; }
+  .logo-mark .bracket-right { right: -12px; border-left: none; border-radius: 0 5px 5px 0; }
+
+  .logo-mark .just-txt {
+    font-family: 'Libre Baskerville', serif;
+    font-style: italic;
+    font-weight: 400;
+    display: block;
+    line-height: 1;
+  }
+  .logo-mark .have-txt {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    display: block;
+    line-height: 1.05;
+  }
+  .logo-mark .little-txt {
+    font-family: 'Libre Baskerville', serif;
+    font-style: italic;
+    font-weight: 400;
+    display: block;
+    line-height: 1;
+  }
+  .logo-mark .meaning-txt {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    display: block;
+    line-height: 1.05;
+  }
+
+  /* Logo sizes */
+  .logo-mark.logo-lg .just-txt { font-size: 18px; margin-bottom: -10px; }
+  .logo-mark.logo-lg .have-txt { font-size: 54px; }
+  .logo-mark.logo-lg .little-txt { font-size: 16px; margin: 2px 0 -11px 0; }
+  .logo-mark.logo-lg .meaning-txt { font-size: 54px; }
+
+  .logo-mark.logo-sm .just-txt { font-size: 9px; margin-bottom: -5px; }
+  .logo-mark.logo-sm .have-txt { font-size: 24px; }
+  .logo-mark.logo-sm .little-txt { font-size: 8px; margin: 0px 0 -5px 0; }
+  .logo-mark.logo-sm .meaning-txt { font-size: 24px; }
+  .logo-mark.logo-sm { padding: 0 16px; }
+  .logo-mark.logo-sm .bracket-left,
+  .logo-mark.logo-sm .bracket-right { width: 10px; }
+
+  /* Logo color modes */
+  .logo-light .just-txt { color: var(--text-light); }
+  .logo-light .have-txt { color: var(--text-dark); }
+  .logo-light .little-txt { color: var(--sage); }
+  .logo-light .meaning-txt { color: var(--sage); }
+
+  .logo-dark .just-txt { color: rgba(255,255,255,0.3); }
+  .logo-dark .have-txt { color: #fff; }
+  .logo-dark .little-txt { color: var(--sage-light); }
+  .logo-dark .meaning-txt { color: var(--sage-light); }
+
+  .logo-ghost .just-txt { color: rgba(138,153,168,0.35); }
+  .logo-ghost .have-txt { color: rgba(30,42,54,0.2); }
+  .logo-ghost .little-txt { color: rgba(123,158,140,0.3); }
+  .logo-ghost .meaning-txt { color: rgba(123,158,140,0.3); }
+  .logo-ghost .bracket-left,
+  .logo-ghost .bracket-right { opacity: 0.1; }
+
+  .logo-ghost-dark .just-txt { color: rgba(255,255,255,0.1); }
+  .logo-ghost-dark .have-txt { color: rgba(255,255,255,0.12); }
+  .logo-ghost-dark .little-txt { color: rgba(163,196,179,0.12); }
+  .logo-ghost-dark .meaning-txt { color: rgba(163,196,179,0.12); }
+  .logo-ghost-dark .bracket-left,
+  .logo-ghost-dark .bracket-right { opacity: 0.06; }
+
+  /* Watermark positioning */
+  .watermark {
+    position: absolute;
+    bottom: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* ========== SLIDE 1 ========== */
+  .slide-1 {
+    background: var(--bg-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .slide-1 .bg-shape-1 {
+    position: absolute;
+    top: -120px; right: -80px;
+    width: 550px; height: 550px;
+    background: var(--sage-pale);
+    border-radius: 50%;
+    opacity: 0.6;
+  }
+
+  .slide-1 .bg-shape-2 {
+    position: absolute;
+    bottom: -180px; left: -100px;
+    width: 500px; height: 500px;
+    background: var(--slate-pale);
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+
+  .slide-1 .top-tag {
+    position: absolute;
+    top: 70px; left: 50%;
+    transform: translateX(-50%);
+    color: var(--sage);
+    font-size: 18px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    background: var(--sage-pale);
+    padding: 14px 34px;
+    border-radius: 30px;
+  }
+
+  .slide-1 .icon-clock {
+    width: 110px; height: 110px;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .slide-1 h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: 82px;
+    line-height: 1.12;
+    color: var(--text-dark);
+    max-width: 800px;
+    padding: 0 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .slide-1 h1 .accent { color: var(--sage); }
+
+  .slide-1 .subtitle {
+    margin-top: 50px;
+    color: var(--text-light);
+    font-size: 20px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .slide-1 .subtitle .arrow {
+    display: inline-block;
+    width: 35px; height: 2px;
+    background: var(--sage);
+    position: relative;
+  }
+  .slide-1 .subtitle .arrow::after {
+    content: '';
+    position: absolute;
+    right: 0; top: -4px;
+    width: 10px; height: 10px;
+    border-right: 2px solid var(--sage);
+    border-top: 2px solid var(--sage);
+    transform: rotate(45deg);
+  }
+
+  /* ========== SLIDE 2 ========== */
+  .slide-2 {
+    background: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 120px 120px;
+  }
+
+  .slide-2 .bg-gradient {
+    position: absolute;
+    top: 0; right: 0;
+    width: 60%; height: 100%;
+    background: linear-gradient(135deg, transparent 0%, rgba(123,158,140,0.08) 100%);
+  }
+
+  .slide-2 .section-num {
+    font-family: 'Fraunces', serif;
+    font-size: 160px;
+    font-weight: 900;
+    color: rgba(123,158,140,0.08);
+    position: absolute;
+    top: 40px; right: 70px;
+    line-height: 1;
+  }
+
+  .slide-2 .tag {
+    color: var(--sage-light);
+    font-size: 16px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .slide-2 .tag::before {
+    content: '';
+    display: block;
+    width: 35px; height: 2.5px;
+    background: var(--sage);
+  }
+
+  .slide-2 .main-text {
+    font-family: 'Fraunces', serif;
+    font-size: 46px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.92);
+    position: relative;
+    z-index: 1;
+    max-width: 850px;
+  }
+
+  .slide-2 .main-text .highlight {
+    color: var(--sage-light);
+    background: rgba(123,158,140,0.12);
+    padding: 2px 10px;
+    border-radius: 5px;
+  }
+
+  .slide-2 .side-dots {
+    position: absolute;
+    left: 60px; top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .slide-2 .side-dots .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--sage);
+    opacity: 0.3;
+  }
+  .slide-2 .side-dots .dot.active {
+    opacity: 1;
+    height: 28px;
+    border-radius: 4px;
+  }
+
+  /* ========== SLIDE 3 ========== */
+  .slide-3 {
+    background: var(--bg-cool);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .slide-3 .circle-outer {
+    width: 480px; height: 480px;
+    border-radius: 50%;
+    border: 1px solid rgba(123,158,140,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .slide-3 .circle-mid {
+    width: 380px; height: 380px;
+    border-radius: 50%;
+    border: 1px solid rgba(123,158,140,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slide-3 .circle-inner {
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--sage-pale) 0%, rgba(181,206,222,0.3) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slide-3 .sun-icon { width: 80px; height: 80px; }
+
+  .slide-3 .orbit-dot {
+    position: absolute;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--sage);
+  }
+  .slide-3 .orbit-dot.d1 { top: 20px; left: 50%; transform: translateX(-50%); opacity: 0.6; }
+  .slide-3 .orbit-dot.d2 { bottom: 40px; right: 60px; opacity: 0.3; width: 7px; height: 7px; }
+  .slide-3 .orbit-dot.d3 { top: 50%; left: 15px; transform: translateY(-50%); opacity: 0.4; width: 8px; height: 8px; }
+
+  .slide-3 .quote {
+    font-family: 'Fraunces', serif;
+    font-size: 50px;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.4;
+    max-width: 780px;
+    padding: 0 80px;
+    margin-top: 65px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .slide-3 .quote .accent { color: var(--sage); }
+
+  .slide-3 .divider {
+    width: 45px; height: 2.5px;
+    background: var(--sage);
+    margin-top: 35px;
+    opacity: 0.4;
+  }
+
+  .slide-3 .quote-attr {
+    margin-top: 22px;
+    color: var(--text-light);
+    font-size: 17px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* ========== SLIDE 4 ========== */
+  .slide-4 {
+    background: var(--bg-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .slide-4 .bg-blob {
+    position: absolute;
+    width: 750px; height: 750px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, var(--sage-pale) 0%, transparent 70%);
+    opacity: 0.5;
+  }
+
+  .slide-4 .handle-name {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-dark);
+    letter-spacing: 0.5px;
+    margin-top: 35px;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .slide-4 .handle-at {
+    font-size: 18px;
+    color: var(--text-light);
+    letter-spacing: 1px;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .slide-4 .cta-text {
+    font-family: 'Fraunces', serif;
+    font-size: 58px;
+    font-weight: 800;
+    color: var(--text-dark);
+    line-height: 1.25;
+    max-width: 680px;
+    margin-bottom: 55px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .slide-4 .cta-text .accent { color: var(--sage); }
+
+  .slide-4 .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 22px 56px;
+    background: var(--sage);
+    color: #fff;
+    font-size: 18px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 50px;
+    position: relative;
+    z-index: 1;
+    border: none;
+    box-shadow: 0 8px 30px rgba(123,158,140,0.25);
+  }
+
+  .slide-4 .tags-row {
+    position: absolute;
+    bottom: 70px;
+    display: flex;
+    gap: 20px;
+    z-index: 1;
+  }
+
+  .slide-4 .tags-row span {
+    color: var(--text-light);
+    font-size: 15px;
+    letter-spacing: 1px;
+    background: var(--bg-cool);
+    padding: 10px 22px;
+    border-radius: 22px;
+    font-weight: 500;
+  }
+
+  /* ========== LOGO EXPORT SECTION ========== */
+  .logo-export-section {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+  }
+
+  .logo-export-card {
+    flex: 1;
+    border-radius: 20px;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+    position: relative;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+  }
+  .logo-export-card.light { background: #fff; }
+  .logo-export-card.dark { background: var(--text-dark); }
+
+  .logo-export-card .export-label {
+    position: absolute;
+    top: 18px;
+    left: 22px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .logo-export-card.light .export-label { color: var(--text-light); }
+  .logo-export-card.dark .export-label { color: rgba(255,255,255,0.25); }
+
+  .logo-export-card .export-btn {
+    margin-top: 30px;
+    padding: 10px 24px;
+    background: var(--sage);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .logo-export-card .export-btn:hover {
+    background: #6a8d7b;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(123,158,140,0.3);
+  }
+
+  /* ========== CAPTION SECTION ========== */
+  .caption-section {
+    width: 100%;
+    max-width: 700px;
+    background: rgba(30, 42, 54, 0.95);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 45px 50px;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  }
+
+  .caption-section .caption-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+
+  .caption-section .caption-title {
+    color: rgba(255,255,255,0.5);
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .caption-section .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    background: var(--sage);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .caption-section .copy-btn:hover {
+    background: #6a8d7b;
+    transform: translateY(-1px);
+  }
+  .caption-section .copy-btn.copied { background: #5a9e6f; }
+
+  .caption-section .caption-text {
+    color: rgba(255,255,255,0.85);
+    font-size: 15px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.03);
+    border-radius: 12px;
+    padding: 30px;
+    max-height: 600px;
+    overflow-y: auto;
+  }
+
+  .caption-section .caption-note {
+    margin-top: 18px;
+    color: rgba(255,255,255,0.25);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+
+  .section-divider {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    font-weight: 600;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== TOOLBAR ========== -->
+<div class="toolbar">
+  <span class="toolbar-title">Export Slides</span>
+  <span class="size-info">1080 × 1350px · 4:5</span>
+  <button onclick="downloadSlide(0)">Slide 1</button>
+  <button onclick="downloadSlide(1)">Slide 2</button>
+  <button onclick="downloadSlide(2)">Slide 3</button>
+  <button onclick="downloadSlide(3)">Slide 4</button>
+  <button class="download-all" onclick="downloadAll()">⬇ DOWNLOAD ALL</button>
+  <span class="status" id="status"></span>
+</div>
+
+<!-- ========== SLIDE 1 ========== -->
+<div class="slide-wrapper">
+  <p class="slide-label">Slide 1 — Title</p>
+  <div class="slide slide-1">
+    <div class="bg-shape-1"></div>
+    <div class="bg-shape-2"></div>
+    <span class="top-tag">Psychology Life Hack</span>
+    <div class="icon-clock">
+      <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="45" cy="45" r="40" stroke="#7B9E8C" stroke-width="2" opacity="0.3"/>
+        <circle cx="45" cy="45" r="32" stroke="#7B9E8C" stroke-width="1.2" opacity="0.15"/>
+        <line x1="45" y1="45" x2="45" y2="22" stroke="#7B9E8C" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+        <line x1="45" y1="45" x2="62" y2="45" stroke="#7B9E8C" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+        <circle cx="45" cy="45" r="3.5" fill="#7B9E8C" opacity="0.7"/>
+        <circle cx="45" cy="10" r="2" fill="#7B9E8C" opacity="0.2"/>
+        <circle cx="80" cy="45" r="2" fill="#7B9E8C" opacity="0.2"/>
+        <circle cx="45" cy="80" r="2" fill="#7B9E8C" opacity="0.2"/>
+        <circle cx="10" cy="45" r="2" fill="#7B9E8C" opacity="0.2"/>
+      </svg>
+    </div>
+    <h1>Keep a <span class="accent">Consistent</span> Wake-Up Time</h1>
+    <div class="subtitle">
+      Swipe to learn why <span class="arrow"></span>
+    </div>
+    <!-- Watermark logo -->
+    <div class="watermark">
+      <div class="logo-mark logo-sm logo-ghost">
+        <div class="bracket-left"></div>
+        <div class="bracket-right"></div>
+        <span class="just-txt">just</span>
+        <span class="have-txt">have</span>
+        <span class="little-txt">a little</span>
+        <span class="meaning-txt">meaning</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SLIDE 2 ========== -->
+<div class="slide-wrapper">
+  <p class="slide-label">Slide 2 — Content</p>
+  <div class="slide slide-2">
+    <div class="bg-gradient"></div>
+    <span class="section-num">01</span>
+    <div class="side-dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <div class="tag">Why it works</div>
+    <p class="main-text">
+      Waking up at <span class="highlight">the same time</span> every day stabilizes your circadian rhythms, which are essential for <span class="highlight">mood regulation</span>.
+      <br><br>
+      Irregular sleep patterns make it harder to treat anxiety and depression, because your emotional systems need <span class="highlight">predictability</span>.
+    </p>
+    <!-- Watermark logo -->
+    <div class="watermark">
+      <div class="logo-mark logo-sm logo-ghost-dark">
+        <div class="bracket-left"></div>
+        <div class="bracket-right"></div>
+        <span class="just-txt">just</span>
+        <span class="have-txt">have</span>
+        <span class="little-txt">a little</span>
+        <span class="meaning-txt">meaning</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SLIDE 3 ========== -->
+<div class="slide-wrapper">
+  <p class="slide-label">Slide 3 — Visual Quote</p>
+  <div class="slide slide-3">
+    <div class="circle-outer">
+      <div class="orbit-dot d1"></div>
+      <div class="orbit-dot d2"></div>
+      <div class="orbit-dot d3"></div>
+      <div class="circle-mid">
+        <div class="circle-inner">
+          <div class="sun-icon">
+            <svg viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="35" cy="35" r="14" fill="#7B9E8C" opacity="0.25"/>
+              <circle cx="35" cy="35" r="8" fill="#7B9E8C" opacity="0.5"/>
+              <line x1="35" y1="8" x2="35" y2="15" stroke="#7B9E8C" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+              <line x1="35" y1="55" x2="35" y2="62" stroke="#7B9E8C" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+              <line x1="8" y1="35" x2="15" y2="35" stroke="#7B9E8C" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+              <line x1="55" y1="35" x2="62" y2="35" stroke="#7B9E8C" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+              <line x1="15.9" y1="15.9" x2="20.8" y2="20.8" stroke="#7B9E8C" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+              <line x1="49.2" y1="49.2" x2="54.1" y2="54.1" stroke="#7B9E8C" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+              <line x1="54.1" y1="15.9" x2="49.2" y2="20.8" stroke="#7B9E8C" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+              <line x1="20.8" y1="49.2" x2="15.9" y2="54.1" stroke="#7B9E8C" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="quote">
+      Your morning <span class="accent">begins</span> the night before.<br>
+      Go to sleep with intention — <span class="accent">wake up with purpose.</span>
+    </p>
+    <div class="divider"></div>
+    <span class="quote-attr">— Your daily routine</span>
+    <!-- Watermark logo -->
+    <div class="watermark">
+      <div class="logo-mark logo-sm logo-ghost">
+        <div class="bracket-left"></div>
+        <div class="bracket-right"></div>
+        <span class="just-txt">just</span>
+        <span class="have-txt">have</span>
+        <span class="little-txt">a little</span>
+        <span class="meaning-txt">meaning</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SLIDE 4 ========== -->
+<div class="slide-wrapper">
+  <p class="slide-label">Slide 4 — Follow CTA</p>
+  <div class="slide slide-4">
+    <div class="bg-blob"></div>
+    <!-- Full logo instead of profile ring -->
+    <div class="logo-mark logo-lg logo-light">
+      <div class="bracket-left"></div>
+      <div class="bracket-right"></div>
+      <span class="just-txt">just</span>
+      <span class="have-txt">have</span>
+      <span class="little-txt">a little</span>
+      <span class="meaning-txt">meaning</span>
+    </div>
+    <span class="handle-name">@justhavealittlemeaning</span>
+    <span class="handle-at">psychology · life hacks · mental health</span>
+    <p class="cta-text">Follow for <span class="accent">more</span> psychology life hacks</p>
+    <div class="cta-button">
+      <span>Follow</span>
+      <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+    </div>
+    <div class="tags-row">
+      <span>#psychology</span>
+      <span>#lifehacks</span>
+      <span>#mentalhealth</span>
+      <span>#routine</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== LOGO EXPORT ========== -->
+<p class="section-divider">Export Logo</p>
+
+<div class="logo-export-section">
+  <!-- Light version -->
+  <div class="logo-export-card light" id="logoLight">
+    <span class="export-label">V1 · Light</span>
+    <div class="logo-mark logo-lg logo-light">
+      <div class="bracket-left"></div>
+      <div class="bracket-right"></div>
+      <span class="just-txt">just</span>
+      <span class="have-txt">have</span>
+      <span class="little-txt">a little</span>
+      <span class="meaning-txt">meaning</span>
+    </div>
+    <button class="export-btn" onclick="downloadLogo('logoLight', 'logo-light')">⬇ Download PNG</button>
+  </div>
+
+  <!-- Dark version -->
+  <div class="logo-export-card dark" id="logoDark">
+    <span class="export-label">V1 · Dark</span>
+    <div class="logo-mark logo-lg logo-dark">
+      <div class="bracket-left"></div>
+      <div class="bracket-right"></div>
+      <span class="just-txt">just</span>
+      <span class="have-txt">have</span>
+      <span class="little-txt">a little</span>
+      <span class="meaning-txt">meaning</span>
+    </div>
+    <button class="export-btn" onclick="downloadLogo('logoDark', 'logo-dark')">⬇ Download PNG</button>
+  </div>
+</div>
+
+<!-- ========== CAPTION ========== -->
+<p class="section-divider">Instagram Caption</p>
+
+<div class="caption-section">
+  <div class="caption-header">
+    <span class="caption-title">Ready to paste</span>
+    <button class="copy-btn" id="copyBtn" onclick="copyCaption()">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="#fff" stroke-width="1.5"/><path d="M3 11V3a1.5 1.5 0 011.5-1.5H11" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+      Copy
+    </button>
+  </div>
+
+  <div class="caption-text" id="captionText">One of the simplest things you can do for your mental health? Wake up at the same time every day.
+
+Your brain runs on a 24-hour internal clock called the circadian rhythm. When you wake up at random times, you're essentially giving your nervous system jet lag — every single day.
+
+Consistent wake times help stabilize:
+→ mood regulation
+→ anxiety levels
+→ emotional resilience
+→ sleep quality (even if you go to bed late)
+
+The trick? Pick your wake-up time and stick to it — weekdays AND weekends. Yes, even on Sundays.
+
+Start with just 7 days. Notice how you feel.
+
+📖 Want to go deeper?
+"Why We Sleep" — Matthew Walker
+"The Circadian Code" — Satchin Panda
+
+Save this for your morning routine reset 🔁
+
+.
+.
+.
+#psychology #lifehacks #mentalhealth #sleephygiene #circadianrhythm #morningroutine #anxietyrelief #selfimprovement #therapytips #justhavealittlemeaning</div>
+
+  <p class="caption-note">Click "Copy" and paste directly into Instagram</p>
+</div>
+
+<script>
+  const slideNames = ['slide-1-title','slide-2-content','slide-3-quote','slide-4-follow'];
+
+  function setStatus(t) { document.getElementById('status').textContent = t; }
+  function setButtonsDisabled(d) { document.querySelectorAll('.toolbar button').forEach(b => b.disabled = d); }
+
+  async function captureSlide(i) {
+    const slide = document.querySelectorAll('.slide')[i];
+    return html2canvas(slide, { width:1080, height:1350, scale:1, useCORS:true, backgroundColor:null, logging:false });
+  }
+
+  async function downloadSlide(i) {
+    setButtonsDisabled(true);
+    setStatus('Rendering slide '+(i+1)+'...');
+    try {
+      const c = await captureSlide(i);
+      const a = document.createElement('a');
+      a.download = 'justhavealittlemeaning-'+slideNames[i]+'.png';
+      a.href = c.toDataURL('image/png');
+      a.click();
+      setStatus('Slide '+(i+1)+' saved!');
+    } catch(e) { setStatus('Error: '+e.message); }
+    setButtonsDisabled(false);
+  }
+
+  async function downloadAll() {
+    setButtonsDisabled(true);
+    for (let i=0; i<4; i++) {
+      setStatus('Rendering slide '+(i+1)+' of 4...');
+      try {
+        const c = await captureSlide(i);
+        const a = document.createElement('a');
+        a.download = 'justhavealittlemeaning-'+slideNames[i]+'.png';
+        a.href = c.toDataURL('image/png');
+        a.click();
+      } catch(e) { setStatus('Error on slide '+(i+1)); setButtonsDisabled(false); return; }
+      await new Promise(r => setTimeout(r, 600));
+    }
+    setStatus('All 4 slides downloaded!');
+    setButtonsDisabled(false);
+  }
+
+  async function downloadLogo(cardId, filename) {
+    const card = document.getElementById(cardId);
+    const btn = card.querySelector('.export-btn');
+    btn.textContent = 'Rendering...';
+    btn.disabled = true;
+    try {
+      const c = await html2canvas(card, { scale:2, useCORS:true, backgroundColor:null, logging:false });
+      const a = document.createElement('a');
+      a.download = 'justhavealittlemeaning-'+filename+'.png';
+      a.href = c.toDataURL('image/png');
+      a.click();
+      btn.textContent = '✓ Saved!';
+      setTimeout(() => { btn.textContent = '⬇ Download PNG'; btn.disabled = false; }, 2000);
+    } catch(e) {
+      btn.textContent = 'Error';
+      setTimeout(() => { btn.textContent = '⬇ Download PNG'; btn.disabled = false; }, 2000);
+    }
+  }
+
+  function copyCaption() {
+    const text = document.getElementById('captionText').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copyBtn');
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="#fff" stroke-width="1.5"/><path d="M3 11V3a1.5 1.5 0 011.5-1.5H11" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg> Copy';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
