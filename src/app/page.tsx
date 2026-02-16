@@ -3,7 +3,7 @@ import { posts, slides } from "@/db/schema";
 import { desc, eq, and } from "drizzle-orm";
 import { InfiniteFeed } from "@/components/feed/infinite-feed";
 import { t, isLocale, type Locale } from "@/lib/i18n";
-import Link from "next/link";
+import { LanguageDropdown } from "@/components/feed/language-dropdown";
 
 const LIMIT = 10;
 
@@ -82,12 +82,7 @@ export default async function Home({
               meaning
             </span>
           </a>
-          <Link
-            href={`/?lang=${locale === "en" ? "pl" : "en"}`}
-            className="text-xs font-semibold tracking-wider text-[#8A99A8] hover:text-[#7B9E8C] transition px-2.5 py-1.5 rounded-lg border border-[#F1F4F6] hover:border-[#d1d8de]"
-          >
-            {d.langSwitch}
-          </Link>
+          <LanguageDropdown current={locale} />
         </div>
       </header>
 
