@@ -1,8 +1,10 @@
 import { notFound } from "next/navigation";
 import { db } from "@/db";
 import { posts, slides } from "@/db/schema";
-import { eq } from "drizzle-orm";
-import { CarouselViewer } from "@/components/feed/carousel-viewer";
+import { eq, and, ne } from "drizzle-orm";
+import { ContentText } from "@/components/feed/content-text";
+import { PostLangSwitcher } from "@/components/feed/post-lang-switcher";
+import Image from "next/image";
 import { t, isLocale, type Locale } from "@/lib/i18n";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -71,16 +73,22 @@ export default async function PostPage({ params }: PageProps) {
     .orderBy(slides.slideNumber);
 
   const cleanHeadline = post.headline.replace(/\{|\}/g, "");
-
-  const hashtags: string[] = (() => {
-    try {
-      return JSON.parse(post.hashtags);
-    } catch {
-      return post.hashtags.split(/[\s,]+/).filter(Boolean);
-    }
-  })();
-
   const dateLocale = locale === "pl" ? "pl-PL" : "en-US";
+
+  // Fetch translations in the same group
+  const translations = post.translationGroup
+    ? (
+        await db
+          .select({ locale: posts.locale, slug: posts.slug })
+          .from(posts)
+          .where(
+            and(
+              eq(posts.translationGroup, post.translationGroup),
+              eq(posts.status, "published")
+            )
+          )
+      ).sort((a, b) => a.locale.localeCompare(b.locale))
+    : [{ locale: post.locale, slug: post.slug }];
 
   return (
     <div className="min-h-screen bg-[#FAFBFC]">
@@ -128,26 +136,34 @@ export default async function PostPage({ params }: PageProps) {
               meaning
             </span>
           </a>
-          <div className="w-12" />
+          {translations.length > 1 ? (
+            <PostLangSwitcher current={locale} translations={translations} />
+          ) : (
+            <div className="w-12" />
+          )}
         </div>
       </header>
 
       <main className="max-w-lg mx-auto px-4 py-6">
         <article>
-          {/* Carousel */}
-          {postSlides.length > 0 && (
-            <CarouselViewer
-              slides={postSlides.map((s) => ({
-                filename: s.filename,
-                slideNumber: s.slideNumber,
-              }))}
-              alt={cleanHeadline}
-            />
-          )}
+          {/* Title image (web variant without subtitle, fallback to slide 1) */}
+          {(() => {
+            const webTitle = postSlides.find((s) => s.slideNumber === 5) || postSlides[0];
+            return webTitle ? (
+              <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden">
+                <Image
+                  src={`/api/slides/${webTitle.filename}`}
+                  alt={cleanHeadline}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            ) : null;
+          })()}
 
-          {/* Content */}
+          {/* Meta: topic + date */}
           <div className="mt-5">
-            {/* Topic + date */}
             <div className="flex items-center gap-2 mb-2">
               <span className="text-xs font-semibold tracking-widest uppercase text-[#7B9E8C]">
                 {post.topicTag}
@@ -173,28 +189,35 @@ export default async function PostPage({ params }: PageProps) {
             <h1 className="text-2xl font-bold text-[#1E2A36] leading-snug">
               {cleanHeadline}
             </h1>
-
-            {/* Caption */}
-            {post.caption && (
-              <div className="mt-4 text-[#4A5B6A] text-sm leading-relaxed whitespace-pre-line">
-                {post.caption}
-              </div>
-            )}
-
-            {/* Hashtags */}
-            {hashtags.length > 0 && (
-              <div className="mt-4 flex flex-wrap gap-2">
-                {hashtags.map((tag, i) => (
-                  <span
-                    key={i}
-                    className="text-xs text-[#7B9E8C] bg-[#e8f0eb] px-3 py-1 rounded-full font-medium"
-                  >
-                    {tag.startsWith("#") ? tag : `#${tag}`}
-                  </span>
-                ))}
-              </div>
-            )}
           </div>
+
+          {/* Content body */}
+          <div className="mt-6">
+            <ContentText body={post.contentBody} tag={post.contentTag} />
+          </div>
+
+          {/* Caption */}
+          {post.caption && (
+            <div className="mt-6 text-[#4A5B6A] text-[15px] leading-relaxed whitespace-pre-line">
+              {post.caption.replace(/\s*(?:#\S+\s*)+$/, "").trim()}
+            </div>
+          )}
+
+          {/* Quote image (web variant without icon, fallback to slide 3) */}
+          {(() => {
+            const webQuote = postSlides.find((s) => s.slideNumber === 6) || postSlides.find((s) => s.slideNumber === 3);
+            return webQuote ? (
+              <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden mt-10">
+                <Image
+                  src={`/api/slides/${webQuote.filename}`}
+                  alt="Quote"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            ) : null;
+          })()}
+
         </article>
 
         {/* Back to feed */}

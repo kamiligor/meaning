@@ -4,7 +4,7 @@ import { Watermark } from "./components/watermark";
 import { iconMap, SunIcon } from "./components/svg-icons";
 import { AccentText } from "./components/text-utils";
 
-export function SlideQuoteTemplate(post: Post, palette: ColorPalette) {
+export function SlideQuoteTemplate(post: Post, palette: ColorPalette, options?: { hideIcon?: boolean }) {
   const QuoteIcon = post.quoteIconType && iconMap[post.quoteIconType]
     ? iconMap[post.quoteIconType]
     : SunIcon;
@@ -101,7 +101,7 @@ export function SlideQuoteTemplate(post: Post, palette: ColorPalette) {
               justifyContent: "center",
             }}
           >
-            <QuoteIcon color={palette.primary} size={80} />
+            {!options?.hideIcon && <QuoteIcon color={palette.primary} size={80} />}
           </div>
         </div>
       </div>

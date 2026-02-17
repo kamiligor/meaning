@@ -59,6 +59,7 @@ interface PostInput {
   logoVariant?: string;
   locale?: "en" | "pl";
   status?: "draft" | "published";
+  translationGroup?: string;
 }
 
 async function main() {
@@ -132,6 +133,7 @@ async function main() {
       colorPalette: input.colorPalette || "sage",
       logoVariant: input.logoVariant || "light",
       locale: input.locale || "en",
+      translationGroup: input.translationGroup || slug,
     })
     .returning();
 
@@ -148,39 +150,55 @@ async function main() {
   console.log("Loading fonts...");
   const fonts = await loadFonts();
 
-  // 4. Generate slides
-  console.log("Generating 4 slides...");
+  // 4. Generate slides (1-4 for Instagram + 5-6 web variants)
+  console.log("Generating slides...");
   for (let i = 0; i < 4; i++) {
     const jsx = templates[i](post, palette);
-
-    const svg = await satori(jsx, {
-      width: SLIDE_WIDTH,
-      height: SLIDE_HEIGHT,
-      fonts,
-    });
-
-    const resvg = new Resvg(svg, {
-      fitTo: { mode: "width" as const, value: SLIDE_WIDTH },
-    });
-    const pngData = resvg.render();
-    const pngBuffer = Buffer.from(pngData.asPng());
+    const svg = await satori(jsx, { width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fonts });
+    const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
+    const pngBuffer = Buffer.from(resvg.render().asPng());
 
     const hash = crypto.randomBytes(4).toString("hex");
     const filename = `post-${post.id}-slide-${i + 1}-${hash}.png`;
     const filePath = await saveFile(filename, pngBuffer);
 
     await db.insert(schema.slides).values({
-      postId: post.id,
-      slideNumber: i + 1,
-      filename,
-      filePath,
-      width: SLIDE_WIDTH,
-      height: SLIDE_HEIGHT,
-      fileSize: pngBuffer.length,
+      postId: post.id, slideNumber: i + 1, filename, filePath,
+      width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fileSize: pngBuffer.length,
     });
+    console.log(`  Slide ${i + 1}: ${filename} (${Math.round(pngBuffer.length / 1024)}KB)`);
+  }
 
-    const sizeKB = Math.round(pngBuffer.length / 1024);
-    console.log(`  Slide ${i + 1}: ${filename} (${sizeKB}KB)`);
+  // Web title (slide 5) — arrow down instead of right
+  {
+    const jsx = SlideTitleTemplate(post, palette, { arrowDown: true });
+    const svg = await satori(jsx, { width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fonts });
+    const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
+    const pngBuffer = Buffer.from(resvg.render().asPng());
+    const hash = crypto.randomBytes(4).toString("hex");
+    const filename = `post-${post.id}-slide-5-web-${hash}.png`;
+    const filePath = await saveFile(filename, pngBuffer);
+    await db.insert(schema.slides).values({
+      postId: post.id, slideNumber: 5, filename, filePath,
+      width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fileSize: pngBuffer.length,
+    });
+    console.log(`  Slide 5 (web): ${filename} (${Math.round(pngBuffer.length / 1024)}KB)`);
+  }
+
+  // Web quote (slide 6) — no icon
+  {
+    const jsx = SlideQuoteTemplate(post, palette, { hideIcon: true });
+    const svg = await satori(jsx, { width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fonts });
+    const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
+    const pngBuffer = Buffer.from(resvg.render().asPng());
+    const hash = crypto.randomBytes(4).toString("hex");
+    const filename = `post-${post.id}-slide-6-web-${hash}.png`;
+    const filePath = await saveFile(filename, pngBuffer);
+    await db.insert(schema.slides).values({
+      postId: post.id, slideNumber: 6, filename, filePath,
+      width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fileSize: pngBuffer.length,
+    });
+    console.log(`  Slide 6 (web): ${filename} (${Math.round(pngBuffer.length / 1024)}KB)`);
   }
 
   console.log("");

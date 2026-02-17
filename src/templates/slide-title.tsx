@@ -4,7 +4,7 @@ import { Watermark } from "./components/watermark";
 import { iconMap } from "./components/svg-icons";
 import { AccentText } from "./components/text-utils";
 
-export function SlideTitleTemplate(post: Post, palette: ColorPalette) {
+export function SlideTitleTemplate(post: Post, palette: ColorPalette, options?: { arrowDown?: boolean }) {
   const IconComponent = post.iconType && post.iconType !== "none"
     ? iconMap[post.iconType]
     : null;
@@ -108,20 +108,36 @@ export function SlideTitleTemplate(post: Post, palette: ColorPalette) {
           textTransform: "uppercase" as const,
           fontWeight: 500,
           display: "flex",
+          flexDirection: "column",
           alignItems: "center",
-          gap: 12,
+          gap: options?.arrowDown ? 16 : 0,
         }}
       >
-        {post.subtitle || "Swipe to learn why"}
-        <svg width="45" height="12" viewBox="0 0 45 12">
-          <line x1="0" y1="6" x2="35" y2="6" stroke={palette.primary} strokeWidth="2" />
-          <polyline
-            points="30,1 35,6 30,11"
-            fill="none"
-            stroke={palette.primary}
-            strokeWidth="2"
-          />
-        </svg>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          {post.subtitle || "Swipe to learn why"}
+          {!options?.arrowDown && (
+            <svg width="45" height="12" viewBox="0 0 45 12">
+              <line x1="0" y1="6" x2="35" y2="6" stroke={palette.primary} strokeWidth="2" />
+              <polyline
+                points="30,1 35,6 30,11"
+                fill="none"
+                stroke={palette.primary}
+                strokeWidth="2"
+              />
+            </svg>
+          )}
+        </div>
+        {options?.arrowDown && (
+          <svg width="12" height="45" viewBox="0 0 12 45">
+            <line x1="6" y1="0" x2="6" y2="35" stroke={palette.primary} strokeWidth="2" />
+            <polyline
+              points="1,30 6,35 11,30"
+              fill="none"
+              stroke={palette.primary}
+              strokeWidth="2"
+            />
+          </svg>
+        )}
       </div>
 
       <Watermark variant="ghost" palette={palette} />

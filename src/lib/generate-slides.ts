@@ -59,37 +59,55 @@ export async function generatePostSlides(postId: number) {
   for (let i = 0; i < 4; i++) {
     const jsx = templates[i](post, palette);
 
-    // Satori: JSX -> SVG
-    const svg = await satori(jsx, {
-      width: SLIDE_WIDTH,
-      height: SLIDE_HEIGHT,
-      fonts,
-    });
+    const svg = await satori(jsx, { width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fonts });
+    const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
+    const pngBuffer = Buffer.from(resvg.render().asPng());
 
-    // Resvg: SVG -> PNG
-    const resvg = new Resvg(svg, {
-      fitTo: { mode: "width" as const, value: SLIDE_WIDTH },
-    });
-    const pngData = resvg.render();
-    const pngBuffer = Buffer.from(pngData.asPng());
-
-    // Save file
     const hash = crypto.randomBytes(4).toString("hex");
     const filename = `post-${postId}-slide-${i + 1}-${hash}.png`;
     const filePath = await saveFile(filename, pngBuffer);
 
-    // Insert DB record
     const [slide] = await db
       .insert(slides)
-      .values({
-        postId,
-        slideNumber: i + 1,
-        filename,
-        filePath,
-        width: SLIDE_WIDTH,
-        height: SLIDE_HEIGHT,
-        fileSize: pngBuffer.length,
-      })
+      .values({ postId, slideNumber: i + 1, filename, filePath, width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fileSize: pngBuffer.length })
+      .returning();
+
+    generatedSlides.push(slide);
+  }
+
+  // 6. Generate web title variant (slide 5) — no subtitle text
+  {
+    const jsx = SlideTitleTemplate(post, palette, { arrowDown: true });
+    const svg = await satori(jsx, { width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fonts });
+    const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
+    const pngBuffer = Buffer.from(resvg.render().asPng());
+
+    const hash = crypto.randomBytes(4).toString("hex");
+    const filename = `post-${postId}-slide-5-web-${hash}.png`;
+    const filePath = await saveFile(filename, pngBuffer);
+
+    const [slide] = await db
+      .insert(slides)
+      .values({ postId, slideNumber: 5, filename, filePath, width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fileSize: pngBuffer.length })
+      .returning();
+
+    generatedSlides.push(slide);
+  }
+
+  // 7. Generate web quote variant (slide 6) — no icon
+  {
+    const jsx = SlideQuoteTemplate(post, palette, { hideIcon: true });
+    const svg = await satori(jsx, { width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fonts });
+    const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
+    const pngBuffer = Buffer.from(resvg.render().asPng());
+
+    const hash = crypto.randomBytes(4).toString("hex");
+    const filename = `post-${postId}-slide-6-web-${hash}.png`;
+    const filePath = await saveFile(filename, pngBuffer);
+
+    const [slide] = await db
+      .insert(slides)
+      .values({ postId, slideNumber: 6, filename, filePath, width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fileSize: pngBuffer.length })
       .returning();
 
     generatedSlides.push(slide);

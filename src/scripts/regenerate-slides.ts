@@ -80,8 +80,7 @@ async function main() {
       const jsx = templates[i](post, palette);
       const svg = await satori(jsx, { width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fonts });
       const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
-      const pngData = resvg.render();
-      const pngBuffer = Buffer.from(pngData.asPng());
+      const pngBuffer = Buffer.from(resvg.render().asPng());
 
       const hash = crypto.randomBytes(4).toString("hex");
       const filename = `post-${post.id}-slide-${i + 1}-${hash}.png`;
@@ -99,6 +98,56 @@ async function main() {
 
       const sizeKB = Math.round(pngBuffer.length / 1024);
       console.log(`  Slide ${i + 1}: ${filename} (${sizeKB}KB)`);
+    }
+
+    // Web title variant (slide 5) — no subtitle text
+    {
+      const jsx = SlideTitleTemplate(post, palette, { arrowDown: true });
+      const svg = await satori(jsx, { width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fonts });
+      const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
+      const pngBuffer = Buffer.from(resvg.render().asPng());
+
+      const hash = crypto.randomBytes(4).toString("hex");
+      const filename = `post-${post.id}-slide-5-web-${hash}.png`;
+      const filePath = await saveFile(filename, pngBuffer);
+
+      await db.insert(schema.slides).values({
+        postId: post.id,
+        slideNumber: 5,
+        filename,
+        filePath,
+        width: SLIDE_WIDTH,
+        height: SLIDE_HEIGHT,
+        fileSize: pngBuffer.length,
+      });
+
+      const sizeKB = Math.round(pngBuffer.length / 1024);
+      console.log(`  Slide 5 (web): ${filename} (${sizeKB}KB)`);
+    }
+
+    // Web quote variant (slide 6) — no icon
+    {
+      const jsx = SlideQuoteTemplate(post, palette, { hideIcon: true });
+      const svg = await satori(jsx, { width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fonts });
+      const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
+      const pngBuffer = Buffer.from(resvg.render().asPng());
+
+      const hash = crypto.randomBytes(4).toString("hex");
+      const filename = `post-${post.id}-slide-6-web-${hash}.png`;
+      const filePath = await saveFile(filename, pngBuffer);
+
+      await db.insert(schema.slides).values({
+        postId: post.id,
+        slideNumber: 6,
+        filename,
+        filePath,
+        width: SLIDE_WIDTH,
+        height: SLIDE_HEIGHT,
+        fileSize: pngBuffer.length,
+      });
+
+      const sizeKB = Math.round(pngBuffer.length / 1024);
+      console.log(`  Slide 6 (web): ${filename} (${sizeKB}KB)`);
     }
     console.log("");
   }

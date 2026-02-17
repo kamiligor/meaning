@@ -20,9 +20,9 @@ export function PostCard({ post }: PostCardProps) {
 
   return (
     <article className="bg-white rounded-2xl shadow-sm overflow-hidden border border-[#F1F4F6]">
-      {/* Carousel */}
+      {/* Carousel — slides 1-3 only (no CTA, no web variant) */}
       <CarouselViewer
-        slides={post.slides}
+        slides={post.slides.filter((s) => s.slideNumber >= 1 && s.slideNumber <= 3)}
         alt={cleanHeadline}
       />
 
@@ -57,12 +57,6 @@ export function PostCard({ post }: PostCardProps) {
           {cleanHeadline}
         </Link>
 
-        {/* Caption preview */}
-        {post.caption && (
-          <p className="mt-2 text-sm text-[#4A5B6A] leading-relaxed line-clamp-3">
-            {post.caption}
-          </p>
-        )}
       </div>
     </article>
   );
