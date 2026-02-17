@@ -34,24 +34,10 @@ export function PostCard({ post }: PostCardProps) {
       {/* Content */}
       <Link href={`/post/${post.slug}`} className="block p-5 hover:bg-[#FAFBFC] transition">
         {/* Topic tag */}
-        <div className="flex items-center gap-2 mb-2">
+        <div className="mb-2">
           <span className="text-xs font-semibold tracking-widest uppercase text-[#7B9E8C]">
             {post.topicTag}
           </span>
-          {post.publishedAt && (
-            <>
-              <span className="text-[#d1d8de]">&middot;</span>
-              <time
-                className="text-xs text-[#8A99A8]"
-                dateTime={post.publishedAt}
-              >
-                {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric",
-                })}
-              </time>
-            </>
-          )}
         </div>
 
         {/* Headline */}

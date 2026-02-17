@@ -84,8 +84,6 @@ export default async function PostPage({ params }: PageProps) {
     .orderBy(slides.slideNumber);
 
   const cleanHeadline = post.headline.replace(/\{|\}/g, "");
-  const dateLocale = locale === "pl" ? "pl-PL" : "en-US";
-
   // Fetch translations in the same group
   const translations = post.translationGroup
     ? (
@@ -173,27 +171,12 @@ export default async function PostPage({ params }: PageProps) {
             ) : null;
           })()}
 
-          {/* Meta: topic + date */}
+          {/* Meta: topic */}
           <div className="mt-5">
-            <div className="flex items-center gap-2 mb-2">
+            <div className="mb-2">
               <span className="text-xs font-semibold tracking-widest uppercase text-[#7B9E8C]">
                 {post.topicTag}
               </span>
-              {post.publishedAt && (
-                <>
-                  <span className="text-[#d1d8de]">&middot;</span>
-                  <time
-                    className="text-xs text-[#8A99A8]"
-                    dateTime={post.publishedAt}
-                  >
-                    {new Date(post.publishedAt).toLocaleDateString(dateLocale, {
-                      month: "long",
-                      day: "numeric",
-                      year: "numeric",
-                    })}
-                  </time>
-                </>
-              )}
             </div>
 
             {/* Headline */}
