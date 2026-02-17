@@ -32,7 +32,7 @@ export function PostCard({ post }: PostCardProps) {
       />
 
       {/* Content */}
-      <div className="p-5">
+      <Link href={`/post/${post.slug}`} className="block p-5 hover:bg-[#FAFBFC] transition">
         {/* Topic tag */}
         <div className="flex items-center gap-2 mb-2">
           <span className="text-xs font-semibold tracking-widest uppercase text-[#7B9E8C]">
@@ -54,15 +54,11 @@ export function PostCard({ post }: PostCardProps) {
           )}
         </div>
 
-        {/* Headline link */}
-        <Link
-          href={`/post/${post.slug}`}
-          className="block text-lg font-bold text-[#1E2A36] leading-snug hover:text-[#7B9E8C] transition"
-        >
+        {/* Headline */}
+        <span className="block text-lg font-bold text-[#1E2A36] leading-snug group-hover:text-[#7B9E8C] transition">
           {cleanHeadline}
-        </Link>
-
-      </div>
+        </span>
+      </Link>
     </article>
   );
 }
