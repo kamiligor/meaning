@@ -30,7 +30,7 @@ const dict = {
     follow: "Obserwuj",
     furtherReading: "Polecane lektury",
     newsletterHeading: "Bądź na bieżąco",
-    newsletterSubtext: "Nowe spostrzeżenia z psychologii prosto na Twoją skrzynkę. Bez spamu, tylko sens.",
+    newsletterSubtext: "Nowe spostrzeżenia z psychologii prosto na Twoją skrzynkę. Bez spamu, tylko to, co ma znaczenie.",
     newsletterPlaceholder: "Twój email",
     newsletterSubmit: "Subskrybuj",
     newsletterSuccess: "Jesteś na liście! Sprawdź skrzynkę, żeby potwierdzić.",
