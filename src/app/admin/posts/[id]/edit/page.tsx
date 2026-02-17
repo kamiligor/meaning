@@ -3,6 +3,7 @@ import { db } from "@/db";
 import { posts, slides } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { PostForm } from "@/components/admin/post-form";
+import { getContentSections } from "@/lib/content-sections";
 
 export default async function EditPostPage({
   params,
@@ -30,6 +31,7 @@ export default async function EditPostPage({
     contentTag: post.contentTag || "Why it works",
     contentBody: post.contentBody,
     sectionNumber: post.sectionNumber || "01",
+    contentSlides: getContentSections(post),
     quote: post.quote,
     quoteAttribution: post.quoteAttribution || "",
     quoteIconType: post.quoteIconType || "sun",

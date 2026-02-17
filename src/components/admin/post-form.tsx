@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { SlidePreview } from "./slide-preview";
 import { ColorPicker } from "./color-picker";
+import type { ContentSection } from "@/lib/content-sections";
 
 interface PostFormData {
   topicTag: string;
@@ -13,6 +14,7 @@ interface PostFormData {
   contentTag: string;
   contentBody: string;
   sectionNumber: string;
+  contentSlides: ContentSection[];
   quote: string;
   quoteAttribution: string;
   quoteIconType: string;
@@ -47,6 +49,7 @@ const DEFAULTS: PostFormData = {
   contentTag: "Why it works",
   contentBody: "",
   sectionNumber: "01",
+  contentSlides: [{ tag: "Why it works", body: "", sectionNumber: "01" }],
   quote: "",
   quoteAttribution: "",
   quoteIconType: "sun",
@@ -117,6 +120,35 @@ export function PostForm({
     setData((prev) => ({ ...prev, [field]: value }));
   }
 
+  function updateSection(index: number, field: keyof ContentSection, value: string) {
+    setData((prev) => {
+      const slides = [...prev.contentSlides];
+      slides[index] = { ...slides[index], [field]: value };
+      return { ...prev, contentSlides: slides };
+    });
+  }
+
+  function addSection() {
+    setData((prev) => ({
+      ...prev,
+      contentSlides: [
+        ...prev.contentSlides,
+        {
+          tag: "Why it works",
+          body: "",
+          sectionNumber: String(prev.contentSlides.length + 1).padStart(2, "0"),
+        },
+      ],
+    }));
+  }
+
+  function removeSection(index: number) {
+    setData((prev) => ({
+      ...prev,
+      contentSlides: prev.contentSlides.filter((_, i) => i !== index),
+    }));
+  }
+
   async function handleSave() {
     setError(null);
     setSaving(true);
@@ -126,7 +158,10 @@ export function PostForm({
       const res = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          contentSlides: JSON.stringify(data.contentSlides),
+        }),
       });
       if (!res.ok) {
         const err = await res.json();
@@ -276,47 +311,65 @@ export function PostForm({
           </div>
         </section>
 
-        {/* Section: Slide 2 - Content */}
-        <section className="bg-white rounded-2xl p-6 shadow-sm">
-          <h2 className="text-sm font-bold text-[#1E2A36] tracking-wider uppercase mb-5 flex items-center gap-2">
-            <span className="w-6 h-6 rounded-full bg-[#1E2A36] text-white text-xs font-bold flex items-center justify-center">
-              2
-            </span>
-            Content Slide
-          </h2>
-          <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <FieldGroup label="Content Tag">
-                <input
-                  className={inputClass}
-                  value={data.contentTag}
-                  onChange={(e) => update("contentTag", e.target.value)}
-                  placeholder="Why it works"
-                />
-              </FieldGroup>
-              <FieldGroup label="Section Number">
-                <input
-                  className={inputClass}
-                  value={data.sectionNumber}
-                  onChange={(e) => update("sectionNumber", e.target.value)}
-                  placeholder="01"
+        {/* Section: Content Slides (repeater) */}
+        {data.contentSlides.map((section, idx) => (
+          <section key={idx} className="bg-white rounded-2xl p-6 shadow-sm">
+            <h2 className="text-sm font-bold text-[#1E2A36] tracking-wider uppercase mb-5 flex items-center gap-2">
+              <span className="w-6 h-6 rounded-full bg-[#1E2A36] text-white text-xs font-bold flex items-center justify-center">
+                {idx + 2}
+              </span>
+              Content Slide {data.contentSlides.length > 1 ? `${idx + 1}/${data.contentSlides.length}` : ""}
+              {data.contentSlides.length > 1 && (
+                <button
+                  type="button"
+                  onClick={() => removeSection(idx)}
+                  className="ml-auto text-xs text-red-400 hover:text-red-600 font-medium transition"
+                >
+                  Remove
+                </button>
+              )}
+            </h2>
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <FieldGroup label="Content Tag">
+                  <input
+                    className={inputClass}
+                    value={section.tag}
+                    onChange={(e) => updateSection(idx, "tag", e.target.value)}
+                    placeholder="Why it works"
+                  />
+                </FieldGroup>
+                <FieldGroup label="Section Number">
+                  <input
+                    className={inputClass}
+                    value={section.sectionNumber}
+                    onChange={(e) => updateSection(idx, "sectionNumber", e.target.value)}
+                    placeholder="01"
+                  />
+                </FieldGroup>
+              </div>
+              <FieldGroup
+                label="Content Body"
+                hint="Use {curly braces} for highlights. Double newline for paragraphs. ~40-60 words per section."
+              >
+                <textarea
+                  className={textareaClass}
+                  rows={5}
+                  value={section.body}
+                  onChange={(e) => updateSection(idx, "body", e.target.value)}
+                  placeholder="Your body goes {the same time} each day, it {anchors} your internal clock..."
                 />
               </FieldGroup>
             </div>
-            <FieldGroup
-              label="Content Body"
-              hint="Use {curly braces} for highlights. Double newline for paragraphs."
-            >
-              <textarea
-                className={textareaClass}
-                rows={5}
-                value={data.contentBody}
-                onChange={(e) => update("contentBody", e.target.value)}
-                placeholder="Your body goes {the same time} each day, it {anchors} your internal clock..."
-              />
-            </FieldGroup>
-          </div>
-        </section>
+          </section>
+        ))}
+        <button
+          type="button"
+          onClick={addSection}
+          className="w-full py-3 border-2 border-dashed border-[#d1d8de] rounded-2xl text-sm font-semibold text-[#8A99A8] hover:border-[#7B9E8C] hover:text-[#7B9E8C] transition tracking-wider uppercase"
+        >
+          + Add Content Section
+        </button>
 
         {/* Section: Slide 3 - Quote */}
         <section className="bg-white rounded-2xl p-6 shadow-sm">

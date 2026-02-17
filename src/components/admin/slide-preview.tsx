@@ -1,6 +1,7 @@
 "use client";
 
 import { DEFAULT_PALETTE } from "@/lib/constants";
+import type { ContentSection } from "@/lib/content-sections";
 
 interface PostData {
   topicTag: string;
@@ -10,6 +11,7 @@ interface PostData {
   contentTag: string;
   contentBody: string;
   sectionNumber: string;
+  contentSlides?: ContentSection[];
   quote: string;
   quoteAttribution: string;
   ctaText: string;
@@ -137,7 +139,11 @@ function SlideTitle({ data }: { data: PostData }) {
   );
 }
 
-function SlideContent({ data }: { data: PostData }) {
+function SlideContent({ data, section }: { data: PostData; section?: ContentSection }) {
+  const tag = section?.tag ?? data.contentTag ?? "Why it works";
+  const body = section?.body ?? data.contentBody ?? "";
+  const sectionNumber = section?.sectionNumber ?? data.sectionNumber ?? "01";
+
   return (
     <div
       className="relative flex flex-col justify-center overflow-hidden px-[10%] py-[8%]"
@@ -156,7 +162,7 @@ function SlideContent({ data }: { data: PostData }) {
           color: "rgba(123,158,140,0.08)",
         }}
       >
-        {data.sectionNumber || "01"}
+        {sectionNumber}
       </div>
 
       {/* Side dots */}
@@ -182,7 +188,7 @@ function SlideContent({ data }: { data: PostData }) {
           className="text-[0.4em] tracking-[0.3em] uppercase font-semibold"
           style={{ color: p.primaryLight }}
         >
-          {data.contentTag || "Why it works"}
+          {tag}
         </span>
       </div>
 
@@ -195,7 +201,7 @@ function SlideContent({ data }: { data: PostData }) {
         }}
       >
         {renderHighlight(
-          data.contentBody || "Your content with {highlighted} words goes here.",
+          body || "Your content with {highlighted} words goes here.",
           p.primaryLight
         )}
       </div>
@@ -384,32 +390,43 @@ function SlideCTA({ data }: { data: PostData }) {
   );
 }
 
-const SLIDE_LABELS = ["Title", "Content", "Quote", "CTA"];
-
 export function SlidePreview({ data, activeSlide, onSlideChange }: SlidePreviewProps) {
+  const sections = data.contentSlides && data.contentSlides.length > 0
+    ? data.contentSlides
+    : [{ tag: data.contentTag, body: data.contentBody, sectionNumber: data.sectionNumber }];
+
   const slideComponents = [
     <SlideTitle key="title" data={data} />,
-    <SlideContent key="content" data={data} />,
+    ...sections.map((s, i) => <SlideContent key={`content-${i}`} data={data} section={s} />),
     <SlideQuote key="quote" data={data} />,
     <SlideCTA key="cta" data={data} />,
   ];
+
+  const slideLabels = [
+    "Title",
+    ...sections.map((_, i) => sections.length > 1 ? `Content ${i + 1}` : "Content"),
+    "Quote",
+    "CTA",
+  ];
+
+  const safeActive = Math.min(activeSlide, slideComponents.length - 1);
 
   return (
     <div>
       {/* Active slide */}
       <div className="rounded-2xl overflow-hidden shadow-lg border border-[#F1F4F6] text-[16px]">
-        {slideComponents[activeSlide]}
+        {slideComponents[safeActive]}
       </div>
 
       {/* Slide selector thumbnails */}
-      <div className="flex gap-2 mt-4">
-        {SLIDE_LABELS.map((label, i) => (
+      <div className="flex gap-2 mt-4 flex-wrap">
+        {slideLabels.map((label, i) => (
           <button
             key={i}
             type="button"
             onClick={() => onSlideChange(i)}
-            className={`flex-1 py-2 rounded-lg text-xs font-semibold tracking-wider uppercase transition ${
-              activeSlide === i
+            className={`flex-1 min-w-0 py-2 rounded-lg text-xs font-semibold tracking-wider uppercase transition ${
+              safeActive === i
                 ? "bg-[#7B9E8C] text-white"
                 : "bg-[#F1F4F6] text-[#8A99A8] hover:bg-[#e4e9ed]"
             }`}

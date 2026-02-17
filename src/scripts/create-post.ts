@@ -6,7 +6,7 @@
  *   npx tsx src/scripts/create-post.ts --file post.json
  *   cat post.json | npx tsx src/scripts/create-post.ts --stdin
  *
- * Required fields: topicTag, headline, contentBody, quote, hashtags
+ * Required fields: topicTag, headline, contentBody (or contentSlides), quote, hashtags
  * Optional fields get sensible defaults.
  *
  * Requires TURSO_DATABASE_URL and TURSO_AUTH_TOKEN env vars.
@@ -28,17 +28,37 @@ import { SlideTitleTemplate } from "../templates/slide-title";
 import { SlideContentTemplate } from "../templates/slide-content";
 import { SlideQuoteTemplate } from "../templates/slide-quote";
 import { SlideCTATemplate } from "../templates/slide-cta";
+import { getContentSections, WEB_TITLE_SLIDE, WEB_QUOTE_SLIDE, type ContentSection } from "../lib/content-sections";
 import { saveFile } from "../lib/storage";
 import crypto from "crypto";
 import type { Post, ColorPalette } from "../db/schema";
 import type { ReactElement } from "react";
 
-const templates: ((post: Post, palette: ColorPalette) => ReactElement)[] = [
-  SlideTitleTemplate,
-  SlideContentTemplate,
-  SlideQuoteTemplate,
-  SlideCTATemplate,
-];
+type Fonts = Awaited<ReturnType<typeof loadFonts>>;
+type Db = ReturnType<typeof drizzle<typeof schema>>;
+
+async function renderAndSave(
+  jsx: ReactElement,
+  postId: number,
+  slideNumber: number,
+  fonts: Fonts,
+  label: string,
+  db: Db,
+) {
+  const svg = await satori(jsx, { width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fonts });
+  const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
+  const pngBuffer = Buffer.from(resvg.render().asPng());
+
+  const hash = crypto.randomBytes(4).toString("hex");
+  const filename = `post-${postId}-slide-${label}-${hash}.png`;
+  const filePath = await saveFile(filename, pngBuffer);
+
+  await db.insert(schema.slides).values({
+    postId, slideNumber, filename, filePath,
+    width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fileSize: pngBuffer.length,
+  });
+  console.log(`  Slide ${label}: ${filename} (${Math.round(pngBuffer.length / 1024)}KB)`);
+}
 
 interface PostInput {
   topicTag: string;
@@ -46,8 +66,9 @@ interface PostInput {
   subtitle?: string;
   iconType?: string;
   contentTag?: string;
-  contentBody: string;
+  contentBody?: string;
   sectionNumber?: string;
+  contentSlides?: ContentSection[];
   quote: string;
   quoteAttribution?: string;
   quoteIconType?: string;
@@ -79,7 +100,7 @@ async function main() {
     console.error("  npx tsx src/scripts/create-post.ts --file post.json");
     console.error("  cat post.json | npx tsx src/scripts/create-post.ts --stdin");
     console.error("");
-    console.error("Required: topicTag, headline, contentBody, quote, hashtags");
+    console.error("Required: topicTag, headline, contentBody (or contentSlides), quote, hashtags");
     process.exit(1);
   }
 
@@ -91,8 +112,9 @@ async function main() {
     process.exit(1);
   }
 
-  if (!input.topicTag || !input.headline || !input.contentBody || !input.quote || !input.hashtags) {
-    console.error("Missing required fields: topicTag, headline, contentBody, quote, hashtags");
+  const hasContent = input.contentBody || (input.contentSlides && input.contentSlides.length > 0);
+  if (!input.topicTag || !input.headline || !hasContent || !input.quote || !input.hashtags) {
+    console.error("Missing required fields: topicTag, headline, contentBody (or contentSlides), quote, hashtags");
     process.exit(1);
   }
 
@@ -109,6 +131,11 @@ async function main() {
 
   const slug = generateSlug(input.headline);
 
+  // Derive legacy fields from first content slide if using contentSlides
+  const effectiveContentTag = input.contentSlides?.[0]?.tag ?? input.contentTag ?? "Why it works";
+  const effectiveContentBody = input.contentSlides?.[0]?.body ?? input.contentBody ?? "";
+  const effectiveSectionNumber = input.contentSlides?.[0]?.sectionNumber ?? input.sectionNumber ?? "01";
+
   // 1. Insert post
   console.log("Creating post...");
   const [post] = await db
@@ -120,9 +147,10 @@ async function main() {
       headline: input.headline,
       subtitle: input.subtitle || "Swipe to learn why",
       iconType: input.iconType || "clock",
-      contentTag: input.contentTag || "Why it works",
-      contentBody: input.contentBody,
-      sectionNumber: input.sectionNumber || "01",
+      contentTag: effectiveContentTag,
+      contentBody: effectiveContentBody,
+      sectionNumber: effectiveSectionNumber,
+      contentSlides: input.contentSlides ? JSON.stringify(input.contentSlides) : null,
       quote: input.quote,
       quoteAttribution: input.quoteAttribution || "",
       quoteIconType: input.quoteIconType || "sun",
@@ -150,56 +178,32 @@ async function main() {
   console.log("Loading fonts...");
   const fonts = await loadFonts();
 
-  // 4. Generate slides (1-4 for Instagram + 5-6 web variants)
+  // 4. Generate slides dynamically
   console.log("Generating slides...");
-  for (let i = 0; i < 4; i++) {
-    const jsx = templates[i](post, palette);
-    const svg = await satori(jsx, { width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fonts });
-    const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
-    const pngBuffer = Buffer.from(resvg.render().asPng());
+  const sections = getContentSections(post);
 
-    const hash = crypto.randomBytes(4).toString("hex");
-    const filename = `post-${post.id}-slide-${i + 1}-${hash}.png`;
-    const filePath = await saveFile(filename, pngBuffer);
+  // Slide 1: Title
+  await renderAndSave(SlideTitleTemplate(post, palette), post.id, 1, fonts, "1", db);
 
-    await db.insert(schema.slides).values({
-      postId: post.id, slideNumber: i + 1, filename, filePath,
-      width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fileSize: pngBuffer.length,
-    });
-    console.log(`  Slide ${i + 1}: ${filename} (${Math.round(pngBuffer.length / 1024)}KB)`);
+  // Slides 2..N+1: Content (one per section)
+  for (let i = 0; i < sections.length; i++) {
+    const slideNum = i + 2;
+    await renderAndSave(SlideContentTemplate(post, palette, sections[i]), post.id, slideNum, fonts, String(slideNum), db);
   }
 
-  // Web title (slide 5) — arrow down instead of right
-  {
-    const jsx = SlideTitleTemplate(post, palette, { arrowDown: true });
-    const svg = await satori(jsx, { width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fonts });
-    const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
-    const pngBuffer = Buffer.from(resvg.render().asPng());
-    const hash = crypto.randomBytes(4).toString("hex");
-    const filename = `post-${post.id}-slide-5-web-${hash}.png`;
-    const filePath = await saveFile(filename, pngBuffer);
-    await db.insert(schema.slides).values({
-      postId: post.id, slideNumber: 5, filename, filePath,
-      width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fileSize: pngBuffer.length,
-    });
-    console.log(`  Slide 5 (web): ${filename} (${Math.round(pngBuffer.length / 1024)}KB)`);
-  }
+  // Slide N+2: Quote
+  const quoteNum = sections.length + 2;
+  await renderAndSave(SlideQuoteTemplate(post, palette), post.id, quoteNum, fonts, String(quoteNum), db);
 
-  // Web quote (slide 6) — no icon
-  {
-    const jsx = SlideQuoteTemplate(post, palette, { hideIcon: true });
-    const svg = await satori(jsx, { width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fonts });
-    const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
-    const pngBuffer = Buffer.from(resvg.render().asPng());
-    const hash = crypto.randomBytes(4).toString("hex");
-    const filename = `post-${post.id}-slide-6-web-${hash}.png`;
-    const filePath = await saveFile(filename, pngBuffer);
-    await db.insert(schema.slides).values({
-      postId: post.id, slideNumber: 6, filename, filePath,
-      width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fileSize: pngBuffer.length,
-    });
-    console.log(`  Slide 6 (web): ${filename} (${Math.round(pngBuffer.length / 1024)}KB)`);
-  }
+  // Slide N+3: CTA
+  const ctaNum = sections.length + 3;
+  await renderAndSave(SlideCTATemplate(post, palette), post.id, ctaNum, fonts, String(ctaNum), db);
+
+  // Slide 100: Web title variant
+  await renderAndSave(SlideTitleTemplate(post, palette, { arrowDown: true }), post.id, WEB_TITLE_SLIDE, fonts, "100-web", db);
+
+  // Slide 101: Web quote variant
+  await renderAndSave(SlideQuoteTemplate(post, palette, { hideIcon: true }), post.id, WEB_QUOTE_SLIDE, fonts, "101-web", db);
 
   console.log("");
   console.log("Done! Post is ready.");

@@ -43,6 +43,11 @@ export async function PUT(
         : body.hashtags
           ? JSON.stringify(body.hashtags)
           : undefined,
+      contentSlides: typeof body.contentSlides === "string"
+        ? body.contentSlides
+        : body.contentSlides
+          ? JSON.stringify(body.contentSlides)
+          : undefined,
       updatedAt: sql`(datetime('now'))`,
       publishedAt: body.status === "published" ? sql`(datetime('now'))` : undefined,
     })

@@ -18,6 +18,7 @@ export const posts = sqliteTable("posts", {
   contentTag: text("content_tag").default("Why it works"),
   contentBody: text("content_body").notNull(),
   sectionNumber: text("section_number").default("01"),
+  contentSlides: text("content_slides"), // JSON array of {tag, body, sectionNumber}
 
   // Slide 3 (Quote)
   quote: text("quote").notNull(),

@@ -64,6 +64,11 @@ export async function POST(request: NextRequest) {
       contentTag: body.contentTag,
       contentBody: body.contentBody,
       sectionNumber: body.sectionNumber || "01",
+      contentSlides: typeof body.contentSlides === "string"
+        ? body.contentSlides
+        : body.contentSlides
+          ? JSON.stringify(body.contentSlides)
+          : null,
       quote: body.quote,
       quoteAttribution: body.quoteAttribution,
       quoteIconType: body.quoteIconType || "sun",

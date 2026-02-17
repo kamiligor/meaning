@@ -1,9 +1,10 @@
 import type { Post, ColorPalette } from "@/db/schema";
+import type { ContentSection } from "@/lib/content-sections";
 import { SLIDE_WIDTH, SLIDE_HEIGHT } from "@/lib/constants";
 import { Watermark } from "./components/watermark";
 import { HighlightText } from "./components/text-utils";
 
-export function SlideContentTemplate(post: Post, palette: ColorPalette) {
+export function SlideContentTemplate(post: Post, palette: ColorPalette, section?: ContentSection) {
   return (
     <div
       style={{
@@ -45,7 +46,7 @@ export function SlideContentTemplate(post: Post, palette: ColorPalette) {
           lineHeight: 1,
         }}
       >
-        {post.sectionNumber || "01"}
+        {section?.sectionNumber ?? post.sectionNumber ?? "01"}
       </div>
 
       {/* Side dots */}
@@ -114,7 +115,7 @@ export function SlideContentTemplate(post: Post, palette: ColorPalette) {
             fontWeight: 600,
           }}
         >
-          {post.contentTag || "Why it works"}
+          {section?.tag ?? post.contentTag ?? "Why it works"}
         </span>
       </div>
 
@@ -130,7 +131,7 @@ export function SlideContentTemplate(post: Post, palette: ColorPalette) {
         }}
       >
         <HighlightText
-          text={post.contentBody}
+          text={section?.body ?? post.contentBody}
           highlightColor={palette.primaryLight}
           highlightBg="rgba(123,158,140,0.12)"
           baseColor="rgba(255,255,255,0.92)"

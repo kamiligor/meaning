@@ -4,6 +4,7 @@ import { posts, slides } from "@/db/schema";
 import { eq, and, ne } from "drizzle-orm";
 import { ContentText } from "@/components/feed/content-text";
 import { PostLangSwitcher } from "@/components/feed/post-lang-switcher";
+import { getContentSections, WEB_TITLE_SLIDE, WEB_QUOTE_SLIDE } from "@/lib/content-sections";
 import Image from "next/image";
 import { t, isLocale, type Locale } from "@/lib/i18n";
 import type { Metadata } from "next";
@@ -157,7 +158,7 @@ export default async function PostPage({ params }: PageProps) {
         <article>
           {/* Title image (web variant without subtitle, fallback to slide 1) */}
           {(() => {
-            const webTitle = postSlides.find((s) => s.slideNumber === 5) || postSlides[0];
+            const webTitle = postSlides.find((s) => s.slideNumber === WEB_TITLE_SLIDE) || postSlides.find((s) => s.slideNumber === 5) || postSlides[0];
             return webTitle ? (
               <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden">
                 <Image
@@ -201,9 +202,14 @@ export default async function PostPage({ params }: PageProps) {
           </div>
 
           {/* Content body */}
-          <div className="mt-6">
-            <ContentText body={post.contentBody} tag={post.contentTag} />
-          </div>
+          {(() => {
+            const sections = getContentSections(post);
+            return sections.map((section, i) => (
+              <div key={i} className={i === 0 ? "mt-6" : "mt-8"}>
+                <ContentText body={section.body} tag={section.tag} />
+              </div>
+            ));
+          })()}
 
           {/* Caption */}
           {post.caption && (
@@ -212,9 +218,9 @@ export default async function PostPage({ params }: PageProps) {
             </div>
           )}
 
-          {/* Quote image (web variant without icon, fallback to slide 3) */}
+          {/* Quote image (web variant without icon, fallback) */}
           {(() => {
-            const webQuote = postSlides.find((s) => s.slideNumber === 6) || postSlides.find((s) => s.slideNumber === 3);
+            const webQuote = postSlides.find((s) => s.slideNumber === WEB_QUOTE_SLIDE) || postSlides.find((s) => s.slideNumber === 6) || postSlides.find((s) => s.slideNumber === 3);
             return webQuote ? (
               <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden mt-10">
                 <Image

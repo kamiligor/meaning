@@ -19,17 +19,44 @@ import { SlideTitleTemplate } from "../templates/slide-title";
 import { SlideContentTemplate } from "../templates/slide-content";
 import { SlideQuoteTemplate } from "../templates/slide-quote";
 import { SlideCTATemplate } from "../templates/slide-cta";
+import { getContentSections, WEB_TITLE_SLIDE, WEB_QUOTE_SLIDE } from "../lib/content-sections";
 import { saveFile } from "../lib/storage";
 import crypto from "crypto";
 import type { Post, ColorPalette } from "../db/schema";
 import type { ReactElement } from "react";
 
-const templates: ((post: Post, palette: ColorPalette) => ReactElement)[] = [
-  SlideTitleTemplate,
-  SlideContentTemplate,
-  SlideQuoteTemplate,
-  SlideCTATemplate,
-];
+type Fonts = Awaited<ReturnType<typeof loadFonts>>;
+type Db = ReturnType<typeof drizzle<typeof schema>>;
+
+async function renderAndSave(
+  jsx: ReactElement,
+  postId: number,
+  slideNumber: number,
+  fonts: Fonts,
+  label: string,
+  db: Db,
+) {
+  const svg = await satori(jsx, { width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fonts });
+  const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
+  const pngBuffer = Buffer.from(resvg.render().asPng());
+
+  const hash = crypto.randomBytes(4).toString("hex");
+  const filename = `post-${postId}-slide-${label}-${hash}.png`;
+  const filePath = await saveFile(filename, pngBuffer);
+
+  await db.insert(schema.slides).values({
+    postId,
+    slideNumber,
+    filename,
+    filePath,
+    width: SLIDE_WIDTH,
+    height: SLIDE_HEIGHT,
+    fileSize: pngBuffer.length,
+  });
+
+  const sizeKB = Math.round(pngBuffer.length / 1024);
+  console.log(`  Slide ${label}: ${filename} (${sizeKB}KB)`);
+}
 
 async function main() {
   const client = createClient({
@@ -76,79 +103,31 @@ async function main() {
     // Delete old slides
     await db.delete(schema.slides).where(eq(schema.slides.postId, post.id));
 
-    for (let i = 0; i < 4; i++) {
-      const jsx = templates[i](post, palette);
-      const svg = await satori(jsx, { width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fonts });
-      const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
-      const pngBuffer = Buffer.from(resvg.render().asPng());
+    const sections = getContentSections(post);
 
-      const hash = crypto.randomBytes(4).toString("hex");
-      const filename = `post-${post.id}-slide-${i + 1}-${hash}.png`;
-      const filePath = await saveFile(filename, pngBuffer);
+    // Slide 1: Title
+    await renderAndSave(SlideTitleTemplate(post, palette), post.id, 1, fonts, "1", db);
 
-      await db.insert(schema.slides).values({
-        postId: post.id,
-        slideNumber: i + 1,
-        filename,
-        filePath,
-        width: SLIDE_WIDTH,
-        height: SLIDE_HEIGHT,
-        fileSize: pngBuffer.length,
-      });
-
-      const sizeKB = Math.round(pngBuffer.length / 1024);
-      console.log(`  Slide ${i + 1}: ${filename} (${sizeKB}KB)`);
+    // Slides 2..N+1: Content (one per section)
+    for (let i = 0; i < sections.length; i++) {
+      const slideNum = i + 2;
+      await renderAndSave(SlideContentTemplate(post, palette, sections[i]), post.id, slideNum, fonts, String(slideNum), db);
     }
 
-    // Web title variant (slide 5) — no subtitle text
-    {
-      const jsx = SlideTitleTemplate(post, palette, { arrowDown: true });
-      const svg = await satori(jsx, { width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fonts });
-      const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
-      const pngBuffer = Buffer.from(resvg.render().asPng());
+    // Slide N+2: Quote
+    const quoteNum = sections.length + 2;
+    await renderAndSave(SlideQuoteTemplate(post, palette), post.id, quoteNum, fonts, String(quoteNum), db);
 
-      const hash = crypto.randomBytes(4).toString("hex");
-      const filename = `post-${post.id}-slide-5-web-${hash}.png`;
-      const filePath = await saveFile(filename, pngBuffer);
+    // Slide N+3: CTA
+    const ctaNum = sections.length + 3;
+    await renderAndSave(SlideCTATemplate(post, palette), post.id, ctaNum, fonts, String(ctaNum), db);
 
-      await db.insert(schema.slides).values({
-        postId: post.id,
-        slideNumber: 5,
-        filename,
-        filePath,
-        width: SLIDE_WIDTH,
-        height: SLIDE_HEIGHT,
-        fileSize: pngBuffer.length,
-      });
+    // Slide 100: Web title variant
+    await renderAndSave(SlideTitleTemplate(post, palette, { arrowDown: true }), post.id, WEB_TITLE_SLIDE, fonts, "100-web", db);
 
-      const sizeKB = Math.round(pngBuffer.length / 1024);
-      console.log(`  Slide 5 (web): ${filename} (${sizeKB}KB)`);
-    }
+    // Slide 101: Web quote variant
+    await renderAndSave(SlideQuoteTemplate(post, palette, { hideIcon: true }), post.id, WEB_QUOTE_SLIDE, fonts, "101-web", db);
 
-    // Web quote variant (slide 6) — no icon
-    {
-      const jsx = SlideQuoteTemplate(post, palette, { hideIcon: true });
-      const svg = await satori(jsx, { width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fonts });
-      const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
-      const pngBuffer = Buffer.from(resvg.render().asPng());
-
-      const hash = crypto.randomBytes(4).toString("hex");
-      const filename = `post-${post.id}-slide-6-web-${hash}.png`;
-      const filePath = await saveFile(filename, pngBuffer);
-
-      await db.insert(schema.slides).values({
-        postId: post.id,
-        slideNumber: 6,
-        filename,
-        filePath,
-        width: SLIDE_WIDTH,
-        height: SLIDE_HEIGHT,
-        fileSize: pngBuffer.length,
-      });
-
-      const sizeKB = Math.round(pngBuffer.length / 1024);
-      console.log(`  Slide 6 (web): ${filename} (${sizeKB}KB)`);
-    }
     console.log("");
   }
 

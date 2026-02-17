@@ -6,6 +6,7 @@ import { SlideTitleTemplate } from "@/templates/slide-title";
 import { SlideContentTemplate } from "@/templates/slide-content";
 import { SlideQuoteTemplate } from "@/templates/slide-quote";
 import { SlideCTATemplate } from "@/templates/slide-cta";
+import { getContentSections, WEB_TITLE_SLIDE, WEB_QUOTE_SLIDE } from "./content-sections";
 import { db } from "@/db";
 import { slides, posts, colorPalettes } from "@/db/schema";
 import { eq } from "drizzle-orm";
@@ -14,12 +15,28 @@ import crypto from "crypto";
 import type { Post, ColorPalette } from "@/db/schema";
 import type { ReactElement } from "react";
 
-const templates: ((post: Post, palette: ColorPalette) => ReactElement)[] = [
-  SlideTitleTemplate,
-  SlideContentTemplate,
-  SlideQuoteTemplate,
-  SlideCTATemplate,
-];
+async function renderAndSave(
+  jsx: ReactElement,
+  postId: number,
+  slideNumber: number,
+  fonts: Awaited<ReturnType<typeof loadFonts>>,
+  label: string,
+) {
+  const svg = await satori(jsx, { width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fonts });
+  const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
+  const pngBuffer = Buffer.from(resvg.render().asPng());
+
+  const hash = crypto.randomBytes(4).toString("hex");
+  const filename = `post-${postId}-slide-${label}-${hash}.png`;
+  const filePath = await saveFile(filename, pngBuffer);
+
+  const [slide] = await db
+    .insert(slides)
+    .values({ postId, slideNumber, filename, filePath, width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fileSize: pngBuffer.length })
+    .returning();
+
+  return slide;
+}
 
 export async function generatePostSlides(postId: number) {
   // 1. Fetch post
@@ -53,65 +70,32 @@ export async function generatePostSlides(postId: number) {
   }
   await db.delete(slides).where(eq(slides.postId, postId));
 
-  // 5. Generate each slide
+  // 5. Generate slides dynamically
   const generatedSlides = [];
+  const sections = getContentSections(post);
 
-  for (let i = 0; i < 4; i++) {
-    const jsx = templates[i](post, palette);
+  // Slide 1: Title
+  generatedSlides.push(await renderAndSave(SlideTitleTemplate(post, palette), postId, 1, fonts, "1"));
 
-    const svg = await satori(jsx, { width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fonts });
-    const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
-    const pngBuffer = Buffer.from(resvg.render().asPng());
-
-    const hash = crypto.randomBytes(4).toString("hex");
-    const filename = `post-${postId}-slide-${i + 1}-${hash}.png`;
-    const filePath = await saveFile(filename, pngBuffer);
-
-    const [slide] = await db
-      .insert(slides)
-      .values({ postId, slideNumber: i + 1, filename, filePath, width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fileSize: pngBuffer.length })
-      .returning();
-
-    generatedSlides.push(slide);
+  // Slides 2..N+1: Content (one per section)
+  for (let i = 0; i < sections.length; i++) {
+    const slideNum = i + 2;
+    generatedSlides.push(await renderAndSave(SlideContentTemplate(post, palette, sections[i]), postId, slideNum, fonts, String(slideNum)));
   }
 
-  // 6. Generate web title variant (slide 5) — no subtitle text
-  {
-    const jsx = SlideTitleTemplate(post, palette, { arrowDown: true });
-    const svg = await satori(jsx, { width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fonts });
-    const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
-    const pngBuffer = Buffer.from(resvg.render().asPng());
+  // Slide N+2: Quote
+  const quoteNum = sections.length + 2;
+  generatedSlides.push(await renderAndSave(SlideQuoteTemplate(post, palette), postId, quoteNum, fonts, String(quoteNum)));
 
-    const hash = crypto.randomBytes(4).toString("hex");
-    const filename = `post-${postId}-slide-5-web-${hash}.png`;
-    const filePath = await saveFile(filename, pngBuffer);
+  // Slide N+3: CTA
+  const ctaNum = sections.length + 3;
+  generatedSlides.push(await renderAndSave(SlideCTATemplate(post, palette), postId, ctaNum, fonts, String(ctaNum)));
 
-    const [slide] = await db
-      .insert(slides)
-      .values({ postId, slideNumber: 5, filename, filePath, width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fileSize: pngBuffer.length })
-      .returning();
+  // Slide 100: Web title variant (arrow down)
+  generatedSlides.push(await renderAndSave(SlideTitleTemplate(post, palette, { arrowDown: true }), postId, WEB_TITLE_SLIDE, fonts, "100-web"));
 
-    generatedSlides.push(slide);
-  }
-
-  // 7. Generate web quote variant (slide 6) — no icon
-  {
-    const jsx = SlideQuoteTemplate(post, palette, { hideIcon: true });
-    const svg = await satori(jsx, { width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fonts });
-    const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
-    const pngBuffer = Buffer.from(resvg.render().asPng());
-
-    const hash = crypto.randomBytes(4).toString("hex");
-    const filename = `post-${postId}-slide-6-web-${hash}.png`;
-    const filePath = await saveFile(filename, pngBuffer);
-
-    const [slide] = await db
-      .insert(slides)
-      .values({ postId, slideNumber: 6, filename, filePath, width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fileSize: pngBuffer.length })
-      .returning();
-
-    generatedSlides.push(slide);
-  }
+  // Slide 101: Web quote variant (no icon)
+  generatedSlides.push(await renderAndSave(SlideQuoteTemplate(post, palette, { hideIcon: true }), postId, WEB_QUOTE_SLIDE, fonts, "101-web"));
 
   return generatedSlides;
 }
