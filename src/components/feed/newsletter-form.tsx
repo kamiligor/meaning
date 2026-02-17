@@ -149,9 +149,39 @@ export function NewsletterForm({ locale, variant }: NewsletterFormProps) {
   // banner variant
   return (
     <div className="bg-[#F1F4F6] rounded-xl p-5">
-      <p className="text-sm font-semibold text-[#1E2A36] mb-2">
-        {d.newsletterHeading}
-      </p>
+      <div className="flex items-start gap-3 mb-3">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          className="text-[#7B9E8C] shrink-0 mt-0.5"
+        >
+          <rect
+            x="2"
+            y="4"
+            width="20"
+            height="16"
+            rx="3"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M2 7L10.876 12.594C11.5586 13.0234 12.4414 13.0234 13.124 12.594L22 7"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+        </svg>
+        <div>
+          <h3 className="text-base font-bold text-[#1E2A36]">
+            {d.newsletterHeading}
+          </h3>
+          <p className="text-sm text-[#4A5B6A] mt-1 leading-relaxed">
+            {d.newsletterSubtext}
+          </p>
+        </div>
+      </div>
       <form onSubmit={handleSubmit} className="flex gap-2">
         <input
           type="email"
