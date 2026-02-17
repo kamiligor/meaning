@@ -12,6 +12,13 @@ const dict = {
     back: "Back",
     follow: "Follow",
     furtherReading: "Further reading",
+    newsletterHeading: "Stay curious",
+    newsletterSubtext: "Get new psychology insights delivered to your inbox. No spam, just meaning.",
+    newsletterPlaceholder: "Your email",
+    newsletterSubmit: "Subscribe",
+    newsletterSuccess: "You're in! Check your inbox to confirm.",
+    newsletterError: "Something went wrong. Try again.",
+    newsletterAlreadySubscribed: "You're already subscribed!",
   },
   pl: {
     siteTitle: "just have a little meaning",
@@ -22,6 +29,13 @@ const dict = {
     back: "Wróć",
     follow: "Obserwuj",
     furtherReading: "Polecane lektury",
+    newsletterHeading: "Bądź na bieżąco",
+    newsletterSubtext: "Nowe spostrzeżenia z psychologii prosto na Twoją skrzynkę. Bez spamu, tylko sens.",
+    newsletterPlaceholder: "Twój email",
+    newsletterSubmit: "Subskrybuj",
+    newsletterSuccess: "Jesteś na liście! Sprawdź skrzynkę, żeby potwierdzić.",
+    newsletterError: "Coś poszło nie tak. Spróbuj ponownie.",
+    newsletterAlreadySubscribed: "Już subskrybujesz!",
   },
 };
 

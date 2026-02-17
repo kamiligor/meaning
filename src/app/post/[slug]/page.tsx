@@ -9,6 +9,7 @@ import Image from "next/image";
 import { t, isLocale, type Locale } from "@/lib/i18n";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { NewsletterForm } from "@/components/feed/newsletter-form";
 
 export async function generateStaticParams() {
   const allPosts = await db
@@ -269,6 +270,11 @@ export default async function PostPage({ params }: PageProps) {
           })()}
 
         </article>
+
+        {/* Newsletter */}
+        <div className="mt-10">
+          <NewsletterForm locale={locale} variant="banner" />
+        </div>
 
         {/* Back to feed */}
         <div className="mt-10 pt-6 border-t border-[#F1F4F6] text-center">

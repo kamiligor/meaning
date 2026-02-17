@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { Fragment, useEffect, useRef } from "react";
 import { useInfinitePosts } from "@/hooks/use-infinite-posts";
 import { PostCard } from "./post-card";
 import { FeedSkeleton } from "./feed-skeleton";
+import { NewsletterForm } from "./newsletter-form";
 import { t, type Locale } from "@/lib/i18n";
 
 interface Post {
@@ -50,9 +51,17 @@ export function InfiniteFeed({ initialPosts, initialCursor, locale }: InfiniteFe
 
   return (
     <div className="space-y-6">
-      {posts.map((post) => (
-        <PostCard key={post.id} post={post} />
+      {posts.map((post, index) => (
+        <Fragment key={post.id}>
+          <PostCard post={post} />
+          {index === 1 && (
+            <NewsletterForm locale={locale} variant="card" />
+          )}
+        </Fragment>
       ))}
+      {posts.length > 0 && posts.length < 2 && (
+        <NewsletterForm locale={locale} variant="card" />
+      )}
 
       {/* Loading skeleton */}
       {loading && <FeedSkeleton count={2} />}

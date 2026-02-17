@@ -35,6 +35,7 @@ export async function middleware(request: NextRequest) {
     pathname.startsWith("/api/") &&
     !pathname.startsWith("/api/auth/") &&
     !pathname.startsWith("/api/slides/") &&
+    !pathname.startsWith("/api/newsletter/") &&
     request.method !== "GET"
   ) {
     if (!(await isAuthenticated(request))) {
