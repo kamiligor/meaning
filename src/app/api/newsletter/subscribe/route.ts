@@ -1,13 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import crypto from "crypto";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: NextRequest) {
-  const apiKey = process.env.MAILCHIMP_API_KEY;
-  const listId = process.env.MAILCHIMP_LIST_ID;
+  const apiToken = process.env.MAILERLITE_API_TOKEN;
 
-  if (!apiKey || !listId) {
+  if (!apiToken) {
     return NextResponse.json(
       { error: "Newsletter service not configured" },
       { status: 500 }
@@ -28,50 +26,37 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "invalid_email" }, { status: 400 });
   }
 
-  const dc = apiKey.split("-").pop();
-  const subscriberHash = crypto
-    .createHash("md5")
-    .update(email)
-    .digest("hex");
-
-  const url = `https://${dc}.api.mailchimp.com/3.0/lists/${listId}/members/${subscriberHash}`;
-
-  const res = await fetch(url, {
-    method: "PUT",
+  const res = await fetch("https://connect.mailerlite.com/api/subscribers", {
+    method: "POST",
     headers: {
-      Authorization: `Basic ${Buffer.from(`anystring:${apiKey}`).toString("base64")}`,
+      Authorization: `Bearer ${apiToken}`,
       "Content-Type": "application/json",
+      Accept: "application/json",
     },
     body: JSON.stringify({
-      email_address: email,
-      status_if_new: "pending",
-      language: locale,
-      tags: [locale === "pl" ? "polish" : "english"],
+      email,
+      fields: { language: locale },
     }),
   });
 
-  if (!res.ok) {
-    const data = await res.json().catch(() => ({}));
-    if (data.title === "Member Exists") {
+  const data = await res.json().catch(() => ({}));
+
+  if (res.ok) {
+    if (data.data?.status === "active") {
       return NextResponse.json(
         { error: "already_subscribed" },
         { status: 409 }
       );
     }
-    return NextResponse.json(
-      { error: "subscription_failed" },
-      { status: 500 }
-    );
+    return NextResponse.json({ success: true });
   }
 
-  const data = await res.json();
-
-  if (data.status === "subscribed") {
-    return NextResponse.json(
-      { error: "already_subscribed" },
-      { status: 409 }
-    );
+  if (res.status === 422) {
+    return NextResponse.json({ error: "invalid_email" }, { status: 400 });
   }
 
-  return NextResponse.json({ success: true });
+  return NextResponse.json(
+    { error: "subscription_failed" },
+    { status: 500 }
+  );
 }
