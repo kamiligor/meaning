@@ -37,6 +37,9 @@ export const posts = sqliteTable("posts", {
   // Caption
   caption: text("caption"),
 
+  // References (JSON array of {title, author, url?})
+  references: text("references"),
+
   // Locale & translations
   locale: text("locale").notNull().default("en"),
   translationGroup: text("translation_group"),

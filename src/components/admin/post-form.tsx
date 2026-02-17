@@ -22,6 +22,7 @@ interface PostFormData {
   hashtags: string;
   handleBio: string;
   caption: string;
+  references: string;
   colorPalette: string;
   logoVariant: string;
   locale: string;
@@ -57,6 +58,7 @@ const DEFAULTS: PostFormData = {
   hashtags: "",
   handleBio: "psychology \u00B7 life hacks \u00B7 mental health",
   caption: "",
+  references: "",
   colorPalette: "sage",
   logoVariant: "light",
   locale: "en",
@@ -458,6 +460,25 @@ export function PostForm({
               />
             </FieldGroup>
           </div>
+        </section>
+
+        {/* Section: References */}
+        <section className="bg-white rounded-2xl p-6 shadow-sm">
+          <h2 className="text-sm font-bold text-[#1E2A36] tracking-wider uppercase mb-5">
+            References
+          </h2>
+          <FieldGroup
+            label="References (JSON)"
+            hint='Array of {title, author, url?}. E.g. [{"title":"Book","author":"Author","url":"https://..."}]'
+          >
+            <textarea
+              className={textareaClass}
+              rows={4}
+              value={data.references}
+              onChange={(e) => update("references", e.target.value)}
+              placeholder='[{"title":"Why We Sleep","author":"Matthew Walker","url":"https://..."}]'
+            />
+          </FieldGroup>
         </section>
 
         {/* Section: Design */}

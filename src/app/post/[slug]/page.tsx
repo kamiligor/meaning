@@ -233,6 +233,41 @@ export default async function PostPage({ params }: PageProps) {
             ) : null;
           })()}
 
+          {/* References / Further reading */}
+          {post.references && (() => {
+            const refs: { title: string; author: string; url?: string }[] = JSON.parse(post.references);
+            if (!refs.length) return null;
+            return (
+              <div className="mt-10">
+                <h2 className="text-xs font-semibold tracking-widest uppercase text-[#7B9E8C] mb-4">
+                  {d.furtherReading}
+                </h2>
+                <ul className="space-y-3">
+                  {refs.map((ref, i) => (
+                    <li key={i} className="flex items-baseline gap-2 text-[13px]">
+                      <span className="text-[#7B9E8C] shrink-0">&#x2022;</span>
+                      <span>
+                        {ref.url ? (
+                          <a
+                            href={ref.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[#1E2A36] font-medium hover:text-[#7B9E8C] transition underline underline-offset-2 decoration-[#d1d8de] hover:decoration-[#7B9E8C]"
+                          >
+                            {ref.title}
+                          </a>
+                        ) : (
+                          <span className="text-[#1E2A36] font-medium">{ref.title}</span>
+                        )}
+                        <span className="text-[#4A5B6A]"> &mdash; {ref.author}</span>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })()}
+
         </article>
 
         {/* Back to feed */}

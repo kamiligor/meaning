@@ -76,6 +76,7 @@ interface PostInput {
   hashtags: string | string[];
   handleBio?: string;
   caption?: string;
+  references?: { title: string; author: string; url?: string }[];
   colorPalette?: string;
   logoVariant?: string;
   locale?: "en" | "pl";
@@ -158,6 +159,7 @@ async function main() {
       hashtags,
       handleBio: input.handleBio || "psychology \u00B7 life hacks \u00B7 mental health",
       caption: input.caption || "",
+      references: input.references ? JSON.stringify(input.references) : null,
       colorPalette: input.colorPalette || "sage",
       logoVariant: input.logoVariant || "light",
       locale: input.locale || "en",

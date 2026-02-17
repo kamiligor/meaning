@@ -11,6 +11,7 @@ const dict = {
     backToFeed: "Back to feed",
     back: "Back",
     follow: "Follow",
+    furtherReading: "Further reading",
   },
   pl: {
     siteTitle: "just have a little meaning",
@@ -20,6 +21,7 @@ const dict = {
     backToFeed: "Wróć do feedu",
     back: "Wróć",
     follow: "Obserwuj",
+    furtherReading: "Polecane lektury",
   },
 };
 

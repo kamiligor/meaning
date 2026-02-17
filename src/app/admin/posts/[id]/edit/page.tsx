@@ -39,6 +39,7 @@ export default async function EditPostPage({
     hashtags: post.hashtags,
     handleBio: post.handleBio || "psychology \u00B7 life hacks \u00B7 mental health",
     caption: post.caption || "",
+    references: post.references || "",
     colorPalette: post.colorPalette || "sage",
     logoVariant: post.logoVariant || "light",
     locale: post.locale || "en",

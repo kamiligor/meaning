@@ -48,6 +48,11 @@ export async function PUT(
         : body.contentSlides
           ? JSON.stringify(body.contentSlides)
           : undefined,
+      references: typeof body.references === "string"
+        ? body.references || null
+        : Array.isArray(body.references)
+          ? JSON.stringify(body.references)
+          : undefined,
       updatedAt: sql`(datetime('now'))`,
       publishedAt: body.status === "published" ? sql`(datetime('now'))` : undefined,
     })

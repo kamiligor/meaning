@@ -78,6 +78,11 @@ export async function POST(request: NextRequest) {
         : JSON.stringify(body.hashtags),
       handleBio: body.handleBio,
       caption: body.caption,
+      references: typeof body.references === "string"
+        ? body.references || null
+        : Array.isArray(body.references)
+          ? JSON.stringify(body.references)
+          : null,
       locale: body.locale || "en",
       colorPalette: body.colorPalette || "sage",
       logoVariant: body.logoVariant || "light",
