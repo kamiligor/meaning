@@ -9,6 +9,15 @@ import { t, isLocale, type Locale } from "@/lib/i18n";
 import type { Metadata } from "next";
 import Link from "next/link";
 
+export async function generateStaticParams() {
+  const allPosts = await db
+    .select({ slug: posts.slug })
+    .from(posts)
+    .where(eq(posts.status, "published"));
+
+  return allPosts.map((p) => ({ slug: p.slug }));
+}
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
