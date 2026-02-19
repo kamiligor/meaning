@@ -10,6 +10,7 @@ import { t, isLocale, type Locale } from "@/lib/i18n";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { NewsletterForm } from "@/components/feed/newsletter-form";
+import { ShareButton } from "@/components/feed/share-button";
 
 export async function generateStaticParams() {
   const allPosts = await db
@@ -159,14 +160,20 @@ export default async function PostPage({ params }: PageProps) {
           {(() => {
             const webTitle = postSlides.find((s) => s.slideNumber === WEB_TITLE_SLIDE) || postSlides.find((s) => s.slideNumber === 5) || postSlides[0];
             return webTitle ? (
-              <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden">
-                <Image
-                  src={`/api/slides/${webTitle.filename}`}
-                  alt={cleanHeadline}
-                  fill
-                  className="object-cover"
-                  priority
-                />
+              <div className="relative">
+                <div className="aspect-[4/5] w-full rounded-2xl overflow-hidden">
+                  <Image
+                    src={`/api/slides/${webTitle.filename}`}
+                    alt={cleanHeadline}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+                {/* Share tab — bottom-right of image, in the margin */}
+                <div className="absolute bottom-4 -right-4 md:-right-12 z-10">
+                  <ShareButton slug={post.slug} title={cleanHeadline} locale={locale} variant="post" />
+                </div>
               </div>
             ) : null;
           })()}
@@ -251,6 +258,11 @@ export default async function PostPage({ params }: PageProps) {
               </div>
             );
           })()}
+
+          {/* Share tab — bottom of post */}
+          <div className="mt-10 flex justify-end -mr-4 md:-mr-12">
+            <ShareButton slug={post.slug} title={cleanHeadline} locale={locale} variant="post" />
+          </div>
 
         </article>
 

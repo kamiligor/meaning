@@ -53,7 +53,7 @@ export function InfiniteFeed({ initialPosts, initialCursor, locale }: InfiniteFe
     <div className="space-y-6">
       {posts.map((post, index) => (
         <Fragment key={post.id}>
-          <PostCard post={post} />
+          <PostCard post={post} locale={locale} />
           {index === 1 && (
             <NewsletterForm locale={locale} variant="card" />
           )}

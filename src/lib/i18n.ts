@@ -19,6 +19,10 @@ const dict = {
     newsletterSuccess: "You're in! Check your inbox to confirm.",
     newsletterError: "Something went wrong. Try again.",
     newsletterAlreadySubscribed: "You're already subscribed!",
+    share: "Share",
+    shareCopyLink: "Copy Link",
+    shareCopied: "Copied!",
+    shareNative: "Share",
   },
   pl: {
     siteTitle: "just have a little meaning",
@@ -36,6 +40,10 @@ const dict = {
     newsletterSuccess: "Jesteś na liście! Sprawdź skrzynkę, żeby potwierdzić.",
     newsletterError: "Coś poszło nie tak. Spróbuj ponownie.",
     newsletterAlreadySubscribed: "Już subskrybujesz!",
+    share: "Udostępnij",
+    shareCopyLink: "Kopiuj link",
+    shareCopied: "Skopiowano!",
+    shareNative: "Udostępnij",
   },
 };
 
