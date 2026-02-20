@@ -8,6 +8,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://meaning.igicode.com"),
   title: "just have a little meaning",
   description: "Psychology life hacks & mental health tips",
 };
