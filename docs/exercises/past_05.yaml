@@ -1,0 +1,78 @@
+exercise:
+  id: "past_05"
+  module: "Przeszłość"
+  title: "List do Dawnego Siebie"
+  difficulty: 3
+  estimated_time: "20-35 minut"
+  psychological_basis: "Mindful Self-Compassion (Neff, 2003) + Tożsamość narracyjna (McAdams, 2001)"
+  content_warning: "To ćwiczenie może wywołać silne emocje związane ze wspomnieniami z przeszłości. Jeśli poczujesz, że potrzebujesz przerwy — zrób ją. Numery telefonów zaufania są dostępne na dole strony."
+
+  contraindications: |
+    To ćwiczenie może nie być odpowiednie dla Ciebie w tym momencie, jeśli:
+    - Doświadczyłaś/eś poważnej traumy dziecięcej i nie pracujesz
+      z terapeutą nad jej przetwarzaniem
+    - Masz trudności z regulacją emocji po wspominaniu dzieciństwa
+    - Przeżywasz aktualnie kryzys emocjonalny
+    Jeśli tak jest, rozważ kontakt ze specjalistą przed wykonaniem
+    tego ćwiczenia lub wróć do niego w bezpieczniejszym momencie.
+
+  disclaimer: |
+    Ten program nie zastępuje psychoterapii ani innej formy profesjonalnej
+    pomocy psychologicznej. Jeśli czujesz, że potrzebujesz wsparcia,
+    zachęcamy do kontaktu ze specjalistą.
+    Telefon Zaufania dla Dorosłych: 116 123
+    Centrum Wsparcia: 800 70 2222
+
+  introduction: |
+    Większość z nas nosi w sobie młodszą wersję siebie — dziecko, nastolatka, młodą
+    osobę dorosłą — która przeżyła coś trudnego i nigdy nie usłyszała słów, których
+    potrzebowała. Czasem ta młodsza wersja wciąż czeka na coś: na zrozumienie,
+    na ciepło, na „widzę Cię".
+
+    Kristin Neff, badaczka z Uniwersytetu Teksańskiego, od lat bada samowspółczucie —
+    zdolność do traktowania siebie z tą samą życzliwością, z jaką traktujemy bliskich.
+    Jej badania pokazują, że samowspółczucie nie jest słabością ani pobłażaniem sobie.
+    To umiejętność, która zmniejsza lęk, poprawia odporność emocjonalną i pomaga
+    przetwarzać trudne doświadczenia.
+
+    W tym ćwiczeniu napiszesz list do młodszej wersji siebie — w dowolnym wieku.
+    Możesz pisać do pięciolatka, do nastolatka, do siebie sprzed roku. Wybierz
+    moment, w którym tamta osoba potrzebowała ciepła — i napisz jej z tym ciepłem.
+
+    Ten list nie jest o radach. Nie chodzi o to, żeby powiedzieć „zrób tak i tak,
+    będzie lepiej". Chodzi o ciepło. O to, żeby tamta osoba poczuła się widziana
+    i rozumiana — przez kogoś, kto zna całą historię. Przez Ciebie.
+
+  prompt_questions:
+    - "Do jakiej wersji siebie chcesz napisać? W jakim jesteś/aś wieku w tym liście? Co wtedy przeżywałeś/aś?"
+    - "Napisz list do tej osoby. Pisz tak, jakbyś pisał/a do dziecka przyjaciółki lub przyjaciela — z ciepłem, bez oceniania, bez rad. Co chciałbyś/chciałabyś, żeby ta osoba wiedziała?"
+    - "Czy jest coś, czego tamta wersja Ciebie się bała lub wstydziła? Jak chciałbyś/chciałabyś o tym powiedzieć — nie bagatelizując, ale też nie zostawiając tej osoby samej z tym?"
+    - "Czy jest coś, co chciałbyś/chciałabyś, żeby tamta wersja Ciebie wiedziała o przyszłości — nie konkretne wydarzenia, ale coś o niej samej?"
+
+  stuck_helpers:
+    - "Jeśli nie wiesz, do jakiego okresu pisać, pomyśl: w którym momencie życia najbardziej potrzebowałeś/aś, żeby ktoś Cię zobaczył i powiedział, że to, co czujesz, jest okej?"
+    - "Możesz zacząć od prostego zdania: 'Cześć. Chcę, żebyś wiedział/a, że...' albo 'Piszę do Ciebie, bo...' — pozwól sobie na prosty początek."
+    - "Jeśli pisanie z perspektywy 'ja do siebie' jest zbyt trudne, możesz napisać list jako ktoś inny — życzliwy nauczyciel, mądry dziadek, wyimaginowany opiekun. Ważne jest ciepło, nie forma."
+    - "Nie musisz pisać długiego listu. Nawet trzy zdania napisane z prawdziwym ciepłem są warte więcej niż strona napisana 'bo tak trzeba'."
+
+  reflection_prompt: |
+    Przeczytaj swój list. Jak się czujesz, czytając te słowa? Czy jest w nich
+    coś, co chciałbyś/chciałabyś usłyszeć też dzisiaj — jako dorosła osoba?
+    Czasem to, czego potrzebowała nasza młodsza wersja, jest tym, czego wciąż
+    potrzebujemy. I to jest w porządku.
+
+  post_exercise_note: |
+    Jeśli po tym ćwiczeniu czujesz się gorzej niż przed — to normalna
+    reakcja. Pisanie do młodszej wersji siebie może otworzyć emocje,
+    które były długo zamknięte. Daj sobie czas. Nie musisz dziś robić
+    nic więcej. Jeśli trudne emocje utrzymują się dłużej niż kilka dni,
+    zachęcamy do kontaktu ze specjalistą.
+
+  why_it_works: |
+    Pisanie listu do młodszej wersji siebie łączy dwa potężne mechanizmy psychologiczne.
+    Samowspółczucie (Neff, 2003) — traktowanie siebie z życzliwością zamiast z krytyką —
+    obniża poziom kortyzolu, zmniejsza lęk i buduje odporność emocjonalną. Tożsamość
+    narracyjna (McAdams, 2001) — integrowanie przeszłych doświadczeń z obecnym „ja" —
+    wzmacnia poczucie ciągłości i spójności. Kiedy piszesz do młodszej wersji siebie
+    z ciepłem, jednocześnie praktykujesz współczucie wobec siebie i budujesz most
+    między tym, kim byłeś/aś, a tym, kim jesteś. To most, który wielu z nas potrzebuje.

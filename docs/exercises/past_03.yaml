@@ -1,0 +1,80 @@
+exercise:
+  id: "past_03"
+  module: "Przeszłość"
+  title: "Moment, Który Wszystko Zmienił"
+  difficulty: 3
+  estimated_time: "25-40 minut"
+  psychological_basis: "Ekspresywne pisanie (Pennebaker, 1997, 2004) + Wzrost potraumatyczny (Tedeschi & Calhoun, 2004)"
+  content_warning: "To ćwiczenie może wywołać silne emocje, ponieważ dotyczy momentów przełomowych w Twoim życiu — w tym potencjalnie trudnych. Nie musisz wybierać najbardziej bolesnego wspomnienia. Możesz przerwać w dowolnym momencie i wrócić później. Jeśli poczujesz, że potrzebujesz wsparcia, numery telefonów zaufania znajdziesz na dole strony."
+
+  contraindications: |
+    To ćwiczenie może nie być odpowiednie dla Ciebie w tym momencie, jeśli:
+    - Przechodzisz aktualnie przez kryzys emocjonalny
+    - Masz zdiagnozowany PTSD i nie pracujesz obecnie z terapeutą
+    - Wydarzenie, o którym chcesz pisać, miało miejsce bardzo niedawno
+      (kilka tygodni) i emocje wciąż są bardzo surowe
+    W takich sytuacjach zachęcamy do skontaktowania się ze specjalistą
+    przed wykonaniem tego ćwiczenia, lub do wybrania łagodniejszego wspomnienia.
+
+  disclaimer: |
+    Ten program nie zastępuje psychoterapii ani innej formy profesjonalnej
+    pomocy psychologicznej. Jeśli czujesz, że potrzebujesz wsparcia,
+    zachęcamy do kontaktu ze specjalistą.
+    Telefon Zaufania dla Dorosłych: 116 123
+    Centrum Wsparcia: 800 70 2222
+
+  introduction: |
+    W poprzednich ćwiczeniach stworzyłaś/eś mapę i rozdziały swojego życia. Teraz
+    zapraszamy Cię do zatrzymania się przy jednym konkretnym momencie — takim, który
+    zmienił kierunek Twojej historii. Momencie przełomowym.
+
+    James Pennebaker, psycholog z Uniwersytetu Teksańskiego, przez ponad 30 lat badał
+    wpływ pisania o ważnych doświadczeniach na zdrowie psychiczne i fizyczne. Jego badania
+    konsekwentnie pokazują, że opisywanie przełomowych wydarzeń — ze szczegółami, emocjami,
+    kontekstem — pomaga mózgowi „przetworzyć" doświadczenie i zintegrować je z resztą
+    naszej historii. To nie jest magia — to neurobiologia: pisanie aktywuje obszary mózgu
+    odpowiedzialne za regulację emocji i tworzenie znaczenia.
+
+    Wybierz jeden moment z Twojej mapy lub rozdziałów — taki, który zmienił coś w Twoim
+    życiu. Nie musi być najbardziej dramatyczny ani najbardziej bolesny. Może to być
+    rozmowa, decyzja, utrata, spotkanie, odkrycie. Ważne, żeby to był moment, po którym
+    coś już nie było takie samo.
+
+    Opisz go szczegółowo: co się wydarzyło, kto tam był, co czułeś/aś, co widziałeś/aś
+    i słyszałeś/aś. A potem — co się zmieniło. Pisz dla siebie, nie dla publiczności.
+    Nikt tego nie oceni.
+
+  prompt_questions:
+    - "Wybierz jeden moment przełomowy ze swojej mapy życia. Opisz go: co dokładnie się wydarzyło? Gdzie byłeś/aś? Kto jeszcze tam był?"
+    - "Co czułeś/aś w tamtym momencie? Spróbuj przypomnieć sobie emocje — nie to, co 'powinieneś/aś' był/a czuć, ale to, co naprawdę czułeś/aś. Jeśli pamiętasz wrażenia cielesne — napięcie, ulgę, ból, lekkość — zapisz je też."
+    - "Co zmieniło się po tym momencie? Jak wyglądało Twoje życie przed nim, a jak po? Czy zmienił się Twój sposób myślenia o sobie, o innych, o świecie?"
+    - "Gdybyś miał/a powiedzieć jednym zdaniem, czego ten moment Cię nauczył — świadomie lub nieświadomie — co by to było?"
+
+  stuck_helpers:
+    - "Nie musisz wybierać najbardziej bolesnego momentu. Każdy moment, który zmienił kierunek Twojego życia, się liczy — nawet jeśli z zewnątrz wydawałby się 'mały'."
+    - "Jeśli trudno Ci zacząć, spróbuj napisać pierwszy szczegół, który pamiętasz — kolor ściany, porę roku, dźwięk w tle. Często jeden szczegół pociąga za sobą następne."
+    - "Możesz pisać w trzeciej osobie, jeśli pierwsza jest zbyt blisko. 'On/Ona siedział/a w kuchni i...' — to też jest poprawny sposób pisania o sobie."
+    - "Jeśli emocje są zbyt silne, możesz zrobić przerwę. Oddechnij. Wróć, gdy poczujesz się gotowy/a — za minutę, za godzinę, za tydzień. To ćwiczenie nigdzie nie zniknie."
+
+  reflection_prompt: |
+    Przeczytaj to, co napisałeś/aś. Jak się teraz czujesz — po zapisaniu tego momentu?
+    Czy coś się zmieniło w sposobie, w jaki go widzisz? Czy coś Cię zaskoczyło
+    w tym, co napisałeś/aś — może szczegół, o którym nie pamiętałeś/aś, albo emocja,
+    której się nie spodziewałeś/aś?
+
+  post_exercise_note: |
+    Jeśli po napisaniu tego tekstu czujesz się gorzej niż przed — to
+    normalna reakcja. Badania Pennebakera pokazują, że pisanie o ważnych
+    doświadczeniach może tymczasowo pogorszyć nastrój, zanim pojawi się
+    poprawa. Daj sobie czas. Zrób coś spokojnego. Jeśli trudne emocje
+    utrzymują się dłużej niż kilka dni, zachęcamy do kontaktu ze specjalistą.
+
+  why_it_works: |
+    Ekspresywne pisanie według metody Pennebakera (1997, 2004) to jedna z najlepiej
+    przebadanych interwencji psychologicznych. Opisywanie przełomowych doświadczeń
+    ze szczegółami sensorycznymi i emocjonalnymi pomaga mózgowi przenieść wspomnienie
+    z trybu „surowego przeżycia" do trybu „przetworzonej historii". Tedeschi i Calhoun
+    (2004) dodają, że świadome analizowanie momentów przełomowych jest jednym z głównych
+    mechanizmów wzrostu potraumatycznego — zdolności do znalezienia nowego zrozumienia
+    siebie i świata po trudnym doświadczeniu. Pisanie nie zmienia tego, co się wydarzyło,
+    ale może zmienić to, jak to nosimy.

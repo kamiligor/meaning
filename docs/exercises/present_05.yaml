@@ -1,0 +1,77 @@
+exercise:
+  id: "present_05"
+  module: "Teraźniejszość"
+  title: "Współczucie dla Siebie"
+  difficulty: 4
+  estimated_time: "25-40 minut"
+  psychological_basis: "Mindful Self-Compassion — MSC (Neff, 2003) + Psychologia pozytywna (Seligman, Peterson) + Compassion Focused Therapy — CFT (Gilbert, 2009)"
+  content_warning: "Dla niektórych to najtrudniejsze ćwiczenie w całym programie. Jeśli pojawi się opór — to informacja, nie porażka. Wielu ludzi nigdy nie słyszało ciepłych słów skierowanych do siebie — i pierwsze spotkanie z nimi może być zaskakująco trudne. Możesz przerwać w dowolnym momencie. Możesz wrócić jutro. Nie ma pośpiechu. Badania pokazują, że u osób, które rzadko doświadczały ciepła wobec siebie, ćwiczenia współczucia mogą paradoksalnie wywołać silne emocje — smutek, gniew, a nawet lęk. Nazywa się to efektem „backdraft" (Germer i Neff, 2013). Jeśli to się pojawi, nie oznacza to, że coś jest z Tobą nie tak — to naturalna reakcja na coś nowego. Daj sobie przestrzeń."
+  disclaimer: |
+    Ten program nie zastępuje psychoterapii ani innej formy profesjonalnej
+    pomocy psychologicznej. Jeśli czujesz, że potrzebujesz wsparcia,
+    zachęcamy do kontaktu ze specjalistą.
+    Telefon Zaufania dla Dorosłych: 116 123
+    Centrum Wsparcia: 800 70 2222
+  contraindications: |
+    To ćwiczenie może nie być odpowiednie, jeśli:
+    - Masz aktywne myśli samobójcze lub autoagresywne — prosimy o kontakt
+      z linią kryzysową (116 123)
+    - Jesteś w ostrej fazie depresji — głos wewnętrznego krytyka może być
+      teraz zbyt silny, żeby bezpiecznie z nim pracować bez wsparcia terapeuty
+    - Masz za sobą historię przemocy emocjonalnej lub zaniedbania — głos
+      krytyka może być głosem Twojego krzywdziciela, i praca z nim wymaga
+      bezpiecznego otoczenia terapeutycznego
+    W każdym z tych przypadków zachęcamy do pracy z profesjonalistą.
+  introduction: |
+    Kristin Neff, badaczka z University of Texas, zdefiniowała współczucie dla siebie (self-compassion)
+    jako trzy połączone elementy: życzliwość wobec siebie zamiast samokrytyki, poczucie wspólnego
+    człowieczeństwa zamiast izolacji, oraz uważność zamiast nadmiernego utożsamiania się z emocjami.
+
+    Brzmi prosto. W praktyce — dla wielu osób to jedno z najtrudniejszych ćwiczeń. Dlaczego?
+    Bo gdzieś nauczyliśmy się, że bycie surowym wobec siebie to warunek bycia dobrym człowiekiem.
+    Że jeśli odpuścimy sobie krytykę, staniemy się leniwi, rozpuszczeni, bezwartościowi.
+    Badania Neff pokazują coś dokładnie odwrotnego: ludzie z wyższym poziomem współczucia dla siebie
+    są bardziej zmotywowani, wytrwalsi po porażkach i zdrowsi emocjonalnie. Samokrytyka nie mobilizuje
+    — paraliżuje.
+
+    Psychologia pozytywna (Seligman i Peterson) dodaje do tego perspektywę sił charakteru: każdy
+    człowiek ma naturalne mocne strony. Ale żeby je zobaczyć, trzeba najpierw przestać się atakować.
+    Trudno zauważyć własną odwagę, gdy wewnętrzny głos nieustannie powtarza, że jesteś tchórzem.
+
+    To ćwiczenie ma trzy części. W pierwszej usłyszysz — a raczej zapiszesz — głos wewnętrznego
+    krytyka. W drugiej napiszesz list od kogoś, kto Cię bezwarunkowo kocha. W trzeciej porównasz
+    oba głosy. Nie po to, żeby „naprawić" krytyka. Po to, żeby zobaczyć, że istnieje inny
+    głos — i że jest równie prawdziwy.
+  prompt_questions:
+    - "Część A — Głos Krytyka. Napisz to, za co się najczęściej krytykujesz. Jakie słowa słyszysz w głowie? Jakim tonem do siebie mówisz? Bądź dokładny/a — zapisz te słowa tak, jak naprawdę brzmią, nawet jeśli są okrutne. Nikt tego nie zobaczy oprócz Ciebie. Przykłady: „Jesteś leniwa", „Nigdy niczego nie kończysz", „Inni radzą sobie, a ty nie"..."
+    - "Część B — List od Przyjaciela. Wyobraź sobie kogoś, kto Cię bezwarunkowo kocha i akceptuje — prawdziwą osobę lub wymyśloną. Ktoś, kto zna całą Twoją historię: przeszłość z Modułu I, Twoje wady, porażki, momenty wstydu — i mimo to jest po Twojej stronie. Napisz list od tej osoby do Ciebie. Co by Ci powiedziała? Jak by opisała to, co krytyk nazywa „wadami"? Pozwól sobie napisać to, co potrzebujesz usłyszeć."
+    - "Część C — Porównanie. Przeczytaj obie części — najpierw głos krytyka, potem list. Jeśli możesz, przeczytaj je na głos. Co zauważasz? Jak się zmienia Twoje ciało, gdy przechodzisz od jednego do drugiego? Który głos czujesz jako bardziej „prawdziwy" — i dlaczego?"
+    - "Gdybyś mógł/mogła powiedzieć sobie jedno zdanie — z pozycji współczucia, nie krytyki — co by to było? Nie musi brzmieć „pozytywnie". Może brzmieć: „Robisz, co możesz, i to wystarczy" albo „Miałeś/aś ciężko i masz prawo być zmęczony/a"."
+  stuck_helpers:
+    - "Jeśli głos krytyka jest trudny do zapisania — spróbuj zacząć od: „Rzecz, za którą najbardziej się winię, to..." Nie musisz zapisywać wszystkiego naraz. Wystarczy jedno zdanie na start."
+    - "Jeśli pisanie listu od kochającej osoby jest trudne — wyobraź sobie, że piszesz do przyjaciela w identycznej sytuacji. Co byś mu/jej powiedział/a? Teraz skieruj te słowa do siebie."
+    - "Jeśli pojawia się opór, łzy lub gniew — to normalna reakcja. Wiele osób nigdy nie dało sobie pozwolenia na życzliwość wobec siebie. Możesz po prostu napisać: „Trudno mi to pisać, bo..." — i to jest wartościowa odpowiedź."
+    - "Nie musisz „wierzyć" w słowa kochającego przyjaciela. Wystarczy, że je zapiszesz. Czasem musimy usłyszeć coś wiele razy, zanim zaczniemy czuć, że może być prawdziwe."
+    - "Jeśli potrzebujesz przerwy — weź ją. To nie jest wyścig. Możesz wrócić do tego ćwiczenia za godzinę, jutro, za tydzień. Twoje tempo jest właściwym tempem."
+  reflection_prompt: |
+    Po przeczytaniu obu tekstów — co chcesz zapamiętać z tego ćwiczenia? Nie musi to być
+    wielka konkluzja. Może to jedno zdanie z listu, które Cię poruszyło. Może obserwacja
+    o tym, jak surowy jest Twój wewnętrzny krytyk. Może zaskoczenie, że potrafisz napisać
+    ciepłe słowa do siebie. Zapisz to — cokolwiek to jest.
+  post_exercise_note: |
+    Jeśli po tym ćwiczeniu czujesz się gorzej niż przed — to normalna reakcja.
+    Badania Pennebakera nad pisaniem ekspresywnym pokazują, że po ćwiczeniach tego
+    typu można poczuć się chwilowo gorzej — to normalna część procesu, która zwykle
+    mija w ciągu 1-2 dni. W przypadku ćwiczeń współczucia dla siebie może pojawić
+    się tzw. efekt „backdraft" (Germer i Neff, 2013) — paradoksalna reakcja emocjonalna
+    u osób, które rzadko doświadczały ciepła wobec siebie. Smutek, gniew, a nawet lęk
+    są naturalną odpowiedzią na coś nowego. Jeśli te emocje nie mijają lub nasilają się
+    — rozważ kontakt ze specjalistą. Daj sobie czas.
+  why_it_works: |
+    Badania Neff (2003, 2011) konsekwentnie pokazują, że współczucie dla siebie jest silniejszym
+    predyktorem zdrowia psychicznego niż samoocena. W przeciwieństwie do samooceny, self-compassion
+    nie wymaga poczucia „bycia lepszym" — wymaga jedynie uznania, że cierpienie jest częścią
+    ludzkiego doświadczenia. Pisanie listu z perspektywy kochającej osoby aktywuje systemy
+    opieki i uspokojenia (soothing system wg Gilberta), co fizjologicznie zmniejsza poziom
+    kortyzolu i aktywuje nerw błędny. Porównanie głosu krytyka z głosem współczucia buduje
+    świadomość, że samokrytyka to nawyk, nie prawda obiektywna.

@@ -1,0 +1,86 @@
+exercise:
+  id: "past_04"
+  module: "Przeszłość"
+  title: "Trudne Wspomnienie — Nowa Perspektywa"
+  difficulty: 4
+  estimated_time: "30-45 minut"
+  psychological_basis: "Ekspresywne pisanie (Pennebaker, 1997, 2004) + Dystansowanie poznawcze / self-distancing (Kross & Ayduk, 2011; Beck, CBT) + Wzrost potraumatyczny (Tedeschi & Calhoun, 2004)"
+  content_warning: "To ćwiczenie dotyczy trudnych, bolesnych wspomnień. Może wywołać silne emocje — smutek, złość, bezradność. To normalna reakcja na kontakt z trudną przeszłością. Nie musisz wybierać najcięższego wspomnienia. Możesz przerwać i wrócić w dowolnym momencie. Jeśli poczujesz, że potrzebujesz rozmowy z kimś, numery telefonów zaufania są dostępne na dole strony. Ten program nie zastępuje psychoterapii — jeśli Twoje wspomnienia są bardzo obciążające, rozważ kontakt ze specjalistą."
+
+  contraindications: |
+    Jeśli zmagasz się z aktywnym PTSD (flashbacki, koszmary, stany dysocjacyjne),
+    jeśli doświadczenie, o którym chcesz pisać, miało miejsce w ciągu ostatnich
+    kilku tygodni, lub jeśli jesteś w ostrym kryzysie psychicznym — to ćwiczenie
+    może nie być dla Ciebie odpowiednie w tym momencie. Rozważ kontakt z terapeutą,
+    który pomoże Ci przepracować te doświadczenia w bezpiecznych warunkach.
+    To nie jest słabość — to rozsądek.
+
+  disclaimer: |
+    Ten program nie zastępuje psychoterapii ani innej formy profesjonalnej
+    pomocy psychologicznej. Jeśli czujesz, że potrzebujesz wsparcia,
+    zachęcamy do kontaktu ze specjalistą.
+    Telefon Zaufania dla Dorosłych: 116 123
+    Centrum Wsparcia: 800 70 2222
+
+  introduction: |
+    To ćwiczenie jest trudniejsze niż poprzednie — i chcemy, żebyś o tym wiedział/a
+    z góry. Będziemy pracować z bolesnym wspomnieniem. Nie po to, żeby Cię zranić,
+    i nie po to, żeby „znaleźć coś pozytywnego" w czymś złym. Po to, żeby dać Ci
+    możliwość zobaczenia tego wspomnienia z więcej niż jednej strony.
+
+    Psychologowie Ethan Kross i Ozlem Ayduk (2011) odkryli, że sam akt przesunięcia
+    perspektywy — z „ja w środku" na „obserwator z dystansu" — zmniejsza intensywność
+    emocjonalną trudnych wspomnień, nie unikając ich. Nazwali to self-distancing:
+    zdolność do zobaczenia własnego doświadczenia jakby z oddali. To nie chodzi o to,
+    żeby Twój ból nie był prawdziwy. Chodzi o to, że opowieści, które nosimy w głowie
+    o trudnych doświadczeniach, często są napisane z perspektywy osoby w kryzysie —
+    i z tą perspektywą żyjemy latami, nawet gdy kryzys dawno minął.
+
+    W tym ćwiczeniu napiszesz o trudnym wspomnieniu dwukrotnie. Najpierw — tak, jak je
+    pamiętasz: z emocjami, myślami i odczuciami, które towarzyszyły Ci wtedy. Potem —
+    z perspektywy współczującego obserwatora: kogoś, kto widzi całą sytuację, rozumie
+    wszystkie strony i patrzy na Ciebie z ciepłem.
+
+    To NIE jest szukanie pozytywów w czymś złym. To nie jest „wszystko się dzieje z jakiegoś
+    powodu". To jest ćwiczenie w zobaczeniu siebie oczami kogoś życzliwego — bo często
+    jesteśmy dla siebie najsurowszymi sędziami.
+
+  prompt_questions:
+    - "Wybierz trudne wspomnienie. Nie musi być najtrudniejsze — wybierz takie, z którym czujesz się na tyle bezpiecznie, żeby nad nim pracować. Opisz je z perspektywy pierwszej osoby: co się wydarzyło, co czułeś/aś, o czym myślałeś/aś."
+    - "Teraz napisz o tym samym wydarzeniu z perspektywy współczującego obserwatora — kogoś mądrego i życzliwego, kto widzi całą sytuację z dystansu. Jak ta osoba opisałaby to, co Ci się przydarzyło? Co zauważyłaby o Tobie w tamtym momencie?"
+    - "Porównaj te dwa opisy. Co się zmieniło? Czy współczujący obserwator zauważył coś, czego Ty nie widziałeś/aś będąc w środku sytuacji?"
+    - "Czy jest coś, co chciałbyś/chciałabyś powiedzieć sobie z tamtego momentu — nie radę, nie 'pocieszenie', ale coś, co chciałabyś, żeby ta osoba usłyszała?"
+
+  stuck_helpers:
+    - "Jeśli trudno być 'współczującym obserwatorem' — wyobraź sobie życzliwego przyjaciela opisującego co Ci się przydarzyło. Albo wyobraź sobie, że opisujesz tę sytuację komuś, kogo kochasz — jak byś o niej mówił/a?"
+    - "Nie musisz pisać o całym wydarzeniu. Możesz wybrać jeden moment, jedną scenę, jeden fragment. Czasem mniejszy kawałek jest łatwiejszy do ogarnięcia."
+    - "Jeśli perspektywa obserwatora wydaje Ci się sztuczna — to normalne. Nie musi być idealna. Spróbuj po prostu przesunąć się o krok dalej od centrum wydarzeń. Nawet mały dystans może coś zmienić."
+    - "Możesz przerwać po pierwszej części (opis z perspektywy pierwszej osoby) i wrócić do drugiej części innego dnia. To nie jest wyścig — to Twoje tempo."
+    - "Jeśli zauważysz, że się obwiniasz w obu perspektywach — zatrzymaj się. Spróbuj napisać jedno zdanie, które zaczyna się od: 'To było trudne, bo...'. Nie 'to była moja wina, bo...' — tylko 'to było trudne, bo...'."
+
+  reflection_prompt: |
+    Jak się czujesz po napisaniu dwóch wersji tego samego wspomnienia?
+    Czy perspektywa współczującego obserwatora zmieniła coś w sposobie,
+    w jaki widzisz to wydarzenie — albo siebie w nim? Nie musisz czuć się
+    „lepiej". Czasem samo zobaczenie, że istnieje więcej niż jedna perspektywa,
+    jest wystarczające.
+
+  post_exercise_note: |
+    Jeśli po tym ćwiczeniu czujesz się gorzej niż przed — to normalna reakcja.
+    Badania Pennebakera pokazują, że pogorszenie samopoczucia po pisaniu o trudnych
+    doświadczeniach trwa zwykle 1-2 dni, po czym następuje poprawa. To tak, jakby
+    otworzyć ranę, żeby ją oczyścić — przez chwilę boli bardziej, ale goi się lepiej.
+    Daj sobie czas. Zrób coś spokojnego. Nie musisz dziś robić nic więcej.
+
+  why_it_works: |
+    To ćwiczenie łączy trzy sprawdzone podejścia terapeutyczne. Ekspresywne pisanie
+    Pennebakera pomaga przetworzyć trudne doświadczenie przez ubranie go w słowa.
+    Dystansowanie poznawcze — self-distancing (Kross & Ayduk, 2011) — pozwala zobaczyć
+    własne doświadczenie z oddali, co zmniejsza intensywność emocjonalną bez unikania
+    lub tłumienia emocji. W badaniach osoby piszące o trudnych wydarzeniach z perspektywy
+    trzeciej osoby lub obserwatora przejawiały mniej reaktywności emocjonalnej i więcej
+    wglądu niż osoby piszące z perspektywy pierwszej osoby. Wzrost potraumatyczny
+    (Tedeschi & Calhoun, 2004) nie polega na „znalezieniu sensu w cierpieniu", ale na
+    zdolności do poszerzenia perspektywy — zobaczeniu siebie jako kogoś, kto przeżył coś
+    trudnego, a nie kogoś, kto zawinił. Pisanie z perspektywy współczującego obserwatora
+    jest konkretnym ćwiczeniem w tej zdolności.

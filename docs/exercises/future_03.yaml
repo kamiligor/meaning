@@ -1,0 +1,66 @@
+exercise:
+  id: "future_03"
+  module: "Przyszłość"
+  title: "Plan Oparty na Wartościach"
+  difficulty: 2
+  estimated_time: "30-40 minut"
+  psychological_basis: "Teoria autodeterminacji SDT (Deci & Ryan) + ACT — Terapia Akceptacji i Zaangażowania (Hayes et al.) + Psychologia pozytywna — siły charakteru (Seligman, Peterson)"
+  content_warning: null
+  disclaimer: |
+    Ten program nie zastępuje psychoterapii ani innej formy profesjonalnej
+    pomocy psychologicznej. Jeśli czujesz, że potrzebujesz wsparcia,
+    zachęcamy do kontaktu ze specjalistą.
+    Telefon Zaufania dla Dorosłych: 116 123
+    Centrum Wsparcia: 800 70 2222
+
+  introduction: |
+    W Module II zidentyfikowałeś/aś swoje kluczowe wartości — to, co naprawdę jest dla Ciebie ważne,
+    niezależnie od oczekiwań otoczenia. Teraz czas przejść od rozumienia do działania. Ale nie
+    takiego działania, które kojarzy się z noworocznymi postanowieniami — wielkimi, ambitnymi
+    i porzuconymi po dwóch tygodniach.
+
+    Teoria autodeterminacji (Deci & Ryan) mówi wyraźnie: cele, które są zakorzenione w naszych
+    własnych wartościach — a nie w presji społecznej, poczuciu winy czy porównywaniu się z innymi
+    — są bardziej motywujące i prowadzą do trwalszych zmian. Różnica między „powinienem biegać,
+    bo to zdrowe" a „chcę się ruszać, bo zależy mi na energii i kontakcie z ciałem" jest ogromna.
+    Pierwsze to obowiązek. Drugie to wybór.
+
+    W tym ćwiczeniu wrócisz do 5 wartości z Modułu II i dla każdej z nich znajdziesz jeden
+    konkretny, mały krok, który możesz zrobić w najbliższym miesiącu. Kluczowe słowo to „mały".
+    Jeśli „przebiegnę maraton" przychodzi do głowy, a nie biegałeś/aś od lat — spróbuj „spacer 20
+    minut." Nie chodzi o to, żeby zaimponować sobie lub komuś. Chodzi o to, żeby zrobić coś,
+    co jest naprawdę wykonalne — i co jest wyrazem Twoich wartości, a nie Twoich lęków
+    lub ambicji.
+
+    Psychologia pozytywna (Seligman, Peterson) pokazuje, że wykorzystywanie własnych sił charakteru
+    w codziennym życiu — nawet na małe sposoby — zwiększa poczucie sensu i satysfakcji. Ten plan
+    nie musi być heroiczny. Ma być Twój.
+
+  prompt_questions:
+    - "Wróć do 5 wartości, które zidentyfikowałeś/aś w Module II. Wypisz je ponownie. Przy każdej napisz jedno zdanie o tym, dlaczego jest dla Ciebie ważna — nie dlaczego 'powinna' być ważna, ale dlaczego naprawdę jest."
+    - "Dla każdej wartości wymyśl jedną konkretną rzecz, którą możesz zrobić w najbliższym miesiącu. Jedną. Nie plan na rok, nie wielką zmianę — najmniejszy krok, który jest naprawdę wykonalny. Jeśli masz wątpliwości, czy coś jest za małe — prawdopodobnie jest w sam raz."
+    - "Dla każdego kroku odpowiedz: Kiedy dokładnie to zrobię? (Który dzień, która pora dnia?) Gdzie to zrobię? Co będzie potrzebne, żeby to się stało? Im bardziej konkretnie, tym lepiej."
+    - "Spójrz na swoją listę. Który z tych kroków wydaje Ci się najłatwiejszy? Zacznij od niego. Który wydaje się najtrudniejszy? Nie musisz go robić pierwszy — ale zapisz, co sprawia, że wydaje się trudny. Czy to lęk? Wstyd? Brak czasu? Coś innego?"
+
+  stuck_helpers:
+    - "Jeśli nie pamiętasz swoich wartości z Modułu II, to nic nie szkodzi. Pomyśl: co Cię poruszyło w ostatnim tygodniu? Co Cię zezłościło, wzruszyło, zmotywowało? Za emocjami często stoją wartości."
+    - "Jeśli każdy krok wydaje Ci się za duży — zmniejsz go o połowę. A potem jeszcze o połowę. 'Czytać książkę' staje się 'przeczytać jedną stronę'. 'Ćwiczenie' staje się 'założyć buty sportowe'. Brzmi śmiesznie? Dobrze. Śmiesznie małe kroki są tymi, które się naprawdę robi."
+    - "Spróbuj pomyśleć o czymś, co już robisz, a co możesz lekko zmienić w kierunku swoich wartości. Nie musisz zaczynać od zera. Może już spacerujesz — możesz spacerować bez telefonu. Może już rozmawiasz z przyjacielem — możesz zapytać go o coś głębszego."
+    - "Jeśli łapiesz się na myśleniu 'To nie wystarczy, to za mało' — przypomnij sobie, że badania jednoznacznie pokazują: małe, regularne działania zmieniają więcej niż wielkie, jednorazowe zrywy. Wystarczalność to pułapka perfekcjonizmu."
+
+  reflection_prompt: |
+    Spójrz na swój plan. Pięć wartości, pięć małych kroków.
+    Czy czujesz, że to naprawdę Twoje — że wybrałeś/aś to z własnej woli,
+    a nie z poczucia obowiązku? Jeśli przy jakimś kroku czujesz presję
+    zamiast ciekawości — może warto go zmienić. Plan oparty na wartościach
+    powinien dawać poczucie „chcę", nie „muszę".
+
+  why_it_works: |
+    Teoria autodeterminacji (Deci & Ryan) rozróżnia motywację zewnętrzną (robienie czegoś
+    z presji, poczucia winy, dla nagrody) i wewnętrzną (robienie czegoś, bo jest zgodne
+    z moimi wartościami i potrzebami). Cele oparte na motywacji wewnętrznej prowadzą do
+    większego zaangażowania, mniejszego wypalenia i trwalszych zmian zachowania. Łączenie
+    wartości z konkretnymi, małymi krokami dodatkowo wykorzystuje zasadę „najmniejszego
+    wykonalnego działania" — obniża próg wejścia na tyle, że mózg nie uruchamia mechanizmów
+    unikania. ACT dodaje do tego perspektywę: działanie nie musi być doskonałe ani przyjemne
+    — wystarczy, że jest w kierunku tego, co naprawdę ważne.

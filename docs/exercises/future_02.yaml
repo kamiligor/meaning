@@ -1,0 +1,79 @@
+exercise:
+  id: "future_02"
+  module: "Przyszłość"
+  title: "Najgorsza Możliwa Przyszłość"
+  difficulty: 3
+  estimated_time: "20-30 minut"
+  psychological_basis: "Mental Contrasting / WOOP (Oettingen, 2014) + ACT — Terapia Akceptacji i Zaangażowania (Hayes et al.)"
+  content_warning: "To ćwiczenie może wywołać trudne emocje — będziesz myśleć o przyszłości, w której nic się nie zmieniło. Ten program nie zastępuje psychoterapii. Jeśli teraz czujesz się emocjonalnie wyczerpany/a lub przechodzisz kryzys, możesz je pominąć i wrócić później. Jeśli w trakcie pisania poczujesz, że to za dużo — przerwij. Nie ma obowiązku kończenia. Twoje bezpieczeństwo emocjonalne jest ważniejsze niż jakiekolwiek ćwiczenie."
+  disclaimer: |
+    Ten program nie zastępuje psychoterapii ani innej formy profesjonalnej
+    pomocy psychologicznej. Jeśli czujesz, że potrzebujesz wsparcia,
+    zachęcamy do kontaktu ze specjalistą.
+    Telefon Zaufania dla Dorosłych: 116 123
+    Centrum Wsparcia: 800 70 2222
+  contraindications: |
+    Jeśli zmagasz się z depresją, myślami samobójczymi lub odczuwasz
+    silną beznadziejność — to ćwiczenie może pogłębić te stany zamiast
+    pomóc. Nie oznacza to, że nie możesz do niego wrócić później — ale
+    teraz może nie być na nie odpowiedni moment. Rozważ kontakt ze
+    specjalistą lub przejdź do Ćwiczenia 3, które skupia się na
+    działaniu, nie na lękach. Telefon Zaufania: 116 123.
+  post_exercise_note: |
+    Jeśli po tym ćwiczeniu czujesz się gorzej niż przed — to normalna
+    reakcja. Myślenie o negatywnej przyszłości może tymczasowo obniżyć
+    nastrój. To nie znaczy, że ćwiczenie Ci zaszkodzło — badania pokazują,
+    że świadome zmierzenie się z trudnymi wizjami często prowadzi do
+    większej motywacji do działania. Daj sobie czas. Zrób coś spokojnego.
+    Jeśli uczucie beznadziejności nie mija — porozmawiaj z kimś.
+    Telefon Zaufania: 116 123.
+
+  introduction: |
+    Gabriele Oettingen przez ponad 20 lat badała, jak ludzie myślą o przyszłości. Jej odkrycia
+    są zaskakujące: sam optymizm — wyobrażanie sobie, że wszystko będzie dobrze — nie tylko
+    nie pomaga, ale może ZMNIEJSZAĆ motywację do działania. Mózg, który już „przeżył" sukces
+    w wyobraźni, traci energię do jego realizacji w rzeczywistości.
+
+    To, co naprawdę działa, to kontrast mentalny: zestawienie pożądanej przyszłości z realistyczną
+    oceną przeszkód. Dlatego po Ćwiczeniu 1 (najlepsza przyszłość) przechodzimy do tego, co może
+    być trudniejsze — ale jest równie ważne.
+
+    W tym ćwiczeniu wyobrazisz sobie siebie za 3-5 lat w wersji, w której nic się nie zmieniło.
+    Te same wzorce. Te same unikania. Te same wymówki, które znasz na pamięć. Jak wtedy wygląda
+    Twoje życie? To nie jest karanie siebie. To nie jest straszenie. To informacja — czysty
+    sygnał o tym, co jest stawką, jeśli zostaniesz w miejscu.
+
+    ACT uczy nas, że unikanie trudnych myśli i emocji to jedna z głównych przyczyn cierpienia.
+    Spojrzenie na to, czego się boimy — bez oceniania, bez paniki — często odbiera temu lękowi
+    część mocy. Nie chodzi o to, żeby ta wizja Cię sparaliżowała. Chodzi o to, żebyś zobaczył/a
+    ją wyraźnie — i mógł/a świadomie wybrać coś innego.
+
+  prompt_questions:
+    - "Wyobraź sobie, że minęło 3-5 lat i nic się nie zmieniło. Te same nawyki, te same wzorce, te same unikania. Gdzie jesteś? Co robisz na co dzień? Opisz ten zwykły dzień — bez dramatyzowania, ale uczciwie."
+    - "Jakie relacje masz w tym scenariuszu? Kto odszedł, kto został? Jak wyglądają Twoje rozmowy z bliskimi — o czym rozmawiacie, a o czym milczycie?"
+    - "Co czujesz, kiedy budzisz się rano w tej wersji przyszłości? Jaka myśl pojawia się jako pierwsza? A wieczorem, kiedy jesteś sam/a — co czujesz? Pamiętaj, że to tylko ćwiczenie wyobraźni, nie prognoza. Możesz w każdej chwili odłożyć pisanie."
+    - "Co powiedziałaby ta przyszła wersja Ciebie do Ciebie dzisiejszego? Jeśli mogłaby cofnąć się w czasie do tego momentu — co by powiedziała? Zapisz to tak, jakby te słowa naprawdę padły."
+
+  stuck_helpers:
+    - "Jeśli to ćwiczenie wydaje Ci się zbyt ciężkie — to jest w porządku. Możesz napisać tylko jedno zdanie. Możesz napisać 'Nie chcę o tym myśleć, bo...' i zobaczyć, co się pojawi. Każda ilość jest dobra."
+    - "Spróbuj pomyśleć o jednym konkretnym nawyku lub wzorcu, który chciałbyś/chciałabyś zmienić. Jeśli nic nie zrobisz z nim przez 3 lata — jak to wpłynie na jeden obszar Twojego życia? Tylko jeden. Nie musisz patrzeć na całość."
+    - "Jeśli łapiesz się na minimalizowaniu ('Nie byłoby tak źle'), spróbuj być szczery/a ze sobą przez dwie minuty. Nie chodzi o katastrofizowanie — chodzi o to, żeby przestać udawać, że status quo jest w porządku, jeśli nie jest."
+    - "Możesz też pomyśleć o tym, co powiedziałby ktoś, kto Cię dobrze zna i komu na Tobie zależy. Co widziałby ta osoba, gdyby nic się nie zmieniło? Czasem perspektywa kogoś bliskiego pomaga zobaczyć to, co sami minimalizujemy."
+
+  reflection_prompt: |
+    Odłóż tekst na chwilę. Weź kilka oddechów.
+    Teraz spójrz na to, co napisałeś/aś w Ćwiczeniu 1 i w tym ćwiczeniu.
+    Dwie przyszłości — jedna, w której działasz, i jedna, w której nie.
+    Co czujesz, widząc je obok siebie? Która z nich wydaje Ci się
+    bardziej realna dzisiaj? A na którą chcesz pracować?
+    Nie musisz mieć odpowiedzi. Wystarczy, że widzisz obie wyraźnie.
+
+  why_it_works: |
+    Kontrast mentalny (Oettingen, 2014) to jeden z najlepiej udokumentowanych mechanizmów
+    zmiany zachowania. Kiedy mózg porównuje pożądany stan z obecną rzeczywistością,
+    powstaje napięcie motywacyjne — energia do działania, której sam optymizm nie generuje.
+    Dodanie perspektywy ACT (akceptacja trudnych myśli zamiast ich unikania) sprawia,
+    że ćwiczenie nie staje się ruminacją ani samobiczowaniem, lecz świadomym, otwartym
+    spojrzeniem na konsekwencje inercji. Badania pokazują, że osoby stosujące kontrast
+    mentalny są bardziej skłonne do podejmowania konkretnych kroków — zwłaszcza gdy
+    połączą to z planowaniem implementacyjnym, co nastąpi w kolejnych ćwiczeniach.

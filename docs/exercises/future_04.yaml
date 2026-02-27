@@ -1,0 +1,75 @@
+exercise:
+  id: "future_04"
+  module: "Przyszłość"
+  title: "Przeszkody i Strategie"
+  difficulty: 3
+  estimated_time: "25-35 minut"
+  psychological_basis: "WOOP — Mental Contrasting with Implementation Intentions (Oettingen, 2014) + Implementation Intentions (Gollwitzer, 1999) + CBT — restrukturyzacja poznawcza (Beck)"
+  content_warning: |
+    To ćwiczenie wymaga spojrzenia na Twoje wewnętrzne bariery — myśli,
+    lęki i przekonania, które mogą Cię powstrzymywać. Może to być
+    emocjonalnie wymagające. Jeśli poczujesz, że to za dużo — możesz
+    się zatrzymać lub wrócić do tego ćwiczenia później.
+  disclaimer: |
+    Ten program nie zastępuje psychoterapii ani innej formy profesjonalnej
+    pomocy psychologicznej. Jeśli czujesz, że potrzebujesz wsparcia,
+    zachęcamy do kontaktu ze specjalistą.
+    Telefon Zaufania dla Dorosłych: 116 123
+    Centrum Wsparcia: 800 70 2222
+  contraindications: |
+    Jeśli zmagasz się z silnym lękiem, natrętnymi myślami lub tendencją do
+    nadmiernego analizowania zagrożeń — to ćwiczenie może nasilić te wzorce.
+    Jeśli czujesz, że identyfikowanie przeszkód zamienia się w listę tego,
+    co może pójść nie tak — przerwij i wróć do Ćwiczenia 3.
+    Możesz też omówić przeszkody z terapeutą.
+
+  introduction: |
+    Masz już wizję najlepszej przyszłości, widziałeś/aś tę najgorszą i stworzyłeś/aś plan
+    oparty na wartościach. Teraz czas na coś, co większość ludzi pomija — i dlatego większość
+    planów upada. Czas na przeszkody.
+
+    Gabriele Oettingen w swoim modelu WOOP (Wish, Outcome, Obstacle, Plan) pokazała, że ludzie,
+    którzy po wyobrażeniu sobie celu od razu identyfikują przeszkody i tworzą plany „jeśli-to"
+    (implementation intentions), mają dwu- do trzykrotnie większą szansę na realizację celu niż
+    ci, którzy po prostu „myślą pozytywnie". Dlaczego? Bo kiedy przeszkoda się pojawia — a
+    pojawi się — mózg już ma gotową ścieżkę reakcji. Nie musisz wtedy podejmować decyzji
+    w trudnym momencie. Decyzja jest już podjęta.
+
+    Aaron Beck, twórca terapii poznawczej (CBT), dodaje do tego kolejną warstwę: często nasze
+    największe przeszkody nie są zewnętrzne (brak czasu, brak pieniędzy), ale wewnętrzne —
+    to zniekształcenia poznawcze, które znasz już z Modułu II. „Nie dam rady", „To nie ma sensu",
+    „Inni potrafią, ja nie" — te myśli są realnymi przeszkodami i też można na nie przygotować
+    strategie.
+
+    W tym ćwiczeniu możesz wziąć każdy krok z Ćwiczenia 3 i możesz zadać mu trzy pytania: Co może
+    stanąć na drodze? Co zrobię, kiedy to się stanie? I jakie zniekształcenia poznawcze
+    mogą mnie sabotować?
+
+  prompt_questions:
+    - "Weź pierwszy krok ze swojego planu (Ćwiczenie 3). Jaka jest najbardziej prawdopodobna przeszkoda, która może stanąć na drodze? Nie szukaj najgorszego scenariusza — szukaj tego, który jest najbardziej realny. Coś, co już Ci się zdarzało w podobnych sytuacjach."
+    - "Dla każdej przeszkody stwórz plan 'jeśli-to': 'Jeśli [przeszkoda], to [moja strategia].' Na przykład: 'Jeśli po pracy będę zbyt zmęczony/a, żeby wyjść na spacer, to przejdę się chociaż 5 minut wokół bloku zamiast rezygnować całkowicie.' Napisz taki plan dla każdego kroku z Ćwiczenia 3."
+    - "Przyjrzyj się swoim przeszkodom. Ile z nich to okoliczności zewnętrzne (brak czasu, pieniędzy, wsparcia), a ile to przeszkody wewnętrzne (lęk, perfekcjonizm, poczucie winy, przekonanie 'nie dam rady')? Wróć do zniekształceń poznawczych z Modułu II — czy rozpoznajesz któreś z nich w swoich przeszkodach?"
+    - "Dla każdej przeszkody wewnętrznej napisz, co powiedziałabyś/powiedziałbyś bliskiemu przyjacielowi, który mówi dokładnie to samo. Jak byś zareagował/a, gdyby ktoś, na kim Ci zależy, powiedział 'Nie dam rady, nie ma sensu'? Napisz te słowa — a potem skieruj je do siebie."
+
+  stuck_helpers:
+    - "Jeśli nie potrafisz przewidzieć przeszkód — pomyśl o ostatnim razie, kiedy chciałeś/aś coś zmienić i nie wyszło. Co się stało? Co stanęło na drodze? Twoja historia jest najlepszym predyktorem przyszłych przeszkód."
+    - "Jeśli plan 'jeśli-to' wydaje Ci się sztuczny — spróbuj go uprościć. Nie musi być elegancki. 'Jeśli nie będę miał/a siły, to zrobię połowę' to doskonały plan. 'Jeśli zapomnę, to ustawię przypomnienie na telefonie' to też plan. Chodzi o automatyzm, nie o perfekcję."
+    - "Jeśli czujesz, że WSZYSTKO jest przeszkodą — wybierz jedną. Tylko jedną. Najczęściej pojawia się jedna główna bariera, a reszta to jej warianty. Znajdź tę jedną i napisz plan na nią."
+    - "Pamiętaj: identyfikowanie przeszkód to nie pesymizm. To realizm, który służy Twoim celom. Badania jednoznacznie pokazują, że ludzie, którzy PRZEWIDUJĄ trudności, radzą sobie z nimi lepiej niż ci, którzy udają, że trudności nie będzie."
+
+  reflection_prompt: |
+    Spójrz na swoje plany „jeśli-to". Czy czujesz się chociaż trochę
+    bardziej przygotowany/a niż przed tym ćwiczeniem? Nie musisz czuć się
+    pewnie — wystarczy, że masz plan B. Czy któraś z przeszkód wewnętrznych
+    (zniekształcenia poznawcze) powtarza się przy różnych celach? Jeśli tak,
+    to może być Twój główny „sabotażysta" — warto go znać z imienia.
+
+  why_it_works: |
+    Implementation intentions (Gollwitzer, 1999) to jedna z najskuteczniejszych technik
+    zmiany zachowania — meta-analiza ponad 90 badań pokazała średni efekt d=0.65, co jest
+    dużym efektem w psychologii. Mechanizm jest prosty: plan „jeśli-to" tworzy w mózgu
+    automatyczne połączenie między sygnałem (przeszkoda) a reakcją (strategia), co zmniejsza
+    obciążenie poznawcze w krytycznym momencie. Połączenie tego z elementami CBT (rozpoznawanie
+    zniekształceń poznawczych jako przeszkód wewnętrznych) pozwala adresować nie tylko
+    bariery zewnętrzne, ale też te najtrudniejsze — wewnętrzne nawyki myślenia, które
+    sabotują działanie zanim jeszcze się zacznie.

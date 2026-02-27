@@ -1,0 +1,97 @@
+exercise:
+  id: "gate_00"
+  module: "Bramka"
+  title: "5 Minut dla Siebie"
+  difficulty: 1
+  estimated_time: "5 minut"
+
+  psychological_basis: |
+    Ekspresywne pisanie (Pennebaker, 1997) — nawet kilka minut zapisu myśli
+    uruchamia procesy przetwarzania emocjonalnego. Teoria autodeterminacji
+    (Deci & Ryan) — danie wyboru („dowolne trzy") wzmacnia poczucie autonomii
+    i wewnętrzną motywację. Ruminacja vs refleksja (Trapnell & Campbell, 1999) —
+    dokańczanie zdań przekierowuje uwagę z cyklicznego przeżuwania myśli
+    na konkretną, ustrukturyzowaną refleksję.
+
+  introduction: |
+    Cześć.
+
+    Nie musisz wiedzieć, po co tu jesteś. Nie musisz mieć planu.
+    Wystarczy, że przyszłaś/przyszedłeś — i to już jest coś.
+
+    Zanim wejdziesz w program, proponujemy jedno krótkie ćwiczenie.
+    Zajmie 5 minut albo mniej. Nie ma tu ocen, nie ma poprawnych
+    odpowiedzi. Nikt tego nie przeczyta — Twój tekst jest szyfrowany
+    i widzisz go tylko Ty.
+
+    Może jest 23:00 i nie możesz zasnąć. Może szukasz czegoś,
+    co pomoże uporządkować to, co masz w głowie. Może po prostu
+    chcesz sprawdzić, o co tu chodzi. Każdy z tych powodów jest
+    wystarczający.
+
+    Jedyne, o co prosimy: napisz, co przyjdzie. Bez myślenia,
+    bez poprawiania, bez cenzury. Pierwsze słowa, które się pojawią,
+    są dobre.
+
+  disclaimer: |
+    Ten program nie zastępuje psychoterapii ani innej formy profesjonalnej
+    pomocy psychologicznej. Jeśli czujesz, że potrzebujesz wsparcia,
+    zachęcamy do kontaktu ze specjalistą.
+    Telefon Zaufania dla Dorosłych: 116 123
+    Centrum Wsparcia: 800 70 2222
+
+  prompt_questions:
+    - "Teraz czuję się..."
+    - "Chciałbym/chciałabym, żeby..."
+    - "Najbardziej brakuje mi..."
+    - "Gdybym mógł/mogła zmienić jedną rzecz..."
+    - "Kiedy myślę o przyszłości..."
+
+  prompt_instruction: |
+    Dokończ dowolne trzy z powyższych zdań. Które trzy — to Twój wybór.
+    Napisz, co przyjdzie jako pierwsze. Jedno zdanie, trzy zdania,
+    cały akapit — każda ilość jest dobra.
+
+  stuck_helpers:
+    - "Spróbuj zacząć od tego, co czujesz w ciele. Ciepło? Napięcie? Zmęczenie? Napisz to."
+    - "Jeśli nic nie przychodzi — to też jest odpowiedź. Możesz napisać: „Nic nie przychodzi" i zobaczyć, co pojawi się dalej."
+    - "Nie musisz pisać mądrze. „Czuję się dziwnie" albo „nie wiem" to pełnoprawne odpowiedzi."
+    - "Wyobraź sobie, że piszesz do kogoś, kto naprawdę chce wiedzieć, jak się czujesz. Co byś powiedział/powiedziała?"
+    - "Możesz wrócić do tego ćwiczenia jutro. Nie ma pośpiechu."
+
+  completion_message: |
+    Gotowe? To właśnie zaczęłaś/zacząłeś.
+
+    Twój tekst jest zapisany i zaszyfrowany — nikt poza Tobą go nie zobaczy.
+    Możesz do niego wrócić w każdym momencie.
+
+    Jeśli chcesz, możesz przejść do Modułu I. Ale nie musisz — to może
+    poczekać. Tempo należy do Ciebie.
+
+  reflection_prompt: |
+    Przeczytaj to, co napisałaś/napisałeś. Nie oceniaj — po prostu zauważ.
+
+    Czy coś Cię zaskoczyło? Czy któreś zdanie było łatwiejsze,
+    a któreś trudniejsze? Nie musisz odpowiadać na te pytania —
+    wystarczy, że przez chwilę przy nich zostaniesz.
+
+  why_it_works: |
+    Dokańczanie zdań to jedna z najłagodniejszych form pisania ekspresywnego.
+    Nie wymaga opowiadania historii, nie wymaga „głębokiego wglądu" — wystarczy
+    jedno słowo, żeby zacząć. Badania Pennebakera pokazują, że sam akt
+    zamienienia myśli na słowa uruchamia procesy przetwarzania emocjonalnego,
+    nawet w bardzo krótkich sesjach.
+
+    Wybór „dowolne trzy" odwołuje się do teorii autodeterminacji (Deci & Ryan):
+    poczucie autonomii — nawet w drobnym wyborze — zwiększa zaangażowanie
+    i zmniejsza opór. Osoba nie jest zmuszona do odpowiedzi na najtrudniejsze
+    pytanie. Może zacząć od tego, co czuje się bezpieczne.
+
+    Instrukcja „bez myślenia, bez poprawiania" normalizuje niedoskonałość
+    i obniża barierę wejścia. Trapnell i Campbell (1999) wykazali, że
+    ustrukturyzowana refleksja (w odróżnieniu od ruminacji) wymaga
+    przesunięcia uwagi z oceniania siebie na obserwowanie siebie.
+    Dokańczanie zdań naturalnie wspiera ten kierunek.
+
+    Natychmiastowe zapisanie i zaszyfrowanie tekstu spełnia obietnicę
+    bezpieczeństwa — buduje zaufanie w pierwszym kontakcie z programem.
