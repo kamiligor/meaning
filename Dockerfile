@@ -28,6 +28,11 @@ COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
+# Program files loaded by fs.readFileSync at runtime (not bundled by Next.js standalone)
+COPY --from=builder --chown=nextjs:nodejs /app/docs/exercises ./docs/exercises
+COPY --from=builder --chown=nextjs:nodejs /app/docs/framework ./docs/framework
+COPY --from=builder --chown=nextjs:nodejs /app/content/introductions ./content/introductions
+
 RUN mkdir -p /data/slides && chown nextjs:nodejs /data/slides
 
 ENV STORAGE_PATH=/data/slides

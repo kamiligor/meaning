@@ -43,15 +43,15 @@ exercise:
     historiom, które sobie o tym opowiadasz. A na końcu — spróbujesz zobaczyć te historie
     jako myśli, nie jako fakty. Nie po to, żeby je zignorować. Po to, żeby mieć wybór.
   prompt_questions:
-    - "Część A — Przeszkody. Wymień 3-5 rzeczy, które w tej chwili najbardziej Ci przeszkadzają w życiu — utrudniają zmianę, blokują, frustrują. Mogą to być okoliczności zewnętrzne, wewnętrzne stany, relacje, nawyki — cokolwiek, co czujesz jako barierę. Opisz każdą w 2-3 zdaniach."
-    - "Część B — Historie. Przy każdej przeszkodzie z Części A dokończ zdanie: „Historia, którą sobie o tym opowiadam, to..." — zapisz pełną wewnętrzną narrację. Jak tłumaczysz sobie tę przeszkodę? Co mówi Ci wewnętrzny głos? Bądź szczery/a — nikt tego nie zobaczy."
-    - "Część C — Defuzja. Teraz weź każdą historię z Części B i przepisz ją, zaczynając od: „Zauważam, że mam myśl, że..." Przeczytaj obie wersje na głos, jeśli możesz. Czy coś się zmienia? Jak się zmienia odczucie w ciele? Czy myśl czuje się mniej „prawdziwa", mniej ciężka, mniej absolutna?"
-    - "Patrząc na swoje przeszkody po defuzji — czy któraś z nich wygląda inaczej? Czy widzisz choćby niewielką przestrzeń między Tobą a tą myślą? Nie musisz jej rozwiązywać. Wystarczy ją zobaczyć jako myśl, a nie jako wyrok."
+    - Część A — Przeszkody. Wymień 3-5 rzeczy, które w tej chwili najbardziej Ci przeszkadzają w życiu — utrudniają zmianę, blokują, frustrują. Mogą to być okoliczności zewnętrzne, wewnętrzne stany, relacje, nawyki — cokolwiek, co czujesz jako barierę. Opisz każdą w 2-3 zdaniach.
+    - 'Część B — Historie. Przy każdej przeszkodzie z Części A dokończ zdanie: „Historia, którą sobie o tym opowiadam, to..." — zapisz pełną wewnętrzną narrację. Jak tłumaczysz sobie tę przeszkodę? Co mówi Ci wewnętrzny głos? Bądź szczery/a — nikt tego nie zobaczy.'
+    - 'Część C — Defuzja. Teraz weź każdą historię z Części B i przepisz ją, zaczynając od: „Zauważam, że mam myśl, że..." Przeczytaj obie wersje na głos, jeśli możesz. Czy coś się zmienia? Jak się zmienia odczucie w ciele? Czy myśl czuje się mniej „prawdziwa", mniej ciężka, mniej absolutna?'
+    - Patrząc na swoje przeszkody po defuzji — czy któraś z nich wygląda inaczej? Czy widzisz choćby niewielką przestrzeń między Tobą a tą myślą? Nie musisz jej rozwiązywać. Wystarczy ją zobaczyć jako myśl, a nie jako wyrok.
   stuck_helpers:
-    - "Jeśli trudno Ci wymienić przeszkody, spróbuj dokończyć: „Gdybym mógł/mogła zmienić jedną rzecz w swoim życiu, to..." — i zobacz, co się pojawi. Co Cię powstrzymuje?"
-    - "Przy defuzji możesz też użyć innych formuł: „Mój umysł mi właśnie mówi, że..." albo „Pojawia się myśl, że..." — wybierz tę, która czuje się najbardziej naturalna."
-    - "Jeśli defuzja nie daje efektu — to też jest informacja. Niektóre myśli są tak głęboko wrośnięte, że potrzebują więcej czasu. Nie zmuszaj się. Możesz wrócić do tego ćwiczenia za kilka dni."
-    - "Możesz zacząć od przeszkody, która jest najmniej emocjonalnie naładowana — od czegoś, co Cię irytuje, ale nie boli. Defuzja łatwiej działa, gdy emocje nie są na maksimum."
+    - 'Jeśli trudno Ci wymienić przeszkody, spróbuj dokończyć: „Gdybym mógł/mogła zmienić jedną rzecz w swoim życiu, to..." — i zobacz, co się pojawi. Co Cię powstrzymuje?'
+    - 'Przy defuzji możesz też użyć innych formuł: „Mój umysł mi właśnie mówi, że..." albo „Pojawia się myśl, że..." — wybierz tę, która czuje się najbardziej naturalna.'
+    - Jeśli defuzja nie daje efektu — to też jest informacja. Niektóre myśli są tak głęboko wrośnięte, że potrzebują więcej czasu. Nie zmuszaj się. Możesz wrócić do tego ćwiczenia za kilka dni.
+    - Możesz zacząć od przeszkody, która jest najmniej emocjonalnie naładowana — od czegoś, co Cię irytuje, ale nie boli. Defuzja łatwiej działa, gdy emocje nie są na maksimum.
   reflection_prompt: |
     Po przejściu przez trzy części — czy widzisz wzorzec w swoich „historiach"?
     Może powtarza się jakiś motyw: poczucie braku kontroli, strach przed oceną,

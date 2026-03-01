@@ -1,0 +1,107 @@
+import { notFound } from "next/navigation";
+import { requireProgramUser } from "@/lib/program-auth";
+import { loadExercise, getModules } from "@/lib/exercises";
+import { decrypt } from "@/lib/encryption";
+import { ExerciseView } from "@/components/program/exercise-view";
+
+interface Props {
+  params: Promise<{ id: string }>;
+}
+
+function getNextExerciseUrl(exerciseId: string): string | null {
+  const modules = getModules();
+
+  // Check gate exercise
+  if (exerciseId === "gate_00") {
+    const firstModule = modules[0];
+    if (firstModule?.exercises[0]) {
+      return `/program/cwiczenie/${firstModule.exercises[0].id}`;
+    }
+    return "/program/dashboard";
+  }
+
+  // Find current exercise in modules
+  for (const mod of modules) {
+    const idx = mod.exercises.findIndex((e) => e.id === exerciseId);
+    if (idx === -1) continue;
+
+    // Next exercise in same module
+    if (idx < mod.exercises.length - 1) {
+      return `/program/cwiczenie/${mod.exercises[idx + 1].id}`;
+    }
+
+    // First exercise of next module
+    const nextModIdx = modules.indexOf(mod) + 1;
+    if (nextModIdx < modules.length) {
+      const nextMod = modules[nextModIdx];
+      if (nextMod.exercises[0]) {
+        return `/program/cwiczenie/${nextMod.exercises[0].id}`;
+      }
+    }
+
+    // End of program
+    return "/program/dashboard";
+  }
+
+  return "/program/dashboard";
+}
+
+export default async function ExercisePage({ params }: Props) {
+  const { id } = await params;
+  const exercise = loadExercise(id);
+
+  if (!exercise) {
+    notFound();
+  }
+
+  const { user, supabase } = await requireProgramUser();
+
+  // Load saved responses
+  const { data: responseData } = await supabase
+    .from("exercise_responses")
+    .select(
+      "question_index, ciphertext, iv, salt, word_count, time_spent_sec, updated_at"
+    )
+    .eq("user_id", user.id)
+    .eq("exercise_id", id)
+    .order("question_index");
+
+  const savedResponses = (responseData || []).map((row) => ({
+    questionIndex: row.question_index as number,
+    content: decrypt(
+      row.ciphertext as string,
+      row.iv as string,
+      row.salt as string,
+      user.id
+    ),
+    updatedAt: row.updated_at as string,
+  }));
+
+  // Mark as in_progress if not started
+  const { data: progressData } = await supabase
+    .from("user_progress")
+    .select("status")
+    .eq("user_id", user.id)
+    .eq("exercise_id", id)
+    .single();
+
+  if (!progressData) {
+    await supabase.from("user_progress").upsert({
+      user_id: user.id,
+      exercise_id: id,
+      status: "in_progress",
+      started_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    }, { onConflict: "user_id,exercise_id" });
+  }
+
+  const nextExerciseUrl = getNextExerciseUrl(id);
+
+  return (
+    <ExerciseView
+      exercise={exercise}
+      savedResponses={savedResponses}
+      nextExerciseUrl={nextExerciseUrl}
+    />
+  );
+}

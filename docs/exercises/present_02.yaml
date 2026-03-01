@@ -34,15 +34,15 @@ exercise:
     „Lista Wartości" (docs/framework/lista-wartosci.md). Wybierzesz te, które czujesz jako swoje
     — nie te, które „powinieneś/powinnaś" wybrać, ale te, które naprawdę coś w Tobie poruszają.
   prompt_questions:
-    - "Z poniższej listy wartości wybierz 5-7, które czujesz jako naprawdę swoje. Nie wybieraj tych, które brzmią „dobrze" — wybierz te, przy których coś w Tobie reaguje. Zapisz je i przy każdej napisz jedno zdanie: dlaczego właśnie ta wartość?"
-    - "Dla każdej wybranej wartości oceń w skali 1-10: na ile Twoje obecne życie jest z nią zgodne? Nie oceniaj się — to nie egzamin. Po prostu uczciwie opisz, jak to wygląda w praktyce. Jeśli wartością jest „wolność", a czujesz się uwięziony/a w pracy, napisz to."
-    - "Wybierz 2-3 wartości, przy których rozbieżność jest największa (między tym, jak ważna jest wartość, a tym, jak bardzo ją żyjesz). Dla każdej napisz: co by się zmieniło, gdybyś żył/a bardziej zgodnie z tą wartością? Nie musisz wiedzieć JAK — wystarczy opisać, co by to znaczyło."
-    - "Czy zauważasz wartości, które są ze sobą w konflikcie? (np. „bezpieczeństwo" i „przygoda", „lojalność" i „wolność"). Jeśli tak — opisz ten konflikt. Nie musisz go rozwiązywać. Samo nazwanie go ma wartość."
+    - 'Z poniższej listy wartości wybierz 5-7, które czujesz jako naprawdę swoje. Nie wybieraj tych, które brzmią „dobrze" — wybierz te, przy których coś w Tobie reaguje. Zapisz je i przy każdej napisz jedno zdanie: dlaczego właśnie ta wartość?'
+    - 'Dla każdej wybranej wartości oceń w skali 1-10: na ile Twoje obecne życie jest z nią zgodne? Nie oceniaj się — to nie egzamin. Po prostu uczciwie opisz, jak to wygląda w praktyce. Jeśli wartością jest „wolność", a czujesz się uwięziony/a w pracy, napisz to.'
+    - 'Wybierz 2-3 wartości, przy których rozbieżność jest największa (między tym, jak ważna jest wartość, a tym, jak bardzo ją żyjesz). Dla każdej napisz: co by się zmieniło, gdybyś żył/a bardziej zgodnie z tą wartością? Nie musisz wiedzieć JAK — wystarczy opisać, co by to znaczyło.'
+    - 'Czy zauważasz wartości, które są ze sobą w konflikcie? (np. „bezpieczeństwo" i „przygoda", „lojalność" i „wolność"). Jeśli tak — opisz ten konflikt. Nie musisz go rozwiązywać. Samo nazwanie go ma wartość.'
   stuck_helpers:
-    - "Jeśli trudno Ci wybrać, spróbuj od drugiej strony: co Cię boli, gdy jest tego brak w Twoim życiu? Jeśli brakuje Ci szacunku — może „godność" jest Twoją wartością. Jeśli boli Cię samotność — może „bliskość" albo „przynależność"."
-    - "Pomyśl o osobie, którą naprawdę podziwiasz (nie celebrycie — kogoś, kogo znasz). Co w niej podziwiasz? To prawdopodobnie mówi więcej o Twoich wartościach niż o tej osobie."
-    - "Możesz też pomyśleć o momentach, gdy czułeś/aś się najbardziej sobą — najbardziej żywy/a, autentyczny/a. Co wtedy robiłeś/aś? Jakie wartości były w tym obecne?"
-    - "Nie musisz wybrać „idealnie". Wartości mogą się zmieniać z czasem. To nie zobowiązanie na całe życie — to uczciwy zapis tego, co jest ważne teraz."
+    - 'Jeśli trudno Ci wybrać, spróbuj od drugiej strony: co Cię boli, gdy jest tego brak w Twoim życiu? Jeśli brakuje Ci szacunku — może „godność" jest Twoją wartością. Jeśli boli Cię samotność — może „bliskość" albo „przynależność".'
+    - Pomyśl o osobie, którą naprawdę podziwiasz (nie celebrycie — kogoś, kogo znasz). Co w niej podziwiasz? To prawdopodobnie mówi więcej o Twoich wartościach niż o tej osobie.
+    - Możesz też pomyśleć o momentach, gdy czułeś/aś się najbardziej sobą — najbardziej żywy/a, autentyczny/a. Co wtedy robiłeś/aś? Jakie wartości były w tym obecne?
+    - 'Nie musisz wybrać „idealnie". Wartości mogą się zmieniać z czasem. To nie zobowiązanie na całe życie — to uczciwy zapis tego, co jest ważne teraz.'
   reflection_prompt: |
     Przeczytaj swoje odpowiedzi. Czy Twoje wartości Cię zaskakują? Czy jest coś, co czujesz,
     ale trudno Ci nazwać? Spróbuj dokończyć zdanie: „Najbardziej chcę żyć w zgodzie z..."

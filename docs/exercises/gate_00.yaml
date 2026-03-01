@@ -53,11 +53,11 @@ exercise:
     cały akapit — każda ilość jest dobra.
 
   stuck_helpers:
-    - "Spróbuj zacząć od tego, co czujesz w ciele. Ciepło? Napięcie? Zmęczenie? Napisz to."
-    - "Jeśli nic nie przychodzi — to też jest odpowiedź. Możesz napisać: „Nic nie przychodzi" i zobaczyć, co pojawi się dalej."
-    - "Nie musisz pisać mądrze. „Czuję się dziwnie" albo „nie wiem" to pełnoprawne odpowiedzi."
-    - "Wyobraź sobie, że piszesz do kogoś, kto naprawdę chce wiedzieć, jak się czujesz. Co byś powiedział/powiedziała?"
-    - "Możesz wrócić do tego ćwiczenia jutro. Nie ma pośpiechu."
+    - Spróbuj zacząć od tego, co czujesz w ciele. Ciepło? Napięcie? Zmęczenie? Napisz to.
+    - 'Jeśli nic nie przychodzi — to też jest odpowiedź. Możesz napisać: „Nic nie przychodzi" i zobaczyć, co pojawi się dalej.'
+    - 'Nie musisz pisać mądrze. „Czuję się dziwnie" albo „nie wiem" to pełnoprawne odpowiedzi.'
+    - Wyobraź sobie, że piszesz do kogoś, kto naprawdę chce wiedzieć, jak się czujesz. Co byś powiedział/powiedziała?
+    - Możesz wrócić do tego ćwiczenia jutro. Nie ma pośpiechu.
 
   completion_message: |
     Gotowe? To właśnie zaczęłaś/zacząłeś.

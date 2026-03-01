@@ -5,7 +5,7 @@ exercise:
   difficulty: 3
   estimated_time: "25-35 minut"
   psychological_basis: "Terapia poznawczo-behawioralna — CBT, zniekształcenia poznawcze (Beck, 1979) + Terapia Akceptacji i Zaangażowania — ACT (Hayes et al.)"
-  content_warning: "Rozpoznawanie własnych schematów myślenia może być konfrontujące. Pamiętaj: te schematy nie świadczą o Twojej „wadliwości" — to nawyki umysłu, które kiedyś mogły Ci służyć. Podejdź do siebie z ciekawością, nie z krytyką."
+  content_warning: 'Rozpoznawanie własnych schematów myślenia może być konfrontujące. Pamiętaj: te schematy nie świadczą o Twojej „wadliwości" — to nawyki umysłu, które kiedyś mogły Ci służyć. Podejdź do siebie z ciekawością, nie z krytyką.'
   disclaimer: |
     Ten program nie zastępuje psychoterapii ani innej formy profesjonalnej
     pomocy psychologicznej. Jeśli czujesz, że potrzebujesz wsparcia,
@@ -68,15 +68,15 @@ exercise:
     10. **Wróżenie z przyszłości** — przekonanie, że wiesz, jak coś się skończy.
         Przykład: „Nie ma sensu wysyłać CV — i tak mnie nie wezmą."
   prompt_questions:
-    - "Przeczytaj powyższą listę zniekształceń. Które z nich rozpoznajesz u siebie? Wybierz 2-4, które pojawiają się najczęściej. Nie musisz wybierać tych „najgorszych" — wybierz te, które najczęściej wpływają na Twoje codzienne myślenie."
-    - "Dla każdego wybranego zniekształcenia opisz konkretną sytuację, w której się pojawia. Co się dzieje? Jaka myśl się pojawia automatycznie? Jak ta myśl wpływa na to, co czujesz i co robisz (lub czego nie robisz)?"
-    - "Spróbuj zastanowić się: kiedy ten schemat mógł się pojawić w Twoim życiu? Czy przypominasz sobie sytuację z przeszłości, w której taki sposób myślenia miał sens — chronił Cię, pomagał przetrwać, dawał poczucie kontroli? Nie musisz mieć pewności — wystarczy intuicja. Jeśli to pytanie przywołuje bardzo trudne wspomnienia — możesz je pominąć i przejść do następnego. To ćwiczenie nie wymaga powrotu do bolesnej przeszłości."
-    - "Gdybyś miał/a opisać swoje myślenie jednym wzorcem — jakie zdanie najczęściej pojawia się w Twojej głowie? Może to „Nie dam rady", może „Muszę być idealny/a", może „Inni mają łatwiej". Zapisz to zdanie — i zobacz, jak reaguje Twoje ciało, gdy je czytasz."
+    - 'Przeczytaj powyższą listę zniekształceń. Które z nich rozpoznajesz u siebie? Wybierz 2-4, które pojawiają się najczęściej. Nie musisz wybierać tych „najgorszych" — wybierz te, które najczęściej wpływają na Twoje codzienne myślenie.'
+    - Dla każdego wybranego zniekształcenia opisz konkretną sytuację, w której się pojawia. Co się dzieje? Jaka myśl się pojawia automatycznie? Jak ta myśl wpływa na to, co czujesz i co robisz (lub czego nie robisz)?
+    - Spróbuj zastanowić się: kiedy ten schemat mógł się pojawić w Twoim życiu? Czy przypominasz sobie sytuację z przeszłości, w której taki sposób myślenia miał sens — chronił Cię, pomagał przetrwać, dawał poczucie kontroli? Nie musisz mieć pewności — wystarczy intuicja. Jeśli to pytanie przywołuje bardzo trudne wspomnienia — możesz je pominąć i przejść do następnego. To ćwiczenie nie wymaga powrotu do bolesnej przeszłości.
+    - 'Gdybyś miał/a opisać swoje myślenie jednym wzorcem — jakie zdanie najczęściej pojawia się w Twojej głowie? Może to „Nie dam rady", może „Muszę być idealny/a", może „Inni mają łatwiej". Zapisz to zdanie — i zobacz, jak reaguje Twoje ciało, gdy je czytasz.'
   stuck_helpers:
-    - "Jeśli żadne zniekształcenie nie wydaje Ci się „Twoje" — spróbuj pomyśleć o ostatniej sytuacji, która Cię zdenerwowała. Jaka pierwsza myśl pojawiła się automatycznie? Porównaj ją z listą."
-    - "Możesz też zapytać kogoś bliskiego: „Jakie zdanie słyszysz ode mnie najczęściej, gdy się denerwuję?" — czasem inni widzą nasze wzorce lepiej niż my sami."
-    - "Nie musisz dokładnie dopasować swojego doświadczenia do kategorii z listy. Zniekształcenia się przenikają i mieszają. Jeśli rozpoznajesz „coś podobnego" — to wystarczy."
-    - "Pamiętaj, że celem nie jest wyeliminowanie tych myśli. Celem jest zobaczenie ich — jak zauważasz wzór na tapecie, który wcześniej był niewidoczny, bo był wszędzie. Samo zobaczenie to już zmiana."
+    - 'Jeśli żadne zniekształcenie nie wydaje Ci się „Twoje" — spróbuj pomyśleć o ostatniej sytuacji, która Cię zdenerwowała. Jaka pierwsza myśl pojawiła się automatycznie? Porównaj ją z listą.'
+    - 'Możesz też zapytać kogoś bliskiego: „Jakie zdanie słyszysz ode mnie najczęściej, gdy się denerwuję?" — czasem inni widzą nasze wzorce lepiej niż my sami.'
+    - 'Nie musisz dokładnie dopasować swojego doświadczenia do kategorii z listy. Zniekształcenia się przenikają i mieszają. Jeśli rozpoznajesz „coś podobnego" — to wystarczy.'
+    - Pamiętaj, że celem nie jest wyeliminowanie tych myśli. Celem jest zobaczenie ich — jak zauważasz wzór na tapecie, który wcześniej był niewidoczny, bo był wszędzie. Samo zobaczenie to już zmiana.
   reflection_prompt: |
     Patrząc na swoje odpowiedzi — czy widzisz „główny schemat", który organizuje
     Twoje myślenie? Gdybyś miał/a nadać mu imię lub tytuł (np. „Wewnętrzny Perfekcjonista",
