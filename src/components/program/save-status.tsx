@@ -1,11 +1,12 @@
 "use client";
 
+import type { ReactNode } from "react";
 import type { SaveStatus } from "@/hooks/use-autosave";
 import { Check, Loader2, WifiOff, AlertCircle } from "lucide-react";
 
 const statusConfig: Record<
   SaveStatus,
-  { label: string; icon: React.ReactNode; className: string }
+  { label: string; icon: ReactNode; className: string }
 > = {
   idle: {
     label: "",

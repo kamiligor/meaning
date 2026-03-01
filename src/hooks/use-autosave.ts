@@ -30,11 +30,15 @@ export function useAutosave({
   const [status, setStatus] = useState<SaveStatus>("idle");
   const lastSavedContent = useRef(content);
   const contentRef = useRef(content);
+  const wordCountRef = useRef(wordCount);
+  const timeSpentRef = useRef(timeSpentSec);
   const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const intervalTimer = useRef<ReturnType<typeof setInterval> | null>(null);
   const isSaving = useRef(false);
 
   contentRef.current = content;
+  wordCountRef.current = wordCount;
+  timeSpentRef.current = timeSpentSec;
 
   const save = useCallback(
     async (force = false) => {
@@ -54,7 +58,7 @@ export function useAutosave({
       const maxRetries = 3;
       const backoffMs = [1000, 3000, 9000];
 
-      while (retries <= maxRetries) {
+      while (retries < maxRetries) {
         try {
           const res = await fetch(
             `/api/program/responses/${exerciseId}`,
@@ -64,9 +68,10 @@ export function useAutosave({
               body: JSON.stringify({
                 questionIndex,
                 content: currentContent,
-                wordCount,
-                timeSpentSec,
+                wordCount: wordCountRef.current,
+                timeSpentSec: timeSpentRef.current,
               }),
+              signal: AbortSignal.timeout(30000),
             }
           );
 
@@ -79,10 +84,9 @@ export function useAutosave({
           }
 
           if (res.status === 429) {
-            // Rate limited — wait and retry
             retries++;
-            if (retries <= maxRetries) {
-              await new Promise((r) => setTimeout(r, backoffMs[retries - 1]));
+            if (retries < maxRetries) {
+              await new Promise((r) => setTimeout(r, backoffMs[retries]));
               continue;
             }
           }
@@ -90,8 +94,8 @@ export function useAutosave({
           throw new Error(`Save failed: ${res.status}`);
         } catch {
           retries++;
-          if (retries <= maxRetries) {
-            await new Promise((r) => setTimeout(r, backoffMs[retries - 1]));
+          if (retries < maxRetries) {
+            await new Promise((r) => setTimeout(r, backoffMs[retries]));
           }
         }
       }
@@ -101,7 +105,7 @@ export function useAutosave({
       setStatus(navigator.onLine ? "error" : "offline");
       isSaving.current = false;
     },
-    [exerciseId, questionIndex, wordCount, timeSpentSec]
+    [exerciseId, questionIndex]
   );
 
   // Debounced save on content change

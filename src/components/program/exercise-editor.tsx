@@ -6,8 +6,8 @@ import Placeholder from "@tiptap/extension-placeholder";
 import CharacterCount from "@tiptap/extension-character-count";
 import { EditorToolbar } from "./editor-toolbar";
 import { SaveStatusIndicator } from "./save-status";
-import { useAutosave, type SaveStatus } from "@/hooks/use-autosave";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useAutosave } from "@/hooks/use-autosave";
+import { useRef, useState } from "react";
 
 interface ExerciseEditorProps {
   exerciseId: string;
@@ -27,25 +27,19 @@ export function ExerciseEditor({
   const [content, setContent] = useState(initialContent);
   const [wordCount, setWordCount] = useState(0);
   const startTime = useRef(Date.now());
-  const [saveStatus, setSaveStatus] = useState<SaveStatus>("idle");
 
-  const getTimeSpent = useCallback(() => {
-    return Math.floor((Date.now() - startTime.current) / 1000);
-  }, []);
+  const timeSpentSec = Math.floor((Date.now() - startTime.current) / 1000);
 
   const { status, forceSave } = useAutosave({
     exerciseId,
     questionIndex,
     content,
     wordCount,
-    timeSpentSec: getTimeSpent(),
+    timeSpentSec,
   });
 
-  useEffect(() => {
-    setSaveStatus(status);
-  }, [status]);
-
   const editor = useEditor({
+    immediatelyRender: false,
     extensions: [
       StarterKit.configure({
         heading: false,
@@ -85,7 +79,7 @@ export function ExerciseEditor({
           {wordCount} {wordCount === 1 ? "slowo" : "slow"}
         </span>
         <div className="flex items-center gap-3">
-          <SaveStatusIndicator status={saveStatus} />
+          <SaveStatusIndicator status={status} />
           <button
             onClick={forceSave}
             className="text-xs text-[#8A99A8] hover:text-[#7B9E8C] transition-colors"

@@ -1,6 +1,4 @@
 import { createBrowserClient } from "@supabase/ssr";
-import { createServerClient } from "@supabase/ssr";
-import { cookies } from "next/headers";
 
 function getSupabaseUrl() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -16,26 +14,4 @@ function getSupabaseAnonKey() {
 
 export function createClient() {
   return createBrowserClient(getSupabaseUrl(), getSupabaseAnonKey());
-}
-
-export async function createServerSupabaseClient() {
-  const cookieStore = await cookies();
-
-  return createServerClient(getSupabaseUrl(), getSupabaseAnonKey(), {
-    cookies: {
-      getAll() {
-        return cookieStore.getAll();
-      },
-      setAll(cookiesToSet) {
-        try {
-          cookiesToSet.forEach(({ name, value, options }) =>
-            cookieStore.set(name, value, options)
-          );
-        } catch {
-          // In Server Components, cookies can't be set.
-          // This is expected when called from a Server Component.
-        }
-      },
-    },
-  });
 }

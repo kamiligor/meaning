@@ -46,18 +46,16 @@ function createSupabaseMiddlewareClient(
   );
 }
 
-// Program pages that DON'T require auth
+// Program pages that DON'T require auth (exact match)
 const PUBLIC_PROGRAM_PATHS = [
   "/program",
-  "/program/auth",
+  "/program/onboarding",
+  "/program/zasoby",
   "/program/auth/callback",
 ];
 
 function isProgramPublicPath(pathname: string): boolean {
-  return PUBLIC_PROGRAM_PATHS.some(
-    (p) =>
-      pathname === p || pathname.startsWith(p + "/")
-  );
+  return PUBLIC_PROGRAM_PATHS.includes(pathname);
 }
 
 export async function middleware(request: NextRequest) {
