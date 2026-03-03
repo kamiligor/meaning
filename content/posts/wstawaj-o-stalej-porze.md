@@ -30,17 +30,37 @@ references:
     author: "James Clear"
 ---
 
+<!-- slide-only -->
 ## Dlaczego to działa
 
 Budzenie się {o tej samej porze} każdego dnia stabilizuje rytm dobowy, który jest kluczowy dla {regulacji nastroju}.
 
 Nieregularny sen utrudnia leczenie lęku i depresji, ponieważ twój układ emocjonalny potrzebuje {przewidywalności}.
 
+<!-- slide-only -->
 ## Czego nie nadrobisz
 
 Kiedy wstajesz o różnych porach, twój rytm dobowy się rozjeżdża — a kawa jedynie {maskuje zmęczenie}, nie naprawiając przyczyny.
 
 Najważniejszy krok to wrócić do {stałej pory wstawania}. To najsilniejszy sygnał, który pomaga zresetować twój zegar biologiczny.
+
+## Dlaczego to działa
+
+Rytm dobowy to nie tylko sen. To wewnętrzny zegar, który synchronizuje nastrój, poziom energii, koncentrację i odporność emocjonalną. Kiedy budzisz się o tej samej porze, ten zegar ma stały punkt odniesienia i wszystkie te systemy pracują w rytmie.
+
+Jeśli budzisz się codziennie o innej porze, destabilizujesz system, od którego zależy cała reszta. Nastrój, energia, koncentracja. Wszystko to wymaga jednego stałego punktu w ciągu doby.
+
+## Zmęczenie i nastrój
+
+Rozregulowany sen pogarsza nastrój. Gorszy nastrój utrudnia zasypianie. To pętla, w którą łatwo wpaść i trudno z niej wyjść samą siłą woli.
+
+Regularność godziny porannej przecina tę pętlę od innej strony. Nie musisz naprawiać nastroju, żeby lepiej spać. Wystarczy dać organizmowi jeden stały punkt w ciągu doby.
+
+## Jedna zmiana
+
+Wybierz jedną godzinę i trzymaj się jej przez tydzień, także w weekendy. Nie ruszaj na razie pory zasypiania. Twój organizm sam zacznie się do niej dostosowywać.
+
+Jeśli pierwszy tydzień będzie ciężki, to normalny etap. Rytm dobowy potrzebuje czasu, żeby się przestawić.
 
 ---
 

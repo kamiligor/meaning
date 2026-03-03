@@ -37,7 +37,8 @@ export interface PostData {
   logoVariant: string | null;
 
   // Parsed from markdown body
-  contentSections: ContentSection[];
+  contentSections: ContentSection[]; // <!-- slide-only --> sections (for slides)
+  webSections: ContentSection[];     // unmarked sections (for web page)
   caption: string | null;
   references: string | null; // JSON string for compat
 
@@ -62,7 +63,8 @@ function getPostsDir(): string {
 }
 
 function parseMarkdownSections(content: string): {
-  sections: ContentSection[];
+  slideSections: ContentSection[];
+  webSections: ContentSection[];
   caption: string | null;
 } {
   // Split on horizontal rule (---) to separate content from caption
@@ -70,39 +72,61 @@ function parseMarkdownSections(content: string): {
   const mainContent = parts[0].trim();
   const caption = parts.length > 1 ? parts.slice(1).join("\n---\n").trim() : null;
 
-  // Parse ## headings into sections
-  const sections: ContentSection[] = [];
+  // Parse ## headings into sections, detecting <!-- slide-only --> markers
+  const slideSections: ContentSection[] = [];
+  const webSections: ContentSection[] = [];
   const headingPattern = /^## (.+)$/gm;
-  const matches: { index: number; tag: string }[] = [];
+  const matches: { index: number; tag: string; fullMatch: string }[] = [];
 
   let match;
   while ((match = headingPattern.exec(mainContent)) !== null) {
-    matches.push({ index: match.index, tag: match[1] });
+    matches.push({ index: match.index, tag: match[1], fullMatch: match[0] });
   }
+
+  let slideCount = 0;
+  let webCount = 0;
 
   for (let i = 0; i < matches.length; i++) {
-    const start = matches[i].index + matches[i].tag.length + 4; // "## " + tag + "\n"
+    const start = matches[i].index + matches[i].fullMatch.length + 1; // heading + "\n"
     const end = i + 1 < matches.length ? matches[i + 1].index : mainContent.length;
-    const body = mainContent.slice(start, end).trim();
-    const sectionNumber = String(i + 1).padStart(2, "0");
+    const rawBlock = mainContent.slice(start, end).trim();
 
-    sections.push({
-      tag: matches[i].tag,
-      body,
-      sectionNumber,
-    });
+    // Check if <!-- slide-only --> appears before this heading
+    // Look at text between previous section end and this heading start
+    const blockStart = i === 0 ? 0 : matches[i - 1].index + matches[i - 1].fullMatch.length;
+    const textBefore = mainContent.slice(blockStart, matches[i].index);
+    const isSlideOnly = /<!--\s*slide-only\s*-->/.test(textBefore);
+
+    // Remove <!-- slide-only --> comment from the body if it leaked in
+    const body = rawBlock.replace(/<!--\s*slide-only\s*-->\s*/g, "").trim();
+
+    if (isSlideOnly) {
+      slideCount++;
+      slideSections.push({
+        tag: matches[i].tag,
+        body,
+        sectionNumber: String(slideCount).padStart(2, "0"),
+      });
+    } else {
+      webCount++;
+      webSections.push({
+        tag: matches[i].tag,
+        body,
+        sectionNumber: String(webCount).padStart(2, "0"),
+      });
+    }
   }
 
-  // If no headings found, treat entire content as single section
-  if (sections.length === 0 && mainContent.length > 0) {
-    sections.push({
+  // If no headings found, treat entire content as single web section
+  if (matches.length === 0 && mainContent.length > 0) {
+    webSections.push({
       tag: "Why it works",
       body: mainContent,
       sectionNumber: "01",
     });
   }
 
-  return { sections, caption };
+  return { slideSections, webSections, caption };
 }
 
 function parsePostFile(filePath: string): PostData | null {
@@ -110,7 +134,7 @@ function parsePostFile(filePath: string): PostData | null {
     const raw = fs.readFileSync(filePath, "utf-8");
     const { data, content } = matter(raw);
 
-    const { sections, caption } = parseMarkdownSections(content);
+    const { slideSections, webSections, caption } = parseMarkdownSections(content);
 
     // Build references JSON string
     const refs = data.references
@@ -122,9 +146,9 @@ function parsePostFile(filePath: string): PostData | null {
       ? JSON.stringify(data.hashtags)
       : JSON.stringify([]);
 
-    // Build contentSlides JSON from sections
-    const contentSlides = sections.length > 1
-      ? JSON.stringify(sections)
+    // Build contentSlides JSON from slide sections
+    const contentSlides = slideSections.length > 1
+      ? JSON.stringify(slideSections)
       : null;
 
     return {
@@ -150,14 +174,15 @@ function parsePostFile(filePath: string): PostData | null {
       colorPalette: data.colorPalette ?? "sage",
       logoVariant: data.logoVariant ?? "light",
 
-      contentSections: sections,
+      contentSections: slideSections,
+      webSections,
       caption,
       references: refs,
 
       // Legacy compat
-      contentTag: sections[0]?.tag ?? null,
-      contentBody: sections[0]?.body ?? "",
-      sectionNumber: sections[0]?.sectionNumber ?? "01",
+      contentTag: slideSections[0]?.tag ?? null,
+      contentBody: slideSections[0]?.body ?? "",
+      sectionNumber: slideSections[0]?.sectionNumber ?? "01",
       contentSlides,
     };
   } catch {

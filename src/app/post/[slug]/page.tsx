@@ -127,8 +127,8 @@ export default async function PostPage({ params }: PageProps) {
             </h1>
           </div>
 
-          {/* Content sections */}
-          {post.contentSections.map((section, i) => (
+          {/* Content sections (web-only, or fallback to slide sections) */}
+          {(post.webSections.length > 0 ? post.webSections : post.contentSections).map((section, i) => (
             <div key={i} className={i === 0 ? "mt-6" : "mt-8"}>
               <ContentText body={section.body} tag={section.tag} />
             </div>
