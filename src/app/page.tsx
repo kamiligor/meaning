@@ -1,6 +1,4 @@
-import { db } from "@/db";
-import { posts, slides } from "@/db/schema";
-import { desc, eq, and } from "drizzle-orm";
+import { getPublishedPosts, getPostSlides } from "@/lib/posts";
 import { InfiniteFeed } from "@/components/feed/infinite-feed";
 import { t, isLocale, type Locale } from "@/lib/i18n";
 import { SiteHeader } from "@/components/site-header";
@@ -16,39 +14,25 @@ export default async function Home({
   const locale: Locale = lang && isLocale(lang) ? lang : "en";
   const d = t(locale);
 
-  const result = await db
-    .select()
-    .from(posts)
-    .where(and(eq(posts.status, "published"), eq(posts.locale, locale)))
-    .orderBy(desc(posts.id))
-    .limit(LIMIT + 1);
+  const allPosts = getPublishedPosts(locale);
 
-  const hasMore = result.length > LIMIT;
-  const items = hasMore ? result.slice(0, LIMIT) : result;
-  const nextCursor = hasMore ? items[items.length - 1].id : null;
+  const hasMore = allPosts.length > LIMIT;
+  const items = hasMore ? allPosts.slice(0, LIMIT) : allPosts;
 
-  const postsWithSlides = await Promise.all(
-    items.map(async (post) => {
-      const postSlides = await db
-        .select()
-        .from(slides)
-        .where(eq(slides.postId, post.id))
-        .orderBy(slides.slideNumber);
-      return {
-        id: post.id,
-        slug: post.slug,
-        topicTag: post.topicTag,
-        headline: post.headline,
-        caption: post.caption,
-        publishedAt: post.publishedAt,
-        slides: postSlides.map((s) => ({
-          id: s.id,
-          filename: s.filename,
-          slideNumber: s.slideNumber,
-        })),
-      };
-    })
-  );
+  const postsWithSlides = items.map((post) => {
+    const slides = getPostSlides(post);
+    return {
+      slug: post.slug,
+      topicTag: post.topicTag,
+      headline: post.headline,
+      caption: post.caption,
+      publishedAt: post.publishedAt,
+      slides: slides.map((s) => ({
+        filename: s.filename,
+        slideNumber: s.slideNumber,
+      })),
+    };
+  });
 
   return (
     <div className="min-h-screen bg-[#FAFBFC]">
@@ -67,7 +51,7 @@ export default async function Home({
         ) : (
           <InfiniteFeed
             initialPosts={postsWithSlides}
-            initialCursor={nextCursor}
+            initialHasMore={hasMore}
             locale={locale}
           />
         )}

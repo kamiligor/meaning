@@ -1,4 +1,4 @@
-import type { ColorPalette } from "@/db/schema";
+import type { ColorPalette } from "@/lib/palettes";
 import { LogoMark } from "./logo-mark";
 
 type WatermarkVariant = "ghost" | "ghost-dark";

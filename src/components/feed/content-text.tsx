@@ -4,7 +4,7 @@ interface ContentTextProps {
 }
 
 export function ContentText({ body, tag }: ContentTextProps) {
-  const paragraphs = body.split("\\n\\n");
+  const paragraphs = body.split("\n\n");
 
   return (
     <div>

@@ -1,13 +1,8 @@
-import { db } from "@/db";
-import { posts, slides } from "@/db/schema";
-import { desc, eq } from "drizzle-orm";
+import { getAllPosts } from "@/lib/posts";
 import Link from "next/link";
 
 export default async function AdminDashboard() {
-  const allPosts = await db
-    .select()
-    .from(posts)
-    .orderBy(desc(posts.updatedAt));
+  const allPosts = getAllPosts();
 
   return (
     <div>
@@ -18,19 +13,13 @@ export default async function AdminDashboard() {
             {allPosts.length} post{allPosts.length !== 1 ? "s" : ""} total
           </p>
         </div>
-        <Link
-          href="/admin/posts/new"
-          className="px-6 py-3 bg-[#7B9E8C] text-white font-semibold text-sm rounded-lg hover:bg-[#6a8d7b] transition tracking-wider uppercase"
-        >
-          + New Post
-        </Link>
       </div>
 
       {allPosts.length === 0 ? (
         <div className="bg-white rounded-2xl p-16 text-center">
           <p className="text-[#8A99A8] text-lg mb-2">No posts yet</p>
           <p className="text-[#8A99A8] text-sm">
-            Create your first carousel post to get started.
+            Create a Markdown file in content/posts/ to get started.
           </p>
         </div>
       ) : (
@@ -45,10 +34,10 @@ export default async function AdminDashboard() {
                   Status
                 </th>
                 <th className="text-left px-6 py-4 text-xs font-semibold text-[#8A99A8] tracking-wider uppercase">
-                  Palette
+                  Locale
                 </th>
                 <th className="text-left px-6 py-4 text-xs font-semibold text-[#8A99A8] tracking-wider uppercase">
-                  Updated
+                  Palette
                 </th>
                 <th className="px-6 py-4" />
               </tr>
@@ -56,7 +45,7 @@ export default async function AdminDashboard() {
             <tbody>
               {allPosts.map((post) => (
                 <tr
-                  key={post.id}
+                  key={post.slug}
                   className="border-b border-[#F1F4F6] last:border-0 hover:bg-[#FAFBFC] transition"
                 >
                   <td className="px-6 py-4">
@@ -79,21 +68,21 @@ export default async function AdminDashboard() {
                     </span>
                   </td>
                   <td className="px-6 py-4">
+                    <span className="text-sm text-[#4A5B6A] uppercase">
+                      {post.locale}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4">
                     <span className="text-sm text-[#4A5B6A] capitalize">
                       {post.colorPalette}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-sm text-[#8A99A8]">
-                    {post.updatedAt
-                      ? new Date(post.updatedAt).toLocaleDateString()
-                      : "-"}
-                  </td>
                   <td className="px-6 py-4 text-right">
                     <Link
-                      href={`/admin/posts/${post.id}/edit`}
+                      href={`/post/${post.slug}`}
                       className="text-sm text-[#7B9E8C] font-medium hover:text-[#6a8d7b] transition"
                     >
-                      Edit
+                      View
                     </Link>
                   </td>
                 </tr>

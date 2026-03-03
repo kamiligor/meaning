@@ -32,6 +32,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/docs/exercises ./docs/exercises
 COPY --from=builder --chown=nextjs:nodejs /app/docs/framework ./docs/framework
 COPY --from=builder --chown=nextjs:nodejs /app/content/introductions ./content/introductions
+COPY --from=builder --chown=nextjs:nodejs /app/content/posts ./content/posts
 
 RUN mkdir -p /data/slides && chown nextjs:nodejs /data/slides
 

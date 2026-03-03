@@ -30,7 +30,7 @@ Lejek: Instagram (@justhavealittlemeaning) → justmeaning.com (feed + rozszerzo
 Framework:        Next.js 16+ (App Router), TypeScript, Tailwind CSS v4
 UI:               shadcn/ui + custom components
 Edytor (program): TipTap (rich text z autosave)
-DB (posty):       Turso (LibSQL) + Drizzle ORM
+Posty:            Markdown files (content/posts/) + gray-matter
 DB (użytkownicy): Supabase (PostgreSQL + Auth + RLS)
 Auth (admin):     JWT w httpOnly cookie (jose + bcryptjs)
 Auth (program):   Supabase Auth (magic link, Google OAuth)
@@ -82,7 +82,10 @@ jh/
 │       ├── editor-spec.md             # Specyfikacja edytora TipTap
 │       └── autosave-encryption-spec.md # Autosave + szyfrowanie v2.0
 │
-├── content/                           # Treści programowe (The Life Writing Program)
+├── content/                           # Treści (pliki Markdown)
+│   ├── posts/                         # Posty karuzelowe (Markdown + frontmatter)
+│   │   ├── keep-a-consistent-wake-up-time.md  # EN
+│   │   └── wstawaj-o-stalej-porze.md          # PL
 │   ├── introductions/                 # Wprowadzenia psychoedukacyjne
 │   │   ├── przeszlosc.md
 │   │   ├── terazniejszosc.md
@@ -106,7 +109,7 @@ jh/
 │   │   ├── admin/                     # Panel admina (istniejące)
 │   │   └── api/
 │   │       ├── auth/                  # Auth endpoints (istniejące)
-│   │       ├── posts/                 # CRUD postów (istniejące)
+│   │       ├── posts/                 # GET lista postów (offset pagination)
 │   │       ├── slides/                # Serwowanie PNG (istniejące)
 │   │       ├── newsletter/            # MailerLite (istniejące)
 │   │       └── program/               # 🔮 API programu pisania
@@ -114,12 +117,14 @@ jh/
 │   │           ├── progress/          #   Postęp użytkownika
 │   │           └── data-export/       #   Eksport RODO
 │   ├── db/
-│   │   ├── schema.ts                  # Drizzle schema (posty, slajdy, palety)
+│   │   ├── schema.ts                  # Drizzle schema (typy Post/Slide/ColorPalette)
 │   │   └── index.ts                   # Turso client
 │   ├── lib/
 │   │   ├── auth.ts                    # JWT admin auth (istniejące)
 │   │   ├── i18n.ts                    # Słownik en/pl (istniejące)
-│   │   ├── generate-slides.ts         # Pipeline Satori (istniejące)
+│   │   ├── posts.ts                   # Loader postów z plików MD
+│   │   ├── palettes.ts               # Palety kolorów (config, nie DB)
+│   │   ├── regenerate-slide.ts        # Regeneracja slajdu (on-demand)
 │   │   ├── storage.ts                 # I/O plików PNG (istniejące)
 │   │   ├── fonts.ts                   # Fonty Satori (istniejące)
 │   │   ├── constants.ts               # Design tokens (istniejące)
@@ -176,14 +181,17 @@ Moduł II:  TERAŹNIEJSZOŚĆ — „Zrozum, gdzie stoisz" (6 ćwiczeń)
 Moduł III: PRZYSZŁOŚĆ     — „Zaprojektuj siebie" (6 ćwiczeń)
 ```
 
-## Bazy Danych — Dual DB
+## Dane
 
-| Baza | Technologia | Co przechowuje |
-|------|------------|----------------|
-| **Turso** | LibSQL + Drizzle ORM | Posty karuzel, slajdy PNG, palety kolorów |
+| Źródło | Technologia | Co przechowuje |
+|--------|------------|----------------|
+| **Pliki MD** | Markdown + gray-matter | Posty karuzelowe (content/posts/*.md) |
+| **Pliki config** | TypeScript | Palety kolorów (src/lib/palettes.ts) |
+| **Filesystem** | PNG (data/slides/) | Slajdy generowane przez Satori |
+| **Turso** | LibSQL + Drizzle ORM | (Legacy, schema zachowane dla typów) |
 | **Supabase** | PostgreSQL + Auth + RLS | Użytkownicy, sesje, zaszyfrowane treści programu, postęp |
 
-Nie migrujemy Turso → Supabase. Każda baza robi to, w czym jest dobra.
+Posty = pliki Markdown w repozytorium. Slajdy = deterministyczne PNG ({slug}-slide-{nr}.png).
 
 ## Autentykacja — Dwie warstwy
 
@@ -268,8 +276,20 @@ npm start                # Run production
 npm run lint             # ESLint
 npm run db:push          # Drizzle push do Turso
 npm run db:studio        # Drizzle Studio
-npm run db:seed          # Seed danych (palety kolorów)
+
+# Posty karuzelowe
+npx tsx src/scripts/generate-slides.ts <slug>    # Generuj slajdy dla jednego posta
+npx tsx src/scripts/generate-slides.ts --all      # Generuj slajdy dla wszystkich
+npx tsx src/scripts/migrate-posts-to-md.ts        # (jednorazowy) Migracja z DB do MD
+npx tsx src/scripts/rename-slides.ts              # (jednorazowy) Rename slajdów na deterministyczne nazwy
 ```
+
+**WAŻNE — po dodaniu/edycji posta:**
+Po każdym stworzeniu lub zmianie pliku `content/posts/{slug}.md` ZAWSZE uruchom generowanie slajdów:
+```bash
+npx tsx src/scripts/generate-slides.ts {slug}
+```
+Bez tego post nie będzie miał slajdów PNG i karuzela się nie wyświetli.
 
 ## Deployment (Coolify)
 

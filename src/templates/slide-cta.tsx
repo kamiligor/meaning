@@ -1,4 +1,5 @@
-import type { Post, ColorPalette } from "@/db/schema";
+import type { Post } from "@/db/schema";
+import type { ColorPalette } from "@/lib/palettes";
 import { SLIDE_WIDTH, SLIDE_HEIGHT } from "@/lib/constants";
 import { LogoMark } from "./components/logo-mark";
 import { AccentText } from "./components/text-utils";

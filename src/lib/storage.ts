@@ -1,7 +1,7 @@
 import { writeFile, readFile, mkdir, unlink } from "fs/promises";
 import { join } from "path";
 
-function getStorageDir() {
+export function getStorageDir() {
   return process.env.STORAGE_PATH || join(process.cwd(), "data", "slides");
 }
 

@@ -1,5 +1,3 @@
-import type { Post } from "@/db/schema";
-
 export type ContentSection = {
   tag: string;
   body: string;
@@ -9,7 +7,14 @@ export type ContentSection = {
 export const WEB_TITLE_SLIDE = 100;
 export const WEB_QUOTE_SLIDE = 101;
 
-export function getContentSections(post: Post): ContentSection[] {
+interface PostLike {
+  contentSlides?: string | null;
+  contentTag?: string | null;
+  contentBody: string;
+  sectionNumber?: string | null;
+}
+
+export function getContentSections(post: PostLike): ContentSection[] {
   if (post.contentSlides) {
     try {
       const parsed = JSON.parse(post.contentSlides);

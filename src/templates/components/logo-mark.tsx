@@ -1,4 +1,4 @@
-import type { ColorPalette } from "@/db/schema";
+import type { ColorPalette } from "@/lib/palettes";
 
 type LogoSize = "sm" | "lg";
 type LogoVariant = "light" | "dark" | "ghost" | "ghost-dark";

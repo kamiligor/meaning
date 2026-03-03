@@ -8,26 +8,25 @@ import { NewsletterForm } from "./newsletter-form";
 import { t, type Locale } from "@/lib/i18n";
 
 interface Post {
-  id: number;
   slug: string;
   topicTag: string;
   headline: string;
   caption: string | null;
   publishedAt: string | null;
-  slides: { id: number; filename: string; slideNumber: number }[];
+  slides: { filename: string; slideNumber: number }[];
 }
 
 interface InfiniteFeedProps {
   initialPosts: Post[];
-  initialCursor: number | null;
+  initialHasMore: boolean;
   locale: Locale;
 }
 
-export function InfiniteFeed({ initialPosts, initialCursor, locale }: InfiniteFeedProps) {
+export function InfiniteFeed({ initialPosts, initialHasMore, locale }: InfiniteFeedProps) {
   const d = t(locale);
   const { posts, loading, hasMore, loadMore } = useInfinitePosts({
     initialPosts,
-    initialCursor,
+    initialHasMore,
     locale,
   });
   const sentinelRef = useRef<HTMLDivElement>(null);
@@ -52,7 +51,7 @@ export function InfiniteFeed({ initialPosts, initialCursor, locale }: InfiniteFe
   return (
     <div className="space-y-6">
       {posts.map((post, index) => (
-        <Fragment key={post.id}>
+        <Fragment key={post.slug}>
           <PostCard post={post} locale={locale} />
           {index === 1 && (
             <NewsletterForm locale={locale} variant="card" />

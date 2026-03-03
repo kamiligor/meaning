@@ -3,13 +3,11 @@
 import { useState, useCallback } from "react";
 
 interface Slide {
-  id: number;
   filename: string;
   slideNumber: number;
 }
 
 interface Post {
-  id: number;
   slug: string;
   topicTag: string;
   headline: string;
@@ -20,35 +18,34 @@ interface Post {
 
 interface UseInfinitePostsOptions {
   initialPosts: Post[];
-  initialCursor: number | null;
+  initialHasMore: boolean;
   locale: string;
 }
 
 export function useInfinitePosts({
   initialPosts,
-  initialCursor,
+  initialHasMore,
   locale,
 }: UseInfinitePostsOptions) {
   const [posts, setPosts] = useState<Post[]>(initialPosts);
-  const [cursor, setCursor] = useState<number | null>(initialCursor);
+  const [hasMore, setHasMore] = useState(initialHasMore);
   const [loading, setLoading] = useState(false);
-  const hasMore = cursor !== null;
 
   const loadMore = useCallback(async () => {
     if (loading || !hasMore) return;
     setLoading(true);
     try {
       const res = await fetch(
-        `/api/posts?status=published&locale=${locale}&cursor=${cursor}&limit=10`
+        `/api/posts?locale=${locale}&offset=${posts.length}&limit=10`
       );
       if (!res.ok) return;
       const data = await res.json();
       setPosts((prev) => [...prev, ...data.posts]);
-      setCursor(data.nextCursor);
+      setHasMore(data.hasMore);
     } finally {
       setLoading(false);
     }
-  }, [cursor, loading, hasMore, locale]);
+  }, [posts.length, loading, hasMore, locale]);
 
   return { posts, loading, hasMore, loadMore };
 }

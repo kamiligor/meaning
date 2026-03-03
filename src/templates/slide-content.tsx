@@ -1,4 +1,5 @@
-import type { Post, ColorPalette } from "@/db/schema";
+import type { Post } from "@/db/schema";
+import type { ColorPalette } from "@/lib/palettes";
 import type { ContentSection } from "@/lib/content-sections";
 import { SLIDE_WIDTH, SLIDE_HEIGHT } from "@/lib/constants";
 import { Watermark } from "./components/watermark";

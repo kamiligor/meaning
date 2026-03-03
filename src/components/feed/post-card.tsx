@@ -5,13 +5,12 @@ import type { Locale } from "@/lib/i18n";
 
 interface PostCardProps {
   post: {
-    id: number;
     slug: string;
     topicTag: string;
     headline: string;
     caption: string | null;
     publishedAt: string | null;
-    slides: { id: number; filename: string; slideNumber: number }[];
+    slides: { filename: string; slideNumber: number }[];
   };
   locale: Locale;
 }

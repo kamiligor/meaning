@@ -1,59 +1,61 @@
 import satori from "satori";
 import { Resvg } from "@resvg/resvg-js";
 import { loadFonts } from "./fonts";
-import { SLIDE_WIDTH, SLIDE_HEIGHT, DEFAULT_PALETTE } from "./constants";
+import { SLIDE_WIDTH, SLIDE_HEIGHT } from "./constants";
+import { getPalette } from "./palettes";
 import { SlideTitleTemplate } from "@/templates/slide-title";
 import { SlideContentTemplate } from "@/templates/slide-content";
 import { SlideQuoteTemplate } from "@/templates/slide-quote";
 import { SlideCTATemplate } from "@/templates/slide-cta";
-import { getContentSections, WEB_TITLE_SLIDE, WEB_QUOTE_SLIDE } from "./content-sections";
-import { db } from "@/db";
-import { slides, posts, colorPalettes } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { WEB_TITLE_SLIDE, WEB_QUOTE_SLIDE } from "./content-sections";
 import { saveFile } from "./storage";
-import type { Post, ColorPalette } from "@/db/schema";
+import { getPostBySlug, type PostData } from "./posts";
+import type { Post } from "@/db/schema";
+import type { ColorPalette } from "@/lib/palettes";
+
+/**
+ * Parse deterministic filename: {slug}-slide-{slideNumber}.png
+ */
+function parseFilename(filename: string): { slug: string; slideNumber: number } | null {
+  const match = filename.match(/^(.+)-slide-(\d+)\.png$/);
+  if (!match) return null;
+  return { slug: match[1], slideNumber: Number(match[2]) };
+}
 
 /**
  * Regenerate a single slide PNG by filename.
+ * Filenames are deterministic: {slug}-slide-{slideNumber}.png
  * Returns the PNG buffer if successful, null otherwise.
  */
 export async function regenerateSlide(filename: string): Promise<Buffer | null> {
-  // Find the slide record in DB
-  const slide = await db.query.slides.findFirst({
-    where: eq(slides.filename, filename),
-  });
-  if (!slide) return null;
+  const parsed = parseFilename(filename);
+  if (!parsed) return null;
 
-  // Fetch the post
-  const post = await db.query.posts.findFirst({
-    where: eq(posts.id, slide.postId),
-  });
+  const post = getPostBySlug(parsed.slug);
   if (!post) return null;
 
-  // Fetch palette
-  let palette: ColorPalette;
-  const dbPalette = await db.query.colorPalettes.findFirst({
-    where: eq(colorPalettes.id, post.colorPalette || "sage"),
-  });
-  palette = dbPalette || (DEFAULT_PALETTE as unknown as ColorPalette);
+  const palette = getPalette(post.colorPalette || "sage");
+  const p = post as unknown as Post;
 
-  // Determine which template to render
-  const jsx = getTemplateForSlide(post, palette, slide.slideNumber);
+  const jsx = getTemplateForSlide(p, palette, parsed.slideNumber, post);
   if (!jsx) return null;
 
-  // Render to PNG
   const fonts = await loadFonts();
   const svg = await satori(jsx, { width: SLIDE_WIDTH, height: SLIDE_HEIGHT, fonts });
   const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
   const pngBuffer = Buffer.from(resvg.render().asPng());
 
-  // Save with the original filename
   await saveFile(filename, pngBuffer);
 
   return pngBuffer;
 }
 
-function getTemplateForSlide(post: Post, palette: ColorPalette, slideNumber: number) {
+function getTemplateForSlide(
+  post: Post,
+  palette: ColorPalette,
+  slideNumber: number,
+  postData: PostData,
+) {
   if (slideNumber === WEB_TITLE_SLIDE) {
     return SlideTitleTemplate(post, palette, { arrowDown: true });
   }
@@ -64,7 +66,7 @@ function getTemplateForSlide(post: Post, palette: ColorPalette, slideNumber: num
     return SlideTitleTemplate(post, palette);
   }
 
-  const sections = getContentSections(post);
+  const sections = postData.contentSections;
   const quoteNum = sections.length + 2;
   const ctaNum = sections.length + 3;
 
@@ -75,7 +77,6 @@ function getTemplateForSlide(post: Post, palette: ColorPalette, slideNumber: num
     return SlideCTATemplate(post, palette);
   }
 
-  // Content slides: slideNumber 2..sections.length+1
   const sectionIndex = slideNumber - 2;
   if (sectionIndex >= 0 && sectionIndex < sections.length) {
     return SlideContentTemplate(post, palette, sections[sectionIndex]);
