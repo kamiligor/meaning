@@ -6,12 +6,7 @@ exercise:
   estimated_time: "30-40 minut"
   psychological_basis: "Terapia Akceptacji i Zaangażowania — defuzja poznawcza (Hayes et al.) + Terapia poznawczo-behawioralna — CBT (Beck, 1979)"
   content_warning: "To ćwiczenie może wydobyć na powierzchnię trudne myśli i emocje. Pamiętaj, że możesz je przerwać w dowolnym momencie i wrócić do niego później. Jeśli poczujesz, że emocje Cię przytłaczają — to dobry moment, żeby zrobić przerwę i zadbać o siebie."
-  disclaimer: |
-    Ten program nie zastępuje psychoterapii ani innej formy profesjonalnej
-    pomocy psychologicznej. Jeśli czujesz, że potrzebujesz wsparcia,
-    zachęcamy do kontaktu ze specjalistą.
-    Telefon Zaufania dla Dorosłych: 116 123
-    Centrum Wsparcia: 800 70 2222
+
   contraindications: |
     To ćwiczenie nie jest zalecane, jeśli:
     - Aktualnie przeżywasz ostry kryzys psychiczny lub masz myśli samobójcze
@@ -20,48 +15,54 @@ exercise:
     - Twoje główne przeszkody są związane z aktywną traumą, która nie została
       jeszcze przepracowana w bezpiecznym otoczeniu terapeutycznym
     W każdym z tych przypadków zachęcamy do pracy z profesjonalistą.
+
   introduction: |
-    Każdy z nas nosi w głowie historie o tym, dlaczego nie może się zmienić, dlaczego jest,
-    jak jest, dlaczego pewne rzeczy są niemożliwe. „Nie dam rady, bo...", „Zawsze tak było...",
-    „Inni mogą, ale ja nie, bo...". Te historie czują się jak fakty. Ale w rzeczywistości są
-    myślami — i między myślą a faktem jest ogromna różnica.
+    Każdy z nas nosi w głowie historie o tym, dlaczego nie można się zmienić, dlaczego pewne
+    rzeczy są niemożliwe. „Nie dam rady, bo...”, „Zawsze tak było...”, „Inni mogą, ale ja nie,
+    bo...”. Te historie czują się jak fakty. Ale w rzeczywistości są myślami — i między myślą
+    a faktem jest ogromna różnica.
 
     Terapia poznawczo-behawioralna (CBT) Aarona Becka pokazała, że to nie sytuacje same w sobie
     powodują cierpienie, ale nasze interpretacje tych sytuacji. ACT idzie o krok dalej — mówi
-    o „fuzji poznawczej": stanie, w którym jesteśmy tak zespoleni z naszymi myślami, że
-    traktujemy je jak rzeczywistość. Kiedy myślę „jestem beznadziejny" i jestem w fuzji z tą
-    myślą — czuję to w całym ciele, działam tak, jakby to była prawda, podejmuję decyzje
+    o „fuzji poznawczej”: stanie, w którym jesteśmy tak zespoleni z naszymi myślami, że
+    traktujemy je jak rzeczywistość. Kiedy pojawia się myśl „jestem beznadziejny” i trwa fuzja
+    z tą myślą — czuć to w całym ciele, działamy tak, jakby to była prawda, podejmujemy decyzje
     na jej podstawie.
 
     Defuzja to przeciwieństwo fuzji. To nie zmiana treści myśli (nie chodzi o to, żeby myśleć
-    pozytywnie). To zmiana relacji z myślą. Zamiast „jestem beznadziejny" — „zauważam, że mam
-    myśl, że jestem beznadziejny". Brzmi jak sztuczka? Badania pokazują, że ta prosta zmiana
+    pozytywnie). To zmiana relacji z myślą. Zamiast „jestem beznadziejny” — „zauważam, że mam
+    myśl, że jestem beznadziejny”. Brzmi jak sztuczka? Badania pokazują, że ta prosta zmiana
     perspektywy zmniejsza emocjonalny ładunek myśli i zwiększa zdolność do działania mimo
     ich obecności.
 
     W tym ćwiczeniu najpierw uczciwie nazwiesz to, co Ci przeszkadza. Potem przyjrzysz się
     historiom, które sobie o tym opowiadasz. A na końcu — spróbujesz zobaczyć te historie
     jako myśli, nie jako fakty. Nie po to, żeby je zignorować. Po to, żeby mieć wybór.
+
   prompt_questions:
-    - Część A — Przeszkody. Wymień 3-5 rzeczy, które w tej chwili najbardziej Ci przeszkadzają w życiu — utrudniają zmianę, blokują, frustrują. Mogą to być okoliczności zewnętrzne, wewnętrzne stany, relacje, nawyki — cokolwiek, co czujesz jako barierę. Opisz każdą w 2-3 zdaniach.
-    - 'Część B — Historie. Przy każdej przeszkodzie z Części A dokończ zdanie: „Historia, którą sobie o tym opowiadam, to..." — zapisz pełną wewnętrzną narrację. Jak tłumaczysz sobie tę przeszkodę? Co mówi Ci wewnętrzny głos? Bądź szczery/a — nikt tego nie zobaczy.'
-    - 'Część C — Defuzja. Teraz weź każdą historię z Części B i przepisz ją, zaczynając od: „Zauważam, że mam myśl, że..." Przeczytaj obie wersje na głos, jeśli możesz. Czy coś się zmienia? Jak się zmienia odczucie w ciele? Czy myśl czuje się mniej „prawdziwa", mniej ciężka, mniej absolutna?'
-    - Patrząc na swoje przeszkody po defuzji — czy któraś z nich wygląda inaczej? Czy widzisz choćby niewielką przestrzeń między Tobą a tą myślą? Nie musisz jej rozwiązywać. Wystarczy ją zobaczyć jako myśl, a nie jako wyrok.
+    - "Część A — Przeszkody. Wymień 3-5 rzeczy, które w tej chwili najbardziej przeszkadzają Ci w życiu — utrudniają zmianę, blokują, frustrują. Mogą to być okoliczności zewnętrzne, wewnętrzne stany, relacje, nawyki — cokolwiek, co czujesz jako barierę. Opisz każdą w 2-3 zdaniach."
+    - "Część B — Historie. Przy każdej przeszkodzie z Części A dokończ zdanie: „Historia, którą sobie o tym opowiadam, to...” — zapisz pełną wewnętrzną narrację. Jak tłumaczysz sobie tę przeszkodę? Co mówi wewnętrzny głos? Bądź szczery — nikt tego nie zobaczy."
+    - "Część C — Defuzja. Teraz weź każdą historię z Części B i przepisz ją, zaczynając od: „Zauważam, że mam myśl, że...” Przeczytaj obie wersje na głos, jeśli możesz. Czy coś się zmienia? Jak się zmienia odczucie w ciele? Czy myśl czuje się mniej „prawdziwa”, mniej ciężka, mniej absolutna?"
+    - "Patrząc na swoje przeszkody po defuzji — czy któraś z nich wygląda inaczej? Czy widzisz choćby niewielką przestrzeń między Tobą a tą myślą? Nie musisz jej rozwiązywać. Wystarczy zobaczyć ją jako myśl, a nie jako wyrok."
+
   stuck_helpers:
-    - 'Jeśli trudno Ci wymienić przeszkody, spróbuj dokończyć: „Gdybym mógł/mogła zmienić jedną rzecz w swoim życiu, to..." — i zobacz, co się pojawi. Co Cię powstrzymuje?'
-    - 'Przy defuzji możesz też użyć innych formuł: „Mój umysł mi właśnie mówi, że..." albo „Pojawia się myśl, że..." — wybierz tę, która czuje się najbardziej naturalna.'
-    - Jeśli defuzja nie daje efektu — to też jest informacja. Niektóre myśli są tak głęboko wrośnięte, że potrzebują więcej czasu. Nie zmuszaj się. Możesz wrócić do tego ćwiczenia za kilka dni.
-    - Możesz zacząć od przeszkody, która jest najmniej emocjonalnie naładowana — od czegoś, co Cię irytuje, ale nie boli. Defuzja łatwiej działa, gdy emocje nie są na maksimum.
+    - "Jeśli trudno wymienić przeszkody, spróbuj dokończyć: „Gdybym mógł zmienić jedną rzecz w swoim życiu, to...” — i zobacz, co się pojawi. Co powstrzymuje przed tą zmianą?"
+    - "Przy defuzji możesz też użyć innych formuł: „Mój umysł mi właśnie mówi, że...” albo „Pojawia się myśl, że...” — wybierz tę, która czuje się najbardziej naturalna."
+    - "Jeśli defuzja nie daje efektu — to też jest informacja. Niektóre myśli są tak głęboko wrośnięte, że potrzebują więcej czasu. Nie zmuszaj się. Możesz wrócić do tego ćwiczenia za kilka dni."
+    - "Możesz zacząć od przeszkody, która jest najmniej emocjonalnie naładowana — od czegoś, co irytuje, ale nie boli. Defuzja łatwiej działa, gdy emocje nie są na maksimum."
+
   reflection_prompt: |
-    Po przejściu przez trzy części — czy widzisz wzorzec w swoich „historiach"?
+    Po przejściu przez trzy części — czy widzisz wzorzec w swoich „historiach”?
     Może powtarza się jakiś motyw: poczucie braku kontroli, strach przed oceną,
     przekonanie o własnej niewystarczalności? Jeśli chcesz, zapisz jednym zdaniem:
-    „Najczęściej opowiadam sobie historię o..."
+    „Najczęściej opowiadam sobie historię o...”
+
   post_exercise_note: |
     Jeśli po tym ćwiczeniu czujesz się gorzej niż przed — to normalna
     reakcja. Badania nad pisaniem ekspresywnym pokazują, że po ćwiczeniach
     tego typu można poczuć się chwilowo gorzej — to normalna część procesu,
     która zwykle mija w ciągu 1-2 dni. Daj sobie czas.
+
   why_it_works: |
     Fuzja poznawcza — traktowanie myśli jak faktów — jest jednym z głównych mechanizmów
     podtrzymujących cierpienie psychiczne (Hayes et al., 2006). Technika defuzji, wielokrotnie

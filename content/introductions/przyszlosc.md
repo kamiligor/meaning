@@ -14,7 +14,7 @@ scientific_basis:
 
 ## Twoje przyszłe ja to obcy człowiek — i to jest problem
 
-Przeszedłeś/przeszłaś przez dwa moduły. Spojrzałeś/aś na swoją przeszłość — nadałeś/aś kształt wspomnieniom, które dotąd krążyły bez formy. Przyjrzałeś/aś się teraźniejszości — wartościom, wzorcom myślenia, miejscu, w którym naprawdę stoisz. Teraz — przyszłość. Ale nie taka, jaką znasz z noworocznych postanowień czy list celów, które kończą w szufladzie. Inna.
+Za Tobą dwa moduły. W pierwszym — praca ze wspomnieniami, nadawanie kształtu temu, co dotąd krążyło bez formy. W drugim — uczciwe spojrzenie na teraźniejszość: wartości, wzorce myślenia, miejsce, w którym naprawdę stoisz. Teraz — przyszłość. Ale nie taka, jaką znasz z noworocznych postanowień czy list celów, które kończą w szufladzie. Inna.
 
 Zacznijmy od czegoś, co może Cię zaskoczyć.
 
@@ -36,13 +36,9 @@ Co działa? Oettingen nazywa to mentalnym kontrastowaniem: wyobraź sobie cel, k
 
 ## Co będziemy robić
 
-W tym module nie będziesz pisać listy celów. Będziesz pracować nad czymś głębszym — nad relacją z własną przyszłością. Zaczniemy od budowania żywego, konkretnego obrazu przyszłego Ciebie, osadzonego w wartościach, które zidentyfikowałeś/aś w module drugim. Potem — mentalne kontrastowanie: wizja zestawiona z realnymi przeszkodami. Na koniec — małe, konkretne kroki. Nie plany na pięć lat. Pierwsze kroki na najbliższy tydzień.
+W tym module nie piszesz listy celów. Pracujesz nad czymś głębszym — nad relacją z własną przyszłością. Zaczniemy od budowania żywego, konkretnego obrazu przyszłego Ciebie, osadzonego w wartościach rozpoznanych w module drugim. Potem — mentalne kontrastowanie: wizja zestawiona z realnymi przeszkodami. Na koniec — małe, konkretne kroki. Nie plany na pięć lat. Pierwsze kroki na najbliższy tydzień.
 
 Jak zawsze — tempo jest Twoje, każde ćwiczenie możesz pominąć lub odłożyć na później.
-
-## Ważna uwaga
-
-Ten program nie zastępuje psychoterapii. Jeśli w trakcie pracy nad przyszłością pojawią się trudne emocje — bezradność, lęk, poczucie beznadziejności — to jest sygnał, żeby sięgnąć po wsparcie. Dane kontaktowe linii kryzysowych — Telefon Zaufania dla Dorosłych, Centrum Wsparcia — znajdziesz przy każdym ćwiczeniu.
 
 ## Zanim zaczniesz
 

@@ -6,16 +6,11 @@ exercise:
   estimated_time: "20-30 minut"
   psychological_basis: "Terapia Akceptacji i Zaangażowania — ACT, akceptacja i zaangażowane działanie (Hayes et al.) + Tożsamość narracyjna (McAdams, 2001)"
   content_warning: null
-  disclaimer: |
-    Ten program nie zastępuje psychoterapii ani innej formy profesjonalnej
-    pomocy psychologicznej. Jeśli czujesz, że potrzebujesz wsparcia,
-    zachęcamy do kontaktu ze specjalistą.
-    Telefon Zaufania dla Dorosłych: 116 123
-    Centrum Wsparcia: 800 70 2222
+
   introduction: |
-    Doszedłeś/doszłaś do ostatniego ćwiczenia w module Teraźniejszość. Przez poprzednie pięć
-    ćwiczeń przyglądałeś/aś się sobie z różnych stron: kim jesteś teraz, co jest dla Ciebie
-    ważne, co Ci przeszkadza, jak działa Twój umysł, jak mówisz do siebie. To dużo.
+    To ostatnie ćwiczenie w module Teraźniejszość. Przez poprzednie pięć ćwiczeń przyglądaliśmy
+    się sobie z różnych stron: kim jesteś teraz, co jest dla Ciebie ważne, co Ci przeszkadza,
+    jak działa Twój umysł, jak mówisz do siebie. To dużo.
 
     Teraz chcemy to zebrać — nie w formie raportu czy podsumowania, ale w formie dwóch
     prostych list. ACT (Terapia Akceptacji i Zaangażowania) mówi o dwóch fundamentalnych
@@ -30,29 +25,33 @@ exercise:
     między Twoją teraźniejszością a przyszłością, którą zaprojektujesz w Module III.
 
     Nie ma złych odpowiedzi. Nie ma odpowiedzi zbyt małych. Jeśli jedyne, co chcesz zabrać
-    ze sobą, to „poranna kawa w ciszy" — to jest ważne. Jeśli jedyne, co chcesz odłożyć,
-    to „przekonanie, że muszę być idealny/a" — to wystarczy.
+    ze sobą, to „poranna kawa w ciszy” — to jest ważne. Jeśli jedyne, co chcesz odłożyć,
+    to „przekonanie, że muszę być idealny” — to wystarczy.
+
   prompt_questions:
-    - 'Lista 1: Co chcę zabrać ze sobą. Zapisz wszystko, co chcesz zachować — wartości, relacje, nawyki, przekonania, umiejętności, rytuały, sposoby bycia. Mogą to być duże rzeczy (np. „moja relacja z siostrą") i małe (np. „spacery wieczorem"). Nie ograniczaj się — piszesz dla siebie.'
-    - 'Lista 2: Co chcę odłożyć. Zapisz to, z czym jesteś gotowy/a się pożegnać — nawyki myślowe, schematy, przekonania, role, które nie są Twoje, oczekiwania (własne lub cudze), sposoby traktowania siebie. „Odłożyć" nie znaczy „wymazać". Znaczy: „uznaję, że to mi nie służy, i wybieram inaczej".'
-    - Przeczytaj obie listy. Czy jest coś, co pojawia się na obu? Coś, co chcesz zachować, ale jednocześnie czujesz, że Ci przeszkadza? To normalne — życie jest pełne takich paradoksów. Jeśli widzisz taki paradoks, opisz go krótko.
-    - 'Na koniec — dokończ to zdanie tak, jak czujesz w tej chwili, bez zastanawiania się zbyt długo: „Teraz, w tej chwili, najprawdziwsza rzecz, jaką mogę powiedzieć o sobie, to..."'
+    - "Lista 1: Co chcę zabrać ze sobą. Zapisz wszystko, co chcesz zachować — wartości, relacje, nawyki, przekonania, umiejętności, rytuały, sposoby bycia. Mogą to być duże rzeczy (np. „moja relacja z siostrą”) i małe (np. „spacery wieczorem”). Nie ograniczaj się — piszesz dla siebie."
+    - "Lista 2: Co chcę odłożyć. Zapisz to, z czym chcesz się pożegnać — nawyki myślowe, schematy, przekonania, role, które nie są Twoje, oczekiwania (własne lub cudze), sposoby traktowania siebie. „Odłożyć” nie znaczy „wymazać”. Znaczy: „uznaję, że to mi nie służy, i wybieram inaczej”."
+    - "Przeczytaj obie listy. Czy jest coś, co pojawia się na obu? Coś, co chcesz zachować, ale jednocześnie czujesz, że Ci przeszkadza? To normalne — życie jest pełne takich paradoksów. Jeśli widzisz taki paradoks, opisz go krótko."
+    - "Na koniec — dokończ to zdanie tak, jak czujesz w tej chwili, bez zastanawiania się zbyt długo: „Teraz, w tej chwili, najprawdziwsza rzecz, jaką mogę powiedzieć o sobie, to...”"
+
   stuck_helpers:
-    - 'Jeśli trudno Ci stworzyć listy, wróć do poprzednich ćwiczeń — przejrzyj, co napisałeś/aś. Twoje odpowiedzi z „Kim Jestem Teraz?", „Moje Wartości" i innych ćwiczeń mogą podpowiedzieć, co jest ważne.'
-    - 'Możesz zacząć od tego, co łatwiejsze: czy łatwiej Ci nazwać, co chcesz zachować, czy co chcesz puścić? Zacznij od tej listy. Druga może pojawić się jako „lustrzane odbicie".'
-    - 'Jeśli ostatnie zdanie („Najprawdziwsza rzecz...") wydaje się zbyt duże — spróbuj dokończyć prostsze: „W tej chwili czuję..." albo „Teraz wiem, że..." albo po prostu „Jestem..."'
-    - 'Nie musisz mieć „równych" list. Jeśli lista tego, co chcesz zachować, ma 10 punktów, a lista tego, co chcesz puścić, ma 2 — to jest w porządku. I na odwrót.'
+    - "Jeśli trudno stworzyć listy, wróć do poprzednich ćwiczeń — przejrzyj, co tam zapisano. Odpowiedzi z „Kim Jestem Teraz?”, „Moje Wartości” i innych ćwiczeń mogą podpowiedzieć, co jest ważne."
+    - "Możesz zacząć od tego, co łatwiejsze: czy łatwiej Ci nazwać, co chcesz zachować, czy co chcesz puścić? Zacznij od tej listy. Druga może pojawić się jako „lustrzane odbicie”."
+    - "Jeśli ostatnie zdanie („Najprawdziwsza rzecz...”) wydaje się zbyt duże — spróbuj dokończyć prostsze: „W tej chwili czuję...” albo „Teraz wiem, że...” albo po prostu „Jestem...”"
+    - "Nie musisz mieć „równych” list. Jeśli lista tego, co chcesz zachować, ma 10 punktów, a lista tego, co chcesz puścić, ma 2 — to jest w porządku. I na odwrót."
+
   reflection_prompt: |
-    Moduł Teraźniejszość dobiega końca. Przeszedłeś/przeszłaś drogę od opisu tego, kim jesteś,
+    Moduł Teraźniejszość dobiega końca. Za nami droga od opisu tego, kim jesteś,
     przez wartości, przeszkody, schematy myślowe, aż po współczucie dla siebie. Patrząc na tę
-    całą drogę — czego się o sobie dowiedziałeś/aś? Co Cię zaskoczyło? I co — choćby
+    całą drogę — czego {{odkryl}} o sobie? Co Cię zaskoczyło? I co — choćby
     w niewielkim stopniu — wygląda inaczej niż przed rozpoczęciem tego modułu?
+
   why_it_works: |
     ACT podkreśla, że akceptacja nie oznacza bierności — to aktywny wybór tego, co chcemy zabrać
     ze sobą, i gotowość do puszczenia tego, co nas ogranicza (Hayes et al., 2012). Tworzenie
-    świadomych list „zabieram / odkładam" jest formą klaryfikacji wartości i zaangażowanego
+    świadomych list „zabieram / odkładam” jest formą klaryfikacji wartości i zaangażowanego
     działania jednocześnie. Teoria tożsamości narracyjnej McAdamsa (2001) pokazuje, że ludzie,
     którzy potrafią zamknąć jeden rozdział swojej historii i otworzyć nowy, mają silniejsze
     poczucie ciągłości tożsamości i lepiej adaptują się do zmian. Ostatnie zdanie — „Najprawdziwsza
-    rzecz, jaką mogę powiedzieć o sobie" — jest aktem narracyjnej integracji: próbą wyrażenia
+    rzecz, jaką mogę powiedzieć o sobie” — jest aktem narracyjnej integracji: próbą wyrażenia
     siebie tu i teraz, po pogłębionej refleksji.

@@ -13,17 +13,15 @@ const sizes = {
   sm: {
     padding: 16,
     bracketWidth: 10,
-    just: { fontSize: 9, marginBottom: -5 },
-    have: { fontSize: 24 },
-    little: { fontSize: 8, margin: "0px 0 -5px 0" },
+    just: { fontSize: 24 },
+    haveLittle: { fontSize: 8, margin: "2px 0 -3px 0" },
     meaning: { fontSize: 24 },
   },
   lg: {
     padding: 30,
     bracketWidth: 18,
-    just: { fontSize: 18, marginBottom: -10 },
-    have: { fontSize: 54 },
-    little: { fontSize: 16, margin: "2px 0 -11px 0" },
+    just: { fontSize: 54 },
+    haveLittle: { fontSize: 16, margin: "4px 0 -8px 0" },
     meaning: { fontSize: 54 },
   },
 } as const;
@@ -32,36 +30,32 @@ function getColors(variant: LogoVariant, palette: ColorPalette) {
   switch (variant) {
     case "light":
       return {
-        just: palette.textLight,
-        have: palette.textDark,
-        little: palette.primary,
+        just: palette.textDark,
+        haveLittle: palette.textLight,
         meaning: palette.primary,
         bracket: palette.primary,
         bracketOpacity: 0.3,
       };
     case "dark":
       return {
-        just: "rgba(255,255,255,0.3)",
-        have: "#fff",
-        little: palette.primaryLight,
+        just: "#fff",
+        haveLittle: "rgba(255,255,255,0.3)",
         meaning: palette.primaryLight,
         bracket: palette.primary,
         bracketOpacity: 0.3,
       };
     case "ghost":
       return {
-        just: "rgba(138,153,168,0.35)",
-        have: "rgba(30,42,54,0.2)",
-        little: "rgba(123,158,140,0.3)",
+        just: "rgba(30,42,54,0.2)",
+        haveLittle: "rgba(138,153,168,0.35)",
         meaning: "rgba(123,158,140,0.3)",
         bracket: palette.primary,
         bracketOpacity: 0.1,
       };
     case "ghost-dark":
       return {
-        just: "rgba(255,255,255,0.1)",
-        have: "rgba(255,255,255,0.12)",
-        little: "rgba(163,196,179,0.12)",
+        just: "rgba(255,255,255,0.12)",
+        haveLittle: "rgba(255,255,255,0.1)",
         meaning: "rgba(163,196,179,0.12)",
         bracket: palette.primary,
         bracketOpacity: 0.06,
@@ -116,40 +110,27 @@ export function LogoMark({ size, variant, palette }: LogoMarkProps) {
 
       <span
         style={{
-          fontFamily: "LibreBaskerville",
-          fontStyle: "italic",
-          fontWeight: 400,
+          fontFamily: "Fraunces",
+          fontWeight: 800,
           fontSize: s.just.fontSize,
-          lineHeight: 1,
+          lineHeight: 1.05,
           color: c.just,
-          marginBottom: s.just.marginBottom,
         }}
       >
         just
       </span>
       <span
         style={{
-          fontFamily: "Fraunces",
-          fontWeight: 800,
-          fontSize: s.have.fontSize,
-          lineHeight: 1.05,
-          color: c.have,
-        }}
-      >
-        have
-      </span>
-      <span
-        style={{
           fontFamily: "LibreBaskerville",
           fontStyle: "italic",
           fontWeight: 400,
-          fontSize: s.little.fontSize,
+          fontSize: s.haveLittle.fontSize,
           lineHeight: 1,
-          color: c.little,
-          margin: s.little.margin,
+          color: c.haveLittle,
+          margin: s.haveLittle.margin,
         }}
       >
-        a little
+        have a little
       </span>
       <span
         style={{

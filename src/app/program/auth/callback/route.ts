@@ -35,5 +35,29 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(new URL("/program?error=auth", request.url));
   }
 
+  // Create default user profile if not exists
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (user) {
+    const { data: existing } = await supabase
+      .from("user_profiles")
+      .select("user_id")
+      .eq("user_id", user.id)
+      .single();
+
+    if (!existing) {
+      // For magic link, gender_form may be in user metadata
+      const genderForm = user.user_metadata?.gender_form || "neutral";
+
+      await supabase.from("user_profiles").insert({
+        user_id: user.id,
+        gender_form: genderForm,
+        disclaimer_accepted_at: new Date().toISOString(),
+      });
+    }
+  }
+
   return NextResponse.redirect(new URL(next, request.url));
 }

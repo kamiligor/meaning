@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Exercise } from "@/lib/exercises";
 import { ExerciseEditor } from "./exercise-editor";
-import { DisclaimerGate } from "./disclaimer-gate";
 import { ContentWarning } from "./content-warning";
 import { PostExerciseFlow } from "./post-exercise-flow";
 import { Button } from "@/components/ui/button";
@@ -15,7 +14,7 @@ import {
 } from "@/components/ui/collapsible";
 import { ChevronDown, Lightbulb } from "lucide-react";
 
-type ViewStep = "disclaimer" | "warning" | "writing" | "postExercise";
+type ViewStep = "warning" | "writing" | "postExercise";
 
 interface SavedResponse {
   questionIndex: number;
@@ -37,7 +36,9 @@ export function ExerciseView({
   const router = useRouter();
   const hasWarning = !!exercise.contentWarning;
 
-  const [step, setStep] = useState<ViewStep>("disclaimer");
+  const [step, setStep] = useState<ViewStep>(
+    hasWarning ? "warning" : "writing"
+  );
   const [stuckOpen, setStuckOpen] = useState(false);
 
   const getInitialContent = (qi: number) => {
@@ -70,14 +71,6 @@ export function ExerciseView({
     }
     router.push("/program/dashboard");
   };
-
-  if (step === "disclaimer") {
-    return (
-      <DisclaimerGate
-        onAccept={() => setStep(hasWarning ? "warning" : "writing")}
-      />
-    );
-  }
 
   if (step === "warning" && exercise.contentWarning) {
     return (

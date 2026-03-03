@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Lock, CheckCircle2, Play, BookOpen } from "lucide-react";
+import type { GenderForm } from "@/lib/personalize";
+import { ProfileInitializer } from "@/components/program/profile-initializer";
 
 type ExerciseStatus = "not_started" | "in_progress" | "completed" | "skipped";
 
@@ -48,8 +50,19 @@ function getModuleStatus(
 
 export default async function DashboardPage() {
   const { user, supabase } = await requireProgramUser();
-  const modules = getModules();
-  const gate = getGateExercise();
+
+  // Fetch user profile for gender form
+  const { data: profileData } = await supabase
+    .from("user_profiles")
+    .select("gender_form")
+    .eq("user_id", user.id)
+    .single();
+
+  const genderForm: GenderForm =
+    (profileData?.gender_form as GenderForm) || "neutral";
+
+  const modules = getModules(genderForm);
+  const gate = getGateExercise(genderForm);
   const progress = await getUserProgress(supabase, user.id);
 
   const gateStatus = progress["gate_00"] || "not_started";
@@ -58,6 +71,7 @@ export default async function DashboardPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
+      <ProfileInitializer />
       <h1 className="text-2xl font-semibold text-[#1E2A36] mb-2">
         Twoj program
       </h1>

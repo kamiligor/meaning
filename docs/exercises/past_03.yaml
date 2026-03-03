@@ -16,16 +16,9 @@ exercise:
     W takich sytuacjach zachęcamy do skontaktowania się ze specjalistą
     przed wykonaniem tego ćwiczenia, lub do wybrania łagodniejszego wspomnienia.
 
-  disclaimer: |
-    Ten program nie zastępuje psychoterapii ani innej formy profesjonalnej
-    pomocy psychologicznej. Jeśli czujesz, że potrzebujesz wsparcia,
-    zachęcamy do kontaktu ze specjalistą.
-    Telefon Zaufania dla Dorosłych: 116 123
-    Centrum Wsparcia: 800 70 2222
-
   introduction: |
-    W poprzednich ćwiczeniach stworzyłaś/eś mapę i rozdziały swojego życia. Teraz
-    zapraszamy Cię do zatrzymania się przy jednym konkretnym momencie — takim, który
+    W poprzednich ćwiczeniach powstała mapa i rozdziały życia. Teraz
+    zapraszamy do zatrzymania się przy jednym konkretnym momencie — takim, który
     zmienił kierunek Twojej historii. Momencie przełomowym.
 
     James Pennebaker, psycholog z Uniwersytetu Teksańskiego, przez ponad 30 lat badał
@@ -40,27 +33,27 @@ exercise:
     rozmowa, decyzja, utrata, spotkanie, odkrycie. Ważne, żeby to był moment, po którym
     coś już nie było takie samo.
 
-    Opisz go szczegółowo: co się wydarzyło, kto tam był, co czułeś/aś, co widziałeś/aś
-    i słyszałeś/aś. A potem — co się zmieniło. Pisz dla siebie, nie dla publiczności.
+    Opisz go szczegółowo: co się wydarzyło, kto tam był, jakie emocje się pojawiły, co
+    było widać i słychać. A potem — co się zmieniło. Pisz dla siebie, nie dla publiczności.
     Nikt tego nie oceni.
 
   prompt_questions:
-    - "Wybierz jeden moment przełomowy ze swojej mapy życia. Opisz go: co dokładnie się wydarzyło? Gdzie byłeś/aś? Kto jeszcze tam był?"
-    - "Co czułeś/aś w tamtym momencie? Spróbuj przypomnieć sobie emocje — nie to, co 'powinieneś/aś' był/a czuć, ale to, co naprawdę czułeś/aś. Jeśli pamiętasz wrażenia cielesne — napięcie, ulgę, ból, lekkość — zapisz je też."
-    - "Co zmieniło się po tym momencie? Jak wyglądało Twoje życie przed nim, a jak po? Czy zmienił się Twój sposób myślenia o sobie, o innych, o świecie?"
-    - "Gdybyś miał/a powiedzieć jednym zdaniem, czego ten moment Cię nauczył — świadomie lub nieświadomie — co by to było?"
+    - "Wybierz jeden moment przełomowy ze swojej mapy życia. Opisz go: co dokładnie się wydarzyło? Gdzie to było? Kto jeszcze tam był?"
+    - "Jakie emocje się wtedy pojawiły? Spróbuj przypomnieć sobie nie to, co 'powinno' się czuć, ale to, co naprawdę było. Jeśli pamiętasz wrażenia cielesne — napięcie, ulgę, ból, lekkość — zapisz je też."
+    - "Co zmieniło się po tym momencie? Jak wyglądało życie przed nim, a jak po? Czy zmienił się sposób myślenia o sobie, o innych, o świecie?"
+    - "Gdyby zamknąć w jednym zdaniu to, czego ten moment nauczył — świadomie lub nieświadomie — co by to było?"
 
   stuck_helpers:
     - "Nie musisz wybierać najbardziej bolesnego momentu. Każdy moment, który zmienił kierunek Twojego życia, się liczy — nawet jeśli z zewnątrz wydawałby się 'mały'."
-    - "Jeśli trudno Ci zacząć, spróbuj napisać pierwszy szczegół, który pamiętasz — kolor ściany, porę roku, dźwięk w tle. Często jeden szczegół pociąga za sobą następne."
-    - "Możesz pisać w trzeciej osobie, jeśli pierwsza jest zbyt blisko. 'On/Ona siedział/a w kuchni i...' — to też jest poprawny sposób pisania o sobie."
-    - "Jeśli emocje są zbyt silne, możesz zrobić przerwę. Oddechnij. Wróć, gdy poczujesz się gotowy/a — za minutę, za godzinę, za tydzień. To ćwiczenie nigdzie nie zniknie."
+    - "Jeśli trudno zacząć, spróbuj zapisać pierwszy szczegół, który pamiętasz — kolor ściany, porę roku, dźwięk w tle. Często jeden szczegół pociąga za sobą następne."
+    - "Możesz pisać w trzeciej osobie, jeśli pierwsza jest zbyt blisko. 'On/Ona siedział w kuchni i...' — to też jest poprawny sposób pisania o sobie."
+    - "Jeśli emocje są zbyt silne, możesz zrobić przerwę. Oddechnij. Wróć, gdy poczujesz się {{gotowy}} — za minutę, za godzinę, za tydzień. To ćwiczenie nigdzie nie zniknie."
 
   reflection_prompt: |
-    Przeczytaj to, co napisałeś/aś. Jak się teraz czujesz — po zapisaniu tego momentu?
+    Przeczytaj to, co {{napisal}}. Jak się teraz czujesz — po zapisaniu tego momentu?
     Czy coś się zmieniło w sposobie, w jaki go widzisz? Czy coś Cię zaskoczyło
-    w tym, co napisałeś/aś — może szczegół, o którym nie pamiętałeś/aś, albo emocja,
-    której się nie spodziewałeś/aś?
+    w tym, co {{napisal}} — może szczegół, o którym już nie pamiętałeś, albo emocja,
+    której się nie spodziewałeś?
 
   post_exercise_note: |
     Jeśli po napisaniu tego tekstu czujesz się gorzej niż przed — to

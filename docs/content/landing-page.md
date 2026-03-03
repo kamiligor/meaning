@@ -30,7 +30,7 @@ Znasz to uczucie?
 ### Treść
 Te same myśli krążą w kółko. Te same wspomnienia wracają nocą. Te same pytania bez odpowiedzi.
 
-Próbowałeś/aś prowadzić dziennik — ale pusta strona tylko pogłębiała chaos. Czytałeś/aś książki o rozwoju — ale wiedza nie zamieniała się w zmianę. Może próbowałeś/aś medytacji — ale siedzenie w ciszy z własnymi myślami było jeszcze trudniejsze.
+Może próbowałeś prowadzić dziennik — ale pusta strona tylko pogłębiała chaos. Może sięgałeś po książki o rozwoju — ale wiedza nie zamieniała się w zmianę. Może próbowałeś medytacji — ale siedzenie w ciszy z własnymi myślami było jeszcze trudniejsze.
 
 To nie znaczy, że coś jest z Tobą nie tak. To znaczy, że potrzebujesz innego narzędzia.
 
@@ -105,7 +105,7 @@ Twoje słowa. Tylko Twoje.
 
 ### Treść
 - **Szyfrowanie end-to-end** — Twoje teksty są szyfrowane na Twoim urządzeniu, zanim trafią na serwer. Nikt — nawet my — nie może ich przeczytać.
-- **Zero śledzenia** — brak Google Analytics, brak cookies śledzących, brak telemetrii. Nie interesuje nas co robisz — interesuje nas, żebyś mógł/mogła pisać w spokoju.
+- **Zero śledzenia** — brak Google Analytics, brak cookies śledzących, brak telemetrii. Nie interesuje nas co robisz — interesuje nas, żebyś pisał w spokoju.
 - **Twoje dane, Twoja kontrola** — w każdej chwili możesz wyeksportować swoje teksty lub usunąć konto. Wszystko znika.
 - **RODO/GDPR** — pełna zgodność z europejskimi przepisami o ochronie danych.
 
@@ -118,9 +118,9 @@ Pisz Siebie jest dla Ciebie, jeśli:
 
 ### Lista
 - Masz wrażenie, że Twoje myśli krążą w kółko i nie prowadzą do niczego
-- Czujesz, że utknąłeś/aś w miejscu, ale nie wiesz od czego zacząć
+- Czujesz, że utknąłeś w miejscu, ale nie wiesz od czego zacząć
 - Wracają do Ciebie wspomnienia, z którymi nie wiesz co zrobić
-- Próbowałeś/aś prowadzić dziennik, ale pusta strona pogłębiała chaos
+- Próbowałeś prowadzić dziennik, ale pusta strona pogłębiała chaos
 - Chcesz się lepiej zrozumieć, ale nie stać Cię na terapię lub czekasz w kolejce
 - Jesteś w terapii i szukasz narzędzia do pracy własnej między sesjami
 
@@ -155,7 +155,7 @@ Ile to kosztuje
 [Kup pełny program]
 
 ### Pod cennikiem
-Mniej niż 20% ceny jednej sesji psychoterapeutycznej. Jednorazowo, bez subskrypcji — bo nie chcemy, żebyś czuł/a presję. Twoje. Na zawsze. Wracasz kiedy chcesz.
+Mniej niż 20% ceny jednej sesji psychoterapeutycznej. Jednorazowo, bez subskrypcji — bo nie chcemy, żebyś czuł presję. Twoje. Na zawsze. Wracasz kiedy chcesz.
 
 ---
 
@@ -179,7 +179,7 @@ Rekomendujemy pełną ścieżkę (Przeszłość → Teraźniejszość → Przysz
 Każde ćwiczenie ma podpowiedzi ratunkowe — konkretne wskazówki, dokończenia zdań i alternatywne pytania dla osób, które utknęły. Nie zostawiamy Cię z pustą stroną.
 
 **Czy mogę pominąć ćwiczenie?**
-Tak, zawsze. Przy każdym ćwiczeniu jest przycisk "Pomiń" i "Wróć później." Bez wyjaśnień, bez poczucia winy. Postęp nigdy nie wstydzi — pokazujemy "Ukończone: 4/6" a nie "Pominąłeś 2."
+Tak, zawsze. Przy każdym ćwiczeniu jest przycisk "Pomiń" i "Wróć później." Bez wyjaśnień, bez poczucia winy. Postęp nigdy nie wstydzi — pokazujemy "Ukończone: 4/6" a nie "Pominięto: 2."
 
 **Dlaczego nie jest w pełni darmowy?**
 Moduł I (Przeszłość) jest w pełni darmowy — 6 ćwiczeń, bez ograniczeń. Moduły II i III kosztują jednorazowo 29 PLN (promocja) lub 49 PLN. Ta symboliczna kwota pokrywa koszty serwera i rozwoju programu, a jednocześnie — badania pokazują, że nawet minimalna inwestycja zwiększa zaangażowanie.

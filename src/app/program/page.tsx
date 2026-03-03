@@ -42,8 +42,8 @@ export default function ProgramLandingPage() {
             bez odpowiedzi.
           </p>
           <p>
-            Probowales/as prowadzic dziennik — ale pusta strona tylko poglebiala chaos.
-            Czytales/as ksiazki o rozwoju — ale wiedza nie zamieniala sie w zmiane.
+            Prowadzenie dziennika? Pusta strona tylko poglebiala chaos.
+            Ksiazki o rozwoju? Wiedza nie zamieniala sie w zmiane.
           </p>
           <p className="font-medium text-[#1E2A36]">
             To nie znaczy, ze cos jest z Toba nie tak. To znaczy, ze potrzebujesz innego narzedzia.
@@ -238,9 +238,9 @@ export default function ProgramLandingPage() {
         <ul className="space-y-3 text-[#4A5B6A]">
           {[
             "Masz wrazenie, ze Twoje mysli kraza w kolko i nie prowadza do niczego",
-            "Czujesz, ze utknales/as w miejscu, ale nie wiesz od czego zaczac",
+            "Jest poczucie utknięcia w miejscu, ale nie wiadomo od czego zaczac",
             "Wracaja do Ciebie wspomnienia, z którymi nie wiesz co zrobic",
-            "Probowales/as prowadzic dziennik, ale pusta strona poglebiala chaos",
+            "Prowadzenie dziennika nie pomoglo — pusta strona poglebiala chaos",
             "Chcesz sie lepiej zrozumiec, ale nie stac Cie na terapie lub czekasz w kolejce",
             "Jestes w terapii i szukasz narzedzia do pracy wlasnej miedzy sesjami",
           ].map((item) => (

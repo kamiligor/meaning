@@ -9,19 +9,12 @@ exercise:
 
   contraindications: |
     To ćwiczenie może nie być odpowiednie dla Ciebie w tym momencie, jeśli:
-    - Doświadczyłaś/eś poważnej traumy dziecięcej i nie pracujesz
+    - Masz za sobą poważną traumę dziecięcą i nie pracujesz
       z terapeutą nad jej przetwarzaniem
     - Masz trudności z regulacją emocji po wspominaniu dzieciństwa
     - Przeżywasz aktualnie kryzys emocjonalny
     Jeśli tak jest, rozważ kontakt ze specjalistą przed wykonaniem
     tego ćwiczenia lub wróć do niego w bezpieczniejszym momencie.
-
-  disclaimer: |
-    Ten program nie zastępuje psychoterapii ani innej formy profesjonalnej
-    pomocy psychologicznej. Jeśli czujesz, że potrzebujesz wsparcia,
-    zachęcamy do kontaktu ze specjalistą.
-    Telefon Zaufania dla Dorosłych: 116 123
-    Centrum Wsparcia: 800 70 2222
 
   introduction: |
     Większość z nas nosi w sobie młodszą wersję siebie — dziecko, nastolatka, młodą
@@ -44,20 +37,20 @@ exercise:
     i rozumiana — przez kogoś, kto zna całą historię. Przez Ciebie.
 
   prompt_questions:
-    - "Do jakiej wersji siebie chcesz napisać? W jakim jesteś/aś wieku w tym liście? Co wtedy przeżywałeś/aś?"
-    - "Napisz list do tej osoby. Pisz tak, jakbyś pisał/a do dziecka przyjaciółki lub przyjaciela — z ciepłem, bez oceniania, bez rad. Co chciałbyś/chciałabyś, żeby ta osoba wiedziała?"
-    - "Czy jest coś, czego tamta wersja Ciebie się bała lub wstydziła? Jak chciałbyś/chciałabyś o tym powiedzieć — nie bagatelizując, ale też nie zostawiając tej osoby samej z tym?"
-    - "Czy jest coś, co chciałbyś/chciałabyś, żeby tamta wersja Ciebie wiedziała o przyszłości — nie konkretne wydarzenia, ale coś o niej samej?"
+    - "Do jakiej wersji siebie chcesz napisać? Ile ma lat ta osoba w tym liście? Co wtedy przeżywała?"
+    - "Napisz list do tej osoby. Pisz tak, jakbyś pisał do dziecka bliskiego przyjaciela — z ciepłem, bez oceniania, bez rad. Co chciałbyś, żeby ta osoba wiedziała?"
+    - "Czy jest coś, czego tamta wersja Ciebie się bała lub wstydziła? Jak chciałbyś o tym powiedzieć — nie bagatelizując, ale też nie zostawiając tej osoby samej z tym?"
+    - "Czy jest coś, co chciałbyś, żeby tamta wersja Ciebie wiedziała o przyszłości — nie konkretne wydarzenia, ale coś o niej samej?"
 
   stuck_helpers:
-    - "Jeśli nie wiesz, do jakiego okresu pisać, pomyśl: w którym momencie życia najbardziej potrzebowałeś/aś, żeby ktoś Cię zobaczył i powiedział, że to, co czujesz, jest okej?"
-    - "Możesz zacząć od prostego zdania: 'Cześć. Chcę, żebyś wiedział/a, że...' albo 'Piszę do Ciebie, bo...' — pozwól sobie na prosty początek."
+    - "Jeśli nie wiesz, do jakiego okresu pisać, pomyśl: w którym momencie życia najbardziej potrzebowałeś, żeby ktoś Cię zobaczył i powiedział, że to, co czujesz, jest okej?"
+    - "Możesz zacząć od prostego zdania: 'Cześć. Chcę, żebyś wiedział, że...' albo 'Piszę do Ciebie, bo...' — pozwól sobie na prosty początek."
     - "Jeśli pisanie z perspektywy 'ja do siebie' jest zbyt trudne, możesz napisać list jako ktoś inny — życzliwy nauczyciel, mądry dziadek, wyimaginowany opiekun. Ważne jest ciepło, nie forma."
     - "Nie musisz pisać długiego listu. Nawet trzy zdania napisane z prawdziwym ciepłem są warte więcej niż strona napisana 'bo tak trzeba'."
 
   reflection_prompt: |
     Przeczytaj swój list. Jak się czujesz, czytając te słowa? Czy jest w nich
-    coś, co chciałbyś/chciałabyś usłyszeć też dzisiaj — jako dorosła osoba?
+    coś, co {{chcialby}} usłyszeć też dzisiaj — jako dorosła osoba?
     Czasem to, czego potrzebowała nasza młodsza wersja, jest tym, czego wciąż
     potrzebujemy. I to jest w porządku.
 
@@ -75,4 +68,4 @@ exercise:
     narracyjna (McAdams, 2001) — integrowanie przeszłych doświadczeń z obecnym „ja" —
     wzmacnia poczucie ciągłości i spójności. Kiedy piszesz do młodszej wersji siebie
     z ciepłem, jednocześnie praktykujesz współczucie wobec siebie i budujesz most
-    między tym, kim byłeś/aś, a tym, kim jesteś. To most, który wielu z nas potrzebuje.
+    między przeszłością a tym, kim jesteś teraz. To most, który wielu z nas potrzebuje.

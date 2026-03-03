@@ -122,25 +122,19 @@ export default async function PostPage({ params }: PageProps) {
           </Link>
           <a href={feedUrl} className="flex flex-col items-center">
             <span
-              className="text-[8px] italic text-[#8A99A8] leading-none"
+              className="text-base font-extrabold text-[#1E2A36] leading-none"
               style={{ fontFamily: "Georgia, serif" }}
             >
               just
             </span>
             <span
-              className="text-base font-extrabold text-[#1E2A36] leading-none -mt-0.5"
+              className="text-[7px] italic text-[#8A99A8] leading-none mt-0.5 -mb-0.5"
               style={{ fontFamily: "Georgia, serif" }}
             >
-              have
+              have a little
             </span>
             <span
-              className="text-[7px] italic text-[#7B9E8C] leading-none -mt-0.5"
-              style={{ fontFamily: "Georgia, serif" }}
-            >
-              a little
-            </span>
-            <span
-              className="text-base font-extrabold text-[#7B9E8C] leading-none -mt-0.5"
+              className="text-base font-extrabold text-[#7B9E8C] leading-none"
               style={{ fontFamily: "Georgia, serif" }}
             >
               meaning

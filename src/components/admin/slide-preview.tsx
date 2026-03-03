@@ -302,34 +302,25 @@ function SlideCTA({ data }: { data: PostData }) {
       {/* Logo text */}
       <div className="flex flex-col items-center relative z-10">
         <span
-          className="text-[0.3em] italic"
-          style={{
-            fontFamily: "Georgia, 'Times New Roman', serif",
-            color: p.textLight,
-          }}
-        >
-          just
-        </span>
-        <span
-          className="text-[1.1em] font-extrabold -mt-0.5"
+          className="text-[1.1em] font-extrabold"
           style={{
             fontFamily: "Georgia, 'Times New Roman', serif",
             color: data.logoVariant === "dark" ? "#fff" : p.textDark,
           }}
         >
-          have
+          just
         </span>
         <span
-          className="text-[0.3em] italic -mt-0.5"
+          className="text-[0.35em] italic mt-0.5 -mb-0.5"
           style={{
             fontFamily: "Georgia, 'Times New Roman', serif",
-            color: p.primary,
+            color: data.logoVariant === "dark" ? "rgba(255,255,255,0.3)" : p.textLight,
           }}
         >
-          a little
+          have a little
         </span>
         <span
-          className="text-[1.1em] font-extrabold -mt-0.5"
+          className="text-[1.1em] font-extrabold"
           style={{
             fontFamily: "Georgia, 'Times New Roman', serif",
             color: p.primary,

@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import yaml from "js-yaml";
 import matter from "gray-matter";
+import { personalize, type GenderForm } from "./personalize";
 
 export interface Exercise {
   id: string;
@@ -12,7 +13,6 @@ export interface Exercise {
   psychologicalBasis: string;
   contentWarning: string | null;
   contraindications: string | null;
-  disclaimer: string;
   introduction: string;
   promptQuestions: string[];
   promptInstruction: string | null;
@@ -79,7 +79,7 @@ const INTRO_FILE_MAP: Record<string, string> = {
 };
 
 let cachedExercises: Map<string, Exercise> | null = null;
-let cachedModules: Module[] | null = null;
+let cachedModules: Map<string, Module[]> = new Map();
 let cachedIntroductions: Map<string, ModuleIntroduction> | null = null;
 
 function getExercisesDir(): string {
@@ -120,7 +120,6 @@ function parseExerciseYaml(content: string): Exercise {
     psychologicalBasis: e.psychological_basis as string,
     contentWarning: (e.content_warning as string) || null,
     contraindications: (e.contraindications as string) || null,
-    disclaimer: e.disclaimer as string,
     introduction: e.introduction as string,
     promptQuestions: e.prompt_questions as string[],
     promptInstruction: (e.prompt_instruction as string) || null,
@@ -130,6 +129,31 @@ function parseExerciseYaml(content: string): Exercise {
     postExerciseNote: (e.post_exercise_note as string) || null,
     whyItWorks: e.why_it_works as string,
   };
+}
+
+const PERSONALIZABLE_FIELDS: (keyof Exercise)[] = [
+  "introduction",
+  "promptQuestions",
+  "promptInstruction",
+  "stuckHelpers",
+  "reflectionPrompt",
+  "completionMessage",
+  "postExerciseNote",
+];
+
+function personalizeExercise(exercise: Exercise, form: GenderForm): Exercise {
+  const result = { ...exercise };
+  for (const field of PERSONALIZABLE_FIELDS) {
+    const value = result[field];
+    if (typeof value === "string") {
+      (result[field] as string) = personalize(value, form);
+    } else if (Array.isArray(value)) {
+      (result[field] as string[]) = value.map((item) =>
+        typeof item === "string" ? personalize(item, form) : item
+      );
+    }
+  }
+  return result;
 }
 
 function loadIntroductions(): Map<string, ModuleIntroduction> {
@@ -181,17 +205,25 @@ function loadAllExercises(): Map<string, Exercise> {
   return exerciseMap;
 }
 
-export function loadExercise(id: string): Exercise | null {
+export function loadExercise(
+  id: string,
+  genderForm: GenderForm = "neutral"
+): Exercise | null {
   const exercises = loadAllExercises();
-  return exercises.get(id) || null;
+  const exercise = exercises.get(id);
+  if (!exercise) return null;
+  return personalizeExercise(exercise, genderForm);
 }
 
-export function getGateExercise(): Exercise | null {
-  return loadExercise("gate_00");
+export function getGateExercise(
+  genderForm: GenderForm = "neutral"
+): Exercise | null {
+  return loadExercise("gate_00", genderForm);
 }
 
-export function getModules(): Module[] {
-  if (cachedModules) return cachedModules;
+export function getModules(genderForm: GenderForm = "neutral"): Module[] {
+  const cacheKey = genderForm;
+  if (cachedModules.has(cacheKey)) return cachedModules.get(cacheKey)!;
 
   const exercises = loadAllExercises();
   const introductions = loadIntroductions();
@@ -207,7 +239,7 @@ export function getModules(): Module[] {
     if (!moduleExercises[configKey]) {
       moduleExercises[configKey] = [];
     }
-    moduleExercises[configKey].push(exercise);
+    moduleExercises[configKey].push(personalizeExercise(exercise, genderForm));
   }
 
   const modules: Module[] = Object.entries(MODULE_CONFIG).map(
@@ -220,29 +252,41 @@ export function getModules(): Module[] {
         return numA - numB;
       });
 
+      const intro = introductions.get(key);
+      const personalizedIntro = intro
+        ? { ...intro, content: personalize(intro.content, genderForm) }
+        : null;
+
       return {
         slug: config.slug,
         title: config.title,
         subtitle: config.subtitle,
         order: config.order,
         exercises: exs,
-        introduction: introductions.get(key) || null,
+        introduction: personalizedIntro,
       };
     }
   );
 
   modules.sort((a, b) => a.order - b.order);
-  cachedModules = modules;
+  cachedModules.set(cacheKey, modules);
   return modules;
 }
 
-export function getAllExercises(): Exercise[] {
+export function getAllExercises(
+  genderForm: GenderForm = "neutral"
+): Exercise[] {
   const exercises = loadAllExercises();
-  return Array.from(exercises.values());
+  return Array.from(exercises.values()).map((e) =>
+    personalizeExercise(e, genderForm)
+  );
 }
 
-export function getExercisesByModule(moduleSlug: string): Exercise[] {
-  const modules = getModules();
+export function getExercisesByModule(
+  moduleSlug: string,
+  genderForm: GenderForm = "neutral"
+): Exercise[] {
+  const modules = getModules(genderForm);
   const mod = modules.find((m) => m.slug === moduleSlug);
   return mod?.exercises || [];
 }

@@ -3,13 +3,17 @@ import { requireProgramUser } from "@/lib/program-auth";
 import { loadExercise, getModules } from "@/lib/exercises";
 import { decrypt } from "@/lib/encryption";
 import { ExerciseView } from "@/components/program/exercise-view";
+import type { GenderForm } from "@/lib/personalize";
 
 interface Props {
   params: Promise<{ id: string }>;
 }
 
-function getNextExerciseUrl(exerciseId: string): string | null {
-  const modules = getModules();
+function getNextExerciseUrl(
+  exerciseId: string,
+  genderForm: GenderForm
+): string | null {
+  const modules = getModules(genderForm);
 
   // Check gate exercise
   if (exerciseId === "gate_00") {
@@ -48,13 +52,23 @@ function getNextExerciseUrl(exerciseId: string): string | null {
 
 export default async function ExercisePage({ params }: Props) {
   const { id } = await params;
-  const exercise = loadExercise(id);
+  const { user, supabase } = await requireProgramUser();
+
+  // Fetch user profile for gender form
+  const { data: profileData } = await supabase
+    .from("user_profiles")
+    .select("gender_form")
+    .eq("user_id", user.id)
+    .single();
+
+  const genderForm: GenderForm =
+    (profileData?.gender_form as GenderForm) || "neutral";
+
+  const exercise = loadExercise(id, genderForm);
 
   if (!exercise) {
     notFound();
   }
-
-  const { user, supabase } = await requireProgramUser();
 
   // Load saved responses
   const { data: responseData } = await supabase
@@ -95,7 +109,7 @@ export default async function ExercisePage({ params }: Props) {
     }, { onConflict: "user_id,exercise_id" });
   }
 
-  const nextExerciseUrl = getNextExerciseUrl(id);
+  const nextExerciseUrl = getNextExerciseUrl(id, genderForm);
 
   return (
     <ExerciseView

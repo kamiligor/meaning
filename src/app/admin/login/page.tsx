@@ -38,7 +38,7 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <h1 className="font-serif text-2xl font-bold text-[#1E2A36]">
-            just have a little meaning
+            jhalm
           </h1>
           <p className="text-sm text-[#8A99A8] mt-2 tracking-widest uppercase">
             Admin Panel

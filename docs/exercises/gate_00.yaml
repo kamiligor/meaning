@@ -17,7 +17,7 @@ exercise:
     Cześć.
 
     Nie musisz wiedzieć, po co tu jesteś. Nie musisz mieć planu.
-    Wystarczy, że przyszłaś/przyszedłeś — i to już jest coś.
+    Wystarczy, że przyszłeś — i to już jest coś.
 
     Zanim wejdziesz w program, proponujemy jedno krótkie ćwiczenie.
     Zajmie 5 minut albo mniej. Nie ma tu ocen, nie ma poprawnych
@@ -33,18 +33,11 @@ exercise:
     bez poprawiania, bez cenzury. Pierwsze słowa, które się pojawią,
     są dobre.
 
-  disclaimer: |
-    Ten program nie zastępuje psychoterapii ani innej formy profesjonalnej
-    pomocy psychologicznej. Jeśli czujesz, że potrzebujesz wsparcia,
-    zachęcamy do kontaktu ze specjalistą.
-    Telefon Zaufania dla Dorosłych: 116 123
-    Centrum Wsparcia: 800 70 2222
-
   prompt_questions:
     - "Teraz czuję się..."
-    - "Chciałbym/chciałabym, żeby..."
+    - "Chciałbym, żeby..."
     - "Najbardziej brakuje mi..."
-    - "Gdybym mógł/mogła zmienić jedną rzecz..."
+    - "Gdybym mógł zmienić jedną rzecz..."
     - "Kiedy myślę o przyszłości..."
 
   prompt_instruction: |
@@ -53,14 +46,14 @@ exercise:
     cały akapit — każda ilość jest dobra.
 
   stuck_helpers:
-    - Spróbuj zacząć od tego, co czujesz w ciele. Ciepło? Napięcie? Zmęczenie? Napisz to.
+    - Spróbuj zacząć od tego, co czujesz w ciele. Ciepło? Napięcie? Zmęczenie? Zapisz to.
     - 'Jeśli nic nie przychodzi — to też jest odpowiedź. Możesz napisać: „Nic nie przychodzi" i zobaczyć, co pojawi się dalej.'
     - 'Nie musisz pisać mądrze. „Czuję się dziwnie" albo „nie wiem" to pełnoprawne odpowiedzi.'
-    - Wyobraź sobie, że piszesz do kogoś, kto naprawdę chce wiedzieć, jak się czujesz. Co byś powiedział/powiedziała?
+    - Wyobraź sobie, że piszesz do kogoś, kto naprawdę chce wiedzieć, jak się czujesz. Co byś napisał?
     - Możesz wrócić do tego ćwiczenia jutro. Nie ma pośpiechu.
 
   completion_message: |
-    Gotowe? To właśnie zaczęłaś/zacząłeś.
+    Gotowe? To właśnie się zaczęło.
 
     Twój tekst jest zapisany i zaszyfrowany — nikt poza Tobą go nie zobaczy.
     Możesz do niego wrócić w każdym momencie.
@@ -69,7 +62,7 @@ exercise:
     poczekać. Tempo należy do Ciebie.
 
   reflection_prompt: |
-    Przeczytaj to, co napisałaś/napisałeś. Nie oceniaj — po prostu zauważ.
+    Przeczytaj to, co {{napisal}}. Nie oceniaj — po prostu zauważ.
 
     Czy coś Cię zaskoczyło? Czy któreś zdanie było łatwiejsze,
     a któreś trudniejsze? Nie musisz odpowiadać na te pytania —

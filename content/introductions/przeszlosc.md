@@ -15,7 +15,7 @@ scientific_basis:
 
 Może znasz to uczucie. Leżysz wieczorem w łóżku, a w głowie pojawia się scena sprzed lat — rozmowa, która poszła nie tak, moment, w którym coś się zmieniło, czyjeś słowa, które wbiły się głęboko. Próbujesz nie myśleć, ale wspomnienie wraca. Następnego dnia, za tydzień, za miesiąc. Ten sam fragment, ta sama emocja, to samo poczucie, że coś zostało niedokończone.
 
-Jeśli tak to wygląda u Ciebie — nie jesteś zepsuty ani zepsuta. To, co czujesz, ma swoje wyjaśnienie w neurobiologii i psychologii, i jest znacznie bardziej powszechne, niż mogłoby się wydawać.
+Jeśli tak to wygląda u Ciebie — nie ma w tym niczego zepsutego. To, co się pojawia, ma swoje wyjaśnienie w neurobiologii i psychologii, i jest znacznie bardziej powszechne, niż mogłoby się wydawać.
 
 ## Co mówi nauka
 
@@ -30,12 +30,6 @@ Ruminacja — uporczywe, kołowe myślenie — jest próbą poradzenia sobie z t
 W tym module czeka na Ciebie sześć ćwiczeń pisemnych. Zaczynamy od prostych — oś czasu Twojego życia, najważniejsze rozdziały. Stopniowo przechodzimy do głębszej pracy: kluczowe momenty zwrotne, trudne doświadczenia, lekcje, których nie widać od razu. Każde ćwiczenie ma jasny cel i instrukcję. Przy każdym zobaczysz, co dokładnie będziesz robić, zanim zaczniesz.
 
 Tempo należy do Ciebie. Możesz zrobić jedno ćwiczenie dziennie, jedno tygodniowo, albo przerwać w połowie i wrócić za miesiąc. Przy każdym ćwiczeniu znajdziesz przycisk „Pomiń" i „Wróć później" — nie ma tu żadnego przymusu.
-
-## Ważna uwaga
-
-Ten program nie jest psychoterapią i jej nie zastępuje. Jeśli pracujesz z traumą, zmagasz się z depresją lub masz myśli samobójcze, proszę — sięgnij po profesjonalną pomoc. Na każdym ekranie ćwiczenia znajdziesz dane kontaktowe do linii kryzysowych, w tym Telefonu Zaufania dla Dorosłych i Centrum Wsparcia.
-
-Jeśli w trakcie pisania poczujesz, że emocje są zbyt intensywne — przerwij. To nie jest wyścig. Odłóż ćwiczenie, wyjdź na spacer, porozmawiaj z kimś bliskim. Twoje bezpieczeństwo emocjonalne jest ważniejsze niż ukończenie jakiegokolwiek modułu.
 
 ## Zanim zaczniesz
 

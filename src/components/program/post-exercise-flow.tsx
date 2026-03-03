@@ -40,14 +40,24 @@ export function PostExerciseFlow({
             </p>
           </div>
         )}
-        <Button
-          onClick={() =>
-            setStep(showCheckin ? "checkin" : "done")
-          }
-          className="w-full"
-        >
-          Dalej
-        </Button>
+        {showCheckin ? (
+          <div className="flex flex-col gap-2">
+            <Button onClick={() => setStep("done")} className="w-full">
+              Dalej
+            </Button>
+            <Button
+              onClick={() => setStep("checkin")}
+              variant="ghost"
+              className="w-full text-[#8A99A8]"
+            >
+              Potrzebuje chwili
+            </Button>
+          </div>
+        ) : (
+          <Button onClick={() => setStep("done")} className="w-full">
+            Dalej
+          </Button>
+        )}
       </div>
     );
   }
@@ -96,7 +106,7 @@ export function PostExerciseFlow({
             </li>
           </ul>
           <p className="text-sm text-[#8A99A8] mb-6">
-            Twój tekst jest bezpiecznie zapisany. Mozesz wrócic do programu kiedy poczujesz sie gotowy/a.
+            Twoj tekst jest bezpiecznie zapisany. Mozesz wrocic do programu kiedy poczujesz sie na silach.
           </p>
           <Button
             onClick={() => router.push("/program/dashboard")}
@@ -118,7 +128,7 @@ export function PostExerciseFlow({
           Cwiczenie zakonczone
         </h3>
         <p className="text-[#4A5B6A] mb-6">
-          Twój tekst jest zapisany i zaszyfrowany.
+          Twoj tekst jest zapisany i zaszyfrowany.
         </p>
         <div className="flex flex-col gap-2">
           {nextExerciseUrl && (

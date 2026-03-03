@@ -1,8 +1,10 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getModules } from "@/lib/exercises";
+import { requireProgramUser } from "@/lib/program-auth";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import type { GenderForm } from "@/lib/personalize";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -10,7 +12,18 @@ interface Props {
 
 export default async function ModulePage({ params }: Props) {
   const { slug } = await params;
-  const modules = getModules();
+  const { user, supabase } = await requireProgramUser();
+
+  const { data: profileData } = await supabase
+    .from("user_profiles")
+    .select("gender_form")
+    .eq("user_id", user.id)
+    .single();
+
+  const genderForm: GenderForm =
+    (profileData?.gender_form as GenderForm) || "neutral";
+
+  const modules = getModules(genderForm);
   const mod = modules.find((m) => m.slug === slug);
 
   if (!mod) {

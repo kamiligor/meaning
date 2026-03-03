@@ -6,15 +6,9 @@ exercise:
   estimated_time: "30-40 minut"
   psychological_basis: "Teoria autodeterminacji SDT (Deci & Ryan) + ACT — Terapia Akceptacji i Zaangażowania (Hayes et al.) + Psychologia pozytywna — siły charakteru (Seligman, Peterson)"
   content_warning: null
-  disclaimer: |
-    Ten program nie zastępuje psychoterapii ani innej formy profesjonalnej
-    pomocy psychologicznej. Jeśli czujesz, że potrzebujesz wsparcia,
-    zachęcamy do kontaktu ze specjalistą.
-    Telefon Zaufania dla Dorosłych: 116 123
-    Centrum Wsparcia: 800 70 2222
 
   introduction: |
-    W Module II zidentyfikowałeś/aś swoje kluczowe wartości — to, co naprawdę jest dla Ciebie ważne,
+    W Module II odkryłeś swoje kluczowe wartości — to, co naprawdę jest dla Ciebie ważne,
     niezależnie od oczekiwań otoczenia. Teraz czas przejść od rozumienia do działania. Ale nie
     takiego działania, które kojarzy się z noworocznymi postanowieniami — wielkimi, ambitnymi
     i porzuconymi po dwóch tygodniach.
@@ -25,21 +19,20 @@ exercise:
     bo to zdrowe" a „chcę się ruszać, bo zależy mi na energii i kontakcie z ciałem" jest ogromna.
     Pierwsze to obowiązek. Drugie to wybór.
 
-    W tym ćwiczeniu wrócisz do 5 wartości z Modułu II i dla każdej z nich znajdziesz jeden
-    konkretny, mały krok, który możesz zrobić w najbliższym miesiącu. Kluczowe słowo to „mały".
-    Jeśli „przebiegnę maraton" przychodzi do głowy, a nie biegałeś/aś od lat — spróbuj „spacer 20
-    minut." Nie chodzi o to, żeby zaimponować sobie lub komuś. Chodzi o to, żeby zrobić coś,
-    co jest naprawdę wykonalne — i co jest wyrazem Twoich wartości, a nie Twoich lęków
-    lub ambicji.
+    W tym ćwiczeniu wróć do 5 wartości z Modułu II i dla każdej z nich znajdź jeden konkretny,
+    mały krok, który można zrobić w najbliższym miesiącu. Kluczowe słowo to „mały". Jeśli
+    „przebiegnę maraton" przychodzi do głowy, a regularnego biegania nie ma za sobą — spróbuj
+    „spacer 20 minut". Nie chodzi o to, żeby zaimponować sobie lub komuś. Chodzi o to, żeby
+    zrobić coś naprawdę wykonalnego — i co jest wyrazem wartości, a nie lęków lub ambicji.
 
     Psychologia pozytywna (Seligman, Peterson) pokazuje, że wykorzystywanie własnych sił charakteru
     w codziennym życiu — nawet na małe sposoby — zwiększa poczucie sensu i satysfakcji. Ten plan
     nie musi być heroiczny. Ma być Twój.
 
   prompt_questions:
-    - "Wróć do 5 wartości, które zidentyfikowałeś/aś w Module II. Wypisz je ponownie. Przy każdej napisz jedno zdanie o tym, dlaczego jest dla Ciebie ważna — nie dlaczego 'powinna' być ważna, ale dlaczego naprawdę jest."
-    - "Dla każdej wartości wymyśl jedną konkretną rzecz, którą możesz zrobić w najbliższym miesiącu. Jedną. Nie plan na rok, nie wielką zmianę — najmniejszy krok, który jest naprawdę wykonalny. Jeśli masz wątpliwości, czy coś jest za małe — prawdopodobnie jest w sam raz."
-    - "Dla każdego kroku odpowiedz: Kiedy dokładnie to zrobię? (Który dzień, która pora dnia?) Gdzie to zrobię? Co będzie potrzebne, żeby to się stało? Im bardziej konkretnie, tym lepiej."
+    - "Wróć do 5 wartości z Modułu II. Wypisz je ponownie. Przy każdej napisz jedno zdanie o tym, dlaczego jest dla Ciebie ważna — nie dlaczego 'powinna' być ważna, ale dlaczego naprawdę jest."
+    - "Dla każdej wartości znajdź jedną konkretną rzecz do zrobienia w najbliższym miesiącu. Jedną. Nie plan na rok, nie wielką zmianę — najmniejszy krok, który jest naprawdę wykonalny. Jeśli masz wątpliwości, czy coś jest za małe — prawdopodobnie jest w sam raz."
+    - "Dla każdego kroku odpowiedz: Kiedy dokładnie to nastąpi? (Który dzień, która pora dnia?) Gdzie? Co będzie potrzebne, żeby to się stało? Im bardziej konkretnie, tym lepiej."
     - "Spójrz na swoją listę. Który z tych kroków wydaje Ci się najłatwiejszy? Zacznij od niego. Który wydaje się najtrudniejszy? Nie musisz go robić pierwszy — ale zapisz, co sprawia, że wydaje się trudny. Czy to lęk? Wstyd? Brak czasu? Coś innego?"
 
   stuck_helpers:
@@ -50,7 +43,7 @@ exercise:
 
   reflection_prompt: |
     Spójrz na swój plan. Pięć wartości, pięć małych kroków.
-    Czy czujesz, że to naprawdę Twoje — że wybrałeś/aś to z własnej woli,
+    Czy czujesz, że to naprawdę Twoje — że {{wybral}} to z własnej woli,
     a nie z poczucia obowiązku? Jeśli przy jakimś kroku czujesz presję
     zamiast ciekawości — może warto go zmienić. Plan oparty na wartościach
     powinien dawać poczucie „chcę", nie „muszę".

@@ -42,7 +42,6 @@ describe("exercises loader", () => {
       expect(exercise.difficulty).toBeLessThanOrEqual(5);
       expect(exercise.estimatedTime).toBeTruthy();
       expect(exercise.psychologicalBasis).toBeTruthy();
-      expect(exercise.disclaimer).toBeTruthy();
       expect(exercise.introduction).toBeTruthy();
       expect(exercise.promptQuestions.length).toBeGreaterThan(0);
       expect(exercise.stuckHelpers.length).toBeGreaterThan(0);

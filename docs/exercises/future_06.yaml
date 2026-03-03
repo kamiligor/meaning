@@ -6,19 +6,12 @@ exercise:
   estimated_time: "15-20 minut"
   psychological_basis: "Implementation Intentions (Gollwitzer, 1999) + Teoria autodeterminacji SDT (Deci & Ryan)"
   content_warning: null
-  disclaimer: |
-    Ten program nie zastępuje psychoterapii ani innej formy profesjonalnej
-    pomocy psychologicznej. Jeśli czujesz, że potrzebujesz wsparcia,
-    zachęcamy do kontaktu ze specjalistą.
-    Telefon Zaufania dla Dorosłych: 116 123
-    Centrum Wsparcia: 800 70 2222
 
   introduction: |
-    Przeszłeś/aś długą drogę. W Module I spojrzałeś/aś na swoją przeszłość. W Module II
-    zobaczyłeś/aś, gdzie stoisz dzisiaj — co czujesz, w co wierzysz, co jest dla Ciebie
-    ważne. W Module III wyobraziłeś/aś sobie przyszłość — najlepszą i najgorszą wersję,
-    stworzyłeś/aś plan oparty na wartościach, przygotowałeś/aś się na przeszkody i napisałeś/aś
-    list do osoby, która dopiero powstaje.
+    Masz za sobą długą drogę. W Module I spojrzałeś na swoją przeszłość. W Module II zobaczyłeś,
+    gdzie stoisz dzisiaj — co czujesz, w co wierzysz, co jest dla Ciebie ważne. W Module III
+    pojawiła się wizja przyszłości — najlepsza i najgorsza wersja, plan oparty na wartościach,
+    przygotowanie na przeszkody i list do osoby, która dopiero powstaje.
 
     Teraz zostaje jedno pytanie: co dalej?
 
@@ -27,31 +20,31 @@ exercise:
     Nie „będę zdrowiej jeść", ale „jutro na śniadanie zjem jajecznicę zamiast pomijać
     posiłek". Nie „zacznę ćwiczyć", ale „w środę o 18:00 wyjdę na 15-minutowy spacer
     w parku koło domu". Im bardziej konkretny krok — z datą, godziną, miejscem —
-    tym większe prawdopodobieństwo, że go zrobisz.
+    tym większe prawdopodobieństwo, że naprawdę do niego dojdzie.
 
     To ostatnie ćwiczenie jest celowo proste. Nie piszesz manifestu. Nie projektujesz
     nowego życia. Szukasz jednej rzeczy. Jednej. Absurdalnie małej, absurdalnie
-    konkretnej, absurdalnie wykonalnej. Coś, co możesz zrobić jutro lub w tym tygodniu.
+    konkretnej, absurdalnie wykonalnej. Coś, co można zrobić jutro lub w tym tygodniu.
     Nie „zmienić życie." Coś jak „Jutro po śniadaniu 10-minutowy spacer." Jedna rzecz.
     Konkretna. Wykonalna. Twoja.
 
   prompt_questions:
-    - "Spójrz na wszystko, co napisałeś/aś w tym module — wizję przyszłości, plan wartości, przeszkody, list. Gdybyś miał/a wybrać jedną rzecz, która jest dla Ciebie teraz najważniejsza — co to jest? Nie najambitniejsza. Najważniejsza. Zapisz ją jednym zdaniem."
+    - "Spójrz na wszystko, co powstało w tym module — wizję przyszłości, plan wartości, przeszkody, list. Gdyby wybrać jedną rzecz, która jest teraz najważniejsza — co to jest? Nie najambitniejsza. Najważniejsza. Zapisz ją jednym zdaniem."
     - "Teraz zamień to w konkretny krok na jutro lub ten tydzień. Użyj formuły: 'W [kiedy dokładnie], w [gdzie dokładnie], zrobię [co dokładnie].' Na przykład: 'W poniedziałek po obiedzie, w kuchni, zadzwonię do siostry i zapytam, jak się czuje.' Jeśli Twój krok nie ma dnia, godziny i miejsca — jest za ogólny. Zmniejsz go i skonkretyzuj."
     - "Co może stanąć na drodze? Napisz jeden plan 'jeśli-to': 'Jeśli [przeszkoda], to [moja reakcja].' Masz już wprawę z Ćwiczenia 4 — użyj jej. I pamiętaj: plan B nie musi być równie dobry jak plan A. Ma być po prostu — żeby nie zostać z niczym."
     - "Na koniec — napisz do siebie jedno zdanie. Coś, co chcesz pamiętać po zakończeniu tego programu. Może to jest zdanie z Twojego listu. Może to coś nowego, co przyszło Ci do głowy teraz. Nie musi być mądre ani piękne. Ma być Twoje."
 
   stuck_helpers:
-    - "Jeśli masz za dużo pomysłów i nie wiesz, co wybrać — wybierz to, co możesz zrobić jutro. Nie najważniejsze w życiu. Najważniejsze jutro. Reszta może poczekać."
-    - "Jeśli nic nie przychodzi Ci do głowy — wróć do swoich 5 wartości z Ćwiczenia 3. Wybierz jedną. Zrób dla niej najmniejszą możliwą rzecz. Jeśli wartość to 'bliskość' — wyślij jednego SMS-a komuś, za kim tęsknisz. Jeśli 'zdrowie' — wypij szklankę wody. Naprawdę. Tak mało wystarczy na początek."
+    - "Jeśli masz za dużo pomysłów i nie wiesz, co wybrać — wybierz to, co można zrobić jutro. Nie najważniejsze w życiu. Najważniejsze jutro. Reszta może poczekać."
+    - "Jeśli nic nie przychodzi do głowy — wróć do swoich 5 wartości z Ćwiczenia 3. Wybierz jedną. Zrób dla niej najmniejszą możliwą rzecz. Jeśli wartość to 'bliskość' — wyślij jednego SMS-a komuś, za kim tęsknisz. Jeśli 'zdrowie' — wypij szklankę wody. Naprawdę. Tak mało wystarczy na początek."
     - "Jeśli łapiesz się na myśleniu 'To za mało, to nic nie zmieni' — to jest dokładnie ta myśl, która trzyma ludzi w miejscu. Badania są jednoznaczne: jeden mały krok, zrobiony naprawdę, zmienia więcej niż tysiąc wielkich planów, które zostają w głowie. Zaufaj procesowi."
     - "Możesz też potraktować to ćwiczenie jako eksperyment. Nie zobowiązanie na całe życie — jeden tydzień próbowania jednej rzeczy. Jeśli nie zadziała, nic nie tracisz. Jeśli zadziała — masz początek."
 
   reflection_prompt: |
     Masz swój krok. Masz plan B. I masz zdanie, które chcesz pamiętać.
     To wystarczy. Nie musisz wiedzieć, jak potoczy się reszta.
-    Nikt nie wie. Ale masz coś, czego wiele osób nie ma: spojrzałeś/aś
-    na swoją przeszłość, zobaczyłeś/aś teraźniejszość i wyobraziłeś/aś
+    Nikt nie wie. Ale masz coś, czego wiele osób nie ma: spojrzałeś
+    na swoją przeszłość, zobaczyłeś teraźniejszość i {{wyobrazil}}
     sobie przyszłość. To nie jest mało. To jest fundament.
     Jak się czujesz, kończąc ten program? Zapisz to — nawet jeśli
     to tylko jedno słowo.

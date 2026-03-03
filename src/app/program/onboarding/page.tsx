@@ -4,8 +4,13 @@ import { useState } from "react";
 import { createClient } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
 import { Shield, Lock, Heart, SkipForward } from "lucide-react";
+import type { GenderForm } from "@/lib/personalize";
+
+type OnboardingStep = "info" | "gender" | "disclaimer" | "auth";
 
 export default function OnboardingPage() {
+  const [step, setStep] = useState<OnboardingStep>("info");
+  const [genderForm, setGenderForm] = useState<GenderForm>("neutral");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
@@ -22,6 +27,9 @@ export default function OnboardingPage() {
       email,
       options: {
         emailRedirectTo: `${window.location.origin}/program/auth/callback`,
+        data: {
+          gender_form: genderForm,
+        },
       },
     });
 
@@ -34,6 +42,9 @@ export default function OnboardingPage() {
   };
 
   const handleGoogleLogin = async () => {
+    // Store gender form in sessionStorage so we can save it after OAuth callback
+    sessionStorage.setItem("onboarding_gender_form", genderForm);
+
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
@@ -42,42 +53,146 @@ export default function OnboardingPage() {
     });
   };
 
-  return (
-    <div className="max-w-lg mx-auto px-4 py-12">
-      {/* Onboarding info */}
-      <div className="mb-8">
-        <h1 className="text-2xl font-semibold text-[#1E2A36] mb-6">
-          Zanim zaczniemy
+  // Step 1: Info cards
+  if (step === "info") {
+    return (
+      <div className="max-w-lg mx-auto px-4 py-12">
+        <div className="mb-8">
+          <h1 className="text-2xl font-semibold text-[#1E2A36] mb-6">
+            Zanim zaczniemy
+          </h1>
+          <div className="space-y-4">
+            {[
+              {
+                icon: Shield,
+                text: "To narzedzie do autorefleksji — nie zastepuje psychoterapii.",
+              },
+              {
+                icon: Lock,
+                text: "Twoje teksty sa szyfrowane. Nikt ich nie przeczyta — nawet my.",
+              },
+              {
+                icon: Heart,
+                text: "Nie ma zlych odpowiedzi. Nie ma ocen. Nie ma presji czasowej.",
+              },
+              {
+                icon: SkipForward,
+                text: "Mozesz pominac dowolne cwiczenie. Bez tlumaczenia sie.",
+              },
+            ].map(({ icon: Icon, text }, idx) => (
+              <div key={idx} className="flex items-start gap-3">
+                <Icon className="h-5 w-5 text-[#7B9E8C] shrink-0 mt-0.5" />
+                <p className="text-[#4A5B6A] text-sm leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <Button onClick={() => setStep("gender")} className="w-full">
+          Dalej
+        </Button>
+      </div>
+    );
+  }
+
+  // Step 2: Gender form selection
+  if (step === "gender") {
+    return (
+      <div className="max-w-lg mx-auto px-4 py-12">
+        <h1 className="text-2xl font-semibold text-[#1E2A36] mb-2">
+          Jak mam sie do Ciebie zwracac?
         </h1>
-        <div className="space-y-4">
-          {[
-            {
-              icon: Shield,
-              text: "Ten program NIE zastepuje psychoterapii. Jesli jestes w kryzysie — tu znajdziesz pomoc.",
-              link: "/program/zasoby",
-            },
-            {
-              icon: Lock,
-              text: "Twoje teksty sa szyfrowane. Nikt ich nie przeczyta — nawet my.",
-            },
-            {
-              icon: Heart,
-              text: "Nie ma zlych odpowiedzi. Nie ma ocen. Nie ma presji czasowej.",
-            },
-            {
-              icon: SkipForward,
-              text: "Mozesz pominac dowolne cwiczenie. Bez tlumaczenia sie. Bez konsekwencji.",
-            },
-          ].map(({ icon: Icon, text }, idx) => (
-            <div key={idx} className="flex items-start gap-3">
-              <Icon className="h-5 w-5 text-[#7B9E8C] shrink-0 mt-0.5" />
-              <p className="text-[#4A5B6A] text-sm leading-relaxed">{text}</p>
-            </div>
+        <p className="text-[#8A99A8] text-sm mb-8">
+          Mozesz to zmienic pozniej w ustawieniach.
+        </p>
+
+        <div className="space-y-3 mb-8">
+          {(
+            [
+              {
+                value: "feminine" as GenderForm,
+                label: "Ona",
+                examples: "napisałaś, czułaś, przeszłaś",
+              },
+              {
+                value: "masculine" as GenderForm,
+                label: "On",
+                examples: "napisałeś, czułeś, przeszłeś",
+              },
+              {
+                value: "neutral" as GenderForm,
+                label: "Neutralnie",
+                examples: "zapisz, przypomnij sobie, masz za sobą",
+              },
+            ] as const
+          ).map(({ value, label, examples }) => (
+            <button
+              key={value}
+              onClick={() => setGenderForm(value)}
+              className={`w-full text-left rounded-xl border-2 p-4 transition-colors ${
+                genderForm === value
+                  ? "border-[#7B9E8C] bg-[#e8f0eb]"
+                  : "border-[#e2e7eb] bg-white hover:border-[#c5cdd4]"
+              }`}
+            >
+              <span className="font-medium text-[#1E2A36]">{label}</span>
+              <span className="block text-sm text-[#8A99A8] mt-1">
+                {examples}
+              </span>
+            </button>
           ))}
         </div>
-      </div>
 
-      {/* Auth */}
+        <div className="flex gap-3">
+          <Button variant="outline" onClick={() => setStep("info")} className="flex-1">
+            Wstecz
+          </Button>
+          <Button onClick={() => setStep("disclaimer")} className="flex-1">
+            Dalej
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  // Step 3: One-time disclaimer
+  if (step === "disclaimer") {
+    return (
+      <div className="max-w-lg mx-auto px-4 py-12">
+        <div className="bg-white rounded-xl border border-[#e2e7eb] p-6 mb-6">
+          <p className="text-[#1E2A36] leading-relaxed mb-3">
+            Ten program to narzedzie do autorefleksji przez pisanie.
+            Nie zastepuje psychoterapii ani innej formy profesjonalnej pomocy.
+          </p>
+          <p className="text-sm text-[#4A5B6A] mb-4">
+            Jesli czujesz, ze potrzebujesz wsparcia:
+          </p>
+          <div className="text-sm text-[#7B9E8C] space-y-1 mb-4">
+            <p>Telefon Zaufania: 116 123 (calodobowo)</p>
+            <p>Centrum Wsparcia: 800 70 2222 (bezplatnie)</p>
+          </div>
+          <p className="text-xs text-[#8A99A8]">
+            Pelna lista zasobow:{" "}
+            <a href="/program/zasoby" className="underline hover:text-[#7B9E8C]">
+              strona wsparcia
+            </a>
+          </p>
+        </div>
+
+        <div className="flex gap-3">
+          <Button variant="outline" onClick={() => setStep("gender")} className="flex-1">
+            Wstecz
+          </Button>
+          <Button onClick={() => setStep("auth")} className="flex-1">
+            Rozumiem i chce kontynuowac
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  // Step 4: Auth (registration/login)
+  return (
+    <div className="max-w-lg mx-auto px-4 py-12">
       <div className="bg-white border border-[#e2e7eb] rounded-xl p-6">
         {sent ? (
           <div className="text-center py-4">
@@ -146,6 +261,14 @@ export default function OnboardingPage() {
                 {loading ? "Wysylanie..." : "Wyslij magic link"}
               </Button>
             </form>
+
+            <Button
+              variant="ghost"
+              onClick={() => setStep("gender")}
+              className="w-full mt-3 text-[#8A99A8]"
+            >
+              Wstecz
+            </Button>
           </>
         )}
       </div>

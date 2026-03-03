@@ -6,45 +6,44 @@ exercise:
   estimated_time: "25-35 minut"
   psychological_basis: "Terapia Akceptacji i Zaangażowania — ACT (Hayes et al.) + Teoria Autodeterminacji — SDT (Deci & Ryan, 2000)"
   content_warning: null
-  disclaimer: |
-    Ten program nie zastępuje psychoterapii ani innej formy profesjonalnej
-    pomocy psychologicznej. Jeśli czujesz, że potrzebujesz wsparcia,
-    zachęcamy do kontaktu ze specjalistą.
-    Telefon Zaufania dla Dorosłych: 116 123
-    Centrum Wsparcia: 800 70 2222
+
   introduction: |
-    W Module I przyglądałeś/aś się swojej przeszłości — historii, która ukształtowała Cię do tego momentu.
-    Teraz chcemy się zatrzymać i zapytać: kim właściwie jesteś dzisiaj? Nie kim byłeś/aś, nie kim chcesz
-    być — ale kim jesteś w tej chwili, gdy czytasz te słowa?
+    W Module I przyglądaliśmy się przeszłości — historii, która ukształtowała Cię do tego momentu.
+    Teraz chcemy się zatrzymać i zapytać: kim właściwie jesteś dzisiaj? Nie kim byłeś kiedyś, nie kim
+    chcesz być — ale kim jesteś w tej chwili, gdy czytasz te słowa?
 
     To pytanie brzmi prosto, ale rzadko je sobie zadajemy w sposób uczciwy. Zwykle nosimy w głowie
     uproszczony obraz siebie — zlepek etykiet, opinii innych ludzi, starych przekonań. Terapia Akceptacji
-    i Zaangażowania (ACT) mówi o tzw. „Ja-jako-treść" — utożsamianiu się z konkretnymi opisami
-    (np. „jestem leniwy", „jestem silna"), zamiast widzenia siebie jako żywej, zmieniającej się osoby.
+    i Zaangażowania (ACT) mówi o tzw. „Ja-jako-treść” — utożsamianiu się z konkretnymi opisami
+    (np. „jestem leniwy”, „jestem silna”), zamiast widzenia siebie jako żywej, zmieniającej się osoby.
 
     Teoria autodeterminacji (Deci i Ryan) pokazuje, że ludzie funkcjonują najlepiej, gdy mają poczucie
     autonomii, kompetencji i więzi z innymi. Ten inwentarz pomoże Ci zobaczyć, jak wyglądają te trzy
     potrzeby w Twoim obecnym życiu — nie po to, żeby oceniać, ale żeby zauważyć.
 
     Wyobraź sobie, że opisujesz siebie jak postać w powieści — ze szczegółami i ciekawością, bez
-    osądzania. Narrator w dobrej książce nie mówi „ta postać jest żałosna". Opisuje, co ta postać robi,
+    osądzania. Narrator w dobrej książce nie mówi „ta postać jest żałosna”. Opisuje, co ta postać robi,
     czuje, jak wygląda jej dzień. Spróbuj podejść do siebie z taką samą uważną ciekawością.
+
   prompt_questions:
-    - Jakie role pełnisz w swoim życiu? (np. rodzic, pracownik, przyjaciel, partner/ka, student/ka, opiekun/ka...) Które z tych ról czujesz jako naprawdę swoje, a które bardziej jak kostium, który nosisz?
-    - Jak wygląda Twój typowy dzień? Opisz go szczerze — od momentu, gdy się budzisz, do momentu, gdy zasypiasz. Co w tym dniu daje Ci energię, a co ją zabiera?
-    - Jak wyglądają Twoje najważniejsze relacje w tej chwili? Z kim czujesz się sobą, a przy kim musisz udawać? Nie musisz nikogo oceniać — po prostu opisz, jak to wygląda.
-    - 'Gdybyś miał/a opisać swój obecny stan — emocjonalny, fizyczny, energetyczny — jakimi słowami byś to zrobił/a? Spróbuj być konkretny/a, unikając ogólników typu „dobrze" czy „źle".'
+    - "Jakie role pełnisz w swoim życiu? (np. rodzic, pracownik, przyjaciel, partner/ka, student/ka, opiekun/ka...) Które z tych ról czujesz jako naprawdę swoje, a które bardziej jak kostium, który nosisz?"
+    - "Jak wygląda Twój typowy dzień? Opisz go szczerze — od momentu przebudzenia do zaśnięcia. Co w tym dniu daje Ci energię, a co ją zabiera?"
+    - "Jak wyglądają Twoje najważniejsze relacje w tej chwili? Z kim czujesz się sobą, a przy kim pojawia się potrzeba udawania? Nie musisz nikogo oceniać — po prostu opisz, jak to wygląda."
+    - "Gdybyś miał opisać swój obecny stan — emocjonalny, fizyczny, energetyczny — jakimi słowami byś to zrobił? Spróbuj być konkretny, unikając ogólników typu „dobrze” czy „źle”."
+
   stuck_helpers:
-    - 'Możesz zacząć od najprostszego opisu: „Mam X lat, mieszkam w..., pracuję jako / uczę się..., mój dzień zazwyczaj wygląda tak..." — pozwól, żeby tekst sam Cię poprowadził dalej.'
-    - 'Jeśli trudno Ci opisać siebie bez osądzania, spróbuj pisać w trzeciej osobie: „Jest ktoś, kto budzi się rano i..." — czasem dystans pomaga zobaczyć siebie jaśniej.'
-    - Pomyśl o ostatnim tygodniu. Który moment zapamiętałeś/aś najwyraźniej? Co ten moment mówi o Twoim obecnym życiu?
-    - Wyobraź sobie, że ktoś bliski obserwuje Twoje życie z życzliwością. Co by zauważył? Co by go zaskoczyło?
+    - "Możesz zacząć od najprostszego opisu: „Mam X lat, mieszkam w..., pracuję jako / uczę się..., mój dzień zazwyczaj wygląda tak...” — pozwól, żeby tekst sam Cię poprowadził dalej."
+    - "Jeśli trudno opisać siebie bez osądzania, spróbuj pisać w trzeciej osobie: „Jest ktoś, kto budzi się rano i...” — czasem dystans pomaga zobaczyć siebie jaśniej."
+    - "Pomyśl o ostatnim tygodniu. Który moment pamiętasz najwyraźniej? Co ten moment mówi o Twoim obecnym życiu?"
+    - "Wyobraź sobie, że ktoś bliski obserwuje Twoje życie z życzliwością. Co by zauważył? Co by go zaskoczyło?"
+
   reflection_prompt: |
-    Przeczytaj to, co napisałeś/aś. Czy ten opis Cię zaskakuje? Czy jest coś, co widzisz
-    dopiero teraz, gdy to opisałeś/aś na papierze? Jeśli chcesz, zapisz jednym zdaniem:
-    „Najbardziej zaskakuje mnie, że..."
+    Przeczytaj to, co {{napisal}}. Czy ten opis Cię zaskakuje? Czy jest coś, co widzisz
+    dopiero teraz, gdy pojawia się na papierze? Jeśli chcesz, zapisz jednym zdaniem:
+    „Najbardziej zaskakuje mnie, że...”
+
   why_it_works: |
-    ACT rozróżnia „Ja-jako-treść" (sztywne etykiety, którymi się opisujemy) od „Ja-jako-kontekst"
+    ACT rozróżnia „Ja-jako-treść” (sztywne etykiety, którymi się opisujemy) od „Ja-jako-kontekst”
     (świadomość, która obserwuje bez oceniania). Pisząc o sobie z ciekawością zamiast z osądem,
     ćwiczysz przechodzenie od pierwszego do drugiego. Teoria autodeterminacji pokazuje, że samo
     uświadomienie sobie, na ile Twoje życie spełnia potrzeby autonomii, kompetencji i więzi,

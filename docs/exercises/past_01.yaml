@@ -7,13 +7,6 @@ exercise:
   psychological_basis: "Tożsamość narracyjna (McAdams, 2001)"
   content_warning: null
 
-  disclaimer: |
-    Ten program nie zastępuje psychoterapii ani innej formy profesjonalnej
-    pomocy psychologicznej. Jeśli czujesz, że potrzebujesz wsparcia,
-    zachęcamy do kontaktu ze specjalistą.
-    Telefon Zaufania dla Dorosłych: 116 123
-    Centrum Wsparcia: 800 70 2222
-
   introduction: |
     Każdy z nas nosi w sobie historię. Nie zawsze ją opowiadamy — czasem po prostu z nią żyjemy,
     nie zastanawiając się nad jej kształtem. To ćwiczenie to pierwszy krok: spojrzenie na swoje
@@ -26,27 +19,27 @@ exercise:
     W tym ćwiczeniu stworzysz prostą mapę swojego życia — listę 7-10 kluczowych momentów,
     ułożonych w czasie. Nie musisz o nich pisać — wystarczy, że je nazwiesz i umiejscowisz.
     To może być przeprowadzka, narodziny rodzeństwa, pierwszy dzień w nowej szkole, wakacje
-    z dziadkami, utrata kogoś bliskiego, ale też chwila ciszy, w której coś zrozumiałeś/aś.
+    z dziadkami, utrata kogoś bliskiego, ale też chwila ciszy, w której coś do Ciebie dotarło.
 
     Nie szukaj tylko dramatycznych wydarzeń. Często to ciche momenty — rozmowa, książka,
     spacer — kształtują nas najbardziej. Zaufaj temu, co przychodzi Ci do głowy jako pierwsze.
 
   prompt_questions:
     - "Wypisz 7-10 momentów z Twojego życia, które wydają Ci się ważne. Przy każdym zapisz orientacyjny czas (rok lub okres życia) i krótką nazwę — jedno zdanie lub kilka słów."
-    - "Czy widzisz momenty, które Cię zaskakują? Coś, o czym dawno nie myślałeś/aś, a co samo przyszło na myśl?"
+    - "Czy widzisz momenty, które Cię zaskakują? Coś, o czym dawno nie myślałeś, a co samo przyszło na myśl?"
     - "Czy są okresy w Twoim życiu, z których nic nie przychodzi Ci do głowy? To też jest informacja — zapisz to."
-    - "Gdybyś miał/a wybrać 3 momenty, które najbardziej uczyniły Cię osobą, którą jesteś dzisiaj — które by to były?"
+    - "Gdybyś miał wybrać 3 momenty, które najbardziej uczyniły Cię osobą, którą jesteś dzisiaj — które by to były?"
 
   stuck_helpers:
     - "Jeśli patrzenie na całe życie przytłacza, zacznij od ostatnich 5 lat. To wystarczy. Możesz wrócić do wcześniejszych lat później albo wcale."
-    - "Spróbuj pomyśleć o miejscach, w których żyłeś/aś — każda przeprowadzka, każda zmiana otoczenia często wiąże się z ważnym momentem."
+    - "Spróbuj pomyśleć o miejscach, w których żyłeś — każda przeprowadzka, każda zmiana otoczenia często wiąże się z ważnym momentem."
     - "Możesz też pomyśleć o ludziach — kto pojawił się w Twoim życiu, a kto z niego zniknął? To często wyznacza ważne punkty na mapie."
     - "Nie ma złych odpowiedzi. Jeśli przychodzi Ci do głowy moment, który wydaje się 'zbyt mały' lub 'nieistotny' — zapisz go. Skoro przyszedł na myśl, jest ważny."
 
   reflection_prompt: |
     Spójrz na swoją mapę. Nie analizuj jej jeszcze — po prostu ją zobacz.
     Jak się czujesz, patrząc na te momenty zebrane w jednym miejscu?
-    Czy coś Cię zaskakuje w tym, co wybrałeś/aś?
+    Czy coś Cię zaskakuje w tym, co {{wybral}}?
 
   why_it_works: |
     Tworzenie mapy życia angażuje mechanizm tożsamości narracyjnej — zdolność do widzenia

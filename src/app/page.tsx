@@ -58,25 +58,19 @@ export default async function Home({
           <div className="w-10" />
           <a href={`/?lang=${locale}`} className="flex flex-col items-center">
             <span
-              className="text-[10px] italic text-[#8A99A8] leading-none"
+              className="text-xl font-extrabold text-[#1E2A36] leading-none"
               style={{ fontFamily: "Georgia, serif" }}
             >
               just
             </span>
             <span
-              className="text-xl font-extrabold text-[#1E2A36] leading-none -mt-0.5"
+              className="text-[9px] italic text-[#8A99A8] leading-none mt-0.5 -mb-0.5"
               style={{ fontFamily: "Georgia, serif" }}
             >
-              have
+              have a little
             </span>
             <span
-              className="text-[9px] italic text-[#7B9E8C] leading-none -mt-0.5"
-              style={{ fontFamily: "Georgia, serif" }}
-            >
-              a little
-            </span>
-            <span
-              className="text-xl font-extrabold text-[#7B9E8C] leading-none -mt-0.5"
+              className="text-xl font-extrabold text-[#7B9E8C] leading-none"
               style={{ fontFamily: "Georgia, serif" }}
             >
               meaning

@@ -14,7 +14,7 @@ scientific_basis:
 
 ## Różnica między myśleniem o swoim życiu a rzeczywistym widzeniem go
 
-Zrobiłeś/aś coś trudnego. W pierwszym module spojrzałeś/aś na swoją przeszłość — na fragmenty, które wracały, na rozdziały, które wymagały domknięcia. Teraz proponujemy coś innego: przyjrzenie się miejscu, w którym stoisz dzisiaj. Nie tam, gdzie powinieneś/powinnaś być. Nie tam, gdzie są inni. Tam, gdzie jesteś. Tak uczciwie, jak potrafisz. Bez osądzania.
+Pierwszy moduł to była praca z przeszłością — z fragmentami, które wracały, z rozdziałami wymagającymi domknięcia. Teraz proponujemy coś innego: przyjrzenie się miejscu, w którym stoisz dzisiaj. Nie tam, gdzie wypada być. Nie tam, gdzie są inni. Tam, gdzie naprawdę jesteś. Tak uczciwie, jak potrafisz. Bez osądzania.
 
 Brzmi prosto. W praktyce to jedno z najtrudniejszych ćwiczeń, jakie istnieją.
 
@@ -22,7 +22,7 @@ Brzmi prosto. W praktyce to jedno z najtrudniejszych ćwiczeń, jakie istnieją.
 
 Psychologowie Paul Trapnell i John Campbell opisali coś, co wielu z nas rozpozna intuicyjnie: istnieją dwa sposoby myślenia o sobie, które wyglądają podobnie, ale prowadzą w zupełnie różne strony.
 
-Ruminacja to myślenie kołowe — napędzane lękiem, poczuciem zagrożenia, samokrytyką. Kręcisz się wokół tych samych pytań: „Dlaczego jestem taki/a?", „Co jest ze mną nie tak?", „Dlaczego znowu to samo?". Ruminacja nie prowadzi nigdzie. Pogłębia poczucie utknięcia.
+Ruminacja to myślenie kołowe — napędzane lękiem, poczuciem zagrożenia, samokrytyką. Krążenie wokół tych samych pytań: „Dlaczego jestem taki?", „Co jest ze mną nie tak?", „Dlaczego znowu to samo?". Ruminacja nie prowadzi nigdzie. Pogłębia poczucie utknięcia.
 
 Refleksja wygląda na pierwszy rzut oka podobnie — też jest myśleniem o sobie. Ale napędza ją ciekawość zamiast lęku. Refleksja pyta: „Co tak naprawdę czuję?", „Skąd to się bierze?", „Czego potrzebuję?". Refleksja gdzieś prowadzi.
 
@@ -39,10 +39,6 @@ Kristin Neff, badaczka z University of Texas, dodaje do tego kolejny element. Os
 W tym module będziesz pracować z kilkoma warstwami teraźniejszości. Zaczniemy od wartości — co jest dla Ciebie naprawdę ważne, nie co „powinno" być ważne. Potem przyjrzymy się wzorcom myślenia, które mogą Cię blokować — nie po to, żeby je wyeliminować, ale żeby je rozpoznać. Na koniec — praktyka patrzenia na siebie z większą łagodnością, co jest trudniejsze, niż brzmi, i ważniejsze, niż się wydaje.
 
 Jak w pierwszym module — tempo jest Twoje. Każde ćwiczenie możesz pominąć lub odłożyć.
-
-## Ważna uwaga
-
-Ten program nie zastępuje psychoterapii. Jeśli czujesz, że potrzebujesz wsparcia wykraczającego poza pisanie, informacje o liniach kryzysowych i profesjonalnej pomocy znajdziesz przy każdym ćwiczeniu — Telefon Zaufania dla Dorosłych, Centrum Wsparcia i inne zasoby są zawsze w zasięgu ręki.
 
 ## Zanim zaczniesz
 
