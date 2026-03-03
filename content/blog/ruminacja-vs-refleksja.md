@@ -126,7 +126,7 @@ Po czterech dniach sprawdź: czy wiesz coś nowego? Czy emocjonalny ładunek teg
 
 Jeśli ruminacja to pętla, to refleksja to spirala — wracasz do tego samego tematu, ale za każdym razem jesteś trochę wyżej. Widzisz trochę więcej. Rozumiesz trochę lepiej.
 
-Program **Pisz Siebie** jest zbudowany tak, żeby pomagać Ci przechodzić z ruminacji w refleksję — przez konkretne pytania, strukturę i ćwiczenia oparte na badaniach. Nie zostawiamy Cię z pustą kartką i instrukcją „po prostu pisz". Dajemy Ci kierunek.
+**The Life Writing Program** jest zbudowany tak, żeby pomagać Ci przechodzić z ruminacji w refleksję — przez konkretne pytania, strukturę i ćwiczenia oparte na badaniach. Nie zostawiamy Cię z pustą kartką i instrukcją „po prostu pisz". Dajemy Ci kierunek.
 
 ---
 

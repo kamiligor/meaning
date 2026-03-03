@@ -87,7 +87,7 @@ Jeśli nawracające wspomnienia są Twoim problemem, oto co warto zapamiętać:
 3. **Struktura pomaga.** Nie „po prostu pisz" — pisz z kierunkiem, z pytaniem, z intencją zrozumienia.
 4. **20 minut wystarczy.** Nie musisz pisać pamiętników. Badania mówią: krótko, regularnie, szczerze.
 
-Program **Pisz Siebie** został zaprojektowany właśnie po to — żeby nadać strukturę temu procesowi. Zamiast zostawiać Cię sam na sam z pustą kartką, prowadzi Cię przez konkretne pytania i ćwiczenia oparte na badaniach Pennebakera, McAdamsa i innych. Krok po kroku, w Twoim tempie, bez presji.
+**The Life Writing Program** został zaprojektowany właśnie po to — żeby nadać strukturę temu procesowi. Zamiast zostawiać Cię sam na sam z pustą kartką, prowadzi Cię przez konkretne pytania i ćwiczenia oparte na badaniach Pennebakera, McAdamsa i innych. Krok po kroku, w Twoim tempie, bez presji.
 
 Bo te wspomnienia wracają nie po to, żeby Cię dręczyć. Wracają, bo jeszcze nie skończyłeś z nimi rozmawiać.
 

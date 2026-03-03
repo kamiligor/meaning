@@ -23,6 +23,11 @@ const dict = {
     shareCopyLink: "Copy Link",
     shareCopied: "Copied!",
     shareNative: "Share",
+    navProgram: "The Life Writing Program",
+    navProgramShort: "Program",
+    navMission: "Our Mission",
+    navMissionShort: "Mission",
+    navLogIn: "Log In",
   },
   pl: {
     siteTitle: "just have a little meaning",
@@ -44,6 +49,11 @@ const dict = {
     shareCopyLink: "Kopiuj link",
     shareCopied: "Skopiowano!",
     shareNative: "Udostępnij",
+    navProgram: "The Life Writing Program",
+    navProgramShort: "Program",
+    navMission: "Nasza misja",
+    navMissionShort: "Misja",
+    navLogIn: "Zaloguj",
   },
 };
 

@@ -3,7 +3,7 @@ import { posts, slides } from "@/db/schema";
 import { desc, eq, and } from "drizzle-orm";
 import { InfiniteFeed } from "@/components/feed/infinite-feed";
 import { t, isLocale, type Locale } from "@/lib/i18n";
-import { LanguageDropdown } from "@/components/feed/language-dropdown";
+import { SiteHeader } from "@/components/site-header";
 
 const LIMIT = 10;
 
@@ -53,32 +53,7 @@ export default async function Home({
   return (
     <div className="min-h-screen bg-[#FAFBFC]">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#F1F4F6]">
-        <div className="max-w-lg mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="w-10" />
-          <a href={`/?lang=${locale}`} className="flex flex-col items-center">
-            <span
-              className="text-xl font-extrabold text-[#1E2A36] leading-none"
-              style={{ fontFamily: "Georgia, serif" }}
-            >
-              just
-            </span>
-            <span
-              className="text-[9px] italic text-[#8A99A8] leading-none mt-0.5 -mb-0.5"
-              style={{ fontFamily: "Georgia, serif" }}
-            >
-              have a little
-            </span>
-            <span
-              className="text-xl font-extrabold text-[#7B9E8C] leading-none"
-              style={{ fontFamily: "Georgia, serif" }}
-            >
-              meaning
-            </span>
-          </a>
-          <LanguageDropdown current={locale} />
-        </div>
-      </header>
+      <SiteHeader locale={locale} />
 
       {/* Feed */}
       <main className="max-w-lg mx-auto px-4 py-6">

@@ -211,7 +211,7 @@ Zasoby wsparcia
 
 ### Wstęp:
 ```
-Pisz Siebie to narzędzie do autorefleksji — nie zastępuje kontaktu
+The Life Writing Program to narzędzie do autorefleksji — nie zastępuje kontaktu
 ze specjalistą. Poniżej znajdziesz zasoby, które mogą Ci pomóc,
 jeśli potrzebujesz więcej wsparcia.
 ```

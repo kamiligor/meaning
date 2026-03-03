@@ -117,7 +117,7 @@ Na koniec — najważniejszy reframe. Poczucie utknięcia nie jest dowodem na to
 
 Twój umysł nie utknął, żeby Cię ukarać. Utknął, bo stary sposób działania przestał działać — a nowy jeszcze nie powstał. Ten moment między „już nie" a „jeszcze nie" jest niekomfortowy. Ale jest też momentem, w którym zmiana jest możliwa.
 
-Program **Pisz Siebie** pomaga nadać strukturę temu procesowi. Moduł „Przeszłość" pomaga zrozumieć, skąd przychodzisz. Moduł „Teraźniejszość" — gdzie naprawdę stoisz. Moduł „Przyszłość" — dokąd chcesz zmierzać. Krok po kroku, z pytaniami opartymi na badaniach, w Twoim tempie.
+**The Life Writing Program** pomaga nadać strukturę temu procesowi. Moduł „Przeszłość" pomaga zrozumieć, skąd przychodzisz. Moduł „Teraźniejszość" — gdzie naprawdę stoisz. Moduł „Przyszłość" — dokąd chcesz zmierzać. Krok po kroku, z pytaniami opartymi na badaniach, w Twoim tempie.
 
 Bo „ogar się" to nie strategia. To tłumienie sygnału, który próbuje Ci coś powiedzieć.
 

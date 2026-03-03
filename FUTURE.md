@@ -1,5 +1,20 @@
 # Strategia architektury marki — wyniki dyskusji zespołu
 
+> **DECYZJA PODJĘTA (2026-03-03):** Poniższa analiza jest archiwalna. Ostateczne decyzje brandingowe:
+>
+> | Element | Decyzja |
+> |---------|---------|
+> | **Domena** | justmeaning.com |
+> | **Tagline** | Just have a little meaning (zawsze EN) |
+> | **Stopka** | JUST HAVE A LITTLE MEANING |
+> | **Instagram** | @justhavealittlemeaning (EN) |
+> | **Nazwa programu** | The Life Writing Program (zawsze EN) |
+> | **Opis EN** | A guided writing process designed to help you understand your past, clarify your present, and intentionally shape your future. |
+> | **Opis PL** | Program pisania, który pomaga zrozumieć swoją przeszłość, uporządkować teraźniejszość i świadomie zaplanować przyszłość. |
+> | **Strona** | Multilanguage (en/pl) |
+
+---
+
 > Data analizy: 2026-03-01
 > Uczestnicy: psycholog badawczy, terapeuta narracyjny, copywriter, UX writer, edukator, frontend dev, backend dev, QA tester
 

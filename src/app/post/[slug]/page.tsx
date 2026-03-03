@@ -11,6 +11,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { NewsletterForm } from "@/components/feed/newsletter-form";
 import { ShareButton } from "@/components/feed/share-button";
+import { SiteHeader } from "@/components/site-header";
 
 export async function generateStaticParams() {
   const allPosts = await db
@@ -103,50 +104,17 @@ export default async function PostPage({ params }: PageProps) {
   return (
     <div className="min-h-screen bg-[#FAFBFC]">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#F1F4F6]">
-        <div className="max-w-lg mx-auto px-4 py-4 flex items-center justify-between">
-          <Link
-            href={feedUrl}
-            className="text-sm text-[#8A99A8] hover:text-[#7B9E8C] transition flex items-center gap-1"
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path
-                d="M10 4L6 8L10 12"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            {d.back}
-          </Link>
-          <a href={feedUrl} className="flex flex-col items-center">
-            <span
-              className="text-base font-extrabold text-[#1E2A36] leading-none"
-              style={{ fontFamily: "Georgia, serif" }}
-            >
-              just
-            </span>
-            <span
-              className="text-[7px] italic text-[#8A99A8] leading-none mt-0.5 -mb-0.5"
-              style={{ fontFamily: "Georgia, serif" }}
-            >
-              have a little
-            </span>
-            <span
-              className="text-base font-extrabold text-[#7B9E8C] leading-none"
-              style={{ fontFamily: "Georgia, serif" }}
-            >
-              meaning
-            </span>
-          </a>
-          {translations.length > 1 ? (
+      <SiteHeader
+        locale={locale}
+        variant="compact"
+        backHref={feedUrl}
+        backLabel={d.back}
+        langSwitcher={
+          translations.length > 1 ? (
             <PostLangSwitcher current={locale} translations={translations} />
-          ) : (
-            <div className="w-12" />
-          )}
-        </div>
-      </header>
+          ) : undefined
+        }
+      />
 
       <main className="max-w-lg mx-auto px-4 py-6">
         <article>

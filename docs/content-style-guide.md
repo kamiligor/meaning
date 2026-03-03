@@ -1,4 +1,4 @@
-# Wytyczne stylu treści — "just have a little meaning"
+# Wytyczne stylu treści — Just have a little meaning (justmeaning.com)
 
 ## Ton i język
 

@@ -1,13 +1,28 @@
-# just have a little meaning — Platforma psychoedukacyjna
+# Just have a little meaning — Platforma psychoedukacyjna
+
+## Branding
+
+| Element | Wartość |
+|---------|--------|
+| **Domena** | justmeaning.com |
+| **Hasło / tagline** | Just have a little meaning (zawsze po angielsku) |
+| **Stopka** | JUST HAVE A LITTLE MEANING |
+| **Instagram** | @justhavealittlemeaning (po angielsku) |
+| **Nazwa programu** | The Life Writing Program (zawsze po angielsku) |
+| **Opis EN** | A guided writing process designed to help you understand your past, clarify your present, and intentionally shape your future. |
+| **Opis PL** | Program pisania, który pomaga zrozumieć swoją przeszłość, uporządkować teraźniejszość i świadomie zaplanować przyszłość. |
+| **Języki strony** | en/pl (multilanguage) |
+
+Nazwy i hasło są ZAWSZE w języku angielskim — niezależnie od języka strony.
 
 ## O Projekcie
 
-„just have a little meaning" to dwujęzyczna (en/pl) platforma psychoedukacyjna składająca się z dwóch filarów:
+„Just have a little meaning" to dwujęzyczna (en/pl) platforma psychoedukacyjna na domenie **justmeaning.com**, składająca się z dwóch filarów:
 
-1. **Feed psychologiczny** — karuzele na Instagram + strona z rozszerzonymi treściami (psychology life hacks). Istniejący, działający produkt.
-2. **Program „Pisz Siebie"** — ustrukturyzowany program pisania terapeutycznego oparty na badaniach naukowych (18 ćwiczeń w 3 modułach). W budowie.
+1. **Feed psychologiczny** — karuzele na Instagram (@justhavealittlemeaning) + strona z rozszerzonymi treściami (psychology life hacks). Istniejący, działający produkt.
+2. **The Life Writing Program** — ustrukturyzowany program pisania terapeutycznego oparty na badaniach naukowych (18 ćwiczeń w 3 modułach). W budowie.
 
-Lejek: Instagram → strona (feed + rozszerzone treści) → program pisania.
+Lejek: Instagram (@justhavealittlemeaning) → justmeaning.com (feed + rozszerzone treści) → The Life Writing Program.
 
 ## Stack Technologiczny
 
@@ -67,7 +82,7 @@ jh/
 │       ├── editor-spec.md             # Specyfikacja edytora TipTap
 │       └── autosave-encryption-spec.md # Autosave + szyfrowanie v2.0
 │
-├── content/                           # Treści programowe (Pisz Siebie)
+├── content/                           # Treści programowe (The Life Writing Program)
 │   ├── introductions/                 # Wprowadzenia psychoedukacyjne
 │   │   ├── przeszlosc.md
 │   │   ├── terazniejszosc.md
@@ -82,7 +97,7 @@ jh/
 │   ├── app/
 │   │   ├── (marketing)/               # Landing page, feed (istniejące)
 │   │   ├── post/[slug]/               # Pojedynczy post (istniejące)
-│   │   ├── program/                   # 🔮 Program pisania (Pisz Siebie)
+│   │   ├── program/                   # 🔮 The Life Writing Program
 │   │   │   ├── page.tsx               #   Landing / opis programu
 │   │   │   ├── dashboard/             #   Dashboard użytkownika
 │   │   │   ├── modul/[slug]/          #   Widok modułu
@@ -210,9 +225,10 @@ Nie migrujemy Turso → Supabase. Każda baza robi to, w czym jest dobra.
 ## i18n
 
 - **Karuzele:** en/pl (istniejące, dict w `src/lib/i18n.ts`)
-- **Program pisania:** en/pl (ćwiczenia YAML obecnie tylko pl — wersja en do stworzenia)
-- **Instagram:** dwa kanały (en + pl)
+- **The Life Writing Program:** en/pl (ćwiczenia YAML obecnie tylko pl — wersja en do stworzenia)
+- **Instagram:** @justhavealittlemeaning (po angielsku)
 - **UI:** wspólny system i18n dla całej platformy
+- **Nazwy i hasło:** zawsze po angielsku (Just have a little meaning, The Life Writing Program)
 
 ## Standardy Kodowania
 

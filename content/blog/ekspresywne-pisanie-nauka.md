@@ -111,7 +111,7 @@ Ale dla większości ludzi — tych, którzy noszą w sobie trudne wspomnienia, 
 
 Trzydzieści lat badań pokazuje jasno: pisanie o trudnych doświadczeniach — w sposób strukturalny, ograniczony czasowo i nastawiony na zrozumienie — pomaga. Nie cudownie. Nie natychmiast. Ale mierzalnie i konsekwentnie.
 
-Program **Pisz Siebie** przenosi te odkrycia z laboratorium do Twojego życia. Zamiast zostawiać Cię z ogólną instrukcją „pisz o emocjach", dajemy Ci konkretne ćwiczenia, pytania i ramę — zaprojektowane tak, żeby Twoje pisanie szło w kierunku refleksji, nie ruminacji. W kierunku narracji, nie chaosu.
+**The Life Writing Program** przenosi te odkrycia z laboratorium do Twojego życia. Zamiast zostawiać Cię z ogólną instrukcją „pisz o emocjach", dajemy Ci konkretne ćwiczenia, pytania i ramę — zaprojektowane tak, żeby Twoje pisanie szło w kierunku refleksji, nie ruminacji. W kierunku narracji, nie chaosu.
 
 Bo kartka papieru to jedno z najprostszych narzędzi na świecie. Ale odpowiednio użyta może zrobić więcej niż niejeden skomplikowany program.
 

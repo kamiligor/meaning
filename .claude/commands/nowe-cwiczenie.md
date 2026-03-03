@@ -1,5 +1,5 @@
 ---
-description: Utwórz nowe ćwiczenie pisemne dla programu Pisz Siebie
+description: Utwórz nowe ćwiczenie pisemne dla programu The Life Writing Program
 allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 

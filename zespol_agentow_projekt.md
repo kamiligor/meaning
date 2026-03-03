@@ -1,5 +1,5 @@
-# Zespół Agentów AI (Claude Code) — Projekt „Pisz Siebie"
-## Program online do ustrukturyzowania myśli o przeszłości, teraźniejszości i przyszłości
+# Zespół Agentów AI (Claude Code) — The Life Writing Program (justmeaning.com)
+## Program pisania, który pomaga zrozumieć swoją przeszłość, uporządkować teraźniejszość i świadomie zaplanować przyszłość
 
 > **Status:** Dokument referencyjny — blueprint architektury zespołu agentów.
 > Aktualne definicje agentów znajdują się w `.claude/agents/*.md`.
@@ -46,7 +46,7 @@ Projekt wymaga **8 wyspecjalizowanych agentów** + **1 agenta-koordynatora (orch
 **Rola:** Zarządza całym pipeline'em, deleguje zadania, pilnuje spójności między agentami, rozwiązuje konflikty i scala outputy.
 
 **System prompt (rdzeń):**
-> Jesteś głównym koordynatorem projektu „Pisz Siebie" — darmowego, polskojęzycznego programu online do ustrukturyzowania myśli. Twoim zadaniem jest dekompozycja zadań, delegowanie do wyspecjalizowanych agentów, walidacja spójności i scalanie rezultatów. Zawsze pilnujesz, aby każdy element był oparty na literaturze psychologicznej i służył użytkownikowi w kryzysie lub stagnacji.
+> Jesteś głównym koordynatorem projektu The Life Writing Program (justmeaning.com) — darmowego, dwujęzycznego (en/pl) programu online do ustrukturyzowania myśli. Twoim zadaniem jest dekompozycja zadań, delegowanie do wyspecjalizowanych agentów, walidacja spójności i scalanie rezultatów. Zawsze pilnujesz, aby każdy element był oparty na literaturze psychologicznej i służył użytkownikowi w kryzysie lub stagnacji.
 
 **Odpowiada za:**
 - Tworzenie i aktualizowanie planu projektu (roadmapa)
@@ -160,7 +160,7 @@ exercise:
 ```
 HASŁO GŁÓWNE (propozycje do testowania):
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-→ „Pisz Siebie — Twoja historia zasługuje na porządek"
+→ „The Life Writing Program — Twoja historia zasługuje na porządek"
 → „Uporządkuj chaos. Napisz swoją historię."  
 → „Przeszłość do zrozumienia. Teraźniejszość do przeżycia. Przyszłość do napisania."
 → „Nie musisz wszystkiego rozumieć. Zacznij od zapisania."
@@ -555,7 +555,7 @@ agents:
 
 ## 6. WYRÓŻNIKI VS SELF AUTHORING (J. Peterson)
 
-| Aspekt | Self Authoring | Pisz Siebie |
+| Aspekt | Self Authoring | The Life Writing Program |
 |--------|---------------|-------------|
 | Język | Angielski | Polski |
 | Cena | ~29.90 USD | Darmowe (open-source) |
@@ -590,4 +590,4 @@ Bezpieczeństwo:
 
 ---
 
-*Dokument wygenerowany jako blueprint projektu „Pisz Siebie" — gotowy do implementacji przez zespół agentów Claude Code.*
+*Dokument wygenerowany jako blueprint projektu The Life Writing Program (justmeaning.com) — gotowy do implementacji przez zespół agentów Claude Code.*

@@ -1,4 +1,4 @@
-# Plan: "just have a little meaning" - Next.js Instagram Carousel Platform
+# Plan: Just have a little meaning — Next.js Instagram Carousel Platform (justmeaning.com)
 
 ## Kontekst
 

@@ -1,5 +1,11 @@
 # Nowy Brand: Projekt PL-Only — wyniki dyskusji zespołu
 
+> **DECYZJA PODJĘTA (2026-03-03):** Poniższa analiza jest archiwalna. Podejście PL-only zostało odrzucone.
+> Ostateczna decyzja: domena **justmeaning.com**, multilanguage (en/pl), program pod nazwą **The Life Writing Program** (EN),
+> Instagram **@justhavealittlemeaning** (EN). Szczegóły w CLAUDE.md → sekcja Branding.
+
+---
+
 > Data analizy: 2026-03-01
 > Uczestnicy: copywriter (branding), UX writer, psycholog badawczy, edukator, terapeuta narracyjny, digital marketing
 > Kontekst: porzucamy angielską nazwę, skupiamy się wyłącznie na polskim rynku

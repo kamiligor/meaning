@@ -9,7 +9,7 @@ last_updated: "2026-02-27"
 
 ## 1. Przegląd
 
-Edytor to serce programu Pisz Siebie. Użytkownik spędza w nim większość czasu. Musi być:
+Edytor to serce programu The Life Writing Program. Użytkownik spędza w nim większość czasu. Musi być:
 - Prosty (nie rozpraszający)
 - Niezawodny (nigdy nie traci tekstu)
 - Dostępny (WCAG 2.1 AA)

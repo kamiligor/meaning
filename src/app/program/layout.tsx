@@ -3,9 +3,9 @@ import { SafetyBanner } from "@/components/program/safety-banner";
 import { getProgramUser } from "@/lib/program-auth";
 
 export const metadata = {
-  title: "Pisz Siebie — Program Pisania Terapeutycznego",
+  title: "The Life Writing Program | just have a little meaning",
   description:
-    "Ustrukturyzowany program pisania oparty na badaniach psychologicznych. Uporządkuj myśli o przeszłości, teraźniejszości i przyszłości.",
+    "A guided writing process designed to help you understand your past, clarify your present, and intentionally shape your future.",
 };
 
 export default async function ProgramLayout({
@@ -30,7 +30,7 @@ export default async function ProgramLayout({
             href="/program"
             className="text-lg font-semibold text-[#1E2A36] hover:text-[#7B9E8C] transition-colors"
           >
-            Pisz Siebie
+            The Life Writing Program
           </Link>
           {isLoggedIn && (
             <div className="flex items-center gap-4 text-sm">

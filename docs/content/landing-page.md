@@ -4,7 +4,7 @@ version: "1.0"
 last_updated: "2026-02-27"
 ---
 
-# Landing Page — Pisz Siebie
+# Landing Page — The Life Writing Program
 
 ## Hero Section
 
@@ -12,7 +12,7 @@ last_updated: "2026-02-27"
 Kiedy w głowie jest za dużo chaosu — zacznij od zapisania.
 
 ### Subheadline
-Pisz Siebie to darmowy program oparty na badaniach psychologicznych, który pomaga uporządkować myśli o przeszłości, teraźniejszości i przyszłości. Bez timerów, bez oceniania, w Twoim tempie.
+The Life Writing Program to darmowy program oparty na badaniach psychologicznych, który pomaga zrozumieć swoją przeszłość, uporządkować teraźniejszość i świadomie zaplanować przyszłość. Bez timerów, bez oceniania, w Twoim tempie.
 
 ### CTA Button
 Spróbuj za darmo
@@ -42,7 +42,7 @@ To nie znaczy, że coś jest z Tobą nie tak. To znaczy, że potrzebujesz innego
 Struktura zamiast chaosu
 
 ### Treść
-Pisz Siebie to nie kolejna aplikacja do mindfulness ani lista motywacyjnych cytatów. To ustrukturyzowany program pisania, oparty na 30 latach badań psychologicznych.
+The Life Writing Program to nie kolejna aplikacja do mindfulness ani lista motywacyjnych cytatów. To ustrukturyzowany program pisania, oparty na 30 latach badań psychologicznych.
 
 Zamiast pustej strony dostajesz konkretne pytania. Zamiast „po prostu pisz" — prowadzenie krok po kroku. Zamiast presji — własne tempo.
 
@@ -73,7 +73,7 @@ Nie wierzymy w magiczne rozwiązania. Wierzymy w badania.
 ### Treść
 Profesor James Pennebaker z Uniwersytetu Teksańskiego spędził ponad 30 lat badając, dlaczego pisanie o trudnych doświadczeniach pomaga. Jego odkrycie: kiedy nadajemy narracyjną strukturę chaotycznym wspomnieniom, mózg przestaje do nich wracać w nieskończonej pętli.
 
-Pisz Siebie łączy tę wiedzę z innymi potwierdzonymi naukowo podejściami:
+The Life Writing Program łączy tę wiedzę z innymi potwierdzonymi naukowo podejściami:
 
 - **Tożsamość narracyjna** (McAdams) — ludzie, którzy potrafią opowiedzieć spójną historię swojego życia, mają wyższe poczucie sensu i dobrostanu
 - **Terapia Akceptacji i Zaangażowania** (Hayes) — rozróżnienie między Tobą a Twoimi myślami zmienia sposób, w jaki na nie reagujesz
@@ -114,7 +114,7 @@ Twoje słowa. Tylko Twoje.
 ## Sekcja 6: Dla kogo to jest
 
 ### Nagłówek
-Pisz Siebie jest dla Ciebie, jeśli:
+The Life Writing Program jest dla Ciebie, jeśli:
 
 ### Lista
 - Masz wrażenie, że Twoje myśli krążą w kółko i nie prowadzą do niczego
@@ -164,7 +164,7 @@ Mniej niż 20% ceny jednej sesji psychoterapeutycznej. Jednorazowo, bez subskryp
 ### Najczęściej zadawane pytania
 
 **Czy to zastępuje psychoterapię?**
-Nie. Pisz Siebie to narzędzie do autorefleksji, nie terapia. Jeśli zmagasz się z depresją, myślami samobójczymi lub traumą — skontaktuj się ze specjalistą. Program może być natomiast dobrym uzupełnieniem terapii lub krokiem, gdy na terapię czekasz.
+Nie. The Life Writing Program to narzędzie do autorefleksji, nie terapia. Jeśli zmagasz się z depresją, myślami samobójczymi lub traumą — skontaktuj się ze specjalistą. Program może być natomiast dobrym uzupełnieniem terapii lub krokiem, gdy na terapię czekasz.
 
 **Czy ktoś przeczyta to, co piszę?**
 Nie. Twoje teksty są szyfrowane na Twoim urządzeniu. Na serwerze przechowujemy zaszyfrowane dane, których nie potrafimy odczytać. Nawet gdyby ktoś włamał się na serwer — zobaczyłby tylko nieczytelny szyfr.
@@ -195,5 +195,5 @@ Potrzebujesz wsparcia? Telefon Zaufania dla Dorosłych: 116 123 · Centrum Wspar
 O programie · Nauka za programem · Blog · Zasoby · Polityka prywatności · Regulamin
 
 ### Stopka
-Pisz Siebie · Darmowy program do ustrukturyzowania myśli · Oparty na badaniach psychologicznych
+JUST HAVE A LITTLE MEANING · The Life Writing Program · Oparty na badaniach psychologicznych
 Ten program nie zastępuje psychoterapii.

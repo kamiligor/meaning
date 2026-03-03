@@ -5,7 +5,7 @@ version: "1.0"
 last_updated: "2026-02-27"
 ---
 
-# User Flow — Pisz Siebie
+# User Flow — The Life Writing Program
 
 ## 1. Przegląd Ścieżki Użytkownika
 
@@ -377,7 +377,7 @@ Landing Page → Micro-onboarding → Rejestracja → Wybór ścieżki → Ćwic
 ### Nawigacja główna (po zalogowaniu):
 ```
 ┌──────────────────────────────────────────────┐
-│  Pisz Siebie    Dashboard  Dziennik  Zasoby  │
+│  justmeaning    Dashboard  Dziennik  Zasoby  │
 │                                    [Konto ▾] │
 └──────────────────────────────────────────────┘
 ```
