@@ -166,7 +166,8 @@ function parsePostFile(filePath: string): PostData | null {
 }
 
 function loadAllPosts(): Map<string, PostData> {
-  if (cache) return cache;
+  // In dev mode, always reload from disk
+  if (cache && process.env.NODE_ENV === "production") return cache;
 
   const postMap = new Map<string, PostData>();
   const dir = getPostsDir();
