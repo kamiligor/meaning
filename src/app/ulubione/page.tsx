@@ -1,6 +1,7 @@
 import { requireProgramUser } from "@/lib/program-auth";
 import { getPostBySlug, getPostSlides } from "@/lib/posts";
 import { PostCard } from "@/components/feed/post-card";
+import { LikeProvider } from "@/components/feed/like-context";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { t, type Locale } from "@/lib/i18n";
@@ -47,36 +48,36 @@ export default async function FavoritesPage() {
     <div className="min-h-screen bg-[#FAFBFC]">
       <SiteHeader locale={locale} />
 
-      <main className="max-w-lg mx-auto px-4 py-8">
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl font-semibold text-[#1E2A36]">{d.favorites}</h1>
-          <Link
-            href="/profil"
-            className="text-sm text-[#8A99A8] hover:text-[#7B9E8C] transition-colors"
-          >
-            {d.navMyAccount}
-          </Link>
-        </div>
+      <LikeProvider initialLikedSlugs={slugs} isLoggedIn={true}>
+        <main className="max-w-lg mx-auto px-4 py-8">
+          <div className="flex items-center justify-between mb-8">
+            <h1 className="text-2xl font-semibold text-[#1E2A36]">{d.favorites}</h1>
+            <Link
+              href="/profil"
+              className="text-sm text-[#8A99A8] hover:text-[#7B9E8C] transition-colors"
+            >
+              {d.navMyAccount}
+            </Link>
+          </div>
 
-        {posts.length === 0 ? (
-          <div className="text-center py-20">
-            <p className="text-[#8A99A8] text-lg">{d.favoritesEmpty}</p>
-            <p className="text-[#b5bfc9] text-sm mt-1">{d.favoritesEmptySubtitle}</p>
-          </div>
-        ) : (
-          <div className="space-y-6">
-            {posts.map((post) => (
-              <PostCard
-                key={post.slug}
-                post={post}
-                locale={locale}
-                liked={true}
-                isLoggedIn={true}
-              />
-            ))}
-          </div>
-        )}
-      </main>
+          {posts.length === 0 ? (
+            <div className="text-center py-20">
+              <p className="text-[#8A99A8] text-lg">{d.favoritesEmpty}</p>
+              <p className="text-[#b5bfc9] text-sm mt-1">{d.favoritesEmptySubtitle}</p>
+            </div>
+          ) : (
+            <div className="space-y-6">
+              {posts.map((post) => (
+                <PostCard
+                  key={post.slug}
+                  post={post}
+                  locale={locale}
+                />
+              ))}
+            </div>
+          )}
+        </main>
+      </LikeProvider>
 
       <SiteFooter locale={locale} />
     </div>

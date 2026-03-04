@@ -158,7 +158,7 @@ export function ShareButton({ slug, title, locale, variant }: ShareButtonProps) 
     "p-2 text-[#8A99A8] hover:text-[#7B9E8C] hover:bg-white/60 rounded-full transition-colors";
 
   const closedClass =
-    "p-2.5 rounded-full bg-white/80 backdrop-blur-sm shadow-sm border border-[#F1F4F6] text-[#8A99A8] hover:text-[#7B9E8C] hover:bg-white transition-colors";
+    "p-2.5 rounded-full bg-white/80 backdrop-blur-sm shadow-sm border border-[#F1F4F6] text-[#8A99A8] hover:text-[#7B9E8C] hover:bg-white transition-colors cursor-pointer";
 
   const openClass =
     "flex items-center rounded-full bg-white/90 backdrop-blur-sm shadow-sm border border-[#F1F4F6] animate-slide-in-right";

@@ -14,11 +14,9 @@ interface PostCardProps {
     slides: { filename: string; slideNumber: number }[];
   };
   locale: Locale;
-  liked?: boolean;
-  isLoggedIn?: boolean;
 }
 
-export function PostCard({ post, locale, liked = false, isLoggedIn = false }: PostCardProps) {
+export function PostCard({ post, locale }: PostCardProps) {
   if (post.slides.length === 0) return null;
 
   const cleanHeadline = post.headline.replace(/\{|\}/g, "");
@@ -53,9 +51,13 @@ export function PostCard({ post, locale, liked = false, isLoggedIn = false }: Po
         </Link>
       </article>
 
-      {/* Action buttons — outside card */}
-      <div className="absolute bottom-[3.25rem] -right-4 md:-right-12 z-10 flex flex-col gap-2">
-        <LikeButton slug={post.slug} liked={liked} isLoggedIn={isLoggedIn} locale={locale} />
+      {/* Like button — outside card, above share */}
+      <div className="absolute bottom-[5.75rem] -right-4 md:-right-12 z-10">
+        <LikeButton slug={post.slug} locale={locale} />
+      </div>
+
+      {/* Share button — outside card */}
+      <div className="absolute bottom-[3.25rem] -right-4 md:-right-12 z-10">
         <ShareButton slug={post.slug} title={cleanHeadline} locale={locale} variant="card" />
       </div>
     </div>

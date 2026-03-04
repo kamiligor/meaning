@@ -109,6 +109,8 @@ export async function middleware(request: NextRequest) {
   if (
     pathname.startsWith("/program") ||
     pathname.startsWith("/api/program") ||
+    pathname.startsWith("/api/posts/") ||
+    pathname.startsWith("/post/") ||
     pathname === "/profil" ||
     pathname === "/ulubione" ||
     isAuthRoute

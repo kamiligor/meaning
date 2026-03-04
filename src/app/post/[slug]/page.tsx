@@ -9,7 +9,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { NewsletterForm } from "@/components/feed/newsletter-form";
 import { ShareButton } from "@/components/feed/share-button";
+import { LikeButton } from "@/components/feed/like-button";
+import { LikeProvider } from "@/components/feed/like-context";
 import { SiteHeader } from "@/components/site-header";
+import { createServerSupabaseClient } from "@/lib/supabase-server";
 
 export async function generateStaticParams() {
   const allPosts = getPublishedPosts("en").concat(getPublishedPosts("pl"));
@@ -59,6 +62,23 @@ export default async function PostPage({ params }: PageProps) {
   const d = t(locale);
   const feedUrl = "/";
 
+  const supabase = await createServerSupabaseClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const isLoggedIn = !!user;
+
+  let liked = false;
+  if (user) {
+    const { data } = await supabase
+      .from("user_interactions")
+      .select("id")
+      .eq("user_id", user.id)
+      .eq("interaction_type", "like")
+      .eq("target_type", "post")
+      .eq("target_id", slug)
+      .maybeSingle();
+    liked = !!data;
+  }
+
   const postSlides = getPostSlides(post);
   const cleanHeadline = post.headline.replace(/\{|\}/g, "");
 
@@ -92,6 +112,7 @@ export default async function PostPage({ params }: PageProps) {
         }
       />
 
+      <LikeProvider initialLikedSlugs={liked ? [slug] : []} isLoggedIn={isLoggedIn}>
       <main className="max-w-lg mx-auto px-4 py-6">
         <article>
           {/* Title image (web variant) */}
@@ -106,7 +127,10 @@ export default async function PostPage({ params }: PageProps) {
                   priority
                 />
               </div>
-              {/* Share tab */}
+              {/* Like + Share */}
+              <div className="absolute bottom-[3.5rem] -right-4 md:-right-12 z-10">
+                <LikeButton slug={post.slug} locale={locale} />
+              </div>
               <div className="absolute bottom-4 -right-4 md:-right-12 z-10">
                 <ShareButton slug={post.slug} title={cleanHeadline} locale={locale} variant="post" />
               </div>
@@ -177,8 +201,9 @@ export default async function PostPage({ params }: PageProps) {
             </div>
           )}
 
-          {/* Share tab */}
-          <div className="mt-10 flex justify-end -mr-4 md:-mr-12">
+          {/* Like + Share */}
+          <div className="mt-10 flex flex-col items-end gap-2 -mr-4 md:-mr-12">
+            <LikeButton slug={post.slug} locale={locale} />
             <ShareButton slug={post.slug} title={cleanHeadline} locale={locale} variant="post" />
           </div>
 
@@ -199,6 +224,7 @@ export default async function PostPage({ params }: PageProps) {
           </Link>
         </div>
       </main>
+      </LikeProvider>
     </div>
   );
 }

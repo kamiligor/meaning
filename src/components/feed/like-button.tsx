@@ -3,45 +3,35 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { t, type Locale } from "@/lib/i18n";
+import { useLike } from "./like-context";
 
 interface LikeButtonProps {
   slug: string;
-  liked: boolean;
-  isLoggedIn: boolean;
   locale: Locale;
 }
 
-export function LikeButton({ slug, liked: initialLiked, isLoggedIn, locale }: LikeButtonProps) {
-  const [liked, setLiked] = useState(initialLiked);
+export function LikeButton({ slug, locale }: LikeButtonProps) {
+  const { isLiked, toggle, isLoggedIn } = useLike();
+  const liked = isLiked(slug);
   const [animating, setAnimating] = useState(false);
   const router = useRouter();
   const d = t(locale);
 
   async function handleClick() {
     if (!isLoggedIn) {
-      router.push("/login");
+      router.push(`/login?next=${encodeURIComponent(window.location.pathname)}`);
       return;
     }
 
-    const prev = liked;
-    setLiked(!prev);
     setAnimating(true);
     setTimeout(() => setAnimating(false), 300);
-
-    try {
-      const res = await fetch(`/api/posts/${slug}/like`, { method: "POST" });
-      if (!res.ok) throw new Error();
-      const data = await res.json();
-      setLiked(data.liked);
-    } catch {
-      setLiked(prev);
-    }
+    await toggle(slug);
   }
 
   return (
     <button
       onClick={handleClick}
-      className={`p-2.5 rounded-full bg-white/80 backdrop-blur-sm shadow-sm border border-[#F1F4F6] transition-colors ${
+      className={`p-2.5 rounded-full bg-white/80 backdrop-blur-sm shadow-sm border border-[#F1F4F6] transition-colors cursor-pointer ${
         liked
           ? "text-red-500 hover:text-red-600"
           : "text-[#8A99A8] hover:text-red-400"
