@@ -1,4 +1,5 @@
 import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
 import { PostLangSwitcher } from "@/components/feed/post-lang-switcher";
 import { t, type Locale } from "@/lib/i18n";
 
@@ -40,7 +41,7 @@ export function MissionContent({ locale }: { locale: Locale }) {
     <>
       <SiteHeader
         locale={locale}
-        backHref={`/?lang=${locale}`}
+        backHref="/"
         backLabel={d.backToFeed}
         langSwitcher={<PostLangSwitcher current={locale} translations={translations} basePath="" />}
       />
@@ -65,11 +66,7 @@ export function MissionContent({ locale }: { locale: Locale }) {
         )}
       </main>
 
-      <footer className="border-t border-[#F1F4F6] py-8 text-center">
-        <p className="text-xs text-[#8A99A8] tracking-widest uppercase">
-          {d.siteTitle}
-        </p>
-      </footer>
+      <SiteFooter locale={locale} />
     </>
   );
 }

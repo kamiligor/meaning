@@ -1,17 +1,16 @@
 import { getPublishedPosts, getPostSlides } from "@/lib/posts";
 import { InfiniteFeed } from "@/components/feed/infinite-feed";
-import { t, isLocale, type Locale } from "@/lib/i18n";
+import { t, type Locale } from "@/lib/i18n";
 import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { cookies } from "next/headers";
+import { getLocaleFromCookies } from "@/lib/locale-cookie";
 
 const LIMIT = 10;
 
-export default async function Home({
-  searchParams,
-}: {
-  searchParams: Promise<{ lang?: string }>;
-}) {
-  const { lang } = await searchParams;
-  const locale: Locale = lang && isLocale(lang) ? lang : "en";
+export default async function Home() {
+  const cookieStore = await cookies();
+  const locale: Locale = getLocaleFromCookies(cookieStore);
   const d = t(locale);
 
   const allPosts = getPublishedPosts(locale);
@@ -58,11 +57,7 @@ export default async function Home({
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-[#F1F4F6] py-8 text-center">
-        <p className="text-xs text-[#8A99A8] tracking-widest uppercase">
-          {d.siteTitle}
-        </p>
-      </footer>
+      <SiteFooter locale={locale} />
     </div>
   );
 }

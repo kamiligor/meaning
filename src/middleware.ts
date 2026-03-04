@@ -62,6 +62,10 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   let response = NextResponse.next({ request });
 
+  // --- Locale: forward cookie as header for server components ---
+  const locale = request.cookies.get("jh-locale")?.value ?? "en";
+  response.headers.set("x-locale", locale);
+
   // --- Security headers ---
   response.headers.set(
     "Strict-Transport-Security",
@@ -146,6 +150,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
+    "/",
     "/admin/:path*",
     "/api/:path*",
     "/program/:path*",
@@ -153,5 +158,8 @@ export const config = {
     "/register",
     "/lost-password",
     "/profil",
+    "/mission",
+    "/misja",
+    "/post/:path*",
   ],
 };

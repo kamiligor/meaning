@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import type { Locale } from "@/lib/i18n";
+import { setLocaleCookieClient } from "@/lib/locale-cookie";
 
 const LANGUAGES: { code: Locale; label: string; flag: string }[] = [
   { code: "en", label: "English", flag: "EN" },
@@ -49,7 +50,9 @@ export function LanguageDropdown({ current }: { current: Locale }) {
               key={lang.code}
               onClick={() => {
                 setOpen(false);
-                window.location.href = `/?lang=${lang.code}`;
+                localStorage.setItem("jh-locale", lang.code);
+                setLocaleCookieClient(lang.code);
+                window.location.reload();
               }}
               className={`w-full text-left px-3 py-2 text-xs flex items-center gap-2 transition hover:bg-[#F5F7F9] ${
                 lang.code === current

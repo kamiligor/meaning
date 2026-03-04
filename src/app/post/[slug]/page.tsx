@@ -57,7 +57,7 @@ export default async function PostPage({ params }: PageProps) {
 
   const locale: Locale = isLocale(post.locale) ? post.locale : "en";
   const d = t(locale);
-  const feedUrl = `/?lang=${locale}`;
+  const feedUrl = "/";
 
   const postSlides = getPostSlides(post);
   const cleanHeadline = post.headline.replace(/\{|\}/g, "");

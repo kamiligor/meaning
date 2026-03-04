@@ -4,15 +4,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { LogoutButton } from "./logout-button";
 import { SiteHeader } from "@/components/site-header";
-import { t, isLocale, type Locale } from "@/lib/i18n";
+import { SiteFooter } from "@/components/site-footer";
+import { t, type Locale } from "@/lib/i18n";
+import { cookies } from "next/headers";
+import { getLocaleFromCookies } from "@/lib/locale-cookie";
 
-export default async function ProfilPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ lang?: string }>;
-}) {
-  const { lang } = await searchParams;
-  const locale: Locale = lang && isLocale(lang) ? lang : "pl";
+export default async function ProfilPage() {
+  const cookieStore = await cookies();
+  const locale: Locale = getLocaleFromCookies(cookieStore);
   const d = t(locale);
   const { user, supabase } = await requireProgramUser();
 
@@ -83,11 +82,7 @@ export default async function ProfilPage({
         </div>
       </main>
 
-      <footer className="border-t border-[#F1F4F6] py-8 text-center">
-        <p className="text-xs text-[#8A99A8] tracking-widest uppercase">
-          {d.siteTitle}
-        </p>
-      </footer>
+      <SiteFooter locale={locale} />
     </div>
   );
 }
