@@ -282,6 +282,25 @@ export function getAllExercises(
   );
 }
 
+export function getExerciseModuleInfo(
+  exerciseId: string,
+  genderForm: GenderForm = "neutral"
+): { moduleLabel: string; moduleSlug: string; exerciseNumber: number } | null {
+  if (exerciseId.startsWith("gate_")) return null;
+  const modules = getModules(genderForm);
+  for (const mod of modules) {
+    const idx = mod.exercises.findIndex((e) => e.id === exerciseId);
+    if (idx !== -1) {
+      return {
+        moduleLabel: `Modul ${mod.order}`,
+        moduleSlug: mod.slug,
+        exerciseNumber: idx + 1,
+      };
+    }
+  }
+  return null;
+}
+
 export function getExercisesByModule(
   moduleSlug: string,
   genderForm: GenderForm = "neutral"

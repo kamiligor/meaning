@@ -96,22 +96,37 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // --- Supabase session refresh (for /program/* routes) ---
+  // --- Auth routes: redirect logged-in users away ---
+  const AUTH_ROUTES = ["/login", "/register", "/lost-password"];
+  const isAuthRoute = AUTH_ROUTES.includes(pathname);
+
+  // --- Supabase session refresh ---
   if (
     pathname.startsWith("/program") ||
-    pathname.startsWith("/api/program")
+    pathname.startsWith("/api/program") ||
+    pathname === "/profil" ||
+    isAuthRoute
   ) {
     const supabase = createSupabaseMiddlewareClient(request, response);
     const {
       data: { user },
     } = await supabase.auth.getUser();
 
-    // Protect program pages (except public ones)
-    if (pathname.startsWith("/program") && !isProgramPublicPath(pathname)) {
+    // Redirect logged-in users away from auth pages
+    if (isAuthRoute && user) {
+      const next = request.nextUrl.searchParams.get("next") ?? "/program/dashboard";
+      return NextResponse.redirect(new URL(next, request.url));
+    }
+
+    // Protect program pages (except public ones) and /profil
+    if (
+      (pathname.startsWith("/program") && !isProgramPublicPath(pathname)) ||
+      pathname === "/profil"
+    ) {
       if (!user) {
-        return NextResponse.redirect(
-          new URL("/program?login=required", request.url)
-        );
+        const loginUrl = new URL("/login", request.url);
+        loginUrl.searchParams.set("next", pathname);
+        return NextResponse.redirect(loginUrl);
       }
     }
 
@@ -134,5 +149,9 @@ export const config = {
     "/admin/:path*",
     "/api/:path*",
     "/program/:path*",
+    "/login",
+    "/register",
+    "/lost-password",
+    "/profil",
   ],
 };

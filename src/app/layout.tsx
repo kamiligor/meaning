@@ -15,13 +15,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  auth,
 }: Readonly<{
   children: React.ReactNode;
+  auth: React.ReactNode;
 }>) {
   return (
     <html lang="en">
       <body className={`${outfit.variable} font-sans antialiased`}>
         {children}
+        {auth}
       </body>
     </html>
   );

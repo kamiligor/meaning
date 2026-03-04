@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getModules } from "@/lib/exercises";
 import { requireProgramUser } from "@/lib/program-auth";
+import { ProgramHeader } from "@/components/program/program-header";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import type { GenderForm } from "@/lib/personalize";
@@ -31,6 +32,8 @@ export default async function ModulePage({ params }: Props) {
   }
 
   return (
+    <>
+    <ProgramHeader />
     <div className="max-w-3xl mx-auto px-4 py-8">
       <Link
         href="/program/dashboard"
@@ -96,5 +99,6 @@ export default async function ModulePage({ params }: Props) {
         ))}
       </div>
     </div>
+    </>
   );
 }

@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { Phone, BookOpen, Users } from "lucide-react";
+import { ProgramHeader } from "@/components/program/program-header";
 
 export default function ResourcesPage() {
   return (
+    <>
+    <ProgramHeader />
     <div className="max-w-3xl mx-auto px-4 py-8">
       <Link
         href="/program/dashboard"
@@ -174,5 +177,6 @@ export default function ResourcesPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

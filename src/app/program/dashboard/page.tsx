@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { requireProgramUser } from "@/lib/program-auth";
 import { getModules, getGateExercise } from "@/lib/exercises";
+import { ProgramHeader } from "@/components/program/program-header";
 import { ProgressBar } from "@/components/program/progress-bar";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -70,6 +71,8 @@ export default async function DashboardPage() {
     gateStatus === "completed" || gateStatus === "skipped";
 
   return (
+    <>
+    <ProgramHeader />
     <div className="max-w-3xl mx-auto px-4 py-8">
       <ProfileInitializer />
       <h1 className="text-2xl font-semibold text-[#1E2A36] mb-2">
@@ -215,17 +218,16 @@ export default async function DashboardPage() {
         })}
       </div>
 
-      {/* Data management */}
-      <div className="mt-12 pt-8 border-t border-[#e2e7eb]">
-        <h2 className="text-sm font-medium text-[#8A99A8] mb-3">
-          Twoje dane
-        </h2>
-        <div className="flex gap-3">
-          <a href="/api/program/data-export" className="text-sm text-[#7B9E8C] hover:underline">
-            Eksportuj dane
-          </a>
-        </div>
+      {/* Footer links */}
+      <div className="mt-12 pt-8 border-t border-[#e2e7eb] flex items-center justify-between">
+        <Link href="/profil" className="text-sm text-[#7B9E8C] hover:underline">
+          Profil i ustawienia
+        </Link>
+        <a href="/api/program/data-export" className="text-sm text-[#8A99A8] hover:underline">
+          Eksportuj dane
+        </a>
       </div>
     </div>
+    </>
   );
 }

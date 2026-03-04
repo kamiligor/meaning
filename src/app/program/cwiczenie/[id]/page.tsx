@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 import { requireProgramUser } from "@/lib/program-auth";
-import { loadExercise, getModules } from "@/lib/exercises";
+import { loadExercise, getModules, getExerciseModuleInfo } from "@/lib/exercises";
 import { decrypt } from "@/lib/encryption";
 import { ExerciseView } from "@/components/program/exercise-view";
+import { ExerciseHeader } from "@/components/program/exercise-header";
 import type { GenderForm } from "@/lib/personalize";
 
 interface Props {
@@ -110,12 +111,22 @@ export default async function ExercisePage({ params }: Props) {
   }
 
   const nextExerciseUrl = getNextExerciseUrl(id, genderForm);
+  const moduleInfo = getExerciseModuleInfo(id, genderForm);
+  const isGate = id.startsWith("gate_");
 
   return (
-    <ExerciseView
-      exercise={exercise}
-      savedResponses={savedResponses}
-      nextExerciseUrl={nextExerciseUrl}
-    />
+    <>
+      <ExerciseHeader
+        moduleLabel={moduleInfo?.moduleLabel ?? ""}
+        moduleSlug={moduleInfo?.moduleSlug ?? ""}
+        exerciseLabel={isGate ? exercise.title : `Cwiczenie ${moduleInfo?.exerciseNumber ?? ""}`}
+        isGate={isGate}
+      />
+      <ExerciseView
+        exercise={exercise}
+        savedResponses={savedResponses}
+        nextExerciseUrl={nextExerciseUrl}
+      />
+    </>
   );
 }

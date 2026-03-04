@@ -7,9 +7,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Shield, Lock, Clock, BookOpen } from "lucide-react";
+import { ProgramHeader } from "@/components/program/program-header";
 
 export default function ProgramLandingPage() {
   return (
+    <>
+    <ProgramHeader />
     <div className="max-w-4xl mx-auto px-4">
       {/* Hero */}
       <section className="py-16 md:py-24 text-center">
@@ -364,5 +367,6 @@ export default function ProgramLandingPage() {
         </p>
       </section>
     </div>
+    </>
   );
 }
