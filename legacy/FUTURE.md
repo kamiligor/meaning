@@ -1,6 +1,8 @@
-# Strategia architektury marki — wyniki dyskusji zespołu
+# [LEGACY] Strategia architektury marki — wyniki dyskusji zespołu
 
-> **DECYZJA PODJĘTA (2026-03-03):** Poniższa analiza jest archiwalna. Ostateczne decyzje brandingowe:
+> **LEGACY — Ten plik jest nieaktualny.** Decyzja podjęta 2026-03-03, patrz `CLAUDE.md` → sekcja Branding.
+>
+> Poniższa analiza jest archiwalna. Ostateczne decyzje brandingowe:
 >
 > | Element | Decyzja |
 > |---------|---------|

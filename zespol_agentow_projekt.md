@@ -1,18 +1,14 @@
 # Zespół Agentów AI (Claude Code) — The Life Writing Program (justmeaning.com)
 ## Program pisania, który pomaga zrozumieć swoją przeszłość, uporządkować teraźniejszość i świadomie zaplanować przyszłość
 
-> **Status:** Dokument referencyjny — blueprint architektury zespołu agentów.
-> Aktualne definicje agentów znajdują się w `.claude/agents/*.md`.
+> **Status:** Dokument referencyjny (blueprint). Aktualne definicje agentów: `.claude/agents/*.md` (9 agentów, nie 8 jak poniżej — dodano `web-designer.md`).
 > Aktualne ćwiczenia (19 plików YAML) w `docs/exercises/`.
-> Plan produktowy w `.claude/plans/`.
-> Sekcja 4 (Struktura Programu) w tym pliku jest orientacyjna — rzeczywiste tytuły
-> i liczba ćwiczeń (6/moduł + bramka) mogą się różnić od poniższych.
 
 ---
 
 ## 1. ARCHITEKTURA ZESPOŁU — PRZEGLĄD
 
-Projekt wymaga **8 wyspecjalizowanych agentów** + **1 agenta-koordynatora (orchestrator)**, którzy wspólnie pokrywają trzy filary: **psychologię, kontent i technologię**.
+Projekt korzysta z **9 wyspecjalizowanych agentów** + **1 agenta-koordynatora (orchestrator)**, którzy wspólnie pokrywają trzy filary: **psychologię, kontent i technologię**.
 
 ```
                     ┌─────────────────────────┐

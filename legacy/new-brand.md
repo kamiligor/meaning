@@ -1,6 +1,7 @@
-# Nowy Brand: Projekt PL-Only — wyniki dyskusji zespołu
+# [LEGACY] Nowy Brand: Projekt PL-Only — wyniki dyskusji zespołu
 
-> **DECYZJA PODJĘTA (2026-03-03):** Poniższa analiza jest archiwalna. Podejście PL-only zostało odrzucone.
+> **LEGACY — Ten plik jest nieaktualny.** Podejście PL-only zostało odrzucone (2026-03-03).
+> Aktualny branding: patrz `CLAUDE.md` → sekcja Branding.
 > Ostateczna decyzja: domena **justmeaning.com**, multilanguage (en/pl), program pod nazwą **The Life Writing Program** (EN),
 > Instagram **@justhavealittlemeaning** (EN). Szczegóły w CLAUDE.md → sekcja Branding.
 

@@ -19,8 +19,8 @@ Nazwy i hasło są ZAWSZE w języku angielskim — niezależnie od języka stron
 
 „Just have a little meaning" to dwujęzyczna (en/pl) platforma psychoedukacyjna na domenie **justmeaning.com**, składająca się z dwóch filarów:
 
-1. **Feed psychologiczny** — karuzele na Instagram (@justhavealittlemeaning) + strona z rozszerzonymi treściami (psychology life hacks). Istniejący, działający produkt.
-2. **The Life Writing Program** — ustrukturyzowany program pisania terapeutycznego oparty na badaniach naukowych (18 ćwiczeń w 3 modułach). W budowie.
+1. **Feed psychologiczny** — karuzele na Instagram (@justhavealittlemeaning) + strona z rozszerzonymi treściami (psychology life hacks).
+2. **The Life Writing Program** — ustrukturyzowany program pisania terapeutycznego oparty na badaniach naukowych (18 ćwiczeń w 3 modułach + ćwiczenie bramkowe).
 
 Lejek: Instagram (@justhavealittlemeaning) → justmeaning.com (feed + rozszerzone treści) → The Life Writing Program.
 
@@ -31,7 +31,7 @@ Framework:        Next.js 16+ (App Router), TypeScript, Tailwind CSS v4
 UI:               shadcn/ui + custom components
 Edytor (program): TipTap (rich text z autosave)
 Posty:            Markdown files (content/posts/) + gray-matter
-DB (użytkownicy): Supabase (PostgreSQL + Auth + RLS)
+DB:               Supabase (PostgreSQL + Auth + RLS)
 Auth (admin):     JWT w httpOnly cookie (jose + bcryptjs)
 Auth (program):   Supabase Auth (magic link, Google OAuth)
 Obrazki:          Satori + @resvg/resvg-js (JSX → SVG → PNG)
@@ -39,20 +39,20 @@ Szyfrowanie:      AES-256-GCM server-side, klucz z APP_SECRET (env var) + user_i
 Hosting:          Coolify na Hostingerze (Docker, standalone output)
 Newsletter:       MailerLite API
 i18n:             en/pl (custom dict w src/lib/i18n.ts)
-Testy:            Vitest (unit), Playwright (E2E), axe-core (a11y)
+Testy:            Vitest (unit) + @testing-library/react
 ```
 
-## Architektura — Dwa filary, jeden projekt
+## Architektura
 
 ```
 jh/
 ├── CLAUDE.md                          # Ten plik
-├── plan.md                            # Plan architektury platformy karuzel
 ├── zespol_agentow_projekt.md          # Blueprint agentów (program pisania)
+├── legacy/                            # Archiwalne dokumenty (plan.md, FUTURE.md, new-brand.md)
 │
 ├── .claude/
 │   ├── settings.local.json            # Uprawnienia lokalne
-│   ├── agents/                        # Subagenci (8 — program pisania)
+│   ├── agents/                        # Subagenci (9)
 │   │   ├── psycholog-badawczy.md
 │   │   ├── terapeuta-narracyjny.md
 │   │   ├── copywriter.md
@@ -60,12 +60,13 @@ jh/
 │   │   ├── edukator.md
 │   │   ├── frontend-dev.md
 │   │   ├── backend-dev.md
+│   │   ├── web-designer.md
 │   │   └── qa-tester.md
 │   └── commands/
 │       ├── new-post.md                # Tworzenie karuzeli
 │       └── nowe-cwiczenie.md          # Tworzenie ćwiczenia
 │
-├── docs/                              # Dokumentacja obu filarów
+├── docs/                              # Dokumentacja
 │   ├── content-style-guide.md         # Wytyczne stylu treści (karuzele)
 │   ├── exercises/                     # Definicje ćwiczeń YAML (19 plików)
 │   │   ├── gate_00.yaml              #   Ćwiczenie bramkowe
@@ -80,78 +81,102 @@ jh/
 │   └── specs/                         # Specyfikacje techniczne
 │       ├── user-flow.md               # Flow użytkownika programu
 │       ├── editor-spec.md             # Specyfikacja edytora TipTap
-│       └── autosave-encryption-spec.md # Autosave + szyfrowanie v2.0
+│       └── autosave-encryption-spec.md # Autosave + szyfrowanie
 │
 ├── content/                           # Treści (pliki Markdown)
 │   ├── posts/                         # Posty karuzelowe (Markdown + frontmatter)
-│   │   ├── keep-a-consistent-wake-up-time.md  # EN
-│   │   └── wstawaj-o-stalej-porze.md          # PL
-│   ├── introductions/                 # Wprowadzenia psychoedukacyjne
-│   │   ├── przeszlosc.md
-│   │   ├── terazniejszosc.md
-│   │   └── przyszlosc.md
+│   ├── introductions/                 # Wprowadzenia psychoedukacyjne (3 moduły)
 │   └── blog/                          # Artykuły psychoedukacyjne
-│       ├── dlaczego-wspomnienia-wracaja.md
-│       ├── ruminacja-vs-refleksja.md
-│       ├── ekspresywne-pisanie-nauka.md
-│       └── utknales-w-zyciu.md
+│
+├── supabase/
+│   └── migrations/                    # Migracje SQL (user_profiles)
 │
 ├── src/
 │   ├── app/
-│   │   ├── (marketing)/               # Landing page, feed (istniejące)
-│   │   ├── post/[slug]/               # Pojedynczy post (istniejące)
-│   │   ├── program/                   # 🔮 The Life Writing Program
-│   │   │   ├── page.tsx               #   Landing / opis programu
-│   │   │   ├── dashboard/             #   Dashboard użytkownika
-│   │   │   ├── modul/[slug]/          #   Widok modułu
-│   │   │   ├── cwiczenie/[id]/        #   Widok ćwiczenia (edytor TipTap)
-│   │   │   └── zasoby/               #   Linie wsparcia, FAQ
-│   │   ├── admin/                     # Panel admina (istniejące)
+│   │   ├── page.tsx                   # Feed / strona główna
+│   │   ├── post/[slug]/              # Pojedynczy post
+│   │   ├── program/                   # The Life Writing Program
+│   │   │   ├── page.tsx              #   Landing / opis programu
+│   │   │   ├── layout.tsx            #   Layout z SafetyBanner + nav
+│   │   │   ├── onboarding/           #   Onboarding (4 kroki)
+│   │   │   ├── dashboard/            #   Dashboard użytkownika
+│   │   │   ├── modul/[slug]/         #   Widok modułu
+│   │   │   ├── cwiczenie/[id]/       #   Widok ćwiczenia (edytor TipTap)
+│   │   │   ├── zasoby/              #   Linie wsparcia, FAQ, książki
+│   │   │   └── auth/callback/        #   Supabase OAuth callback
+│   │   ├── admin/                     # Panel admina
 │   │   └── api/
-│   │       ├── auth/                  # Auth endpoints (istniejące)
+│   │       ├── auth/                  # Auth endpoints (login, logout, check)
 │   │       ├── posts/                 # GET lista postów (offset pagination)
-│   │       ├── slides/                # Serwowanie PNG (istniejące)
-│   │       ├── newsletter/            # MailerLite (istniejące)
-│   │       └── program/               # 🔮 API programu pisania
-│   │           ├── responses/         #   CRUD odpowiedzi (szyfrowane)
-│   │           ├── progress/          #   Postęp użytkownika
-│   │           └── data-export/       #   Eksport RODO
+│   │       ├── slides/                # Serwowanie PNG
+│   │       ├── newsletter/            # MailerLite
+│   │       └── program/               # API programu pisania
+│   │           ├── responses/[exerciseId]  # GET + PUT (szyfrowane)
+│   │           ├── progress/               # GET all + PUT per exercise
+│   │           ├── data-export/            # Eksport RODO (JSON)
+│   │           ├── account/                # DELETE konto
+│   │           └── profile/                # GET + PUT profil (gender_form)
 │   ├── db/
-│   │   ├── schema.ts                  # Drizzle schema (typy Post/Slide/ColorPalette)
-│   │   └── index.ts                   # Turso client
+│   │   ├── schema.ts                  # Drizzle schema (legacy, typy)
+│   │   └── index.ts                   # Turso client (legacy)
 │   ├── lib/
-│   │   ├── auth.ts                    # JWT admin auth (istniejące)
-│   │   ├── i18n.ts                    # Słownik en/pl (istniejące)
+│   │   ├── auth.ts                    # JWT admin auth
+│   │   ├── i18n.ts                    # Słownik en/pl
 │   │   ├── posts.ts                   # Loader postów z plików MD
-│   │   ├── palettes.ts               # Palety kolorów (config, nie DB)
+│   │   ├── palettes.ts               # Palety kolorów (config)
 │   │   ├── regenerate-slide.ts        # Regeneracja slajdu (on-demand)
-│   │   ├── storage.ts                 # I/O plików PNG (istniejące)
-│   │   ├── fonts.ts                   # Fonty Satori (istniejące)
-│   │   ├── constants.ts               # Design tokens (istniejące)
-│   │   ├── supabase.ts                # 🔮 Supabase client
-│   │   ├── encryption.ts              # 🔮 AES-256-GCM (APP_SECRET)
-│   │   └── exercises.ts               # 🔮 Ładowanie YAML ćwiczeń
-│   ├── templates/                     # Satori JSX szablony (istniejące)
+│   │   ├── storage.ts                 # I/O plików PNG
+│   │   ├── fonts.ts                   # Fonty Satori
+│   │   ├── constants.ts               # Design tokens
+│   │   ├── supabase.ts                # Supabase browser client
+│   │   ├── supabase-server.ts         # Supabase server client (cookies)
+│   │   ├── encryption.ts              # AES-256-GCM (PBKDF2)
+│   │   ├── exercises.ts               # Ładowanie YAML ćwiczeń
+│   │   ├── program-auth.ts            # requireProgramUser() helper
+│   │   ├── personalize.ts             # Personalizacja (feminine/masculine/neutral)
+│   │   ├── local-storage.ts           # Offline fallback dla odpowiedzi
+│   │   ├── rate-limit.ts              # In-memory rate limiter
+│   │   ├── content-sections.ts        # Parsowanie sekcji slajd/web
+│   │   ├── slug.ts                    # Generator slugów (polskie znaki)
+│   │   └── utils.ts                   # clsx/tailwind-merge helper
+│   ├── templates/                     # Satori JSX szablony slajdów
 │   ├── components/
-│   │   ├── feed/                      # Publiczny feed (istniejące)
-│   │   ├── admin/                     # Panel admina (istniejące)
-│   │   ├── program/                   # 🔮 Komponenty programu
-│   │   │   ├── exercise-editor.tsx    #   TipTap wrapper
+│   │   ├── feed/                      # Publiczny feed
+│   │   │   ├── carousel-viewer.tsx
+│   │   │   ├── content-text.tsx
+│   │   │   ├── feed-skeleton.tsx
+│   │   │   ├── infinite-feed.tsx
+│   │   │   ├── language-dropdown.tsx
+│   │   │   ├── newsletter-form.tsx
+│   │   │   ├── post-card.tsx
+│   │   │   ├── post-lang-switcher.tsx
+│   │   │   └── share-button.tsx
+│   │   ├── program/                   # Komponenty programu
+│   │   │   ├── exercise-editor.tsx    #   TipTap wrapper z autosave
+│   │   │   ├── exercise-view.tsx      #   Widok ćwiczenia (pytania, stuck helpers)
+│   │   │   ├── editor-toolbar.tsx     #   Bold/Italic/List toolbar
+│   │   │   ├── save-status.tsx        #   Wskaźnik zapisu (idle/saving/saved/error)
 │   │   │   ├── progress-bar.tsx       #   Pasek postępu
-│   │   │   └── safety-banner.tsx      #   Linie kryzysowe
-│   │   └── ui/                        # Współdzielone komponenty
+│   │   │   ├── safety-banner.tsx      #   Stały banner z liniami kryzysowymi
+│   │   │   ├── content-warning.tsx    #   Bramka ostrzeżeń przed ćwiczeniem
+│   │   │   ├── post-exercise-flow.tsx #   Refleksja → check-in → grounding
+│   │   │   ├── emotional-checkin.tsx   #   3-opcyjny check emocjonalny
+│   │   │   ├── grounding-exercise.tsx  #   Technika 5-4-3-2-1
+│   │   │   ├── disclaimer-gate.tsx    #   Standalone disclaimer
+│   │   │   └── profile-initializer.tsx #   Zapis gender_form z OAuth
+│   │   ├── ui/                        # shadcn/ui komponenty
+│   │   └── site-header.tsx            # Nagłówek strony
 │   ├── hooks/
-│   │   └── use-infinite-posts.ts      # Infinite scroll (istniejące)
-│   ├── scripts/                       # Utility CLI (istniejące)
-│   └── middleware.ts                  # Auth middleware
+│   │   ├── use-infinite-posts.ts      # Infinite scroll
+│   │   ├── use-autosave.ts            # 5s debounce + 30s interval + offline fallback
+│   │   └── use-sync-recovery.ts       # Detekcja nowszego local backup
+│   ├── scripts/                       # Utility CLI
+│   └── middleware.ts                  # Security headers + admin auth + Supabase session
 │
 ├── data/slides/                       # Wygenerowane PNG (persistent volume)
 ├── public/fonts/                      # Fonty Satori (.woff)
-├── drizzle/                           # Migracje Drizzle
 └── Dockerfile                         # Multi-stage build
 ```
-
-Legenda: brak adnotacji = istniejące, 🔮 = do zbudowania.
 
 ## Fundament Naukowy — Program Pisania
 
@@ -188,10 +213,11 @@ Moduł III: PRZYSZŁOŚĆ     — „Zaprojektuj siebie" (6 ćwiczeń)
 | **Pliki MD** | Markdown + gray-matter | Posty karuzelowe (content/posts/*.md) |
 | **Pliki config** | TypeScript | Palety kolorów (src/lib/palettes.ts) |
 | **Filesystem** | PNG (data/slides/) | Slajdy generowane przez Satori |
-| **Turso** | LibSQL + Drizzle ORM | (Legacy, schema zachowane dla typów) |
 | **Supabase** | PostgreSQL + Auth + RLS | Użytkownicy, sesje, zaszyfrowane treści programu, postęp |
 
 Posty = pliki Markdown w repozytorium. Slajdy = deterministyczne PNG ({slug}-slide-{nr}.png).
+
+Drizzle ORM + Turso (LibSQL) to legacy. Schema w `src/db/schema.ts` zachowane dla typów, ale nowe dane idą do Supabase.
 
 ## Autentykacja — Dwie warstwy
 
@@ -232,10 +258,9 @@ Posty = pliki Markdown w repozytorium. Slajdy = deterministyczne PNG ({slug}-sli
 
 ## i18n
 
-- **Karuzele:** en/pl (istniejące, dict w `src/lib/i18n.ts`)
-- **The Life Writing Program:** en/pl (ćwiczenia YAML obecnie tylko pl — wersja en do stworzenia)
+- **Cała platforma:** en/pl (dict w `src/lib/i18n.ts`)
+- **Ćwiczenia YAML:** obecnie tylko pl — wersja en do stworzenia
 - **Instagram:** @justhavealittlemeaning (po angielsku)
-- **UI:** wspólny system i18n dla całej platformy
 - **Nazwy i hasło:** zawsze po angielsku (Just have a little meaning, The Life Writing Program)
 
 ## Standardy Kodowania
@@ -274,14 +299,11 @@ npm run dev              # Development server
 npm run build            # Production build
 npm start                # Run production
 npm run lint             # ESLint
-npm run db:push          # Drizzle push do Turso
-npm run db:studio        # Drizzle Studio
+npm test                 # Vitest
 
 # Posty karuzelowe
 npx tsx src/scripts/generate-slides.ts <slug>    # Generuj slajdy dla jednego posta
 npx tsx src/scripts/generate-slides.ts --all      # Generuj slajdy dla wszystkich
-npx tsx src/scripts/migrate-posts-to-md.ts        # (jednorazowy) Migracja z DB do MD
-npx tsx src/scripts/rename-slides.ts              # (jednorazowy) Rename slajdów na deterministyczne nazwy
 ```
 
 **WAŻNE — po dodaniu/edycji posta:**
@@ -297,4 +319,4 @@ Bez tego post nie będzie miał slajdów PNG i karuzela się nie wyświetli.
 - **Output**: `standalone`
 - **Port**: 3000
 - **Persistent volume**: `/data/slides` (PNG karuzel)
-- **ENV vars**: `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, `ADMIN_PASSWORD`, `JWT_SECRET`, `STORAGE_PATH`, `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `APP_SECRET`, `MAILERLITE_API_TOKEN`
+- **ENV vars**: `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, `ADMIN_PASSWORD`, `JWT_SECRET`, `STORAGE_PATH`, `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `APP_SECRET`, `MAILERLITE_API_TOKEN`

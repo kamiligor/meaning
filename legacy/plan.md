@@ -1,4 +1,9 @@
-# Plan: Just have a little meaning — Next.js Instagram Carousel Platform (justmeaning.com)
+# [LEGACY] Plan: Just have a little meaning — Next.js Instagram Carousel Platform (justmeaning.com)
+
+> **Ten plik jest nieaktualny (legacy).** Opisuje pierwotny plan z fazy, gdy projekt był tylko generatorem karuzel IG.
+> Aktualny stan projektu: patrz `CLAUDE.md`.
+
+---
 
 ## Kontekst
 
