@@ -106,7 +106,7 @@ export function SiteHeader({
               <span className="lg:hidden">{d.navProgramShort}</span>
             </Link>
             <Link
-              href="/mission"
+              href={locale === "pl" ? "/misja" : "/mission"}
               className="text-[11px] font-medium tracking-widest uppercase text-[#8A99A8] hover:text-[#1E2A36] transition-colors duration-200 whitespace-nowrap"
             >
               <span className="hidden lg:inline">{d.navMission}</span>
