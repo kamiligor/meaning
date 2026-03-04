@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useRef } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { useInfinitePosts } from "@/hooks/use-infinite-posts";
 import { PostCard } from "./post-card";
 import { FeedSkeleton } from "./feed-skeleton";
@@ -20,9 +20,10 @@ interface InfiniteFeedProps {
   initialPosts: Post[];
   initialHasMore: boolean;
   locale: Locale;
+  isLoggedIn?: boolean;
 }
 
-export function InfiniteFeed({ initialPosts, initialHasMore, locale }: InfiniteFeedProps) {
+export function InfiniteFeed({ initialPosts, initialHasMore, locale, isLoggedIn = false }: InfiniteFeedProps) {
   const d = t(locale);
   const { posts, loading, hasMore, loadMore } = useInfinitePosts({
     initialPosts,
@@ -30,6 +31,16 @@ export function InfiniteFeed({ initialPosts, initialHasMore, locale }: InfiniteF
     locale,
   });
   const sentinelRef = useRef<HTMLDivElement>(null);
+  const [likedSlugs, setLikedSlugs] = useState<Set<string>>(new Set());
+
+  // Fetch liked slugs on mount
+  useEffect(() => {
+    if (!isLoggedIn) return;
+    fetch("/api/posts/likes")
+      .then((res) => res.json())
+      .then((data) => setLikedSlugs(new Set(data.slugs)))
+      .catch(() => {});
+  }, [isLoggedIn]);
 
   useEffect(() => {
     const sentinel = sentinelRef.current;
@@ -52,7 +63,12 @@ export function InfiniteFeed({ initialPosts, initialHasMore, locale }: InfiniteF
     <div className="space-y-6">
       {posts.map((post, index) => (
         <Fragment key={post.slug}>
-          <PostCard post={post} locale={locale} />
+          <PostCard
+            post={post}
+            locale={locale}
+            liked={likedSlugs.has(post.slug)}
+            isLoggedIn={isLoggedIn}
+          />
           {index === 1 && (
             <NewsletterForm locale={locale} variant="card" />
           )}

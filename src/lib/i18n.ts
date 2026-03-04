@@ -55,6 +55,11 @@ const dict = {
     accountData: "Your data",
     accountExport: "Export data (JSON)",
     accountLogout: "Log out",
+    like: "Like",
+    unlike: "Unlike",
+    favorites: "Favorites",
+    favoritesEmpty: "No favorites yet",
+    favoritesEmptySubtitle: "Tap the heart on posts you like to save them here",
   },
   pl: {
     siteTitle: "just have a little meaning",
@@ -108,6 +113,11 @@ const dict = {
     accountData: "Twoje dane",
     accountExport: "Eksportuj dane (JSON)",
     accountLogout: "Wyloguj się",
+    like: "Polub",
+    unlike: "Nie lubię",
+    favorites: "Ulubione",
+    favoritesEmpty: "Brak ulubionych",
+    favoritesEmptySubtitle: "Kliknij serduszko przy poście, żeby zapisać go tutaj",
   },
 };
 

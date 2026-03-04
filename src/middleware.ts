@@ -93,6 +93,7 @@ export async function middleware(request: NextRequest) {
     !pathname.startsWith("/api/slides/") &&
     !pathname.startsWith("/api/newsletter/") &&
     !pathname.startsWith("/api/program/") &&
+    !pathname.match(/^\/api\/posts\/[^/]+\/like$/) &&
     request.method !== "GET"
   ) {
     if (!(await isAdminAuthenticated(request))) {
@@ -109,6 +110,7 @@ export async function middleware(request: NextRequest) {
     pathname.startsWith("/program") ||
     pathname.startsWith("/api/program") ||
     pathname === "/profil" ||
+    pathname === "/ulubione" ||
     isAuthRoute
   ) {
     const supabase = createSupabaseMiddlewareClient(request, response);
@@ -125,7 +127,8 @@ export async function middleware(request: NextRequest) {
     // Protect program pages (except public ones) and /profil
     if (
       (pathname.startsWith("/program") && !isProgramPublicPath(pathname)) ||
-      pathname === "/profil"
+      pathname === "/profil" ||
+      pathname === "/ulubione"
     ) {
       if (!user) {
         const loginUrl = new URL("/login", request.url);
@@ -158,6 +161,7 @@ export const config = {
     "/register",
     "/lost-password",
     "/profil",
+    "/ulubione",
     "/mission",
     "/misja",
     "/post/:path*",

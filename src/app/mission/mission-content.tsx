@@ -1,6 +1,5 @@
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { PostLangSwitcher } from "@/components/feed/post-lang-switcher";
 import { t, type Locale } from "@/lib/i18n";
 
 const content = {
@@ -28,10 +27,6 @@ const content = {
   },
 } as const;
 
-const translations = [
-  { locale: "en", slug: "mission" },
-  { locale: "pl", slug: "misja" },
-];
 
 export function MissionContent({ locale }: { locale: Locale }) {
   const d = t(locale);
@@ -43,7 +38,7 @@ export function MissionContent({ locale }: { locale: Locale }) {
         locale={locale}
         backHref="/"
         backLabel={d.backToFeed}
-        langSwitcher={<PostLangSwitcher current={locale} translations={translations} basePath="" />}
+
       />
 
       <main className="max-w-2xl mx-auto px-6 md:px-8 py-16 md:py-24">

@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { cookies } from "next/headers";
 import { getLocaleFromCookies } from "@/lib/locale-cookie";
+import { createServerSupabaseClient } from "@/lib/supabase-server";
 
 const LIMIT = 10;
 
@@ -12,6 +13,10 @@ export default async function Home() {
   const cookieStore = await cookies();
   const locale: Locale = getLocaleFromCookies(cookieStore);
   const d = t(locale);
+
+  const supabase = await createServerSupabaseClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const isLoggedIn = !!user;
 
   const allPosts = getPublishedPosts(locale);
 
@@ -52,6 +57,7 @@ export default async function Home() {
             initialPosts={postsWithSlides}
             initialHasMore={hasMore}
             locale={locale}
+            isLoggedIn={isLoggedIn}
           />
         )}
       </main>
