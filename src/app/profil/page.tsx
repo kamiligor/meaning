@@ -63,20 +63,6 @@ export default async function ProfilPage() {
           </CardContent>
         </Card>
 
-        <Card className="mb-6">
-          <CardHeader>
-            <CardTitle className="text-base">{d.accountData}</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <a
-              href="/api/program/data-export"
-              className="text-sm text-[#7B9E8C] hover:underline"
-            >
-              {d.accountExport}
-            </a>
-          </CardContent>
-        </Card>
-
         <div className="space-y-3">
           <LogoutButton label={d.accountLogout} />
         </div>

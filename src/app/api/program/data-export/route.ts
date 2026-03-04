@@ -1,25 +1,10 @@
 import { NextResponse } from "next/server";
 import { requireProgramUser } from "@/lib/program-auth";
 import { decrypt } from "@/lib/encryption";
-import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 
 export async function GET() {
   try {
     const { user, supabase } = await requireProgramUser();
-
-    const { allowed, retryAfterMs } = checkRateLimit(
-      `data-export:${user.id}`,
-      RATE_LIMITS.dataExport
-    );
-    if (!allowed) {
-      return NextResponse.json(
-        { error: "Too many requests. Try again later." },
-        {
-          status: 429,
-          headers: { "Retry-After": String(Math.ceil(retryAfterMs / 1000)) },
-        }
-      );
-    }
 
     const [responsesResult, progressResult] = await Promise.all([
       supabase
