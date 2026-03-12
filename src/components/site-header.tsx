@@ -64,27 +64,15 @@ export async function SiteHeader({
           {/* Logo */}
           <a
             href="/"
-            className="flex flex-col items-start group shrink-0"
+            className="shrink-0 block h-12 md:h-14"
             aria-label="just have a little meaning — home"
           >
-            <span
-              className="text-base md:text-[17px] font-extrabold text-[#1E2A36] leading-none tracking-tight group-hover:text-[#2d3f4e] transition-colors duration-200"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-            >
-              just
-            </span>
-            <span
-              className="text-[8px] md:text-[9px] italic text-[#8A99A8] leading-none mt-[3px] tracking-wide"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-            >
-              have a little
-            </span>
-            <span
-              className="text-base md:text-[17px] font-extrabold text-[#7B9E8C] leading-none mt-[3px] tracking-tight group-hover:text-[#6a8d7b] transition-colors duration-200"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-            >
-              meaning
-            </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo.svg"
+              alt="just have a little meaning"
+              className="h-full w-auto"
+            />
           </a>
 
 

@@ -24,14 +24,11 @@ export function PostCard({ post, locale }: PostCardProps) {
   return (
     <div className="relative">
       <article className="bg-white rounded-2xl shadow-sm overflow-hidden border border-[#F1F4F6]">
-        {/* Carousel — Instagram slides without CTA (no web variants) */}
+        {/* Carousel — Instagram slides (no web variants) */}
         <CarouselViewer
-          slides={(() => {
-            const instagramSlides = post.slides
-              .filter((s) => s.slideNumber < 100)
-              .sort((a, b) => a.slideNumber - b.slideNumber);
-            return instagramSlides.slice(0, -1); // drop CTA (last)
-          })()}
+          slides={post.slides
+            .filter((s) => s.slideNumber < 100)
+            .sort((a, b) => a.slideNumber - b.slideNumber)}
           alt={cleanHeadline}
         />
 

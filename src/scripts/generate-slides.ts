@@ -66,19 +66,24 @@ async function generateForPost(post: PostData, fonts: Fonts) {
     await renderAndSave(SlideContentTemplate(p, palette, sections[i]), post.slug, slideNum, fonts);
   }
 
-  // Slide N+2: Quote
-  const quoteNum = sections.length + 2;
-  await renderAndSave(SlideQuoteTemplate(p, palette), post.slug, quoteNum, fonts);
+  let nextNum = sections.length + 2;
 
-  // Slide N+3: CTA
-  const ctaNum = sections.length + 3;
-  await renderAndSave(SlideCTATemplate(p, palette), post.slug, ctaNum, fonts);
+  // Quote slide (only if quote is present)
+  if (post.quote) {
+    await renderAndSave(SlideQuoteTemplate(p, palette), post.slug, nextNum, fonts);
+    nextNum++;
+  }
+
+  // CTA slide
+  await renderAndSave(SlideCTATemplate(p, palette), post.slug, nextNum, fonts);
 
   // Slide 100: Web title variant
   await renderAndSave(SlideTitleTemplate(p, palette, { arrowDown: true }), post.slug, WEB_TITLE_SLIDE, fonts);
 
-  // Slide 101: Web quote variant
-  await renderAndSave(SlideQuoteTemplate(p, palette, { hideIcon: true }), post.slug, WEB_QUOTE_SLIDE, fonts);
+  // Slide 101: Web quote variant (only if quote is present)
+  if (post.quote) {
+    await renderAndSave(SlideQuoteTemplate(p, palette, { hideIcon: true }), post.slug, WEB_QUOTE_SLIDE, fonts);
+  }
 }
 
 async function main() {

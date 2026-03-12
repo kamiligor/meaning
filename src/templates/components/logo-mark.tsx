@@ -1,4 +1,6 @@
 import type { ColorPalette } from "@/lib/palettes";
+import fs from "fs";
+import path from "path";
 
 type LogoSize = "sm" | "lg";
 type LogoVariant = "light" | "dark" | "ghost" | "ghost-dark";
@@ -9,70 +11,72 @@ interface LogoMarkProps {
   palette: ColorPalette;
 }
 
+// Read base SVG once at module load (build-time only, used by Satori)
+const baseSvg = fs.readFileSync(
+  path.join(process.cwd(), "public", "logo.svg"),
+  "utf-8",
+);
+
 const sizes = {
-  sm: {
-    padding: 16,
-    bracketWidth: 10,
-    just: { fontSize: 24 },
-    haveLittle: { fontSize: 8, margin: "2px 0 -3px 0" },
-    meaning: { fontSize: 24 },
-  },
-  lg: {
-    padding: 30,
-    bracketWidth: 18,
-    just: { fontSize: 54 },
-    haveLittle: { fontSize: 16, margin: "4px 0 -8px 0" },
-    meaning: { fontSize: 54 },
-  },
+  sm: { height: 48, padding: 16, bracketWidth: 10 },
+  lg: { height: 96, padding: 30, bracketWidth: 18 },
 } as const;
 
-function getColors(variant: LogoVariant, palette: ColorPalette) {
+function recolor(
+  svg: string,
+  justColor: string,
+  haveLittleColor: string,
+  meaningColor: string,
+): string {
+  return svg
+    .replace(/fill="#1E2A36"/g, `fill="${justColor}"`)
+    .replace(/fill="#8A99A8"/g, `fill="${haveLittleColor}"`)
+    .replace(/fill="#7B9E8C"/g, `fill="${meaningColor}"`);
+}
+
+function getLogoSrc(variant: LogoVariant, palette: ColorPalette): string {
+  let svg = baseSvg;
+
   switch (variant) {
     case "light":
-      return {
-        just: palette.textDark,
-        haveLittle: palette.textLight,
-        meaning: palette.primary,
-        bracket: palette.primary,
-        bracketOpacity: 0.3,
-      };
+      break;
     case "dark":
-      return {
-        just: "#fff",
-        haveLittle: "rgba(255,255,255,0.3)",
-        meaning: palette.primaryLight,
-        bracket: palette.primary,
-        bracketOpacity: 0.3,
-      };
+      svg = recolor(svg, "#ffffff", "#ffffff4D", palette.primaryLight);
+      break;
     case "ghost":
-      return {
-        just: "rgba(30,42,54,0.2)",
-        haveLittle: "rgba(138,153,168,0.35)",
-        meaning: "rgba(123,158,140,0.3)",
-        bracket: palette.primary,
-        bracketOpacity: 0.1,
-      };
+      break;
     case "ghost-dark":
-      return {
-        just: "rgba(255,255,255,0.12)",
-        haveLittle: "rgba(255,255,255,0.1)",
-        meaning: "rgba(163,196,179,0.12)",
-        bracket: palette.primary,
-        bracketOpacity: 0.06,
-      };
+      svg = recolor(svg, "#ffffff", "#ffffff", "#ffffff");
+      break;
+  }
+
+  return `data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`;
+}
+
+function getStyle(variant: LogoVariant, palette: ColorPalette) {
+  switch (variant) {
+    case "light":
+      return { opacity: 1, bracket: palette.primary, bracketOpacity: 0.3 };
+    case "dark":
+      return { opacity: 1, bracket: palette.primary, bracketOpacity: 0.3 };
+    case "ghost":
+      return { opacity: 0.25, bracket: palette.primary, bracketOpacity: 0.1 };
+    case "ghost-dark":
+      return { opacity: 0.1, bracket: palette.primary, bracketOpacity: 0.06 };
   }
 }
 
 export function LogoMark({ size, variant, palette }: LogoMarkProps) {
   const s = sizes[size];
-  const c = getColors(variant, palette);
+  const v = getStyle(variant, palette);
+  const src = getLogoSrc(variant, palette);
 
   return (
     <div
       style={{
         display: "flex",
-        flexDirection: "column",
         alignItems: "center",
+        justifyContent: "center",
         position: "relative",
         padding: `0 ${s.padding}px`,
       }}
@@ -85,11 +89,11 @@ export function LogoMark({ size, variant, palette }: LogoMarkProps) {
           top: "10%",
           width: s.bracketWidth,
           height: "80%",
-          borderTop: `1.5px solid ${c.bracket}`,
-          borderBottom: `1.5px solid ${c.bracket}`,
-          borderLeft: `1.5px solid ${c.bracket}`,
+          borderTop: `1.5px solid ${v.bracket}`,
+          borderBottom: `1.5px solid ${v.bracket}`,
+          borderLeft: `1.5px solid ${v.bracket}`,
           borderRadius: "5px 0 0 5px",
-          opacity: c.bracketOpacity,
+          opacity: v.bracketOpacity,
         }}
       />
       {/* Right bracket */}
@@ -100,49 +104,19 @@ export function LogoMark({ size, variant, palette }: LogoMarkProps) {
           top: "10%",
           width: s.bracketWidth,
           height: "80%",
-          borderTop: `1.5px solid ${c.bracket}`,
-          borderBottom: `1.5px solid ${c.bracket}`,
-          borderRight: `1.5px solid ${c.bracket}`,
+          borderTop: `1.5px solid ${v.bracket}`,
+          borderBottom: `1.5px solid ${v.bracket}`,
+          borderRight: `1.5px solid ${v.bracket}`,
           borderRadius: "0 5px 5px 0",
-          opacity: c.bracketOpacity,
+          opacity: v.bracketOpacity,
         }}
       />
 
-      <span
-        style={{
-          fontFamily: "Fraunces",
-          fontWeight: 800,
-          fontSize: s.just.fontSize,
-          lineHeight: 1.05,
-          color: c.just,
-        }}
-      >
-        just
-      </span>
-      <span
-        style={{
-          fontFamily: "LibreBaskerville",
-          fontStyle: "italic",
-          fontWeight: 400,
-          fontSize: s.haveLittle.fontSize,
-          lineHeight: 1,
-          color: c.haveLittle,
-          margin: s.haveLittle.margin,
-        }}
-      >
-        have a little
-      </span>
-      <span
-        style={{
-          fontFamily: "Fraunces",
-          fontWeight: 800,
-          fontSize: s.meaning.fontSize,
-          lineHeight: 1.05,
-          color: c.meaning,
-        }}
-      >
-        meaning
-      </span>
+      {/* Logo from SVG — single source of truth */}
+      <img
+        src={src}
+        style={{ height: s.height, opacity: v.opacity }}
+      />
     </div>
   );
 }

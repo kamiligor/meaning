@@ -23,7 +23,7 @@ export interface PostData {
   iconType: string | null;
 
   // Quote slide
-  quote: string;
+  quote: string | null;
   quoteAttribution: string | null;
   quoteIconType: string | null;
 
@@ -163,7 +163,7 @@ function parsePostFile(filePath: string): PostData | null {
       subtitle: data.subtitle ?? "Swipe to learn why",
       iconType: data.iconType ?? "clock",
 
-      quote: data.quote,
+      quote: data.quote || null,
       quoteAttribution: data.quoteAttribution || null,
       quoteIconType: data.quoteIconType ?? "sun",
 
@@ -288,19 +288,24 @@ export function getPostSlides(post: PostData): SlideInfo[] {
     slides.push({ filename: `${slug}-slide-${num}.png`, slideNumber: num });
   }
 
-  // Quote
-  const quoteNum = contentSections.length + 2;
-  slides.push({ filename: `${slug}-slide-${quoteNum}.png`, slideNumber: quoteNum });
+  let nextNum = contentSections.length + 2;
+
+  // Quote (only if present)
+  if (post.quote) {
+    slides.push({ filename: `${slug}-slide-${nextNum}.png`, slideNumber: nextNum });
+    nextNum++;
+  }
 
   // CTA
-  const ctaNum = contentSections.length + 3;
-  slides.push({ filename: `${slug}-slide-${ctaNum}.png`, slideNumber: ctaNum });
+  slides.push({ filename: `${slug}-slide-${nextNum}.png`, slideNumber: nextNum });
 
   // Web title variant (100)
   slides.push({ filename: `${slug}-slide-${WEB_TITLE_SLIDE}.png`, slideNumber: WEB_TITLE_SLIDE });
 
-  // Web quote variant (101)
-  slides.push({ filename: `${slug}-slide-${WEB_QUOTE_SLIDE}.png`, slideNumber: WEB_QUOTE_SLIDE });
+  // Web quote variant (101, only if quote exists)
+  if (post.quote) {
+    slides.push({ filename: `${slug}-slide-${WEB_QUOTE_SLIDE}.png`, slideNumber: WEB_QUOTE_SLIDE });
+  }
 
   return slides;
 }
