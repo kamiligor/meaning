@@ -30,7 +30,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!post) return { title: "Not Found" };
 
   const cleanHeadline = post.headline.replace(/\{|\}/g, "");
-  const ogImage = `/api/slides/${slug}-slide-1.png`;
+  const group = post.translationGroup || post.slug;
+  const ogImage = `/api/slides/${group}/${post.locale}/slide-1.png`;
 
   return {
     title: `${cleanHeadline} | just have a little meaning`,

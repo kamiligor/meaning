@@ -9,29 +9,29 @@ import { SlideQuoteTemplate } from "@/templates/slide-quote";
 import { SlideCTATemplate } from "@/templates/slide-cta";
 import { WEB_TITLE_SLIDE, WEB_QUOTE_SLIDE } from "./content-sections";
 import { saveFile } from "./storage";
-import { getPostBySlug, type PostData } from "./posts";
+import { getPostByGroupAndLocale, type PostData } from "./posts";
 import type { Post } from "@/db/schema";
 import type { ColorPalette } from "@/lib/palettes";
 
 /**
- * Parse deterministic filename: {slug}-slide-{slideNumber}.png
+ * Parse deterministic filename: {translationGroup}/{locale}/slide-{slideNumber}.png
  */
-function parseFilename(filename: string): { slug: string; slideNumber: number } | null {
-  const match = filename.match(/^(.+)-slide-(\d+)\.png$/);
+function parseFilename(filename: string): { group: string; locale: string; slideNumber: number } | null {
+  const match = filename.match(/^(.+)\/([a-z]{2})\/slide-(\d+)\.png$/);
   if (!match) return null;
-  return { slug: match[1], slideNumber: Number(match[2]) };
+  return { group: match[1], locale: match[2], slideNumber: Number(match[3]) };
 }
 
 /**
  * Regenerate a single slide PNG by filename.
- * Filenames are deterministic: {slug}-slide-{slideNumber}.png
+ * Filenames are deterministic: {translationGroup}/{locale}/slide-{slideNumber}.png
  * Returns the PNG buffer if successful, null otherwise.
  */
 export async function regenerateSlide(filename: string): Promise<Buffer | null> {
   const parsed = parseFilename(filename);
   if (!parsed) return null;
 
-  const post = getPostBySlug(parsed.slug);
+  const post = getPostByGroupAndLocale(parsed.group, parsed.locale);
   if (!post) return null;
 
   const palette = getPalette(post.colorPalette || "sage");

@@ -9,8 +9,8 @@ topicTag: Psychology Life Hack
 headline: "{Negotiate} With Yourself"
 iconType: brain
 
-quote: "You do not rise to the level of your {goals}. You fall to the level of your {systems}."
-quoteAttribution: "— James Clear, Atomic Habits"
+quote: "Self-{compassion} is a far more effective motivator than {self-criticism}."
+quoteAttribution: "— Kelly McGonigal, The Willpower Instinct"
 quoteIconType: heart
 
 hashtags:

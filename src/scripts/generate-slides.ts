@@ -31,13 +31,14 @@ function postDataAsPost(post: PostData): Post {
   return post as unknown as Post;
 }
 
-function slideFilename(slug: string, slideNumber: number): string {
-  return `${slug}-slide-${slideNumber}.png`;
+function slideFilename(post: PostData, slideNumber: number): string {
+  const group = post.translationGroup || post.slug;
+  return `${group}/${post.locale}/slide-${slideNumber}.png`;
 }
 
 async function renderAndSave(
   jsx: ReactElement,
-  slug: string,
+  post: PostData,
   slideNumber: number,
   fonts: Fonts,
 ) {
@@ -45,7 +46,7 @@ async function renderAndSave(
   const resvg = new Resvg(svg, { fitTo: { mode: "width" as const, value: SLIDE_WIDTH } });
   const pngBuffer = Buffer.from(resvg.render().asPng());
 
-  const filename = slideFilename(slug, slideNumber);
+  const filename = slideFilename(post, slideNumber);
   await saveFile(filename, pngBuffer);
 
   const sizeKB = Math.round(pngBuffer.length / 1024);
@@ -58,31 +59,31 @@ async function generateForPost(post: PostData, fonts: Fonts) {
   const sections = post.contentSections;
 
   // Slide 1: Title
-  await renderAndSave(SlideTitleTemplate(p, palette), post.slug, 1, fonts);
+  await renderAndSave(SlideTitleTemplate(p, palette), post, 1, fonts);
 
   // Slides 2..N+1: Content (one per section)
   for (let i = 0; i < sections.length; i++) {
     const slideNum = i + 2;
-    await renderAndSave(SlideContentTemplate(p, palette, sections[i]), post.slug, slideNum, fonts);
+    await renderAndSave(SlideContentTemplate(p, palette, sections[i]), post, slideNum, fonts);
   }
 
   let nextNum = sections.length + 2;
 
   // Quote slide (only if quote is present)
   if (post.quote) {
-    await renderAndSave(SlideQuoteTemplate(p, palette), post.slug, nextNum, fonts);
+    await renderAndSave(SlideQuoteTemplate(p, palette), post, nextNum, fonts);
     nextNum++;
   }
 
   // CTA slide
-  await renderAndSave(SlideCTATemplate(p, palette), post.slug, nextNum, fonts);
+  await renderAndSave(SlideCTATemplate(p, palette), post, nextNum, fonts);
 
   // Slide 100: Web title variant
-  await renderAndSave(SlideTitleTemplate(p, palette, { arrowDown: true }), post.slug, WEB_TITLE_SLIDE, fonts);
+  await renderAndSave(SlideTitleTemplate(p, palette, { arrowDown: true }), post, WEB_TITLE_SLIDE, fonts);
 
   // Slide 101: Web quote variant (only if quote is present)
   if (post.quote) {
-    await renderAndSave(SlideQuoteTemplate(p, palette, { hideIcon: true }), post.slug, WEB_QUOTE_SLIDE, fonts);
+    await renderAndSave(SlideQuoteTemplate(p, palette, { hideIcon: true }), post, WEB_QUOTE_SLIDE, fonts);
   }
 }
 

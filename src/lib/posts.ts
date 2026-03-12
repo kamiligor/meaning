@@ -221,6 +221,16 @@ export function getPostBySlug(slug: string): PostData | null {
   return posts.get(slug) ?? null;
 }
 
+export function getPostByGroupAndLocale(group: string, locale: string): PostData | null {
+  const posts = loadAllPosts();
+  for (const post of posts.values()) {
+    if ((post.translationGroup || post.slug) === group && post.locale === locale) {
+      return post;
+    }
+  }
+  return null;
+}
+
 export function getAllPosts(opts?: {
   status?: "draft" | "published";
   locale?: string;
@@ -272,39 +282,47 @@ export interface SlideInfo {
 }
 
 /**
+ * Build slide path prefix for a post: {translationGroup}/{locale}
+ */
+function slideDir(post: PostData): string {
+  const group = post.translationGroup || post.slug;
+  return `${group}/${post.locale}`;
+}
+
+/**
  * Compute deterministic slide filenames for a post.
- * Slide naming: {slug}-slide-{slideNumber}.png
+ * Slide naming: {translationGroup}/{locale}/slide-{slideNumber}.png
  */
 export function getPostSlides(post: PostData): SlideInfo[] {
   const slides: SlideInfo[] = [];
-  const { slug, contentSections } = post;
+  const dir = slideDir(post);
 
   // Slide 1: Title
-  slides.push({ filename: `${slug}-slide-1.png`, slideNumber: 1 });
+  slides.push({ filename: `${dir}/slide-1.png`, slideNumber: 1 });
 
   // Slides 2..N+1: Content
-  for (let i = 0; i < contentSections.length; i++) {
+  for (let i = 0; i < post.contentSections.length; i++) {
     const num = i + 2;
-    slides.push({ filename: `${slug}-slide-${num}.png`, slideNumber: num });
+    slides.push({ filename: `${dir}/slide-${num}.png`, slideNumber: num });
   }
 
-  let nextNum = contentSections.length + 2;
+  let nextNum = post.contentSections.length + 2;
 
   // Quote (only if present)
   if (post.quote) {
-    slides.push({ filename: `${slug}-slide-${nextNum}.png`, slideNumber: nextNum });
+    slides.push({ filename: `${dir}/slide-${nextNum}.png`, slideNumber: nextNum });
     nextNum++;
   }
 
   // CTA
-  slides.push({ filename: `${slug}-slide-${nextNum}.png`, slideNumber: nextNum });
+  slides.push({ filename: `${dir}/slide-${nextNum}.png`, slideNumber: nextNum });
 
   // Web title variant (100)
-  slides.push({ filename: `${slug}-slide-${WEB_TITLE_SLIDE}.png`, slideNumber: WEB_TITLE_SLIDE });
+  slides.push({ filename: `${dir}/slide-${WEB_TITLE_SLIDE}.png`, slideNumber: WEB_TITLE_SLIDE });
 
   // Web quote variant (101, only if quote exists)
   if (post.quote) {
-    slides.push({ filename: `${slug}-slide-${WEB_QUOTE_SLIDE}.png`, slideNumber: WEB_QUOTE_SLIDE });
+    slides.push({ filename: `${dir}/slide-${WEB_QUOTE_SLIDE}.png`, slideNumber: WEB_QUOTE_SLIDE });
   }
 
   return slides;

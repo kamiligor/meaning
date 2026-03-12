@@ -4,9 +4,10 @@ import { regenerateSlide } from "@/lib/regenerate-slide";
 
 export async function GET(
   _request: NextRequest,
-  { params }: { params: Promise<{ filename: string }> }
+  { params }: { params: Promise<{ path: string[] }> }
 ) {
-  const { filename } = await params;
+  const { path } = await params;
+  const filename = path.join("/");
 
   // Try serving from filesystem first
   try {
