@@ -28,7 +28,8 @@ export function PostCard({ post, locale }: PostCardProps) {
         <CarouselViewer
           slides={post.slides
             .filter((s) => s.slideNumber < 100)
-            .sort((a, b) => a.slideNumber - b.slideNumber)}
+            .sort((a, b) => a.slideNumber - b.slideNumber)
+            .slice(0, -1)}
           alt={cleanHeadline}
         />
 

@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 import { getPostBySlug, getPublishedPosts, getPostSlides, getTranslations } from "@/lib/posts";
 import { ContentText } from "@/components/feed/content-text";
+import { CarouselViewer } from "@/components/feed/carousel-viewer";
 import { PostLangSwitcher } from "@/components/feed/post-lang-switcher";
-import { WEB_TITLE_SLIDE, WEB_QUOTE_SLIDE } from "@/lib/content-sections";
+import { WEB_QUOTE_SLIDE } from "@/lib/content-sections";
 import Image from "next/image";
 import { t, isLocale, type Locale } from "@/lib/i18n";
 import type { Metadata } from "next";
@@ -86,8 +87,7 @@ export default async function PostPage({ params }: PageProps) {
   const translations = getTranslations(post.translationGroup)
     .sort((a, b) => a.locale.localeCompare(b.locale));
 
-  // Find web variant slides
-  const webTitleSlide = postSlides.find((s) => s.slideNumber === WEB_TITLE_SLIDE) || postSlides[0];
+  // Find web quote slide
   const webQuoteSlide = postSlides.find((s) => s.slideNumber === WEB_QUOTE_SLIDE);
 
   // Parse references
@@ -116,27 +116,23 @@ export default async function PostPage({ params }: PageProps) {
       <LikeProvider initialLikedSlugs={liked ? [slug] : []} isLoggedIn={isLoggedIn}>
       <main className="max-w-lg mx-auto px-4 py-6">
         <article>
-          {/* Title image (web variant) */}
-          {webTitleSlide && (
-            <div className="relative">
-              <div className="aspect-[4/5] w-full rounded-2xl overflow-hidden">
-                <Image
-                  src={`/api/slides/${webTitleSlide.filename}`}
-                  alt={cleanHeadline}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-              {/* Like + Share */}
-              <div className="absolute bottom-[3.5rem] -right-4 md:-right-12 z-10">
-                <LikeButton slug={post.slug} locale={locale} />
-              </div>
-              <div className="absolute bottom-4 -right-4 md:-right-12 z-10">
-                <ShareButton slug={post.slug} title={cleanHeadline} locale={locale} variant="post" />
-              </div>
+          {/* Carousel — same slides as feed card (no web variants, no CTA) */}
+          <div className="relative">
+            <CarouselViewer
+              slides={postSlides
+                .filter((s) => s.slideNumber < 100)
+                .sort((a, b) => a.slideNumber - b.slideNumber)
+                .slice(0, -1)}
+              alt={cleanHeadline}
+            />
+            {/* Like + Share */}
+            <div className="absolute bottom-[3.5rem] -right-4 md:-right-12 z-10">
+              <LikeButton slug={post.slug} locale={locale} />
             </div>
-          )}
+            <div className="absolute bottom-4 -right-4 md:-right-12 z-10">
+              <ShareButton slug={post.slug} title={cleanHeadline} locale={locale} variant="post" />
+            </div>
+          </div>
 
           {/* Meta: topic */}
           <div className="mt-5">
