@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wstawaj o stałej porze | Just meaning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1.75;
+      color: #1E2A36;
+      background-color: #FAFBFC;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---- Site Header ---- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid #F1F4F6;
+    }
+
+    .site-header-inner {
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: 0 20px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .site-header-inner {
+        padding: 0 32px;
+        height: 64px;
+      }
+    }
+
+    .site-header-logo {
+      display: block;
+      height: 48px;
+      flex-shrink: 0;
+    }
+
+    @media (min-width: 768px) {
+      .site-header-logo { height: 56px; }
+    }
+
+    .site-header-logo img {
+      height: 100%;
+      width: auto;
+      display: block;
+    }
+
+    .site-header-nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .site-header-nav a {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8A99A8;
+      text-decoration: none;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+
+    .site-header-nav a:hover {
+      color: #1E2A36;
+    }
+
+    /* ---- Article ---- */
+    .article {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ---- Hero banner ---- */
+    .hero {
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      background: linear-gradient(135deg, #F1F4F6 0%, #e8f0eb 100%);
+      padding: 80px 24px 72px;
+      text-align: center;
+      margin-bottom: 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -40px;
+      width: 260px;
+      height: 260px;
+      background: rgba(123, 158, 140, 0.08);
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -50px;
+      width: 200px;
+      height: 200px;
+      background: rgba(107, 139, 164, 0.06);
+      border-radius: 50%;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #7B9E8C;
+      border: 1.5px solid #7B9E8C;
+      border-radius: 100px;
+      padding: 6px 18px;
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(2.5rem, 7vw, 3.5rem);
+      line-height: 1.15;
+      color: #1E2A36;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-title .accent {
+      color: #7B9E8C;
+      font-style: italic;
+    }
+
+    /* ---- Typography ---- */
+    h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 800;
+      font-size: clamp(1.35rem, 3.5vw, 1.65rem);
+      line-height: 1.3;
+      color: #1E2A36;
+      margin-top: 56px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      color: #4A5B6A;
+    }
+
+    .lead {
+      font-size: 20px;
+      font-weight: 500;
+      color: #1E2A36;
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+
+    strong {
+      font-weight: 600;
+      color: #1E2A36;
+    }
+
+    /* ---- Dark card ---- */
+    .dark-card {
+      background: #1E2A36;
+      border-radius: 16px;
+      padding: 48px 40px;
+      margin: 40px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dark-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 120px;
+      height: 120px;
+      background: rgba(123, 158, 140, 0.1);
+      border-radius: 0 16px 0 120px;
+    }
+
+    .dark-card-number {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 3.5rem;
+      color: rgba(123, 158, 140, 0.2);
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      line-height: 1;
+    }
+
+    .dark-card-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #8A99A8;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dark-card-label::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: #8A99A8;
+    }
+
+    .dark-card p {
+      font-family: 'Fraunces', serif;
+      font-weight: 400;
+      font-size: clamp(1.15rem, 3vw, 1.35rem);
+      line-height: 1.6;
+      color: #c8d1da;
+      margin-bottom: 20px;
+    }
+
+    .dark-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .dark-card .highlight {
+      background: rgba(123, 158, 140, 0.25);
+      color: #e8f0eb;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+
+    /* ---- Light callout ---- */
+    .callout {
+      background: #e8f0eb;
+      border-left: 4px solid #7B9E8C;
+      border-radius: 0 12px 12px 0;
+      padding: 24px 28px;
+      margin: 36px 0;
+    }
+
+    .callout p {
+      color: #1E2A36;
+      margin-bottom: 0;
+      font-weight: 500;
+    }
+
+    /* ---- Divider ---- */
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: #7B9E8C;
+      border: none;
+      border-radius: 2px;
+      margin: 48px 0;
+    }
+
+    /* ---- Quote block ---- */
+    .quote-block {
+      background: linear-gradient(135deg, #F1F4F6 0%, #e8f0eb 50%, #F1F4F6 100%);
+      border-radius: 16px;
+      padding: 56px 44px;
+      margin: 56px 0 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .quote-block::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(123, 158, 140, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .quote-block-text {
+      font-family: 'Fraunces', serif;
+      font-weight: 800;
+      font-size: clamp(1.4rem, 4vw, 1.85rem);
+      line-height: 1.4;
+      color: #1E2A36;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quote-block-text .accent {
+      color: #7B9E8C;
+      font-style: italic;
+    }
+
+    .quote-block-line {
+      width: 32px;
+      height: 3px;
+      background: #7B9E8C;
+      border-radius: 2px;
+      margin: 24px auto 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quote-block-attr {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #8A99A8;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ---- Site Footer ---- */
+    .site-footer {
+      border-top: 1px solid #F1F4F6;
+      padding: 32px 0;
+    }
+
+    .site-footer-inner {
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    @media (min-width: 768px) {
+      .site-footer-inner {
+        padding: 0 32px;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 0;
+      }
+    }
+
+    .site-footer-ig {
+      font-size: 12px;
+      color: #8A99A8;
+      text-decoration: none;
+      transition: color 0.2s;
+      order: 2;
+    }
+
+    @media (min-width: 768px) {
+      .site-footer-ig { order: 1; }
+    }
+
+    .site-footer-ig:hover {
+      color: #7B9E8C;
+    }
+
+    .site-footer-tagline {
+      font-size: 12px;
+      color: #8A99A8;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      order: 1;
+    }
+
+    @media (min-width: 768px) {
+      .site-footer-tagline { order: 2; }
+    }
+
+    .site-footer-lang {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      order: 3;
+    }
+
+    .site-footer-lang span {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 4px 8px;
+    }
+
+    .site-footer-lang .active {
+      color: #7B9E8C;
+    }
+
+    .site-footer-lang .inactive {
+      color: #8A99A8;
+    }
+
+    .site-footer-lang .sep {
+      color: #d1d8de;
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 600px) {
+      body { font-size: 16px; }
+      .lead { font-size: 18px; }
+      .article { padding: 0 16px 60px; }
+      .hero { padding: 56px 20px 48px; margin-bottom: 40px; }
+      .dark-card { padding: 36px 28px; border-radius: 12px; }
+      .dark-card-number { font-size: 2.5rem; top: 14px; right: 20px; }
+      .quote-block { padding: 40px 28px; border-radius: 12px; }
+      .callout { padding: 20px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== SITE HEADER ====== -->
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="/" class="site-header-logo" aria-label="just have a little meaning — strona główna">
+        <img src="/logo.svg" alt="just have a little meaning">
+      </a>
+      <nav class="site-header-nav">
+        <a href="/program">Program</a>
+        <a href="/misja">Misja</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ====== HERO ====== -->
+  <div class="hero">
+    <span class="hero-tag">Psychologiczny Life Hack</span>
+    <h1 class="hero-title">Wstawaj o<br><span class="accent">stałej</span> porze</h1>
+  </div>
+
+  <article class="article">
+
+    <p class="lead">
+      Jedna z najprostszych rzeczy, jakie możesz zrobić dla swojego zdrowia psychicznego? Wstawać codziennie o tej samej godzinie.
+    </p>
+
+    <p>
+      To brzmi zbyt prosto, żeby naprawdę działało. Ale im głębiej wchodzisz w badania nad snem i chronobiologią, tym jaśniej widać, że stała pora budzenia to jeden z najsilniejszych sygnałów, jakie możesz dać swojemu organizmowi.
+    </p>
+
+    <!-- ====== DARK CARD 01: Dlaczego to działa ====== -->
+
+    <div class="dark-card">
+      <span class="dark-card-number">01</span>
+      <div class="dark-card-label">Dlaczego to działa</div>
+      <p>
+        Budzenie się <span class="highlight">o tej samej porze</span> każdego dnia stabilizuje rytm dobowy, który jest kluczowy dla <span class="highlight">regulacji nastroju</span>.
+      </p>
+      <p>
+        Nieregularny sen utrudnia leczenie lęku i depresji, ponieważ twój układ emocjonalny potrzebuje <span class="highlight">przewidywalności</span>.
+      </p>
+    </div>
+
+    <h2>Rytm dobowy to znacznie więcej niż sen</h2>
+
+    <p>
+      Twój mózg operuje na wewnętrznym zegarze, który odmierza cykle niemal dokładnie 24-godzinne. Ten rytm dobowy nie kontroluje tylko tego, kiedy chce ci się spać. Wpływa na poziom kortyzolu, temperaturę ciała, funkcje odpornościowe, zdolność koncentracji i zarządzanie emocjami.
+    </p>
+
+    <p>
+      Kiedy ten zegar jest dobrze skalibrowany, wszystkie te systemy pracują zsynchronizowane. Kiedy się rozjeżdża, konsekwencje rozchodzą się szerzej, niż większość ludzi podejrzewa.
+    </p>
+
+    <p>
+      Kortyzol, na przykład, ma precyzyjną krzywą dobową. Jego szczyt tuż po przebudzeniu pomaga zmobilizować energię i wyostrzyć koncentrację na cały dzień. Kiedy godzina budzenia się zmienia nawet o godzinę-dwie z dnia na dzień, cała ta krzywa się przesuwa. Rezultat to nie tylko senność. Badania z chronobiologii pokazują, że rozregulowanie rytmu dobowego wiąże się ze <strong>zmniejszoną aktywnością kory przedczołowej</strong>, czyli tej części mózgu, która odpowiada za planowanie, kontrolę impulsów i regulację emocji.
+    </p>
+
+    <div class="callout">
+      <p>Osoby z nieregularnym rytmem snu doświadczają więcej lęku, gorszej regulacji emocji, wyższego poziomu kortyzolu rano i większych trudności z koncentracją.</p>
+    </div>
+
+    <hr class="divider">
+
+    <!-- ====== DARK CARD 02: Czego nie nadrobisz ====== -->
+
+    <h2>Czego nie nadrobisz</h2>
+
+    <div class="dark-card">
+      <span class="dark-card-number">02</span>
+      <div class="dark-card-label">Czego nie nadrobisz</div>
+      <p>
+        Kiedy wstajesz o różnych porach, twój rytm dobowy się rozjeżdża, a kawa jedynie <span class="highlight">maskuje zmęczenie</span>, nie naprawiając przyczyny.
+      </p>
+      <p>
+        Najważniejszy krok to wrócić do <span class="highlight">stałej pory wstawania</span>. To najsilniejszy sygnał, który pomaga zresetować twój zegar biologiczny.
+      </p>
+    </div>
+
+    <p>
+      Badacze opisują zjawisko zwane "social jetlag". To różnica między twoim naturalnym rytmem biologicznym a harmonogramem, jaki narzucasz sobie w ciągu tygodnia. Nawet jeśli nie pracujesz na zmiany nocne, przesuwanie budzika w weekendy wystarczy, żeby twój wewnętrzny zegar się rozjechał.
+    </p>
+
+    <p>
+      Skutki? Gorszy nastrój, więcej objawów depresyjnych, trudności z regulacją emocji. Szlaki serotoninowe i dopaminowe, które odpowiadają za nastrój, potrzebują stałego rytmu, żeby funkcjonować prawidłowo. To nie znaczy, że nieregularny sen powoduje depresję, ale związek jest obustronny: zły sen destabilizuje nastrój, a zaburzenia nastroju destabilizują sen. Stała pora budzenia to jeden z najprostszych sposobów, żeby przerwać to koło.
+    </p>
+
+    <hr class="divider">
+
+    <!-- ====== SEKCJA 3: Co z tym zrobić ====== -->
+
+    <h2>Co z tym zrobić</h2>
+
+    <p>
+      Najskuteczniejsza zmiana jest prostsza, niż większość ludzi myśli. <strong>Ustaw budzik na tę samą godzinę każdego dnia</strong>, włącznie z weekendami. Nie "mniej więcej tę samą". Dokładnie tę samą. Ten jeden punkt odniesienia daje twojemu zegarowi biologicznemu stabilny sygnał, wokół którego może się zorganizować.
+    </p>
+
+    <p>
+      Zacznij od pory wstawania, nie od pory kładzenia się. Próba zmiany obu naraz jest trudniejsza i mniej potrzebna. Twoje ciało naturalnie zacznie przesuwać porę zasypiania, kiedy będzie miało stabilny poranny sygnał.
+    </p>
+
+    <p>
+      Dodatkowy wzmacniacz: <strong>jasne światło zaraz po przebudzeniu</strong>. Poranne światło tłumi resztkowe melatoniny i pomaga organizmowi szybciej wejść w tryb dzienny. Wystarczy kilka minut przy oknie albo krótki spacer.
+    </p>
+
+    <p>
+      Po kilku tygodniach stabilnego rytmu różnica jest odczuwalna. Lepszy nastrój, łatwiejsze poranki, więcej energii w ciągu dnia. To nie magia. To fizjologia.
+    </p>
+
+    <!-- ====== CYTAT ====== -->
+
+    <div class="quote-block">
+      <p class="quote-block-text">
+        Sen to <span class="accent">najlepsza</span> rzecz, jaką możesz zrobić, żeby każdego dnia <span class="accent">zresetować</span> mózg i ciało.
+      </p>
+      <div class="quote-block-line"></div>
+      <p class="quote-block-attr">Matthew Walker, Dlaczego Śpimy</p>
+    </div>
+
+  </article>
+
+  <!-- ====== SITE FOOTER ====== -->
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <a href="https://instagram.com/justhavealittlemeaning" target="_blank" rel="noopener noreferrer" class="site-footer-ig">
+        @justhavealittlemeaning
+      </a>
+      <p class="site-footer-tagline">Just have a little meaning</p>
+      <div class="site-footer-lang">
+        <span class="inactive">EN</span>
+        <span class="sep">|</span>
+        <span class="active">PL</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
