@@ -24,7 +24,6 @@ hashtags:
   - "#meaning"
   - "#mentalhealth"
 
-colorPalette: warm
 
 references:
   - title: "Thinking, Fast and Slow"

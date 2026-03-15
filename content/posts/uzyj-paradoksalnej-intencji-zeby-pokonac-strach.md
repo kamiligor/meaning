@@ -26,7 +26,6 @@ hashtags:
   - "#logoterapia"
 handleBio: "psychologia · life hacki · zdrowie psychiczne"
 
-colorPalette: slate
 
 references:
   - title: "Człowiek w poszukiwaniu sensu"

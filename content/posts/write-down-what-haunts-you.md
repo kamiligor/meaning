@@ -24,7 +24,6 @@ hashtags:
   - "#mentalhealth"
   - "#memories"
 
-colorPalette: slate
 
 references:
   - title: "Beyond Order: 12 More Rules for Life"

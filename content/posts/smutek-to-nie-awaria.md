@@ -26,7 +26,6 @@ hashtags:
   - "#zdrowiemental"
 handleBio: "psychologia · life hacki · zdrowie psychiczne"
 
-colorPalette: lavender
 
 references:
   - title: "Good Reasons for Bad Feelings"

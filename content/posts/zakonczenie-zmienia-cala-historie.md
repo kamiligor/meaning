@@ -26,7 +26,6 @@ hashtags:
   - "#zdrowiemental"
 handleBio: "psychologia · life hacki · zdrowie psychiczne"
 
-colorPalette: warm
 
 references:
   - title: "Pułapki myślenia"

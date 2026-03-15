@@ -25,7 +25,6 @@ hashtags:
   - "#porannarutyna"
 handleBio: "psychologia · life hacki · zdrowie psychiczne"
 
-colorPalette: warm
 
 references:
   - title: "How Not to Diet"

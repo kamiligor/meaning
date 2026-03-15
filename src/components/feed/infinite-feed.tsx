@@ -8,6 +8,7 @@ import { NewsletterForm } from "./newsletter-form";
 import { LikeProvider } from "./like-context";
 import { t, type Locale } from "@/lib/i18n";
 import { CATEGORIES, getCategoryUrl, categoryKeyFromPath } from "@/lib/categories";
+import { getPalette } from "@/lib/palettes";
 import { cn } from "@/lib/utils";
 
 interface Post {
@@ -90,28 +91,33 @@ export function InfiniteFeed({ initialPosts, initialHasMore, locale, isLoggedIn 
               <button
                 onClick={() => handleCategoryClick(null)}
                 className={cn(
-                  "shrink-0 px-3.5 py-1.5 rounded-full text-[13px] font-medium transition-colors cursor-pointer",
+                  "shrink-0 px-3 py-1 rounded-full text-[13px] font-medium transition-colors cursor-pointer border-2",
                   category === null
-                    ? "bg-[#7B9E8C] text-white"
-                    : "bg-[#F0F2F4] text-[#5A6A78] hover:bg-[#E4E8EB]"
+                    ? ""
+                    : "border-transparent bg-[#F0F2F4] text-[#5A6A78] hover:bg-[#E4E8EB]"
                 )}
+                style={category === null ? { backgroundColor: "#F0F2F4", borderColor: "#1E2A36", color: "#1E2A36" } : undefined}
               >
                 {d.categoryAll}
               </button>
-              {CATEGORIES.map((cat) => (
-                <button
-                  key={cat.key}
-                  onClick={() => handleCategoryClick(cat.key)}
-                  className={cn(
-                    "shrink-0 px-3.5 py-1.5 rounded-full text-[13px] font-medium transition-colors cursor-pointer",
-                    category === cat.key
-                      ? "bg-[#7B9E8C] text-white"
-                      : "bg-[#F0F2F4] text-[#5A6A78] hover:bg-[#E4E8EB]"
-                  )}
-                >
-                  {locale === "pl" ? cat.pl.label : cat.en.label}
-                </button>
-              ))}
+              {CATEGORIES.map((cat) => {
+                const palette = getPalette(cat.palette);
+                return (
+                  <button
+                    key={cat.key}
+                    onClick={() => handleCategoryClick(cat.key)}
+                    className={cn(
+                      "shrink-0 px-3 py-1 rounded-full text-[13px] font-medium transition-colors cursor-pointer border-2",
+                      category === cat.key
+                        ? ""
+                        : "border-transparent bg-[#F0F2F4] text-[#5A6A78] hover:bg-[#E4E8EB]"
+                    )}
+                    style={category === cat.key ? { backgroundColor: palette.primaryPale, borderColor: palette.primary, color: palette.primary } : undefined}
+                  >
+                    {locale === "pl" ? cat.pl.label : cat.en.label}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>

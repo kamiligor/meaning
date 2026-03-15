@@ -24,7 +24,6 @@ hashtags:
   - "#action"
   - "#mentalhealth"
 
-colorPalette: warm
 
 references:
   - title: "Self-Efficacy: The Exercise of Control"

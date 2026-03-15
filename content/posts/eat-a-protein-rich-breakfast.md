@@ -22,7 +22,6 @@ hashtags:
   - "#mentalhealth"
   - "#morningroutine"
 
-colorPalette: warm
 
 references:
   - title: "How Not to Diet"

@@ -24,7 +24,6 @@ hashtags:
   - "#meaning"
   - "#mentalhealth"
 
-colorPalette: lavender
 
 references:
   - title: "Man's Search for Meaning"

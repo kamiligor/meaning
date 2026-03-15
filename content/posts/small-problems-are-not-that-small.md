@@ -24,7 +24,6 @@ hashtags:
   - "#stress"
   - "#mentalhealth"
 
-colorPalette: slate
 
 references:
   - title: "When the Body Says No"

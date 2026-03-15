@@ -23,7 +23,6 @@ hashtags:
   - "#mindset"
   - "#innerwork"
 
-colorPalette: lavender
 
 references:
   - title: "Thinking, Fast and Slow"

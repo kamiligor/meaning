@@ -26,7 +26,6 @@ hashtags:
   - "#zdrowiemental"
 handleBio: "psychologia · life hacki · zdrowie psychiczne"
 
-colorPalette: slate
 
 references:
   - title: "Kiedy ciało mówi nie"

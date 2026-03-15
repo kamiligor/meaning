@@ -24,7 +24,6 @@ hashtags:
   - "#relationships"
   - "#mentalhealth"
 
-colorPalette: warm
 
 references:
   - title: "12 Rules for Life"

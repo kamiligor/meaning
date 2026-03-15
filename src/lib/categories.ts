@@ -2,6 +2,7 @@ import type { Locale } from "./i18n";
 
 export interface CategoryDef {
   key: string;
+  palette: string;
   en: { slug: string; label: string };
   pl: { slug: string; label: string };
 }
@@ -9,26 +10,31 @@ export interface CategoryDef {
 export const CATEGORIES: CategoryDef[] = [
   {
     key: "habits-routines",
+    palette: "warm",
     en: { slug: "habits-routines", label: "Habits" },
     pl: { slug: "nawyki-i-rutyny", label: "Nawyki" },
   },
   {
     key: "emotional-intelligence",
+    palette: "lavender",
     en: { slug: "emotional-intelligence", label: "Emotions" },
     pl: { slug: "inteligencja-emocjonalna", label: "Emocje" },
   },
   {
     key: "mindset-motivation",
+    palette: "rose",
     en: { slug: "mindset-motivation", label: "Mindset" },
     pl: { slug: "nastawienie-i-motywacja", label: "Nastawienie" },
   },
   {
     key: "stress-resilience",
+    palette: "slate",
     en: { slug: "stress-resilience", label: "Resilience" },
     pl: { slug: "stres-i-odpornosc", label: "Odporność" },
   },
   {
     key: "meaning-purpose",
+    palette: "sage",
     en: { slug: "meaning-purpose", label: "Purpose" },
     pl: { slug: "sens-i-cel", label: "Sens" },
   },

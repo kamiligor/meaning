@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { WEB_TITLE_SLIDE, WEB_QUOTE_SLIDE, type ContentSection } from "./content-sections";
+import { getCategoryByKey } from "./categories";
 
 export interface PostReference {
   title: string;
@@ -175,7 +176,7 @@ function parsePostFile(filePath: string): PostData | null {
       hashtags,
       handleBio: data.handleBio ?? "psychology \u00B7 life hacks \u00B7 mental health",
 
-      colorPalette: data.colorPalette ?? "sage",
+      colorPalette: getCategoryByKey(data.category)?.palette ?? data.colorPalette ?? "sage",
       logoVariant: data.logoVariant ?? "light",
 
       contentSections: slideSections,

@@ -75,6 +75,21 @@ const PALETTES: ColorPalette[] = [
     textMid: "#4A4560",
     textLight: "#8A86A0",
   },
+  {
+    id: "rose",
+    name: "Dusty Rose",
+    primary: "#B0879B",
+    primaryLight: "#CBA8B6",
+    primaryPale: "#F2E8ED",
+    secondary: "#7B9E8C",
+    secondaryLight: "#a3c4b3",
+    secondaryPale: "#e8f0eb",
+    bgWhite: "#FCFAFB",
+    bgCool: "#F5F1F3",
+    textDark: "#2E1A24",
+    textMid: "#5C4552",
+    textLight: "#9A8690",
+  },
 ];
 
 const paletteMap = new Map(PALETTES.map((p) => [p.id, p]));

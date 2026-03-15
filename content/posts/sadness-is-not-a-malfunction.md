@@ -24,7 +24,6 @@ hashtags:
   - "#sadness"
   - "#mentalhealth"
 
-colorPalette: lavender
 
 references:
   - title: "Good Reasons for Bad Feelings"

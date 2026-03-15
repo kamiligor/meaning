@@ -24,7 +24,6 @@ hashtags:
   - "#mindset"
   - "#logotherapy"
 
-colorPalette: slate
 
 references:
   - title: "Man's Search for Meaning"

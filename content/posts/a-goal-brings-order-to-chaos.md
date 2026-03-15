@@ -24,7 +24,6 @@ hashtags:
   - "#anxiety"
   - "#mentalhealth"
 
-colorPalette: slate
 
 references:
   - title: "12 Rules for Life"

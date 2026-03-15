@@ -26,7 +26,6 @@ hashtags:
   - "#zdrowiemental"
 handleBio: "psychologia · life hacki · zdrowie psychiczne"
 
-colorPalette: lavender
 
 references:
   - title: "Człowiek w poszukiwaniu sensu"

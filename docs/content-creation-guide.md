@@ -84,8 +84,6 @@ hashtags:
   - "#temat"
 handleBio: "psychologia · life hacki · zdrowie psychiczne"  # TYLKO PL
 
-colorPalette: sage                        # sage | slate | warm | lavender (opcjonalne)
-
 references:
   - title: "Tytuł książki"
     author: "Autor"
@@ -119,11 +117,16 @@ references:
 **Tagi (`tags`):**
 `sleep`, `anxiety`, `nutrition`, `self-compassion`, `motivation`, `well-being`, `expressive-writing`, `social-connection`, `emotional-regulation`, `boundaries`, `goal-setting`, `self-efficacy`
 
-**Dobór `colorPalette`:**
-- `warm` — energia, odżywianie, poranna rutyna
-- `slate` — lęk, techniki poznawcze
-- `lavender` — samoregulacja, współczucie, relacja z sobą
-- `sage` — natura, spokój, uważność
+**Paleta kolorów:**
+Paleta wynika automatycznie z kategorii (`category`). Nie ustawiaj `colorPalette` ręcznie.
+
+| Kategoria | Paleta | Kolor |
+|---|---|---|
+| `habits-routines` | warm | terracotta |
+| `emotional-intelligence` | lavender | fiolet |
+| `mindset-motivation` | sage | zieleń |
+| `stress-resilience` | slate | niebieski |
+| `meaning-purpose` | amber | złoto |
 
 **Dobór `iconType`:**
 - `brain` — psychologia, techniki poznawcze

@@ -26,7 +26,6 @@ hashtags:
   - "#pracawewnetrzna"
 handleBio: "psychologia · life hacki · zdrowie psychiczne"
 
-colorPalette: lavender
 
 references:
   - title: "Pułapki myślenia"

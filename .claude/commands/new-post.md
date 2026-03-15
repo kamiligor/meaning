@@ -146,8 +146,6 @@ hashtags:
   - "#tag4"
 handleBio: "<bio text>"  # omit for default
 
-colorPalette: <sage|slate|warm|lavender>  # omit for default (sage)
-
 references:
   - title: "Book Title"
     author: "Author Name"
@@ -182,7 +180,7 @@ Instagram caption (150-300 words).
 - **web sections** (no marker): expanded content for justmeaning.com, no `{curly braces}`
 - **quote**: use `{curly braces}` for 1-2 accent words
 - **`---` separator**: content after it = Instagram caption (not shown on website)
-- **colorPalette**: sage (green), slate (blue), warm (terracotta), lavender (purple)
+- **colorPalette**: derived automatically from `category` (no need to set manually)
 
 ## Translations / translationGroup
 
