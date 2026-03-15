@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
+import { createClient } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
 
 export async function GET(request: NextRequest) {
@@ -59,6 +60,34 @@ export async function GET(request: NextRequest) {
         disclaimer_accepted_at: new Date().toISOString(),
       });
     }
+  }
+
+  // Payment cookie check — dev flow (simulate-payment endpoint) or future real payment processor.
+  // Must run BEFORE redirect so the cookie is consumed in the same request cycle.
+  const paymentCookie = cookieStore.get("payment_completed");
+  if (paymentCookie?.value === "true" && user) {
+    const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    if (serviceRoleKey) {
+      const supabaseAdmin = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        serviceRoleKey,
+        { auth: { autoRefreshToken: false, persistSession: false } }
+      );
+
+      await supabaseAdmin
+        .from("user_profiles")
+        .update({ has_paid: true, paid_at: new Date().toISOString() })
+        .eq("user_id", user.id);
+    }
+
+    // Remove the cookie regardless of whether the DB update succeeded,
+    // to avoid processing it a second time.
+    cookieStore.set("payment_completed", "", {
+      httpOnly: true,
+      maxAge: 0,
+      path: "/",
+      sameSite: "lax",
+    });
   }
 
   return NextResponse.redirect(new URL(next, request.url));
