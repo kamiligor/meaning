@@ -3,6 +3,10 @@ slug: drobne-problemy-nie-sa-takie-drobne
 status: published
 locale: pl
 translationGroup: small-problems-are-not-that-small
+category: stress-resilience
+tags:
+  - boundaries
+  - anxiety
 publishedAt: "2026-03-15 12:00:00"
 
 topicTag: "Psychologiczny Life Hack"

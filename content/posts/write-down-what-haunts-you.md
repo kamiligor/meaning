@@ -3,6 +3,10 @@ slug: write-down-what-haunts-you
 status: published
 locale: en
 translationGroup: write-down-what-haunts-you
+category: emotional-intelligence
+tags:
+  - expressive-writing
+  - emotional-regulation
 publishedAt: "2026-03-14 20:00:00"
 
 topicTag: "Psychology Life Hack"

@@ -3,6 +3,10 @@ slug: confidence-is-built-by-doing
 status: published
 locale: en
 translationGroup: confidence-is-built-by-doing
+category: mindset-motivation
+tags:
+  - self-efficacy
+  - motivation
 publishedAt: "2026-03-15 10:00:00"
 
 topicTag: "Psychology Life Hack"

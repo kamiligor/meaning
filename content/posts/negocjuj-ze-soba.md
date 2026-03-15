@@ -3,6 +3,10 @@ slug: negocjuj-ze-soba
 status: published
 locale: pl
 translationGroup: negotiate-with-yourself
+category: mindset-motivation
+tags:
+  - self-compassion
+  - motivation
 publishedAt: "2026-02-15 20:56:35"
 
 topicTag: Psychologiczny Life Hack

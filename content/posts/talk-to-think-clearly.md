@@ -3,6 +3,10 @@ slug: talk-to-think-clearly
 status: published
 locale: en
 translationGroup: talk-to-think-clearly
+category: emotional-intelligence
+tags:
+  - social-connection
+  - emotional-regulation
 publishedAt: "2026-03-14 22:00:00"
 
 topicTag: "Psychology Life Hack"

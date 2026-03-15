@@ -123,6 +123,10 @@ slug: <kebab-case slug from headline>
 status: published
 locale: <en or pl>
 translationGroup: <english slug to link translations>
+category: <habits-routines|emotional-intelligence|mindset-motivation|stress-resilience|meaning-purpose>
+tags:
+  - <tag1>
+  - <tag2>
 publishedAt: "<YYYY-MM-DD>"
 
 topicTag: <short category, e.g. "Psychology Life Hack">

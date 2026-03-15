@@ -3,6 +3,10 @@ slug: stop-chasing-happiness
 status: published
 locale: en
 translationGroup: stop-chasing-happiness
+category: meaning-purpose
+tags:
+  - well-being
+  - emotional-regulation
 publishedAt: "2026-03-14 18:00:00"
 
 topicTag: "Psychology Life Hack"

@@ -3,6 +3,10 @@ slug: cel-porzadkuje-chaos
 status: published
 locale: pl
 translationGroup: a-goal-brings-order-to-chaos
+category: meaning-purpose
+tags:
+  - goal-setting
+  - anxiety
 publishedAt: "2026-03-15 14:00:00"
 
 topicTag: "Psychologiczny Life Hack"

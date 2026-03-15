@@ -14,6 +14,7 @@ import { LikeButton } from "@/components/feed/like-button";
 import { LikeProvider } from "@/components/feed/like-context";
 import { SiteHeader } from "@/components/site-header";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { getCategoryUrl, getCategoryLabel } from "@/lib/categories";
 
 export async function generateStaticParams() {
   const allPosts = getPublishedPosts("en").concat(getPublishedPosts("pl"));
@@ -116,6 +117,17 @@ export default async function PostPage({ params }: PageProps) {
       <LikeProvider initialLikedSlugs={liked ? [slug] : []} isLoggedIn={isLoggedIn}>
       <main className="max-w-lg mx-auto px-4 py-6">
         <article>
+          {/* Breadcrumb */}
+          {post.category && (
+            <nav className="mb-4 text-[12px] text-[#8A99A8]" aria-label="Breadcrumb">
+              <Link href={getCategoryUrl(post.category, locale)} className="hover:text-[#7B9E8C] transition-colors">
+                {getCategoryLabel(post.category, locale)}
+              </Link>
+              <span className="mx-1.5 text-[#d1d8de]">/</span>
+              <span className="text-[#b5bfc9]">{cleanHeadline}</span>
+            </nav>
+          )}
+
           {/* Carousel — same slides as feed card (no web variants, no CTA) */}
           <div className="relative">
             <CarouselViewer

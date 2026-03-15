@@ -3,6 +3,10 @@ slug: small-problems-are-not-that-small
 status: published
 locale: en
 translationGroup: small-problems-are-not-that-small
+category: stress-resilience
+tags:
+  - boundaries
+  - anxiety
 publishedAt: "2026-03-15 12:00:00"
 
 topicTag: "Psychology Life Hack"

@@ -3,6 +3,10 @@ slug: wstawaj-o-stalej-porze
 status: published
 locale: pl
 translationGroup: keep-a-consistent-wake-up-time
+category: habits-routines
+tags:
+  - sleep
+  - emotional-regulation
 publishedAt: "2026-02-15 20:51:18"
 
 topicTag: Psychologiczny Life Hack

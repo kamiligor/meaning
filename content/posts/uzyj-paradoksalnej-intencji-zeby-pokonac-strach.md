@@ -3,6 +3,10 @@ slug: uzyj-paradoksalnej-intencji-zeby-pokonac-strach
 status: published
 locale: pl
 translationGroup: use-paradoxical-intention-to-beat-fear
+category: stress-resilience
+tags:
+  - anxiety
+  - motivation
 publishedAt: "2026-02-15 21:01:01"
 
 topicTag: Hack na Lęk

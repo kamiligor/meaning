@@ -3,6 +3,10 @@ slug: pewnosc-siebie-buduje-sie-przez-dzialanie
 status: published
 locale: pl
 translationGroup: confidence-is-built-by-doing
+category: mindset-motivation
+tags:
+  - self-efficacy
+  - motivation
 publishedAt: "2026-03-15 10:00:00"
 
 topicTag: "Psychologiczny Life Hack"

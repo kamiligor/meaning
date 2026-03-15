@@ -60,6 +60,12 @@ const dict = {
     favorites: "Favorites",
     favoritesEmpty: "No favorites yet",
     favoritesEmptySubtitle: "Tap the heart on posts you like to save them here",
+    categoryAll: "All",
+    categoryHabits: "Habits",
+    categoryEmotions: "Emotions",
+    categoryMindset: "Mindset",
+    categoryResilience: "Resilience",
+    categoryMeaning: "Purpose",
   },
   pl: {
     siteTitle: "just have a little meaning",
@@ -118,6 +124,12 @@ const dict = {
     favorites: "Ulubione",
     favoritesEmpty: "Brak ulubionych",
     favoritesEmptySubtitle: "Kliknij serduszko przy poście, żeby zapisać go tutaj",
+    categoryAll: "Wszystkie",
+    categoryHabits: "Nawyki",
+    categoryEmotions: "Emocje",
+    categoryMindset: "Nastawienie",
+    categoryResilience: "Odporność",
+    categoryMeaning: "Sens",
   },
 };
 

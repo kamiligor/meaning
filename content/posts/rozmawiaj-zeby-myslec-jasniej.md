@@ -3,6 +3,10 @@ slug: rozmawiaj-zeby-myslec-jasniej
 status: published
 locale: pl
 translationGroup: talk-to-think-clearly
+category: emotional-intelligence
+tags:
+  - social-connection
+  - emotional-regulation
 publishedAt: "2026-03-14 22:00:00"
 
 topicTag: "Psychologiczny Life Hack"

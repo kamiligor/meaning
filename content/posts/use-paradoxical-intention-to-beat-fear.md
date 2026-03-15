@@ -3,6 +3,10 @@ slug: use-paradoxical-intention-to-beat-fear
 status: published
 locale: en
 translationGroup: use-paradoxical-intention-to-beat-fear
+category: stress-resilience
+tags:
+  - anxiety
+  - motivation
 publishedAt: "2026-02-15 20:11:00"
 
 topicTag: Anxiety Hack

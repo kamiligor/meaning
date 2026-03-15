@@ -3,6 +3,10 @@ slug: eat-a-protein-rich-breakfast
 status: published
 locale: en
 translationGroup: eat-a-protein-rich-breakfast
+category: habits-routines
+tags:
+  - nutrition
+  - anxiety
 publishedAt: "2026-02-15 19:32:41"
 
 topicTag: Stress & Nutrition

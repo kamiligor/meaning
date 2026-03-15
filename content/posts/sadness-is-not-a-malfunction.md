@@ -3,6 +3,10 @@ slug: sadness-is-not-a-malfunction
 status: published
 locale: en
 translationGroup: sadness-is-not-a-malfunction
+category: emotional-intelligence
+tags:
+  - emotional-regulation
+  - self-compassion
 publishedAt: "2026-03-14 23:00:00"
 
 topicTag: "Psychology Life Hack"

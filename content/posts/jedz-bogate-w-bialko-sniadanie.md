@@ -3,6 +3,10 @@ slug: jedz-bogate-w-bialko-sniadanie
 status: published
 locale: pl
 translationGroup: eat-a-protein-rich-breakfast
+category: habits-routines
+tags:
+  - nutrition
+  - anxiety
 publishedAt: "2026-02-15 20:52:43"
 
 topicTag: Stres i Odżywianie

@@ -61,6 +61,10 @@ slug: nazwa-po-polsku-kebab-case        # PL: polski slug; EN: angielski slug
 status: published
 locale: pl                                # "pl" lub "en"
 translationGroup: english-slug-name       # ZAWSZE angielski, łączy tłumaczenia
+category: habits-routines                 # 1 per post, identyczny w parze EN/PL
+tags:                                      # wiele per post, EN slugi
+  - sleep
+  - emotional-regulation
 publishedAt: "YYYY-MM-DD HH:MM:SS"
 
 topicTag: "Psychologiczny Life Hack"      # PL: "Psychologiczny Life Hack" / EN: "Psychology Life Hack"
@@ -101,6 +105,19 @@ references:
 | `handleBio` | "psychologia · life hacki · zdrowie psychiczne" | brak |
 | `topicTag` | "Psychologiczny Life Hack", "Hack na Lęk", "Stres i Odżywianie" | "Psychology Life Hack", "Anxiety Hack", "Stress & Nutrition" |
 | `references` | Polskie tytuły książek (jeśli istnieją) | Oryginalne angielskie tytuły |
+
+**Kategorie (`category`):**
+
+| Slug | EN | PL |
+|------|----|----|
+| `habits-routines` | Habits & Routines | Nawyki i rutyny |
+| `emotional-intelligence` | Emotional Intelligence | Inteligencja emocjonalna |
+| `mindset-motivation` | Mindset & Motivation | Nastawienie i motywacja |
+| `stress-resilience` | Stress & Resilience | Stres i odporność |
+| `meaning-purpose` | Meaning & Purpose | Sens i cel |
+
+**Tagi (`tags`):**
+`sleep`, `anxiety`, `nutrition`, `self-compassion`, `motivation`, `well-being`, `expressive-writing`, `social-connection`, `emotional-regulation`, `boundaries`, `goal-setting`, `self-efficacy`
 
 **Dobór `colorPalette`:**
 - `warm` — energia, odżywianie, poranna rutyna

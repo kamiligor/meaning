@@ -14,6 +14,8 @@ export interface PostData {
   status: "draft" | "published";
   locale: string;
   translationGroup: string | null;
+  category: string | null;
+  tags: string[];
   publishedAt: string | null;
 
   // Title slide
@@ -156,6 +158,8 @@ function parsePostFile(filePath: string): PostData | null {
       status: data.status || "draft",
       locale: data.locale || "en",
       translationGroup: data.translationGroup || null,
+      category: data.category || null,
+      tags: Array.isArray(data.tags) ? data.tags : [],
       publishedAt: data.publishedAt || null,
 
       topicTag: data.topicTag,

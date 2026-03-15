@@ -6,8 +6,12 @@ export async function GET(request: NextRequest) {
   const offset = Number(searchParams.get("offset") || 0);
   const limit = Math.min(Number(searchParams.get("limit") || 10), 50);
   const locale = searchParams.get("locale") || "en";
+  const category = searchParams.get("category") || null;
 
-  const allPosts = getPublishedPosts(locale);
+  let allPosts = getPublishedPosts(locale);
+  if (category) {
+    allPosts = allPosts.filter((p) => p.category === category);
+  }
 
   const page = allPosts.slice(offset, offset + limit + 1);
   const hasMore = page.length > limit;

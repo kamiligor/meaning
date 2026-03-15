@@ -3,6 +3,10 @@ slug: keep-a-consistent-wake-up-time
 status: published
 locale: en
 translationGroup: keep-a-consistent-wake-up-time
+category: habits-routines
+tags:
+  - sleep
+  - emotional-regulation
 publishedAt: "2026-02-15 18:40:21"
 
 topicTag: Psychology Life Hack
