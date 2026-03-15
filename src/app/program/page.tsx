@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Shield, Lock, Clock, BookOpen } from "lucide-react";
+import { Shield, Lock, Clock, BookOpen, Check, Sparkles } from "lucide-react";
 import { ProgramHeader } from "@/components/program/program-header";
 
 export default function ProgramLandingPage() {
@@ -264,20 +264,36 @@ export default function ProgramLandingPage() {
           Ile to kosztuje
         </h2>
         <div className="max-w-md mx-auto">
-          <div className="bg-white border-2 border-[#7B9E8C] rounded-xl p-8 text-center">
-            <p className="text-sm text-[#7B9E8C] font-medium mb-2">Wczesny dostęp</p>
-            <p className="text-4xl font-bold text-[#1E2A36] mb-1">
-              29 PLN
+          <div className="relative bg-gradient-to-b from-[#f0f7f2] to-white border border-[#c5d8cc] rounded-2xl p-8 pt-10 text-center shadow-[0_4px_24px_rgba(123,158,140,0.12)]">
+            {/* Badge */}
+            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+              <span className="inline-flex items-center gap-1.5 bg-[#7B9E8C] text-white text-xs font-semibold px-4 py-1.5 rounded-full shadow-sm">
+                <Sparkles className="h-3.5 w-3.5" />
+                Wczesny dostęp
+              </span>
+            </div>
+
+            <p className="text-5xl font-bold text-[#1E2A36] mb-1">
+              29 <span className="text-2xl font-semibold">PLN</span>
             </p>
-            <p className="text-sm text-[#8A99A8] mb-6">
+            <p className="text-sm text-[#8A99A8] mb-8">
               Cena regularna: <span className="line-through">79 PLN</span>
             </p>
-            <ul className="space-y-2 text-sm text-[#4A5B6A] mb-6 text-left">
-              <li>Wszystkie 3 moduły (18 ćwiczeń, 10-15h pracy)</li>
-              <li>Szyfrowanie treści i autosave</li>
-              <li>Dożywotni dostęp, bez subskrypcji</li>
-              <li>Eksport do PDF</li>
+
+            <ul className="space-y-3 text-sm text-[#4A5B6A] mb-8 text-left">
+              {[
+                "Wszystkie 3 moduły (18 ćwiczeń, 10-15h pracy)",
+                "Szyfrowanie treści i autosave",
+                "Dożywotni dostęp, bez subskrypcji",
+                "Eksport do PDF",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2.5">
+                  <Check className="h-4 w-4 text-[#7B9E8C] shrink-0 mt-0.5" />
+                  <span>{item}</span>
+                </li>
+              ))}
             </ul>
+
             <Link href="/program/onboarding">
               <Button className="w-full text-base" size="lg">
                 Dołącz do programu
