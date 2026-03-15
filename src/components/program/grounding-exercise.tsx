@@ -4,13 +4,11 @@ import { Button } from "@/components/ui/button";
 
 interface GroundingExerciseProps {
   onDashboard: () => void;
-  onResources: () => void;
   onContinue: () => void;
 }
 
 export function GroundingExercise({
   onDashboard,
-  onResources,
   onContinue,
 }: GroundingExerciseProps) {
   return (
@@ -53,9 +51,6 @@ export function GroundingExercise({
         <div className="flex flex-col sm:flex-row gap-2">
           <Button onClick={onDashboard} variant="outline" className="flex-1">
             Wroc do dashboardu
-          </Button>
-          <Button onClick={onResources} variant="outline" className="flex-1">
-            Sprawdz zasoby wsparcia
           </Button>
           <Button onClick={onContinue} className="flex-1">
             Kontynuuj program

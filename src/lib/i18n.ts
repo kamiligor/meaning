@@ -65,7 +65,7 @@ const dict = {
     categoryEmotions: "Emotions",
     categoryMindset: "Mindset",
     categoryResilience: "Resilience",
-    categoryMeaning: "Purpose",
+    categoryMeaning: "Meaning",
   },
   pl: {
     siteTitle: "just have a little meaning",

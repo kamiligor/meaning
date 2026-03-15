@@ -1,0 +1,488 @@
+[  842245ms] [ERROR] ./src/app/program/layout.tsx:1:1
+Module not found: Can't resolve '@/components/program/safety-banner'
+> 1 | import { SafetyBanner } from "@/components/program/safety-banner";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | export const metadata = {
+  4 |   title: "The Life Writing Program | just have a little meaning",
+
+Import map: aliased to relative './src/components/program/safety-banner' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[  842294ms] [ERROR] ./src/app/program/layout.tsx:1:1
+Module not found: Can't resolve '@/components/program/safety-banner'
+> 1 | import { SafetyBanner } from "@/components/program/safety-banner";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | export const metadata = {
+  4 |   title: "The Life Writing Program | just have a little meaning",
+
+Import map: aliased to relative './src/components/program/safety-banner' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[  842295ms] [ERROR] ./src/app/program/layout.tsx:1:1
+Module not found: Can't resolve '@/components/program/safety-banner'
+> 1 | import { SafetyBanner } from "@/components/program/safety-banner";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | export const metadata = {
+  4 |   title: "The Life Writing Program | just have a little meaning",
+
+Import map: aliased to relative './src/components/program/safety-banner' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[  842497ms] [ERROR] ./src/app/program/layout.tsx:1:1
+Module not found: Can't resolve '@/components/program/safety-banner'
+> 1 | import { SafetyBanner } from "@/components/program/safety-banner";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | export const metadata = {
+  4 |   title: "The Life Writing Program | just have a little meaning",
+
+Import map: aliased to relative './src/components/program/safety-banner' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[  842877ms] [ERROR] ./src/app/program/layout.tsx:1:1
+Module not found: Can't resolve '@/components/program/safety-banner'
+> 1 | import { SafetyBanner } from "@/components/program/safety-banner";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | export const metadata = {
+  4 |   title: "The Life Writing Program | just have a little meaning",
+
+Import map: aliased to relative './src/components/program/safety-banner' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[  842880ms] [ERROR] ./src/app/program/layout.tsx:1:1
+Module not found: Can't resolve '@/components/program/safety-banner'
+> 1 | import { SafetyBanner } from "@/components/program/safety-banner";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | export const metadata = {
+  4 |   title: "The Life Writing Program | just have a little meaning",
+
+Import map: aliased to relative './src/components/program/safety-banner' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[  843373ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/program?_rsc=1i2st:0
+[  843466ms] [ERROR] ./src/app/program/layout.tsx:1:1
+Module not found: Can't resolve '@/components/program/safety-banner'
+> 1 | import { SafetyBanner } from "@/components/program/safety-banner";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | export const metadata = {
+  4 |   title: "The Life Writing Program | just have a little meaning",
+
+Import map: aliased to relative './src/components/program/safety-banner' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[  843518ms] [ERROR] ./src/app/program/layout.tsx:1:1
+Module not found: Can't resolve '@/components/program/safety-banner'
+> 1 | import { SafetyBanner } from "@/components/program/safety-banner";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | export const metadata = {
+  4 |   title: "The Life Writing Program | just have a little meaning",
+
+Import map: aliased to relative './src/components/program/safety-banner' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[  843589ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/program?_rsc=1i2st:0
+[  843754ms] [ERROR] ./src/app/program/layout.tsx:1:1
+Module not found: Can't resolve '@/components/program/safety-banner'
+> 1 | import { SafetyBanner } from "@/components/program/safety-banner";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | export const metadata = {
+  4 |   title: "The Life Writing Program | just have a little meaning",
+
+Import map: aliased to relative './src/components/program/safety-banner' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[  843820ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/program:0
+[  845436ms] Error: ./src/app/program/layout.tsx:1:1
+Module not found: Can't resolve '@/components/program/safety-banner'
+> 1 | import { SafetyBanner } from "@/components/program/safety-banner";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | export const metadata = {
+  4 |   title: "The Life Writing Program | just have a little meaning",
+
+Import map: aliased to relative './src/components/program/safety-banner' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./src/app/program/layout.tsx:1:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at Object.getCompilationErrors (file:///Applications/MAMP/htdocs/jh/node_modules/next/dist/server/dev/hot-reloader-turbopack.js:1008:59)
+    at DevBundlerService.getCompilationError (file:///Applications/MAMP/htdocs/jh/node_modules/next/dist/server/lib/dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file:///Applications/MAMP/htdocs/jh/node_modules/next/dist/server/dev/next-dev-server.js:706:42)
+    at DevServer.findPageComponents (file:///Applications/MAMP/htdocs/jh/node_modules/next/dist/server/dev/next-dev-server.js:676:43)
+    at async DevServer.renderErrorToResponseImpl (file:///Applications/MAMP/htdocs/jh/node_modules/next/dist/server/base-server.js:1733:26)
+[  850242ms] [ERROR] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <div className="space-y-2" data-orientation="vertical" onKeyDown={function handleEvent} ref={function}>
+      ...
+        <AccordionItemProvider scope={undefined} open={false} disabled={undefined} triggerId="radix-_R_6...">
+          <Collapsible data-orientation="vertical" data-state="closed" __scopeCollapsible={{...}} ...>
+            <CollapsibleProvider scope={{...}} disabled={undefined} contentId="radix-_R_1..." open={false} ...>
+              <Primitive.div data-state="closed" data-disabled={undefined} data-orientation="vertical" ...>
+                <div data-state="closed" data-disabled={undefined} data-orientation="vertical" className="bg-white b..." ...>
+                  ...
+                    <h3 data-orientation="vertical" data-state="closed" data-disabled={undefined} className="flex" ...>
+                      <AccordionTrigger ref={null} className={"flex fle..."}>
+                        <AccordionCollectionItemSlot scope={undefined}>
+                          <AccordionCollectionItemSlot.Slot data-radix-collection-item="" ref={function}>
+                            <AccordionCollectionItemSlot.SlotClone data-radix-collection-item="" ref={function}>
+                              <CollapsibleTrigger aria-disabled={undefined} data-orientation="vertical" ...>
+                                <Primitive.button type="button" aria-controls="radix-_R_1..." aria-expanded={false} ...>
+                                  <button
+                                    type="button"
++                                   aria-controls="radix-_R_16klrknelb_"
+-                                   aria-controls="radix-_R_4qklrknelb_"
+                                    aria-expanded={false}
+                                    data-state="closed"
+                                    data-disabled={undefined}
+                                    disabled={undefined}
+                                    aria-disabled={undefined}
+                                    data-orientation="vertical"
++                                   id="radix-_R_6klrknelb_"
+-                                   id="radix-_R_qklrknelb_"
+                                    className={"flex flex-1 items-center justify-between transition-all hover:underli..."}
+                                    data-radix-collection-item=""
+                                    onClick={function handleEvent}
+                                    ref={function}
+                                  >
+                  <_c4 className="text-[#4A5...">
+                    <AccordionContent ref={null} className="overflow-h...">
+                      <CollapsibleContent role="region" aria-labelledby="radix-_R_6..." data-orientation="vertical" ...>
+                        <Presence present={false}>
+                          <Primitive.div data-state="closed" data-disabled={undefined} id="radix-_R_1..." hidden={true} ...>
+                            <div
+                              data-state="closed"
+                              data-disabled={undefined}
++                             id="radix-_R_16klrknelb_"
+-                             id="radix-_R_4qklrknelb_"
+                              hidden={true}
+                              role="region"
++                             aria-labelledby="radix-_R_6klrknelb_"
+-                             aria-labelledby="radix-_R_qklrknelb_"
+                              data-orientation="vertical"
+                              className="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-..."
+                              style={{--radix-collapsible-content-height:undefined,--radix-collapsible-content-width:undefined, ...}}
+                              ref={function}
+                            >
+      ...
+        <AccordionItemProvider scope={undefined} open={false} disabled={undefined} triggerId="radix-_R_a...">
+          <Collapsible data-orientation="vertical" data-state="closed" __scopeCollapsible={{...}} ...>
+            <CollapsibleProvider scope={{...}} disabled={undefined} contentId="radix-_R_1..." open={false} ...>
+              <Primitive.div data-state="closed" data-disabled={undefined} data-orientation="vertical" ...>
+                <div data-state="closed" data-disabled={undefined} data-orientation="vertical" className="bg-white b..." ...>
+                  ...
+                    <h3 data-orientation="vertical" data-state="closed" data-disabled={undefined} className="flex" ...>
+                      <AccordionTrigger ref={null} className={"flex fle..."}>
+                        <AccordionCollectionItemSlot scope={undefined}>
+                          <AccordionCollectionItemSlot.Slot data-radix-collection-item="" ref={function}>
+                            <AccordionCollectionItemSlot.SlotClone data-radix-collection-item="" ref={function}>
+                              <CollapsibleTrigger aria-disabled={undefined} data-orientation="vertical" ...>
+                                <Primitive.button type="button" aria-controls="radix-_R_1..." aria-expanded={false} ...>
+                                  <button
+                                    type="button"
++                                   aria-controls="radix-_R_1aklrknelb_"
+-                                   aria-controls="radix-_R_5aklrknelb_"
+                                    aria-expanded={false}
+                                    data-state="closed"
+                                    data-disabled={undefined}
+                                    disabled={undefined}
+                                    aria-disabled={undefined}
+                                    data-orientation="vertical"
++                                   id="radix-_R_aklrknelb_"
+-                                   id="radix-_R_1aklrknelb_"
+                                    className={"flex flex-1 items-center justify-between transition-all hover:underli..."}
+                                    data-radix-collection-item=""
+                                    onClick={function handleEvent}
+                                    ref={function}
+                                  >
+                  <_c4 className="text-[#4A5...">
+                    <AccordionContent ref={null} className="overflow-h...">
+                      <CollapsibleContent role="region" aria-labelledby="radix-_R_a..." data-orientation="vertical" ...>
+                        <Presence present={false}>
+                          <Primitive.div data-state="closed" data-disabled={undefined} id="radix-_R_1..." hidden={true} ...>
+                            <div
+                              data-state="closed"
+                              data-disabled={undefined}
++                             id="radix-_R_1aklrknelb_"
+-                             id="radix-_R_5aklrknelb_"
+                              hidden={true}
+                              role="region"
++                             aria-labelledby="radix-_R_aklrknelb_"
+-                             aria-labelledby="radix-_R_1aklrknelb_"
+                              data-orientation="vertical"
+                              className="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-..."
+                              style={{--radix-collapsible-content-height:undefined,--radix-collapsible-content-width:undefined, ...}}
+                              ref={function}
+                            >
+      ...
+        <AccordionItemProvider scope={undefined} open={false} disabled={undefined} triggerId="radix-_R_e...">
+          <Collapsible data-orientation="vertical" data-state="closed" __scopeCollapsible={{...}} ...>
+            <CollapsibleProvider scope={{...}} disabled={undefined} contentId="radix-_R_1..." open={false} ...>
+              <Primitive.div data-state="closed" data-disabled={undefined} data-orientation="vertical" ...>
+                <div data-state="closed" data-disabled={undefined} data-orientation="vertical" className="bg-white b..." ...>
+                  ...
+                    <h3 data-orientation="vertical" data-state="closed" data-disabled={undefined} className="flex" ...>
+                      <AccordionTrigger ref={null} className={"flex fle..."}>
+                        <AccordionCollectionItemSlot scope={undefined}>
+                          <AccordionCollectionItemSlot.Slot data-radix-collection-item="" ref={function}>
+                            <AccordionCollectionItemSlot.SlotClone data-radix-collection-item="" ref={function}>
+                              <CollapsibleTrigger aria-disabled={undefined} data-orientation="vertical" ...>
+                                <Primitive.button type="button" aria-controls="radix-_R_1..." aria-expanded={false} ...>
+                                  <button
+                                    type="button"
++                                   aria-controls="radix-_R_1eklrknelb_"
+-                                   aria-controls="radix-_R_5qklrknelb_"
+                                    aria-expanded={false}
+                                    data-state="closed"
+                                    data-disabled={undefined}
+                                    disabled={undefined}
+                                    aria-disabled={undefined}
+                                    data-orientation="vertical"
++                                   id="radix-_R_eklrknelb_"
+-                                   id="radix-_R_1qklrknelb_"
+                                    className={"flex flex-1 items-center justify-between transition-all hover:underli..."}
+                                    data-radix-collection-item=""
+                                    onClick={function handleEvent}
+                                    ref={function}
+                                  >
+                  <_c4 className="text-[#4A5...">
+                    <AccordionContent ref={null} className="overflow-h...">
+                      <CollapsibleContent role="region" aria-labelledby="radix-_R_e..." data-orientation="vertical" ...>
+                        <Presence present={false}>
+                          <Primitive.div data-state="closed" data-disabled={undefined} id="radix-_R_1..." hidden={true} ...>
+                            <div
+                              data-state="closed"
+                              data-disabled={undefined}
++                             id="radix-_R_1eklrknelb_"
+-                             id="radix-_R_5qklrknelb_"
+                              hidden={true}
+                              role="region"
++                             aria-labelledby="radix-_R_eklrknelb_"
+-                             aria-labelledby="radix-_R_1qklrknelb_"
+                              data-orientation="vertical"
+                              className="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-..."
+                              style={{--radix-collapsible-content-height:undefined,--radix-collapsible-content-width:undefined, ...}}
+                              ref={function}
+                            >
+      ...
+        <AccordionItemProvider scope={undefined} open={false} disabled={undefined} triggerId="radix-_R_i...">
+          <Collapsible data-orientation="vertical" data-state="closed" __scopeCollapsible={{...}} ...>
+            <CollapsibleProvider scope={{...}} disabled={undefined} contentId="radix-_R_1..." open={false} ...>
+              <Primitive.div data-state="closed" data-disabled={undefined} data-orientation="vertical" ...>
+                <div data-state="closed" data-disabled={undefined} data-orientation="vertical" className="bg-white b..." ...>
+                  ...
+                    <h3 data-orientation="vertical" data-state="closed" data-disabled={undefined} className="flex" ...>
+                      <AccordionTrigger ref={null} className={"flex fle..."}>
+                        <AccordionCollectionItemSlot scope={undefined}>
+                          <AccordionCollectionItemSlot.Slot data-radix-collection-item="" ref={function}>
+                            <AccordionCollectionItemSlot.SlotClone data-radix-collection-item="" ref={function}>
+                              <CollapsibleTrigger aria-disabled={undefined} data-orientation="vertical" ...>
+                                <Primitive.button type="button" aria-controls="radix-_R_1..." aria-expanded={false} ...>
+                                  <button
+                                    type="button"
++                                   aria-controls="radix-_R_1iklrknelb_"
+-                                   aria-controls="radix-_R_6aklrknelb_"
+                                    aria-expanded={false}
+                                    data-state="closed"
+                                    data-disabled={undefined}
+                                    disabled={undefined}
+                                    aria-disabled={undefined}
+                                    data-orientation="vertical"
++                                   id="radix-_R_iklrknelb_"
+-                                   id="radix-_R_2aklrknelb_"
+                                    className={"flex flex-1 items-center justify-between transition-all hover:underli..."}
+                                    data-radix-collection-item=""
+                                    onClick={function handleEvent}
+                                    ref={function}
+                                  >
+                  <_c4 className="text-[#4A5...">
+                    <AccordionContent ref={null} className="overflow-h...">
+                      <CollapsibleContent role="region" aria-labelledby="radix-_R_i..." data-orientation="vertical" ...>
+                        <Presence present={false}>
+                          <Primitive.div data-state="closed" data-disabled={undefined} id="radix-_R_1..." hidden={true} ...>
+                            <div
+                              data-state="closed"
+                              data-disabled={undefined}
++                             id="radix-_R_1iklrknelb_"
+-                             id="radix-_R_6aklrknelb_"
+                              hidden={true}
+                              role="region"
++                             aria-labelledby="radix-_R_iklrknelb_"
+-                             aria-labelledby="radix-_R_2aklrknelb_"
+                              data-orientation="vertical"
+                              className="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-..."
+                              style={{--radix-collapsible-content-height:undefined,--radix-collapsible-content-width:undefined, ...}}
+                              ref={function}
+                            >
+      ...
+        <AccordionItemProvider scope={undefined} open={false} disabled={undefined} triggerId="radix-_R_m...">
+          <Collapsible data-orientation="vertical" data-state="closed" __scopeCollapsible={{...}} ...>
+            <CollapsibleProvider scope={{...}} disabled={undefined} contentId="radix-_R_1..." open={false} ...>
+              <Primitive.div data-state="closed" data-disabled={undefined} data-orientation="vertical" ...>
+                <div data-state="closed" data-disabled={undefined} data-orientation="vertical" className="bg-white b..." ...>
+                  ...
+                    <h3 data-orientation="vertical" data-state="closed" data-disabled={undefined} className="flex" ...>
+                      <AccordionTrigger ref={null} className={"flex fle..."}>
+                        <AccordionCollectionItemSlot scope={undefined}>
+                          <AccordionCollectionItemSlot.Slot data-radix-collection-item="" ref={function}>
+                            <AccordionCollectionItemSlot.SlotClone data-radix-collection-item="" ref={function}>
+                              <CollapsibleTrigger aria-disabled={undefined} data-orientation="vertical" ...>
+                                <Primitive.button type="button" aria-controls="radix-_R_1..." aria-expanded={false} ...>
+                                  <button
+                                    type="button"
++                                   aria-controls="radix-_R_1mklrknelb_"
+-                                   aria-controls="radix-_R_6qklrknelb_"
+                                    aria-expanded={false}
+                                    data-state="closed"
+                                    data-disabled={undefined}
+                                    disabled={undefined}
+                                    aria-disabled={undefined}
+                                    data-orientation="vertical"
++                                   id="radix-_R_mklrknelb_"
+-                                   id="radix-_R_2qklrknelb_"
+                                    className={"flex flex-1 items-center justify-between transition-all hover:underli..."}
+                                    data-radix-collection-item=""
+                                    onClick={function handleEvent}
+                                    ref={function}
+                                  >
+                  <_c4 className="text-[#4A5...">
+                    <AccordionContent ref={null} className="overflow-h...">
+                      <CollapsibleContent role="region" aria-labelledby="radix-_R_m..." data-orientation="vertical" ...>
+                        <Presence present={false}>
+                          <Primitive.div data-state="closed" data-disabled={undefined} id="radix-_R_1..." hidden={true} ...>
+                            <div
+                              data-state="closed"
+                              data-disabled={undefined}
++                             id="radix-_R_1mklrknelb_"
+-                             id="radix-_R_6qklrknelb_"
+                              hidden={true}
+                              role="region"
++                             aria-labelledby="radix-_R_mklrknelb_"
+-                             aria-labelledby="radix-_R_2qklrknelb_"
+                              data-orientation="vertical"
+                              className="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-..."
+                              style={{--radix-collapsible-content-height:undefined,--radix-collapsible-content-width:undefined, ...}}
+                              ref={function}
+                            >
+      ...
+        <AccordionItemProvider scope={undefined} open={false} disabled={undefined} triggerId="radix-_R_q...">
+          <Collapsible data-orientation="vertical" data-state="closed" __scopeCollapsible={{...}} ...>
+            <CollapsibleProvider scope={{...}} disabled={undefined} contentId="radix-_R_1..." open={false} ...>
+              <Primitive.div data-state="closed" data-disabled={undefined} data-orientation="vertical" ...>
+                <div data-state="closed" data-disabled={undefined} data-orientation="vertical" className="bg-white b..." ...>
+                  ...
+                    <h3 data-orientation="vertical" data-state="closed" data-disabled={undefined} className="flex" ...>
+                      <AccordionTrigger ref={null} className={"flex fle..."}>
+                        <AccordionCollectionItemSlot scope={undefined}>
+                          <AccordionCollectionItemSlot.Slot data-radix-collection-item="" ref={function}>
+                            <AccordionCollectionItemSlot.SlotClone data-radix-collection-item="" ref={function}>
+                              <CollapsibleTrigger aria-disabled={undefined} data-orientation="vertical" ...>
+                                <Primitive.button type="button" aria-controls="radix-_R_1..." aria-expanded={false} ...>
+                                  <button
+                                    type="button"
++                                   aria-controls="radix-_R_1qklrknelb_"
+-                                   aria-controls="radix-_R_7aklrknelb_"
+                                    aria-expanded={false}
+                                    data-state="closed"
+                                    data-disabled={undefined}
+                                    disabled={undefined}
+                                    aria-disabled={undefined}
+                                    data-orientation="vertical"
++                                   id="radix-_R_qklrknelb_"
+-                                   id="radix-_R_3aklrknelb_"
+                                    className={"flex flex-1 items-center justify-between transition-all hover:underli..."}
+                                    data-radix-collection-item=""
+                                    onClick={function handleEvent}
+                                    ref={function}
+                                  >
+                  <_c4 className="text-[#4A5...">
+                    <AccordionContent ref={null} className="overflow-h...">
+                      <CollapsibleContent role="region" aria-labelledby="radix-_R_q..." data-orientation="vertical" ...>
+                        <Presence present={false}>
+                          <Primitive.div data-state="closed" data-disabled={undefined} id="radix-_R_1..." hidden={true} ...>
+                            <div
+                              data-state="closed"
+                              data-disabled={undefined}
++                             id="radix-_R_1qklrknelb_"
+-                             id="radix-_R_7aklrknelb_"
+                              hidden={true}
+                              role="region"
++                             aria-labelledby="radix-_R_qklrknelb_"
+-                             aria-labelledby="radix-_R_3aklrknelb_"
+                              data-orientation="vertical"
+                              className="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-..."
+                              style={{--radix-collapsible-content-height:undefined,--radix-collapsible-content-width:undefined, ...}}
+                              ref={function}
+                            >
+      ...
+        <AccordionItemProvider scope={undefined} open={false} disabled={undefined} triggerId="radix-_R_u...">
+          <Collapsible data-orientation="vertical" data-state="closed" __scopeCollapsible={{...}} ...>
+            <CollapsibleProvider scope={{...}} disabled={undefined} contentId="radix-_R_1..." open={false} ...>
+              <Primitive.div data-state="closed" data-disabled={undefined} data-orientation="vertical" ...>
+                <div data-state="closed" data-disabled={undefined} data-orientation="vertical" className="bg-white b..." ...>
+                  ...
+                    <h3 data-orientation="vertical" data-state="closed" data-disabled={undefined} className="flex" ...>
+                      <AccordionTrigger ref={null} className={"flex fle..."}>
+                        <AccordionCollectionItemSlot scope={undefined}>
+                          <AccordionCollectionItemSlot.Slot data-radix-collection-item="" ref={function}>
+                            <AccordionCollectionItemSlot.SlotClone data-radix-collection-item="" ref={function}>
+                              <CollapsibleTrigger aria-disabled={undefined} data-orientation="vertical" ...>
+                                <Primitive.button type="button" aria-controls="radix-_R_1..." aria-expanded={false} ...>
+                                  <button
+                                    type="button"
++                                   aria-controls="radix-_R_1uklrknelb_"
+-                                   aria-controls="radix-_R_7qklrknelb_"
+                                    aria-expanded={false}
+                                    data-state="closed"
+                                    data-disabled={undefined}
+                                    disabled={undefined}
+                                    aria-disabled={undefined}
+                                    data-orientation="vertical"
++                                   id="radix-_R_uklrknelb_"
+-                                   id="radix-_R_3qklrknelb_"
+                                    className={"flex flex-1 items-center justify-between transition-all hover:underli..."}
+                                    data-radix-collection-item=""
+                                    onClick={function handleEvent}
+                                    ref={function}
+                                  >
+                  <_c4 className="text-[#4A5...">
+                    <AccordionContent ref={null} className="overflow-h...">
+                      <CollapsibleContent role="region" aria-labelledby="radix-_R_u..." data-orientation="vertical" ...>
+                        <Presence present={false}>
+                          <Primitive.div data-state="closed" data-disabled={undefined} id="radix-_R_1..." hidden={true} ...>
+                            <div
+                              data-state="closed"
+                              data-disabled={undefined}
++                             id="radix-_R_1uklrknelb_"
+-                             id="radix-_R_7qklrknelb_"
+                              hidden={true}
+                              role="region"
++                             aria-labelledby="radix-_R_uklrknelb_"
+-                             aria-labelledby="radix-_R_3qklrknelb_"
+                              data-orientation="vertical"
+                              className="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-..."
+                              style={{--radix-collapsible-content-height:undefined,--radix-collapsible-content-width:undefined, ...}}
+                              ref={function}
+                            >
+ @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127

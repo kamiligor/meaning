@@ -5,13 +5,11 @@ import { Button } from "@/components/ui/button";
 interface EmotionalCheckinProps {
   onOk: () => void;
   onBreak: () => void;
-  onNeedHelp: () => void;
 }
 
 export function EmotionalCheckin({
   onOk,
   onBreak,
-  onNeedHelp,
 }: EmotionalCheckinProps) {
   return (
     <div className="max-w-lg mx-auto py-8 px-4">
@@ -25,13 +23,6 @@ export function EmotionalCheckin({
           </Button>
           <Button onClick={onBreak} variant="outline" className="w-full">
             Potrzebuje przerwy
-          </Button>
-          <Button
-            onClick={onNeedHelp}
-            variant="ghost"
-            className="w-full text-[#7B9E8C]"
-          >
-            Czuje sie zle i potrzebuje wsparcia
           </Button>
         </div>
       </div>

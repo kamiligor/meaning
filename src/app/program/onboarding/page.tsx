@@ -197,22 +197,9 @@ function OnboardingContent() {
     return (
       <div className="max-w-lg mx-auto px-4 py-12">
         <div className="bg-white rounded-xl border border-[#e2e7eb] p-6 mb-6">
-          <p className="text-[#1E2A36] leading-relaxed mb-3">
+          <p className="text-[#1E2A36] leading-relaxed">
             Ten program to narzedzie do autorefleksji przez pisanie.
             Nie zastepuje psychoterapii ani innej formy profesjonalnej pomocy.
-          </p>
-          <p className="text-sm text-[#4A5B6A] mb-4">
-            Jesli czujesz, ze potrzebujesz wsparcia:
-          </p>
-          <div className="text-sm text-[#7B9E8C] space-y-1 mb-4">
-            <p>Telefon Zaufania: 116 123 (calodobowo)</p>
-            <p>Centrum Wsparcia: 800 70 2222 (bezplatnie)</p>
-          </div>
-          <p className="text-xs text-[#8A99A8]">
-            Pelna lista zasobow:{" "}
-            <a href="/program/zasoby" className="underline hover:text-[#7B9E8C]">
-              strona wsparcia
-            </a>
           </p>
         </div>
 

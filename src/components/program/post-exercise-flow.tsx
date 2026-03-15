@@ -6,7 +6,7 @@ import { EmotionalCheckin } from "./emotional-checkin";
 import { GroundingExercise } from "./grounding-exercise";
 import { Button } from "@/components/ui/button";
 
-type FlowStep = "reflection" | "checkin" | "grounding" | "crisis" | "done";
+type FlowStep = "reflection" | "checkin" | "grounding" | "done";
 
 interface PostExerciseFlowProps {
   reflectionPrompt: string;
@@ -67,7 +67,6 @@ export function PostExerciseFlow({
       <EmotionalCheckin
         onOk={() => setStep("done")}
         onBreak={() => setStep("grounding")}
-        onNeedHelp={() => setStep("crisis")}
       />
     );
   }
@@ -76,47 +75,8 @@ export function PostExerciseFlow({
     return (
       <GroundingExercise
         onDashboard={() => router.push("/program/dashboard")}
-        onResources={() => router.push("/program/zasoby")}
         onContinue={() => setStep("done")}
       />
-    );
-  }
-
-  if (step === "crisis") {
-    return (
-      <div className="max-w-lg mx-auto py-8 px-4">
-        <div className="bg-white rounded-xl border border-[#e2e7eb] p-6">
-          <p className="text-[#1E2A36] leading-relaxed mb-4">
-            To, co czujesz, jest wazne. Pisanie o trudnych rzeczach moze wywolywac
-            silne emocje — to naturalna reakcja, nie oznaka slabosci.
-          </p>
-          <p className="text-[#4A5B6A] mb-2">Jesli potrzebujesz rozmowy z kims:</p>
-          <ul className="space-y-2 mb-4 text-[#4A5B6A]">
-            <li>
-              <a href="tel:116123" className="text-[#7B9E8C] font-medium hover:underline">
-                Telefon Zaufania: 116 123
-              </a>{" "}
-              (calodobowo, anonimowo)
-            </li>
-            <li>
-              <a href="tel:800702222" className="text-[#7B9E8C] font-medium hover:underline">
-                Centrum Wsparcia: 800 70 2222
-              </a>{" "}
-              (calodobowo, bezplatnie)
-            </li>
-          </ul>
-          <p className="text-sm text-[#8A99A8] mb-6">
-            Twoj tekst jest bezpiecznie zapisany. Mozesz wrocic do programu kiedy poczujesz sie na silach.
-          </p>
-          <Button
-            onClick={() => router.push("/program/dashboard")}
-            variant="outline"
-            className="w-full"
-          >
-            Wroc do dashboardu
-          </Button>
-        </div>
-      </div>
     );
   }
 

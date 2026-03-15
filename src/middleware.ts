@@ -49,7 +49,6 @@ function createSupabaseMiddlewareClient(
 // Program pages that DON'T require auth (exact match)
 const PUBLIC_PROGRAM_PATHS = [
   "/program",
-  "/program/zasoby",
   "/program/auth/callback",
 ];
 

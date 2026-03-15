@@ -35,7 +35,7 @@ export const CATEGORIES: CategoryDef[] = [
   {
     key: "meaning-purpose",
     palette: "sage",
-    en: { slug: "meaning-purpose", label: "Purpose" },
+    en: { slug: "meaning", label: "Meaning" },
     pl: { slug: "sens-i-cel", label: "Sens" },
   },
 ];

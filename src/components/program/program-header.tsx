@@ -48,13 +48,7 @@ export async function ProgramHeader() {
               >
                 Dashboard
               </Link>
-              <Link
-                href="/program/zasoby"
-                className="hidden sm:block text-[#4A5B6A] hover:text-[#7B9E8C] transition-colors"
-              >
-                Zasoby
-              </Link>
-              <Link
+<Link
                 href="/profil"
                 className="text-[#7B9E8C] hover:text-[#6a8d7b] font-semibold transition-colors"
               >

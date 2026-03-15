@@ -55,15 +55,8 @@ export function ExerciseHeader({
           <span className="sm:hidden">{exerciseLabel}</span>
         </span>
 
-        {/* Right: help link */}
-        <Link
-          href="/program/zasoby"
-          className="text-sm text-[#7B9E8C] hover:underline"
-          aria-label="Otworz zasoby wsparcia i linie kryzysowe"
-        >
-          <span className="hidden sm:inline">Potrzebuje pomocy</span>
-          <span className="sm:hidden">Pomoc</span>
-        </Link>
+        {/* Right: empty slot for layout balance */}
+        <span className="w-16" aria-hidden="true" />
       </nav>
     </header>
   );

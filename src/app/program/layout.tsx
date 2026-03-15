@@ -1,5 +1,3 @@
-import { SafetyBanner } from "@/components/program/safety-banner";
-
 export const metadata = {
   title: "The Life Writing Program | just have a little meaning",
   description:
@@ -14,7 +12,6 @@ export default function ProgramLayout({
   return (
     <div className="min-h-screen bg-[#FAFBFC]">
       {children}
-      <SafetyBanner />
     </div>
   );
 }
