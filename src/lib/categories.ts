@@ -1,5 +1,7 @@
 import type { Locale } from "./i18n";
 
+export const FAVORITES_KEY = "favorites";
+
 export interface CategoryDef {
   key: string;
   palette: string;
@@ -63,8 +65,13 @@ export function getCategoryLabel(key: string, locale: Locale): string {
 }
 
 export function categoryKeyFromPath(path: string): string | null {
+  if (path === "/favorites" || path === "/ulubione") return FAVORITES_KEY;
   const match = path.match(/^\/(category|kategoria)\/([^/]+)/);
   if (!match) return null;
   const cat = getCategoryByLocalizedSlug(match[2]);
   return cat?.key ?? null;
+}
+
+export function getFavoritesUrl(locale: Locale): string {
+  return locale === "pl" ? "/ulubione" : "/favorites";
 }

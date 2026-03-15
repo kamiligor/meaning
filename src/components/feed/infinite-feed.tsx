@@ -7,7 +7,7 @@ import { FeedSkeleton } from "./feed-skeleton";
 import { NewsletterForm } from "./newsletter-form";
 import { LikeProvider } from "./like-context";
 import { t, type Locale } from "@/lib/i18n";
-import { CATEGORIES, getCategoryUrl, categoryKeyFromPath } from "@/lib/categories";
+import { CATEGORIES, FAVORITES_KEY, getCategoryUrl, getFavoritesUrl, categoryKeyFromPath } from "@/lib/categories";
 import { getPalette } from "@/lib/palettes";
 import { cn } from "@/lib/utils";
 
@@ -31,18 +31,26 @@ interface InfiniteFeedProps {
 export function InfiniteFeed({ initialPosts, initialHasMore, locale, isLoggedIn = false, initialCategory = null }: InfiniteFeedProps) {
   const d = t(locale);
   const [category, setCategory] = useState<string | null>(initialCategory);
+  const [likedSlugs, setLikedSlugs] = useState<string[]>([]);
+  const sentinelRef = useRef<HTMLDivElement>(null);
   const { posts, loading, hasMore, loadMore } = useInfinitePosts({
     initialPosts,
     initialHasMore,
     locale,
     category,
+    favoriteSlugs: likedSlugs,
   });
-  const sentinelRef = useRef<HTMLDivElement>(null);
-  const [likedSlugs, setLikedSlugs] = useState<string[]>([]);
 
   const handleCategoryClick = useCallback((key: string | null) => {
     setCategory(key);
-    const url = key ? getCategoryUrl(key, locale) : "/";
+    let url: string;
+    if (key === FAVORITES_KEY) {
+      url = getFavoritesUrl(locale);
+    } else if (key) {
+      url = getCategoryUrl(key, locale);
+    } else {
+      url = "/";
+    }
     window.history.pushState(null, "", url);
   }, [locale]);
 
@@ -56,8 +64,10 @@ export function InfiniteFeed({ initialPosts, initialHasMore, locale, isLoggedIn 
   }, []);
 
   // Fetch liked slugs on mount
+  const likedFetched = useRef(false);
   useEffect(() => {
-    if (!isLoggedIn) return;
+    if (!isLoggedIn || likedFetched.current) return;
+    likedFetched.current = true;
     fetch("/api/posts/likes")
       .then((res) => res.json())
       .then((data) => setLikedSlugs(data.slugs))
@@ -82,7 +92,17 @@ export function InfiniteFeed({ initialPosts, initialHasMore, locale, isLoggedIn 
   }, [loadMore]);
 
   return (
-    <LikeProvider initialLikedSlugs={likedSlugs} isLoggedIn={isLoggedIn}>
+    <LikeProvider
+      initialLikedSlugs={likedSlugs}
+      isLoggedIn={isLoggedIn}
+      onToggle={(slug, liked) => {
+        setLikedSlugs((prev) => {
+          if (liked && !prev.includes(slug)) return [...prev, slug];
+          if (!liked && prev.includes(slug)) return prev.filter((s) => s !== slug);
+          return prev;
+        });
+      }}
+    >
       <div className="space-y-6">
         {/* Category filters — full-bleed to match header width */}
         <div className="w-[100vw] relative left-1/2 -translate-x-1/2">
@@ -118,6 +138,21 @@ export function InfiniteFeed({ initialPosts, initialHasMore, locale, isLoggedIn 
                   </button>
                 );
               })}
+              {isLoggedIn && (
+                <button
+                  onClick={() => handleCategoryClick(FAVORITES_KEY)}
+                  className={cn(
+                    "shrink-0 px-3 py-1 rounded-full text-[13px] font-medium transition-colors cursor-pointer border-2",
+                    category === FAVORITES_KEY
+                      ? ""
+                      : "border-transparent bg-[#F0F2F4] text-[#5A6A78] hover:bg-[#E4E8EB]"
+                  )}
+                  style={category === FAVORITES_KEY ? { backgroundColor: "#F0F2F4", borderColor: "#1E2A36", color: "#1E2A36" } : undefined}
+                >
+                  <svg className="inline-block w-3.5 h-3.5 mr-1 -mt-px" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" style={{ color: "#ef4444" }} /></svg>
+                  {d.favorites}
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -149,9 +184,14 @@ export function InfiniteFeed({ initialPosts, initialHasMore, locale, isLoggedIn 
 
         {/* No results */}
         {!loading && !hasMore && posts.length === 0 && category !== null && (
-          <p className="text-center text-sm text-[#8A99A8] py-12">
-            {d.noPostsTitle}
-          </p>
+          <div className="text-center py-12">
+            <p className="text-sm text-[#8A99A8]">
+              {category === FAVORITES_KEY ? d.favoritesEmpty : d.noPostsTitle}
+            </p>
+            {category === FAVORITES_KEY && (
+              <p className="text-xs text-[#b5bfc9] mt-1">{d.favoritesEmptySubtitle}</p>
+            )}
+          </div>
         )}
       </div>
     </LikeProvider>

@@ -7,9 +7,13 @@ export async function GET(request: NextRequest) {
   const limit = Math.min(Number(searchParams.get("limit") || 10), 50);
   const locale = searchParams.get("locale") || "en";
   const category = searchParams.get("category") || null;
+  const slugsParam = searchParams.get("slugs") || null;
 
   let allPosts = getPublishedPosts(locale);
-  if (category) {
+  if (slugsParam) {
+    const slugSet = new Set(slugsParam.split(",").filter(Boolean));
+    allPosts = allPosts.filter((p) => slugSet.has(p.slug));
+  } else if (category) {
     allPosts = allPosts.filter((p) => p.category === category);
   }
 

@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { getPublishedPosts, getPostSlides } from "@/lib/posts";
 import { InfiniteFeed } from "@/components/feed/infinite-feed";
-import { t, type Locale } from "@/lib/i18n";
+import { type Locale } from "@/lib/i18n";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { cookies } from "next/headers";
@@ -15,11 +15,10 @@ export default async function FavoritesPage() {
   const supabase = await createServerSupabaseClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  if (!user) redirect("/login?next=/ulubione");
+  if (!user) redirect("/login?next=/favorites");
 
   const cookieStore = await cookies();
   const locale: Locale = getLocaleFromCookies(cookieStore);
-  const d = t(locale);
 
   const allPosts = getPublishedPosts(locale);
   const hasMore = allPosts.length > LIMIT;

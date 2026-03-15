@@ -24,7 +24,7 @@ export function AuthForm({
   const d = t(locale);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const next = searchParams.get("next") ?? "/program/dashboard";
+  const next = searchParams.get("next") ?? "/";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

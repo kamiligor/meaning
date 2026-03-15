@@ -6,9 +6,9 @@ import { cookies } from "next/headers";
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const code = searchParams.get("code");
-  const rawNext = searchParams.get("next") ?? "/program/dashboard";
+  const rawNext = searchParams.get("next") ?? "/";
   // Prevent open redirect: only allow relative paths starting with /
-  const next = rawNext.startsWith("/") && !rawNext.startsWith("//") ? rawNext : "/program/dashboard";
+  const next = rawNext.startsWith("/") && !rawNext.startsWith("//") ? rawNext : "/";
 
   if (!code) {
     return NextResponse.redirect(new URL("/program", request.url));

@@ -120,7 +120,7 @@ export async function middleware(request: NextRequest) {
 
     // Redirect logged-in users away from auth pages
     if (isAuthRoute && user) {
-      const next = request.nextUrl.searchParams.get("next") ?? "/program/dashboard";
+      const next = request.nextUrl.searchParams.get("next") ?? "/";
       return NextResponse.redirect(new URL(next, request.url));
     }
 

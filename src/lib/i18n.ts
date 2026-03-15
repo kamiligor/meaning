@@ -66,6 +66,7 @@ const dict = {
     categoryMindset: "Mindset",
     categoryResilience: "Resilience",
     categoryMeaning: "Meaning",
+    goToProgram: "Go to program",
   },
   pl: {
     siteTitle: "just have a little meaning",
@@ -130,6 +131,7 @@ const dict = {
     categoryMindset: "Nastawienie",
     categoryResilience: "Odporność",
     categoryMeaning: "Sens",
+    goToProgram: "Przejdź do programu",
   },
 };
 

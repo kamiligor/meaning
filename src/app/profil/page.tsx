@@ -1,13 +1,12 @@
 import { requireProgramUser } from "@/lib/program-auth";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Link from "next/link";
 import { LogoutButton } from "./logout-button";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { t, type Locale } from "@/lib/i18n";
 import { cookies } from "next/headers";
 import { getLocaleFromCookies } from "@/lib/locale-cookie";
+import Link from "next/link";
 
 export default async function ProfilPage() {
   const cookieStore = await cookies();
@@ -17,12 +16,13 @@ export default async function ProfilPage() {
 
   const { data: profile } = await supabase
     .from("user_profiles")
-    .select("gender_form, created_at")
+    .select("gender_form, created_at, has_paid")
     .eq("user_id", user.id)
     .single();
 
+  const hasPaid = profile?.has_paid === true;
+
   const email = user.email ?? "";
-  const provider = user.app_metadata?.provider ?? "email";
   const createdAt = profile?.created_at
     ? new Date(profile.created_at).toLocaleDateString(locale === "pl" ? "pl-PL" : "en-US")
     : null;
@@ -32,14 +32,7 @@ export default async function ProfilPage() {
       <SiteHeader locale={locale} />
 
       <main className="max-w-lg mx-auto px-4 py-8">
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl font-semibold text-[#1E2A36]">{d.navMyAccount}</h1>
-          <Link href="/program/dashboard">
-            <Button variant="ghost" size="sm">
-              Dashboard
-            </Button>
-          </Link>
-        </div>
+        <h1 className="text-2xl font-semibold text-[#1E2A36] mb-8">{d.navMyAccount}</h1>
 
         <Card className="mb-6">
           <CardHeader>
@@ -50,10 +43,6 @@ export default async function ProfilPage() {
               <span className="text-[#8A99A8]">Email</span>
               <span className="text-[#1E2A36]">{email}</span>
             </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-[#8A99A8]">{d.accountProvider}</span>
-              <span className="text-[#1E2A36] capitalize">{provider}</span>
-            </div>
             {createdAt && (
               <div className="flex justify-between text-sm">
                 <span className="text-[#8A99A8]">{d.accountSince}</span>
@@ -63,15 +52,23 @@ export default async function ProfilPage() {
           </CardContent>
         </Card>
 
+        {hasPaid && (
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle className="text-base">The Life Writing Program</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Link
+                href="/program/dashboard"
+                className="inline-flex items-center justify-center rounded-md bg-[#7B9E8C] px-4 py-2 text-sm font-medium text-white hover:bg-[#6a8d7b] transition-colors"
+              >
+                {d.goToProgram} &rarr;
+              </Link>
+            </CardContent>
+          </Card>
+        )}
+
         <div className="space-y-3">
-          <Link href="/ulubione">
-            <Button variant="outline" className="w-full justify-start">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 text-red-400">
-                <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
-              </svg>
-              {d.favorites}
-            </Button>
-          </Link>
           <LogoutButton label={d.accountLogout} />
         </div>
       </main>
