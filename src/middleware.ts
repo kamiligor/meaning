@@ -49,7 +49,6 @@ function createSupabaseMiddlewareClient(
 // Program pages that DON'T require auth (exact match)
 const PUBLIC_PROGRAM_PATHS = [
   "/program",
-  "/program/onboarding",
   "/program/zasoby",
   "/program/auth/callback",
 ];
@@ -126,6 +125,19 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL(next, request.url));
     }
 
+    // Redirect paid users from /program landing to dashboard
+    if (pathname === "/program" && user) {
+      const { data: profile } = await supabase
+        .from("user_profiles")
+        .select("has_paid")
+        .eq("user_id", user.id)
+        .single();
+
+      if (profile?.has_paid) {
+        return NextResponse.redirect(new URL("/program/dashboard", request.url));
+      }
+    }
+
     // Protect program pages (except public ones) and /profil
     if (
       (pathname.startsWith("/program") && !isProgramPublicPath(pathname)) ||
@@ -136,6 +148,19 @@ export async function middleware(request: NextRequest) {
         const loginUrl = new URL("/login", request.url);
         loginUrl.searchParams.set("next", pathname);
         return NextResponse.redirect(loginUrl);
+      }
+
+      // Program content requires paid access (not /profil or /ulubione)
+      if (pathname.startsWith("/program") && !isProgramPublicPath(pathname)) {
+        const { data: profile } = await supabase
+          .from("user_profiles")
+          .select("has_paid")
+          .eq("user_id", user.id)
+          .single();
+
+        if (!profile?.has_paid) {
+          return NextResponse.redirect(new URL("/program", request.url));
+        }
       }
     }
 

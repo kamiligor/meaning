@@ -39,28 +39,37 @@ export async function ProgramHeader() {
         </div>
 
         {/* Right: nav */}
-        {isLoggedIn && (
-          <div className="flex items-center gap-5 text-sm">
+        <div className="flex items-center gap-5 text-sm">
+          {isLoggedIn ? (
+            <>
+              <Link
+                href="/program/dashboard"
+                className="text-[#4A5B6A] hover:text-[#7B9E8C] transition-colors"
+              >
+                Dashboard
+              </Link>
+              <Link
+                href="/program/zasoby"
+                className="hidden sm:block text-[#4A5B6A] hover:text-[#7B9E8C] transition-colors"
+              >
+                Zasoby
+              </Link>
+              <Link
+                href="/profil"
+                className="text-[#7B9E8C] hover:text-[#6a8d7b] font-semibold transition-colors"
+              >
+                Moje konto
+              </Link>
+            </>
+          ) : (
             <Link
-              href="/program/dashboard"
-              className="text-[#4A5B6A] hover:text-[#7B9E8C] transition-colors"
-            >
-              Dashboard
-            </Link>
-            <Link
-              href="/program/zasoby"
-              className="hidden sm:block text-[#4A5B6A] hover:text-[#7B9E8C] transition-colors"
-            >
-              Zasoby
-            </Link>
-            <Link
-              href="/profil"
+              href="/login"
               className="text-[#8A99A8] hover:text-[#7B9E8C] transition-colors"
             >
-              Moje konto
+              Zaloguj
             </Link>
-          </div>
-        )}
+          )}
+        </div>
       </nav>
     </header>
   );

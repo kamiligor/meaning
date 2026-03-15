@@ -22,13 +22,13 @@ export default function ProgramLandingPage() {
         <p className="text-lg text-[#4A5B6A] max-w-2xl mx-auto mb-8 leading-relaxed">
           The Life Writing Program to program autorefleksji oparty na badaniach psychologicznych.
           Pomaga uporządkować myśli o przeszłości, teraźniejszości i przyszłości.
-          Bez timerów, bez oceniania, w Twoim tempie.
+          Bez presji czasu, bez oceniania, w Twoim tempie.
         </p>
-        <Link href="/program/onboarding">
+        <a href="#cennik">
           <Button size="lg" className="text-base px-8">
             Dołącz do programu
           </Button>
-        </Link>
+        </a>
         <p className="text-sm text-[#8A99A8] mt-3">
           <span className="line-through">79 PLN</span> 29 PLN. Jednorazowo, bez subskrypcji.
         </p>
@@ -41,15 +41,16 @@ export default function ProgramLandingPage() {
         </h2>
         <div className="text-[#4A5B6A] leading-relaxed space-y-4">
           <p>
-            Te same myśli krążą w kółko. Te same wspomnienia wracają nocą. Te same pytania
-            bez odpowiedzi.
+            Poczucie, że myślisz w kółko, ale nigdzie nie dochodzisz.
+            Że dużo o sobie wiesz, ale nic z tego nie wynika.
+            Że czas mija, a Ty stoisz w miejscu.
           </p>
           <p>
-            Prowadzenie dziennika nie pomagało, pusta strona tylko pogłębiała chaos.
-            Książki o rozwoju? Wiedza nie zamieniała się w zmianę.
+            Prowadzenie dziennika nie pomagało, bo pusta strona nie daje struktury.
+            Książki o rozwoju? Wiedza sama nie zamienia się w zmianę.
           </p>
           <p className="font-medium text-[#1E2A36]">
-            To nie znaczy, że coś jest z Tobą nie tak. To znaczy, że potrzebujesz innego narzędzia.
+            Czasem potrzebujesz struktury. Narzędzia, które prowadzi Cię krok po kroku.
           </p>
         </div>
       </section>
@@ -109,16 +110,16 @@ export default function ProgramLandingPage() {
         <div className="text-[#4A5B6A] leading-relaxed space-y-4">
           <p>
             Profesor James Pennebaker z Uniwersytetu Teksańskiego spędził ponad 30 lat
-            badając, dlaczego pisanie o trudnych doświadczeniach pomaga. Jego odkrycie:
-            kiedy nadajemy narracyjną strukturę chaotycznym wspomnieniom, mózg przestaje
-            do nich wracać w nieskończonej pętli.
+            badając, dlaczego pisanie o trudnych doświadczeniach pomaga. Jego badania pokazują,
+            że kiedy nadajemy strukturę chaotycznym myślom, ich emocjonalny ładunek się
+            zmniejsza. Nie znikają, ale przestają tak bardzo przeszkadzać.
           </p>
           <ul className="space-y-2 ml-4">
             <li className="flex items-start gap-2">
               <span className="text-[#7B9E8C] mt-1.5 shrink-0">•</span>
               <span>
-                <strong>Tożsamość narracyjna</strong> (McAdams): ludzie, którzy potrafią
-                opowiedzieć spójną historię swojego życia, mają wyższe poczucie sensu
+                <strong>Tożsamość narracyjna</strong> (McAdams): badania sugerują, że ludzie
+                ze spójną historią własnego życia mają wyższe poczucie sensu
               </span>
             </li>
             <li className="flex items-start gap-2">
@@ -240,12 +241,11 @@ export default function ProgramLandingPage() {
         </h2>
         <ul className="space-y-3 text-[#4A5B6A]">
           {[
-            "Masz wrażenie, że Twoje myśli krążą w kółko i nie prowadzą do niczego",
-            "Jest poczucie utknięcia w miejscu, ale nie wiadomo od czego zacząć",
-            "Wracają do Ciebie wspomnienia, z którymi nie wiesz co zrobić",
-            "Prowadzenie dziennika nie pomogło, pusta strona pogłębiała chaos",
-            "Chcesz się lepiej zrozumieć, ale nie stać Cię na terapię albo czekasz w kolejce",
-            "Jesteś w terapii i szukasz narzędzia do pracy własnej między sesjami",
+            "Masz wrażenie, że w głowie wszystko kręci się w kółko, ale nic z tego nie wynika",
+            "Utknąłeś/aś w miejscu i nie potrafisz zrozumieć dlaczego",
+            "Chcesz uporządkować swoje doświadczenia i lepiej je zrozumieć",
+            "Próbowałeś/aś prowadzić dziennik, ale pusta strona pogłębiała chaos",
+            "Brakuje Ci konkretnego narzędzia do tego, żeby lepiej siebie zrozumieć",
           ].map((item) => (
             <li key={item} className="flex items-start gap-2">
               <span className="text-[#7B9E8C] mt-1 shrink-0">•</span>
@@ -253,15 +253,13 @@ export default function ProgramLandingPage() {
             </li>
           ))}
         </ul>
-        <div className="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-4 text-sm text-[#4A5B6A]">
-          Ten program to narzędzie do autorefleksji. Nie zastępuje psychoterapii.
-          <br />
-          Telefon Zaufania: 116 123 · Centrum Wsparcia: 800 70 2222
-        </div>
+        <p className="mt-6 text-sm text-[#8A99A8]">
+          To narzędzie do autorefleksji, nie forma terapii.
+        </p>
       </section>
 
       {/* Pricing */}
-      <section className="py-12">
+      <section id="cennik" className="py-12 scroll-mt-20">
         <h2 className="text-2xl font-semibold text-[#1E2A36] mb-8 text-center">
           Ile to kosztuje
         </h2>
@@ -286,7 +284,7 @@ export default function ProgramLandingPage() {
               </Button>
             </Link>
             <p className="text-xs text-[#8A99A8] mt-3">
-              Jednorazowa płatność. Mniej niż 20% ceny jednej sesji terapeutycznej.
+              Jednorazowa płatność. Bez subskrypcji, bez ukrytych kosztów.
             </p>
           </div>
         </div>
@@ -300,8 +298,8 @@ export default function ProgramLandingPage() {
         <Accordion type="single" collapsible className="space-y-2">
           {[
             {
-              q: "Czy to zastępuje psychoterapię?",
-              a: "Nie. To narzędzie do autorefleksji, nie terapia. Jeśli zmagasz się z depresją, myślami samobójczymi lub traumą, skontaktuj się ze specjalistą. Program może być natomiast dobrym uzupełnieniem terapii lub krokiem, gdy na terapię czekasz.",
+              q: "Czym jest ten program?",
+              a: "To ustrukturyzowane narzędzie do autorefleksji przez pisanie, oparte na badaniach psychologicznych. Nie jest formą terapii.",
             },
             {
               q: "Czy ktoś przeczyta to, co piszę?",
@@ -346,14 +344,11 @@ export default function ProgramLandingPage() {
 
       {/* Footer CTA */}
       <section className="py-12 text-center border-t border-[#e2e7eb]">
-        <Link href="/program/onboarding">
+        <a href="#cennik">
           <Button size="lg" className="text-base px-8">
             Dołącz do programu
           </Button>
-        </Link>
-        <p className="text-sm text-[#8A99A8] mt-6">
-          Potrzebujesz wsparcia? Telefon Zaufania: 116 123 · Centrum Wsparcia: 800 70 2222
-        </p>
+        </a>
       </section>
     </div>
     </>

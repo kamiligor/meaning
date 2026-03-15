@@ -22,3 +22,14 @@ export async function getProgramUser() {
 
   return { user, supabase };
 }
+
+export async function hasPaidAccess(userId: string): Promise<boolean> {
+  const supabase = await createServerSupabaseClient();
+  const { data } = await supabase
+    .from("user_profiles")
+    .select("has_paid")
+    .eq("user_id", userId)
+    .single();
+
+  return data?.has_paid === true;
+}
