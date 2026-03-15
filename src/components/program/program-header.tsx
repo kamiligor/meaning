@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { getProgramUser } from "@/lib/program-auth";
 
-const logoStyle = { fontFamily: "Georgia, 'Times New Roman', serif" };
-
 export async function ProgramHeader() {
   let isLoggedIn = false;
   try {
@@ -14,32 +12,20 @@ export async function ProgramHeader() {
 
   return (
     <header className="border-b border-[#e2e7eb] bg-white">
-      <nav className="max-w-5xl mx-auto px-5 md:px-8 h-14 flex items-center justify-between gap-4">
+      <nav className="max-w-5xl mx-auto px-5 md:px-8 h-14 md:h-16 flex items-center justify-between gap-4">
         {/* Left: logo + program name */}
         <div className="flex items-center gap-4">
           <a
             href="/"
-            className="flex flex-col items-start group shrink-0"
+            className="shrink-0 block h-12 md:h-14"
             aria-label="just have a little meaning — home"
           >
-            <span
-              className="text-sm font-extrabold text-[#1E2A36] leading-none tracking-tight group-hover:text-[#2d3f4e] transition-colors duration-200"
-              style={logoStyle}
-            >
-              just
-            </span>
-            <span
-              className="text-[7px] italic text-[#8A99A8] leading-none mt-[3px] tracking-wide"
-              style={logoStyle}
-            >
-              have a little
-            </span>
-            <span
-              className="text-sm font-extrabold text-[#7B9E8C] leading-none mt-[3px] tracking-tight group-hover:text-[#6a8d7b] transition-colors duration-200"
-              style={logoStyle}
-            >
-              meaning
-            </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo.svg"
+              alt="just have a little meaning"
+              className="h-full w-auto"
+            />
           </a>
 
           <div className="hidden md:block w-px h-5 bg-[#e2e7eb]" aria-hidden="true" />

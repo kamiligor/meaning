@@ -18,7 +18,7 @@ export default function ResourcesPage() {
         Zasoby wsparcia
       </h1>
       <p className="text-[#4A5B6A] mb-8">
-        Pisz Siebie to narzedzie do autorefleksji — nie zastepuje kontaktu ze
+        Ten program to narzedzie do autorefleksji, nie zastepuje kontaktu ze
         specjalista. Ponizej znajdziesz zasoby, ktore moga Ci pomoc.
       </p>
 

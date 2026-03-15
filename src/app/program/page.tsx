@@ -13,24 +13,24 @@ export default function ProgramLandingPage() {
   return (
     <>
     <ProgramHeader />
-    <div className="max-w-4xl mx-auto px-4">
+    <div className="max-w-5xl mx-auto px-5 md:px-8">
       {/* Hero */}
       <section className="py-16 md:py-24 text-center">
         <h1 className="text-3xl md:text-4xl font-semibold text-[#1E2A36] leading-tight mb-4">
-          Kiedy w glowie jest za duzo chaosu — zacznij od zapisania.
+          Kiedy w głowie jest za dużo chaosu, zacznij od pisania.
         </h1>
         <p className="text-lg text-[#4A5B6A] max-w-2xl mx-auto mb-8 leading-relaxed">
-          Pisz Siebie to darmowy program oparty na badaniach psychologicznych, który
-          pomaga uporzadkowac mysli o przeszlosci, terazniejszosci i przyszlosci.
-          Bez timerow, bez oceniania, w Twoim tempie.
+          The Life Writing Program to program autorefleksji oparty na badaniach psychologicznych.
+          Pomaga uporządkować myśli o przeszłości, teraźniejszości i przyszłości.
+          Bez timerów, bez oceniania, w Twoim tempie.
         </p>
         <Link href="/program/onboarding">
           <Button size="lg" className="text-base px-8">
-            Sprobuj za darmo
+            Dołącz do programu
           </Button>
         </Link>
         <p className="text-sm text-[#8A99A8] mt-3">
-          Bez karty kredytowej. Bez zobowiazan. Twoje teksty sa szyfrowane — nikt ich nie przeczyta.
+          <span className="line-through">79 PLN</span> 29 PLN. Jednorazowo, bez subskrypcji.
         </p>
       </section>
 
@@ -41,15 +41,15 @@ export default function ProgramLandingPage() {
         </h2>
         <div className="text-[#4A5B6A] leading-relaxed space-y-4">
           <p>
-            Te same mysli kraza w kolko. Te same wspomnienia wracaja noca. Te same pytania
+            Te same myśli krążą w kółko. Te same wspomnienia wracają nocą. Te same pytania
             bez odpowiedzi.
           </p>
           <p>
-            Prowadzenie dziennika? Pusta strona tylko poglebiala chaos.
-            Ksiazki o rozwoju? Wiedza nie zamieniala sie w zmiane.
+            Prowadzenie dziennika nie pomagało, pusta strona tylko pogłębiała chaos.
+            Książki o rozwoju? Wiedza nie zamieniała się w zmianę.
           </p>
           <p className="font-medium text-[#1E2A36]">
-            To nie znaczy, ze cos jest z Toba nie tak. To znaczy, ze potrzebujesz innego narzedzia.
+            To nie znaczy, że coś jest z Tobą nie tak. To znaczy, że potrzebujesz innego narzędzia.
           </p>
         </div>
       </section>
@@ -60,28 +60,28 @@ export default function ProgramLandingPage() {
           Struktura zamiast chaosu
         </h2>
         <p className="text-[#4A5B6A] leading-relaxed mb-8">
-          Pisz Siebie to nie kolejna aplikacja do mindfulness ani lista motywacyjnych cytatow.
-          To ustrukturyzowany program pisania, oparty na 30 latach badan psychologicznych.
+          To nie kolejna aplikacja do mindfulness ani lista motywacyjnych cytatów.
+          To ustrukturyzowany program pisania oparty na 30 latach badań psychologicznych.
         </p>
         <div className="grid md:grid-cols-3 gap-6">
           {[
             {
-              title: "Modul I: Przeszlosc",
-              subtitle: "Zrozum swoja historie",
-              desc: "Uporzadkuj wspomnienia. Nadaj im sens. Zmniejsz ich emocjonalny ladunek.",
-              meta: "6 cwiczen · 3-5 godzin lacznie",
+              title: "Moduł I: Przeszłość",
+              subtitle: "Zrozum swoją historię",
+              desc: "Uporządkuj wspomnienia. Nadaj im sens. Zmniejsz ich emocjonalny ładunek.",
+              meta: "6 ćwiczeń · 3-5 godzin łącznie",
             },
             {
-              title: "Modul II: Terazniejszosc",
+              title: "Moduł II: Teraźniejszość",
               subtitle: "Zrozum, gdzie stoisz",
-              desc: "Odkryj swoje wartosci. Rozpoznaj schematy myslenia. Potraktuj siebie z zyczliwoscia.",
-              meta: "6 cwiczen · 3-5 godzin lacznie",
+              desc: "Odkryj swoje wartości. Rozpoznaj schematy myślenia. Potraktuj siebie z życzliwością.",
+              meta: "6 ćwiczeń · 3-5 godzin łącznie",
             },
             {
-              title: "Modul III: Przyszlosc",
+              title: "Moduł III: Przyszłość",
               subtitle: "Zaprojektuj siebie",
-              desc: "Stwórz wizje. Skonfrontuj ja z rzeczywistoscia. Zrob jeden konkretny krok.",
-              meta: "6 cwiczen · 3-5 godzin lacznie",
+              desc: "Stwórz wizję. Skonfrontuj ją z rzeczywistością. Zrób jeden konkretny krok.",
+              meta: "6 ćwiczeń · 3-5 godzin łącznie",
             },
           ].map((mod) => (
             <div
@@ -104,42 +104,42 @@ export default function ProgramLandingPage() {
       {/* Science */}
       <section className="py-12">
         <h2 className="text-2xl font-semibold text-[#1E2A36] mb-4">
-          Nie wierzymy w magiczne rozwiazania. Wierzymy w badania.
+          Nie wierzymy w magiczne rozwiązania. Wierzymy w badania.
         </h2>
         <div className="text-[#4A5B6A] leading-relaxed space-y-4">
           <p>
-            Profesor James Pennebaker z Uniwersytetu Teksanskiego spedzil ponad 30 lat
-            badajac, dlaczego pisanie o trudnych doswiadczeniach pomaga. Jego odkrycie:
-            kiedy nadajemy narracyjna strukture chaotycznym wspomnieniom, mozg przestaje
-            do nich wracac w nieskonczonej petli.
+            Profesor James Pennebaker z Uniwersytetu Teksańskiego spędził ponad 30 lat
+            badając, dlaczego pisanie o trudnych doświadczeniach pomaga. Jego odkrycie:
+            kiedy nadajemy narracyjną strukturę chaotycznym wspomnieniom, mózg przestaje
+            do nich wracać w nieskończonej pętli.
           </p>
           <ul className="space-y-2 ml-4">
             <li className="flex items-start gap-2">
               <span className="text-[#7B9E8C] mt-1.5 shrink-0">•</span>
               <span>
-                <strong>Tozsamosc narracyjna</strong> (McAdams) — ludzie, którzy potrafia
-                opowiedziec spojna historie swojego zycia, maja wyzsze poczucie sensu
+                <strong>Tożsamość narracyjna</strong> (McAdams): ludzie, którzy potrafią
+                opowiedzieć spójną historię swojego życia, mają wyższe poczucie sensu
               </span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-[#7B9E8C] mt-1.5 shrink-0">•</span>
               <span>
-                <strong>Terapia Akceptacji i Zaangazowania</strong> (Hayes) — rozroznienie
-                miedzy Toba a Twoimi myslami zmienia sposob, w jaki na nie reagujesz
+                <strong>Terapia Akceptacji i Zaangażowania</strong> (Hayes): rozróżnienie
+                między Tobą a Twoimi myślami zmienia sposób, w jaki na nie reagujesz
               </span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-[#7B9E8C] mt-1.5 shrink-0">•</span>
               <span>
-                <strong>Wspolczucie dla siebie</strong> (Neff) — samokrytyka poglebia
-                paraliz, zyczliwosc wobec siebie go przelamuje
+                <strong>Współczucie dla siebie</strong> (Neff): samokrytyka pogłębia
+                paraliż, życzliwość wobec siebie go przełamuje
               </span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-[#7B9E8C] mt-1.5 shrink-0">•</span>
               <span>
-                <strong>Mental Contrasting</strong> (Oettingen) — sam optymizm nie wystarczy
-                — dopiero kontrast wizji z realistycznymi przeszkodami tworzy motywacje
+                <strong>Mental Contrasting</strong> (Oettingen): sam optymizm nie wystarczy.
+                Dopiero kontrast wizji z realistycznymi przeszkodami tworzy motywację
               </span>
             </li>
           </ul>
@@ -149,33 +149,33 @@ export default function ProgramLandingPage() {
       {/* How it works */}
       <section className="py-12">
         <h2 className="text-2xl font-semibold text-[#1E2A36] mb-8">
-          5 minut od klikniecia do pisania
+          5 minut od kliknięcia do pisania
         </h2>
         <div className="grid sm:grid-cols-2 gap-6">
           {[
             {
               icon: BookOpen,
               step: "1",
-              title: "Zaloz konto",
-              desc: "Wystarczy e-mail. Nic wiecej nie potrzebujemy.",
+              title: "Załóż konto",
+              desc: "Wystarczy e-mail. Nic więcej nie potrzebujemy.",
             },
             {
               icon: BookOpen,
               step: "2",
               title: "Przeczytaj krótkie wprowadzenie",
-              desc: "Dowiesz sie, dlaczego ten modul dziala i czego sie spodziewac.",
+              desc: "Dowiesz się, dlaczego ten moduł działa i czego się spodziewać.",
             },
             {
               icon: BookOpen,
               step: "3",
-              title: "Zacznij pisac",
-              desc: "Konkretne pytania prowadza Cie krok po kroku. Jesli utkniesz — masz podpowiedzi.",
+              title: "Zacznij pisać",
+              desc: "Konkretne pytania prowadzą Cię krok po kroku. Jeśli utkniesz, masz podpowiedzi.",
             },
             {
               icon: Clock,
               step: "4",
-              title: "Zapisz i wroc",
-              desc: "Autosave co 30 sekund. Mozesz przerwac i wrocic kiedy chcesz.",
+              title: "Zapisz i wróć",
+              desc: "Autosave co 30 sekund. Możesz przerwać i wrócić kiedy chcesz.",
             },
           ].map(({ step, title, desc }) => (
             <div key={step} className="flex items-start gap-4">
@@ -194,29 +194,29 @@ export default function ProgramLandingPage() {
       {/* Security */}
       <section className="py-12">
         <h2 className="text-2xl font-semibold text-[#1E2A36] mb-6">
-          Twoje slowa. Tylko Twoje.
+          Twoje słowa. Tylko Twoje.
         </h2>
         <div className="grid sm:grid-cols-2 gap-4">
           {[
             {
               icon: Lock,
               title: "Szyfrowanie",
-              desc: "Twoje teksty sa szyfrowane, zanim trafia na serwer. Nikt — nawet my — nie moze ich przeczytac.",
+              desc: "Twoje teksty są szyfrowane, zanim trafią na serwer. Nikt ich nie może przeczytać, nawet my.",
             },
             {
               icon: Shield,
-              title: "Zero sledzenia",
-              desc: "Brak Google Analytics, brak cookies sledzacych, brak telemetrii.",
+              title: "Zero śledzenia",
+              desc: "Brak Google Analytics, brak cookies śledzących, brak telemetrii.",
             },
             {
               icon: Shield,
               title: "Twoje dane, Twoja kontrola",
-              desc: "W kazdej chwili mozesz wyeksportowac swoje teksty lub usunac konto.",
+              desc: "W każdej chwili możesz wyeksportować swoje teksty lub usunąć konto.",
             },
             {
               icon: Shield,
               title: "RODO/GDPR",
-              desc: "Pelna zgodnosc z europejskimi przepisami o ochronie danych.",
+              desc: "Pełna zgodność z europejskimi przepisami o ochronie danych.",
             },
           ].map(({ icon: Icon, title, desc }) => (
             <div
@@ -236,16 +236,16 @@ export default function ProgramLandingPage() {
       {/* For whom */}
       <section className="py-12">
         <h2 className="text-2xl font-semibold text-[#1E2A36] mb-6">
-          Pisz Siebie jest dla Ciebie, jesli:
+          Ten program jest dla Ciebie, jeśli:
         </h2>
         <ul className="space-y-3 text-[#4A5B6A]">
           {[
-            "Masz wrazenie, ze Twoje mysli kraza w kolko i nie prowadza do niczego",
-            "Jest poczucie utknięcia w miejscu, ale nie wiadomo od czego zaczac",
-            "Wracaja do Ciebie wspomnienia, z którymi nie wiesz co zrobic",
-            "Prowadzenie dziennika nie pomoglo — pusta strona poglebiala chaos",
-            "Chcesz sie lepiej zrozumiec, ale nie stac Cie na terapie lub czekasz w kolejce",
-            "Jestes w terapii i szukasz narzedzia do pracy wlasnej miedzy sesjami",
+            "Masz wrażenie, że Twoje myśli krążą w kółko i nie prowadzą do niczego",
+            "Jest poczucie utknięcia w miejscu, ale nie wiadomo od czego zacząć",
+            "Wracają do Ciebie wspomnienia, z którymi nie wiesz co zrobić",
+            "Prowadzenie dziennika nie pomogło, pusta strona pogłębiała chaos",
+            "Chcesz się lepiej zrozumieć, ale nie stać Cię na terapię albo czekasz w kolejce",
+            "Jesteś w terapii i szukasz narzędzia do pracy własnej między sesjami",
           ].map((item) => (
             <li key={item} className="flex items-start gap-2">
               <span className="text-[#7B9E8C] mt-1 shrink-0">•</span>
@@ -254,7 +254,7 @@ export default function ProgramLandingPage() {
           ))}
         </ul>
         <div className="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-4 text-sm text-[#4A5B6A]">
-          Ten program to narzedzie do autorefleksji. Nie zastepuje psychoterapii.
+          Ten program to narzędzie do autorefleksji. Nie zastępuje psychoterapii.
           <br />
           Telefon Zaufania: 116 123 · Centrum Wsparcia: 800 70 2222
         </div>
@@ -265,78 +265,67 @@ export default function ProgramLandingPage() {
         <h2 className="text-2xl font-semibold text-[#1E2A36] mb-8 text-center">
           Ile to kosztuje
         </h2>
-        <div className="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
-          <div className="bg-white border border-[#e2e7eb] rounded-xl p-6">
-            <h3 className="font-semibold text-[#1E2A36] mb-1">Darmowy</h3>
-            <p className="text-3xl font-bold text-[#1E2A36] mb-4">0 PLN</p>
-            <ul className="space-y-2 text-sm text-[#4A5B6A] mb-6">
-              <li>Cwiczenie bramkowe &ldquo;5 Minut dla Siebie&rdquo;</li>
-              <li>Modul I: Przeszlosc (kompletny, 6 cwiczen)</li>
-              <li>Szyfrowanie i autosave</li>
-              <li>Bez limitu czasu</li>
-            </ul>
-            <Link href="/program/onboarding">
-              <Button variant="outline" className="w-full">
-                Zacznij za darmo
-              </Button>
-            </Link>
-          </div>
-          <div className="bg-white border-2 border-[#7B9E8C] rounded-xl p-6">
-            <h3 className="font-semibold text-[#1E2A36] mb-1">Pelny program</h3>
-            <p className="text-3xl font-bold text-[#1E2A36] mb-1">
-              <span className="text-lg line-through text-[#8A99A8] mr-2">79 PLN</span>
+        <div className="max-w-md mx-auto">
+          <div className="bg-white border-2 border-[#7B9E8C] rounded-xl p-8 text-center">
+            <p className="text-sm text-[#7B9E8C] font-medium mb-2">Wczesny dostęp</p>
+            <p className="text-4xl font-bold text-[#1E2A36] mb-1">
               29 PLN
             </p>
-            <p className="text-xs text-[#7B9E8C] mb-4">promocja startowa</p>
-            <ul className="space-y-2 text-sm text-[#4A5B6A] mb-6">
-              <li>Wszystkie 3 moduly (18 cwiczen)</li>
-              <li>Dozywotni dostep</li>
-              <li>Przyszle aktualizacje</li>
+            <p className="text-sm text-[#8A99A8] mb-6">
+              Cena regularna: <span className="line-through">79 PLN</span>
+            </p>
+            <ul className="space-y-2 text-sm text-[#4A5B6A] mb-6 text-left">
+              <li>Wszystkie 3 moduły (18 ćwiczeń, 10-15h pracy)</li>
+              <li>Szyfrowanie treści i autosave</li>
+              <li>Dożywotni dostęp, bez subskrypcji</li>
               <li>Eksport do PDF</li>
-              <li>Jednorazowa platnosc — bez subskrypcji</li>
             </ul>
-            <Button className="w-full">Kup pelny program</Button>
+            <Link href="/program/onboarding">
+              <Button className="w-full text-base" size="lg">
+                Dołącz do programu
+              </Button>
+            </Link>
+            <p className="text-xs text-[#8A99A8] mt-3">
+              Jednorazowa płatność. Mniej niż 20% ceny jednej sesji terapeutycznej.
+            </p>
           </div>
         </div>
-        <p className="text-center text-sm text-[#8A99A8] mt-4 max-w-lg mx-auto">
-          Mniej niz 20% ceny jednej sesji psychoterapeutycznej. Jednorazowo, bez subskrypcji.
-        </p>
       </section>
 
       {/* FAQ */}
       <section className="py-12">
         <h2 className="text-2xl font-semibold text-[#1E2A36] mb-6">
-          Najczesciej zadawane pytania
+          Najczęściej zadawane pytania
         </h2>
         <Accordion type="single" collapsible className="space-y-2">
           {[
             {
-              q: "Czy to zastepuje psychoterapie?",
-              a: "Nie. Pisz Siebie to narzedzie do autorefleksji, nie terapia. Jesli zmagasz sie z depresja, myslami samobojczymi lub trauma — skontaktuj sie ze specjalista. Program moze byc natomiast dobrym uzupelnieniem terapii lub krokiem, gdy na terapie czekasz.",
+              q: "Czy to zastępuje psychoterapię?",
+              a: "Nie. To narzędzie do autorefleksji, nie terapia. Jeśli zmagasz się z depresją, myślami samobójczymi lub traumą, skontaktuj się ze specjalistą. Program może być natomiast dobrym uzupełnieniem terapii lub krokiem, gdy na terapię czekasz.",
             },
             {
-              q: "Czy ktos przeczyta to, co pisze?",
-              a: "Nie. Twoje teksty sa szyfrowane. Na serwerze przechowujemy zaszyfrowane dane, ktorych nie potrafimy odczytac.",
+              q: "Czy ktoś przeczyta to, co piszę?",
+              a: "Nie. Twoje teksty są szyfrowane. Na serwerze przechowujemy zaszyfrowane dane, których nie potrafimy odczytać.",
             },
             {
-              q: "Ile czasu zajmuje caly program?",
-              a: "Typowo 10-15 godzin rozlozonych na kilka tygodni. Ale nie ma limitu czasu. Mozesz robic jedno cwiczenie dziennie, jedno tygodniowo, albo przerwac na miesiac i wrocic.",
+              q: "Ile czasu zajmuje cały program?",
+              a: "Typowo 10-15 godzin rozłożonych na kilka tygodni. Ale nie ma limitu czasu. Możesz robić jedno ćwiczenie dziennie, jedno tygodniowo, albo przerwać na miesiąc i wrócić.",
             },
             {
-              q: "Czy musze robic cwiczenia po kolei?",
-              a: "Rekomendujemy pelna sciezke (Przeszlosc -> Terazniejszosc -> Przyszlosc), bo moduly buduja na sobie. Ale to Twoj wybor.",
+              q: "Czy muszę robić ćwiczenia po kolei?",
+              a: "Rekomendujemy pełną ścieżkę (Przeszłość, Teraźniejszość, Przyszłość), bo moduły budują na sobie. Ale to Twój wybór.",
             },
             {
-              q: "Co jesli utkne i nie wiem co pisac?",
-              a: "Kazde cwiczenie ma podpowiedzi ratunkowe — konkretne wskazowki, dokoczenia zdan i alternatywne pytania dla osob, ktore utkneły.",
+              q: "Co jeśli utknę i nie wiem co pisać?",
+              a: "Każde ćwiczenie ma podpowiedzi ratunkowe. To konkretne wskazówki, dokończenia zdań i alternatywne pytania dla osób, które utknęły.",
             },
             {
-              q: "Czy moge pominac cwiczenie?",
-              a: "Tak, zawsze. Przy kazdym cwiczeniu jest przycisk \"Pomin\" i \"Wroc pozniej\". Bez wyjasnien, bez poczucia winy.",
+              q: "Czy mogę pominąć ćwiczenie?",
+              a: "Tak, zawsze. Przy każdym ćwiczeniu jest przycisk \"Pomiń\" i \"Wróć później\". Bez wyjaśnień, bez poczucia winy.",
             },
             {
-              q: "Dlaczego nie jest w pelni darmowy?",
-              a: "Modul I (Przeszlosc) jest w pelni darmowy — 6 cwiczen, bez ograniczen. Moduly II i III kosztuja jednorazowo 29 PLN (promocja). Ta kwota pokrywa koszty serwera i rozwoju programu.",
+              q: "Dlaczego jest płatny?",
+              a: "29 PLN to cena wczesnego dostępu (regularna cena to 79 PLN). Ta kwota pokrywa koszty serwera, szyfrowania i rozwoju programu. Darmowe treści psychoedukacyjne znajdziesz na naszym feedzie.",
             },
           ].map((item, idx) => (
             <AccordionItem
@@ -359,7 +348,7 @@ export default function ProgramLandingPage() {
       <section className="py-12 text-center border-t border-[#e2e7eb]">
         <Link href="/program/onboarding">
           <Button size="lg" className="text-base px-8">
-            Sprobuj za darmo
+            Dołącz do programu
           </Button>
         </Link>
         <p className="text-sm text-[#8A99A8] mt-6">
