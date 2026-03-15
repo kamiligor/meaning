@@ -65,7 +65,7 @@ export function InfiniteFeed({ initialPosts, initialHasMore, locale, isLoggedIn 
       <div className="space-y-6">
         {posts.map((post, index) => (
           <Fragment key={post.slug}>
-            <PostCard post={post} locale={locale} />
+            <PostCard post={post} locale={locale} priority={index === 0} />
             {index === 1 && (
               <NewsletterForm locale={locale} variant="card" />
             )}

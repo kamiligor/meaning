@@ -1,22 +1,46 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 
 interface CarouselViewerProps {
   slides: { filename: string; slideNumber: number }[];
   alt: string;
+  priority?: boolean;
 }
 
 const SWIPE_THRESHOLD = 40;
 
-export function CarouselViewer({ slides, alt }: CarouselViewerProps) {
+export function CarouselViewer({ slides, alt, priority }: CarouselViewerProps) {
   const [current, setCurrent] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const pointerStart = useRef<{ x: number; y: number; id: number } | null>(null);
   const dragging = useRef(false);
   const [dragOffset, setDragOffset] = useState(0);
+  const [loadedSlides, setLoadedSlides] = useState<Set<number>>(new Set());
 
   const total = slides.length;
+
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  const handleImageLoad = useCallback((slideNumber: number) => {
+    setLoadedSlides((prev) => {
+      const next = new Set(prev);
+      next.add(slideNumber);
+      return next;
+    });
+  }, []);
+
+  // Handle images already in browser cache (onLoad fires before React attaches handler)
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const imgs = track.querySelectorAll("img");
+    imgs.forEach((img, i) => {
+      if (img.complete && img.naturalWidth > 0 && slides[i]) {
+        handleImageLoad(slides[i].slideNumber);
+      }
+    });
+  }, [slides, handleImageLoad]);
 
   const goTo = useCallback(
     (index: number) => {
@@ -83,6 +107,7 @@ export function CarouselViewer({ slides, alt }: CarouselViewerProps) {
     >
       {/* Slides track */}
       <div
+        ref={trackRef}
         className="absolute inset-0 flex h-full"
         style={{
           transform: `translateX(${translateX}%)`,
@@ -91,12 +116,29 @@ export function CarouselViewer({ slides, alt }: CarouselViewerProps) {
         }}
       >
         {slides.map((slide) => (
-          <div key={slide.slideNumber} className="w-full h-full shrink-0">
+          <div key={slide.slideNumber} className="w-full h-full shrink-0 relative">
+            {/* Skeleton placeholder */}
+            {!loadedSlides.has(slide.slideNumber) && (
+              <div className="absolute inset-0 bg-[#F1F4F6] animate-pulse flex items-center justify-center">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="text-[#C8D1DA]">
+                  <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" strokeWidth="1.5" />
+                  <circle cx="8.5" cy="8.5" r="2" stroke="currentColor" strokeWidth="1.5" />
+                  <path d="M3 16l4.5-4.5a1.5 1.5 0 012.12 0L14 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M14 14l1.5-1.5a1.5 1.5 0 012.12 0L21 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+            )}
             <img
               src={`/api/slides/${slide.filename}`}
               alt={`${alt} - Slide ${slide.slideNumber}`}
-              className="w-full h-full object-cover pointer-events-none"
+              className={`w-full h-full object-cover pointer-events-none ${
+                priority && slide.slideNumber === slides[0]?.slideNumber
+                  ? "opacity-100"
+                  : `transition-opacity duration-300 ${loadedSlides.has(slide.slideNumber) ? "opacity-100" : "opacity-0"}`
+              }`}
               draggable={false}
+              onLoad={() => handleImageLoad(slide.slideNumber)}
+              fetchPriority={priority && slide.slideNumber === slides[0]?.slideNumber ? "high" : undefined}
             />
           </div>
         ))}

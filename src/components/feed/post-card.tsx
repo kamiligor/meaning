@@ -14,9 +14,10 @@ interface PostCardProps {
     slides: { filename: string; slideNumber: number }[];
   };
   locale: Locale;
+  priority?: boolean;
 }
 
-export function PostCard({ post, locale }: PostCardProps) {
+export function PostCard({ post, locale, priority }: PostCardProps) {
   if (post.slides.length === 0) return null;
 
   const cleanHeadline = post.headline.replace(/\{|\}/g, "");
@@ -31,6 +32,7 @@ export function PostCard({ post, locale }: PostCardProps) {
             .sort((a, b) => a.slideNumber - b.slideNumber)
             .slice(0, -1)}
           alt={cleanHeadline}
+          priority={priority}
         />
 
         {/* Content */}
