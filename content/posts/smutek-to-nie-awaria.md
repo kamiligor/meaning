@@ -15,7 +15,7 @@ subtitle: "Przesuń, żeby dowiedzieć się więcej"
 iconType: heart
 
 quote: "Zdolność do {cierpienia} to nie wada. To mechanizm {obronny}."
-quoteAttribution: "— Randolph Nesse, Good Reasons for Bad Feelings"
+quoteAttribution: "- Randolph Nesse, Good Reasons for Bad Feelings"
 quoteIconType: heart
 
 ctaText: "Obserwuj po {więcej} psychologicznych trików"

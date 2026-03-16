@@ -15,7 +15,7 @@ subtitle: "Przesuń, żeby dowiedzieć się więcej"
 iconType: brain
 
 quote: "Kiedy nie nauczyliśmy się mówić {nie}, nasze ciało może w końcu powiedzieć to {za nas}."
-quoteAttribution: "— Gabor Maté, Kiedy ciało mówi nie"
+quoteAttribution: "- Gabor Maté, Kiedy ciało mówi nie"
 quoteIconType: heart
 
 ctaText: "Obserwuj po {więcej} psychologicznych trików"

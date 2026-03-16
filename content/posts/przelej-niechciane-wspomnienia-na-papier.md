@@ -15,7 +15,7 @@ subtitle: "Przesuń, żeby dowiedzieć się więcej"
 iconType: brain
 
 quote: "Dopóki {tłumisz} to, co czujesz, prowadzisz wojnę z {samym sobą}."
-quoteAttribution: "— Bessel van der Kolk, Ciało pamięta"
+quoteAttribution: "- Bessel van der Kolk, Ciało pamięta"
 quoteIconType: heart
 
 ctaText: "Obserwuj po {więcej} psychologicznych trików"

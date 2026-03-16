@@ -15,7 +15,7 @@ subtitle: "Swipe to learn how"
 iconType: heart
 
 quote: "The capacity for {suffering} is not a defect. It is a {defense}."
-quoteAttribution: "— Randolph Nesse, Good Reasons for Bad Feelings"
+quoteAttribution: "- Randolph Nesse, Good Reasons for Bad Feelings"
 quoteIconType: heart
 
 hashtags:

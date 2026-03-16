@@ -15,7 +15,7 @@ export function GroundingExercise({
     <div className="max-w-lg mx-auto py-8 px-4">
       <div className="bg-[#e8f0eb] rounded-xl p-6">
         <h3 className="text-lg font-medium text-[#1E2A36] mb-4">
-          Cwiczenie uziemiajace — wroc do tu i teraz
+          Ćwiczenie uziemiające — wróć do tu i teraz
         </h3>
         <p className="text-[#4A5B6A] mb-4">
           Rozejrzyj sie po pomieszczeniu, w którym jestes. Nie spiesz sie.
@@ -50,7 +50,7 @@ export function GroundingExercise({
         </p>
         <div className="flex flex-col sm:flex-row gap-2">
           <Button onClick={onDashboard} variant="outline" className="flex-1">
-            Wroc do dashboardu
+            Wróć do dashboardu
           </Button>
           <Button onClick={onContinue} className="flex-1">
             Kontynuuj program

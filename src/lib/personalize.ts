@@ -13,7 +13,7 @@ const TEMPLATES: Record<string, Record<GenderForm, string>> = {
   "{{napisal}}": {
     feminine: "napisałaś",
     masculine: "napisałeś",
-    neutral: "zapisujesz tu",
+    neutral: "tutaj zostało zapisane",
   },
   "{{stworzyl}}": {
     feminine: "stworzyłaś",

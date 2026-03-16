@@ -15,7 +15,7 @@ subtitle: "Przesuń, żeby dowiedzieć się więcej"
 iconType: heart
 
 quote: "Nie wybieramy między {doświadczeniami}. Wybieramy między {wspomnieniami} doświadczeń."
-quoteAttribution: "— Daniel Kahneman, Pułapki myślenia"
+quoteAttribution: "- Daniel Kahneman, Pułapki myślenia"
 quoteIconType: heart
 
 ctaText: "Obserwuj po {więcej} psychologicznych trików"

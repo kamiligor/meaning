@@ -20,7 +20,7 @@ hashtags:
   - "#zdrowiemental"
   - "#rutyna"
 quote: "Sen to {najlepsza} rzecz, jaką możesz zrobić, żeby każdego dnia {zresetować} mózg i ciało."
-quoteAttribution: "— Matthew Walker, Dlaczego śpimy"
+quoteAttribution: "- Matthew Walker, Dlaczego śpimy"
 handleBio: "psychologia · life hacki · zdrowie psychiczne"
 
 

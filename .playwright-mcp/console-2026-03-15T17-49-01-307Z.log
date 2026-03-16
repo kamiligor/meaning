@@ -495,3 +495,28 @@ TypeError: Cannot convert undefined or null to object
     at processMessage (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_17643121._.js:11589:30)
     at WebSocket.handleMessage (http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_17643121._.js:10914:52) @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
 [ 3198112ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/program?_rsc=1i2st:0
+[ 8074707ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/program?_rsc=1i2st:0
+[10999191ms] [ERROR] ./src/components/program/post-exercise-flow.tsx:72:10
+Parsing ecmascript source code failed
+  70 |             ))}
+  71 |           </div>
+> 72 |         )}
+     |          ^
+  73 |
+  74 |         {postExerciseNote && (
+  75 |           <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
+
+Expected '</', got '}'
+
+Import traces:
+  Client Component Browser:
+    ./src/components/program/post-exercise-flow.tsx [Client Component Browser]
+    ./src/components/program/exercise-view.tsx [Client Component Browser]
+    ./src/components/program/exercise-view.tsx [Server Component]
+    ./src/app/program/cwiczenie/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/program/post-exercise-flow.tsx [Client Component SSR]
+    ./src/components/program/exercise-view.tsx [Client Component SSR]
+    ./src/components/program/exercise-view.tsx [Server Component]
+    ./src/app/program/cwiczenie/[id]/page.tsx [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127

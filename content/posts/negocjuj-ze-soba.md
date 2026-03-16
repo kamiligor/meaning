@@ -15,7 +15,7 @@ subtitle: "Przesuń, żeby dowiedzieć się więcej"
 iconType: brain
 
 quote: "{Współczucie} dla siebie jest skuteczniejszym motywatorem niż {samokrytyka}."
-quoteAttribution: "— Kelly McGonigal, Siła woli"
+quoteAttribution: "- Kelly McGonigal, Siła woli"
 quoteIconType: heart
 
 ctaText: "Obserwuj po {więcej} psychologicznych trików"
@@ -46,7 +46,7 @@ Kiedy wydajesz sobie rozkazy, uruchamiasz {reaktancję psychologiczną}, ten sam
 
 Twój mózg traktuje wewnętrzną tyranię jako zagrożenie dla autonomii. Z czasem siła woli zamienia się w {bunt}: prokrastynację, sabotaż, wypalenie.
 
-Ale kiedy {negocjujesz} — nagradzasz postępy, doceniasz wysiłek, stawiasz uczciwe warunki — budujesz wewnętrzny sojusz zamiast wojny.
+Ale kiedy {negocjujesz}, nagradzasz postępy, doceniasz wysiłek i stawiasz uczciwe warunki, budujesz wewnętrzny sojusz zamiast wojny.
 
 ## Dlaczego buntujemy się przeciwko sobie
 

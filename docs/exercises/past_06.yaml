@@ -1,7 +1,7 @@
 exercise:
   id: "past_06"
   module: "Przeszłość"
-  title: "Podsumowanie — Czego Nauczyło Mnie Moje Życie"
+  title: "Podsumowanie. Czego Nauczyło Mnie Moje Życie"
   difficulty: 2
   estimated_time: "20-30 minut"
   psychological_basis: "Tożsamość narracyjna (McAdams, 2001) + Wzrost potraumatyczny (Tedeschi & Calhoun, 2004)"
@@ -15,46 +15,46 @@ exercise:
 
     Teraz zapraszamy do cofnięcia się o krok i spojrzenia na to wszystko z góry.
     Nie po to, żeby wyciągać wielkie wnioski albo tworzyć „morały z historii".
-    Po to, żeby zobaczyć, czy w Twoim życiu — we wszystkich jego rozdziałach,
-    momentach i zwrotach — jest coś, co się powtarza. Jakiś temat, motyw,
+    Po to, żeby zobaczyć, czy w Twoim życiu, we wszystkich jego rozdziałach,
+    momentach i zwrotach, jest coś, co się powtarza. Jakiś temat, motyw,
     pytanie, które wraca.
 
-    McAdams pisze, że tożsamość narracyjna to nie lista faktów o naszym życiu —
+    McAdams pisze, że tożsamość narracyjna to nie lista faktów o naszym życiu,
     to tematy, które łączą te fakty w coś większego. Niektórzy z nas noszą temat
-    „szukania bezpieczeństwa". Inni — „walki o niezależność" albo „uczenia się
+    „szukania bezpieczeństwa". Inni noszą temat „walki o niezależność" albo „uczenia się
     ufać". Nie ma dobrych i złych tematów. Chodzi o to, żeby zobaczyć swój.
 
     To ćwiczenie jest łagodniejsze niż poprzednie. To moment na oddech, przegląd
-    i docenienie drogi, którą masz za sobą — nie tylko w tych ćwiczeniach, ale
+    i docenienie drogi, którą masz za sobą, nie tylko w tych ćwiczeniach, ale
     w całym swoim życiu.
 
   prompt_questions:
-    - "Przejrzyj to, co powstało w poprzednich ćwiczeniach — mapę, rozdziały, opis momentu przełomowego, dwie perspektywy trudnego wspomnienia, list do siebie. Co zauważasz, czytając to wszystko razem?"
-    - "Gdyby Twoje życie było opowieścią, o czym by było? Nie szukaj wydarzeń — szukaj tematów. Może to jest historia o odwadze? O szukaniu miejsca? O uczeniu się mówić 'nie'? O miłości, która przybiera różne formy? Spróbuj nazwać 1-3 tematy."
+    - "Przejrzyj to, co powstało w poprzednich ćwiczeniach: mapę, rozdziały, opis momentu przełomowego, dwie perspektywy trudnego wspomnienia, list do siebie. Co zauważasz, czytając to wszystko razem?"
+    - "Gdyby Twoje życie było opowieścią, o czym by było? Nie szukaj wydarzeń, szukaj tematów. Może to jest historia o odwadze? O szukaniu miejsca? O uczeniu się mówić 'nie'? O miłości, która przybiera różne formy? Spróbuj nazwać 1-3 tematy."
     - "Czy jest coś, co Cię zaskoczyło w tym, co powstało przez cały ten moduł? Coś, o czym wcześniej się nie myślało, a co teraz widać wyraźnie?"
-    - "Czego Twoje życie — ze wszystkimi jego rozdziałami, momentami i zwrotami — nauczyło Cię o Tobie? Nie czego 'powinno' Cię nauczyć — czego faktycznie Cię nauczyło."
+    - "Czego Twoje życie, ze wszystkimi jego rozdziałami, momentami i zwrotami, nauczyło Cię o Tobie? Nie czego 'powinno' Cię nauczyć, ale czego faktycznie Cię nauczyło."
 
   stuck_helpers:
-    - "Jeśli trudno Ci znaleźć 'temat' życia, spróbuj dokończyć zdanie: 'W moim życiu wciąż wraca...' albo 'Ciągle uczę się...' — zobacz, co pojawia się jako pierwsze."
+    - "Jeśli trudno Ci znaleźć 'temat' życia, spróbuj dokończyć zdanie: 'W moim życiu wciąż wraca...' albo 'Ciągle uczę się...'. Zobacz, co pojawia się jako pierwsze."
     - "Możesz też spojrzeć na to inaczej: co łączy osoby, miejsca i momenty, które są dla Ciebie najważniejsze? Czy jest między nimi wspólny mianownik?"
-    - "Nie musisz znaleźć jednego wielkiego tematu. Możesz mieć kilka mniejszych. Możesz też nie znaleźć żadnego — i to też jest okej. Samo przeczytanie swoich tekstów i zatrzymanie się przy nich ma wartość."
-    - "Jeśli czujesz, że Twoje życie 'nie ma tematu' albo 'nie układa się w historię' — zapisz to. To też jest ważna obserwacja i punkt wyjścia do dalszej refleksji."
+    - "Nie musisz znaleźć jednego wielkiego tematu. Możesz mieć kilka mniejszych. Możesz też nie znaleźć żadnego i to też jest okej. Samo przeczytanie swoich tekstów i zatrzymanie się przy nich ma wartość."
+    - "Jeśli czujesz, że Twoje życie 'nie ma tematu' albo 'nie układa się w historię', zapisz to. To też jest ważna obserwacja i punkt wyjścia do dalszej refleksji."
 
   reflection_prompt: |
     Kończysz moduł o przeszłości. Zanim przejdziesz dalej, zatrzymaj się na chwilę.
     Jak się czujesz po tej podróży przez własną historię? Czy coś się zmieniło
-    w sposobie, w jaki patrzysz na swoją przeszłość — nawet jeśli to drobna zmiana?
+    w sposobie, w jaki patrzysz na swoją przeszłość, nawet jeśli to drobna zmiana?
     Nie musisz czuć się „odmienionym człowiekiem". Wystarczy, że zauważysz, czy
     coś się poruszyło.
 
   why_it_works: |
     To ćwiczenie zamyka cykl refleksji nad przeszłością, angażując dwa kluczowe
     mechanizmy. Tożsamość narracyjna (McAdams, 2001) opiera się na zdolności do
-    identyfikowania tematów przewodnich własnego życia — co daje poczucie spójności
+    identyfikowania tematów przewodnich własnego życia, co daje poczucie spójności
     i znaczenia. Jeśli w poprzednich ćwiczeniach pojawiła się praca z trudnymi
     doświadczeniami, ten przegląd może wspierać wzrost potraumatyczny
     (Tedeschi & Calhoun, 2004). Niezależnie od tego, nadanie spójności własnej
-    historii — zidentyfikowanie tematów, które łączą różne rozdziały — jest
+    historii. Zidentyfikowanie tematów, które łączą różne rozdziały, jest
     kluczowym mechanizmem tożsamości narracyjnej (McAdams, 2001). Powrót do
     własnych tekstów i szukanie wzorców to forma meta-refleksji, która pogłębia
     wgląd wypracowany w poprzednich ćwiczeniach i przygotowuje grunt pod pracę

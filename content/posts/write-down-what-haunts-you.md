@@ -15,7 +15,7 @@ subtitle: "Swipe to learn how"
 iconType: brain
 
 quote: "As long as you keep secrets and {suppress} information, you are fundamentally at {war} with yourself."
-quoteAttribution: "— Bessel van der Kolk, The Body Keeps the Score"
+quoteAttribution: "- Bessel van der Kolk, The Body Keeps the Score"
 quoteIconType: heart
 
 hashtags:

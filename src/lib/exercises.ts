@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import yaml from "js-yaml";
 import matter from "gray-matter";
+import { marked } from "marked";
 import { personalize, type GenderForm } from "./personalize";
 
 export interface Exercise {
@@ -46,19 +47,19 @@ const MODULE_CONFIG: Record<
 > = {
   "Przeszlosc": {
     slug: "przeszlosc",
-    title: "Przeszlosc",
-    subtitle: "Zrozum swoja historie",
+    title: "Przeszłość",
+    subtitle: "Zrozum swoją historię",
     order: 1,
   },
   "Terazniejszosc": {
     slug: "terazniejszosc",
-    title: "Terazniejszosc",
+    title: "Teraźniejszość",
     subtitle: "Zrozum, gdzie stoisz",
     order: 2,
   },
   "Przyszlosc": {
     slug: "przyszlosc",
-    title: "Przyszlosc",
+    title: "Przyszłość",
     subtitle: "Zaprojektuj siebie",
     order: 3,
   },
@@ -177,7 +178,7 @@ function loadIntroductions(): Map<string, ModuleIntroduction> {
       title: data.title as string,
       order: data.order as number,
       scientificBasis: data.scientific_basis as string[],
-      content: content.trim(),
+      content: marked.parse(content.trim()) as string,
     });
   }
 
@@ -292,7 +293,7 @@ export function getExerciseModuleInfo(
     const idx = mod.exercises.findIndex((e) => e.id === exerciseId);
     if (idx !== -1) {
       return {
-        moduleLabel: `Modul ${mod.order}`,
+        moduleLabel: `Moduł ${mod.order}`,
         moduleSlug: mod.slug,
         exerciseNumber: idx + 1,
       };

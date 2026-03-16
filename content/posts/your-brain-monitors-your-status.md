@@ -15,7 +15,7 @@ subtitle: "Swipe to learn how"
 iconType: brain
 
 quote: "Where you {stand} in the social hierarchy is intimately related to your chances of getting {ill}."
-quoteAttribution: "— Michael Marmot, The Status Syndrome"
+quoteAttribution: "- Michael Marmot, The Status Syndrome"
 quoteIconType: heart
 
 hashtags:

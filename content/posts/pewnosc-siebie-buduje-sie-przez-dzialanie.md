@@ -15,7 +15,7 @@ subtitle: "Przesuń, żeby dowiedzieć się więcej"
 iconType: brain
 
 quote: "Najskuteczniejszy sposób na budowanie {pewności siebie} to doświadczenia {osobistego sukcesu}."
-quoteAttribution: "— Albert Bandura, Self-Efficacy"
+quoteAttribution: "- Albert Bandura, Self-Efficacy"
 quoteIconType: heart
 
 ctaText: "Obserwuj po {więcej} psychologicznych trików"

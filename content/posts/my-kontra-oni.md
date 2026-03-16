@@ -15,7 +15,7 @@ subtitle: "Przesuń, żeby dowiedzieć się więcej"
 iconType: brain
 
 quote: "Wystarczy {losowy} podział na grupy, żeby ludzie zaczęli faworyzować {swoich} i dyskryminować obcych."
-quoteAttribution: "— Henri Tajfel, Social Identity and Intergroup Relations"
+quoteAttribution: "- Henri Tajfel, Social Identity and Intergroup Relations"
 quoteIconType: heart
 
 ctaText: "Obserwuj po {więcej} psychologicznych trików"

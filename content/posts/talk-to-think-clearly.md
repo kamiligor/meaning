@@ -15,7 +15,7 @@ subtitle: "Swipe to learn how"
 iconType: heart
 
 quote: "People organize their brains with {conversation}. If they don't have anyone to tell their story to, they lose their {minds}."
-quoteAttribution: "— Jordan B. Peterson, 12 Rules for Life"
+quoteAttribution: "- Jordan B. Peterson, 12 Rules for Life"
 quoteIconType: heart
 
 hashtags:

@@ -15,7 +15,7 @@ subtitle: "Swipe to learn how"
 iconType: brain
 
 quote: "The most effective way to develop {self-efficacy} is through {mastery experiences}."
-quoteAttribution: "— Albert Bandura, Self-Efficacy: The Exercise of Control"
+quoteAttribution: "- Albert Bandura, Self-Efficacy: The Exercise of Control"
 quoteIconType: heart
 
 hashtags:

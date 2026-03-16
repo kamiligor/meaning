@@ -15,7 +15,7 @@ subtitle: "Swipe to learn how"
 iconType: heart
 
 quote: "{Happiness} cannot be pursued; it must ensue, as the unintended {side effect} of dedication to a cause greater than oneself."
-quoteAttribution: "— Viktor Frankl, Man's Search for Meaning"
+quoteAttribution: "- Viktor Frankl, Man's Search for Meaning"
 quoteIconType: heart
 
 hashtags:

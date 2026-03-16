@@ -15,7 +15,7 @@ subtitle: "Przesuń, żeby dowiedzieć się więcej"
 iconType: heart
 
 quote: "{Szczęścia} nie da się gonić. Musi nadejść samo, jako {efekt uboczny} sensu."
-quoteAttribution: "— Viktor Frankl, Człowiek w poszukiwaniu sensu"
+quoteAttribution: "- Viktor Frankl, Człowiek w poszukiwaniu sensu"
 quoteIconType: heart
 
 ctaText: "Obserwuj po {więcej} psychologicznych trików"

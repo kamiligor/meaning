@@ -22,8 +22,8 @@ export function ContentWarning({
         <div className="flex items-start gap-3 mb-4">
           <AlertTriangle className="h-5 w-5 text-amber-600 shrink-0 mt-0.5" />
           <div>
-            <p className="text-[#1E2A36] leading-relaxed whitespace-pre-line">
-              {warning}
+            <p className="text-[#1E2A36] leading-relaxed">
+              {warning.replace(/\n(?!\n)/g, " ").trim()}
             </p>
           </div>
         </div>
@@ -32,10 +32,10 @@ export function ContentWarning({
             Kontynuuj
           </Button>
           <Button onClick={onSkip} variant="outline" className="flex-1">
-            Pomin to cwiczenie
+            Pomiń to ćwiczenie
           </Button>
           <Button onClick={onGoBack} variant="ghost" className="flex-1">
-            Wroc pozniej
+            Wróć później
           </Button>
         </div>
       </div>

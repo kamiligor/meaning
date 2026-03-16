@@ -1,11 +1,11 @@
 import Link from "next/link";
 
 interface ExerciseHeaderProps {
-  /** e.g. "Modul I" */
+  /** e.g. "Moduł I" */
   moduleLabel: string;
   /** e.g. "przeszlosc" */
   moduleSlug: string;
-  /** e.g. "Cwiczenie 3" */
+  /** e.g. "Ćwiczenie 3" */
   exerciseLabel: string;
   /** Is it the gate exercise (no module link) */
   isGate?: boolean;
@@ -27,7 +27,7 @@ export function ExerciseHeader({
         <Link
           href={backHref}
           className="flex items-center gap-1.5 text-sm text-[#4A5B6A] hover:text-[#7B9E8C] transition-colors"
-          aria-label={`Wroc do: ${backLabel}`}
+          aria-label={`Wróć do: ${backLabel}`}
         >
           <svg
             width="14"

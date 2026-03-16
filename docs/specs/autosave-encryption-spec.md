@@ -73,7 +73,7 @@ PBKDF2(APP_SECRET + user_id, random_salt, iterations=600000, hash=SHA-256)
 | Wyciek kodu źródłowego | algorytm szyfrowania | Bezużyteczne bez APP_SECRET |
 | Wyciek bazy + kodu | ciphertext + algorytm | Bezużyteczne bez APP_SECRET |
 | Wyciek APP_SECRET (sam) | klucz bazowy | Bezużyteczny bez bazy |
-| Pełna kompromitacja (baza + APP_SECRET) | wszystko | Dane odszyfrowane — jedyny scenariusz |
+| Pełna kompromitacja (baza + APP_SECRET) | wszystko | Dane odszyfrowane, jedyny scenariusz |
 
 **Akceptowalne ryzyko:** pełna kompromitacja infrastruktury to scenariusz, w którym żaden system nie jest bezpieczny. Server-side encryption chroni przed najczęstszymi wektorami: wyciek bazy i wyciek kodu.
 
@@ -184,7 +184,7 @@ CREATE TABLE exercise_responses (
   iv              TEXT NOT NULL,              -- base64-encoded (12 bytes)
   salt            TEXT NOT NULL,              -- base64-encoded (16 bytes)
 
-  -- Metadane (NIE zaszyfrowane — potrzebne do funkcji aplikacji)
+  -- Metadane (NIE zaszyfrowane, potrzebne do funkcji aplikacji)
   word_count      INTEGER DEFAULT 0,
   time_spent_sec  INTEGER DEFAULT 0,
 
@@ -232,7 +232,7 @@ CREATE POLICY "Users can manage own progress"
 
 ---
 
-## 5. Autosave — Specyfikacja
+## 5. Autosave - Specyfikacja
 
 ### 5.1 Triggery Zapisu
 
@@ -372,7 +372,7 @@ Response: 200 OK
 }
 ```
 
-Eksport zwraca odszyfrowany plaintext — użytkownik jest zalogowany, więc serwer może odszyfrować.
+Eksport zwraca odszyfrowany plaintext. Użytkownik jest zalogowany, więc serwer może odszyfrować.
 
 ### 6.4 Usunięcie konta (prawo do zapomnienia)
 
@@ -402,7 +402,7 @@ Operacja:
 | Zagrożenie | Mitygacja |
 |------------|-----------|
 | Wyciek bazy danych | Ciphertext bez APP_SECRET jest bezużyteczny |
-| Wyciek kodu źródłowego | APP_SECRET nie jest w kodzie — jest w env var Coolify |
+| Wyciek kodu źródłowego | APP_SECRET nie jest w kodzie, jest w env var Coolify |
 | XSS | CSP headers, sanityzacja inputu TipTap |
 | MITM | HTTPS only, HSTS header |
 | Brute force auth | Rate limiting, Supabase Auth built-in protection |
@@ -449,7 +449,7 @@ Account deletion: 1 req/day per user
 - Tylko serwer aplikacji z dostępem do APP_SECRET (env var w Coolify)
 - NIE: admin bazy danych (widzi tylko ciphertext)
 - NIE: osoba z dostępem do kodu (nie ma APP_SECRET)
-- TAK: osoba z dostępem do serwera aplikacji (ma APP_SECRET + DB) — to administrator systemu
+- TAK: osoba z dostępem do serwera aplikacji (ma APP_SECRET + DB), czyli administrator systemu
 
 ### 8.4 Zero Tracking
 
@@ -477,7 +477,7 @@ Jeśli zajdzie potrzeba zmiany APP_SECRET (np. podejrzenie wycieku):
 4. Restart aplikacji
 ```
 
-**Czas migracji:** zależy od ilości danych. Przy 10 000 rekordów: ~minuty.
+**Czas migracji:** zależy od ilości danych. Przy 10 000 rekordów: ok. kilka minut.
 
 ---
 
@@ -487,7 +487,7 @@ Jeśli zajdzie potrzeba zmiany APP_SECRET (np. podejrzenie wycieku):
 
 ```
 Twoje teksty są szyfrowane w naszej bazie danych.
-Nawet gdyby ktoś uzyskał dostęp do bazy — zobaczy tylko zaszyfrowane dane,
+Nawet gdyby ktoś uzyskał dostęp do bazy, zobaczy tylko zaszyfrowane dane,
 nie Twoje słowa.
 
 Nie używamy Google Analytics ani żadnych narzędzi śledzących.
@@ -496,6 +496,6 @@ Nie sprzedajemy Twoich danych. Nie czytamy Twoich tekstów.
 
 ### Czego NIE obiecujemy:
 
-- NIE: "nawet my nie możemy odczytać Twoich tekstów" (to byłoby kłamstwo — server-side encryption = serwer ma dostęp)
+- NIE: "nawet my nie możemy odczytać Twoich tekstów" (to byłoby kłamstwo. Server-side encryption = serwer ma dostęp.)
 - TAK: "Twoje teksty są szyfrowane w bazie danych i chronione"
 - Uczciwość > marketing

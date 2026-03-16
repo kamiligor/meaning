@@ -13,7 +13,7 @@ topicTag: Psychology Life Hack
 headline: "Keep a {Consistent} Wake-Up Time"
 
 quote: "Sleep is the single most {effective} thing we can do to {reset} our brain and body health each day."
-quoteAttribution: "— Matthew Walker, Why We Sleep"
+quoteAttribution: "- Matthew Walker, Why We Sleep"
 
 hashtags:
   - "#psychology"
@@ -42,17 +42,17 @@ Irregular sleep patterns make it harder to treat anxiety and depression, because
 
 Your circadian rhythm is a roughly 24-hour biological clock running in nearly every cell of your body. It governs sleep, yes, but also cortisol secretion, body temperature, immune function, cognitive performance, and emotional regulation. When that clock is well-anchored, these systems work in sync. When it drifts, the consequences ripple outward in ways most people don't connect to sleep.
 
-Cortisol, for instance, follows a precise daily curve. It peaks shortly after waking — a phenomenon called the cortisol awakening response — and this peak helps mobilize energy and sharpen focus for the day ahead. When your wake-up time shifts by even an hour or two from day to day, that cortisol curve shifts with it, and the rest of your hormonal and neurological timing follows. The result isn't just grogginess. Research in chronobiology shows that circadian misalignment is associated with reduced prefrontal cortex activity, the part of the brain most responsible for planning, impulse control, and emotional regulation (Walker, *Why We Sleep*, 2017).
+Cortisol, for instance, follows a precise daily curve. It peaks shortly after waking, a phenomenon called the cortisol awakening response, and this peak helps mobilize energy and sharpen focus for the day ahead. When your wake-up time shifts by even an hour or two from day to day, that cortisol curve shifts with it, and the rest of your hormonal and neurological timing follows. The result isn't just grogginess. Research in chronobiology shows that circadian misalignment is associated with reduced prefrontal cortex activity, the part of the brain most responsible for planning, impulse control, and emotional regulation (Walker, *Why We Sleep*, 2017).
 
-Satchin Panda's work at the Salk Institute has demonstrated that consistent daily timing — not just sleep duration — is a primary signal the brain uses to synchronize its internal clocks. This is why shift workers, who are forced into circadian misalignment by their schedules, show higher rates of metabolic disruption, mood disorders, and cognitive difficulties. The mechanism is the same one that makes irregular personal sleep timing problematic, just more extreme in degree.
+Satchin Panda's work at the Salk Institute has demonstrated that consistent daily timing, not just sleep duration, is a primary signal the brain uses to synchronize its internal clocks. This is why shift workers, who are forced into circadian misalignment by their schedules, show higher rates of metabolic disruption, mood disorders, and cognitive difficulties. The mechanism is the same one that makes irregular personal sleep timing problematic, just more extreme in degree.
 
 ## What research shows about irregular sleep patterns
 
-Studies on social jetlag — the mismatch between your body's natural clock and the schedule you keep on workdays versus weekends — have found consistent associations with worse mood, higher rates of depressive symptoms, and poorer emotional regulation. The term was coined by chronobiologist Till Roenneberg, whose large-scale surveys found that a significant portion of the population regularly experiences this kind of internal clock disruption.
+Studies on social jetlag, the mismatch between your body's natural clock and the schedule you keep on workdays versus weekends, have found consistent associations with worse mood, higher rates of depressive symptoms, and poorer emotional regulation. The term was coined by chronobiologist Till Roenneberg, whose large-scale surveys found that a significant portion of the population regularly experiences this kind of internal clock disruption.
 
-Irregular sleep-wake timing has also been identified as a factor that complicates treatment in anxiety and depression. When the circadian system is destabilized, serotonin and dopamine pathways — both central to mood regulation — don't function as efficiently. This doesn't mean irregular sleep causes depression, but the relationship is bidirectional: poor sleep destabilizes mood, and mood disorders disrupt sleep. Consistent wake-up time is one of the most accessible levers for intervening in that cycle.
+Irregular sleep-wake timing has also been identified as a factor that complicates treatment in anxiety and depression. When the circadian system is destabilized, serotonin and dopamine pathways, both central to mood regulation, don't function as efficiently. This doesn't mean irregular sleep causes depression, but the relationship is bidirectional: poor sleep destabilizes mood, and mood disorders disrupt sleep. Consistent wake-up time is one of the most accessible levers for intervening in that cycle.
 
-It's important to be precise here: the research points to *associations*, not guaranteed outcomes. Consistent wake-up time is not a cure for anxiety or depression. But it is one of the few behavioral changes with a plausible, well-understood mechanism — circadian stabilization — and consistent support across sleep science literature.
+It's important to be precise here: the research points to *associations*, not guaranteed outcomes. Consistent wake-up time is not a cure for anxiety or depression. But it is one of the few behavioral changes with a plausible, well-understood mechanism. That mechanism is circadian stabilization, and it has consistent support across sleep science literature.
 
 ## How to actually do this (without overhauling your life)
 

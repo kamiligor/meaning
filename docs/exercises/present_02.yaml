@@ -4,54 +4,54 @@ exercise:
   title: "Moje Wartości"
   difficulty: 2
   estimated_time: "30-40 minut"
-  psychological_basis: "Terapia Akceptacji i Zaangażowania — ACT (Hayes et al.) + Teoria Autodeterminacji — SDT (Deci & Ryan, 2000) + Psychologia pozytywna — siły charakteru (Seligman & Peterson, 2004)"
+  psychological_basis: "Terapia Akceptacji i Zaangażowania (ACT, Hayes et al.) + Teoria Autodeterminacji (SDT, Deci & Ryan, 2000) + Psychologia pozytywna, siły charakteru (Seligman & Peterson, 2004)"
   content_warning: null
 
   introduction: |
-    Wartości to jedno z najczęściej używanych słów w psychologii — i jedno z najczęściej
+    Wartości to jedno z najczęściej używanych słów w psychologii i jedno z najczęściej
     źle rozumianych. Wartości to nie cele. Cel to coś, co można osiągnąć i odhaczyć z listy:
     „zdać egzamin”, „schudnąć 5 kg”, „dostać awans”. Wartość to kierunek, w którym chcesz iść
-    — nie destynacja. Jeśli Twoją wartością jest „autentyczność”, to nigdy jej nie „osiągniesz”
+    a nie destynacja. Jeśli Twoją wartością jest „autentyczność”, to nigdy jej nie „osiągniesz”
     raz na zawsze. Możesz jedynie codziennie wybierać, jak blisko niej żyjesz.
 
     ACT (Terapia Akceptacji i Zaangażowania) uważa wartości za fundament sensownego życia.
-    Kiedy ludzie czują się zagubieni — nie dlatego, że nie mają celów, ale dlatego, że stracili
+    Kiedy ludzie czują się zagubieni, często nie dlatego, że nie mają celów, ale dlatego, że stracili
     kontakt z tym, co naprawdę dla nich ważne. Teoria autodeterminacji (Deci i Ryan) dodaje, że
-    działania zgodne z naszymi wartościami dają autentyczną motywację — w przeciwieństwie do
+    działania zgodne z naszymi wartościami dają autentyczną motywację, w przeciwieństwie do
     działań wynikających z presji, winy czy „bo tak wypada”.
 
     Psychologia pozytywna (Seligman i Peterson) zidentyfikowała uniwersalne siły charakteru
-    — cechy, które różne kultury od tysięcy lat uznają za wartościowe. Nie chodzi o to, żeby je
-    wszystkie mieć. Chodzi o to, żeby wiedzieć, które z nich rezonują z Tobą — i jak bardzo
+    Zidentyfikowała cechy, które różne kultury od tysięcy lat uznają za wartościowe. Nie chodzi o to, żeby je
+    wszystkie mieć. Chodzi o to, żeby wiedzieć, które z nich rezonują z Tobą i jak bardzo
     Twoje obecne życie pozwala im się wyrażać.
 
     W tym ćwiczeniu popracujesz z listą wartości. Znajdziesz ją w dokumencie
     „Lista Wartości” (docs/framework/lista-wartosci.md). Wybierz te, które czujesz jako swoje
-    — nie te, które „powinny” być wybrane, ale te, które naprawdę coś w Tobie poruszają.
+    Nie te, które „powinny” być wybrane, ale te, które naprawdę coś w Tobie poruszają.
 
   prompt_questions:
-    - "Z poniższej listy wartości wybierz 5-7, które czujesz jako naprawdę swoje. Nie wybieraj tych, które brzmią „dobrze” — wybierz te, przy których coś w Tobie reaguje. Zapisz je i przy każdej napisz jedno zdanie: dlaczego właśnie ta wartość?"
-    - "Dla każdej wybranej wartości oceń w skali 1-10: na ile Twoje obecne życie jest z nią zgodne? Nie oceniaj siebie — to nie egzamin. Po prostu uczciwie opisz, jak to wygląda w praktyce. Jeśli wartością jest „wolność”, a codzienność przynosi poczucie uwięzienia w pracy, napisz to."
-    - "Wybierz 2-3 wartości, przy których rozbieżność jest największa (między tym, jak ważna jest wartość, a tym, jak bardzo ją żyjesz). Dla każdej napisz: co by się zmieniło, gdybyś żył bardziej zgodnie z tą wartością? Nie musisz wiedzieć JAK — wystarczy opisać, co by to znaczyło."
-    - "Czy zauważasz wartości, które są ze sobą w konflikcie? (np. „bezpieczeństwo” i „przygoda”, „lojalność” i „wolność”). Jeśli tak — opisz ten konflikt. Nie musisz go rozwiązywać. Samo nazwanie go ma wartość."
+    - “Z poniższej listy wartości wybierz 5-7, które czujesz jako naprawdę swoje. Nie wybieraj tych, które brzmią „dobrze”, wybierz te, przy których coś w Tobie reaguje. Zapisz je i przy każdej napisz jedno zdanie: dlaczego właśnie ta wartość?”
+    - “Dla każdej wybranej wartości oceń w skali 1-10: na ile Twoje obecne życie jest z nią zgodne? Nie oceniaj siebie, to nie egzamin. Po prostu uczciwie opisz, jak to wygląda w praktyce. Jeśli wartością jest „wolność”, a codzienność przynosi poczucie uwięzienia w pracy, napisz to.”
+    - "Wybierz 2-3 wartości, przy których rozbieżność jest największa (między tym, jak ważna jest wartość, a tym, jak bardzo ją żyjesz). Dla każdej napisz: co by się zmieniło, gdybyś żył bardziej zgodnie z tą wartością? Nie musisz wiedzieć jak, wystarczy opisać, co by to znaczyło."
+    - “Czy zauważasz wartości, które są ze sobą w konflikcie? (np. „bezpieczeństwo” i „przygoda”, „lojalność” i „wolność”). Jeśli tak, opisz ten konflikt. Nie musisz go rozwiązywać. Samo nazwanie go ma wartość.”
 
   stuck_helpers:
-    - "Jeśli trudno wybrać, spróbuj od drugiej strony: co boli, gdy tego brakuje w życiu? Jeśli brakuje szacunku — może „godność” jest Twoją wartością. Jeśli doskwiera samotność — może „bliskość” albo „przynależność”."
-    - "Pomyśl o osobie, którą naprawdę podziwiasz (nie celebrycie — kogoś, kogo znasz). Co w niej podziwiasz? To prawdopodobnie mówi więcej o Twoich wartościach niż o tej osobie."
-    - "Możesz też pomyśleć o momentach, gdy czułeś się najbardziej sobą — najbardziej żywy, autentyczny. Co wtedy robiłeś? Jakie wartości były w tym obecne?"
-    - "Nie musisz wybrać „idealnie”. Wartości mogą się zmieniać z czasem. To nie zobowiązanie na całe życie — to uczciwy zapis tego, co jest ważne teraz."
+    - “Jeśli trudno wybrać, spróbuj od drugiej strony: co boli, gdy tego brakuje w życiu? Jeśli brakuje szacunku, może „godność” jest Twoją wartością. Jeśli doskwiera samotność, może „bliskość” albo „przynależność”.”
+    - "Pomyśl o osobie, którą naprawdę podziwiasz, kogoś, kogo znasz, nie celebrytę. Co w niej podziwiasz? To prawdopodobnie mówi więcej o Twoich wartościach niż o tej osobie."
+    - "Możesz też pomyśleć o momentach, gdy czułeś się najbardziej sobą, najbardziej żywy i autentyczny. Co wtedy robiłeś? Jakie wartości były w tym obecne?"
+    - “Nie musisz wybrać „idealnie”. Wartości mogą się zmieniać z czasem. To nie zobowiązanie na całe życie, to uczciwy zapis tego, co jest ważne teraz.”
 
   reflection_prompt: |
     Przeczytaj swoje odpowiedzi. Czy Twoje wartości Cię zaskakują? Czy jest coś, co czujesz,
     ale trudno nazwać? Spróbuj dokończyć zdanie: „Najbardziej chcę żyć w zgodzie z...”
-    — i zobacz, co pojawi się pierwsze.
+    i zobacz, co pojawi się pierwsze.
 
   why_it_works: |
-    Badania w ramach ACT konsekwentnie pokazują, że klaryfikacja wartości — samo nazwanie
-    tego, co ważne — zwiększa motywację wewnętrzną i zmniejsza unikanie doświadczeń (Hayes
+    Badania w ramach ACT konsekwentnie pokazują, że klaryfikacja wartości, samo nazwanie
+    tego, co ważne, zwiększa motywację wewnętrzną i zmniejsza unikanie doświadczeń (Hayes
     et al.). Teoria autodeterminacji potwierdza: działania zgodne z wartościami autonomicznymi
     (a nie narzuconymi) wiążą się z większym dobrostanem, wytrwałością i poczuciem sensu.
     Porównanie „jak jest” z „jak chcę, żeby było” tworzy świadome napięcie motywacyjne, które
     w badaniach ACT wiąże się z większym zaangażowaniem w działania zgodne z wartościami
-    (Hayes et al., 2006). Ten mechanizm jest zbliżony do Mental Contrasting Oettingen — choć
+    (Hayes et al., 2006). Ten mechanizm jest zbliżony do Mental Contrasting Oettingen, choć
     w tym ćwiczeniu skupiamy się na wartościach, nie na konkretnych celach.

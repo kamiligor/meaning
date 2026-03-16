@@ -5,7 +5,7 @@ version: "1.0"
 last_updated: "2026-02-27"
 ---
 
-# User Flow — The Life Writing Program
+# User Flow - The Life Writing Program
 
 ## 1. Przegląd Ścieżki Użytkownika
 
@@ -25,7 +25,7 @@ Landing Page → Micro-onboarding → Rejestracja → Wybór ścieżki → Ćwic
 │  LANDING PAGE                                │
 │                                              │
 │  Hero: "Kiedy w głowie jest za dużo          │
-│         chaosu — zacznij od zapisania."      │
+│         chaosu, zacznij od zapisania."       │
 │                                              │
 │  [Spróbuj za darmo]                          │
 │                                              │
@@ -40,9 +40,9 @@ Landing Page → Micro-onboarding → Rejestracja → Wybór ścieżki → Ćwic
 ┌─────────────────────────────────────────────┐
 │  MICRO-ONBOARDING (1 ekran)                  │
 │                                              │
-│  "Zanim zaczniemy — kilka rzeczy:"           │
+│  "Zanim zaczniemy, kilka rzeczy:"            │
 │  • Nie zastępuje psychoterapii [link]        │
-│  • Teksty szyfrowane — nikt nie przeczyta    │
+│  • Teksty szyfrowane, nikt nie przeczyta     │
 │  • Brak złych odpowiedzi, brak presji        │
 │  • Możesz pominąć dowolne ćwiczenie          │
 │                                              │
@@ -118,7 +118,7 @@ Landing Page → Micro-onboarding → Rejestracja → Wybór ścieżki → Ćwic
 │  │  │ Zrozum swoją│ │ Zrozum,     │ │ Zaprojektuj │ │   │
 │  │  │ historię    │ │ gdzie stoisz│ │ siebie      │ │   │
 │  │  │             │ │             │ │             │ │   │
-│  │  │ 2/6 ćwiczeń│ │ —           │ │ 🔒          │ │   │
+│  │  │ 2/6 ćwiczeń│ │ (nie rozp.) │ │ 🔒          │ │   │
 │  │  │ [Kontynuuj] │ │ [Zacznij]   │ │ [29 PLN]    │ │   │
 │  │  └─────────────┘ └─────────────┘ └─────────────┘ │   │
 │  │                                                    │   │
@@ -136,10 +136,10 @@ Landing Page → Micro-onboarding → Rejestracja → Wybór ścieżki → Ćwic
 ```
 
 **Stany modułu:**
-- `locked` — nie kupiony (Moduł II/III dla darmowych)
-- `available` — odblokowany, nie rozpoczęty
-- `in_progress` — rozpoczęty, pokazuje postęp (np. "3/6 ćwiczeń")
-- `completed` — ukończony (subtelne oznaczenie, bez fajerwerków)
+- `locked` - nie kupiony (Moduł II/III dla darmowych)
+- `available` - odblokowany, nie rozpoczęty
+- `in_progress` - rozpoczęty, pokazuje postęp (np. "3/6 ćwiczeń")
+- `completed` - ukończony (subtelne oznaczenie, bez fajerwerków)
 
 **Stany karty modułu:**
 - Nigdy nie pokazuj "Pominąłeś X ćwiczeń"
@@ -158,8 +158,8 @@ Landing Page → Micro-onboarding → Rejestracja → Wybór ścieżki → Ćwic
 │  z content/introductions/[modul].md           │
 │                                               │
 │  "Co Cię czeka w tym module:"                 │
-│  1. Ćwiczenie 1 — nazwa — ⏱ XX min — ★☆☆☆☆  │
-│  2. Ćwiczenie 2 — nazwa — ⏱ XX min — ★★☆☆☆  │
+│  1. Ćwiczenie 1 - nazwa - ⏱ XX min - ★☆☆☆☆  │
+│  2. Ćwiczenie 2 - nazwa - ⏱ XX min - ★★☆☆☆  │
 │  ...                                          │
 │                                               │
 │  [Zacznij od ćwiczenia 1]                     │
@@ -181,7 +181,7 @@ Landing Page → Micro-onboarding → Rejestracja → Wybór ścieżki → Ćwic
 │                                               │
 │  "Ukończyłeś/aś Moduł [X]."                 │
 │                                               │
-│  Krótka refleksja — co ten moduł obejmował    │
+│  Krótka refleksja, co ten moduł obejmował     │
 │                                               │
 │  Jeśli darmowy tier + ukończony Moduł I:      │
 │  → paywall (patrz 2.5)                        │
@@ -214,7 +214,7 @@ Landing Page → Micro-onboarding → Rejestracja → Wybór ścieżki → Ćwic
 │                                               │
 │  ┌─ Content Warning (jeśli dotyczy) ──────┐  │
 │  │ "To ćwiczenie może wywołać silne        │  │
-│  │  emocje — to normalne..."               │  │
+│  │  emocje. To normalne..."               │  │
 │  └────────────────────────────────────────┘  │
 │                                               │
 │  ┌─ Wprowadzenie ─────────────────────────┐  │
@@ -273,9 +273,9 @@ Landing Page → Micro-onboarding → Rejestracja → Wybór ścieżki → Ćwic
 │                                               │
 │  --- jeśli difficulty >= 3: ---               │
 │  "Jak się teraz czujesz?"                     │
-│  [W porządku — chcę kontynuować]              │
+│  [W porządku, chcę kontynuować]               │
 │  [Potrzebuję przerwy]                         │
-│  [Czuję się źle — potrzebuję wsparcia]        │
+│  [Czuję się źle, potrzebuję wsparcia]         │
 │                                               │
 │  --- jeśli difficulty < 3: ---                │
 │  [Przejdź do następnego ćwiczenia]            │
@@ -304,7 +304,7 @@ Landing Page → Micro-onboarding → Rejestracja → Wybór ścieżki → Ćwic
 ┌──────────────────────────────────────────────┐
 │  PAYWALL                                      │
 │                                               │
-│  "Ukończyłeś/aś Moduł I — Przeszłość.       │
+│  "Ukończyłeś/aś Moduł I - Przeszłość.       │
 │   To duży krok."                              │
 │                                               │
 │  "Moduły Teraźniejszość i Przyszłość          │
@@ -319,7 +319,7 @@ Landing Page → Micro-onboarding → Rejestracja → Wybór ścieżki → Ćwic
 │  │  • Przyszłe aktualizacje              │  │
 │  │  • Jednorazowa płatność               │  │
 │  │                                        │  │
-│  │  [Kup pełny program — 29 PLN]         │  │
+│  │  [Kup pełny program - 29 PLN]         │  │
 │  └────────────────────────────────────────┘  │
 │                                               │
 │  "Mniej niż 20% ceny jednej sesji            │

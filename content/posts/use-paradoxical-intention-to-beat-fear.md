@@ -15,7 +15,7 @@ subtitle: "Swipe to learn how"
 iconType: brain
 
 quote: "He who {fears} something gives it {power} over him.\nLaugh at it, and take that power back."
-quoteAttribution: "— Viktor Frankl's logotherapy"
+quoteAttribution: "- Viktor Frankl's logotherapy"
 quoteIconType: heart
 
 hashtags:
@@ -61,7 +61,7 @@ The technique is not about tricking yourself. It is about disrupting a specific 
 
 Anticipatory anxiety is what happens when the fear of an experience becomes more distressing than the experience itself. You are not afraid of trembling. You are afraid of being afraid of trembling. You are not afraid of lying awake. You are afraid of lying awake worrying about lying awake.
 
-This creates a feedback loop: the anxiety about the symptom produces the very tension that generates the symptom. Research in sleep medicine illustrates this clearly. Studies on psychophysiological insomnia show that arousal and sleep-related worry — not the bedroom, not the mattress — are the primary drivers of sleeplessness in people without organic sleep disorders (Harvey, 2002). The harder you try to force sleep, the more alert your nervous system becomes.
+This creates a feedback loop: the anxiety about the symptom produces the very tension that generates the symptom. Research in sleep medicine illustrates this clearly. Studies on psychophysiological insomnia show that arousal and sleep-related worry, not the bedroom or the mattress, are the primary drivers of sleeplessness in people without organic sleep disorders (Harvey, 2002). The harder you try to force sleep, the more alert your nervous system becomes.
 
 The same pattern appears in performance anxiety. Worrying about shaking hands increases muscle tension. Worrying about blushing increases blood flow to the face. The attempt to suppress the symptom becomes the mechanism that sustains it. This is sometimes called the anxiety-effort cycle: effort directed at controlling anxiety feeds back into the anxiety itself.
 
@@ -69,7 +69,7 @@ Paradoxical intention interrupts this cycle at a structural level, not by managi
 
 ## How it works: humor, distance, and the nervous system
 
-When you genuinely try to produce a feared symptom — really try, with some theatrical commitment — several things happen at once.
+When you genuinely try to produce a feared symptom, really try, with some theatrical commitment, several things happen at once.
 
 First, the instruction is paradoxical in a way the nervous system cannot easily execute. Anxiety is an involuntary response. You cannot will yourself into a genuine panic on demand in the same way you cannot will yourself into a genuine laugh. Trying to manufacture the symptom voluntarily reveals that the symptom was never fully in your control to begin with, which reduces the urgency to control it.
 
@@ -79,7 +79,7 @@ Third, humor matters more than it might seem. Frankl was specific about this: th
 
 ## Clinical applications and what the evidence shows
 
-Paradoxical intention has been studied most consistently in the context of sleep difficulties and performance anxiety. A review by Ascher and Turner (1979) found the technique effective for sleep-onset insomnia in controlled trials, outperforming relaxation-only conditions in some comparisons. More recent meta-analyses on cognitive behavioral therapy for insomnia (CBT-I) incorporate paradoxical intention as one of several components, noting that the instruction to stay awake passively — rather than actively trying to produce symptoms — is sufficient to reduce sleep-onset latency in many patients (Morin et al., 2006).
+Paradoxical intention has been studied most consistently in the context of sleep difficulties and performance anxiety. A review by Ascher and Turner (1979) found the technique effective for sleep-onset insomnia in controlled trials, outperforming relaxation-only conditions in some comparisons. More recent meta-analyses on cognitive behavioral therapy for insomnia (CBT-I) incorporate paradoxical intention as one of several components, noting that the instruction to stay awake passively, rather than actively trying to produce symptoms, is sufficient to reduce sleep-onset latency in many patients (Morin et al., 2006).
 
 For phobias and obsessive patterns, the evidence is thinner and more anecdotal in Frankl's own writing, though the underlying mechanism (breaking the avoidance-amplification cycle) aligns with well-supported exposure-based approaches. What paradoxical intention offers that standard exposure does not is the element of deliberate seeking rather than gradual tolerance, a distinction that may matter for patients who find the idea of simply enduring the feared stimulus too passive or too slow.
 

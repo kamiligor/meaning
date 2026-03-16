@@ -15,7 +15,7 @@ subtitle: "Przesuń, żeby dowiedzieć się więcej"
 iconType: heart
 
 quote: "Ludzie porządkują swoje myśli przez {rozmowę}. Jeśli nie mają komu opowiedzieć swojej historii, tracą {jasność myślenia}."
-quoteAttribution: "— Jordan B. Peterson, 12 zasad życia"
+quoteAttribution: "- Jordan B. Peterson, 12 zasad życia"
 quoteIconType: heart
 
 ctaText: "Obserwuj po {więcej} psychologicznych trików"

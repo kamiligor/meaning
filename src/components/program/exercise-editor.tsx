@@ -85,7 +85,7 @@ export function ExerciseEditor({
             className="text-xs text-[#8A99A8] hover:text-[#7B9E8C] transition-colors"
             type="button"
           >
-            Zapisz teraz
+            Zapisz
           </button>
         </div>
       </div>

@@ -115,7 +115,7 @@ function OnboardingContent() {
               },
               {
                 icon: SkipForward,
-                text: "Mozesz pominac dowolne cwiczenie. Bez tlumaczenia sie.",
+                text: "Możesz pominąć dowolne ćwiczenie. Bez tłumaczenia się.",
               },
             ].map(({ icon: Icon, text }, idx) => (
               <div key={idx} className="flex items-start gap-3">

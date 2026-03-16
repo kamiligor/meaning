@@ -15,7 +15,7 @@ subtitle: "Swipe to learn how"
 iconType: brain
 
 quote: "You must determine where you are {going}. Random wandering will not move you {forward}."
-quoteAttribution: "— Jordan B. Peterson, 12 Rules for Life"
+quoteAttribution: "- Jordan B. Peterson, 12 Rules for Life"
 quoteIconType: heart
 
 hashtags:

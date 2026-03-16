@@ -104,7 +104,7 @@ export default async function DashboardPage() {
                 variant={gateCompleted ? "outline" : "default"}
                 className="w-full"
               >
-                {gateCompleted ? "Wroc do cwiczenia" : "Rozpocznij"}
+                {gateCompleted ? "Wróć do ćwiczenia" : "Rozpocznij"}
               </Button>
             </Link>
           </CardContent>
@@ -135,7 +135,7 @@ export default async function DashboardPage() {
                   <div>
                     <CardTitle className="text-lg flex items-center gap-2">
                       {isLocked && <Lock className="h-4 w-4 text-[#8A99A8]" />}
-                      Modul {mod.order}: {mod.title}
+                      Moduł {mod.order}: {mod.title}
                     </CardTitle>
                     <CardDescription>{mod.subtitle}</CardDescription>
                   </div>
@@ -193,7 +193,7 @@ export default async function DashboardPage() {
                                 className="text-xs h-7"
                               >
                                 {isDone
-                                  ? "Wroc"
+                                  ? "Wróć"
                                   : exStatus === "in_progress"
                                     ? "Kontynuuj"
                                     : "Zacznij"}
@@ -208,7 +208,7 @@ export default async function DashboardPage() {
                 {!isLocked && mod.introduction && (
                   <Link href={`/program/modul/${mod.slug}`}>
                     <Button variant="ghost" size="sm" className="mt-3 text-xs">
-                      Przeczytaj wprowadzenie do modulu
+                      Przeczytaj wprowadzenie do modułu
                     </Button>
                   </Link>
                 )}

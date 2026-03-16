@@ -86,6 +86,8 @@ export function ExerciseView({
   if (step === "postExercise") {
     return (
       <PostExerciseFlow
+        exerciseId={exercise.id}
+        questions={exercise.promptQuestions}
         reflectionPrompt={exercise.reflectionPrompt}
         postExerciseNote={exercise.postExerciseNote}
         showCheckin={exercise.difficulty >= 3}
@@ -96,7 +98,7 @@ export function ExerciseView({
 
   // step === "writing"
   return (
-    <div className="max-w-3xl mx-auto px-4 py-6 pb-20">
+    <div className="max-w-5xl mx-auto px-4 py-6 pb-20">
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-2xl font-semibold text-[#1E2A36] mb-2">
@@ -112,14 +114,19 @@ export function ExerciseView({
       </div>
 
       {/* Introduction */}
-      <div className="prose prose-sm max-w-none text-[#4A5B6A] mb-8 whitespace-pre-line leading-relaxed">
-        {exercise.introduction}
+      <div className="max-w-none text-[#4A5B6A] mb-8 leading-relaxed space-y-4">
+        {exercise.introduction
+          .split(/\n\s*\n/)
+          .filter(Boolean)
+          .map((para, i) => (
+            <p key={i}>{para.replace(/\n/g, " ").trim()}</p>
+          ))}
       </div>
 
       {/* Prompt instruction (gate exercise) */}
       {exercise.promptInstruction && (
         <div className="bg-[#e8f0eb] rounded-lg p-4 mb-6 text-sm text-[#1E2A36]">
-          {exercise.promptInstruction}
+          {exercise.promptInstruction.replace(/\n/g, " ").trim()}
         </div>
       )}
 
@@ -134,7 +141,7 @@ export function ExerciseView({
               exerciseId={exercise.id}
               questionIndex={idx}
               initialContent={getInitialContent(idx)}
-              label={`Odpowiedz na pytanie ${idx + 1}`}
+              label={`Odpowiedź na pytanie ${idx + 1}`}
             />
           </div>
         ))}
@@ -144,7 +151,7 @@ export function ExerciseView({
       <Collapsible open={stuckOpen} onOpenChange={setStuckOpen}>
         <CollapsibleTrigger className="flex items-center gap-2 text-sm text-[#7B9E8C] hover:text-[#5a8270] transition-colors mb-2">
           <Lightbulb className="h-4 w-4" />
-          <span>Nie wiem, co napisac? Podpowiedzi</span>
+          <span>Nie wiem, co napisać? Podpowiedzi</span>
           <ChevronDown
             className={`h-4 w-4 transition-transform ${stuckOpen ? "rotate-180" : ""}`}
           />
@@ -163,23 +170,28 @@ export function ExerciseView({
       {/* Actions */}
       <div className="mt-8 flex flex-col sm:flex-row gap-3">
         <Button onClick={handleComplete} className="flex-1">
-          Zakoncz cwiczenie
+          Zakończ ćwiczenie
         </Button>
         <Button onClick={handleSkip} variant="outline" className="flex-1">
-          Pomin / Wroc pozniej
+          Pomiń / Wróć później
         </Button>
       </div>
 
       {/* Why it works */}
       <Collapsible className="mt-8">
         <CollapsibleTrigger className="text-sm text-[#8A99A8] hover:text-[#7B9E8C] transition-colors">
-          Dlaczego to dziala? (nauka za cwiczeniem) ▸
+          Dlaczego to działa? (nauka za ćwiczeniem) ▸
         </CollapsibleTrigger>
         <CollapsibleContent>
           <div className="mt-2 bg-[#FAFBFC] border border-[#e2e7eb] rounded-lg p-4">
-            <p className="text-sm text-[#4A5B6A] whitespace-pre-line leading-relaxed">
-              {exercise.whyItWorks}
-            </p>
+            {exercise.whyItWorks
+              .split(/\n\s*\n/)
+              .filter(Boolean)
+              .map((para, i) => (
+                <p key={i} className="text-sm text-[#4A5B6A] leading-relaxed mb-2 last:mb-0">
+                  {para.replace(/\n/g, " ").trim()}
+                </p>
+              ))}
           </div>
         </CollapsibleContent>
       </Collapsible>

@@ -15,7 +15,7 @@ subtitle: "Przesuń, żeby dowiedzieć się więcej"
 iconType: brain
 
 quote: "Musisz określić, {dokąd} zmierzasz. Przypadkowe błądzenie nie posunie cię {do przodu}."
-quoteAttribution: "— Jordan B. Peterson, 12 zasad życia"
+quoteAttribution: "- Jordan B. Peterson, 12 zasad życia"
 quoteIconType: heart
 
 ctaText: "Obserwuj po {więcej} psychologicznych trików"

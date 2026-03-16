@@ -15,7 +15,7 @@ subtitle: "Swipe to learn how"
 iconType: brain
 
 quote: "When we have been prevented from learning how to say {no}, our bodies may end up saying it {for us}."
-quoteAttribution: "— Gabor Maté, When the Body Says No"
+quoteAttribution: "- Gabor Maté, When the Body Says No"
 quoteIconType: heart
 
 hashtags:

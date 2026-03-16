@@ -10,17 +10,17 @@ exercise:
   introduction: |
     Badania Hala Hershfielda z użyciem neuroobrazowania pokazały coś zaskakującego: kiedy myślisz
     o sobie za pięć lat, Twój mózg reaguje tak, jakbyś myślał o obcej osobie. Przyszłe Ty to
-    dla Twojego mózgu ktoś inny — i dlatego tak trudno podejmować decyzje, które służą przyszłemu
-    sobie. Odkładasz, unikasz, nie planujesz — bo na poziomie neurologicznym nie czujesz, że to
+    dla Twojego mózgu ktoś inny, i dlatego tak trudno podejmować decyzje, które służą przyszłemu
+    sobie. Odkładasz, unikasz, nie planujesz, bo na poziomie neurologicznym nie czujesz, że to
     dotyczy Ciebie.
 
     To ćwiczenie ma jeden cel: zmniejszyć ten dystans. Nie chodzi o tworzenie perfekcyjnego planu
     życiowego ani o wizualizację sukcesu z okładki magazynu. Chodzi o to, żeby przez chwilę poczuć,
-    że ta przyszła osoba to naprawdę Ty — z Twoimi wartościami, Twoją historią, Twoim sposobem bycia.
+    że ta przyszła osoba to naprawdę Ty, z Twoimi wartościami, Twoją historią, Twoim sposobem bycia.
 
-    Wyobraź sobie siebie za 3-5 lat w wersji, w której sprawy potoczyły się dobrze. Nie idealnie —
+    Wyobraź sobie siebie za 3-5 lat w wersji, w której sprawy potoczyły się dobrze. Nie idealnie,
     dobrze. Żyjesz w sposób, który jest zgodny z Twoimi wartościami. Robisz rzeczy, na których Ci
-    zależy. Masz relacje, które Cię wspierają. To nie jest fantazja — to konkretny obraz, który może
+    zależy. Masz relacje, które Cię wspierają. To nie jest fantazja, to konkretny obraz, który może
     stać się kompasem.
 
     Badania z zakresu psychologii pozytywnej i teorii autodeterminacji pokazują, że ludzie, którzy
@@ -30,28 +30,28 @@ exercise:
     konkret, do którego można wracać.
 
   prompt_questions:
-    - "Wyobraź sobie siebie za 3-5 lat. Wszystko poszło dobrze — nie idealnie, ale dobrze. Żyjesz w zgodzie z tym, co jest dla Ciebie ważne. Opisz typowy dzień: gdzie się budzisz? Co widzisz, kiedy otwierasz oczy? Jakie są Twoje pierwsze myśli?"
-    - "Co robisz w ciągu dnia? Jaka praca, jakie zajęcia, jakie czynności wypełniają Twój czas? Opisz to tak, jakbyś opowiadał komuś bliski dzień — z detalami, zapachami, dźwiękami."
+    - "Wyobraź sobie siebie za 3-5 lat. Wszystko poszło dobrze, nie idealnie, ale dobrze. Żyjesz w zgodzie z tym, co jest dla Ciebie ważne. Opisz typowy dzień: gdzie się budzisz? Co widzisz, kiedy otwierasz oczy? Jakie są Twoje pierwsze myśli?"
+    - "Co robisz w ciągu dnia? Jaka praca, jakie zajęcia, jakie czynności wypełniają Twój czas? Opisz to tak, jakbyś opowiadał komuś bliski dzień, z detalami, zapachami, dźwiękami."
     - "Kto jest obok Ciebie? Jakie relacje są częścią tego życia? Jak wyglądają Twoje rozmowy z tymi ludźmi? Co czujesz w ich towarzystwie?"
-    - "Jak się czujesz na koniec tego dnia? Kiedy kładziesz się spać — jaka jest Twoja dominująca emocja? Co sprawia, że ten dzień był dobry? Nie musisz opisywać euforii — czasem dobry dzień to po prostu spokój i poczucie, że robiło się coś, co ma sens."
+    - "Jak się czujesz na koniec tego dnia? Kiedy kładziesz się spać, jaka jest Twoja dominująca emocja? Co sprawia, że ten dzień był dobry? Nie musisz opisywać euforii. Czasem dobry dzień to po prostu spokój i poczucie, że robiło się coś, co ma sens."
 
   stuck_helpers:
-    - "Jeśli trudno wyobrazić sobie cały dzień, zacznij od jednego momentu. Może to poranek — co pijesz, co jesz, jaka jest pogoda za oknem? Jeden konkretny obraz często pociąga za sobą następne."
-    - "Spróbuj pomyśleć o wartościach odkrytych w Module II. Gdyby to życie naprawdę się toczyło według nich — jak wyglądałby zwykły wtorek? Nie szukaj wielkich wydarzeń, szukaj codzienności."
-    - "Jeśli łapiesz się na myśleniu 'to nierealne' — przypomnij sobie, że to nie jest prognoza. To ćwiczenie wyobraźni, które pomaga Twojemu mózgowi zobaczyć przyszłe Ja jako kogoś bliskiego, a nie obcego. Pozwól sobie na te kilka minut bez wewnętrznego krytyka."
+    - "Jeśli trudno wyobrazić sobie cały dzień, zacznij od jednego momentu. Może to poranek: co pijesz, co jesz, jaka jest pogoda za oknem? Jeden konkretny obraz często pociąga za sobą następne."
+    - "Spróbuj pomyśleć o wartościach odkrytych w Module II. Gdyby to życie naprawdę się toczyło według nich, jak wyglądałby zwykły wtorek? Nie szukaj wielkich wydarzeń, szukaj codzienności."
+    - "Jeśli łapiesz się na myśleniu 'to nierealne', przypomnij sobie, że to nie jest prognoza. To ćwiczenie wyobraźni, które pomaga Twojemu mózgowi zobaczyć przyszłe Ja jako kogoś bliskiego, a nie obcego. Pozwól sobie na te kilka minut bez wewnętrznego krytyka."
     - "Możesz też pomyśleć o tym, czego NIE ma w tym dniu. Może nie ma pośpiechu? Może nie ma poczucia winy? Czasem łatwiej opisać dobre życie przez to, czego w nim brakuje."
 
   reflection_prompt: |
     Przeczytaj to, co {{napisal}}. Czy rozpoznajesz siebie w tej osobie?
-    Co z tego opisu wydaje Ci się najbardziej realne — coś, co mogłoby się
+    Co z tego opisu wydaje Ci się najbardziej realne, coś, co mogłoby się
     naprawdę wydarzyć? A co wydaje Ci się najdalsze od tego, gdzie jesteś teraz?
-    Nie oceniaj — po prostu zauważ te odległości. To informacja, nie wyrok.
+    Nie oceniaj, po prostu zauważ te odległości. To informacja, nie wyrok.
 
   why_it_works: |
     Ćwiczenie „Najlepsza Możliwa Przyszłość" łączy trzy mechanizmy. Po pierwsze, zmniejsza
-    dystans między obecnym a przyszłym Ja — badania Hershfielda (2011) pokazują, że osoby,
+    dystans między obecnym a przyszłym Ja. Badania Hershfielda (2011) pokazują, że osoby,
     które czują większą ciągłość z przyszłym sobą, podejmują lepsze decyzje długoterminowe.
     Po drugie, konkretne wyobrażanie sobie przyszłości aktywuje te same sieci neuronalne
-    co planowanie — mózg zaczyna traktować tę wizję jako coś możliwego, a nie abstrakcyjnego.
+    co planowanie, mózg zaczyna traktować tę wizję jako coś możliwego, a nie abstrakcyjnego.
     Po trzecie, zakotwiczenie wizji w wartościach (SDT) sprawia, że powstaje motywacja wewnętrzna
-    — nie „powinienem", lecz „chcę", co jest kluczowe dla trwałej zmiany zachowania.
+    Nie pojawia się „powinienem\", lecz „chcę\", co jest kluczowe dla trwałej zmiany zachowania.

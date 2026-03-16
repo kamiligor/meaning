@@ -15,7 +15,7 @@ subtitle: "Swipe to learn how"
 iconType: brain
 
 quote: "The mere act of {categorization} into groups is sufficient to trigger intergroup {discrimination}."
-quoteAttribution: "— Henri Tajfel, Social Identity and Intergroup Relations"
+quoteAttribution: "- Henri Tajfel, Social Identity and Intergroup Relations"
 quoteIconType: heart
 
 hashtags:

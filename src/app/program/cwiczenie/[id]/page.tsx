@@ -119,7 +119,7 @@ export default async function ExercisePage({ params }: Props) {
       <ExerciseHeader
         moduleLabel={moduleInfo?.moduleLabel ?? ""}
         moduleSlug={moduleInfo?.moduleSlug ?? ""}
-        exerciseLabel={isGate ? exercise.title : `Cwiczenie ${moduleInfo?.exerciseNumber ?? ""}`}
+        exerciseLabel={isGate ? exercise.title : `Ćwiczenie ${moduleInfo?.exerciseNumber ?? ""}`}
         isGate={isGate}
       />
       <ExerciseView

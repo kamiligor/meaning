@@ -5,7 +5,7 @@ version: "1.0"
 last_updated: "2026-02-27"
 ---
 
-# Specyfikacja Edytora — TipTap
+# Specyfikacja Edytora - TipTap
 
 ## 1. Przegląd
 
@@ -23,35 +23,35 @@ Edytor to serce programu The Life Writing Program. Użytkownik spędza w nim wi�
 
 ### 2.1 Formatowanie (minimalne)
 
-Tylko te opcje, które wspierają proces pisania — bez rozpraszania:
+Tylko te opcje, które wspierają proces pisania, bez rozpraszania:
 
 | Funkcja | Skrót | Ikona | Uzasadnienie |
 |---------|-------|-------|--------------|
 | Pogrubienie | Ctrl+B | **B** | Podkreślenie ważnych myśli |
 | Kursywa | Ctrl+I | *I* | Cytat, wspomnienie, dialog wewnętrzny |
-| Lista punktowana | — | • | Strukturyzowanie myśli |
-| Separator | — | — | Rozdzielenie sekcji/myśli |
+| Lista punktowana | - | • | Strukturyzowanie myśli |
+| Separator | - | - | Rozdzielenie sekcji/myśli |
 
 ### Celowo BRAK:
-- Nagłówków (H1-H6) — to nie dokument
-- Linków — to nie artykuł
-- Kolorów tekstu — rozpraszające
-- Obrazków — to program do pisania
-- Tabel — niepotrzebne
-- Kodu — niepotrzebny
-- Wyrównania tekstu — niepotrzebne
+- Nagłówków (H1-H6) - to nie dokument
+- Linków - to nie artykuł
+- Kolorów tekstu - rozpraszające
+- Obrazków - to program do pisania
+- Tabel - niepotrzebne
+- Kodu - niepotrzebny
+- Wyrównania tekstu - niepotrzebne
 
 ### 2.2 Toolbar
 
 ```
 ┌────────────────────────────────────────────┐
-│  B  I  •  —                    Zapisano ✓  │
+│  B  I  •  -                    Zapisano ✓  │
 └────────────────────────────────────────────┘
 ```
 
 - Toolbar widoczny na desktop, ukryty na mobile (dostępny przez long-press lub bubble menu)
-- "Zapisano ✓" — status autosave, zawsze widoczny
-- Bez licznika słów (presja) — opcjonalnie w ustawieniach
+- "Zapisano ✓" - status autosave, zawsze widoczny
+- Bez licznika słów (presja), opcjonalnie w ustawieniach
 
 ### 2.3 Placeholder
 
@@ -63,7 +63,7 @@ Placeholder znika przy pierwszym znaku.
 
 ### 2.4 Bubble Menu (mobile)
 
-Na mobile — zaznaczenie tekstu pokazuje bubble menu z opcjami B / I:
+Na mobile - zaznaczenie tekstu pokazuje bubble menu z opcjami B / I:
 ```
         ┌─────────┐
         │  B   I  │
@@ -145,7 +145,7 @@ Dwa warianty:
 └──────────────────────────────┘
 ```
 
-**Rekomendacja:** Wariant B jako domyślny — osobny edytor per pytanie. Ułatwia:
+**Rekomendacja:** Wariant B jako domyślny. Osobny edytor per pytanie ułatwia:
 - Nawigację (widać ile zostało)
 - Autosave (granularny)
 - Refleksję (widoczne porównanie odpowiedzi)
@@ -165,7 +165,7 @@ Każdy zapis zawiera:
 }
 ```
 
-`word_count` i `time_spent_seconds` — obliczane client-side, NIE z treści (bo zaszyfrowana). Używane do statystyk na dashboardzie (opcjonalnie).
+`word_count` i `time_spent_seconds` są obliczane client-side, NIE z treści (bo zaszyfrowana). Używane do statystyk na dashboardzie (opcjonalnie).
 
 ---
 
@@ -193,11 +193,11 @@ Każdy zapis zawiera:
 ### 6.1 Wymagane rozszerzenia
 
 ```
-@tiptap/starter-kit          — bazowe rozszerzenia
-@tiptap/extension-placeholder — placeholder text
-@tiptap/extension-character-count — opcjonalny licznik (ukryty domyślnie)
-@tiptap/extension-bubble-menu — bubble menu na mobile
-@tiptap/extension-history     — undo/redo (Ctrl+Z / Ctrl+Y)
+@tiptap/starter-kit          - bazowe rozszerzenia
+@tiptap/extension-placeholder - placeholder text
+@tiptap/extension-character-count - opcjonalny licznik (ukryty domyślnie)
+@tiptap/extension-bubble-menu - bubble menu na mobile
+@tiptap/extension-history     - undo/redo (Ctrl+Z / Ctrl+Y)
 ```
 
 ### 6.2 Konfiguracja bazowa
@@ -233,7 +233,7 @@ const editor = useEditor({
 ## 7. Typografia Edytora
 
 ### Czcionka:
-- **Body / edytor:** Inter (lub system font stack) — czytelna, neutralna
+- **Body / edytor:** Inter (lub system font stack) - czytelna, neutralna
 - **Opcja dyslexia:** OpenDyslexic
 
 ### Rozmiary:
@@ -262,7 +262,7 @@ const editor = useEditor({
 ### PDF
 - Użytkownik może eksportować wszystkie teksty do PDF z dziennika
 - Format: czytelny, z nagłówkami ćwiczeń i datami
-- Generowany client-side (html2pdf lub jsPDF) — serwer nie widzi treści
+- Generowany client-side (html2pdf lub jsPDF), serwer nie widzi treści
 
 ### Clipboard
 - Ctrl+A → Ctrl+C kopiuje tekst z formatowaniem

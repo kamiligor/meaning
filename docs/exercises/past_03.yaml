@@ -5,7 +5,7 @@ exercise:
   difficulty: 3
   estimated_time: "25-40 minut"
   psychological_basis: "Ekspresywne pisanie (Pennebaker, 1997, 2004) + Wzrost potraumatyczny (Tedeschi & Calhoun, 2004)"
-  content_warning: "To ćwiczenie może wywołać silne emocje, ponieważ dotyczy momentów przełomowych w Twoim życiu — w tym potencjalnie trudnych. Nie musisz wybierać najbardziej bolesnego wspomnienia. Możesz przerwać w dowolnym momencie i wrócić później. Jeśli poczujesz, że potrzebujesz wsparcia, numery telefonów zaufania znajdziesz na dole strony."
+  content_warning: "To ćwiczenie może wywołać silne emocje, ponieważ dotyczy momentów przełomowych w Twoim życiu, w tym potencjalnie trudnych. Nie musisz wybierać najbardziej bolesnego wspomnienia. Możesz przerwać w dowolnym momencie i wrócić później. Jeśli poczujesz, że potrzebujesz wsparcia, numery telefonów zaufania znajdziesz na dole strony."
 
   contraindications: |
     To ćwiczenie może nie być odpowiednie dla Ciebie w tym momencie, jeśli:
@@ -18,45 +18,45 @@ exercise:
 
   introduction: |
     W poprzednich ćwiczeniach powstała mapa i rozdziały życia. Teraz
-    zapraszamy do zatrzymania się przy jednym konkretnym momencie — takim, który
+    zapraszamy do zatrzymania się przy jednym konkretnym momencie, takim, który
     zmienił kierunek Twojej historii. Momencie przełomowym.
 
     James Pennebaker, psycholog z Uniwersytetu Teksańskiego, przez ponad 30 lat badał
     wpływ pisania o ważnych doświadczeniach na zdrowie psychiczne i fizyczne. Jego badania
-    konsekwentnie pokazują, że opisywanie przełomowych wydarzeń — ze szczegółami, emocjami,
-    kontekstem — pomaga mózgowi „przetworzyć" doświadczenie i zintegrować je z resztą
-    naszej historii. To nie jest magia — to neurobiologia: pisanie aktywuje obszary mózgu
+    konsekwentnie pokazują, że opisywanie przełomowych wydarzeń ze szczegółami, emocjami
+    i kontekstem pomaga mózgowi „przetworzyć" doświadczenie i zintegrować je z resztą
+    naszej historii. To nie jest magia, to neurobiologia: pisanie aktywuje obszary mózgu
     odpowiedzialne za regulację emocji i tworzenie znaczenia.
 
-    Wybierz jeden moment z Twojej mapy lub rozdziałów — taki, który zmienił coś w Twoim
+    Wybierz jeden moment z Twojej mapy lub rozdziałów, taki, który zmienił coś w Twoim
     życiu. Nie musi być najbardziej dramatyczny ani najbardziej bolesny. Może to być
     rozmowa, decyzja, utrata, spotkanie, odkrycie. Ważne, żeby to był moment, po którym
     coś już nie było takie samo.
 
     Opisz go szczegółowo: co się wydarzyło, kto tam był, jakie emocje się pojawiły, co
-    było widać i słychać. A potem — co się zmieniło. Pisz dla siebie, nie dla publiczności.
+    było widać i słychać. A potem napisz, co się zmieniło. Pisz dla siebie, nie dla publiczności.
     Nikt tego nie oceni.
 
   prompt_questions:
     - "Wybierz jeden moment przełomowy ze swojej mapy życia. Opisz go: co dokładnie się wydarzyło? Gdzie to było? Kto jeszcze tam był?"
-    - "Jakie emocje się wtedy pojawiły? Spróbuj przypomnieć sobie nie to, co 'powinno' się czuć, ale to, co naprawdę było. Jeśli pamiętasz wrażenia cielesne — napięcie, ulgę, ból, lekkość — zapisz je też."
+    - "Jakie emocje się wtedy pojawiły? Spróbuj przypomnieć sobie nie to, co 'powinno' się czuć, ale to, co naprawdę było. Jeśli pamiętasz wrażenia cielesne, napięcie, ulgę, ból, lekkość, zapisz je też."
     - "Co zmieniło się po tym momencie? Jak wyglądało życie przed nim, a jak po? Czy zmienił się sposób myślenia o sobie, o innych, o świecie?"
-    - "Gdyby zamknąć w jednym zdaniu to, czego ten moment nauczył — świadomie lub nieświadomie — co by to było?"
+    - "Gdyby zamknąć w jednym zdaniu to, czego ten moment nauczył, świadomie lub nieświadomie, co by to było?"
 
   stuck_helpers:
-    - "Nie musisz wybierać najbardziej bolesnego momentu. Każdy moment, który zmienił kierunek Twojego życia, się liczy — nawet jeśli z zewnątrz wydawałby się 'mały'."
-    - "Jeśli trudno zacząć, spróbuj zapisać pierwszy szczegół, który pamiętasz — kolor ściany, porę roku, dźwięk w tle. Często jeden szczegół pociąga za sobą następne."
-    - "Możesz pisać w trzeciej osobie, jeśli pierwsza jest zbyt blisko. 'On/Ona siedział w kuchni i...' — to też jest poprawny sposób pisania o sobie."
-    - "Jeśli emocje są zbyt silne, możesz zrobić przerwę. Oddechnij. Wróć, gdy poczujesz się {{gotowy}} — za minutę, za godzinę, za tydzień. To ćwiczenie nigdzie nie zniknie."
+    - "Nie musisz wybierać najbardziej bolesnego momentu. Każdy moment, który zmienił kierunek Twojego życia, się liczy, nawet jeśli z zewnątrz wydawałby się 'mały'."
+    - "Jeśli trudno zacząć, spróbuj zapisać pierwszy szczegół, który pamiętasz: kolor ściany, porę roku, dźwięk w tle. Często jeden szczegół pociąga za sobą następne."
+    - "Możesz pisać w trzeciej osobie, jeśli pierwsza jest zbyt blisko. 'On/Ona siedział w kuchni i...' To też jest poprawny sposób pisania o sobie."
+    - "Jeśli emocje są zbyt silne, możesz zrobić przerwę. Oddechnij. Wróć, gdy poczujesz się {{gotowy}}, za minutę, za godzinę, za tydzień. To ćwiczenie nigdzie nie zniknie."
 
   reflection_prompt: |
-    Przeczytaj to, co {{napisal}}. Jak się teraz czujesz — po zapisaniu tego momentu?
+    Przeczytaj to, co {{napisal}}. Jak się teraz czujesz, po zapisaniu tego momentu?
     Czy coś się zmieniło w sposobie, w jaki go widzisz? Czy coś Cię zaskoczyło
-    w tym, co {{napisal}} — może szczegół, o którym już nie pamiętałeś, albo emocja,
+    w tym, co {{napisal}}, może jakiś szczegół, o którym już nie pamiętałeś, albo emocja,
     której się nie spodziewałeś?
 
   post_exercise_note: |
-    Jeśli po napisaniu tego tekstu czujesz się gorzej niż przed — to
+    Jeśli po napisaniu tego tekstu czujesz się gorzej niż przed, to
     normalna reakcja. Badania Pennebakera pokazują, że pisanie o ważnych
     doświadczeniach może tymczasowo pogorszyć nastrój, zanim pojawi się
     poprawa. Daj sobie czas. Zrób coś spokojnego. Jeśli trudne emocje
@@ -68,6 +68,6 @@ exercise:
     ze szczegółami sensorycznymi i emocjonalnymi pomaga mózgowi przenieść wspomnienie
     z trybu „surowego przeżycia" do trybu „przetworzonej historii". Tedeschi i Calhoun
     (2004) dodają, że świadome analizowanie momentów przełomowych jest jednym z głównych
-    mechanizmów wzrostu potraumatycznego — zdolności do znalezienia nowego zrozumienia
+    mechanizmów wzrostu potraumatycznego, czyli zdolności do znalezienia nowego zrozumienia
     siebie i świata po trudnym doświadczeniu. Pisanie nie zmienia tego, co się wydarzyło,
     ale może zmienić to, jak to nosimy.

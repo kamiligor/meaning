@@ -8,29 +8,29 @@ exercise:
   content_warning: null
 
   introduction: |
-    W poprzednim ćwiczeniu powstała mapa — lista ważnych momentów. Teraz zrobimy
+    W poprzednim ćwiczeniu powstała mapa, lista ważnych momentów. Teraz zrobimy
     następny krok: podzielisz swoje życie na rozdziały, tak jakby było książką.
 
     Czemu akurat rozdziały? Badania nad tożsamością narracyjną pokazują, że ludzie
-    naturalnie myślą o swoim życiu w kategoriach okresów — „kiedy byłem dzieckiem",
+    naturalnie myślą o swoim życiu w kategoriach okresów: „kiedy byłem dzieckiem",
     „po przeprowadzce", „zanim się rozstaliśmy". Nadanie tym okresom nazw i granic
     pomaga przejść od chaotycznego wspominania do świadomej refleksji. To ważne
     rozróżnienie: ruminacja to kółko bez wyjścia, refleksja to patrzenie z pewnym dystansem
     i ciekawością. W tym ćwiczeniu ćwiczymy refleksję.
 
-    Podziel swoje życie na 5-7 rozdziałów. Każdy rozdział ma swój tytuł — tak jak
+    Podziel swoje życie na 5-7 rozdziałów. Każdy rozdział ma swój tytuł, tak jak
     rozdziały w powieści. Tytuł może być poetycki, zabawny, prosty lub metaforyczny.
     To Twoja książka. Potem napisz 3-5 zdań o każdym rozdziale: co go definiowało,
     jaki był wtedy nastrój, co było ważne.
 
     Nie ma jednego „poprawnego" sposobu dzielenia życia. Możesz dzielić według miejsc,
-    relacji, stanów emocjonalnych, szkół, pracy — czegokolwiek, co ma dla Ciebie sens.
+    relacji, stanów emocjonalnych, szkół, pracy, czegokolwiek, co ma dla Ciebie sens.
 
   prompt_questions:
-    - "Podziel swoje życie na 5-7 rozdziałów. Nadaj każdemu tytuł — może być prosty ('Szkoła podstawowa'), metaforyczny ('Cisza przed burzą') lub osobisty. Przy każdym zapisz orientacyjne lata."
+    - "Podziel swoje życie na 5-7 rozdziałów. Nadaj każdemu tytuł, może być prosty ('Szkoła podstawowa'), metaforyczny ('Cisza przed burzą') lub osobisty. Przy każdym zapisz orientacyjne lata."
     - "Dla każdego rozdziału napisz 3-5 zdań: co definiowało ten okres? Jaki był wtedy nastrój? Co było w centrum życia?"
     - "Czy widzisz momenty przejścia między rozdziałami? Co powodowało, że jeden rozdział się kończył, a zaczynał się następny?"
-    - "Gdybyś miał dać podtytuł całej dotychczasowej książce swojego życia — jak by brzmiał?"
+    - "Gdybyś miał dać podtytuł całej dotychczasowej książce swojego życia, jak by brzmiał?"
 
   stuck_helpers:
     - "Jeśli trudno Ci podzielić życie na rozdziały, zacznij od oczywistych granic: szkoła, przeprowadzka, zmiana pracy, początek lub koniec związku. Potem możesz doprecyzować."
@@ -40,7 +40,7 @@ exercise:
 
   reflection_prompt: |
     Przeczytaj swoje rozdziały od początku do końca. Zauważ, jak Twoje życie
-    wygląda, gdy jest podzielone w ten sposób. Czy widzisz jakiś wzorzec — coś,
+    wygląda, gdy jest podzielone w ten sposób. Czy widzisz jakiś wzorzec, coś,
     co się powtarza? Motywy, które wracają? A może coś, co Cię zaskakuje
     w sposobie, w jaki {{podzielil}} swoją historię?
 
@@ -49,6 +49,6 @@ exercise:
     McAdamsa nad tożsamością narracyjną. Nadawanie struktury doświadczeniom przenosi
     wspominanie z trybu ruminacyjnego (powtarzanie tych samych myśli w kółko) do trybu
     refleksyjnego (obserwowanie z ciekawością i dystansem). Trapnell i Campbell (1999)
-    wykazali, że ta różnica ma kluczowe znaczenie dla zdrowia psychicznego — refleksja
+    wykazali, że ta różnica ma kluczowe znaczenie dla zdrowia psychicznego: refleksja
     prowadzi do wglądu, ruminacja do pogorszenia nastroju. Nazywanie i porządkowanie
     okresów życia daje poczucie sprawczości nad własną historią.

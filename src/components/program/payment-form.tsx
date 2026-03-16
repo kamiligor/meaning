@@ -199,7 +199,7 @@ export function PaymentForm() {
     await new Promise((r) => setTimeout(r, 1500));
     setFormState("success");
     await new Promise((r) => setTimeout(r, 1500));
-    router.push("/program/onboarding");
+    router.push("/profil");
   }
 
   /* ── Success state ── */

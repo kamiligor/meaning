@@ -15,7 +15,7 @@ subtitle: "Przesuń, żeby dowiedzieć się jak"
 iconType: brain
 
 quote: "Kto się {boi}, ten daje temu {władzę} nad sobą.\nWyśmiej to, i odbierz tę władzę."
-quoteAttribution: "— Logoterapia Viktora Frankla"
+quoteAttribution: "- Logoterapia Viktora Frankla"
 quoteIconType: heart
 
 ctaText: "Obserwuj po {więcej} psychologicznych trików"

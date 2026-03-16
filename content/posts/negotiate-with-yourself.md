@@ -14,7 +14,7 @@ headline: "{Negotiate} With Yourself"
 iconType: brain
 
 quote: "Self-{compassion} is a far more effective motivator than {self-criticism}."
-quoteAttribution: "— Kelly McGonigal, The Willpower Instinct"
+quoteAttribution: "- Kelly McGonigal, The Willpower Instinct"
 quoteIconType: heart
 
 hashtags:

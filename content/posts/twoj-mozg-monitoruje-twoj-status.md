@@ -15,7 +15,7 @@ subtitle: "Przesuń, żeby dowiedzieć się więcej"
 iconType: brain
 
 quote: "Twoje {miejsce} w hierarchii społecznej jest bezpośrednio związane z ryzykiem {zachorowania}."
-quoteAttribution: "— Michael Marmot, The Status Syndrome"
+quoteAttribution: "- Michael Marmot, The Status Syndrome"
 quoteIconType: heart
 
 ctaText: "Obserwuj po {więcej} psychologicznych trików"

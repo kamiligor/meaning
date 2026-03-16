@@ -15,7 +15,7 @@ subtitle: "Swipe to learn how"
 iconType: heart
 
 quote: "We don't choose between {experiences}. We choose between {memories} of experiences."
-quoteAttribution: "— Daniel Kahneman, Thinking, Fast and Slow"
+quoteAttribution: "- Daniel Kahneman, Thinking, Fast and Slow"
 quoteIconType: heart
 
 hashtags:

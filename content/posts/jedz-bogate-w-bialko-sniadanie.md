@@ -15,7 +15,7 @@ subtitle: "Przesuń, żeby dowiedzieć się więcej"
 iconType: sun
 
 quote: "Nie chodzi tylko o {kalorie}. Chodzi o {reakcję hormonalną} na to, co jesz."
-quoteAttribution: "— Jason Fung, Kod otyłości"
+quoteAttribution: "- Jason Fung, Kod otyłości"
 
 ctaText: "Obserwuj po {więcej} psychologicznych trików"
 hashtags:
@@ -51,7 +51,7 @@ Stabilniejszy poziom cukru od rana oznacza {równiejszą energię i lepszy nastr
 
 ## Kiedy cukier spada, budzi się twój układ stresowy
 
-Śniadanie bogate w węglowodany proste i ubogie w białko powoduje gwałtowny wzrost poziomu glukozy we krwi, po którym następuje równie gwałtowny spadek. Ten spadek — określany niekiedy jako hipoglikemia reaktywna — to nie tylko chwilowy brak energii. To fizjologiczny sygnał zagrożenia.
+Śniadanie bogate w węglowodany proste i ubogie w białko powoduje gwałtowny wzrost poziomu glukozy we krwi, po którym następuje równie gwałtowny spadek. Ten spadek, określany niekiedy jako hipoglikemia reaktywna, to nie tylko chwilowy brak energii. To fizjologiczny sygnał zagrożenia.
 
 Gdy poziom glukozy szybko spada, organizm odczytuje to jako stan alarmowy i uruchamia wydzielanie kortyzolu oraz adrenaliny, żeby zmobilizować zapasy energii. Dla osoby żyjącej pod chronicznym stresem to poważny problem: kortyzol i tak jest już przez cały dzień podwyższony, a skok wywołany węglowodanowym śniadaniem dokłada kolejną aktywację do i tak przeciążonego układu.
 
@@ -71,7 +71,7 @@ W praktyce oznacza to, że dobre śniadanie to inwestycja, której zyski sięgaj
 
 Najlepiej udokumentowane źródła białka dla śniadania zorientowanego na stabilność glikemiczną i odporność na stres to jajka (kompletny profil aminokwasowy, a także cholina wspierająca funkcje mózgu), jogurt grecki (białko plus żywe kultury bakterii wspierające oś jelito-mózg), orzechy i masła orzechowe (białko i magnez, minerał szczególnie wyczerpywany przez przewlekły stres) oraz awokado (jednonienasycone tłuszcze spowalniające wchłanianie glukozy i zapewniające długotrwałe uczucie sytości).
 
-Kwestia pory — a konkretnie jedzenia przed godziną 10 — jest istotna ze względu na naturalny rytm kortyzolu. Kortyzol ma rytm dobowy i osiąga szczyt około 20-30 minut po przebudzeniu (tzw. cortisol awakening response, czyli kortyzolowa odpowiedź przebudzenia). Ten poranny wzrost kortyzolu spełnia adaptacyjną funkcję: mobilizuje energię i przygotowuje organizm na dzień. Jeśli jednak dodasz do tego wysokoglikemiczny posiłek na tle i tak podwyższonego kortyzolu, kumulujesz obciążenie hormonalne.
+Kwestia pory, a konkretnie jedzenia przed godziną 10, jest istotna ze względu na naturalny rytm kortyzolu. Kortyzol ma rytm dobowy i osiąga szczyt około 20-30 minut po przebudzeniu (tzw. cortisol awakening response, czyli kortyzolowa odpowiedź przebudzenia). Ten poranny wzrost kortyzolu spełnia adaptacyjną funkcję: mobilizuje energię i przygotowuje organizm na dzień. Jeśli jednak dodasz do tego wysokoglikemiczny posiłek na tle i tak podwyższonego kortyzolu, kumulujesz obciążenie hormonalne.
 
 Zjedzenie śniadania bogatego w białko w oknie po przebudzeniu oznacza, że dostarczasz organizmowi stabilnej energii dokładnie wtedy, gdy jest metabolicznie najbardziej aktywny, i robisz to w sposób, który nie piętrzy dodatkowego stresu glikemicznego na już aktywowany układ stresowy. U osób żyjących w chronicznym stresie, u których kortyzolowa odpowiedź przebudzenia jest często stępiona lub rozregulowana, regularne poranne spożycie białka może pomagać w odtworzeniu bardziej spójnego rytmu dobowego. To obszar aktywnych badań, a nie ustalonej nauki, ale mechanistyczne podstawy są dobrze ugruntowane.
 
