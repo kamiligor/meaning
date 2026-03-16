@@ -8,14 +8,6 @@ import { ContentWarning } from "./content-warning";
 import { PostExerciseFlow } from "./post-exercise-flow";
 import { Button } from "@/components/ui/button";
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
@@ -36,7 +28,6 @@ interface ExerciseViewProps {
   nextExerciseUrl: string | null;
 }
 
-// SVG clock icon — inline to avoid bundle overhead for a 12x12 glyph
 function roundTime(raw: string): string {
   const match = raw.match(/(\d+)-?(\d+)?\s*minut/);
   if (!match) return raw;
@@ -48,24 +39,15 @@ function roundTime(raw: string): string {
 
 function ClockIcon() {
   return (
-    <svg
-      width="12"
-      height="12"
-      viewBox="0 0 12 12"
-      fill="none"
-      aria-hidden="true"
-      className="inline-block shrink-0"
-    >
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" className="inline-block shrink-0">
       <circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1.2" />
-      <path
-        d="M6 3.5V6.25L7.75 7.5"
-        stroke="currentColor"
-        strokeWidth="1.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <path d="M6 3.5V6.25L7.75 7.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
+}
+
+function stripHtml(html: string): string {
+  return html.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").trim();
 }
 
 export function ExerciseView({
@@ -82,14 +64,12 @@ export function ExerciseView({
     hasWarning && !hasExistingResponses ? "warning" : "writing"
   );
   const [stuckOpen, setStuckOpen] = useState(false);
-  const [showCompletionModal, setShowCompletionModal] = useState(false);
 
-  // Track char counts per question index — initialize from saved responses
+  // Track char counts per question — initialized from saved responses
   const [charCounts, setCharCounts] = useState<Record<number, number>>(() => {
     const initial: Record<number, number> = {};
     for (const r of savedResponses) {
-      const text = r.content.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").trim();
-      initial[r.questionIndex] = text.length;
+      initial[r.questionIndex] = stripHtml(r.content).length;
     }
     return initial;
   });
@@ -106,26 +86,27 @@ export function ExerciseView({
     return saved?.content || "";
   };
 
-  // Returns true if any question with minChars > 0 has fewer chars than required
+  // Does every question with minChars > 0 meet its threshold?
   const meetsMinimum = (): boolean => {
     if (isGate) return true;
     return exercise.promptQuestions.every((q, idx) => {
       if (q.minChars === 0) return true;
-      const count = charCounts[idx] ?? 0;
-      return count >= q.minChars;
+      return (charCounts[idx] ?? 0) >= q.minChars;
     });
   };
 
-  const goToReflection = () => {
-    setStep("postExercise");
+  // Has the user written anything at all?
+  const hasAnyContent = (): boolean => {
+    return Object.values(charCounts).some((c) => c > 0);
   };
 
   const handleCompleteClick = () => {
-    if (!isGate && !meetsMinimum()) {
-      setShowCompletionModal(true);
-      return;
-    }
-    goToReflection();
+    // Can't finish with nothing written (gate_00 is exempt)
+    if (!isGate && !hasAnyContent()) return;
+    // Can't finish without meeting minimums (gate_00 is exempt)
+    if (!isGate && !meetsMinimum()) return;
+    // All good — go to reflection
+    setStep("postExercise");
   };
 
   const handleSkip = async () => {
@@ -141,6 +122,7 @@ export function ExerciseView({
     router.push("/program/dashboard");
   };
 
+  // --- Content Warning screen ---
   if (step === "warning" && exercise.contentWarning) {
     return (
       <ContentWarning
@@ -152,6 +134,7 @@ export function ExerciseView({
     );
   }
 
+  // --- Reflection screen ---
   if (step === "postExercise") {
     return (
       <PostExerciseFlow
@@ -166,7 +149,9 @@ export function ExerciseView({
     );
   }
 
-  // step === "writing"
+  // --- Writing screen ---
+  const canComplete = isGate || (hasAnyContent() && meetsMinimum());
+
   return (
     <div className="max-w-5xl mx-auto px-4 py-6 pb-20">
       {/* Header */}
@@ -177,9 +162,7 @@ export function ExerciseView({
         <div className="flex items-center gap-3 text-sm text-[#8A99A8]">
           <span>{exercise.estimatedTime}</span>
           <span>·</span>
-          <span>
-            Poziom {exercise.difficulty}/5
-          </span>
+          <span>Poziom {exercise.difficulty}/5</span>
         </div>
       </div>
 
@@ -230,9 +213,7 @@ export function ExerciseView({
         <CollapsibleTrigger className="flex items-center gap-2 text-sm text-[#7B9E8C] hover:text-[#5a8270] transition-colors mb-2">
           <Lightbulb className="h-4 w-4" />
           <span>Nie wiem, co napisać? Podpowiedzi</span>
-          <ChevronDown
-            className={`h-4 w-4 transition-transform ${stuckOpen ? "rotate-180" : ""}`}
-          />
+          <ChevronDown className={`h-4 w-4 transition-transform ${stuckOpen ? "rotate-180" : ""}`} />
         </CollapsibleTrigger>
         <CollapsibleContent>
           <div className="bg-[#F1F4F6] rounded-lg p-4 space-y-3">
@@ -247,11 +228,19 @@ export function ExerciseView({
 
       {/* Actions */}
       <div className="mt-8 flex flex-col sm:flex-row gap-3">
-        <Button onClick={handleCompleteClick} className="flex-1">
+        <Button
+          onClick={handleCompleteClick}
+          disabled={!canComplete}
+          className="flex-1"
+        >
           Zakończ ćwiczenie
         </Button>
-        <Button onClick={handleSkip} variant="outline" className="flex-1">
-          Pomiń / Wróć później
+        <Button
+          onClick={() => router.push("/program/dashboard")}
+          variant="outline"
+          className="flex-1"
+        >
+          Zapisz i wyjdź
         </Button>
       </div>
 
@@ -273,87 +262,6 @@ export function ExerciseView({
           </div>
         </CollapsibleContent>
       </Collapsible>
-
-      {/* Soft completion modal */}
-      <Dialog open={showCompletionModal} onOpenChange={setShowCompletionModal}>
-        <DialogContent className="max-w-md">
-          {hasWarning ? (
-            <>
-              <DialogHeader>
-                <DialogTitle className="text-[#1E2A36] font-semibold">
-                  Zatrzymałeś się wcześniej niż zwykle.
-                </DialogTitle>
-                <DialogDescription asChild>
-                  <div className="text-[#4A5B6A] leading-relaxed space-y-3 mt-2">
-                    <p>
-                      To może oznaczać różne rzeczy: może emocje były dziś
-                      silniejsze, może nie było czasu, może chcesz wrócić innym
-                      razem. Wszystko to jest w porządku.
-                    </p>
-                    <p>
-                      Twój tekst jest już zapisany. Możesz wyjść i wrócić kiedy
-                      chcesz.
-                    </p>
-                  </div>
-                </DialogDescription>
-              </DialogHeader>
-              <DialogFooter className="flex-col sm:flex-row gap-2 mt-2">
-                <Button
-                  variant="outline"
-                  onClick={() => setShowCompletionModal(false)}
-                  className="w-full sm:w-auto"
-                >
-                  Zostań i kontynuuj
-                </Button>
-                <Button
-                  onClick={() => {
-                    setShowCompletionModal(false);
-                    goToReflection();
-                  }}
-                  className="w-full sm:w-auto"
-                >
-                  Zapisz i wyjdź
-                </Button>
-              </DialogFooter>
-            </>
-          ) : (
-            <>
-              <DialogHeader>
-                <DialogTitle className="text-[#1E2A36] font-semibold">
-                  Zostaje kilka pytań z krótkimi odpowiedziami.
-                </DialogTitle>
-                <DialogDescription asChild>
-                  <div className="text-[#4A5B6A] leading-relaxed mt-2">
-                    <p>
-                      Możesz zakończyć teraz, to w porządku. Możesz też zostać
-                      chwilę dłużej — często najważniejsze rzeczy pojawiają się
-                      po pierwszym zdaniu.
-                    </p>
-                  </div>
-                </DialogDescription>
-              </DialogHeader>
-              <DialogFooter className="flex-col sm:flex-row gap-2 mt-2">
-                <Button
-                  variant="outline"
-                  onClick={() => setShowCompletionModal(false)}
-                  className="w-full sm:w-auto"
-                >
-                  Zostań i dopiszę
-                </Button>
-                <Button
-                  onClick={() => {
-                    setShowCompletionModal(false);
-                    goToReflection();
-                  }}
-                  className="w-full sm:w-auto"
-                >
-                  Zakończ mimo to
-                </Button>
-              </DialogFooter>
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }
