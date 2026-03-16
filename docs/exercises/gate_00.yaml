@@ -34,11 +34,21 @@ exercise:
     są dobre.
 
   prompt_questions:
-    - "Teraz czuję się..."
-    - "Chciałbym, żeby..."
-    - "Najbardziej brakuje mi..."
-    - "Gdybym mógł zmienić jedną rzecz..."
-    - "Kiedy myślę o przyszłości..."
+    - text: "Teraz czuję się..."
+      estimated_time: "1-2 minut"
+      min_chars: 10
+    - text: "Chciałbym, żeby..."
+      estimated_time: "1-2 minut"
+      min_chars: 10
+    - text: "Najbardziej brakuje mi..."
+      estimated_time: "1-2 minut"
+      min_chars: 10
+    - text: "Gdybym mógł zmienić jedną rzecz..."
+      estimated_time: "1-2 minut"
+      min_chars: 10
+    - text: "Kiedy myślę o przyszłości..."
+      estimated_time: "1-2 minut"
+      min_chars: 10
 
   prompt_instruction: |
     Dokończ dowolne trzy z powyższych zdań. Które trzy, to Twój wybór.

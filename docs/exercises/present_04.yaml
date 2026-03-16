@@ -69,22 +69,53 @@ exercise:
         Przykład: „Nie ma sensu wysyłać CV, i tak mnie nie wezmą.”
 
   prompt_questions:
-    - “Przeczytaj powyższą listę zniekształceń. Które z nich rozpoznajesz u siebie? Wybierz 2-4, które pojawiają się najczęściej. Nie musisz wybierać tych „najgorszych”, wybierz te, które najczęściej wpływają na Twoje codzienne myślenie.”
-    - "Dla każdego wybranego zniekształcenia opisz konkretną sytuację, w której się pojawia. Co się dzieje? Jaka myśl pojawia się automatycznie? Jak ta myśl wpływa na to, co czujesz i co robisz (lub czego nie robisz)?"
-    - "Spróbuj zastanowić się: kiedy ten schemat mógł się pojawić w Twoim życiu? Czy przypominasz sobie sytuację z przeszłości, w której taki sposób myślenia miał sens, chronił, pomagał przetrwać, dawał poczucie kontroli? Nie musisz mieć pewności, wystarczy intuicja. Jeśli to pytanie przywołuje bardzo trudne wspomnienia, możesz je pominąć i przejść do następnego. To ćwiczenie nie wymaga powrotu do bolesnej przeszłości."
-    - “Gdybyś miał opisać swoje myślenie jednym wzorcem, jakie zdanie najczęściej pojawia się w głowie? Może to „Nie dam rady”, może „Muszę być idealny”, może „Inni mają łatwiej”. Zapisz to zdanie i zobacz, jak reaguje Twoje ciało, gdy je czytasz.”
+    - text: >
+        Przeczytaj powyższą listę zniekształceń. Które z nich rozpoznajesz u siebie? Wybierz 2-4,
+        które pojawiają się najczęściej. Nie musisz wybierać tych „najgorszych”, wybierz te,
+        które najczęściej wpływają na Twoje codzienne myślenie.
+      estimated_time: “5-7 minut”
+      min_chars: 20
+    - text: >
+        Dla każdego wybranego zniekształcenia opisz konkretną sytuację, w której się pojawia.
+        Co się dzieje? Jaka myśl pojawia się automatycznie? Jak ta myśl wpływa na to, co czujesz
+        i co robisz (lub czego nie robisz)?
+      estimated_time: “8-12 minut”
+      min_chars: 100
+    - text: >
+        Spróbuj zastanowić się: kiedy ten schemat mógł się pojawić w Twoim życiu? Czy przypominasz
+        sobie sytuację z przeszłości, w której taki sposób myślenia miał sens, chronił, pomagał
+        przetrwać, dawał poczucie kontroli? Nie musisz mieć pewności, wystarczy intuicja. Jeśli
+        to pytanie przywołuje bardzo trudne wspomnienia, możesz je pominąć i przejść do następnego.
+        To ćwiczenie nie wymaga powrotu do bolesnej przeszłości.
+      estimated_time: “5-8 minut”
+      min_chars: 50
+    - text: >
+        Gdybyś miał opisać swoje myślenie jednym wzorcem, jakie zdanie najczęściej pojawia się
+        w głowie? Może to „Nie dam rady”, może „Muszę być idealny”, może „Inni mają łatwiej”.
+        Zapisz to zdanie i zobacz, jak reaguje Twoje ciało, gdy je czytasz.
+      estimated_time: “3-5 minut”
+      min_chars: 20
 
   stuck_helpers:
-    - “Jeśli żadne zniekształcenie nie wydaje się „Twoje\”, spróbuj pomyśleć o ostatniej sytuacji, która Cię zdenerwowała. Jaka pierwsza myśl pojawiła się automatycznie? Porównaj ją z listą.”
-    - “Możesz też zapytać kogoś bliskiego: „Jakie zdanie słyszysz ode mnie najczęściej, gdy się denerwuję?”. Czasem inni widzą nasze wzorce lepiej niż my sami.”
-    - “Nie musisz dokładnie dopasować swojego doświadczenia do kategorii z listy. Zniekształcenia się przenikają i mieszają. Jeśli rozpoznajesz „coś podobnego\”, to wystarczy.”
-    - "Pamiętaj, że celem nie jest wyeliminowanie tych myśli. Celem jest zobaczenie ich, jak zauważasz wzór na tapecie, który wcześniej był niewidoczny, bo był wszędzie. Samo zobaczenie to już zmiana."
+    - >
+      Jeśli żadne zniekształcenie nie wydaje się „Twoje”, spróbuj pomyśleć o ostatniej sytuacji,
+      która Cię zdenerwowała. Jaka pierwsza myśl pojawiła się automatycznie? Porównaj ją z listą.
+    - >
+      Możesz też zapytać kogoś bliskiego: „Jakie zdanie słyszysz ode mnie najczęściej, gdy się
+      denerwuję?”. Czasem inni widzą nasze wzorce lepiej niż my sami.
+    - >
+      Nie musisz dokładnie dopasować swojego doświadczenia do kategorii z listy. Zniekształcenia
+      się przenikają i mieszają. Jeśli rozpoznajesz „coś podobnego”, to wystarczy.
+    - >
+      Pamiętaj, że celem nie jest wyeliminowanie tych myśli. Celem jest zobaczenie ich, jak
+      zauważasz wzór na tapecie, który wcześniej był niewidoczny, bo był wszędzie. Samo zobaczenie
+      to już zmiana.
 
   reflection_prompt: |
     Patrząc na swoje odpowiedzi, czy widzisz „główny schemat”, który organizuje
     Twoje myślenie? Gdybyś miał nadać mu imię lub tytuł (np. „Wewnętrzny Perfekcjonista”,
     „Strażnik Najgorszego Scenariusza”), jak by się nazywał? Czasem nadanie imienia
-    schematowi pomaga oddzielić go od siebie. To nie jest „ja\”, to mój nawyk myślowy.
+    schematowi pomaga oddzielić go od siebie. To nie jest „ja”, to mój nawyk myślowy.
 
   post_exercise_note: |
     Jeśli po tym ćwiczeniu czujesz się gorzej niż przed, to normalna

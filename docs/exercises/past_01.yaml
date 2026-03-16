@@ -25,10 +25,18 @@ exercise:
     czy spacer, kształtują nas najbardziej. Zaufaj temu, co przychodzi Ci do głowy jako pierwsze.
 
   prompt_questions:
-    - "Wypisz 7-10 momentów z Twojego życia, które wydają Ci się ważne. Przy każdym zapisz orientacyjny czas (rok lub okres życia) i krótką nazwę, jedno zdanie lub kilka słów."
-    - "Czy widzisz momenty, które Cię zaskakują? Coś, o czym dawno nie myślałeś, a co samo przyszło na myśl?"
-    - "Czy są okresy w Twoim życiu, z których nic nie przychodzi Ci do głowy? To też jest informacja. Zapisz to."
-    - "Gdybyś miał wybrać 3 momenty, które najbardziej uczyniły Cię osobą, którą jesteś dzisiaj, które by to były?"
+    - text: "Wypisz 7-10 momentów z Twojego życia, które wydają Ci się ważne. Przy każdym zapisz orientacyjny czas (rok lub okres życia) i krótką nazwę, jedno zdanie lub kilka słów."
+      estimated_time: "10-15 minut"
+      min_chars: 100
+    - text: "Czy widzisz momenty, które Cię zaskakują? Coś, o czym dawno nie myślałeś, a co samo przyszło na myśl?"
+      estimated_time: "3-5 minut"
+      min_chars: 30
+    - text: "Czy są okresy w Twoim życiu, z których nic nie przychodzi Ci do głowy? To też jest informacja. Zapisz to."
+      estimated_time: "2-4 minut"
+      min_chars: 20
+    - text: "Gdybyś miał wybrać 3 momenty, które najbardziej uczyniły Cię osobą, którą jesteś dzisiaj, które by to były?"
+      estimated_time: "5-7 minut"
+      min_chars: 20
 
   stuck_helpers:
     - "Jeśli patrzenie na całe życie przytłacza, zacznij od ostatnich 5 lat. To wystarczy. Możesz wrócić do wcześniejszych lat później albo wcale."

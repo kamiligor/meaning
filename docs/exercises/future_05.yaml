@@ -41,10 +41,18 @@ exercise:
     Nie z presją bycia lepszym. Z szacunkiem dla drogi, która przed Tobą.
 
   prompt_questions:
-    - "Zacznij list: 'Drogi Ja za rok...' (lub za dwa lata, jeśli wolisz). Napisz, co teraz czujesz, w tym momencie, na tym etapie programu. Co się zmieniło w Twoim myśleniu od początku? Co teraz rozumiesz o sobie, czego wcześniej nie było widać?"
-    - "Napisz, czego się nauczyłeś: z Modułu o przeszłości, z refleksji nad teraźniejszością, z wizji przyszłości. Nie chodzi o wielkie rewelacje. Może to jedno zdanie, które utkwiło. Może to jedno ćwiczenie, które Cię poruszyło. Podziel się tym z przyszłym sobą."
-    - "Napisz, co masz nadzieję, że przyszłe Ty zrobiło, ale bez rozkazów i oczekiwań. Nie 'Mam nadzieję, że schudłeś 10 kilo.' Raczej: 'Mam nadzieję, że nadal słuchasz siebie. Mam nadzieję, że nie zrezygnowałeś z tego, co jest dla Ciebie ważne.' Pisz z troską, nie z presją."
-    - "Na koniec napisz, co chcesz, żeby przyszłe Ty pamiętało, nawet jeśli zapomni wszystko inne z tego programu. Jedno zdanie, jedna myśl, jedno przesłanie. Co jest najważniejsze?"
+    - text: "Zacznij list: 'Drogi Ja za rok...' (lub za dwa lata, jeśli wolisz). Napisz, co teraz czujesz, w tym momencie, na tym etapie programu. Co się zmieniło w Twoim myśleniu od początku? Co teraz rozumiesz o sobie, czego wcześniej nie było widać?"
+      estimated_time: "5-8 minut"
+      min_chars: 80
+    - text: "Napisz, czego się nauczyłeś: z Modułu o przeszłości, z refleksji nad teraźniejszością, z wizji przyszłości. Nie chodzi o wielkie rewelacje. Może to jedno zdanie, które utkwiło. Może to jedno ćwiczenie, które Cię poruszyło. Podziel się tym z przyszłym sobą."
+      estimated_time: "5-8 minut"
+      min_chars: 60
+    - text: "Napisz, co masz nadzieję, że przyszłe Ty zrobiło, ale bez rozkazów i oczekiwań. Nie 'Mam nadzieję, że schudłeś 10 kilo.' Raczej: 'Mam nadzieję, że nadal słuchasz siebie. Mam nadzieję, że nie zrezygnowałeś z tego, co jest dla Ciebie ważne.' Pisz z troską, nie z presją."
+      estimated_time: "5-8 minut"
+      min_chars: 40
+    - text: "Na koniec napisz, co chcesz, żeby przyszłe Ty pamiętało, nawet jeśli zapomni wszystko inne z tego programu. Jedno zdanie, jedna myśl, jedno przesłanie. Co jest najważniejsze?"
+      estimated_time: "5-8 minut"
+      min_chars: 20
 
   stuck_helpers:
     - "Jeśli nie wiesz, jak zacząć, wyobraź sobie, że piszesz do bliskiego przyjaciela, który wyrusza w długą podróż. Co byś powiedział na pożegnanie? A teraz skieruj te słowa do siebie."

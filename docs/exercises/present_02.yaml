@@ -30,10 +30,30 @@ exercise:
     Nie te, które „powinny” być wybrane, ale te, które naprawdę coś w Tobie poruszają.
 
   prompt_questions:
-    - “Z poniższej listy wartości wybierz 5-7, które czujesz jako naprawdę swoje. Nie wybieraj tych, które brzmią „dobrze”, wybierz te, przy których coś w Tobie reaguje. Zapisz je i przy każdej napisz jedno zdanie: dlaczego właśnie ta wartość?”
-    - “Dla każdej wybranej wartości oceń w skali 1-10: na ile Twoje obecne życie jest z nią zgodne? Nie oceniaj siebie, to nie egzamin. Po prostu uczciwie opisz, jak to wygląda w praktyce. Jeśli wartością jest „wolność”, a codzienność przynosi poczucie uwięzienia w pracy, napisz to.”
-    - "Wybierz 2-3 wartości, przy których rozbieżność jest największa (między tym, jak ważna jest wartość, a tym, jak bardzo ją żyjesz). Dla każdej napisz: co by się zmieniło, gdybyś żył bardziej zgodnie z tą wartością? Nie musisz wiedzieć jak, wystarczy opisać, co by to znaczyło."
-    - “Czy zauważasz wartości, które są ze sobą w konflikcie? (np. „bezpieczeństwo” i „przygoda”, „lojalność” i „wolność”). Jeśli tak, opisz ten konflikt. Nie musisz go rozwiązywać. Samo nazwanie go ma wartość.”
+    - text: >
+        Z poniższej listy wartości wybierz 5-7, które czujesz jako naprawdę swoje.
+        Nie wybieraj tych, które brzmią „dobrze”, wybierz te, przy których coś w Tobie reaguje.
+        Zapisz je i przy każdej napisz jedno zdanie: dlaczego właśnie ta wartość?
+      estimated_time: “8-12 minut”
+      min_chars: 100
+    - text: >
+        Dla każdej wybranej wartości oceń w skali 1-10: na ile Twoje obecne życie jest z nią zgodne?
+        Nie oceniaj siebie, to nie egzamin. Po prostu uczciwie opisz, jak to wygląda w praktyce.
+        Jeśli wartością jest „wolność”, a codzienność przynosi poczucie uwięzienia w pracy, napisz to.
+      estimated_time: “8-12 minut”
+      min_chars: 150
+    - text: >
+        Wybierz 2-3 wartości, przy których rozbieżność jest największa (między tym, jak ważna jest wartość,
+        a tym, jak bardzo ją żyjesz). Dla każdej napisz: co by się zmieniło, gdybyś żył bardziej zgodnie
+        z tą wartością? Nie musisz wiedzieć jak, wystarczy opisać, co by to znaczyło.
+      estimated_time: “7-10 minut”
+      min_chars: 80
+    - text: >
+        Czy zauważasz wartości, które są ze sobą w konflikcie? (np. „bezpieczeństwo” i „przygoda”,
+        „lojalność” i „wolność”). Jeśli tak, opisz ten konflikt. Nie musisz go rozwiązywać.
+        Samo nazwanie go ma wartość.
+      estimated_time: “5-7 minut”
+      min_chars: 40
 
   stuck_helpers:
     - “Jeśli trudno wybrać, spróbuj od drugiej strony: co boli, gdy tego brakuje w życiu? Jeśli brakuje szacunku, może „godność” jest Twoją wartością. Jeśli doskwiera samotność, może „bliskość” albo „przynależność”.”

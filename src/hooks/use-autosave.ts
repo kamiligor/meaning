@@ -112,6 +112,11 @@ export function useAutosave({
   useEffect(() => {
     if (content === lastSavedContent.current) return;
 
+    // Content changed since last save — clear "saved" indicator
+    if (status === "saved") {
+      setStatus("idle");
+    }
+
     if (debounceTimer.current) {
       clearTimeout(debounceTimer.current);
     }

@@ -26,10 +26,18 @@ exercise:
     czuje, jak wygląda jej dzień. Spróbuj podejść do siebie z taką samą uważną ciekawością.
 
   prompt_questions:
-    - "Jakie role pełnisz w swoim życiu? (np. rodzic, pracownik, przyjaciel, partner/ka, student/ka, opiekun/ka...) Które z tych ról czujesz jako naprawdę swoje, a które bardziej jak kostium, który nosisz?"
-    - "Jak wygląda Twój typowy dzień? Opisz go szczerze, od momentu przebudzenia do zaśnięcia. Co w tym dniu daje Ci energię, a co ją zabiera?"
-    - "Jak wyglądają Twoje najważniejsze relacje w tej chwili? Z kim czujesz się sobą, a przy kim pojawia się potrzeba udawania? Nie musisz nikogo oceniać, po prostu opisz, jak to wygląda."
-    - “Gdybyś miał opisać swój obecny stan, emocjonalny, fizyczny, energetyczny, jakimi słowami byś to zrobił? Spróbuj być konkretny, unikając ogólników typu „dobrze” czy „źle”.”
+    - text: “Jakie role pełnisz w swoim życiu? (np. rodzic, pracownik, przyjaciel, partner/ka, student/ka, opiekun/ka...) Które z tych ról czujesz jako naprawdę swoje, a które bardziej jak kostium, który nosisz?”
+      estimated_time: “5-8 minut”
+      min_chars: 80
+    - text: “Jak wygląda Twój typowy dzień? Opisz go szczerze, od momentu przebudzenia do zaśnięcia. Co w tym dniu daje Ci energię, a co ją zabiera?”
+      estimated_time: “8-12 minut”
+      min_chars: 120
+    - text: “Jak wyglądają Twoje najważniejsze relacje w tej chwili? Z kim czujesz się sobą, a przy kim pojawia się potrzeba udawania? Nie musisz nikogo oceniać, po prostu opisz, jak to wygląda.”
+      estimated_time: “5-8 minut”
+      min_chars: 80
+    - text: “Gdybyś miał opisać swój obecny stan, emocjonalny, fizyczny, energetyczny, jakimi słowami byś to zrobił? Spróbuj być konkretny, unikając ogólników typu „dobrze” czy „źle”.”
+      estimated_time: “5-7 minut”
+      min_chars: 40
 
   stuck_helpers:
     - “Możesz zacząć od najprostszego opisu: „Mam X lat, mieszkam w..., pracuję jako / uczę się..., mój dzień zazwyczaj wygląda tak...”. Pozwól, żeby tekst sam Cię poprowadził dalej.”

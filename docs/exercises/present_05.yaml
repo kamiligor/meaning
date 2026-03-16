@@ -11,7 +11,7 @@ exercise:
     i pierwsze spotkanie z nimi może być zaskakująco trudne. Możesz przerwać w dowolnym
     momencie. Możesz wrócić jutro. Nie ma pośpiechu. Badania pokazują, że u osób, które rzadko
     doświadczały ciepła wobec siebie, ćwiczenia współczucia mogą paradoksalnie wywołać silne
-    emocje: smutek, gniew, a nawet lęk. Nazywa się to efektem „backdraft\” (Germer i Neff, 2013).
+    emocje: smutek, gniew, a nawet lęk. Nazywa się to efektem “backdraft” (Germer i Neff, 2013).
     Jeśli to się pojawi, nie oznacza to, że coś jest nie tak. To naturalna reakcja na coś
     nowego. Daj sobie przestrzeń.
 
@@ -48,17 +48,51 @@ exercise:
     głos i że jest równie prawdziwy.
 
   prompt_questions:
-    - “Część A. Głos Krytyka. Napisz to, za co najczęściej pojawia się samokrytyka. Jakie słowa brzmią w głowie? Jakim tonem mówi ten głos? Bądź dokładny, zapisz te słowa tak, jak naprawdę brzmią, nawet jeśli są okrutne. Nikt tego nie zobaczy oprócz Ciebie. Przykłady: „Jesteś leniwa\”, „Nigdy niczego nie kończysz\”, „Inni radzą sobie, a ty nie\”...”
-    - “Część B. List od Przyjaciela. Wyobraź sobie kogoś, kto Cię bezwarunkowo kocha i akceptuje, prawdziwą osobę lub wymyśloną. Kogoś, kto zna całą Twoją historię: przeszłość z Modułu I, Twoje wady, porażki, momenty wstydu, i mimo to jest po Twojej stronie. Napisz list od tej osoby do Ciebie. Co by powiedziała? Jak by opisała to, co krytyk nazywa „wadami\”? Pozwól sobie napisać to, co potrzebujesz usłyszeć.”
-    - “Część C. Porównanie. Przeczytaj obie części, najpierw głos krytyka, potem list. Jeśli możesz, przeczytaj je na głos. Co zauważasz? Jak się zmienia Twoje ciało, gdy przechodzisz od jednego do drugiego? Który głos czujesz jako bardziej „prawdziwy\” i dlaczego?”
-    - “Gdybyś miał powiedzieć sobie jedno zdanie, z pozycji współczucia, nie krytyki, co by to było? Nie musi brzmieć „pozytywnie\”. Może brzmieć: „Robisz, co możesz, i to wystarczy\” albo „Masz za sobą trudny czas i masz prawo być zmęczony\”.”
+    - text: >
+        Część A. Głos Krytyka. Napisz to, za co najczęściej pojawia się samokrytyka. Jakie słowa
+        brzmią w głowie? Jakim tonem mówi ten głos? Bądź dokładny, zapisz te słowa tak, jak naprawdę
+        brzmią, nawet jeśli są okrutne. Nikt tego nie zobaczy oprócz Ciebie. Przykłady: „Jesteś leniwa”,
+        „Nigdy niczego nie kończysz”, „Inni radzą sobie, a ty nie”...
+      estimated_time: “7-10 minut”
+      min_chars: 80
+    - text: >
+        Część B. List od Przyjaciela. Wyobraź sobie kogoś, kto Cię bezwarunkowo kocha i akceptuje,
+        prawdziwą osobę lub wymyśloną. Kogoś, kto zna całą Twoją historię: przeszłość z Modułu I,
+        Twoje wady, porażki, momenty wstydu, i mimo to jest po Twojej stronie. Napisz list od tej osoby
+        do Ciebie. Co by powiedziała? Jak by opisała to, co krytyk nazywa „wadami”? Pozwól sobie napisać
+        to, co potrzebujesz usłyszeć.
+      estimated_time: “12-20 minut”
+      min_chars: 150
+    - text: >
+        Część C. Porównanie. Przeczytaj obie części, najpierw głos krytyka, potem list. Jeśli możesz,
+        przeczytaj je na głos. Co zauważasz? Jak się zmienia Twoje ciało, gdy przechodzisz od jednego
+        do drugiego? Który głos czujesz jako bardziej „prawdziwy” i dlaczego?
+      estimated_time: “5-8 minut”
+      min_chars: 50
+    - text: >
+        Gdybyś miał powiedzieć sobie jedno zdanie, z pozycji współczucia, nie krytyki, co by to było?
+        Nie musi brzmieć „pozytywnie”. Może brzmieć: „Robisz, co możesz, i to wystarczy” albo
+        „Masz za sobą trudny czas i masz prawo być zmęczony”.
+      estimated_time: “2-4 minut”
+      min_chars: 20
 
   stuck_helpers:
-    - “Jeśli głos krytyka jest trudny do zapisania, spróbuj zacząć od: „Rzecz, za którą najbardziej się winię, to...\”. Nie musisz zapisywać wszystkiego naraz. Wystarczy jedno zdanie na start.”
-    - "Jeśli pisanie listu od kochającej osoby jest trudne, wyobraź sobie, że piszesz do przyjaciela w identycznej sytuacji. Co byś mu powiedział? Teraz skieruj te słowa do siebie."
-    - “Jeśli pojawia się opór, łzy lub gniew, to normalna reakcja. Wiele osób nigdy nie dało sobie pozwolenia na życzliwość wobec siebie. Możesz po prostu napisać: „Trudno mi to pisać, bo...\”. To jest wartościowa odpowiedź.”
-    - "Nie musisz „wierzyć” w słowa kochającego przyjaciela. Wystarczy, że je zapiszesz. Czasem trzeba usłyszeć coś wiele razy, zanim zaczniemy czuć, że może być prawdziwe."
-    - "Jeśli potrzebujesz przerwy, weź ją. To nie jest wyścig. Możesz wrócić do tego ćwiczenia za godzinę, jutro, za tydzień. Twoje tempo jest właściwym tempem."
+    - >
+      Jeśli głos krytyka jest trudny do zapisania, spróbuj zacząć od: „Rzecz, za którą najbardziej
+      się winię, to...”. Nie musisz zapisywać wszystkiego naraz. Wystarczy jedno zdanie na start.
+    - >
+      Jeśli pisanie listu od kochającej osoby jest trudne, wyobraź sobie, że piszesz do przyjaciela
+      w identycznej sytuacji. Co byś mu powiedział? Teraz skieruj te słowa do siebie.
+    - >
+      Jeśli pojawia się opór, łzy lub gniew, to normalna reakcja. Wiele osób nigdy nie dało sobie
+      pozwolenia na życzliwość wobec siebie. Możesz po prostu napisać: „Trudno mi to pisać, bo...”.
+      To jest wartościowa odpowiedź.
+    - >
+      Nie musisz „wierzyć” w słowa kochającego przyjaciela. Wystarczy, że je zapiszesz. Czasem
+      trzeba usłyszeć coś wiele razy, zanim zaczniemy czuć, że może być prawdziwe.
+    - >
+      Jeśli potrzebujesz przerwy, weź ją. To nie jest wyścig. Możesz wrócić do tego ćwiczenia
+      za godzinę, jutro, za tydzień. Twoje tempo jest właściwym tempem.
 
   reflection_prompt: |
     Po przeczytaniu obu tekstów, co chcesz zapamiętać z tego ćwiczenia? Nie musi to być
@@ -71,7 +105,7 @@ exercise:
     Badania Pennebakera nad pisaniem ekspresywnym pokazują, że po ćwiczeniach tego
     typu można poczuć się chwilowo gorzej. To normalna część procesu, która zwykle
     mija w ciągu 1-2 dni. W przypadku ćwiczeń współczucia dla siebie może pojawić
-    się tzw. efekt „backdraft\” (Germer i Neff, 2013), paradoksalna reakcja emocjonalna
+    się tzw. efekt “backdraft” (Germer i Neff, 2013), paradoksalna reakcja emocjonalna
     u osób, które rzadko doświadczały ciepła wobec siebie. Smutek, gniew, a nawet lęk
     są naturalną odpowiedzią na coś nowego. Jeśli te emocje nie mijają lub nasilają się,
     rozważ kontakt ze specjalistą. Daj sobie czas.
@@ -79,7 +113,7 @@ exercise:
   why_it_works: |
     Badania Neff (2003, 2011) konsekwentnie pokazują, że współczucie dla siebie jest silniejszym
     predyktorem zdrowia psychicznego niż samoocena. W przeciwieństwie do samooceny, self-compassion
-    nie wymaga poczucia „bycia lepszym\”, wymaga jedynie uznania, że cierpienie jest częścią
+    nie wymaga poczucia „bycia lepszym”, wymaga jedynie uznania, że cierpienie jest częścią
     ludzkiego doświadczenia. Pisanie listu z perspektywy kochającej osoby aktywuje systemy
     opieki i uspokojenia (soothing system wg Gilberta), co fizjologicznie zmniejsza poziom
     kortyzolu i aktywuje nerw błędny. Porównanie głosu krytyka z głosem współczucia buduje

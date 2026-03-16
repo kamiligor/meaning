@@ -43,10 +43,18 @@ exercise:
     wyraźnie i móc świadomie wybrać coś innego.
 
   prompt_questions:
-    - "Wyobraź sobie, że minęło 3-5 lat i nic się nie zmieniło. Te same nawyki, te same wzorce, te same unikania. Gdzie jesteś? Co robisz na co dzień? Opisz ten zwykły dzień, bez dramatyzowania, ale uczciwie."
-    - "Jakie relacje masz w tym scenariuszu? Kto odszedł, kto został? Jak wyglądają Twoje rozmowy z bliskimi, o czym rozmawiacie, a o czym milczycie?"
-    - "Co czujesz, kiedy budzisz się rano w tej wersji przyszłości? Jaka myśl pojawia się jako pierwsza? A wieczorem, kiedy jesteś sam, co wtedy czujesz? Pamiętaj, że to tylko ćwiczenie wyobraźni, nie prognoza. Możesz w każdej chwili odłożyć pisanie."
-    - "Co powiedziałaby ta przyszła wersja Ciebie do Ciebie dzisiejszego? Jeśli mogłaby cofnąć się w czasie do tego momentu, co by powiedziała? Zapisz to tak, jakby te słowa naprawdę padły."
+    - text: "Wyobraź sobie, że minęło 3-5 lat i nic się nie zmieniło. Te same nawyki, te same wzorce, te same unikania. Gdzie jesteś? Co robisz na co dzień? Opisz ten zwykły dzień, bez dramatyzowania, ale uczciwie."
+      estimated_time: "6-10 minut"
+      min_chars: 80
+    - text: "Jakie relacje masz w tym scenariuszu? Kto odszedł, kto został? Jak wyglądają Twoje rozmowy z bliskimi, o czym rozmawiacie, a o czym milczycie?"
+      estimated_time: "5-8 minut"
+      min_chars: 60
+    - text: "Co czujesz, kiedy budzisz się rano w tej wersji przyszłości? Jaka myśl pojawia się jako pierwsza? A wieczorem, kiedy jesteś sam, co wtedy czujesz? Pamiętaj, że to tylko ćwiczenie wyobraźni, nie prognoza. Możesz w każdej chwili odłożyć pisanie."
+      estimated_time: "4-7 minut"
+      min_chars: 40
+    - text: "Co powiedziałaby ta przyszła wersja Ciebie do Ciebie dzisiejszego? Jeśli mogłaby cofnąć się w czasie do tego momentu, co by powiedziała? Zapisz to tak, jakby te słowa naprawdę padły."
+      estimated_time: "4-6 minut"
+      min_chars: 30
 
   stuck_helpers:
     - "Jeśli to ćwiczenie wydaje Ci się zbyt ciężkie, to jest w porządku. Możesz napisać tylko jedno zdanie. Możesz napisać 'Nie chcę o tym myśleć, bo...' i zobaczyć, co się pojawi. Każda ilość jest dobra."

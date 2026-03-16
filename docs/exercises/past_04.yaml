@@ -39,10 +39,18 @@ exercise:
     jesteśmy dla siebie najsurowszymi sędziami.
 
   prompt_questions:
-    - "Wybierz trudne wspomnienie. Nie musi być najtrudniejsze, wybierz takie, z którym czujesz się na tyle bezpiecznie, żeby nad nim pracować. Opisz je z perspektywy pierwszej osoby: co się wydarzyło, jakie emocje się pojawiły, co się wtedy myślało."
-    - "Teraz napisz o tym samym wydarzeniu z perspektywy współczującego obserwatora, kogoś mądrego i życzliwego, kto widzi całą sytuację z dystansu. Jak ta osoba opisałaby to, co Ci się przydarzyło? Co zauważyłaby o Tobie w tamtym momencie?"
-    - "Porównaj te dwa opisy. Co się zmieniło? Czy współczujący obserwator zauważył coś, czego nie było widać z wewnątrz sytuacji?"
-    - "Czy jest coś, co chciałbyś powiedzieć sobie z tamtego momentu? Nie radę, nie 'pocieszenie', ale coś, co chciałbyś, żeby ta osoba usłyszała."
+    - text: "Wybierz trudne wspomnienie. Nie musi być najtrudniejsze, wybierz takie, z którym czujesz się na tyle bezpiecznie, żeby nad nim pracować. Opisz je z perspektywy pierwszej osoby: co się wydarzyło, jakie emocje się pojawiły, co się wtedy myślało."
+      estimated_time: "10-15 minut"
+      min_chars: 150
+    - text: "Teraz napisz o tym samym wydarzeniu z perspektywy współczującego obserwatora, kogoś mądrego i życzliwego, kto widzi całą sytuację z dystansu. Jak ta osoba opisałaby to, co Ci się przydarzyło? Co zauważyłaby o Tobie w tamtym momencie?"
+      estimated_time: "10-15 minut"
+      min_chars: 150
+    - text: "Porównaj te dwa opisy. Co się zmieniło? Czy współczujący obserwator zauważył coś, czego nie było widać z wewnątrz sytuacji?"
+      estimated_time: "5-8 minut"
+      min_chars: 50
+    - text: "Czy jest coś, co chciałbyś powiedzieć sobie z tamtego momentu? Nie radę, nie 'pocieszenie', ale coś, co chciałbyś, żeby ta osoba usłyszała."
+      estimated_time: "5-7 minut"
+      min_chars: 30
 
   stuck_helpers:
     - "Jeśli trudno być 'współczującym obserwatorem', wyobraź sobie życzliwego przyjaciela opisującego, co Ci się przydarzyło. Albo wyobraź sobie, że opisujesz tę sytuację komuś, kogo kochasz. Jak byś o niej mówił?"

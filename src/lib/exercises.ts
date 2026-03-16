@@ -5,6 +5,12 @@ import matter from "gray-matter";
 import { marked } from "marked";
 import { personalize, type GenderForm } from "./personalize";
 
+export interface PromptQuestion {
+  text: string;
+  estimatedTime: string;
+  minChars: number;
+}
+
 export interface Exercise {
   id: string;
   module: string;
@@ -15,7 +21,7 @@ export interface Exercise {
   contentWarning: string | null;
   contraindications: string | null;
   introduction: string;
-  promptQuestions: string[];
+  promptQuestions: PromptQuestion[];
   promptInstruction: string | null;
   stuckHelpers: string[];
   reflectionPrompt: string;
@@ -106,11 +112,35 @@ function getIntroductionsDir(): string {
   return possiblePaths[0];
 }
 
+function parsePromptQuestion(
+  raw: unknown
+): PromptQuestion {
+  // New format: { text: string, estimated_time?: string, min_chars?: number }
+  if (typeof raw === "object" && raw !== null && "text" in raw) {
+    const obj = raw as Record<string, unknown>;
+    return {
+      text: String(obj.text ?? ""),
+      estimatedTime: String(obj.estimated_time ?? ""),
+      minChars: typeof obj.min_chars === "number" ? obj.min_chars : 0,
+    };
+  }
+  // Backward-compatible: plain string from old YAML
+  return {
+    text: String(raw ?? ""),
+    estimatedTime: "",
+    minChars: 0,
+  };
+}
+
 function parseExerciseYaml(content: string): Exercise {
   const parsed = yaml.load(content) as {
     exercise: Record<string, unknown>;
   };
   const e = parsed.exercise;
+
+  const rawQuestions = Array.isArray(e.prompt_questions)
+    ? e.prompt_questions
+    : [];
 
   return {
     id: e.id as string,
@@ -122,7 +152,7 @@ function parseExerciseYaml(content: string): Exercise {
     contentWarning: (e.content_warning as string) || null,
     contraindications: (e.contraindications as string) || null,
     introduction: e.introduction as string,
-    promptQuestions: e.prompt_questions as string[],
+    promptQuestions: rawQuestions.map(parsePromptQuestion),
     promptInstruction: (e.prompt_instruction as string) || null,
     stuckHelpers: e.stuck_helpers as string[],
     reflectionPrompt: e.reflection_prompt as string,
@@ -149,9 +179,18 @@ function personalizeExercise(exercise: Exercise, form: GenderForm): Exercise {
     if (typeof value === "string") {
       (result[field] as string) = personalize(value, form);
     } else if (Array.isArray(value)) {
-      (result[field] as string[]) = value.map((item) =>
-        typeof item === "string" ? personalize(item, form) : item
-      );
+      if (field === "promptQuestions") {
+        // PromptQuestion[] — personalize only the text field
+        result.promptQuestions = (value as PromptQuestion[]).map((q) => ({
+          ...q,
+          text: personalize(q.text, form),
+        }));
+      } else {
+        // string[] fields (stuckHelpers, etc.)
+        (result[field] as string[]) = (value as string[]).map((item) =>
+          typeof item === "string" ? personalize(item, form) : item
+        );
+      }
     }
   }
   return result;

@@ -6,14 +6,15 @@ import { EmotionalCheckin } from "./emotional-checkin";
 import { GroundingExercise } from "./grounding-exercise";
 import { Button } from "@/components/ui/button";
 
-type FlowStep = "reflection" | "checkin" | "grounding" | "done";
+type FlowStep = "reflection" | "checkin" | "grounding";
 
 interface PostExerciseFlowProps {
   exerciseId: string;
-  questions: string[];
+  questions: { text: string }[];
   reflectionPrompt: string;
   postExerciseNote: string | null;
   showCheckin: boolean; // true if difficulty >= 3
+  canComplete: boolean;
   nextExerciseUrl: string | null;
 }
 
@@ -21,6 +22,7 @@ export function PostExerciseFlow({
   exerciseId,
   questions,
   reflectionPrompt,
+  canComplete,
   postExerciseNote,
   showCheckin,
   nextExerciseUrl,
@@ -29,6 +31,18 @@ export function PostExerciseFlow({
   const [responses, setResponses] = useState<{ questionIndex: number; content: string }[]>([]);
   const [loadingResponses, setLoadingResponses] = useState(true);
   const router = useRouter();
+
+  const markCompleted = async () => {
+    try {
+      await fetch(`/api/program/progress/${exerciseId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: "completed" }),
+      });
+    } catch {
+      // best-effort
+    }
+  };
 
   useEffect(() => {
     fetch(`/api/program/responses/${exerciseId}`)
@@ -64,7 +78,7 @@ export function PostExerciseFlow({
             <h3 className="text-sm font-medium text-[#8A99A8] uppercase tracking-wider">Twoje odpowiedzi</h3>
             {responses.map((r) => (
               <div key={r.questionIndex} className="bg-white border border-[#e2e7eb] rounded-lg p-4">
-                <p className="text-xs text-[#8A99A8] mb-2">{questions[r.questionIndex] ?? `Pytanie ${r.questionIndex + 1}`}</p>
+                <p className="text-xs text-[#8A99A8] mb-2">{questions[r.questionIndex]?.text ?? `Pytanie ${r.questionIndex + 1}`}</p>
                 <div className="text-[#1E2A36] text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: r.content }} />
               </div>
             ))}
@@ -78,11 +92,41 @@ export function PostExerciseFlow({
             </p>
           </div>
         )}
-        {showCheckin ? (
-          <div className="flex flex-col gap-2">
-            <Button onClick={() => setStep("done")} className="w-full">
-              Dalej
+
+        {/* Save info */}
+        <p className="text-sm text-[#8A99A8] mb-6">
+          Twój tekst jest zapisany. Możesz wrócić i edytować w dowolnym momencie.
+        </p>
+
+        {/* Actions */}
+        <div className="flex flex-col gap-2">
+          {canComplete ? (
+            <Button
+              onClick={async () => {
+                await markCompleted();
+                if (nextExerciseUrl) {
+                  router.push(nextExerciseUrl);
+                } else {
+                  router.push("/program/dashboard");
+                }
+              }}
+              className="w-full"
+            >
+              Oznacz jako ukończone{nextExerciseUrl ? " i przejdź dalej" : ""}
             </Button>
+          ) : (
+            <p className="text-sm text-amber-600 py-2">
+              Niektóre pytania wymagają dłuższej odpowiedzi, żeby oznaczyć ćwiczenie jako ukończone.
+            </p>
+          )}
+          <Button
+            onClick={() => router.push("/program/dashboard")}
+            variant="outline"
+            className="w-full"
+          >
+            Wróć do dashboardu
+          </Button>
+          {showCheckin && (
             <Button
               onClick={() => setStep("checkin")}
               variant="ghost"
@@ -90,12 +134,8 @@ export function PostExerciseFlow({
             >
               Potrzebuję chwili
             </Button>
-          </div>
-        ) : (
-          <Button onClick={() => setStep("done")} className="w-full">
-            Dalej
-          </Button>
-        )}
+          )}
+        </div>
       </div>
     );
   }
@@ -103,45 +143,17 @@ export function PostExerciseFlow({
   if (step === "checkin") {
     return (
       <EmotionalCheckin
-        onOk={() => setStep("done")}
+        onOk={() => setStep("reflection")}
         onBreak={() => setStep("grounding")}
       />
     );
   }
 
-  if (step === "grounding") {
-    return (
-      <GroundingExercise
-        onDashboard={() => router.push("/program/dashboard")}
-        onContinue={() => setStep("done")}
-      />
-    );
-  }
-
-  // step === "done"
+  // step === "grounding"
   return (
-    <div className="max-w-lg mx-auto py-8 px-4 text-center">
-      <div className="bg-white rounded-xl border border-[#e2e7eb] p-6">
-        <h3 className="text-lg font-medium text-[#1E2A36] mb-4">
-          Ćwiczenie zakończone
-        </h3>
-        <p className="text-[#4A5B6A] mb-6">
-          Twój tekst jest zapisany i zaszyfrowany.
-        </p>
-        <div className="flex flex-col gap-2">
-          {nextExerciseUrl && (
-            <Button onClick={() => router.push(nextExerciseUrl)}>
-              Następne ćwiczenie
-            </Button>
-          )}
-          <Button
-            onClick={() => router.push("/program/dashboard")}
-            variant="outline"
-          >
-            Wróć do dashboardu
-          </Button>
-        </div>
-      </div>
-    </div>
+    <GroundingExercise
+      onDashboard={() => router.push("/program/dashboard")}
+      onContinue={() => setStep("reflection")}
+    />
   );
 }

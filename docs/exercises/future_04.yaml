@@ -40,10 +40,18 @@ exercise:
     działanie?
 
   prompt_questions:
-    - "Weź pierwszy krok ze swojego planu (Ćwiczenie 3). Jaka jest najbardziej prawdopodobna przeszkoda, która może stanąć na drodze? Nie szukaj najgorszego scenariusza, szukaj tego, który jest najbardziej realny. Coś, co już się zdarzało w podobnych sytuacjach."
-    - "Dla każdej przeszkody stwórz plan 'jeśli-to': 'Jeśli [przeszkoda], to [moja strategia].' Na przykład: 'Jeśli po pracy będę zbyt zmęczony, żeby wyjść na spacer, to przejdę się chociaż 5 minut wokół bloku zamiast rezygnować całkowicie.' Napisz taki plan dla każdego kroku z Ćwiczenia 3."
-    - "Przyjrzyj się swoim przeszkodom. Ile z nich to okoliczności zewnętrzne (brak czasu, pieniędzy, wsparcia), a ile to przeszkody wewnętrzne (lęk, perfekcjonizm, poczucie winy, przekonanie 'nie dam rady')? Wróć do zniekształceń poznawczych z Modułu II. Czy rozpoznajesz któreś z nich w swoich przeszkodach?"
-    - "Dla każdej przeszkody wewnętrznej napisz, co powiedziałoby się bliskiemu przyjacielowi, który mówi dokładnie to samo. Jak zareagować, gdy ktoś, na kim nam zależy, mówi 'Nie dam rady, nie ma sensu'? Zapisz te słowa, a potem skieruj je do siebie."
+    - text: "Weź pierwszy krok ze swojego planu (Ćwiczenie 3). Jaka jest najbardziej prawdopodobna przeszkoda, która może stanąć na drodze? Nie szukaj najgorszego scenariusza, szukaj tego, który jest najbardziej realny. Coś, co już się zdarzało w podobnych sytuacjach."
+      estimated_time: "4-6 minut"
+      min_chars: 50
+    - text: "Dla każdej przeszkody stwórz plan 'jeśli-to': 'Jeśli [przeszkoda], to [moja strategia].' Na przykład: 'Jeśli po pracy będę zbyt zmęczony, żeby wyjść na spacer, to przejdę się chociaż 5 minut wokół bloku zamiast rezygnować całkowicie.' Napisz taki plan dla każdego kroku z Ćwiczenia 3."
+      estimated_time: "8-12 minut"
+      min_chars: 100
+    - text: "Przyjrzyj się swoim przeszkodom. Ile z nich to okoliczności zewnętrzne (brak czasu, pieniędzy, wsparcia), a ile to przeszkody wewnętrzne (lęk, perfekcjonizm, poczucie winy, przekonanie 'nie dam rady')? Wróć do zniekształceń poznawczych z Modułu II. Czy rozpoznajesz któreś z nich w swoich przeszkodach?"
+      estimated_time: "5-8 minut"
+      min_chars: 60
+    - text: "Dla każdej przeszkody wewnętrznej napisz, co powiedziałoby się bliskiemu przyjacielowi, który mówi dokładnie to samo. Jak zareagować, gdy ktoś, na kim nam zależy, mówi 'Nie dam rady, nie ma sensu'? Zapisz te słowa, a potem skieruj je do siebie."
+      estimated_time: "5-8 minut"
+      min_chars: 40
 
   stuck_helpers:
     - "Jeśli trudno przewidzieć przeszkody, pomyśl o ostatnim razie, kiedy chciałeś coś zmienić i nie wyszło. Co się stało? Co stanęło na drodze? Historia jest najlepszym predyktorem przyszłych przeszkód."

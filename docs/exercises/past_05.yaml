@@ -37,10 +37,18 @@ exercise:
     i rozumiana przez kogoś, kto zna całą historię. Przez Ciebie.
 
   prompt_questions:
-    - "Do jakiej wersji siebie chcesz napisać? Ile ma lat ta osoba w tym liście? Co wtedy przeżywała?"
-    - "Napisz list do tej osoby. Pisz tak, jakbyś pisał do dziecka bliskiego przyjaciela, z ciepłem, bez oceniania, bez rad. Co chciałbyś, żeby ta osoba wiedziała?"
-    - "Czy jest coś, czego tamta wersja Ciebie się bała lub wstydziła? Jak chciałbyś o tym powiedzieć, nie bagatelizując, ale też nie zostawiając tej osoby samej z tym?"
-    - "Czy jest coś, co chciałbyś, żeby tamta wersja Ciebie wiedziała o przyszłości? Nie konkretne wydarzenia, ale coś o niej samej."
+    - text: "Do jakiej wersji siebie chcesz napisać? Ile ma lat ta osoba w tym liście? Co wtedy przeżywała?"
+      estimated_time: "2-4 minut"
+      min_chars: 30
+    - text: "Napisz list do tej osoby. Pisz tak, jakbyś pisał do dziecka bliskiego przyjaciela, z ciepłem, bez oceniania, bez rad. Co chciałbyś, żeby ta osoba wiedziała?"
+      estimated_time: "12-20 minut"
+      min_chars: 150
+    - text: "Czy jest coś, czego tamta wersja Ciebie się bała lub wstydziła? Jak chciałbyś o tym powiedzieć, nie bagatelizując, ale też nie zostawiając tej osoby samej z tym?"
+      estimated_time: "5-8 minut"
+      min_chars: 60
+    - text: "Czy jest coś, co chciałbyś, żeby tamta wersja Ciebie wiedziała o przyszłości? Nie konkretne wydarzenia, ale coś o niej samej."
+      estimated_time: "3-5 minut"
+      min_chars: 30
 
   stuck_helpers:
     - "Jeśli nie wiesz, do jakiego okresu pisać, pomyśl: w którym momencie życia najbardziej potrzebowałeś, żeby ktoś Cię zobaczył i powiedział, że to, co czujesz, jest okej?"

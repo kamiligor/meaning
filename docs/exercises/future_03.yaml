@@ -30,10 +30,18 @@ exercise:
     nie musi być heroiczny. Ma być Twój.
 
   prompt_questions:
-    - "Wróć do 5 wartości z Modułu II. Wypisz je ponownie. Przy każdej napisz jedno zdanie o tym, dlaczego jest dla Ciebie ważna, nie dlaczego 'powinna' być ważna, ale dlaczego naprawdę jest."
-    - "Dla każdej wartości znajdź jedną konkretną rzecz do zrobienia w najbliższym miesiącu. Jedną. Nie plan na rok, nie wielką zmianę, najmniejszy krok, który jest naprawdę wykonalny. Jeśli masz wątpliwości, czy coś jest za małe, prawdopodobnie jest w sam raz."
-    - "Dla każdego kroku odpowiedz: Kiedy dokładnie to nastąpi? (Który dzień, która pora dnia?) Gdzie? Co będzie potrzebne, żeby to się stało? Im bardziej konkretnie, tym lepiej."
-    - "Spójrz na swoją listę. Który z tych kroków wydaje Ci się najłatwiejszy? Zacznij od niego. Który wydaje się najtrudniejszy? Nie musisz go robić pierwszy, ale zapisz, co sprawia, że wydaje się trudny. Czy to lęk? Wstyd? Brak czasu? Coś innego?"
+    - text: "Wróć do 5 wartości z Modułu II. Wypisz je ponownie. Przy każdej napisz jedno zdanie o tym, dlaczego jest dla Ciebie ważna, nie dlaczego 'powinna' być ważna, ale dlaczego naprawdę jest."
+      estimated_time: "6-8 minut"
+      min_chars: 100
+    - text: "Dla każdej wartości znajdź jedną konkretną rzecz do zrobienia w najbliższym miesiącu. Jedną. Nie plan na rok, nie wielką zmianę, najmniejszy krok, który jest naprawdę wykonalny. Jeśli masz wątpliwości, czy coś jest za małe, prawdopodobnie jest w sam raz."
+      estimated_time: "8-12 minut"
+      min_chars: 100
+    - text: "Dla każdego kroku odpowiedz: Kiedy dokładnie to nastąpi? (Który dzień, która pora dnia?) Gdzie? Co będzie potrzebne, żeby to się stało? Im bardziej konkretnie, tym lepiej."
+      estimated_time: "8-12 minut"
+      min_chars: 100
+    - text: "Spójrz na swoją listę. Który z tych kroków wydaje Ci się najłatwiejszy? Zacznij od niego. Który wydaje się najtrudniejszy? Nie musisz go robić pierwszy, ale zapisz, co sprawia, że wydaje się trudny. Czy to lęk? Wstyd? Brak czasu? Coś innego?"
+      estimated_time: "5-7 minut"
+      min_chars: 60
 
   stuck_helpers:
     - "Jeśli nie pamiętasz swoich wartości z Modułu II, to nic nie szkodzi. Pomyśl: co Cię poruszyło w ostatnim tygodniu? Co Cię zezłościło, wzruszyło, zmotywowało? Za emocjami często stoją wartości."

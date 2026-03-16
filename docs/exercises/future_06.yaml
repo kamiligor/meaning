@@ -29,10 +29,18 @@ exercise:
     Konkretna. Wykonalna. Twoja.
 
   prompt_questions:
-    - "Spójrz na wszystko, co powstało w tym module: wizję przyszłości, plan wartości, przeszkody, list. Gdyby wybrać jedną rzecz, która jest teraz najważniejsza, co to jest? Nie najambitniejsza. Najważniejsza. Zapisz ją jednym zdaniem."
-    - "Teraz zamień to w konkretny krok na jutro lub ten tydzień. Użyj formuły: 'W [kiedy dokładnie], w [gdzie dokładnie], zrobię [co dokładnie].' Na przykład: 'W poniedziałek po obiedzie, w kuchni, zadzwonię do siostry i zapytam, jak się czuje.' Jeśli Twój krok nie ma dnia, godziny i miejsca, jest za ogólny. Zmniejsz go i skonkretyzuj."
-    - "Co może stanąć na drodze? Napisz jeden plan 'jeśli-to': 'Jeśli [przeszkoda], to [moja reakcja].' Masz już wprawę z Ćwiczenia 4, użyj jej. I pamiętaj: plan B nie musi być równie dobry jak plan A. Ma być po prostu po to, żeby nie zostać z niczym."
-    - "Na koniec napisz do siebie jedno zdanie. Coś, co chcesz pamiętać po zakończeniu tego programu. Może to jest zdanie z Twojego listu. Może to coś nowego, co przyszło Ci do głowy teraz. Nie musi być mądre ani piękne. Ma być Twoje."
+    - text: "Spójrz na wszystko, co powstało w tym module: wizję przyszłości, plan wartości, przeszkody, list. Gdyby wybrać jedną rzecz, która jest teraz najważniejsza, co to jest? Nie najambitniejsza. Najważniejsza. Zapisz ją jednym zdaniem."
+      estimated_time: "3-5 minut"
+      min_chars: 20
+    - text: "Teraz zamień to w konkretny krok na jutro lub ten tydzień. Użyj formuły: 'W [kiedy dokładnie], w [gdzie dokładnie], zrobię [co dokładnie].' Na przykład: 'W poniedziałek po obiedzie, w kuchni, zadzwonię do siostry i zapytam, jak się czuje.' Jeśli Twój krok nie ma dnia, godziny i miejsca, jest za ogólny. Zmniejsz go i skonkretyzuj."
+      estimated_time: "4-6 minut"
+      min_chars: 40
+    - text: "Co może stanąć na drodze? Napisz jeden plan 'jeśli-to': 'Jeśli [przeszkoda], to [moja reakcja].' Masz już wprawę z Ćwiczenia 4, użyj jej. I pamiętaj: plan B nie musi być równie dobry jak plan A. Ma być po prostu po to, żeby nie zostać z niczym."
+      estimated_time: "3-5 minut"
+      min_chars: 30
+    - text: "Na koniec napisz do siebie jedno zdanie. Coś, co chcesz pamiętać po zakończeniu tego programu. Może to jest zdanie z Twojego listu. Może to coś nowego, co przyszło Ci do głowy teraz. Nie musi być mądre ani piękne. Ma być Twoje."
+      estimated_time: "2-3 minut"
+      min_chars: 15
 
   stuck_helpers:
     - "Jeśli masz za dużo pomysłów i nie wiesz, co wybrać, wybierz to, co można zrobić jutro. Nie najważniejsze w życiu. Najważniejsze jutro. Reszta może poczekać."

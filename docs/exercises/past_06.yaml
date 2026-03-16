@@ -29,10 +29,18 @@ exercise:
     w całym swoim życiu.
 
   prompt_questions:
-    - "Przejrzyj to, co powstało w poprzednich ćwiczeniach: mapę, rozdziały, opis momentu przełomowego, dwie perspektywy trudnego wspomnienia, list do siebie. Co zauważasz, czytając to wszystko razem?"
-    - "Gdyby Twoje życie było opowieścią, o czym by było? Nie szukaj wydarzeń, szukaj tematów. Może to jest historia o odwadze? O szukaniu miejsca? O uczeniu się mówić 'nie'? O miłości, która przybiera różne formy? Spróbuj nazwać 1-3 tematy."
-    - "Czy jest coś, co Cię zaskoczyło w tym, co powstało przez cały ten moduł? Coś, o czym wcześniej się nie myślało, a co teraz widać wyraźnie?"
-    - "Czego Twoje życie, ze wszystkimi jego rozdziałami, momentami i zwrotami, nauczyło Cię o Tobie? Nie czego 'powinno' Cię nauczyć, ale czego faktycznie Cię nauczyło."
+    - text: "Przejrzyj to, co powstało w poprzednich ćwiczeniach: mapę, rozdziały, opis momentu przełomowego, dwie perspektywy trudnego wspomnienia, list do siebie. Co zauważasz, czytając to wszystko razem?"
+      estimated_time: "8-12 minut"
+      min_chars: 80
+    - text: "Gdyby Twoje życie było opowieścią, o czym by było? Nie szukaj wydarzeń, szukaj tematów. Może to jest historia o odwadze? O szukaniu miejsca? O uczeniu się mówić 'nie'? O miłości, która przybiera różne formy? Spróbuj nazwać 1-3 tematy."
+      estimated_time: "5-8 minut"
+      min_chars: 50
+    - text: "Czy jest coś, co Cię zaskoczyło w tym, co powstało przez cały ten moduł? Coś, o czym wcześniej się nie myślało, a co teraz widać wyraźnie?"
+      estimated_time: "3-5 minut"
+      min_chars: 30
+    - text: "Czego Twoje życie, ze wszystkimi jego rozdziałami, momentami i zwrotami, nauczyło Cię o Tobie? Nie czego 'powinno' Cię nauczyć, ale czego faktycznie Cię nauczyło."
+      estimated_time: "5-8 minut"
+      min_chars: 50
 
   stuck_helpers:
     - "Jeśli trudno Ci znaleźć 'temat' życia, spróbuj dokończyć zdanie: 'W moim życiu wciąż wraca...' albo 'Ciągle uczę się...'. Zobacz, co pojawia się jako pierwsze."

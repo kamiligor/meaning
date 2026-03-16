@@ -38,10 +38,18 @@ exercise:
     Nikt tego nie oceni.
 
   prompt_questions:
-    - "Wybierz jeden moment przełomowy ze swojej mapy życia. Opisz go: co dokładnie się wydarzyło? Gdzie to było? Kto jeszcze tam był?"
-    - "Jakie emocje się wtedy pojawiły? Spróbuj przypomnieć sobie nie to, co 'powinno' się czuć, ale to, co naprawdę było. Jeśli pamiętasz wrażenia cielesne, napięcie, ulgę, ból, lekkość, zapisz je też."
-    - "Co zmieniło się po tym momencie? Jak wyglądało życie przed nim, a jak po? Czy zmienił się sposób myślenia o sobie, o innych, o świecie?"
-    - "Gdyby zamknąć w jednym zdaniu to, czego ten moment nauczył, świadomie lub nieświadomie, co by to było?"
+    - text: "Wybierz jeden moment przełomowy ze swojej mapy życia. Opisz go: co dokładnie się wydarzyło? Gdzie to było? Kto jeszcze tam był?"
+      estimated_time: "8-12 minut"
+      min_chars: 100
+    - text: "Jakie emocje się wtedy pojawiły? Spróbuj przypomnieć sobie nie to, co 'powinno' się czuć, ale to, co naprawdę było. Jeśli pamiętasz wrażenia cielesne, napięcie, ulgę, ból, lekkość, zapisz je też."
+      estimated_time: "5-8 minut"
+      min_chars: 60
+    - text: "Co zmieniło się po tym momencie? Jak wyglądało życie przed nim, a jak po? Czy zmienił się sposób myślenia o sobie, o innych, o świecie?"
+      estimated_time: "7-10 minut"
+      min_chars: 80
+    - text: "Gdyby zamknąć w jednym zdaniu to, czego ten moment nauczył, świadomie lub nieświadomie, co by to było?"
+      estimated_time: "5-8 minut"
+      min_chars: 20
 
   stuck_helpers:
     - "Nie musisz wybierać najbardziej bolesnego momentu. Każdy moment, który zmienił kierunek Twojego życia, się liczy, nawet jeśli z zewnątrz wydawałby się 'mały'."

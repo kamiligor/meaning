@@ -30,10 +30,18 @@ exercise:
     konkret, do którego można wracać.
 
   prompt_questions:
-    - "Wyobraź sobie siebie za 3-5 lat. Wszystko poszło dobrze, nie idealnie, ale dobrze. Żyjesz w zgodzie z tym, co jest dla Ciebie ważne. Opisz typowy dzień: gdzie się budzisz? Co widzisz, kiedy otwierasz oczy? Jakie są Twoje pierwsze myśli?"
-    - "Co robisz w ciągu dnia? Jaka praca, jakie zajęcia, jakie czynności wypełniają Twój czas? Opisz to tak, jakbyś opowiadał komuś bliski dzień, z detalami, zapachami, dźwiękami."
-    - "Kto jest obok Ciebie? Jakie relacje są częścią tego życia? Jak wyglądają Twoje rozmowy z tymi ludźmi? Co czujesz w ich towarzystwie?"
-    - "Jak się czujesz na koniec tego dnia? Kiedy kładziesz się spać, jaka jest Twoja dominująca emocja? Co sprawia, że ten dzień był dobry? Nie musisz opisywać euforii. Czasem dobry dzień to po prostu spokój i poczucie, że robiło się coś, co ma sens."
+    - text: "Wyobraź sobie siebie za 3-5 lat. Wszystko poszło dobrze, nie idealnie, ale dobrze. Żyjesz w zgodzie z tym, co jest dla Ciebie ważne. Opisz typowy dzień: gdzie się budzisz? Co widzisz, kiedy otwierasz oczy? Jakie są Twoje pierwsze myśli?"
+      estimated_time: "8-12 minut"
+      min_chars: 100
+    - text: "Co robisz w ciągu dnia? Jaka praca, jakie zajęcia, jakie czynności wypełniają Twój czas? Opisz to tak, jakbyś opowiadał komuś bliski dzień, z detalami, zapachami, dźwiękami."
+      estimated_time: "8-12 minut"
+      min_chars: 100
+    - text: "Kto jest obok Ciebie? Jakie relacje są częścią tego życia? Jak wyglądają Twoje rozmowy z tymi ludźmi? Co czujesz w ich towarzystwie?"
+      estimated_time: "5-8 minut"
+      min_chars: 60
+    - text: "Jak się czujesz na koniec tego dnia? Kiedy kładziesz się spać, jaka jest Twoja dominująca emocja? Co sprawia, że ten dzień był dobry? Nie musisz opisywać euforii. Czasem dobry dzień to po prostu spokój i poczucie, że robiło się coś, co ma sens."
+      estimated_time: "5-8 minut"
+      min_chars: 40
 
   stuck_helpers:
     - "Jeśli trudno wyobrazić sobie cały dzień, zacznij od jednego momentu. Może to poranek: co pijesz, co jesz, jaka jest pogoda za oknem? Jeden konkretny obraz często pociąga za sobą następne."

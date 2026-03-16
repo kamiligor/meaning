@@ -1,12 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import type { Exercise } from "@/lib/exercises";
 import { ExerciseEditor } from "./exercise-editor";
 import { ContentWarning } from "./content-warning";
 import { PostExerciseFlow } from "./post-exercise-flow";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
 import {
   Collapsible,
   CollapsibleContent,
@@ -28,6 +36,38 @@ interface ExerciseViewProps {
   nextExerciseUrl: string | null;
 }
 
+// SVG clock icon — inline to avoid bundle overhead for a 12x12 glyph
+function roundTime(raw: string): string {
+  const match = raw.match(/(\d+)-?(\d+)?\s*minut/);
+  if (!match) return raw;
+  const lo = parseInt(match[1], 10);
+  const hi = match[2] ? parseInt(match[2], 10) : lo;
+  const avg = Math.round((lo + hi) / 2 / 5) * 5 || 5;
+  return `${avg} minut`;
+}
+
+function ClockIcon() {
+  return (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+      aria-hidden="true"
+      className="inline-block shrink-0"
+    >
+      <circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1.2" />
+      <path
+        d="M6 3.5V6.25L7.75 7.5"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function ExerciseView({
   exercise,
   savedResponses,
@@ -35,28 +75,57 @@ export function ExerciseView({
 }: ExerciseViewProps) {
   const router = useRouter();
   const hasWarning = !!exercise.contentWarning;
+  const isGate = exercise.id === "gate_00";
+  const hasExistingResponses = savedResponses.length > 0;
 
   const [step, setStep] = useState<ViewStep>(
-    hasWarning ? "warning" : "writing"
+    hasWarning && !hasExistingResponses ? "warning" : "writing"
   );
   const [stuckOpen, setStuckOpen] = useState(false);
+  const [showCompletionModal, setShowCompletionModal] = useState(false);
+
+  // Track char counts per question index — initialize from saved responses
+  const [charCounts, setCharCounts] = useState<Record<number, number>>(() => {
+    const initial: Record<number, number> = {};
+    for (const r of savedResponses) {
+      const text = r.content.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").trim();
+      initial[r.questionIndex] = text.length;
+    }
+    return initial;
+  });
+
+  const handleCharCountChange = useCallback(
+    (questionIndex: number, count: number) => {
+      setCharCounts((prev) => ({ ...prev, [questionIndex]: count }));
+    },
+    []
+  );
 
   const getInitialContent = (qi: number) => {
     const saved = savedResponses.find((r) => r.questionIndex === qi);
     return saved?.content || "";
   };
 
-  const handleComplete = async () => {
-    try {
-      await fetch(`/api/program/progress/${exercise.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: "completed" }),
-      });
-    } catch {
-      // Progress tracking is best-effort
-    }
+  // Returns true if any question with minChars > 0 has fewer chars than required
+  const meetsMinimum = (): boolean => {
+    if (isGate) return true;
+    return exercise.promptQuestions.every((q, idx) => {
+      if (q.minChars === 0) return true;
+      const count = charCounts[idx] ?? 0;
+      return count >= q.minChars;
+    });
+  };
+
+  const goToReflection = () => {
     setStep("postExercise");
+  };
+
+  const handleCompleteClick = () => {
+    if (!isGate && !meetsMinimum()) {
+      setShowCompletionModal(true);
+      return;
+    }
+    goToReflection();
   };
 
   const handleSkip = async () => {
@@ -91,6 +160,7 @@ export function ExerciseView({
         reflectionPrompt={exercise.reflectionPrompt}
         postExerciseNote={exercise.postExerciseNote}
         showCheckin={exercise.difficulty >= 3}
+        canComplete={meetsMinimum()}
         nextExerciseUrl={nextExerciseUrl}
       />
     );
@@ -134,14 +204,22 @@ export function ExerciseView({
       <div className="space-y-8 mb-8">
         {exercise.promptQuestions.map((question, idx) => (
           <div key={idx}>
-            <p className="text-[#1E2A36] font-medium mb-3 leading-relaxed">
-              {question}
+            <p className="text-[#1E2A36] font-medium mb-2 leading-relaxed">
+              {question.text}
             </p>
+            {question.estimatedTime && (
+              <p className="flex items-center gap-1 text-xs text-[#8A99A8] mb-3">
+                <ClockIcon />
+                <span>~{roundTime(question.estimatedTime)}</span>
+              </p>
+            )}
             <ExerciseEditor
               exerciseId={exercise.id}
               questionIndex={idx}
               initialContent={getInitialContent(idx)}
               label={`Odpowiedź na pytanie ${idx + 1}`}
+              minChars={question.minChars}
+              onCharCountChange={(count) => handleCharCountChange(idx, count)}
             />
           </div>
         ))}
@@ -169,7 +247,7 @@ export function ExerciseView({
 
       {/* Actions */}
       <div className="mt-8 flex flex-col sm:flex-row gap-3">
-        <Button onClick={handleComplete} className="flex-1">
+        <Button onClick={handleCompleteClick} className="flex-1">
           Zakończ ćwiczenie
         </Button>
         <Button onClick={handleSkip} variant="outline" className="flex-1">
@@ -195,6 +273,87 @@ export function ExerciseView({
           </div>
         </CollapsibleContent>
       </Collapsible>
+
+      {/* Soft completion modal */}
+      <Dialog open={showCompletionModal} onOpenChange={setShowCompletionModal}>
+        <DialogContent className="max-w-md">
+          {hasWarning ? (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-[#1E2A36] font-semibold">
+                  Zatrzymałeś się wcześniej niż zwykle.
+                </DialogTitle>
+                <DialogDescription asChild>
+                  <div className="text-[#4A5B6A] leading-relaxed space-y-3 mt-2">
+                    <p>
+                      To może oznaczać różne rzeczy: może emocje były dziś
+                      silniejsze, może nie było czasu, może chcesz wrócić innym
+                      razem. Wszystko to jest w porządku.
+                    </p>
+                    <p>
+                      Twój tekst jest już zapisany. Możesz wyjść i wrócić kiedy
+                      chcesz.
+                    </p>
+                  </div>
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter className="flex-col sm:flex-row gap-2 mt-2">
+                <Button
+                  variant="outline"
+                  onClick={() => setShowCompletionModal(false)}
+                  className="w-full sm:w-auto"
+                >
+                  Zostań i kontynuuj
+                </Button>
+                <Button
+                  onClick={() => {
+                    setShowCompletionModal(false);
+                    goToReflection();
+                  }}
+                  className="w-full sm:w-auto"
+                >
+                  Zapisz i wyjdź
+                </Button>
+              </DialogFooter>
+            </>
+          ) : (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-[#1E2A36] font-semibold">
+                  Zostaje kilka pytań z krótkimi odpowiedziami.
+                </DialogTitle>
+                <DialogDescription asChild>
+                  <div className="text-[#4A5B6A] leading-relaxed mt-2">
+                    <p>
+                      Możesz zakończyć teraz, to w porządku. Możesz też zostać
+                      chwilę dłużej — często najważniejsze rzeczy pojawiają się
+                      po pierwszym zdaniu.
+                    </p>
+                  </div>
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter className="flex-col sm:flex-row gap-2 mt-2">
+                <Button
+                  variant="outline"
+                  onClick={() => setShowCompletionModal(false)}
+                  className="w-full sm:w-auto"
+                >
+                  Zostań i dopiszę
+                </Button>
+                <Button
+                  onClick={() => {
+                    setShowCompletionModal(false);
+                    goToReflection();
+                  }}
+                  className="w-full sm:w-auto"
+                >
+                  Zakończ mimo to
+                </Button>
+              </DialogFooter>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

@@ -92,7 +92,7 @@ export default async function ExercisePage({ params }: Props) {
     updatedAt: row.updated_at as string,
   }));
 
-  // Mark as in_progress if not started
+  // Mark as in_progress unless already completed/skipped
   const { data: progressData } = await supabase
     .from("user_progress")
     .select("status")
@@ -100,7 +100,8 @@ export default async function ExercisePage({ params }: Props) {
     .eq("exercise_id", id)
     .single();
 
-  if (!progressData) {
+  const currentStatus = progressData?.status as string | undefined;
+  if (currentStatus !== "completed" && currentStatus !== "skipped") {
     await supabase.from("user_progress").upsert({
       user_id: user.id,
       exercise_id: id,

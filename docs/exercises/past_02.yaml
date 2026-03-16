@@ -27,10 +27,18 @@ exercise:
     relacji, stanów emocjonalnych, szkół, pracy, czegokolwiek, co ma dla Ciebie sens.
 
   prompt_questions:
-    - "Podziel swoje życie na 5-7 rozdziałów. Nadaj każdemu tytuł, może być prosty ('Szkoła podstawowa'), metaforyczny ('Cisza przed burzą') lub osobisty. Przy każdym zapisz orientacyjne lata."
-    - "Dla każdego rozdziału napisz 3-5 zdań: co definiowało ten okres? Jaki był wtedy nastrój? Co było w centrum życia?"
-    - "Czy widzisz momenty przejścia między rozdziałami? Co powodowało, że jeden rozdział się kończył, a zaczynał się następny?"
-    - "Gdybyś miał dać podtytuł całej dotychczasowej książce swojego życia, jak by brzmiał?"
+    - text: "Podziel swoje życie na 5-7 rozdziałów. Nadaj każdemu tytuł, może być prosty ('Szkoła podstawowa'), metaforyczny ('Cisza przed burzą') lub osobisty. Przy każdym zapisz orientacyjne lata."
+      estimated_time: "8-12 minut"
+      min_chars: 80
+    - text: "Dla każdego rozdziału napisz 3-5 zdań: co definiowało ten okres? Jaki był wtedy nastrój? Co było w centrum życia?"
+      estimated_time: "8-15 minut"
+      min_chars: 150
+    - text: "Czy widzisz momenty przejścia między rozdziałami? Co powodowało, że jeden rozdział się kończył, a zaczynał się następny?"
+      estimated_time: "5-8 minut"
+      min_chars: 60
+    - text: "Gdybyś miał dać podtytuł całej dotychczasowej książce swojego życia, jak by brzmiał?"
+      estimated_time: "2-3 minut"
+      min_chars: 15
 
   stuck_helpers:
     - "Jeśli trudno Ci podzielić życie na rozdziały, zacznij od oczywistych granic: szkoła, przeprowadzka, zmiana pracy, początek lub koniec związku. Potem możesz doprecyzować."

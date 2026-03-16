@@ -40,10 +40,31 @@ exercise:
     jako myśli, nie jako fakty. Nie po to, żeby je zignorować. Po to, żeby mieć wybór.
 
   prompt_questions:
-    - "Część A. Przeszkody. Wymień 3-5 rzeczy, które w tej chwili najbardziej przeszkadzają Ci w życiu, utrudniają zmianę, blokują, frustrują. Mogą to być okoliczności zewnętrzne, wewnętrzne stany, relacje, nawyki, cokolwiek, co czujesz jako barierę. Opisz każdą w 2-3 zdaniach."
-    - “Część B. Historie. Przy każdej przeszkodzie z Części A dokończ zdanie: „Historia, którą sobie o tym opowiadam, to...”. Zapisz pełną wewnętrzną narrację. Jak tłumaczysz sobie tę przeszkodę? Co mówi wewnętrzny głos? Bądź szczery, nikt tego nie zobaczy.”
-    - “Część C. Defuzja. Teraz weź każdą historię z Części B i przepisz ją, zaczynając od: „Zauważam, że mam myśl, że...”. Przeczytaj obie wersje na głos, jeśli możesz. Czy coś się zmienia? Jak się zmienia odczucie w ciele? Czy myśl czuje się mniej „prawdziwa”, mniej ciężka, mniej absolutna?”
-    - "Patrząc na swoje przeszkody po defuzji, czy któraś z nich wygląda inaczej? Czy widzisz choćby niewielką przestrzeń między Tobą a tą myślą? Nie musisz jej rozwiązywać. Wystarczy zobaczyć ją jako myśl, a nie jako wyrok."
+    - text: >
+        Część A. Przeszkody. Wymień 3-5 rzeczy, które w tej chwili najbardziej przeszkadzają Ci w życiu,
+        utrudniają zmianę, blokują, frustrują. Mogą to być okoliczności zewnętrzne, wewnętrzne stany,
+        relacje, nawyki, cokolwiek, co czujesz jako barierę. Opisz każdą w 2-3 zdaniach.
+      estimated_time: “7-10 minut”
+      min_chars: 80
+    - text: >
+        Część B. Historie. Przy każdej przeszkodzie z Części A dokończ zdanie: „Historia, którą sobie
+        o tym opowiadam, to...”. Zapisz pełną wewnętrzną narrację. Jak tłumaczysz sobie tę przeszkodę?
+        Co mówi wewnętrzny głos? Bądź szczery, nikt tego nie zobaczy.
+      estimated_time: “8-12 minut”
+      min_chars: 100
+    - text: >
+        Część C. Defuzja. Teraz weź każdą historię z Części B i przepisz ją, zaczynając od:
+        „Zauważam, że mam myśl, że...”. Przeczytaj obie wersje na głos, jeśli możesz.
+        Czy coś się zmienia? Jak się zmienia odczucie w ciele? Czy myśl czuje się mniej „prawdziwa”,
+        mniej ciężka, mniej absolutna?
+      estimated_time: “8-12 minut”
+      min_chars: 100
+    - text: >
+        Patrząc na swoje przeszkody po defuzji, czy któraś z nich wygląda inaczej? Czy widzisz choćby
+        niewielką przestrzeń między Tobą a tą myślą? Nie musisz jej rozwiązywać. Wystarczy zobaczyć ją
+        jako myśl, a nie jako wyrok.
+      estimated_time: “4-6 minut”
+      min_chars: 40
 
   stuck_helpers:
     - “Jeśli trudno wymienić przeszkody, spróbuj dokończyć: „Gdybym mógł zmienić jedną rzecz w swoim życiu, to...”. Zobacz, co się pojawi. Co powstrzymuje przed tą zmianą?”

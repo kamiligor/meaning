@@ -29,20 +29,45 @@ exercise:
     to „przekonanie, że muszę być idealny\”, to wystarczy.
 
   prompt_questions:
-    - “Lista 1: Co chcę zabrać ze sobą. Zapisz wszystko, co chcesz zachować, wartości, relacje, nawyki, przekonania, umiejętności, rytuały, sposoby bycia. Mogą to być duże rzeczy (np. „moja relacja z siostrą\”) i małe (np. „spacery wieczorem\”). Nie ograniczaj się, piszesz dla siebie.”
-    - >
-      Lista 2: Co chcę odłożyć. Zapisz to, z czym chcesz się pożegnać: nawyki
-      myślowe, schematy, przekonania, role, które nie są Twoje, oczekiwania
-      (własne lub cudze), sposoby traktowania siebie. „Odłożyć” nie znaczy
-      „wymazać”. Znaczy: „uznaję, że to mi nie służy, i wybieram inaczej”.
-    - "Przeczytaj obie listy. Czy jest coś, co pojawia się na obu? Coś, co chcesz zachować, ale jednocześnie czujesz, że Ci przeszkadza? To normalne, życie jest pełne takich paradoksów. Jeśli widzisz taki paradoks, opisz go krótko."
-    - “Na koniec dokończ to zdanie tak, jak czujesz w tej chwili, bez zastanawiania się zbyt długo: „Teraz, w tej chwili, najprawdziwsza rzecz, jaką mogę powiedzieć o sobie, to...\””
+    - text: >
+        Lista 1: Co chcę zabrać ze sobą. Zapisz wszystko, co chcesz zachować, wartości, relacje,
+        nawyki, przekonania, umiejętności, rytuały, sposoby bycia. Mogą to być duże rzeczy
+        (np. „moja relacja z siostrą”) i małe (np. „spacery wieczorem”). Nie ograniczaj się,
+        piszesz dla siebie.
+      estimated_time: “6-8 minut”
+      min_chars: 60
+    - text: >
+        Lista 2: Co chcę odłożyć. Zapisz to, z czym chcesz się pożegnać: nawyki myślowe, schematy,
+        przekonania, role, które nie są Twoje, oczekiwania (własne lub cudze), sposoby traktowania
+        siebie. „Odłożyć” nie znaczy „wymazać”. Znaczy: „uznaję, że to mi nie służy, i wybieram inaczej”.
+      estimated_time: “6-8 minut”
+      min_chars: 60
+    - text: >
+        Przeczytaj obie listy. Czy jest coś, co pojawia się na obu? Coś, co chcesz zachować, ale
+        jednocześnie czujesz, że Ci przeszkadza? To normalne, życie jest pełne takich paradoksów.
+        Jeśli widzisz taki paradoks, opisz go krótko.
+      estimated_time: “4-6 minut”
+      min_chars: 30
+    - text: >
+        Na koniec dokończ to zdanie tak, jak czujesz w tej chwili, bez zastanawiania się zbyt długo:
+        „Teraz, w tej chwili, najprawdziwsza rzecz, jaką mogę powiedzieć o sobie, to...”
+      estimated_time: “2-4 minut”
+      min_chars: 15
 
   stuck_helpers:
-    - “Jeśli trudno stworzyć listy, wróć do poprzednich ćwiczeń i przejrzyj, co tam zapisano. Odpowiedzi z „Kim Jestem Teraz?\”, „Moje Wartości\” i innych ćwiczeń mogą podpowiedzieć, co jest ważne.”
-    - "Możesz zacząć od tego, co łatwiejsze: czy łatwiej Ci nazwać, co chcesz zachować, czy co chcesz puścić? Zacznij od tej listy. Druga może pojawić się jako „lustrzane odbicie”."
-    - “Jeśli ostatnie zdanie wydaje się zbyt duże, spróbuj dokończyć prostsze: „W tej chwili czuję...\” albo „Teraz wiem, że...\” albo po prostu „Jestem...\””
-    - “Nie musisz mieć „równych\” list. Jeśli lista tego, co chcesz zachować, ma 10 punktów, a lista tego, co chcesz puścić, ma 2, to jest w porządku. I na odwrót.”
+    - >
+      Jeśli trudno stworzyć listy, wróć do poprzednich ćwiczeń i przejrzyj, co tam zapisano.
+      Odpowiedzi z „Kim Jestem Teraz?”, „Moje Wartości” i innych ćwiczeń mogą podpowiedzieć,
+      co jest ważne.
+    - >
+      Możesz zacząć od tego, co łatwiejsze: czy łatwiej Ci nazwać, co chcesz zachować, czy co
+      chcesz puścić? Zacznij od tej listy. Druga może pojawić się jako „lustrzane odbicie”.
+    - >
+      Jeśli ostatnie zdanie wydaje się zbyt duże, spróbuj dokończyć prostsze: „W tej chwili czuję...”
+      albo „Teraz wiem, że...” albo po prostu „Jestem...”
+    - >
+      Nie musisz mieć „równych” list. Jeśli lista tego, co chcesz zachować, ma 10 punktów, a lista
+      tego, co chcesz puścić, ma 2, to jest w porządku. I na odwrót.
 
   reflection_prompt: |
     Moduł Teraźniejszość dobiega końca. Za nami droga od opisu tego, kim jesteś,

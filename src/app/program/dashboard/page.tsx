@@ -3,7 +3,6 @@ import { requireProgramUser } from "@/lib/program-auth";
 import { getModules, getGateExercise } from "@/lib/exercises";
 import { ProgramHeader } from "@/components/program/program-header";
 import { ProgressBar } from "@/components/program/progress-bar";
-import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
@@ -49,10 +48,73 @@ function getModuleStatus(
   return "available";
 }
 
+interface NextExercise {
+  id: string;
+  title: string;
+  estimatedTime: string;
+  moduleLabel: string | null;
+  isGate: boolean;
+  isInProgress: boolean;
+}
+
+function findNextExercise(
+  gate: { id: string; title: string; estimatedTime: string } | null,
+  modules: { order: number; title: string; slug: string; exercises: { id: string; title: string; estimatedTime: string }[] }[],
+  progress: Record<string, ExerciseStatus>,
+  gateCompleted: boolean
+): NextExercise | null {
+  // Gate not done yet
+  if (gate && !gateCompleted) {
+    const gateStatus = progress["gate_00"] || "not_started";
+    return {
+      id: gate.id,
+      title: gate.title,
+      estimatedTime: gate.estimatedTime,
+      moduleLabel: null,
+      isGate: true,
+      isInProgress: gateStatus === "in_progress",
+    };
+  }
+
+  // Find first unfinished exercise across modules
+  for (const mod of modules) {
+    for (const ex of mod.exercises) {
+      const status = progress[ex.id] || "not_started";
+      if (status === "in_progress") {
+        return {
+          id: ex.id,
+          title: ex.title,
+          estimatedTime: ex.estimatedTime,
+          moduleLabel: `Moduł ${mod.order}: ${mod.title}`,
+          isGate: false,
+          isInProgress: true,
+        };
+      }
+    }
+  }
+
+  for (const mod of modules) {
+    for (const ex of mod.exercises) {
+      const status = progress[ex.id] || "not_started";
+      if (status === "not_started") {
+        return {
+          id: ex.id,
+          title: ex.title,
+          estimatedTime: ex.estimatedTime,
+          moduleLabel: `Moduł ${mod.order}: ${mod.title}`,
+          isGate: false,
+          isInProgress: false,
+        };
+      }
+    }
+  }
+
+  return null; // All done
+}
+
 export default async function DashboardPage() {
   const { user, supabase } = await requireProgramUser();
 
-  // Fetch user profile for gender form
   const { data: profileData } = await supabase
     .from("user_profiles")
     .select("gender_form")
@@ -70,45 +132,72 @@ export default async function DashboardPage() {
   const gateCompleted =
     gateStatus === "completed" || gateStatus === "skipped";
 
+  const nextExercise = findNextExercise(gate, modules, progress, gateCompleted);
+
   return (
     <>
     <ProgramHeader />
     <div className="max-w-3xl mx-auto px-4 py-8">
       <ProfileInitializer />
       <h1 className="text-2xl font-semibold text-[#1E2A36] mb-2">
-        Twoj program
+        Twój program
       </h1>
       <p className="text-[#4A5B6A] mb-8">
-        Twoje teksty sa zapisywane i szyfrowane. Program czeka — wracasz kiedy chcesz.
+        Twoje teksty są zapisywane i szyfrowane. Program czeka, wracasz kiedy chcesz.
       </p>
 
-      {/* Gate exercise */}
-      {gate && (
-        <Card className="mb-8 border-[#7B9E8C]">
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <div>
-                <CardTitle className="text-lg">{gate.title}</CardTitle>
-                <CardDescription>{gate.estimatedTime}</CardDescription>
-              </div>
-              {gateCompleted ? (
-                <CheckCircle2 className="h-6 w-6 text-[#7B9E8C]" />
-              ) : (
-                <Badge variant="secondary">Start</Badge>
-              )}
-            </div>
-          </CardHeader>
-          <CardContent>
-            <Link href={`/program/cwiczenie/${gate.id}`}>
-              <Button
-                variant={gateCompleted ? "outline" : "default"}
-                className="w-full"
-              >
-                {gateCompleted ? "Wróć do ćwiczenia" : "Rozpocznij"}
+      {/* Next exercise CTA */}
+      {nextExercise && (
+        <Card className="mb-8 border-[#7B9E8C] bg-[#f8fbf9]">
+          <CardContent className="pt-6">
+            <p className="text-xs text-[#7B9E8C] font-medium uppercase tracking-wider mb-1">
+              {nextExercise.isInProgress ? "Kontynuuj" : "Następne ćwiczenie"}
+            </p>
+            <h3 className="text-lg font-semibold text-[#1E2A36] mb-1">
+              {nextExercise.title}
+            </h3>
+            <p className="text-sm text-[#8A99A8] mb-4">
+              {nextExercise.moduleLabel && <span>{nextExercise.moduleLabel} · </span>}
+              {nextExercise.estimatedTime}
+            </p>
+            <Link href={`/program/cwiczenie/${nextExercise.id}`}>
+              <Button className="w-full">
+                {nextExercise.isInProgress ? "Kontynuuj pisanie" : "Rozpocznij"}
               </Button>
             </Link>
           </CardContent>
         </Card>
+      )}
+
+      {/* Gate exercise — inline like other exercises */}
+      {gate && (
+        <div className="mb-6">
+          <h2 className="text-sm font-medium text-[#8A99A8] uppercase tracking-wider mb-3">
+            Ćwiczenie bramkowe
+          </h2>
+          <div className="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-[#F1F4F6] transition-colors">
+            <div className="flex items-center gap-3">
+              {gateCompleted ? (
+                <CheckCircle2 className="h-4 w-4 text-[#7B9E8C]" />
+              ) : gateStatus === "in_progress" ? (
+                <Play className="h-4 w-4 text-[#7B9E8C]" />
+              ) : (
+                <BookOpen className="h-4 w-4 text-[#8A99A8]" />
+              )}
+              <span className={`text-sm ${gateCompleted ? "text-[#8A99A8]" : "text-[#1E2A36]"}`}>
+                {gate.title}
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-[#8A99A8]">{gate.estimatedTime}</span>
+              <Link href={`/program/cwiczenie/${gate.id}`}>
+                <Button variant="ghost" size="sm" className="text-xs h-7">
+                  {gateCompleted ? "Wróć" : gateStatus === "in_progress" ? "Kontynuuj" : "Zacznij"}
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
       )}
 
       {/* Modules */}
@@ -148,6 +237,9 @@ export default async function DashboardPage() {
                 </div>
               </CardHeader>
               <CardContent>
+                <p className="text-xs text-[#8A99A8] mb-1">
+                  Ukończone: {completedCount}/{mod.exercises.length} ćwiczeń
+                </p>
                 <ProgressBar
                   completed={completedCount}
                   total={mod.exercises.length}

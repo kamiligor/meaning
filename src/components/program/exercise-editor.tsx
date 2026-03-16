@@ -15,17 +15,28 @@ interface ExerciseEditorProps {
   initialContent: string;
   placeholder?: string;
   label: string;
+  minChars?: number;
+  onCharCountChange?: (count: number) => void;
+}
+
+function stripHtml(html: string): string {
+  return html.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ");
 }
 
 export function ExerciseEditor({
   exerciseId,
   questionIndex,
   initialContent,
-  placeholder = "Zacznij pisac...",
+  placeholder = "Zacznij pisać...",
   label,
+  minChars,
+  onCharCountChange,
 }: ExerciseEditorProps) {
+  const maxChars = Math.max((minChars ?? 0) * 10, 2000);
+
   const [content, setContent] = useState(initialContent);
   const [wordCount, setWordCount] = useState(0);
+  const [charCount, setCharCount] = useState(() => stripHtml(initialContent).trim().length);
   const startTime = useRef(Date.now());
 
   const timeSpentSec = Math.floor((Date.now() - startTime.current) / 1000);
@@ -50,7 +61,9 @@ export function ExerciseEditor({
       Placeholder.configure({
         placeholder,
       }),
-      CharacterCount,
+      CharacterCount.configure({
+        limit: maxChars,
+      }),
     ],
     content: initialContent || "",
     editorProps: {
@@ -67,6 +80,9 @@ export function ExerciseEditor({
       const words = editor.storage.characterCount.words();
       setContent(html);
       setWordCount(words);
+      const chars = stripHtml(html).trim().length;
+      setCharCount(chars);
+      onCharCountChange?.(chars);
     },
   });
 
@@ -75,8 +91,12 @@ export function ExerciseEditor({
       <EditorToolbar editor={editor} />
       <EditorContent editor={editor} />
       <div className="flex items-center justify-between px-3 py-2 border-t border-[#e2e7eb] bg-[#FAFBFC]">
-        <span className="text-xs text-[#8A99A8]">
-          {wordCount} {wordCount === 1 ? "slowo" : "slow"}
+        <span className={`text-xs ${
+          charCount >= maxChars ? "text-red-400" :
+          minChars && charCount < minChars ? "text-amber-500" :
+          "text-[#8A99A8]"
+        }`}>
+          {charCount} / {minChars ? `${minChars}–${maxChars}` : maxChars} znaków
         </span>
         <div className="flex items-center gap-3">
           <SaveStatusIndicator status={status} />
