@@ -1,12 +1,27 @@
 import { NextResponse } from "next/server";
 import { requireProgramUser } from "@/lib/program-auth";
 import { decrypt } from "@/lib/encryption";
+import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 
 export async function GET() {
   try {
     const { user, supabase } = await requireProgramUser();
 
-    const [responsesResult, progressResult] = await Promise.all([
+    const { allowed, retryAfterMs } = checkRateLimit(
+      `data-export:${user.id}`,
+      RATE_LIMITS.dataExport
+    );
+    if (!allowed) {
+      return NextResponse.json(
+        { error: "Too many requests. Try again later." },
+        {
+          status: 429,
+          headers: { "Retry-After": String(Math.ceil(retryAfterMs / 1000)) },
+        }
+      );
+    }
+
+    const [responsesResult, progressResult, profileResult] = await Promise.all([
       supabase
         .from("exercise_responses")
         .select("*")
@@ -17,9 +32,18 @@ export async function GET() {
         .from("user_progress")
         .select("*")
         .eq("user_id", user.id),
+      supabase
+        .from("user_profiles")
+        .select("gender_form, created_at, has_paid")
+        .eq("user_id", user.id)
+        .single(),
     ]);
 
     if (responsesResult.error || progressResult.error) {
+      console.error(
+        "[data-export] Database error:",
+        responsesResult.error?.code ?? progressResult.error?.code
+      );
       return NextResponse.json(
         { error: "Failed to export data" },
         { status: 500 }
@@ -43,10 +67,19 @@ export async function GET() {
       completedAt: row.completed_at,
     }));
 
+    const profile = profileResult.data
+      ? {
+          genderForm: profileResult.data.gender_form,
+          createdAt: profileResult.data.created_at,
+          hasPaid: profileResult.data.has_paid,
+        }
+      : null;
+
     const exportData = {
       exportedAt: new Date().toISOString(),
       userId: user.id,
       email: user.email,
+      profile,
       responses: decryptedResponses,
       progress,
     };
@@ -55,10 +88,14 @@ export async function GET() {
       status: 200,
       headers: {
         "Content-Type": "application/json",
-        "Content-Disposition": `attachment; filename="pisz-siebie-export-${new Date().toISOString().split("T")[0]}.json"`,
+        "Content-Disposition": `attachment; filename="justmeaning-export-${new Date().toISOString().split("T")[0]}.json"`,
       },
     });
-  } catch {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  } catch (err) {
+    if (err instanceof Error && err.message === "Unauthorized") {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    console.error("[data-export] Unexpected error:", err);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

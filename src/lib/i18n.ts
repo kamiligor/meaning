@@ -48,6 +48,7 @@ const dict = {
     authResetSent: "Check your email for a reset link.",
     authPasswordMismatch: "Passwords do not match.",
     authGenericError: "Something went wrong. Try again.",
+    authRegisterSent: "Check your email to confirm your account.",
     authOrDivider: "or",
     accountDetails: "Account",
     accountProvider: "Login via",
@@ -67,6 +68,131 @@ const dict = {
     categoryResilience: "Resilience",
     categoryMeaning: "Meaning",
     goToProgram: "Go to program",
+
+    // DISCLAIMER
+    disclaimerBody: "This program is a self-reflection tool. It does not replace psychotherapy.",
+    disclaimerCrisis: "If you are struggling with serious mental health issues, suicidal thoughts, or the effects of trauma, please contact a specialist.",
+    disclaimerHotlines: "Crisis Line: 116 123 · Support Centre: 800 70 2222",
+    disclaimerAcceptButton: "I understand. Continue.",
+
+    // EDITOR
+    editorBold: "Bold",
+    editorItalic: "Italic",
+    editorList: "List",
+    editorToolbarLabel: "Text formatting",
+    editorPlaceholder: "Start writing...",
+    editorCharCount: "characters",
+    editorSave: "Save",
+
+    // SAVE STATUS
+    saveStatusSaving: "Saving...",
+    saveStatusSaved: "Saved",
+    saveStatusOffline: "Offline — saved locally",
+    saveStatusError: "Save error — saved locally",
+
+    // PROGRESS
+    progressCompleted: "Completed",
+    progressExercises: "exercises",
+
+    // EMOTIONAL CHECK-IN
+    checkinQuestion: "How are you feeling right now?",
+    checkinOk: "I'm okay — continue",
+    checkinBreak: "I need a break",
+
+    // GROUNDING
+    groundingTitle: "Grounding exercise — return to the present",
+    groundingIntro: "Look around the room you are in. Take your time.",
+    groundingInstruction: "Name (in your mind or out loud):",
+    groundingSee: "things you can see",
+    groundingHear: "things you can hear",
+    groundingTouch: "things you can touch",
+    groundingSmell: "things you can smell",
+    groundingTaste: "thing you can taste",
+    groundingClose: "Take a few deep breaths. You don't have to do anything. You are here, you are safe.",
+    groundingDashboard: "Return to dashboard",
+    groundingContinue: "Continue program",
+
+    // CONTENT WARNING
+    warningContinue: "Continue",
+    warningSkip: "Skip this exercise",
+    warningGoBack: "Come back later",
+
+    // EXERCISE VIEW
+    exerciseLevel: "Level",
+    exerciseStuckLabel: "Not sure what to write? Hints",
+    exerciseFinish: "Finish exercise",
+    exerciseSaveExit: "Save and exit",
+    exerciseWhyWorks: "Why does this work? (the science)",
+    exerciseLabel: "Exercise",
+    exerciseMinutes: "minutes",
+
+    // POST-EXERCISE
+    reflectionTitle: "Reflection",
+    reflectionLoading: "Loading your responses...",
+    reflectionYourAnswers: "Your answers",
+    reflectionQuestion: "Question",
+    reflectionSaveInfo: "Your text is saved. You can return and edit it at any time.",
+    reflectionComplete: "Mark as complete",
+    reflectionCompleteNext: "Mark as complete and continue",
+    reflectionMinCharsWarning: "Some questions require a longer answer to mark the exercise as complete.",
+    reflectionDashboard: "Return to dashboard",
+    reflectionNeedMoment: "I need a moment",
+
+    // DASHBOARD
+    dashboardTitle: "Your program",
+    dashboardSubtext: "Your texts are saved and encrypted. The program waits — come back whenever you want.",
+    dashboardContinueLabel: "Continue",
+    dashboardNextExercise: "Next exercise",
+    dashboardContinueWriting: "Continue writing",
+    dashboardStart: "Start",
+    dashboardGateLabel: "Getting started",
+    dashboardReturn: "Return",
+    dashboardContinue: "Continue",
+    dashboardBegin: "Begin",
+    dashboardModule: "Module",
+    dashboardReadIntro: "Read module introduction",
+    dashboardProfile: "Profile and settings",
+    dashboardExport: "Export data",
+
+    // MODULE PAGE
+    modulBack: "← Back to dashboard",
+    modulExercises: "Exercises in this module",
+    modulDifficult: "More challenging",
+    modulOpen: "Open",
+
+    // PROGRAM HEADER
+    programDashboard: "Dashboard",
+
+    // ONBOARDING
+    onboardingBefore: "Before we begin",
+    onboardingInfo1: "This is a self-reflection tool — it does not replace psychotherapy.",
+    onboardingInfo2: "Your texts are encrypted. No one will read them — not even us.",
+    onboardingInfo3: "There are no wrong answers. No judgment. No time pressure.",
+    onboardingInfo4: "You can skip any exercise. No need to explain.",
+    onboardingNext: "Next",
+    onboardingBack: "Back",
+    onboardingGenderTitle: "How should I address you?",
+    onboardingGenderSubtext: "You can change this later in settings.",
+    onboardingFeminine: "She/Her",
+    onboardingFeminineEx: "you wrote, you felt, you went through",
+    onboardingMasculine: "He/Him",
+    onboardingMasculineEx: "you wrote, you felt, you went through",
+    onboardingNeutral: "Neutral",
+    onboardingNeutralEx: "write down, recall, you have behind you",
+    onboardingDisclaimer: "This program is a self-reflection tool through writing. It does not replace psychotherapy or any other form of professional help.",
+    onboardingAccept: "I understand and want to continue",
+    onboardingAuthTitle: "Create account or log in",
+    onboardingAuthError: "Something went wrong. Please try again.",
+    onboardingCheckInbox: "Check your inbox!",
+    onboardingMagicLinkSent: "We sent a login link to",
+    onboardingMagicLinkClick: "Click it to continue.",
+    onboardingEmailPlaceholder: "Your email",
+    onboardingSending: "Sending...",
+    onboardingSendLink: "Send magic link",
+
+    // SAFETY BANNER
+    safetyBannerText: "This program does not replace psychotherapy.",
+    safetyBannerHotline: "Need support?",
   },
   pl: {
     siteTitle: "just have a little meaning",
@@ -113,6 +239,7 @@ const dict = {
     authResetSent: "Sprawdź email - wysłaliśmy link do resetowania hasła.",
     authPasswordMismatch: "Hasła nie są takie same.",
     authGenericError: "Coś poszło nie tak. Spróbuj ponownie.",
+    authRegisterSent: "Sprawdź email, żeby potwierdzić konto.",
     authOrDivider: "lub",
     accountDetails: "Konto",
     accountProvider: "Logowanie przez",
@@ -132,6 +259,131 @@ const dict = {
     categoryResilience: "Odporność",
     categoryMeaning: "Sens",
     goToProgram: "Przejdź do programu",
+
+    // DISCLAIMER
+    disclaimerBody: "Ten program to narzędzie do autorefleksji. Nie zastępuje psychoterapii.",
+    disclaimerCrisis: "Jeśli zmagasz się z poważnymi problemami psychicznymi, myślami samobójczymi lub skutkami traumy, skontaktuj się ze specjalistą.",
+    disclaimerHotlines: "Telefon Zaufania: 116 123 · Centrum Wsparcia: 800 70 2222",
+    disclaimerAcceptButton: "Rozumiem. Chcę kontynuować.",
+
+    // EDITOR
+    editorBold: "Pogrubienie",
+    editorItalic: "Kursywa",
+    editorList: "Lista",
+    editorToolbarLabel: "Formatowanie tekstu",
+    editorPlaceholder: "Zacznij pisać...",
+    editorCharCount: "znaków",
+    editorSave: "Zapisz",
+
+    // SAVE STATUS
+    saveStatusSaving: "Zapisywanie...",
+    saveStatusSaved: "Zapisano",
+    saveStatusOffline: "Offline — zapisano lokalnie",
+    saveStatusError: "Błąd zapisu — zapisano lokalnie",
+
+    // PROGRESS
+    progressCompleted: "Ukończone",
+    progressExercises: "ćwiczeń",
+
+    // EMOTIONAL CHECK-IN
+    checkinQuestion: "Jak się teraz czujesz?",
+    checkinOk: "W porządku — chcę kontynuować",
+    checkinBreak: "Potrzebuję przerwy",
+
+    // GROUNDING
+    groundingTitle: "Ćwiczenie uziemiające — wróć do tu i teraz",
+    groundingIntro: "Rozejrzyj się po pomieszczeniu, w którym jesteś. Nie spiesz się.",
+    groundingInstruction: "Wymień (w myślach lub na głos):",
+    groundingSee: "rzeczy, które widzisz",
+    groundingHear: "rzeczy, które słyszysz",
+    groundingTouch: "rzeczy, które możesz dotknąć",
+    groundingSmell: "rzeczy, które czujesz (zapach)",
+    groundingTaste: "rzecz, którą smakujesz",
+    groundingClose: "Weź kilka głębokich oddechów. Nie musisz nic robić. Jesteś tu, jesteś bezpieczny/a.",
+    groundingDashboard: "Wróć do dashboardu",
+    groundingContinue: "Kontynuuj program",
+
+    // CONTENT WARNING
+    warningContinue: "Kontynuuj",
+    warningSkip: "Pomiń to ćwiczenie",
+    warningGoBack: "Wróć później",
+
+    // EXERCISE VIEW
+    exerciseLevel: "Poziom",
+    exerciseStuckLabel: "Nie wiem, co napisać? Podpowiedzi",
+    exerciseFinish: "Zakończ ćwiczenie",
+    exerciseSaveExit: "Zapisz i wyjdź",
+    exerciseWhyWorks: "Dlaczego to działa? (nauka za ćwiczeniem)",
+    exerciseLabel: "Ćwiczenie",
+    exerciseMinutes: "minut",
+
+    // POST-EXERCISE
+    reflectionTitle: "Refleksja",
+    reflectionLoading: "Wczytuję Twoje odpowiedzi...",
+    reflectionYourAnswers: "Twoje odpowiedzi",
+    reflectionQuestion: "Pytanie",
+    reflectionSaveInfo: "Twój tekst jest zapisany. Możesz wrócić i edytować w dowolnym momencie.",
+    reflectionComplete: "Oznacz jako ukończone",
+    reflectionCompleteNext: "Oznacz jako ukończone i przejdź dalej",
+    reflectionMinCharsWarning: "Niektóre pytania wymagają dłuższej odpowiedzi, żeby oznaczyć ćwiczenie jako ukończone.",
+    reflectionDashboard: "Wróć do dashboardu",
+    reflectionNeedMoment: "Potrzebuję chwili",
+
+    // DASHBOARD
+    dashboardTitle: "Twój program",
+    dashboardSubtext: "Twoje teksty są zapisywane i szyfrowane. Program czeka, wracasz kiedy chcesz.",
+    dashboardContinueLabel: "Kontynuuj",
+    dashboardNextExercise: "Następne ćwiczenie",
+    dashboardContinueWriting: "Kontynuuj pisanie",
+    dashboardStart: "Rozpocznij",
+    dashboardGateLabel: "Na start",
+    dashboardReturn: "Wróć",
+    dashboardContinue: "Kontynuuj",
+    dashboardBegin: "Zacznij",
+    dashboardModule: "Moduł",
+    dashboardReadIntro: "Przeczytaj wprowadzenie do modułu",
+    dashboardProfile: "Profil i ustawienia",
+    dashboardExport: "Eksportuj dane",
+
+    // MODULE PAGE
+    modulBack: "← Wróć do dashboardu",
+    modulExercises: "Ćwiczenia w tym module",
+    modulDifficult: "Trudniejsze",
+    modulOpen: "Otwórz",
+
+    // PROGRAM HEADER
+    programDashboard: "Dashboard",
+
+    // ONBOARDING
+    onboardingBefore: "Zanim zaczniemy",
+    onboardingInfo1: "To narzędzie do autorefleksji — nie zastępuje psychoterapii.",
+    onboardingInfo2: "Twoje teksty są szyfrowane. Nikt ich nie przeczyta — nawet my.",
+    onboardingInfo3: "Nie ma złych odpowiedzi. Nie ma ocen. Nie ma presji czasowej.",
+    onboardingInfo4: "Możesz pominąć dowolne ćwiczenie. Bez tłumaczenia się.",
+    onboardingNext: "Dalej",
+    onboardingBack: "Wstecz",
+    onboardingGenderTitle: "Jak mam się do Ciebie zwracać?",
+    onboardingGenderSubtext: "Możesz to zmienić później w ustawieniach.",
+    onboardingFeminine: "Ona",
+    onboardingFeminineEx: "napisałaś, czułaś, przeszłaś",
+    onboardingMasculine: "On",
+    onboardingMasculineEx: "napisałeś, czułeś, przeszłeś",
+    onboardingNeutral: "Neutralnie",
+    onboardingNeutralEx: "zapisz, przypomnij sobie, masz za sobą",
+    onboardingDisclaimer: "Ten program to narzędzie do autorefleksji przez pisanie. Nie zastępuje psychoterapii ani innej formy profesjonalnej pomocy.",
+    onboardingAccept: "Rozumiem i chcę kontynuować",
+    onboardingAuthTitle: "Stwórz konto lub zaloguj się",
+    onboardingAuthError: "Coś poszło nie tak. Spróbuj ponownie.",
+    onboardingCheckInbox: "Sprawdź skrzynkę!",
+    onboardingMagicLinkSent: "Wysłaliśmy link do logowania na",
+    onboardingMagicLinkClick: "Kliknij go, żeby kontynuować.",
+    onboardingEmailPlaceholder: "Twój email",
+    onboardingSending: "Wysyłanie...",
+    onboardingSendLink: "Wyślij magic link",
+
+    // SAFETY BANNER
+    safetyBannerText: "Ten program nie zastępuje psychoterapii.",
+    safetyBannerHotline: "Potrzebujesz wsparcia?",
   },
 };
 

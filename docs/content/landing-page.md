@@ -104,7 +104,7 @@ Przeczytaj więcej o nauce za programem →
 Twoje słowa. Tylko Twoje.
 
 ### Treść
-- **Szyfrowanie end-to-end** - Twoje teksty są szyfrowane na Twoim urządzeniu, zanim trafią na serwer. Nikt, nawet my, nie może ich przeczytać.
+- **Szyfrowanie w bazie** - Twoje teksty są szyfrowane w naszej bazie danych. Nikt poza Tobą nie może ich odczytać.
 - **Zero śledzenia** - brak Google Analytics, brak cookies śledzących, brak telemetrii. Nie interesuje nas co robisz. Interesuje nas, żebyś pisał w spokoju.
 - **Twoje dane, Twoja kontrola** - w każdej chwili możesz wyeksportować swoje teksty lub usunąć konto. Wszystko znika.
 - **RODO/GDPR** - pełna zgodność z europejskimi przepisami o ochronie danych.
@@ -167,7 +167,7 @@ Mniej niż 20% ceny jednej sesji psychoterapeutycznej. Jednorazowo, bez subskryp
 Nie. The Life Writing Program to narzędzie do autorefleksji, nie terapia. Jeśli zmagasz się z depresją, myślami samobójczymi lub traumą, skontaktuj się ze specjalistą. Program może być natomiast dobrym uzupełnieniem terapii lub krokiem, gdy na terapię czekasz.
 
 **Czy ktoś przeczyta to, co piszę?**
-Nie. Twoje teksty są szyfrowane na Twoim urządzeniu. Na serwerze przechowujemy zaszyfrowane dane, których nie potrafimy odczytać. Nawet gdyby ktoś włamał się na serwer, zobaczyłby tylko nieczytelny szyfr.
+Nie. Twoje teksty są szyfrowane w naszej bazie danych zanim zostaną zapisane. Nawet gdyby ktoś uzyskał dostęp do bazy, zobaczyłby tylko nieczytelny szyfr.
 
 **Ile czasu zajmuje cały program?**
 Typowo 10-15 godzin rozłożonych na kilka tygodni. Ale nie ma limitu czasu. Możesz robić jedno ćwiczenie dziennie, jedno tygodniowo, albo przerwać na miesiąc i wrócić. Twoje teksty czekają.

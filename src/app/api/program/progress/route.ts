@@ -11,7 +11,8 @@ export async function GET() {
       .eq("user_id", user.id);
 
     if (error) {
-      return NextResponse.json({ error: error.message }, { status: 500 });
+      console.error("[progress GET] Database error:", error.code);
+      return NextResponse.json({ error: "Database error" }, { status: 500 });
     }
 
     const progress: Record<
@@ -28,7 +29,11 @@ export async function GET() {
     }
 
     return NextResponse.json({ progress });
-  } catch {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  } catch (err) {
+    if (err instanceof Error && err.message === "Unauthorized") {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    console.error("[progress GET] Unexpected error:", err);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

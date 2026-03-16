@@ -1,4 +1,5 @@
-const STORAGE_KEY = "pisz_siebie_pending_sync";
+const STORAGE_KEY = "jm_pending_sync";
+const LEGACY_STORAGE_KEY = "pisz_siebie_pending_sync";
 
 interface PendingSync {
   exerciseId: string;
@@ -7,8 +8,30 @@ interface PendingSync {
   timestamp: number;
 }
 
+/**
+ * Migrates entries from the legacy key to the new key on first access.
+ * Safe to call multiple times — does nothing if the legacy key is absent.
+ */
+function migrateLegacyKey() {
+  if (typeof window === "undefined") return;
+  try {
+    const legacy = localStorage.getItem(LEGACY_STORAGE_KEY);
+    if (legacy) {
+      // Only migrate if the new key is empty to avoid clobbering newer data.
+      const current = localStorage.getItem(STORAGE_KEY);
+      if (!current) {
+        localStorage.setItem(STORAGE_KEY, legacy);
+      }
+      localStorage.removeItem(LEGACY_STORAGE_KEY);
+    }
+  } catch {
+    // localStorage unavailable — silently ignore
+  }
+}
+
 function getPendingSyncs(): PendingSync[] {
   if (typeof window === "undefined") return [];
+  migrateLegacyKey();
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     return raw ? JSON.parse(raw) : [];

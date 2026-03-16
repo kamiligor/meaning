@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { t } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
 
 interface ExerciseHeaderProps {
   /** e.g. "Moduł I" */
@@ -9,6 +11,7 @@ interface ExerciseHeaderProps {
   exerciseLabel: string;
   /** Is it the gate exercise (no module link) */
   isGate?: boolean;
+  locale: Locale;
 }
 
 export function ExerciseHeader({
@@ -16,9 +19,11 @@ export function ExerciseHeader({
   moduleSlug,
   exerciseLabel,
   isGate = false,
+  locale,
 }: ExerciseHeaderProps) {
+  const d = t(locale);
   const backHref = isGate ? "/program/dashboard" : `/program/modul/${moduleSlug}`;
-  const backLabel = isGate ? "Dashboard" : moduleLabel;
+  const backLabel = isGate ? d.programDashboard : moduleLabel;
 
   return (
     <header className="border-b border-[#e2e7eb] bg-white">
@@ -27,7 +32,7 @@ export function ExerciseHeader({
         <Link
           href={backHref}
           className="flex items-center gap-1.5 text-sm text-[#4A5B6A] hover:text-[#7B9E8C] transition-colors"
-          aria-label={`Wróć do: ${backLabel}`}
+          aria-label={`${d.back}: ${backLabel}`}
         >
           <svg
             width="14"

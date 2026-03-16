@@ -32,6 +32,7 @@ export function AuthForm({
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [resetSent, setResetSent] = useState(false);
+  const [registerSent, setRegisterSent] = useState(false);
 
   const supabase = createClient();
 
@@ -72,12 +73,7 @@ export function AuthForm({
           setError(error.message);
           return;
         }
-        router.refresh();
-        if (linkReplace) {
-          router.back();
-        } else {
-          router.push(next);
-        }
+        setRegisterSent(true);
       } else {
         const { error } = await supabase.auth.resetPasswordForEmail(email, {
           redirectTo: `${window.location.origin}/program/auth/callback?next=/program/dashboard`,
@@ -110,6 +106,28 @@ export function AuthForm({
       : mode === "register"
         ? d.authRegisterTitle
         : d.authLostPasswordTitle;
+
+  if (mode === "register" && registerSent) {
+    return (
+      <div className="w-full max-w-sm mx-auto space-y-6">
+        <h1 className="text-xl font-semibold text-[#1E2A36] text-center">
+          {d.authRegisterTitle}
+        </h1>
+        <p className="text-sm text-[#4A5B6A] text-center">
+          {d.authRegisterSent}
+        </p>
+        <div className="text-center">
+          <Link
+            href="/login"
+            replace={linkReplace}
+            className="text-sm text-[#7B9E8C] hover:underline"
+          >
+            {d.authLoginLink}
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   if (mode === "lost-password" && resetSent) {
     return (

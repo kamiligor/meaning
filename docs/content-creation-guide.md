@@ -266,3 +266,115 @@ references:
 - [ ] Czytelnik po przeczytaniu wie, co konkretnie zrobić?
 - [ ] Hashtagi kończą się na #justhavealittlemeaning?
 - [ ] 3-4 references w frontmatterze?
+
+---
+
+## ĆWICZENIA PROGRAMU (format YAML)
+
+Pliki ćwiczeń leżą w `docs/exercises/`. Każdy plik to jeden YAML opisujący strukturę i treść ćwiczenia.
+
+### Pełna struktura YAML
+
+```yaml
+exercise:
+  id: "past_01"                        # module_numer, np. gate_00, past_01, present_03, future_06
+  module: "Przeszłość"                 # "Bramka" | "Przeszłość" | "Teraźniejszość" | "Przyszłość"
+  title: "Tytuł ćwiczenia"
+  difficulty: 2                        # 1 (łatwe) do 3 (trudne)
+  estimated_time: "20-30 minut"        # czas całego ćwiczenia (orientacyjny)
+  psychological_basis: "Tożsamość narracyjna (McAdams, 2001)"
+  content_warning: null                # null lub string z ostrzeżeniem (np. "Dotyczy trudnych wspomnień")
+
+  introduction: |
+    Wieloakapitowe wprowadzenie do ćwiczenia. Ciepłe, partnerskie, bez dyrektywności.
+    Wyjaśnia, po co to ćwiczenie i co użytkownik z niego dostanie.
+    Nie buduje presji. Normalizuje ewentualne trudności.
+
+  prompt_questions:
+    - text: "Treść pytania lub polecenia pisarskiego."
+      estimated_time: "5-10 minut"
+      min_chars: 80
+    - text: "Drugie pytanie."
+      estimated_time: "3-5 minut"
+      min_chars: 30
+
+  stuck_helpers:
+    - "Podpowiedź dla kogoś, kto utknął. Konkretna, łagodna, bez presji."
+    - "Kolejna podpowiedź z innym podejściem."
+    - "Trzecia opcja, np. zmiana perspektywy lub mniejszy krok."
+
+  reflection_prompt: |
+    Krótki prompt po zakończeniu pisania. Zaprasza do zauważenia, co się pojawiło.
+    Używa zmiennej {{napisal}} lub {{wybral}} do personalizacji (forma gramatyczna).
+
+  why_it_works: |
+    Wyjaśnienie mechanizmu psychologicznego. Proste, bez akademickości.
+    Z odniesieniem do badań. Czytelnik rozumie, nie cytuje.
+
+  completion_message: |        # opcjonalne, głównie gate_00
+    Komunikat po ukończeniu ćwiczenia. Krótki, ciepły. Nie gratuluje nadmiernie.
+```
+
+---
+
+### Pole `prompt_questions`: szczegóły
+
+Każde pytanie ma trzy pola:
+
+**`text`** - treść pytania lub polecenia. Zwięzła, bezpośrednia. Może zaczynać się od czasownika ("Wypisz...", "Opisz...", "Przypomnij sobie...") albo być zdaniem do dokończenia ("Czuję się...").
+
+**`estimated_time`** - orientacyjny czas na odpowiedź na to konkretne pytanie, nie całe ćwiczenie. Format: `"X-Y minut"`. W interfejsie jest zaokrąglany do 5 minut i pokazywany jako wskazówka, nie wymóg. Nie buduje presji czasowej.
+
+**`min_chars`** - minimalna liczba znaków potrzebna do "odblokowania" przycisku dalej. Jej jedyna rola to odsianie pustych pól. Nie ma wymuszać długości odpowiedzi. Użytkownik nie powinien czuć, że musi pisać "wystarczająco dużo".
+
+Zasady ustalania `min_chars`:
+
+| Typ pytania | Wartość min_chars |
+|---|---|
+| Pytanie do wyboru lub lista (np. "Wypisz 3 rzeczy...") | 20 |
+| Pytanie refleksyjne, jedno zdanie wystarczy | 30-60 |
+| Pytanie opisowe, wymaga kilku zdań | 80-150 |
+| Pytanie narracyjne lub lista punktów | 150 |
+
+Maksymalna liczba znaków (`max_chars`) jest obliczana automatycznie przez aplikację: `max(min_chars x 10, 2000)`. Nie umieszczaj `max_chars` w YAML.
+
+**Wyjątek: `gate_00`** jest zwolnione ze wszystkich minimów. Pytania w ćwiczeniu bramkowym mają `min_chars: 10` (technicznie wymagane przez schemat, ale w praktyce niestosowane).
+
+---
+
+### Zasady pisania `prompt_questions`
+
+- Od 3 do 5 pytań na ćwiczenie. Pierwsze pytanie zawsze łatwiejsze (niższy min_chars, krótszy estimated_time).
+- Pytania idą od powierzchownych do głębszych, nie odwrotnie.
+- Pytania refleksyjne ("Czy widzisz...?", "Co Cię zaskoczyło...?") mają niższy min_chars niż opisowe.
+- Nie kumuluj zbyt wielu wymagań w jednym pytaniu. Lepiej dwa pytania po 50 znaków niż jedno po 150.
+- Ton: zaproszenie, nie polecenie. "Spróbuj opisać..." brzmi inaczej niż "Opisz...".
+
+---
+
+### Zasady pisania pozostałych pól
+
+**`introduction`** (3-5 akapitów)
+Kontekst naukowy podany prostym językiem. Wyjaśnia cel ćwiczenia, normalizuje trudności, nie buduje oczekiwań co do "prawidłowej" odpowiedzi. Brak em-dash, brak cytowań w nawiasach.
+
+**`stuck_helpers`** (min. 3)
+Podpowiedzi dla osoby, która zatrzymała się podczas pisania. Każda podpowiedź to inny "kąt wejścia": zmiana skali (zamiast "całego życia" - "ostatni tydzień"), zmiana perspektywy (trzecia osoba), zmiana medium (zamiast pisać - narysuj w głowie), normalizacja braku słów ("Możesz napisać: nie wiem").
+
+**`reflection_prompt`**
+Krótki, bez presji. Używa `{{napisal}}` lub `{{wybral}}` - aplikacja dobiera formę gramatyczną na podstawie profilu użytkownika. Nie analizuje, nie ocenia. Zaprasza do zauważenia.
+
+**`why_it_works`**
+Jeden lub dwa akapity. Tłumaczy mechanizm psychologiczny prostym językiem. Z nazwiskami badaczy i latami, ale bez akademickiego stylu. Przykład: "Badania McAdamsa pokazują, że..." zamiast "(McAdams, 2001) wykazał...".
+
+---
+
+### Checklista przed zapisem ćwiczenia
+
+- [ ] Każde `prompt_questions` ma pola `text`, `estimated_time` i `min_chars`?
+- [ ] `min_chars` dobrane do typu pytania (patrz tabela)?
+- [ ] Brak pola `max_chars` w YAML (obliczane automatycznie)?
+- [ ] Pytania idą od łatwiejszych do trudniejszych?
+- [ ] Brak em-dash w całym pliku (za wyjątkiem cytatów z przypisaniem)?
+- [ ] `why_it_works` przystępne dla osoby bez wykształcenia psychologicznego?
+- [ ] `stuck_helpers` oferują przynajmniej 3 różne podejścia?
+- [ ] `gate_00` ma min_chars: 10 dla wszystkich pytań?

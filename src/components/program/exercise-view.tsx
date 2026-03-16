@@ -13,6 +13,10 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { ChevronDown, Lightbulb } from "lucide-react";
+import { stripHtml, splitParagraphs } from "@/lib/html-utils";
+import { meetsMinChars, hasAnyContent } from "@/lib/exercise-validation";
+import { t } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
 
 type ViewStep = "warning" | "writing" | "postExercise";
 
@@ -26,6 +30,7 @@ interface ExerciseViewProps {
   exercise: Exercise;
   savedResponses: SavedResponse[];
   nextExerciseUrl: string | null;
+  locale: Locale;
 }
 
 function roundTime(raw: string): string {
@@ -46,15 +51,13 @@ function ClockIcon() {
   );
 }
 
-function stripHtml(html: string): string {
-  return html.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").trim();
-}
-
 export function ExerciseView({
   exercise,
   savedResponses,
   nextExerciseUrl,
+  locale,
 }: ExerciseViewProps) {
+  const d = t(locale);
   const router = useRouter();
   const hasWarning = !!exercise.contentWarning;
   const isGate = exercise.id === "gate_00";
@@ -86,26 +89,17 @@ export function ExerciseView({
     return saved?.content || "";
   };
 
-  // Does every question with minChars > 0 meet its threshold?
   const meetsMinimum = (): boolean => {
-    if (isGate) return true;
-    return exercise.promptQuestions.every((q, idx) => {
-      if (q.minChars === 0) return true;
-      return (charCounts[idx] ?? 0) >= q.minChars;
-    });
+    return meetsMinChars(exercise.promptQuestions, charCounts, isGate);
   };
 
-  // Has the user written anything at all?
-  const hasAnyContent = (): boolean => {
-    return Object.values(charCounts).some((c) => c > 0);
+  const anyContent = (): boolean => {
+    return hasAnyContent(charCounts);
   };
 
   const handleCompleteClick = () => {
-    // Can't finish with nothing written (gate_00 is exempt)
-    if (!isGate && !hasAnyContent()) return;
-    // Can't finish without meeting minimums (gate_00 is exempt)
+    if (!isGate && !anyContent()) return;
     if (!isGate && !meetsMinimum()) return;
-    // All good — go to reflection
     setStep("postExercise");
   };
 
@@ -130,6 +124,7 @@ export function ExerciseView({
         onContinue={() => setStep("writing")}
         onSkip={handleSkip}
         onGoBack={() => router.push("/program/dashboard")}
+        locale={locale}
       />
     );
   }
@@ -145,12 +140,13 @@ export function ExerciseView({
         showCheckin={exercise.difficulty >= 3}
         canComplete={meetsMinimum()}
         nextExerciseUrl={nextExerciseUrl}
+        locale={locale}
       />
     );
   }
 
   // --- Writing screen ---
-  const canComplete = isGate || (hasAnyContent() && meetsMinimum());
+  const canComplete = isGate || (anyContent() && meetsMinimum());
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-6 pb-20">
@@ -162,18 +158,15 @@ export function ExerciseView({
         <div className="flex items-center gap-3 text-sm text-[#8A99A8]">
           <span>{exercise.estimatedTime}</span>
           <span>·</span>
-          <span>Poziom {exercise.difficulty}/5</span>
+          <span>{d.exerciseLevel} {exercise.difficulty}/5</span>
         </div>
       </div>
 
       {/* Introduction */}
       <div className="max-w-none text-[#4A5B6A] mb-8 leading-relaxed space-y-4">
-        {exercise.introduction
-          .split(/\n\s*\n/)
-          .filter(Boolean)
-          .map((para, i) => (
-            <p key={i}>{para.replace(/\n/g, " ").trim()}</p>
-          ))}
+        {splitParagraphs(exercise.introduction).map((para, i) => (
+          <p key={i}>{para}</p>
+        ))}
       </div>
 
       {/* Prompt instruction (gate exercise) */}
@@ -200,9 +193,10 @@ export function ExerciseView({
               exerciseId={exercise.id}
               questionIndex={idx}
               initialContent={getInitialContent(idx)}
-              label={`Odpowiedź na pytanie ${idx + 1}`}
+              label={`${d.reflectionQuestion} ${idx + 1}`}
               minChars={question.minChars}
               onCharCountChange={(count) => handleCharCountChange(idx, count)}
+              locale={locale}
             />
           </div>
         ))}
@@ -212,7 +206,7 @@ export function ExerciseView({
       <Collapsible open={stuckOpen} onOpenChange={setStuckOpen}>
         <CollapsibleTrigger className="flex items-center gap-2 text-sm text-[#7B9E8C] hover:text-[#5a8270] transition-colors mb-2">
           <Lightbulb className="h-4 w-4" />
-          <span>Nie wiem, co napisać? Podpowiedzi</span>
+          <span>{d.exerciseStuckLabel}</span>
           <ChevronDown className={`h-4 w-4 transition-transform ${stuckOpen ? "rotate-180" : ""}`} />
         </CollapsibleTrigger>
         <CollapsibleContent>
@@ -233,32 +227,29 @@ export function ExerciseView({
           disabled={!canComplete}
           className="flex-1"
         >
-          Zakończ ćwiczenie
+          {d.exerciseFinish}
         </Button>
         <Button
           onClick={() => router.push("/program/dashboard")}
           variant="outline"
           className="flex-1"
         >
-          Zapisz i wyjdź
+          {d.exerciseSaveExit}
         </Button>
       </div>
 
       {/* Why it works */}
       <Collapsible className="mt-8">
         <CollapsibleTrigger className="text-sm text-[#8A99A8] hover:text-[#7B9E8C] transition-colors">
-          Dlaczego to działa? (nauka za ćwiczeniem) ▸
+          {d.exerciseWhyWorks} &#9658;
         </CollapsibleTrigger>
         <CollapsibleContent>
           <div className="mt-2 bg-[#FAFBFC] border border-[#e2e7eb] rounded-lg p-4">
-            {exercise.whyItWorks
-              .split(/\n\s*\n/)
-              .filter(Boolean)
-              .map((para, i) => (
-                <p key={i} className="text-sm text-[#4A5B6A] leading-relaxed mb-2 last:mb-0">
-                  {para.replace(/\n/g, " ").trim()}
-                </p>
-              ))}
+            {splitParagraphs(exercise.whyItWorks).map((para, i) => (
+              <p key={i} className="text-sm text-[#4A5B6A] leading-relaxed mb-2 last:mb-0">
+                {para}
+              </p>
+            ))}
           </div>
         </CollapsibleContent>
       </Collapsible>

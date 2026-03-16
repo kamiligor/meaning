@@ -124,17 +124,25 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL(next, request.url));
     }
 
-    // Redirect paid users from /program landing to dashboard
-    if (pathname === "/program" && user) {
+    // Fetch user_profiles once for all /program logic that needs has_paid
+    let hasPaid: boolean | null = null;
+    const needsProfileCheck =
+      user &&
+      pathname.startsWith("/program") &&
+      !isProgramPublicPath(pathname);
+
+    if (needsProfileCheck || (pathname === "/program" && user)) {
       const { data: profile } = await supabase
         .from("user_profiles")
         .select("has_paid")
-        .eq("user_id", user.id)
+        .eq("user_id", user!.id)
         .single();
+      hasPaid = profile?.has_paid ?? false;
+    }
 
-      if (profile?.has_paid) {
-        return NextResponse.redirect(new URL("/program/dashboard", request.url));
-      }
+    // Redirect paid users from /program landing to dashboard
+    if (pathname === "/program" && user && hasPaid) {
+      return NextResponse.redirect(new URL("/program/dashboard", request.url));
     }
 
     // Protect program pages (except public ones) and /profil
@@ -151,13 +159,7 @@ export async function middleware(request: NextRequest) {
 
       // Program content requires paid access (not /profil or /ulubione)
       if (pathname.startsWith("/program") && !isProgramPublicPath(pathname)) {
-        const { data: profile } = await supabase
-          .from("user_profiles")
-          .select("has_paid")
-          .eq("user_id", user.id)
-          .single();
-
-        if (!profile?.has_paid) {
+        if (!hasPaid) {
           return NextResponse.redirect(new URL("/program", request.url));
         }
       }

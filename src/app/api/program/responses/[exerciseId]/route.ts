@@ -4,6 +4,8 @@ import { encrypt, decrypt } from "@/lib/encryption";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 import { loadExercise } from "@/lib/exercises";
 
+const EXERCISE_ID_REGEX = /^[a-z_0-9]+$/;
+
 export async function GET(
   _request: NextRequest,
   { params }: { params: Promise<{ exerciseId: string }> }
@@ -11,6 +13,25 @@ export async function GET(
   try {
     const { user, supabase } = await requireProgramUser();
     const { exerciseId } = await params;
+
+    if (!EXERCISE_ID_REGEX.test(exerciseId)) {
+      return NextResponse.json({ error: "Invalid exercise ID" }, { status: 400 });
+    }
+
+    const rateLimitKey = `responses-get:${user.id}`;
+    const { allowed, retryAfterMs } = checkRateLimit(rateLimitKey, {
+      maxRequests: 120,
+      windowMs: 60_000,
+    });
+    if (!allowed) {
+      return NextResponse.json(
+        { error: "Too many requests" },
+        {
+          status: 429,
+          headers: { "Retry-After": String(Math.ceil(retryAfterMs / 1000)) },
+        }
+      );
+    }
 
     const { data, error } = await supabase
       .from("exercise_responses")
@@ -20,7 +41,8 @@ export async function GET(
       .order("question_index");
 
     if (error) {
-      return NextResponse.json({ error: error.message }, { status: 500 });
+      console.error("[responses GET] Database error:", error.code);
+      return NextResponse.json({ error: "Database error" }, { status: 500 });
     }
 
     const responses = data.map((row) => ({
@@ -32,8 +54,12 @@ export async function GET(
     }));
 
     return NextResponse.json({ responses });
-  } catch {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  } catch (err) {
+    if (err instanceof Error && err.message === "Unauthorized") {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    console.error("[responses GET] Unexpected error:", err);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
 
@@ -44,6 +70,10 @@ export async function PUT(
   try {
     const { user, supabase } = await requireProgramUser();
     const { exerciseId } = await params;
+
+    if (!EXERCISE_ID_REGEX.test(exerciseId)) {
+      return NextResponse.json({ error: "Invalid exercise ID" }, { status: 400 });
+    }
 
     const rateLimitKey = `responses:${user.id}`;
     const { allowed, retryAfterMs } = checkRateLimit(
@@ -93,7 +123,8 @@ export async function PUT(
     );
 
     if (error) {
-      return NextResponse.json({ error: error.message }, { status: 500 });
+      console.error("[responses PUT] Database error:", error.code);
+      return NextResponse.json({ error: "Database error" }, { status: 500 });
     }
 
     // If exercise is completed but content no longer meets min_chars, revert to in_progress
@@ -134,7 +165,11 @@ export async function PUT(
     }
 
     return NextResponse.json({ saved: true });
-  } catch {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  } catch (err) {
+    if (err instanceof Error && err.message === "Unauthorized") {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    console.error("[responses PUT] Unexpected error:", err);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

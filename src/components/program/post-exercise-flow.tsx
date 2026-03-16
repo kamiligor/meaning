@@ -5,6 +5,10 @@ import { useRouter } from "next/navigation";
 import { EmotionalCheckin } from "./emotional-checkin";
 import { GroundingExercise } from "./grounding-exercise";
 import { Button } from "@/components/ui/button";
+import { splitParagraphs } from "@/lib/html-utils";
+import { sanitizeHtml } from "@/lib/sanitize";
+import { t } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
 
 type FlowStep = "reflection" | "checkin" | "grounding";
 
@@ -16,6 +20,7 @@ interface PostExerciseFlowProps {
   showCheckin: boolean; // true if difficulty >= 3
   canComplete: boolean;
   nextExerciseUrl: string | null;
+  locale: Locale;
 }
 
 export function PostExerciseFlow({
@@ -26,7 +31,9 @@ export function PostExerciseFlow({
   postExerciseNote,
   showCheckin,
   nextExerciseUrl,
+  locale,
 }: PostExerciseFlowProps) {
+  const d = t(locale);
   const [step, setStep] = useState<FlowStep>("reflection");
   const [responses, setResponses] = useState<{ questionIndex: number; content: string }[]>([]);
   const [loadingResponses, setLoadingResponses] = useState(true);
@@ -56,30 +63,37 @@ export function PostExerciseFlow({
     return (
       <div className="max-w-3xl mx-auto py-8 px-4">
         <div className="bg-[#e8f0eb] rounded-xl p-6 mb-6">
-          <h3 className="text-lg font-medium text-[#1E2A36] mb-3">Refleksja</h3>
+          <h3 className="text-lg font-medium text-[#1E2A36] mb-3">{d.reflectionTitle}</h3>
           <div className="text-[#4A5B6A] leading-relaxed space-y-3">
-            {reflectionPrompt
-              .split(/\n\s*\n/)
-              .filter(Boolean)
-              .map((para, i) => (
-                <p key={i}>{para.replace(/\n/g, " ").trim()}</p>
-              ))}
+            {splitParagraphs(reflectionPrompt).map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
           </div>
         </div>
 
         {/* User's responses */}
         {loadingResponses ? (
           <div className="mb-6 flex items-center gap-2 text-sm text-[#8A99A8]">
-            <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>
-            Wczytuję Twoje odpowiedzi...
+            <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+            </svg>
+            {d.reflectionLoading}
           </div>
         ) : responses.length > 0 ? (
           <div className="mb-6 space-y-4">
-            <h3 className="text-sm font-medium text-[#8A99A8] uppercase tracking-wider">Twoje odpowiedzi</h3>
+            <h3 className="text-sm font-medium text-[#8A99A8] uppercase tracking-wider">
+              {d.reflectionYourAnswers}
+            </h3>
             {responses.map((r) => (
               <div key={r.questionIndex} className="bg-white border border-[#e2e7eb] rounded-lg p-4">
-                <p className="text-xs text-[#8A99A8] mb-2">{questions[r.questionIndex]?.text ?? `Pytanie ${r.questionIndex + 1}`}</p>
-                <div className="text-[#1E2A36] text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: r.content }} />
+                <p className="text-xs text-[#8A99A8] mb-2">
+                  {questions[r.questionIndex]?.text ?? `${d.reflectionQuestion} ${r.questionIndex + 1}`}
+                </p>
+                <div
+                  className="text-[#1E2A36] text-sm leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(r.content) }}
+                />
               </div>
             ))}
           </div>
@@ -95,7 +109,7 @@ export function PostExerciseFlow({
 
         {/* Save info */}
         <p className="text-sm text-[#8A99A8] mb-6">
-          Twój tekst jest zapisany. Możesz wrócić i edytować w dowolnym momencie.
+          {d.reflectionSaveInfo}
         </p>
 
         {/* Actions */}
@@ -112,11 +126,11 @@ export function PostExerciseFlow({
               }}
               className="w-full"
             >
-              Oznacz jako ukończone{nextExerciseUrl ? " i przejdź dalej" : ""}
+              {nextExerciseUrl ? d.reflectionCompleteNext : d.reflectionComplete}
             </Button>
           ) : (
             <p className="text-sm text-amber-600 py-2">
-              Niektóre pytania wymagają dłuższej odpowiedzi, żeby oznaczyć ćwiczenie jako ukończone.
+              {d.reflectionMinCharsWarning}
             </p>
           )}
           <Button
@@ -124,7 +138,7 @@ export function PostExerciseFlow({
             variant="outline"
             className="w-full"
           >
-            Wróć do dashboardu
+            {d.reflectionDashboard}
           </Button>
           {showCheckin && (
             <Button
@@ -132,7 +146,7 @@ export function PostExerciseFlow({
               variant="ghost"
               className="w-full text-[#8A99A8]"
             >
-              Potrzebuję chwili
+              {d.reflectionNeedMoment}
             </Button>
           )}
         </div>
@@ -145,6 +159,7 @@ export function PostExerciseFlow({
       <EmotionalCheckin
         onOk={() => setStep("reflection")}
         onBreak={() => setStep("grounding")}
+        locale={locale}
       />
     );
   }
@@ -154,6 +169,7 @@ export function PostExerciseFlow({
     <GroundingExercise
       onDashboard={() => router.push("/program/dashboard")}
       onContinue={() => setStep("reflection")}
+      locale={locale}
     />
   );
 }

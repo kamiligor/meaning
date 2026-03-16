@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { requireProgramUser } from "@/lib/program-auth";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
-import { createClient } from "@supabase/supabase-js";
+import { getSupabaseAdmin } from "@/lib/supabase-admin";
 
 export async function DELETE() {
   try {
@@ -22,18 +22,15 @@ export async function DELETE() {
     }
 
     // Use service role key to delete user (CASCADE deletes their data)
-    if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    let supabaseAdmin;
+    try {
+      supabaseAdmin = getSupabaseAdmin();
+    } catch {
       return NextResponse.json(
         { error: "Server configuration error" },
         { status: 500 }
       );
     }
-
-    const supabaseAdmin = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY,
-      { auth: { autoRefreshToken: false, persistSession: false } }
-    );
 
     const { error } = await supabaseAdmin.auth.admin.deleteUser(user.id);
 
@@ -45,7 +42,11 @@ export async function DELETE() {
     }
 
     return NextResponse.json({ deleted: true });
-  } catch {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  } catch (err) {
+    if (err instanceof Error && err.message === "Unauthorized") {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    console.error("[account DELETE] Unexpected error:", err);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

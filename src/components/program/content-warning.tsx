@@ -2,12 +2,15 @@
 
 import { AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { t } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
 
 interface ContentWarningProps {
   warning: string;
   onContinue: () => void;
   onSkip: () => void;
   onGoBack: () => void;
+  locale: Locale;
 }
 
 export function ContentWarning({
@@ -15,7 +18,10 @@ export function ContentWarning({
   onContinue,
   onSkip,
   onGoBack,
+  locale,
 }: ContentWarningProps) {
+  const d = t(locale);
+
   return (
     <div className="max-w-lg mx-auto py-8 px-4">
       <div className="bg-amber-50 border border-amber-200 rounded-xl p-6">
@@ -29,13 +35,13 @@ export function ContentWarning({
         </div>
         <div className="flex flex-col sm:flex-row gap-2 mt-6">
           <Button onClick={onContinue} className="flex-1">
-            Kontynuuj
+            {d.warningContinue}
           </Button>
           <Button onClick={onSkip} variant="outline" className="flex-1">
-            Pomiń to ćwiczenie
+            {d.warningSkip}
           </Button>
           <Button onClick={onGoBack} variant="ghost" className="flex-1">
-            Wróć później
+            {d.warningGoBack}
           </Button>
         </div>
       </div>

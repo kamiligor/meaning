@@ -1,8 +1,8 @@
 ---
 type: spec
 name: User Flow
-version: "1.0"
-last_updated: "2026-02-27"
+version: "1.2"
+last_updated: "2026-03-16"
 ---
 
 # User Flow - The Life Writing Program
@@ -105,38 +105,53 @@ Landing Page → Micro-onboarding → Rejestracja → Wybór ścieżki → Ćwic
 │  DASHBOARD                                               │
 │                                                          │
 │  ┌──── Nagłówek ────────────────────────────────────┐   │
-│  │  "Witaj ponownie."                                │   │
-│  │  (lub przy pierwszej wizycie: "Twoja przestrzeń   │   │
-│  │   do pisania jest gotowa.")                       │   │
+│  │  "Twój program"                                   │   │
+│  │  "Twoje teksty są zapisywane i szyfrowane.        │   │
+│  │   Program czeka, wracasz kiedy chcesz."           │   │
+│  └──────────────────────────────────────────────────┘   │
+│                                                          │
+│  ┌──── Następne ćwiczenie (CTA box) ───────────────┐   │
+│  │  border-[#7B9E8C], bg-[#f8fbf9]                  │   │
+│  │                                                    │   │
+│  │  "NASTĘPNE ĆWICZENIE" (lub "KONTYNUUJ")           │   │
+│  │  Tytuł ćwiczenia                                  │   │
+│  │  Moduł X: Nazwa · czas szacowany                  │   │
+│  │  [Rozpocznij] (lub [Kontynuuj pisanie])           │   │
+│  │                                                    │   │
+│  │  Logika wyboru: najpierw szuka in_progress        │   │
+│  │  w modułach → jeśli brak, bierze pierwsze         │   │
+│  │  not_started. Jeśli gate_00 nie ukończone —       │   │
+│  │  pokazuje bramkowe jako CTA.                      │   │
+│  │  Znika gdy wszystkie ćwiczenia ukończone.         │   │
+│  └──────────────────────────────────────────────────┘   │
+│                                                          │
+│  ┌──── Na start ────────────────────────────────────┐   │
+│  │  Ćwiczenie bramkowe wyświetlane inline:           │   │
+│  │  [ikona] Tytuł                     czas [Zacznij]│   │
+│  │                                                    │   │
+│  │  (po ukończeniu: ikona CheckCircle, przycisk Wróć)│   │
 │  └──────────────────────────────────────────────────┘   │
 │                                                          │
 │  ┌──── Moduły ──────────────────────────────────────┐   │
-│  │                                                    │   │
-│  │  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ │   │
-│  │  │ PRZESZŁOŚĆ  │ │TERAŹNIEJSZ. │ │ PRZYSZŁOŚĆ  │ │   │
-│  │  │             │ │             │ │             │ │   │
-│  │  │ Zrozum swoją│ │ Zrozum,     │ │ Zaprojektuj │ │   │
-│  │  │ historię    │ │ gdzie stoisz│ │ siebie      │ │   │
-│  │  │             │ │             │ │             │ │   │
-│  │  │ 2/6 ćwiczeń│ │ (nie rozp.) │ │ 🔒          │ │   │
-│  │  │ [Kontynuuj] │ │ [Zacznij]   │ │ [29 PLN]    │ │   │
-│  │  └─────────────┘ └─────────────┘ └─────────────┘ │   │
-│  │                                                    │   │
-│  │  Pełna ścieżka: Moduł I ▸ Moduł II ▸ Moduł III   │   │
+│  │  Karty modułów (blokowane gdy gate_00 nie        │   │
+│  │  ukończone). Każda karta zawiera:                 │   │
+│  │  - Nagłówek: "Moduł X: Tytuł"                    │   │
+│  │  - Podtytuł modułu                                │   │
+│  │  - "Ukończone: X/6 ćwiczeń" + pasek postępu      │   │
+│  │  - Lista ćwiczeń z ikonami statusu                │   │
+│  │    (BookOpen / Play / CheckCircle2)               │   │
+│  │  - Przyciski: Zacznij / Kontynuuj / Wróć          │   │
+│  │  - Link "Przeczytaj wprowadzenie do modułu"       │   │
 │  └──────────────────────────────────────────────────┘   │
 │                                                          │
-│  ┌──── Szybki dostęp ──────────────────────────────┐   │
-│  │  📖 Mój dziennik   📚 Zasoby   ⚙️ Ustawienia   │   │
-│  └──────────────────────────────────────────────────┘   │
-│                                                          │
-│  ┌──── Baner kryzysowy (subtelny) ─────────────────┐   │
-│  │  Potrzebujesz wsparcia? 116 123 · 800 70 2222    │   │
+│  ┌──── Stopka dashboardu ──────────────────────────┐   │
+│  │  [Profil i ustawienia]    [Eksportuj dane]        │   │
 │  └──────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────┘
 ```
 
 **Stany modułu:**
-- `locked` - nie kupiony (Moduł II/III dla darmowych)
+- `locked` - zablokowany (gdy gate_00 nie ukończone)
 - `available` - odblokowany, nie rozpoczęty
 - `in_progress` - rozpoczęty, pokazuje postęp (np. "3/6 ćwiczeń")
 - `completed` - ukończony (subtelne oznaczenie, bez fajerwerków)
@@ -144,7 +159,17 @@ Landing Page → Micro-onboarding → Rejestracja → Wybór ścieżki → Ćwic
 **Stany karty modułu:**
 - Nigdy nie pokazuj "Pominąłeś X ćwiczeń"
 - Zawsze "Ukończone: X/6"
-- Ćwiczenia bramkowe nie wliczają się
+- Ćwiczenia bramkowe nie wliczają się do licznika modułów
+
+**CTA box — szczegółowa logika (`findNextExercise`):**
+1. Jeśli `gate_00` nie ukończone (status inny niż `completed`/`skipped`) — zwróć bramkowe
+2. Przeglądaj moduły po kolei; zwróć pierwsze ćwiczenie ze statusem `in_progress`
+3. Jeśli brak `in_progress` — zwróć pierwsze `not_started`
+4. Jeśli wszystkie ukończone — box znika
+
+**Linki w stopce dashboardu:**
+- "Profil i ustawienia" — `/profil`, kolor `#7B9E8C`
+- "Eksportuj dane" — `/api/program/data-export`, kolor `#8A99A8`
 
 ---
 
@@ -196,105 +221,147 @@ Landing Page → Micro-onboarding → Rejestracja → Wybór ścieżki → Ćwic
 
 ### 2.4 Flow Ćwiczenia
 
+Ekran ćwiczenia składa się z trzech kroków zarządzanych przez komponent `ExerciseView`:
+
+```
+ViewStep: "warning" → "writing" → "postExercise"
+```
+
+**Krok 1 — Content Warning (ekran ostrzeżenia):**
+
+Wyświetla się wyłącznie gdy ćwiczenie ma pole `contentWarning` w YAML i użytkownik nie ma jeszcze zapisanych odpowiedzi (`savedResponses.length === 0`). Przy powrocie do ćwiczenia, które ma już odpowiedzi, ostrzeżenie jest pomijane i użytkownik trafia od razu do pisania.
+
+```
+[Rozumiem, chcę kontynuować]
+[Pomiń to ćwiczenie]
+[Wróć do dashboardu]
+```
+
+**Krok 2 — Pisanie:**
+
 ```
 ┌──────────────────────────────────────────────┐
 │  EKRAN ĆWICZENIA                              │
 │                                               │
 │  ┌─ Nagłówek ─────────────────────────────┐  │
-│  │ Moduł I > Ćwiczenie 3                  │  │
-│  │ "Moment, Który Wszystko Zmienił"       │  │
-│  │ ★★★☆☆  ⏱ 25-40 min                    │  │
-│  └────────────────────────────────────────┘  │
-│                                               │
-│  ┌─ Disclaimer ───────────────────────────┐  │
-│  │ Ten program nie zastępuje psychoterapii.│  │
-│  │ Linie wsparcia: 116 123 · 800 70 2222  │  │
-│  │ [Rozumiem. Chcę kontynuować.]          │  │
-│  └────────────────────────────────────────┘  │
-│                                               │
-│  ┌─ Content Warning (jeśli dotyczy) ──────┐  │
-│  │ "To ćwiczenie może wywołać silne        │  │
-│  │  emocje. To normalne..."               │  │
+│  │ Tytuł ćwiczenia                         │  │
+│  │ Szacowany czas · Poziom X/5             │  │
 │  └────────────────────────────────────────┘  │
 │                                               │
 │  ┌─ Wprowadzenie ─────────────────────────┐  │
-│  │ 2-4 akapity z YAML introduction        │  │
+│  │ Akapity z YAML introduction             │  │
 │  └────────────────────────────────────────┘  │
 │                                               │
-│  ┌─ Dlaczego to działa ──────────────────┐   │
-│  │ (zwijane) Krótkie wyjaśnienie naukowe  │   │
+│  ┌─ Instrukcja promptu (tylko gate_00) ───┐  │
+│  │ bg-[#e8f0eb], tekst z promptInstruction│  │
 │  └────────────────────────────────────────┘  │
 │                                               │
 │  ┌─ Pytania prowadzące ──────────────────┐   │
-│  │ 1. "Pytanie otwierające..."            │   │
+│  │ Pytanie (text z YAML)                 │   │
+│  │ ~XX minut (ikona zegara)              │   │
 │  │                                        │   │
 │  │ ┌─ EDYTOR (TipTap) ─────────────────┐ │   │
-│  │ │                                     │ │   │
-│  │ │  [tekst użytkownika]                │ │   │
-│  │ │                                     │ │   │
-│  │ │  Autosave: ✓ Zapisano              │ │   │
-│  │ └─────────────────────────────────────┘ │   │
+│  │ │  [tekst użytkownika]               │ │   │
+│  │ │  X / min-max znaków               │ │   │
+│  │ │  Autosave: Zapisano               │ │   │
+│  │ └───────────────────────────────────┘ │   │
 │  │                                        │   │
-│  │ 2. "Pytanie pogłębiające..."          │   │
-│  │ [edytor]                               │   │
-│  │ ...                                    │   │
+│  │ (kolejne pytania...)                   │   │
 │  └────────────────────────────────────────┘  │
 │                                               │
 │  ┌─ Podpowiedzi ratunkowe (zwijane) ─────┐  │
-│  │ "Utknąłeś/aś? Spróbuj:"              │  │
-│  │ • Podpowiedź 1                         │  │
-│  │ • Podpowiedź 2                         │  │
-│  │ • Podpowiedź 3                         │  │
+│  │ "Nie wiem, co napisać? Podpowiedzi"   │  │
+│  │ Treści z YAML stuckHelpers             │  │
 │  └────────────────────────────────────────┘  │
 │                                               │
 │  ┌─ Akcje ────────────────────────────────┐  │
-│  │ [Zakończ ćwiczenie]                     │  │
-│  │ [Pomiń to ćwiczenie]  [Wróć później]   │  │
+│  │ [Zakończ ćwiczenie]  (disabled gdy     │  │
+│  │  nie spełnia min_chars; gate_00 exempt)│  │
+│  │ [Zapisz i wyjdź]  → wraca do dashboard │  │
+│  │                   (nie ma modali)      │  │
 │  └────────────────────────────────────────┘  │
 │                                               │
-│  ┌─ Baner kryzysowy ─────────────────────┐  │
-│  │ Potrzebujesz wsparcia? 116 123         │  │
-│  │ [Potrzebuję pomocy]                    │  │
+│  ┌─ Dlaczego to działa (zwijane) ─────────┐  │
+│  │ Wyjaśnienie naukowe z YAML whyItWorks  │  │
 │  └────────────────────────────────────────┘  │
 └──────────────────────────────────────────────┘
 ```
 
-**Po kliknięciu "Zakończ ćwiczenie":**
+**Logika przycisku "Zakończ ćwiczenie":**
+- `gate_00`: zawsze aktywny
+- Pozostałe: aktywny gdy każde pytanie z `minChars > 0` osiągnie próg i cokolwiek zostało wpisane
+- Brak modali potwierdzenia — klik od razu przenosi do kroku postExercise
+
+**"Zapisz i wyjdź":**
+- Dostępny zawsze (niezależnie od min_chars)
+- Zapisuje bieżący stan (autosave już zadziałał), przechodzi do dashboardu
+- Status ćwiczenia pozostaje `in_progress`
+
+**Wskaźniki przy pytaniach:**
+- Czas: `~XX minut` (zaokrąglony do pełnych 5, ikona zegara)
+- Licznik znaków: `X / min-max` w edytorze (z `ExerciseEditor`)
+
+**Krok 3 — Post-exercise (patrz 2.4a)**
+
+---
+
+### 2.4a Post-Exercise Flow
+
+Jeden ekran (komponent `PostExerciseFlow`) z trzema wewnętrznymi krokami: `reflection → checkin → grounding`.
+
+**Krok reflection (domyślny):**
 
 ```
 ┌──────────────────────────────────────────────┐
-│  REFLEKSJA PO ĆWICZENIU                       │
+│  POST-EXERCISE                                │
 │                                               │
-│  [reflection_prompt z YAML]                    │
-│  "Przeczytaj to, co napisałeś/aś.            │
-│   Jak się teraz czujesz?"                     │
+│  ┌─ Refleksja (bg-[#e8f0eb]) ─────────────┐  │
+│  │ Treść reflection_prompt z YAML          │  │
+│  └────────────────────────────────────────┘  │
 │                                               │
-│  (opcjonalny krótki edytor na refleksję)     │
+│  ┌─ Twoje odpowiedzi ─────────────────────┐  │
+│  │ Pobierane z /api/program/responses/:id  │  │
+│  │ Każda odpowiedź: pytanie + treść        │  │
+│  │ (skeleton podczas ładowania)            │  │
+│  └────────────────────────────────────────┘  │
 │                                               │
-│  --- jeśli difficulty >= 3: ---               │
-│  "Jak się teraz czujesz?"                     │
-│  [W porządku, chcę kontynuować]               │
-│  [Potrzebuję przerwy]                         │
-│  [Czuję się źle, potrzebuję wsparcia]         │
+│  ┌─ Notatka (jeśli postExerciseNote) ─────┐  │
+│  │ bg-amber-50, border-amber-200           │  │
+│  └────────────────────────────────────────┘  │
 │                                               │
-│  --- jeśli difficulty < 3: ---                │
-│  [Przejdź do następnego ćwiczenia]            │
-│  [Wróć do dashboardu]                         │
+│  "Twój tekst jest zapisany. Możesz wrócić    │
+│   i edytować w dowolnym momencie."            │
+│                                               │
+│  ┌─ Akcje ────────────────────────────────┐  │
+│  │                                         │  │
+│  │  jeśli canComplete:                     │  │
+│  │  [Oznacz jako ukończone (i przejdź      │  │
+│  │   dalej)] → markCompleted() + redirect  │  │
+│  │                                         │  │
+│  │  jeśli nie canComplete:                 │  │
+│  │  Komunikat amber: "Niektóre pytania     │  │
+│  │  wymagają dłuższej odpowiedzi..."       │  │
+│  │                                         │  │
+│  │  [Wróć do dashboardu]  (status zostaje  │  │
+│  │   in_progress, tekst zachowany)         │  │
+│  │                                         │  │
+│  │  jeśli difficulty >= 3:                 │  │
+│  │  [Potrzebuję chwili]  (ghost button)    │  │
+│  └────────────────────────────────────────┘  │
 └──────────────────────────────────────────────┘
 ```
 
-**Flow "Potrzebuję przerwy":**
-```
-→ Ćwiczenie uziemiające 5-4-3-2-1
-→ [Wróć do dashboardu] [Sprawdź zasoby] [Kontynuuj]
-```
+**Krok checkin (EmotionalCheckin):**
+- Dostępny tylko gdy `difficulty >= 3`
+- Przejście: klik "Potrzebuję chwili" na ekranie reflection
+- Trzy opcje: "W porządku" → wraca do reflection; "Potrzebuję przerwy" → grounding; "Potrzebuję wsparcia" → zasoby kryzysowe
 
-**Flow "Czuję się źle":**
-```
-→ Zasoby kryzysowe (pełna lista)
-→ "Twój tekst jest zapisany. Wracasz kiedy chcesz."
-→ [Wróć do dashboardu]
-```
+**Krok grounding (GroundingExercise):**
+- Technika 5-4-3-2-1
+- "Wróć do dashboardu" → dashboard
+- "Kontynuuj" → wraca do reflection (nie do osobnego ekranu "gotowe")
+
+**Uwaga:** Post-exercise nie ma osobnego ekranu potwierdzenia ukończenia. Po kliknięciu "Oznacz jako ukończone" następuje bezpośrednie przekierowanie do następnego ćwiczenia lub dashboardu.
 
 ---
 
@@ -369,6 +436,47 @@ Landing Page → Micro-onboarding → Rejestracja → Wybór ścieżki → Ćwic
 │  Tylko Ty możesz je odczytać.                 │
 └──────────────────────────────────────────────┘
 ```
+
+---
+
+### 2.7 Feed — Kategoria Ulubione
+
+Widok filtrujący posty oznaczone jako ulubione przez zalogowanego użytkownika.
+
+```
+┌──────────────────────────────────────────────┐
+│  ULUBIONE                                     │
+│                                               │
+│  Widoczne tylko dla zalogowanych.             │
+│  Niezalogowany użytkownik przekierowywany     │
+│  do /login?next=/favorites                    │
+│                                               │
+│  InfiniteFeed z initialCategory="favorites"   │
+│  (filtrowanie po stronie klienta/komponentu)  │
+│                                               │
+│  Puste: "Tu pojawią się posty, które          │
+│  polubiłeś/aś. Przeglądaj feed i             │
+│  zapisuj ulubione."                           │
+└──────────────────────────────────────────────┘
+```
+
+**URL:**
+- Polski: `/ulubione`
+- Angielski: `/favorites`
+
+**Dostęp:**
+- Wyłącznie dla zalogowanych użytkowników (Supabase Auth)
+- Niezalogowani: redirect do `/login?next=/favorites`
+
+**Implementacja:**
+- Stała `FAVORITES_KEY = "favorites"` z `src/lib/categories.ts`
+- `categoryKeyFromPath()` wykrywa ścieżki `/favorites` i `/ulubione`
+- `getFavoritesUrl(locale)` generuje właściwy URL zależnie od języka
+- Dane strony ładowane server-side, filtrowanie ulubionych po stronie `InfiniteFeed`
+
+**Nawigacja do ulubionych:**
+- Link dostępny w nagłówku/nawigacji feedu gdy użytkownik jest zalogowany
+- `getFavoritesUrl(locale)` zwraca `/ulubione` dla PL i `/favorites` dla EN
 
 ---
 

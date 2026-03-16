@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
-import { createClient } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
+import { getSupabaseAdmin } from "@/lib/supabase-admin";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -66,18 +66,15 @@ export async function GET(request: NextRequest) {
   // Must run BEFORE redirect so the cookie is consumed in the same request cycle.
   const paymentCookie = cookieStore.get("payment_completed");
   if (paymentCookie?.value === "true" && user) {
-    const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-    if (serviceRoleKey) {
-      const supabaseAdmin = createClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        serviceRoleKey,
-        { auth: { autoRefreshToken: false, persistSession: false } }
-      );
-
+    try {
+      const supabaseAdmin = getSupabaseAdmin();
       await supabaseAdmin
         .from("user_profiles")
         .update({ has_paid: true, paid_at: new Date().toISOString() })
         .eq("user_id", user.id);
+    } catch {
+      // If admin client fails (missing env), skip the payment update silently.
+      // The user can retry or be granted access through another mechanism.
     }
 
     // Remove the cookie regardless of whether the DB update succeeded,

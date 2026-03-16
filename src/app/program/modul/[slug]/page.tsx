@@ -6,10 +6,11 @@ import { ProgramHeader } from "@/components/program/program-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import type { GenderForm } from "@/lib/personalize";
 import { cookies } from "next/headers";
 import { getLocaleFromCookies } from "@/lib/locale-cookie";
+import { t } from "@/lib/i18n";
 import type { Locale } from "@/lib/i18n";
+import { getUserGenderForm } from "@/lib/user-profile";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -19,16 +20,10 @@ export default async function ModulePage({ params }: Props) {
   const { slug } = await params;
   const cookieStore = await cookies();
   const locale: Locale = getLocaleFromCookies(cookieStore);
+  const d = t(locale);
   const { user, supabase } = await requireProgramUser();
 
-  const { data: profileData } = await supabase
-    .from("user_profiles")
-    .select("gender_form")
-    .eq("user_id", user.id)
-    .single();
-
-  const genderForm: GenderForm =
-    (profileData?.gender_form as GenderForm) || "neutral";
+  const genderForm = await getUserGenderForm(supabase, user.id);
 
   const modules = getModules(genderForm);
   const mod = modules.find((m) => m.slug === slug);
@@ -45,11 +40,11 @@ export default async function ModulePage({ params }: Props) {
         href="/program/dashboard"
         className="text-sm text-[#7B9E8C] hover:underline mb-4 inline-block"
       >
-        &larr; Wróć do dashboardu
+        {d.modulBack}
       </Link>
 
       <h1 className="text-2xl font-semibold text-[#1E2A36] mb-2">
-        Moduł {mod.order}: {mod.title}
+        {d.dashboardModule} {mod.order}: {mod.title}
       </h1>
       <p className="text-[#7B9E8C] font-medium mb-8">{mod.subtitle}</p>
 
@@ -63,7 +58,7 @@ export default async function ModulePage({ params }: Props) {
 
       {/* Exercise list */}
       <h2 className="text-lg font-semibold text-[#1E2A36] mb-4">
-        Ćwiczenia w tym module
+        {d.modulExercises}
       </h2>
       <div className="space-y-3">
         {mod.exercises.map((exercise, idx) => (
@@ -79,18 +74,18 @@ export default async function ModulePage({ params }: Props) {
                 <div className="flex items-center gap-2 text-xs text-[#8A99A8]">
                   <span>{exercise.estimatedTime}</span>
                   <span>·</span>
-                  <span>Poziom {exercise.difficulty}/5</span>
+                  <span>{d.exerciseLevel} {exercise.difficulty}/5</span>
                 </div>
               </div>
               <div className="flex items-center gap-2">
                 {exercise.contentWarning && (
                   <Badge variant="outline" className="text-xs">
-                    Trudniejsze
+                    {d.modulDifficult}
                   </Badge>
                 )}
                 <Link href={`/program/cwiczenie/${exercise.id}`}>
                   <Button size="sm" variant="outline">
-                    Otwórz
+                    {d.modulOpen}
                   </Button>
                 </Link>
               </div>

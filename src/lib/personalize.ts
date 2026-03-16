@@ -113,22 +113,3 @@ export function personalize(text: string, form: GenderForm): string {
   }
   return result;
 }
-
-export function personalizeExercise<T extends Record<string, unknown>>(
-  exercise: T,
-  form: GenderForm,
-  fields: (keyof T)[]
-): T {
-  const result = { ...exercise };
-  for (const field of fields) {
-    const value = result[field];
-    if (typeof value === "string") {
-      (result[field] as string) = personalize(value, form);
-    } else if (Array.isArray(value)) {
-      (result[field] as string[]) = value.map((item) =>
-        typeof item === "string" ? personalize(item, form) : item
-      );
-    }
-  }
-  return result;
-}

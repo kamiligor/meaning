@@ -2,30 +2,35 @@
 
 import type { Editor } from "@tiptap/react";
 import { Bold, Italic, List } from "lucide-react";
+import { t } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
 
 interface EditorToolbarProps {
   editor: Editor | null;
+  locale: Locale;
 }
 
-export function EditorToolbar({ editor }: EditorToolbarProps) {
+export function EditorToolbar({ editor, locale }: EditorToolbarProps) {
   if (!editor) return null;
+
+  const d = t(locale);
 
   const buttons = [
     {
       icon: Bold,
-      label: "Pogrubienie",
+      label: d.editorBold,
       action: () => editor.chain().focus().toggleBold().run(),
       isActive: editor.isActive("bold"),
     },
     {
       icon: Italic,
-      label: "Kursywa",
+      label: d.editorItalic,
       action: () => editor.chain().focus().toggleItalic().run(),
       isActive: editor.isActive("italic"),
     },
     {
       icon: List,
-      label: "Lista",
+      label: d.editorList,
       action: () => editor.chain().focus().toggleBulletList().run(),
       isActive: editor.isActive("bulletList"),
     },
@@ -35,7 +40,7 @@ export function EditorToolbar({ editor }: EditorToolbarProps) {
     <div
       className="flex items-center gap-1 border-b border-[#e2e7eb] px-2 py-1.5"
       role="toolbar"
-      aria-label="Formatowanie tekstu"
+      aria-label={d.editorToolbarLabel}
     >
       {buttons.map(({ icon: Icon, label, action, isActive }) => (
         <button

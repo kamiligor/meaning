@@ -19,7 +19,7 @@ Nazwy i hasło są ZAWSZE w języku angielskim — niezależnie od języka stron
 
 „Just have a little meaning" to dwujęzyczna (en/pl) platforma psychoedukacyjna na domenie **justmeaning.com**, składająca się z dwóch filarów:
 
-1. **Feed psychologiczny** — karuzele na Instagram (@justhavealittlemeaning) + strona z rozszerzonymi treściami (psychology life hacks).
+1. **Feed psychologiczny** — karuzele na Instagram (@justhavealittlemeaning) + strona z rozszerzonymi treściami (psychology life hacks). Kategoria "Ulubione" (FAVORITES_KEY) widoczna tylko dla zalogowanych userów; strony /favorites (EN) i /ulubione (PL).
 2. **The Life Writing Program** — ustrukturyzowany program pisania terapeutycznego oparty na badaniach naukowych (18 ćwiczeń w 3 modułach + ćwiczenie bramkowe).
 
 Lejek: Instagram (@justhavealittlemeaning) → justmeaning.com (feed + rozszerzone treści) → The Life Writing Program.
@@ -40,6 +40,7 @@ Hosting:          Coolify na Hostingerze (Docker, standalone output)
 Newsletter:       MailerLite API
 i18n:             en/pl (custom dict w src/lib/i18n.ts)
 Testy:            Vitest (unit) + @testing-library/react
+Markdown:          marked (rendering introductions modułów)
 ```
 
 ## Architektura
@@ -95,6 +96,8 @@ jh/
 │   ├── app/
 │   │   ├── page.tsx                   # Feed / strona główna
 │   │   ├── post/[slug]/              # Pojedynczy post
+│   │   ├── favorites/                 #   Ulubione (EN)
+│   │   ├── ulubione/                  #   Ulubione (PL)
 │   │   ├── program/                   # The Life Writing Program
 │   │   │   ├── page.tsx              #   Landing / opis programu
 │   │   │   ├── layout.tsx            #   Layout z SafetyBanner + nav
@@ -138,6 +141,7 @@ jh/
 │   │   ├── rate-limit.ts              # In-memory rate limiter
 │   │   ├── content-sections.ts        # Parsowanie sekcji slajd/web
 │   │   ├── slug.ts                    # Generator slugów (polskie znaki)
+│   │   ├── categories.ts               # Definicje kategorii + FAVORITES_KEY
 │   │   └── utils.ts                   # clsx/tailwind-merge helper
 │   ├── templates/                     # Satori JSX szablony slajdów
 │   ├── components/
@@ -150,7 +154,9 @@ jh/
 │   │   │   ├── newsletter-form.tsx
 │   │   │   ├── post-card.tsx
 │   │   │   ├── post-lang-switcher.tsx
-│   │   │   └── share-button.tsx
+│   │   │   ├── share-button.tsx
+│   │   │   ├── like-button.tsx
+│   │   │   └── like-context.tsx
 │   │   ├── program/                   # Komponenty programu
 │   │   │   ├── exercise-editor.tsx    #   TipTap wrapper z autosave
 │   │   │   ├── exercise-view.tsx      #   Widok ćwiczenia (pytania, stuck helpers)
@@ -205,6 +211,26 @@ Moduł I:   PRZESZŁOŚĆ     — „Zrozum swoją historię" (6 ćwiczeń)
 Moduł II:  TERAŹNIEJSZOŚĆ — „Zrozum, gdzie stoisz" (6 ćwiczeń)
 Moduł III: PRZYSZŁOŚĆ     — „Zaprojektuj siebie" (6 ćwiczeń)
 ```
+
+## Format Ćwiczeń (YAML)
+
+Każde pytanie w ćwiczeniu ma trzy pola:
+- `text` - treść pytania
+- `estimated_time` - szacowany czas (renderowany zaokrąglony do 5 minut)
+- `min_chars` - minimalna liczba znaków (wewnętrzny parametr, nie blokada)
+
+Przykład:
+```yaml
+prompt_questions:
+  - text: "Opisz moment przełomowy..."
+    estimated_time: "8-12 minut"
+    min_chars: 100
+```
+
+- `min_chars` odsiewuje puste/testowe odpowiedzi, nie wymusza rozpisywania się
+- Przycisk "Zakończ ćwiczenie" jest disabled gdy minimum nie jest spełnione
+- gate_00 jest zwolnione ze wszystkich minimów
+- Max znaków = max(min_chars × 10, 2000) — obliczany automatycznie
 
 ## Dane
 

@@ -13,7 +13,7 @@ interface UseAutosaveOptions {
   questionIndex: number;
   content: string;
   wordCount: number;
-  timeSpentSec: number;
+  getTimeSpentSec: () => number;
   debounceMs?: number;
   intervalMs?: number;
 }
@@ -23,7 +23,7 @@ export function useAutosave({
   questionIndex,
   content,
   wordCount,
-  timeSpentSec,
+  getTimeSpentSec,
   debounceMs = 5000,
   intervalMs = 30000,
 }: UseAutosaveOptions) {
@@ -31,14 +31,14 @@ export function useAutosave({
   const lastSavedContent = useRef(content);
   const contentRef = useRef(content);
   const wordCountRef = useRef(wordCount);
-  const timeSpentRef = useRef(timeSpentSec);
+  const getTimeSpentSecRef = useRef(getTimeSpentSec);
   const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const intervalTimer = useRef<ReturnType<typeof setInterval> | null>(null);
   const isSaving = useRef(false);
 
   contentRef.current = content;
   wordCountRef.current = wordCount;
-  timeSpentRef.current = timeSpentSec;
+  getTimeSpentSecRef.current = getTimeSpentSec;
 
   const save = useCallback(
     async (force = false) => {
@@ -69,7 +69,7 @@ export function useAutosave({
                 questionIndex,
                 content: currentContent,
                 wordCount: wordCountRef.current,
-                timeSpentSec: timeSpentRef.current,
+                timeSpentSec: getTimeSpentSecRef.current(),
               }),
               signal: AbortSignal.timeout(30000),
             }

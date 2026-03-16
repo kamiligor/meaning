@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { getProgramUser } from "@/lib/program-auth";
+import { cookies } from "next/headers";
+import { getLocaleFromCookies } from "@/lib/locale-cookie";
+import { t } from "@/lib/i18n";
 
 export async function ProgramHeader() {
   let isLoggedIn = false;
@@ -9,6 +12,10 @@ export async function ProgramHeader() {
   } catch {
     // Not logged in
   }
+
+  const cookieStore = await cookies();
+  const locale = getLocaleFromCookies(cookieStore);
+  const d = t(locale);
 
   return (
     <header className="border-b border-[#e2e7eb] bg-white">
@@ -46,13 +53,13 @@ export async function ProgramHeader() {
                 href="/program/dashboard"
                 className="text-[#4A5B6A] hover:text-[#7B9E8C] transition-colors"
               >
-                Dashboard
+                {d.programDashboard}
               </Link>
-<Link
+              <Link
                 href="/profil"
                 className="text-[#7B9E8C] hover:text-[#6a8d7b] font-semibold transition-colors"
               >
-                Moje konto
+                {d.navMyAccount}
               </Link>
             </>
           ) : (
@@ -60,7 +67,7 @@ export async function ProgramHeader() {
               href="/login"
               className="text-[#8A99A8] hover:text-[#7B9E8C] transition-colors"
             >
-              Zaloguj
+              {d.navLogIn}
             </Link>
           )}
         </div>

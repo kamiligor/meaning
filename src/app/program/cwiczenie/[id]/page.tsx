@@ -1,69 +1,28 @@
 import { notFound } from "next/navigation";
+import { cookies } from "next/headers";
 import { requireProgramUser } from "@/lib/program-auth";
-import { loadExercise, getModules, getExerciseModuleInfo } from "@/lib/exercises";
-import { decrypt } from "@/lib/encryption";
+import { loadExercise, getExerciseModuleInfo } from "@/lib/exercises";
 import { ExerciseView } from "@/components/program/exercise-view";
 import { ExerciseHeader } from "@/components/program/exercise-header";
-import type { GenderForm } from "@/lib/personalize";
+import { getUserGenderForm } from "@/lib/user-profile";
+import { getNextExerciseUrl } from "@/lib/program-navigation";
+import { getDecryptedResponses } from "@/lib/exercise-responses";
+import { getLocaleFromCookies } from "@/lib/locale-cookie";
+import { t } from "@/lib/i18n";
 
 interface Props {
   params: Promise<{ id: string }>;
-}
-
-function getNextExerciseUrl(
-  exerciseId: string,
-  genderForm: GenderForm
-): string | null {
-  const modules = getModules(genderForm);
-
-  // Check gate exercise
-  if (exerciseId === "gate_00") {
-    const firstModule = modules[0];
-    if (firstModule?.exercises[0]) {
-      return `/program/cwiczenie/${firstModule.exercises[0].id}`;
-    }
-    return "/program/dashboard";
-  }
-
-  // Find current exercise in modules
-  for (const mod of modules) {
-    const idx = mod.exercises.findIndex((e) => e.id === exerciseId);
-    if (idx === -1) continue;
-
-    // Next exercise in same module
-    if (idx < mod.exercises.length - 1) {
-      return `/program/cwiczenie/${mod.exercises[idx + 1].id}`;
-    }
-
-    // First exercise of next module
-    const nextModIdx = modules.indexOf(mod) + 1;
-    if (nextModIdx < modules.length) {
-      const nextMod = modules[nextModIdx];
-      if (nextMod.exercises[0]) {
-        return `/program/cwiczenie/${nextMod.exercises[0].id}`;
-      }
-    }
-
-    // End of program
-    return "/program/dashboard";
-  }
-
-  return "/program/dashboard";
 }
 
 export default async function ExercisePage({ params }: Props) {
   const { id } = await params;
   const { user, supabase } = await requireProgramUser();
 
-  // Fetch user profile for gender form
-  const { data: profileData } = await supabase
-    .from("user_profiles")
-    .select("gender_form")
-    .eq("user_id", user.id)
-    .single();
+  const cookieStore = await cookies();
+  const locale = getLocaleFromCookies(cookieStore);
+  const d = t(locale);
 
-  const genderForm: GenderForm =
-    (profileData?.gender_form as GenderForm) || "neutral";
+  const genderForm = await getUserGenderForm(supabase, user.id);
 
   const exercise = loadExercise(id, genderForm);
 
@@ -71,26 +30,9 @@ export default async function ExercisePage({ params }: Props) {
     notFound();
   }
 
-  // Load saved responses
-  const { data: responseData } = await supabase
-    .from("exercise_responses")
-    .select(
-      "question_index, ciphertext, iv, salt, word_count, time_spent_sec, updated_at"
-    )
-    .eq("user_id", user.id)
-    .eq("exercise_id", id)
-    .order("question_index");
+  const savedResponses = await getDecryptedResponses(supabase, user.id, id);
 
-  const savedResponses = (responseData || []).map((row) => ({
-    questionIndex: row.question_index as number,
-    content: decrypt(
-      row.ciphertext as string,
-      row.iv as string,
-      row.salt as string,
-      user.id
-    ),
-    updatedAt: row.updated_at as string,
-  }));
+  const isGate = id.startsWith("gate_");
 
   // Mark as in_progress unless already completed/skipped
   const { data: progressData } = await supabase
@@ -101,7 +43,28 @@ export default async function ExercisePage({ params }: Props) {
     .single();
 
   const currentStatus = progressData?.status as string | undefined;
-  if (currentStatus !== "completed" && currentStatus !== "skipped") {
+
+  if (currentStatus === "completed" && !isGate) {
+    // Re-validate: revert to in_progress if content no longer meets min_chars
+    const belowMinimum = exercise.promptQuestions.some((q, idx) => {
+      if (q.minChars === 0) return false;
+      const resp = savedResponses.find((r) => r.questionIndex === idx);
+      if (!resp) return true;
+      const charCount = resp.content
+        .replace(/<[^>]*>/g, "")
+        .replace(/&nbsp;/g, " ")
+        .trim().length;
+      return charCount < q.minChars;
+    });
+
+    if (belowMinimum) {
+      await supabase.from("user_progress").update({
+        status: "in_progress",
+        completed_at: null,
+        updated_at: new Date().toISOString(),
+      }).eq("user_id", user.id).eq("exercise_id", id);
+    }
+  } else if (currentStatus !== "completed" && currentStatus !== "skipped") {
     await supabase.from("user_progress").upsert({
       user_id: user.id,
       exercise_id: id,
@@ -113,20 +76,25 @@ export default async function ExercisePage({ params }: Props) {
 
   const nextExerciseUrl = getNextExerciseUrl(id, genderForm);
   const moduleInfo = getExerciseModuleInfo(id, genderForm);
-  const isGate = id.startsWith("gate_");
+
+  const exerciseLabel = isGate
+    ? exercise.title
+    : `${d.exerciseLabel} ${moduleInfo?.exerciseNumber ?? ""}`;
 
   return (
     <>
       <ExerciseHeader
         moduleLabel={moduleInfo?.moduleLabel ?? ""}
         moduleSlug={moduleInfo?.moduleSlug ?? ""}
-        exerciseLabel={isGate ? exercise.title : `Ćwiczenie ${moduleInfo?.exerciseNumber ?? ""}`}
+        exerciseLabel={exerciseLabel}
         isGate={isGate}
+        locale={locale}
       />
       <ExerciseView
         exercise={exercise}
         savedResponses={savedResponses}
         nextExerciseUrl={nextExerciseUrl}
+        locale={locale}
       />
     </>
   );
