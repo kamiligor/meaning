@@ -12,7 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Lock, CheckCircle2, Play, BookOpen } from "lucide-react";
+import { Lock, CheckCircle2, Play, BookOpen, SkipForward } from "lucide-react";
 import { ProfileInitializer } from "@/components/program/profile-initializer";
 import { getUserGenderForm } from "@/lib/user-profile";
 import { getUserProgress, getModuleStatus, findNextExercise } from "@/lib/progress";
@@ -32,7 +32,7 @@ export default async function DashboardPage() {
   const gate = getGateExercise(genderForm);
   const progress = await getUserProgress(supabase, user.id);
 
-  const gateStatus = progress["gate_00"] || "not_started";
+  const gateStatus = progress["gate_00"]?.status || "not_started";
   const gateCompleted =
     gateStatus === "completed" || gateStatus === "skipped";
 
@@ -116,8 +116,7 @@ export default async function DashboardPage() {
             : "locked";
 
           const completedCount = mod.exercises.filter(
-            (e) =>
-              progress[e.id] === "completed" || progress[e.id] === "skipped"
+            (e) => progress[e.id]?.status === "completed"
           ).length;
 
           const isLocked = moduleStatus === "locked";
@@ -152,9 +151,7 @@ export default async function DashboardPage() {
                 />
                 <div className="mt-4 space-y-2">
                   {mod.exercises.map((exercise) => {
-                    const exStatus = progress[exercise.id] || "not_started";
-                    const isDone =
-                      exStatus === "completed" || exStatus === "skipped";
+                    const exStatus = progress[exercise.id]?.status || "not_started";
 
                     return (
                       <div
@@ -162,8 +159,10 @@ export default async function DashboardPage() {
                         className="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-[#F1F4F6] transition-colors"
                       >
                         <div className="flex items-center gap-3">
-                          {isDone ? (
+                          {exStatus === "completed" ? (
                             <CheckCircle2 className="h-4 w-4 text-[#7B9E8C]" />
+                          ) : exStatus === "skipped" ? (
+                            <SkipForward className="h-4 w-4 text-[#C4A46B]" />
                           ) : exStatus === "in_progress" ? (
                             <Play className="h-4 w-4 text-[#7B9E8C]" />
                           ) : (
@@ -171,7 +170,7 @@ export default async function DashboardPage() {
                           )}
                           <span
                             className={`text-sm ${
-                              isDone
+                              exStatus === "completed"
                                 ? "text-[#8A99A8]"
                                 : "text-[#1E2A36]"
                             }`}
@@ -190,9 +189,9 @@ export default async function DashboardPage() {
                                 size="sm"
                                 className="text-xs h-7"
                               >
-                                {isDone
+                                {exStatus === "completed"
                                   ? d.dashboardReturn
-                                  : exStatus === "in_progress"
+                                  : exStatus === "skipped" || exStatus === "in_progress"
                                     ? d.dashboardContinue
                                     : d.dashboardBegin}
                               </Button>

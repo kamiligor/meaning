@@ -7,6 +7,7 @@ import { ExerciseHeader } from "@/components/program/exercise-header";
 import { getUserGenderForm } from "@/lib/user-profile";
 import { getNextExerciseUrl } from "@/lib/program-navigation";
 import { getDecryptedResponses } from "@/lib/exercise-responses";
+import { syncExerciseProgress } from "@/lib/progress";
 import { getLocaleFromCookies } from "@/lib/locale-cookie";
 import { t } from "@/lib/i18n";
 
@@ -34,45 +35,13 @@ export default async function ExercisePage({ params }: Props) {
 
   const isGate = id.startsWith("gate_");
 
-  // Mark as in_progress unless already completed/skipped
-  const { data: progressData } = await supabase
-    .from("user_progress")
-    .select("status")
-    .eq("user_id", user.id)
-    .eq("exercise_id", id)
-    .single();
-
-  const currentStatus = progressData?.status as string | undefined;
-
-  if (currentStatus === "completed" && !isGate) {
-    // Re-validate: revert to in_progress if content no longer meets min_chars
-    const belowMinimum = exercise.promptQuestions.some((q, idx) => {
-      if (q.minChars === 0) return false;
-      const resp = savedResponses.find((r) => r.questionIndex === idx);
-      if (!resp) return true;
-      const charCount = resp.content
-        .replace(/<[^>]*>/g, "")
-        .replace(/&nbsp;/g, " ")
-        .trim().length;
-      return charCount < q.minChars;
-    });
-
-    if (belowMinimum) {
-      await supabase.from("user_progress").update({
-        status: "in_progress",
-        completed_at: null,
-        updated_at: new Date().toISOString(),
-      }).eq("user_id", user.id).eq("exercise_id", id);
-    }
-  } else if (currentStatus !== "completed" && currentStatus !== "skipped") {
-    await supabase.from("user_progress").upsert({
-      user_id: user.id,
-      exercise_id: id,
-      status: "in_progress",
-      started_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
-    }, { onConflict: "user_id,exercise_id" });
-  }
+  await syncExerciseProgress(supabase, user.id, id, savedResponses, {
+    updateTimestamp: false,
+    minCharsCheck: !isGate ? {
+      questions: exercise.promptQuestions,
+      getContent: (idx) => savedResponses.find((r) => r.questionIndex === idx)?.content ?? "",
+    } : undefined,
+  });
 
   const nextExerciseUrl = getNextExerciseUrl(id, genderForm);
   const moduleInfo = getExerciseModuleInfo(id, genderForm);

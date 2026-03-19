@@ -41,6 +41,9 @@ yarn-error.log*
 .claude/settings.local.json
 .claude/plans/
 
+# playwright
+.playwright-mcp/
+
 # vercel
 .vercel
 

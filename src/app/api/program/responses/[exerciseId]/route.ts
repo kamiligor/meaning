@@ -3,6 +3,7 @@ import { requireProgramUser } from "@/lib/program-auth";
 import { encrypt, decrypt } from "@/lib/encryption";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 import { loadExercise } from "@/lib/exercises";
+import { syncExerciseProgress } from "@/lib/progress";
 
 const EXERCISE_ID_REGEX = /^[a-z_0-9]+$/;
 
@@ -127,42 +128,28 @@ export async function PUT(
       return NextResponse.json({ error: "Database error" }, { status: 500 });
     }
 
-    // If exercise is completed but content no longer meets min_chars, revert to in_progress
-    const { data: progressData } = await supabase
-      .from("user_progress")
-      .select("status")
+    // Sync progress status based on saved content
+    const { data: allResponses } = await supabase
+      .from("exercise_responses")
+      .select("question_index, ciphertext, iv, salt")
       .eq("user_id", user.id)
-      .eq("exercise_id", exerciseId)
-      .single();
+      .eq("exercise_id", exerciseId);
 
-    if (progressData?.status === "completed") {
-      const exercise = loadExercise(exerciseId);
-      if (exercise) {
-        // Fetch all responses for this exercise
-        const { data: allResponses } = await supabase
-          .from("exercise_responses")
-          .select("question_index, ciphertext, iv, salt")
-          .eq("user_id", user.id)
-          .eq("exercise_id", exerciseId);
+    const decryptedResponses = (allResponses ?? []).map((r) => ({
+      content: decrypt(r.ciphertext, r.iv, r.salt, user.id),
+    }));
 
-        const belowMinimum = exercise.promptQuestions.some((q, idx) => {
-          if (q.minChars === 0) return false;
+    const exercise = loadExercise(exerciseId);
+    await syncExerciseProgress(supabase, user.id, exerciseId, decryptedResponses, {
+      updateTimestamp: true,
+      minCharsCheck: exercise ? {
+        questions: exercise.promptQuestions,
+        getContent: (idx) => {
           const resp = allResponses?.find((r) => r.question_index === idx);
-          if (!resp) return true;
-          const plaintext = decrypt(resp.ciphertext, resp.iv, resp.salt, user.id);
-          const charCount = plaintext.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").trim().length;
-          return charCount < q.minChars;
-        });
-
-        if (belowMinimum) {
-          await supabase.from("user_progress").update({
-            status: "in_progress",
-            completed_at: null,
-            updated_at: new Date().toISOString(),
-          }).eq("user_id", user.id).eq("exercise_id", exerciseId);
-        }
-      }
-    }
+          return resp ? decrypt(resp.ciphertext, resp.iv, resp.salt, user.id) : "";
+        },
+      } : undefined,
+    });
 
     return NextResponse.json({ saved: true });
   } catch (err) {
