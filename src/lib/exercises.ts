@@ -313,6 +313,10 @@ export function getModules(genderForm: GenderForm = "neutral"): Module[] {
   return modules;
 }
 
+export function getIntroExerciseId(moduleSlug: string): string {
+  return `intro_${moduleSlug}`;
+}
+
 export function getAllExercises(
   genderForm: GenderForm = "neutral"
 ): Exercise[] {

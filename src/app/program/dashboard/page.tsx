@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { requireProgramUser } from "@/lib/program-auth";
-import { getModules, getGateExercise } from "@/lib/exercises";
+import { getModules, getGateExercise, getIntroExerciseId } from "@/lib/exercises";
 import { ProgramHeader } from "@/components/program/program-header";
 import { ProgressBar } from "@/components/program/progress-bar";
 import {
@@ -64,7 +64,7 @@ export default async function DashboardPage() {
               {nextExercise.moduleLabel && <span>{nextExercise.moduleLabel} · </span>}
               {nextExercise.estimatedTime}
             </p>
-            <Link href={`/program/cwiczenie/${nextExercise.id}`}>
+            <Link href={nextExercise.url}>
               <Button className="w-full">
                 {nextExercise.isInProgress ? d.dashboardContinueWriting : d.dashboardStart}
               </Button>
@@ -111,13 +111,20 @@ export default async function DashboardPage() {
       {/* Modules */}
       <div className="space-y-6">
         {modules.map((mod) => {
+          const introId = getIntroExerciseId(mod.slug);
+          const introStatus = progress[introId]?.status || "not_started";
+          const introCompleted = introStatus === "completed";
+          const hasIntro = !!mod.introduction;
+
           const moduleStatus = gateCompleted
-            ? getModuleStatus(mod.exercises, progress)
+            ? getModuleStatus(mod.exercises, progress, hasIntro ? introId : undefined)
             : "locked";
 
-          const completedCount = mod.exercises.filter(
+          const completedExercises = mod.exercises.filter(
             (e) => progress[e.id]?.status === "completed"
           ).length;
+          const completedCount = completedExercises + (introCompleted ? 1 : 0);
+          const totalCount = mod.exercises.length + (hasIntro ? 1 : 0);
 
           const isLocked = moduleStatus === "locked";
 
@@ -146,10 +153,47 @@ export default async function DashboardPage() {
               <CardContent>
                 <ProgressBar
                   completed={completedCount}
-                  total={mod.exercises.length}
+                  total={totalCount}
                   locale={locale}
                 />
                 <div className="mt-4 space-y-2">
+                  {/* Introduction entry */}
+                  {hasIntro && (
+                    <div className="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-[#F1F4F6] transition-colors">
+                      <div className="flex items-center gap-3">
+                        {introCompleted ? (
+                          <CheckCircle2 className="h-4 w-4 text-[#7B9E8C]" />
+                        ) : (
+                          <BookOpen className="h-4 w-4 text-[#8A99A8]" />
+                        )}
+                        <span
+                          className={`text-sm ${
+                            introCompleted ? "text-[#8A99A8]" : "text-[#1E2A36]"
+                          }`}
+                        >
+                          {d.introLesson}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-[#8A99A8]">~5 min</span>
+                        {!isLocked && (
+                          <Link href={`/program/modul/${mod.slug}`}>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="text-xs h-7"
+                            >
+                              {introCompleted
+                                ? d.dashboardReturn
+                                : d.dashboardBegin}
+                            </Button>
+                          </Link>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Exercises */}
                   {mod.exercises.map((exercise) => {
                     const exStatus = progress[exercise.id]?.status || "not_started";
 
@@ -202,13 +246,6 @@ export default async function DashboardPage() {
                     );
                   })}
                 </div>
-                {!isLocked && mod.introduction && (
-                  <Link href={`/program/modul/${mod.slug}`}>
-                    <Button variant="ghost" size="sm" className="mt-3 text-xs">
-                      {d.dashboardReadIntro}
-                    </Button>
-                  </Link>
-                )}
               </CardContent>
             </Card>
           );

@@ -91,6 +91,7 @@ export interface NextExercise {
   moduleLabel: string | null;
   isGate: boolean;
   isInProgress: boolean;
+  url: string;
 }
 
 export interface ProgressEntry {
@@ -121,12 +122,16 @@ export async function getUserProgress(
 
 export function getModuleStatus(
   exercises: { id: string }[],
-  progress: Record<string, ProgressEntry>
+  progress: Record<string, ProgressEntry>,
+  introId?: string
 ): "locked" | "available" | "in_progress" | "completed" {
-  const statuses = exercises.map((e) => progress[e.id]?.status || "not_started");
+  const allIds = introId
+    ? [introId, ...exercises.map((e) => e.id)]
+    : exercises.map((e) => e.id);
+  const statuses = allIds.map((id) => progress[id]?.status || "not_started");
   const completedCount = statuses.filter((s) => s === "completed").length;
 
-  if (completedCount === exercises.length) return "completed";
+  if (completedCount === allIds.length) return "completed";
   if (statuses.some((s) => s === "in_progress" || s === "completed" || s === "skipped"))
     return "in_progress";
   return "available";
@@ -139,11 +144,12 @@ export function findNextExercise(
     title: string;
     slug: string;
     exercises: { id: string; title: string; estimatedTime: string }[];
+    introduction: { title: string } | null;
   }[],
   progress: Record<string, ProgressEntry>,
   gateCompleted: boolean
 ): NextExercise | null {
-  // Gate not done yet
+  // 1. Gate not done yet
   if (gate && !gateCompleted) {
     const gateStatus = progress["gate_00"]?.status || "not_started";
     return {
@@ -153,18 +159,22 @@ export function findNextExercise(
       moduleLabel: null,
       isGate: true,
       isInProgress: gateStatus === "in_progress",
+      url: `/program/cwiczenie/${gate.id}`,
     };
   }
 
-  // Find the most recently updated non-completed exercise
-  let lastActive: { ex: { id: string; title: string; estimatedTime: string }; mod: typeof modules[number]; updatedAt: string } | null = null;
+  // 2. Find the most recently updated active exercise (in_progress or skipped)
+  let lastActive: {
+    ex: { id: string; title: string; estimatedTime: string };
+    mod: (typeof modules)[number];
+    updatedAt: string;
+  } | null = null;
 
   for (const mod of modules) {
     for (const ex of mod.exercises) {
       const entry = progress[ex.id];
       if (!entry) continue;
       if (entry.status === "completed") continue;
-      // in_progress or skipped — candidate
       if (entry.updatedAt && (!lastActive || entry.updatedAt > lastActive.updatedAt)) {
         lastActive = { ex, mod, updatedAt: entry.updatedAt };
       }
@@ -180,11 +190,30 @@ export function findNextExercise(
       moduleLabel: `Moduł ${lastActive.mod.order}: ${lastActive.mod.title}`,
       isGate: false,
       isInProgress: status === "in_progress",
+      url: `/program/cwiczenie/${lastActive.ex.id}`,
     };
   }
 
-  // No active exercises — find first not-started
+  // 3. No active exercises — find next step (intro or exercise) in module order
   for (const mod of modules) {
+    // Check intro first
+    if (mod.introduction) {
+      const introId = `intro_${mod.slug}`;
+      const introStatus = progress[introId]?.status || "not_started";
+      if (introStatus !== "completed") {
+        return {
+          id: introId,
+          title: mod.introduction.title,
+          estimatedTime: "~5 min",
+          moduleLabel: `Moduł ${mod.order}: ${mod.title}`,
+          isGate: false,
+          isInProgress: false,
+          url: `/program/modul/${mod.slug}`,
+        };
+      }
+    }
+
+    // Then check exercises
     for (const ex of mod.exercises) {
       const status = progress[ex.id]?.status || "not_started";
       if (status === "not_started") {
@@ -195,6 +224,7 @@ export function findNextExercise(
           moduleLabel: `Moduł ${mod.order}: ${mod.title}`,
           isGate: false,
           isInProgress: false,
+          url: `/program/cwiczenie/${ex.id}`,
         };
       }
     }

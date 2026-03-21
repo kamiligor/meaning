@@ -83,6 +83,7 @@ const dict = {
     editorPlaceholder: "Start writing...",
     editorCharCount: "characters",
     editorSave: "Save",
+    editorSaving: "Saving...",
 
     // SAVE STATUS
     saveStatusSaving: "Saving...",
@@ -152,6 +153,14 @@ const dict = {
     dashboardResume: "Resume",
     dashboardModule: "Module",
     dashboardReadIntro: "Read module introduction",
+
+    // INTRODUCTION LESSON
+    introLesson: "Introduction",
+    introNext: "Next",
+    introPrevious: "Back",
+    introComplete: "Complete and continue",
+    introGoToExercises: "Go to exercises",
+
     dashboardProfile: "Profile and settings",
     dashboardExport: "Export data",
 
@@ -275,6 +284,7 @@ const dict = {
     editorPlaceholder: "Zacznij pisać...",
     editorCharCount: "znaków",
     editorSave: "Zapisz",
+    editorSaving: "Zapisywanie...",
 
     // SAVE STATUS
     saveStatusSaving: "Zapisywanie...",
@@ -344,6 +354,14 @@ const dict = {
     dashboardResume: "Wróć do ćwiczenia",
     dashboardModule: "Moduł",
     dashboardReadIntro: "Przeczytaj wprowadzenie do modułu",
+
+    // INTRODUCTION LESSON
+    introLesson: "Wprowadzenie",
+    introNext: "Dalej",
+    introPrevious: "Wstecz",
+    introComplete: "Zakończ i przejdź dalej",
+    introGoToExercises: "Przejdź do ćwiczeń",
+
     dashboardProfile: "Profil i ustawienia",
     dashboardExport: "Eksportuj dane",
 

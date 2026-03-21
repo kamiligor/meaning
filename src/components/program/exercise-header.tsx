@@ -22,8 +22,8 @@ export function ExerciseHeader({
   locale,
 }: ExerciseHeaderProps) {
   const d = t(locale);
-  const backHref = isGate ? "/program/dashboard" : `/program/modul/${moduleSlug}`;
-  const backLabel = isGate ? d.programDashboard : moduleLabel;
+  const backHref = "/program/dashboard";
+  const backLabel = d.programDashboard;
 
   return (
     <header className="border-b border-[#e2e7eb] bg-white">

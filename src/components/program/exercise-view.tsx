@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import type { Exercise } from "@/lib/exercises";
 import { ExerciseEditor } from "./exercise-editor";
@@ -67,6 +67,20 @@ export function ExerciseView({
     hasWarning && !hasExistingResponses ? "warning" : "writing"
   );
   const [stuckOpen, setStuckOpen] = useState(false);
+  const [isFlushing, setIsFlushing] = useState(false);
+
+  // Track flush callbacks from all editors
+  const flushCallbacks = useRef<Map<number, () => Promise<void>>>(new Map());
+
+  const registerFlush = useCallback((questionIndex: number, flush: () => Promise<void>) => {
+    flushCallbacks.current.set(questionIndex, flush);
+  }, []);
+
+  // Flush all editors — ensures all content is saved to server
+  const flushAllEditors = useCallback(async () => {
+    const promises = Array.from(flushCallbacks.current.values()).map(fn => fn());
+    await Promise.allSettled(promises);
+  }, []);
 
   // Track char counts per question — initialized from saved responses
   const [charCounts, setCharCounts] = useState<Record<number, number>>(() => {
@@ -97,13 +111,28 @@ export function ExerciseView({
     return hasAnyContent(charCounts);
   };
 
-  const handleCompleteClick = () => {
+  const handleCompleteClick = async () => {
     if (!isGate && !anyContent()) return;
     if (!isGate && !meetsMinimum()) return;
+
+    // Force save all editors before transitioning
+    setIsFlushing(true);
+    await flushAllEditors();
+    setIsFlushing(false);
+
     setStep("postExercise");
   };
 
+  const handleSaveAndExit = async () => {
+    setIsFlushing(true);
+    await flushAllEditors();
+    setIsFlushing(false);
+    router.push("/program/dashboard");
+  };
+
   const handleSkip = async () => {
+    // Save any partial content before skipping
+    await flushAllEditors();
     try {
       await fetch(`/api/program/progress/${exercise.id}`, {
         method: "PUT",
@@ -196,6 +225,7 @@ export function ExerciseView({
               label={`${d.reflectionQuestion} ${idx + 1}`}
               minChars={question.minChars}
               onCharCountChange={(count) => handleCharCountChange(idx, count)}
+              onRegisterFlush={registerFlush}
               locale={locale}
             />
           </div>
@@ -224,13 +254,14 @@ export function ExerciseView({
       <div className="mt-8 flex flex-col sm:flex-row gap-3">
         <Button
           onClick={handleCompleteClick}
-          disabled={!canComplete}
+          disabled={!canComplete || isFlushing}
           className="flex-1"
         >
-          {d.exerciseFinish}
+          {isFlushing ? d.editorSaving : d.exerciseFinish}
         </Button>
         <Button
-          onClick={() => router.push("/program/dashboard")}
+          onClick={handleSaveAndExit}
+          disabled={isFlushing}
           variant="outline"
           className="flex-1"
         >

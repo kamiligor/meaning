@@ -35,6 +35,7 @@ export function useAutosave({
   const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const intervalTimer = useRef<ReturnType<typeof setInterval> | null>(null);
   const isSaving = useRef(false);
+  const saveCompleteResolvers = useRef<Array<() => void>>([]);
 
   contentRef.current = content;
   wordCountRef.current = wordCount;
@@ -54,59 +55,87 @@ export function useAutosave({
       isSaving.current = true;
       setStatus("saving");
 
-      let retries = 0;
-      const maxRetries = 3;
-      const backoffMs = [1000, 3000, 9000];
+      try {
+        let retries = 0;
+        const maxRetries = 3;
+        const backoffMs = [1000, 3000, 9000];
 
-      while (retries < maxRetries) {
-        try {
-          const res = await fetch(
-            `/api/program/responses/${exerciseId}`,
-            {
-              method: "PUT",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                questionIndex,
-                content: currentContent,
-                wordCount: wordCountRef.current,
-                timeSpentSec: getTimeSpentSecRef.current(),
-              }),
-              signal: AbortSignal.timeout(30000),
+        while (retries < maxRetries) {
+          try {
+            const res = await fetch(
+              `/api/program/responses/${exerciseId}`,
+              {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  questionIndex,
+                  content: currentContent,
+                  wordCount: wordCountRef.current,
+                  timeSpentSec: getTimeSpentSecRef.current(),
+                }),
+                signal: AbortSignal.timeout(30000),
+              }
+            );
+
+            if (res.ok) {
+              lastSavedContent.current = currentContent;
+              clearLocalBackup(exerciseId, questionIndex);
+              setStatus("saved");
+              return;
             }
-          );
 
-          if (res.ok) {
-            lastSavedContent.current = currentContent;
-            clearLocalBackup(exerciseId, questionIndex);
-            setStatus("saved");
-            isSaving.current = false;
-            return;
-          }
+            if (res.status === 429) {
+              retries++;
+              if (retries < maxRetries) {
+                await new Promise((r) => setTimeout(r, backoffMs[retries]));
+                continue;
+              }
+            }
 
-          if (res.status === 429) {
+            throw new Error(`Save failed: ${res.status}`);
+          } catch {
             retries++;
             if (retries < maxRetries) {
               await new Promise((r) => setTimeout(r, backoffMs[retries]));
-              continue;
             }
           }
+        }
 
-          throw new Error(`Save failed: ${res.status}`);
-        } catch {
-          retries++;
-          if (retries < maxRetries) {
-            await new Promise((r) => setTimeout(r, backoffMs[retries]));
-          }
+        // All retries failed — save to localStorage as fallback
+        saveToLocalStorage(exerciseId, questionIndex, currentContent);
+        setStatus(navigator.onLine ? "error" : "offline");
+      } finally {
+        isSaving.current = false;
+        // Notify any flush waiters
+        const resolvers = saveCompleteResolvers.current.splice(0);
+        for (const resolve of resolvers) {
+          resolve();
         }
       }
-
-      // All retries failed — save to localStorage as fallback
-      saveToLocalStorage(exerciseId, questionIndex, currentContent);
-      setStatus(navigator.onLine ? "error" : "offline");
-      isSaving.current = false;
     },
     [exerciseId, questionIndex]
   );
+
+  // flush: wait for in-flight save, then force a final save if needed
+  const flush = useCallback(async () => {
+    // Cancel pending debounce timer
+    if (debounceTimer.current) {
+      clearTimeout(debounceTimer.current);
+      debounceTimer.current = null;
+    }
+
+    // Wait for in-flight save to complete
+    if (isSaving.current) {
+      await new Promise<void>(resolve => {
+        saveCompleteResolvers.current.push(resolve);
+      });
+    }
+
+    // Force save if content changed since last successful save
+    if (contentRef.current !== lastSavedContent.current) {
+      await save(true);
+    }
+  }, [save]);
 
   // Debounced save on content change
   useEffect(() => {
@@ -165,6 +194,15 @@ export function useAutosave({
     };
   }, [exerciseId, questionIndex, save]);
 
+  // Save to localStorage on unmount as safety net
+  useEffect(() => {
+    return () => {
+      if (contentRef.current !== lastSavedContent.current) {
+        saveToLocalStorage(exerciseId, questionIndex, contentRef.current);
+      }
+    };
+  }, [exerciseId, questionIndex]);
+
   // Online/offline detection
   useEffect(() => {
     const handleOnline = () => {
@@ -188,5 +226,5 @@ export function useAutosave({
 
   const forceSave = useCallback(() => save(true), [save]);
 
-  return { status, forceSave };
+  return { status, forceSave, flush };
 }

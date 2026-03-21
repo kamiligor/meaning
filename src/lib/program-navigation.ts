@@ -7,11 +7,16 @@ export function getNextExerciseUrl(
 ): string | null {
   const modules = getModules(genderForm);
 
-  // Check gate exercise
+  // After gate → go to first module's intro (or first exercise if no intro)
   if (exerciseId === "gate_00") {
     const firstModule = modules[0];
-    if (firstModule?.exercises[0]) {
-      return `/program/cwiczenie/${firstModule.exercises[0].id}`;
+    if (firstModule) {
+      if (firstModule.introduction) {
+        return `/program/modul/${firstModule.slug}`;
+      }
+      if (firstModule.exercises[0]) {
+        return `/program/cwiczenie/${firstModule.exercises[0].id}`;
+      }
     }
     return "/program/dashboard";
   }
@@ -26,10 +31,13 @@ export function getNextExerciseUrl(
       return `/program/cwiczenie/${mod.exercises[idx + 1].id}`;
     }
 
-    // First exercise of next module
+    // Last exercise in module → go to next module's intro (or first exercise)
     const nextModIdx = modules.indexOf(mod) + 1;
     if (nextModIdx < modules.length) {
       const nextMod = modules[nextModIdx];
+      if (nextMod.introduction) {
+        return `/program/modul/${nextMod.slug}`;
+      }
       if (nextMod.exercises[0]) {
         return `/program/cwiczenie/${nextMod.exercises[0].id}`;
       }

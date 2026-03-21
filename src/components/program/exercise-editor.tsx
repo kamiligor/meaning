@@ -7,9 +7,10 @@ import CharacterCount from "@tiptap/extension-character-count";
 import { EditorToolbar } from "./editor-toolbar";
 import { SaveStatusIndicator } from "./save-status";
 import { useAutosave } from "@/hooks/use-autosave";
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { stripHtml } from "@/lib/html-utils";
 import { calculateMaxChars } from "@/lib/exercise-validation";
+import { getLocalBackup, clearLocalBackup } from "@/lib/local-storage";
 import { t } from "@/lib/i18n";
 import type { Locale } from "@/lib/i18n";
 
@@ -20,6 +21,7 @@ interface ExerciseEditorProps {
   label: string;
   minChars?: number;
   onCharCountChange?: (count: number) => void;
+  onRegisterFlush?: (questionIndex: number, flush: () => Promise<void>) => void;
   locale: Locale;
 }
 
@@ -30,6 +32,7 @@ export function ExerciseEditor({
   label,
   minChars,
   onCharCountChange,
+  onRegisterFlush,
   locale,
 }: ExerciseEditorProps) {
   const d = t(locale);
@@ -39,19 +42,25 @@ export function ExerciseEditor({
   const [wordCount, setWordCount] = useState(0);
   const [charCount, setCharCount] = useState(() => stripHtml(initialContent).trim().length);
   const startTime = useRef(Date.now());
+  const recoveryDone = useRef(false);
 
   const getTimeSpentSec = useCallback(
     () => Math.floor((Date.now() - startTime.current) / 1000),
     []
   );
 
-  const { status, forceSave } = useAutosave({
+  const { status, forceSave, flush } = useAutosave({
     exerciseId,
     questionIndex,
     content,
     wordCount,
     getTimeSpentSec,
   });
+
+  // Register flush with parent so it can force-save before transitions
+  useEffect(() => {
+    onRegisterFlush?.(questionIndex, flush);
+  }, [onRegisterFlush, questionIndex, flush]);
 
   const editor = useEditor({
     immediatelyRender: false,
@@ -89,6 +98,29 @@ export function ExerciseEditor({
       onCharCountChange?.(chars);
     },
   });
+
+  // Recover content from localStorage if server save was missed
+  useEffect(() => {
+    if (!editor || recoveryDone.current) return;
+    recoveryDone.current = true;
+
+    const backup = getLocalBackup(exerciseId, questionIndex);
+    if (!backup || !backup.content) return;
+
+    const serverChars = stripHtml(initialContent).trim().length;
+    const backupChars = stripHtml(backup.content).trim().length;
+
+    // Use backup if it has more content than server (save was missed)
+    if (backupChars > serverChars) {
+      editor.commands.setContent(backup.content);
+      setContent(backup.content);
+      setCharCount(backupChars);
+      onCharCountChange?.(backupChars);
+    } else {
+      // Server is equal or has more — clear stale backup
+      clearLocalBackup(exerciseId, questionIndex);
+    }
+  }, [editor, exerciseId, questionIndex, initialContent, onCharCountChange]);
 
   return (
     <div className="border border-[#e2e7eb] rounded-lg bg-white overflow-hidden focus-within:ring-2 focus-within:ring-[#7B9E8C] focus-within:ring-offset-1 transition-shadow">
