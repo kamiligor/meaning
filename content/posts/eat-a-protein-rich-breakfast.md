@@ -42,7 +42,7 @@ A breakfast high in {protein and healthy fats} slows glucose absorption, prevent
 
 For people under chronic stress, those spikes often lead to {reactive hypoglycemia}, a sudden blood sugar crash that triggers anxiety, brain fog, and irritability.
 
-Stable blood sugar from morning onward keeps your nervous system {calm and regulated} for the rest of the day.
+Stable blood sugar from morning onward helps stabilize your energy and mood {through the morning} and into the afternoon.
 
 ## When blood sugar crashes, your stress system wakes up
 
@@ -50,7 +50,7 @@ A high-carbohydrate breakfast with little protein causes a rapid rise in blood g
 
 When blood glucose drops quickly, the body interprets this as a threat and responds by releasing stress hormones, primarily cortisol and adrenaline, to mobilize stored energy. For someone who is already living under chronic stress, this is a problem: cortisol levels are already elevated throughout the day, and a glucose crash adds another activation on top of an already burdened system.
 
-The subjective experience of this cascade is familiar to most people: a sudden inability to concentrate, creeping anxiety or irritability roughly 90 to 120 minutes after a carb-heavy breakfast, and a strong craving for something sweet. This is not a character flaw or lack of willpower. It is a predictable hormonal chain reaction. Research in nutritional neuroscience has consistently linked glycemic variability (the degree to which blood sugar fluctuates) with mood instability, poorer working memory, and heightened subjective stress (Mantantzis et al., 2019, Neuroscience & Biobehavioral Reviews).
+The subjective experience of this cascade is familiar to many people: a sudden inability to concentrate, creeping anxiety or irritability roughly 90 to 120 minutes after a carb-heavy breakfast, and a strong craving for something sweet. This is not a character flaw or lack of willpower. It is a predictable hormonal chain reaction. Research in nutritional neuroscience has consistently linked glycemic variability (the degree to which blood sugar fluctuates) with mood instability, poorer working memory, and heightened subjective stress (Mantantzis et al., 2019, Neuroscience & Biobehavioral Reviews).
 
 Protein and healthy fats slow gastric emptying and moderate the glycemic response, flattening the curve. The result is a gradual rise and a stable plateau rather than a spike and crash, which means no cortisol alarm and no brain fog arriving mid-morning.
 
@@ -72,7 +72,7 @@ Eating a protein-anchored breakfast during or shortly after the CAR window means
 
 ---
 
-What you eat for breakfast directly affects how your brain handles stress for the rest of the day.
+What you eat for breakfast directly affects how your brain handles stress through the morning and into the afternoon.
 
 When you start your morning with refined carbs (toast, cereal, juice), your blood sugar spikes fast, then crashes hard. That crash triggers your stress response: cortisol rises, anxiety creeps in, and your focus disappears.
 

@@ -40,7 +40,7 @@ references:
 
 People {favor their own group} and treat outsiders worse. This does not require conflict, history, or real differences. A {random division} is enough to trigger the mechanism.
 
-Henri Tajfel proved it in an experiment: he split people into groups by a {coin flip}. That was all it took.
+Henri Tajfel proved it in an experiment: he split people into groups based on which {painter} they preferred. That was all it took.
 
 <!-- slide-only -->
 ## Why this matters
@@ -53,7 +53,7 @@ When you see it happening, you can stop reacting {automatically}. That is the fi
 
 Henri Tajfel, a social psychologist who himself survived the Holocaust, wanted to understand the absolute minimum required to produce intergroup discrimination. His hypothesis was: perhaps the division into groups alone is enough, without any conflict, without competition for resources, without a history of mutual hostility.
 
-He ran a series of experiments in which he divided participants into groups based on completely arbitrary criteria. Whether they preferred paintings by Klee or Kandinsky. Or even simpler: a coin flip. Participants did not know each other, had no reason for conflict, were not competing for anything.
+He ran a series of experiments in which he divided participants into groups based on completely arbitrary criteria. Whether they preferred paintings by Klee or Kandinsky. Whether they overestimated or underestimated the number of dots on a screen. Later studies pushed this even further, dividing people by coin flip, and the effect still held. Participants did not know each other, had no reason for conflict, were not competing for anything.
 
 The result was unambiguous. Even with such an absurd division, people immediately began favoring members of their own group. They awarded them more points, rated them higher, treated them more fairly. Tajfel called this the minimal group paradigm. It showed that the mere sense of "us" and "them" is enough to activate the preference mechanism.
 
@@ -77,7 +77,7 @@ The point is not to pretend this mechanism does not exist. It exists and it is p
 
 ---
 
-People favor their own group and treat outsiders worse. This does not require conflict, history, or real differences. Psychologist Henri Tajfel proved that a random division, a coin flip, is enough to trigger this mechanism.
+People favor their own group and treat outsiders worse. This does not require conflict, history, or real differences. Psychologist Henri Tajfel proved that a trivial division, like a preference for one painter over another, is enough to trigger this mechanism.
 
 Your brain recognizes "us" and "them" in a fraction of a second. This is not ill will. It is an automatic evolutionary response that once protected and today produces bias.
 

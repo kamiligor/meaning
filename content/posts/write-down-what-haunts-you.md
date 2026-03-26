@@ -54,7 +54,7 @@ Being in a bad place is one thing. Not knowing why you are there is worse. Becau
 
 Memories that keep returning do so for a specific reason. Something harmful or threatening will not fade from memory until it is understood. This is not a malfunction. It is a protective mechanism. Your mind keeps presenting the same images and emotions because they contain something you have not yet brought to the surface. A conclusion you have not drawn. A boundary you have not set. A decision you are avoiding.
 
-Jordan Peterson puts it directly: if you suffer from memories that will not stop haunting you, they most likely contain possibilities with redemptive potential. The painful memory holds information you need in order to move forward. Until you extract it, the memories will not let go.
+Author Jordan Peterson offers a philosophical interpretation of this: if you suffer from memories that will not stop haunting you, they may contain possibilities with redemptive potential. Research on post-traumatic growth supports the idea that some people do find meaning and growth after difficult experiences, though this is not guaranteed. What is clear is that the painful memory holds information. Until you find a way to process it, the memories are unlikely to let go.
 
 James Pennebaker, a psychologist at the University of Texas, arrived at the same point from a different direction. Suppression has a cost. The mind spends energy trying not to think about something, and paradoxically, this makes it think about it even more. Bessel van der Kolk, a psychiatrist specializing in trauma, adds another layer: experiences that were never integrated do not move into the category of "the past." The body and mind react to them as if they are still happening.
 

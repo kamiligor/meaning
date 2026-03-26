@@ -80,7 +80,7 @@ It sounds strange, but the most effective path to happiness is to stop looking f
 
 Research by psychologist Iris Mauss shows that people who prioritize happiness end up more dissatisfied and lonelier than those who do not particularly care about it. Why? Because chasing happiness turns you into a constant emotional auditor. And that auditing itself kills the joy.
 
-Viktor Frankl, the psychiatrist who survived three concentration camps, put it plainly: happiness cannot be pursued, it must ensue, as the side effect of something larger.
+Viktor Frankl, the psychiatrist who survived the Holocaust, put it plainly: happiness cannot be pursued, it must ensue, as the side effect of something larger.
 
 What the research shows:
 → directly pursuing happiness increases dissatisfaction

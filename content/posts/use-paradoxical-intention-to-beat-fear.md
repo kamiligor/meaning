@@ -14,8 +14,8 @@ headline: "Use {Paradoxical} Intention to Beat Fear"
 subtitle: "Swipe to learn how"
 iconType: brain
 
-quote: "He who {fears} something gives it {power} over him.\nLaugh at it, and take that power back."
-quoteAttribution: "- Viktor Frankl's logotherapy"
+quote: "It is well known that {humor}, more than anything else in the human make-up, can afford an aloofness and an ability to {rise above} any situation, even if only for a few seconds."
+quoteAttribution: "- Viktor Frankl, Man's Search for Meaning"
 quoteIconType: heart
 
 hashtags:
@@ -51,7 +51,7 @@ This injects {humor and distance} between you and the fear, short-circuiting the
 
 ## Who invented this - and why it matters
 
-Viktor Frankl was an Austrian psychiatrist who developed logotherapy, a form of psychotherapy centered on the human search for meaning. He first described paradoxical intention in the 1920s, but the technique was tested under the most extreme conditions imaginable: Frankl survived three concentration camps, including Auschwitz and Dachau. The ideas he developed before the war held up under circumstances that broke nearly everything else.
+Viktor Frankl was an Austrian psychiatrist who developed logotherapy, a form of psychotherapy centered on the human search for meaning. He developed paradoxical intention over the course of his career, formalizing the technique in the 1940s and 1950s. But the ideas behind it were tested under the most extreme conditions imaginable: Frankl survived the Holocaust, including Auschwitz and a subcamp of Dachau. The ideas he developed before the war held up under circumstances that broke nearly everything else.
 
 Paradoxical intention is one of the most concrete tools to emerge from logotherapy. Unlike techniques that ask you to challenge your thoughts or reframe your beliefs, this one asks you to do something much stranger. To want the very thing you are afraid of. Frankl described it as using the human capacity for humor and self-detachment to step outside the automatic fear response and observe it from a distance (Frankl, 1960).
 
@@ -75,7 +75,7 @@ First, the instruction is paradoxical in a way the nervous system cannot easily 
 
 Second, the act of trying introduces a cognitive shift that Frankl called self-detachment. You are no longer inside the fear looking out. You are outside it, watching it, even playing with it. This mirrors what more recent research describes as psychological distancing or defusion: the capacity to observe your mental states without being fused with them (Hayes et al., 2006). When you can see the fear as an object rather than a condition you inhabit, it loses some of its automatic force.
 
-Third, humor matters more than it might seem. Frankl was specific about this: the instruction to the patient should carry a light, almost absurd quality. Telling yourself you will shake so violently that the whole room notices is funnier than telling yourself you will tremble slightly. The humor is not decoration. It signals safety to the nervous system. Laughter and genuine threat responses are physiologically incompatible. A system that is activating humor circuits is, at the neurological level, not in full fight-or-flight mode.
+Third, humor matters more than it might seem. Frankl was specific about this: the instruction to the patient should carry a light, almost absurd quality. Telling yourself you will shake so violently that the whole room notices is funnier than telling yourself you will tremble slightly. The humor is not decoration. It signals safety to the nervous system. Humor activates circuits that reduce the intensity of the threat response. A system that is engaging humor is, at the neurological level, less likely to be in full fight-or-flight mode.
 
 ## Clinical applications and what the evidence shows
 

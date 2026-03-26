@@ -58,7 +58,7 @@ But there is a second element. The other person reacts. They ask questions you w
 
 ## The cost of isolation
 
-John Cacioppo, a neuroscientist at the University of Chicago, dedicated his career to studying loneliness. Not loneliness in the sense of being alone in a room, but in the sense of lacking meaningful contact with other people.
+John Cacioppo, a psychologist at the University of Chicago and a pioneer of social neuroscience, dedicated his career to studying loneliness. Not loneliness in the sense of being alone in a room, but in the sense of lacking meaningful contact with other people.
 
 His findings are unambiguous. Chronic loneliness raises cortisol levels, impairs sleep, weakens the immune system, and degrades decision-making. But before those physical consequences set in, something subtler happens. Thinking loses its structure.
 

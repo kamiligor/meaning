@@ -56,7 +56,7 @@ Jedna trudna rozmowa, jeden kiepski dzień, jeden konflikt. To normalna część
 
 Ale kiedy ten sam stres pojawia się codziennie, nie mija. Ciało nie wraca do normy, bo norma została przesunięta. Układ nerwowy adaptuje się do stanu podwyższonej gotowości i zaczyna traktować go jako standard. Naukowcy nazywają to obciążeniem allostatycznym. To łączny koszt fizjologiczny chronicznego stresu, który sam w sobie nie wydaje się dramatyczny, ale nigdy nie odpuszcza.
 
-Gabor Maté, lekarz i autor „Kiedy ciało mówi nie", opisuje dziesiątki przypadków, w których ludzie latami tolerowali sytuacje, które „nie były aż tak złe". Toksyczny współpracownik, relacja, w której czuli się pomijani, praca, która nie miała sensu. Żadna z tych rzeczy nie wydawała się warta konfrontacji. A potem ciało się odezwało. Bóle głowy, bezsenność, problemy z odpornością, choroby autoimmunologiczne. Nie dlatego, że jedna sytuacja była nieznośna, ale dlatego, że trzysta „drobnych" sytuacji się zsumowało.
+Gabor Maté, lekarz i autor „Kiedy ciało mówi nie", opisuje dziesiątki przypadków, w których ludzie latami tolerowali sytuacje, które „nie były aż tak złe". Toksyczny współpracownik, relacja, w której czuli się pomijani, praca, która nie miała sensu. Żadna z tych rzeczy nie wydawała się warta konfrontacji. A potem ciało się odezwało. Bóle głowy, bezsenność, problemy z odpornością, a w niektórych przypadkach schorzenia, które mogą mieć związek z chronicznym stresem. Nie dlatego, że jedna sytuacja była nieznośna, ale dlatego, że trzysta „drobnych" sytuacji się zsumowało.
 
 ## Koszt udawania
 

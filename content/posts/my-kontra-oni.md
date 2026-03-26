@@ -42,7 +42,7 @@ references:
 
 Ludzie {faworyzują swoją grupę} i traktują gorzej tych spoza niej. Nie potrzeba do tego konfliktu, historii ani realnych różnic. Wystarczy {losowy podział}, żeby ten mechanizm się uruchomił.
 
-Henri Tajfel udowodnił to w eksperymencie: podzielił ludzi na grupy {rzutem monety}. I to wystarczyło.
+Henri Tajfel udowodnił to w eksperymencie: podzielił ludzi na grupy na podstawie tego, którego {malarza} wolą. I to wystarczyło.
 
 <!-- slide-only -->
 ## Dlaczego to ważne
@@ -55,7 +55,7 @@ Kiedy to widzisz, możesz przestać reagować {automatycznie}. To pierwszy krok.
 
 Henri Tajfel, psycholog społeczny, który sam przeżył Holokaust, chciał zrozumieć, jaki jest absolutny minimum potrzebne do wywołania dyskryminacji międzygrupowej. Jego hipoteza brzmiała: może wystarczy sam podział na grupy, bez żadnego konfliktu, bez rywalizacji o zasoby, bez historii wzajemnej wrogości.
 
-Przeprowadził serię eksperymentów, w których dzielił uczestników na grupy na podstawie kompletnie arbitralnych kryteriów. Czy wolisz obrazy Klee czy Kandinsky'ego. Albo jeszcze prościej: rzut monetą. Uczestnicy nie znali się nawzajem, nie mieli powodu do konfliktu, nie rywalizowali o nic.
+Przeprowadził serię eksperymentów, w których dzielił uczestników na grupy na podstawie kompletnie arbitralnych kryteriów. Czy wolisz obrazy Klee czy Kandinsky'ego. Czy przeszacowujesz, czy niedoszacowujesz liczbę kropek na ekranie. Późniejsze badania poszły jeszcze dalej, dzieląc ludzi rzutem monety, i efekt wciąż się utrzymywał. Uczestnicy nie znali się nawzajem, nie mieli powodu do konfliktu, nie rywalizowali o nic.
 
 Wynik był jednoznaczny. Nawet przy tak absurdalnym podziale ludzie natychmiast zaczynali faworyzować członków swojej grupy. Przyznawali im więcej punktów, oceniali ich wyżej, traktowali ich bardziej sprawiedliwie. Tajfel nazwał to paradygmatem grup minimalnych. Pokazał, że samo poczucie „my" i „oni" wystarczy, żeby uruchomić mechanizm preferencji.
 
@@ -79,7 +79,7 @@ Nie chodzi o to, żeby udawać, że ten mechanizm nie istnieje. Istnieje i jest 
 
 ---
 
-Ludzie faworyzują swoją grupę i gorzej traktują obcych. To nie wymaga konfliktu, historii ani realnych różnic. Psycholog Henri Tajfel udowodnił, że wystarczy losowy podział, rzut monetą, żeby ten mechanizm się uruchomił.
+Ludzie faworyzują swoją grupę i gorzej traktują obcych. To nie wymaga konfliktu, historii ani realnych różnic. Psycholog Henri Tajfel udowodnił, że wystarczy banalny podział, na przykład preferencja jednego malarza nad innego, żeby ten mechanizm się uruchomił.
 
 Twój mózg rozpoznaje „swoich" i „obcych" w ułamku sekundy. To nie jest zła wola. To automatyczna reakcja ewolucyjna, która kiedyś chroniła, a dziś prowadzi do uprzedzeń.
 

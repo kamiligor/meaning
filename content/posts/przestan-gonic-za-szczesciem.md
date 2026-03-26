@@ -82,7 +82,7 @@ Brzmi dziwnie, ale najskuteczniejszy sposób na szczęście to przestać go szuk
 
 Badania psycholożki Iris Mauss pokazują, że ludzie, którzy stawiają sobie szczęście jako priorytet, są bardziej niezadowoleni i samotni niż ci, którzy o szczęście specjalnie nie dbają. Dlaczego? Bo kiedy gonisz za szczęściem, zaczynasz ciągle sprawdzać swój stan emocjonalny. A to sprawdzanie samo w sobie zabija radość.
 
-Viktor Frankl, psychiatra, który przeżył trzy obozy koncentracyjne, mówił wprost: szczęścia nie można gonić, ono musi nadejść samo, jako efekt uboczny czegoś większego.
+Viktor Frankl, psychiatra, który przeżył Holokaust, mówił wprost: szczęścia nie można gonić, ono musi nadejść samo, jako efekt uboczny czegoś większego.
 
 Co mówią badania:
 → bezpośrednie dążenie do szczęścia zwiększa niezadowolenie

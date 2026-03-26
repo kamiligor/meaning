@@ -52,7 +52,7 @@ Twoje ciało reaguje na to, {jak ludzie cię traktują}. Codziennie, na poziomie
 
 ## Dlaczego twój mózg obserwuje hierarchię
 
-Jordan Peterson opisuje ten mechanizm zaczynając od czegoś zaskakującego: od homarów. Homary mają układ nerwowy oparty na serotoninie, który działa niemal identycznie jak ludzki, a rozdzieliły się od nas ewolucyjnie ponad 350 milionów lat temu. To oznacza, że system monitorowania statusu społecznego jest starszy niż drzewa.
+Jordan Peterson opisuje ten mechanizm zaczynając od czegoś zaskakującego: od homarów. Wiele gatunków, od skorupiaków po naczelne, ma systemy neurochemiczne reagujące na pozycję społeczną. U homarów poziom serotoniny zmienia się po wygranych i przegranych starciach. U ludzi system jest znacznie bardziej złożony i obejmuje serotoninę, kortyzol i wiele innych szlaków, ale podstawowa zasada się utrzymuje: twój mózg śledzi, gdzie stoisz względem innych, i reaguje na to fizjologicznie. Te systemy mają wspólne korzenie ewolucyjne sięgające ponad 350 milionów lat.
 
 U homarów ten system działa prosto. Homary, które wygrywają starcia, mają wyższy poziom serotoniny. Chodzą wyprostowane, zajmują więcej przestrzeni, zachowują się pewniej. Te, które przegrywają, mają niższy poziom serotoniny. Kurczą się, unikają konfrontacji, reagują lękowo.
 

@@ -50,7 +50,7 @@ Your body reacts to {how people treat you}. Every day, at the level of physiolog
 
 ## Why your brain watches the hierarchy
 
-Jordan Peterson describes this mechanism starting from something surprising: lobsters. Lobsters have a serotonin-based nervous system that works almost identically to the human one, and they diverged from us evolutionarily over 350 million years ago. This means the system that monitors social status is older than trees.
+Jordan Peterson describes this mechanism starting from something surprising: lobsters. Many animals, from crustaceans to primates, have neurochemical systems that respond to social position. In lobsters, serotonin levels shift after wins and losses. In humans, the system is far more complex, involving serotonin, cortisol, and many other pathways, but the core principle holds: your brain tracks where you stand relative to others, and it responds physiologically. These systems share deep evolutionary roots going back over 350 million years.
 
 In lobsters the system is straightforward. Lobsters that win confrontations have higher serotonin levels. They stand tall, take up more space, behave with more confidence. Those that lose have lower serotonin. They shrink, avoid confrontation, respond with anxiety.
 

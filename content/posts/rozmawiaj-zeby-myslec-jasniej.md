@@ -60,7 +60,7 @@ Ale jest jeszcze drugi element. Rozmówca reaguje. Zadaje pytania, których sam 
 
 ## Koszt izolacji
 
-John Cacioppo, neuronaukowiec z University of Chicago, poświęcił karierę badaniu samotności. Nie samotności w sensie bycia samemu w pokoju, ale w sensie braku znaczących kontaktów z innymi ludźmi.
+John Cacioppo, psycholog z University of Chicago i pionier neuronauki społecznej, poświęcił karierę badaniu samotności. Nie samotności w sensie bycia samemu w pokoju, ale w sensie braku znaczących kontaktów z innymi ludźmi.
 
 Jego odkrycia są jednoznaczne. Przewlekła samotność podnosi poziom kortyzolu, upośledza sen, osłabia układ odpornościowy i pogarsza zdolność do podejmowania decyzji. Ale zanim dojdzie do tych konsekwencji fizycznych, dzieje się coś subtelniejszego. Myślenie traci strukturę.
 

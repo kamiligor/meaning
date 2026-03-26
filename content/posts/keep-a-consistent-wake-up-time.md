@@ -38,6 +38,13 @@ Waking up at {the same time} every day stabilizes your circadian rhythms, which 
 
 Irregular sleep patterns make it harder to treat anxiety and depression, because your emotional systems need {predictability}.
 
+<!-- slide-only -->
+## What you cannot make up for
+
+When you wake up at different times, your circadian rhythm falls {out of sync}, and coffee only {masks the fatigue} without fixing the cause.
+
+The most important step is to return to a {consistent wake-up time}. It is the strongest signal to help reset your biological clock.
+
 ## Circadian rhythms affect far more than when you feel sleepy
 
 Your circadian rhythm is a roughly 24-hour biological clock running in nearly every cell of your body. It governs sleep, yes, but also cortisol secretion, body temperature, immune function, cognitive performance, and emotional regulation. When that clock is well-anchored, these systems work in sync. When it drifts, the consequences ripple outward in ways most people don't connect to sleep.

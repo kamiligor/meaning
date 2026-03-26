@@ -14,8 +14,8 @@ headline: "Użyj {paradoksalnej} intencji, żeby pokonać strach"
 subtitle: "Przesuń, żeby dowiedzieć się jak"
 iconType: brain
 
-quote: "Kto się {boi}, ten daje temu {władzę} nad sobą.\nWyśmiej to, i odbierz tę władzę."
-quoteAttribution: "- Logoterapia Viktora Frankla"
+quote: "Wiadomo, że {humor} bardziej niż cokolwiek innego pozwala człowiekowi wznieść się {ponad} każdą sytuację, choćby na kilka sekund."
+quoteAttribution: "- Viktor Frankl, Człowiek w poszukiwaniu sensu"
 quoteIconType: heart
 
 ctaText: "Obserwuj po {więcej} psychologicznych trików"
@@ -53,7 +53,7 @@ To wprowadza {humor i dystans} między tobą a strachem, przerywając pętlę l�
 
 ## Kto to wymyślił - i dlaczego to ważne
 
-Viktor Frankl był austriackim psychiatrą, twórcą logoterapii, nurtu psychoterapii skupionego na poszukiwaniu sensu w ludzkim życiu. Intencję paradoksalną opisał po raz pierwszy jeszcze w latach dwudziestych XX wieku, ale technika ta została zweryfikowana w warunkach, które trudno sobie wyobrazić: Frankl przeżył trzy obozy koncentracyjne, w tym Auschwitz i Dachau. Idee, które rozwijał przed wojną, wytrzymały próbę okoliczności niszczących niemal wszystko inne.
+Viktor Frankl był austriackim psychiatrą, twórcą logoterapii, nurtu psychoterapii skupionego na poszukiwaniu sensu w ludzkim życiu. Intencję paradoksalną rozwijał przez całą karierę, formalizując ją w latach czterdziestych i pięćdziesiątych XX wieku. Idee, na których się opierała, zostały zweryfikowane w warunkach, które trudno sobie wyobrazić: Frankl przeżył Holokaust, w tym Auschwitz i podobóz Dachau. Idee, które rozwijał przed wojną, wytrzymały próbę okoliczności niszczących niemal wszystko inne.
 
 Intencja paradoksalna jest jednym z najbardziej konkretnych narzędzi, jakie wyrosły z logoterapii. W odróżnieniu od technik polegających na kwestionowaniu myśli czy przeformułowywaniu przekonań, ta prosi o coś znacznie dziwniejszego: żebyś chciał właśnie tego, czego się boisz. Frankl opisywał to jako wykorzystanie ludzkiej zdolności do humoru i autodystansu, czyli wyjście poza automatyczną reakcję lękową i obserwowanie jej z zewnątrz (Frankl, 1960).
 
@@ -77,7 +77,7 @@ Po pierwsze, samo polecenie jest paradoksalne w sposób, którego układ nerwowy
 
 Po drugie, sam akt próby wprowadza zmianę poznawczą, którą Frankl nazywał autodystansem. Nie jesteś już wewnątrz strachu, patrząc na zewnątrz. Jesteś na zewnątrz, obserwujesz go, a nawet się z nim bawisz. Odpowiada to temu, co nowsze badania opisują jako dystansowanie poznawcze lub defuzję: zdolność do obserwowania własnych stanów mentalnych bez utożsamiania się z nimi (Hayes i in., 2006). Gdy możesz patrzeć na strach jak na obiekt, a nie jak na stan, w którym przebywasz, traci on część swojej automatycznej siły.
 
-Po trzecie, humor jest ważniejszy niż mogłoby się wydawać. Frankl był w tej kwestii precyzyjny: instrukcja dla pacjenta powinna mieć lekki, niemal absurdalny charakter. Mówienie sobie, że będziesz drżeć tak gwałtownie, że cały pokój to zauważy, jest śmieszniejsze niż mówienie, że będziesz drżeć nieznacznie. Humor nie jest ozdobnikiem. Sygnalizuje bezpieczeństwo układowi nerwowemu. Śmiech i prawdziwa reakcja zagrożenia są fizjologicznie niezgodne. Układ aktywujący obwody humoru nie jest jednocześnie w stanie pełnego pobudzenia alarmowego.
+Po trzecie, humor jest ważniejszy niż mogłoby się wydawać. Frankl był w tej kwestii precyzyjny: instrukcja dla pacjenta powinna mieć lekki, niemal absurdalny charakter. Mówienie sobie, że będziesz drżeć tak gwałtownie, że cały pokój to zauważy, jest śmieszniejsze niż mówienie, że będziesz drżeć nieznacznie. Humor nie jest ozdobnikiem. Sygnalizuje bezpieczeństwo układowi nerwowemu. Humor aktywuje obwody, które osłabiają reakcję zagrożenia. Układ angażujący humor jest na poziomie neurologicznym mniej skłonny do pełnego pobudzenia alarmowego.
 
 ## Zastosowania kliniczne i co mówią badania
 

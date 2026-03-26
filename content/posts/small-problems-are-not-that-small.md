@@ -54,7 +54,7 @@ One difficult conversation, one bad day, one conflict. That is a normal part of 
 
 But when the same stress appears every day, it does not pass. The body does not return to baseline because baseline has been shifted. The nervous system adapts to a state of heightened readiness and starts treating it as the norm. Scientists call this allostatic load. It is the cumulative physiological cost of chronic stress that does not seem dramatic on its own but never lets up.
 
-Gabor Maté, a physician and author of "When the Body Says No," describes dozens of cases in which people tolerated situations for years that "were not that bad." A toxic coworker, a relationship where they felt overlooked, a job that felt meaningless. None of these things seemed worth a confrontation. And then the body spoke up. Headaches, insomnia, immune problems, autoimmune conditions. Not because one situation was unbearable, but because three hundred "minor" situations added up.
+Gabor Maté, a physician and author of "When the Body Says No," describes dozens of cases in which people tolerated situations for years that "were not that bad." A toxic coworker, a relationship where they felt overlooked, a job that felt meaningless. None of these things seemed worth a confrontation. And then the body spoke up. Headaches, insomnia, immune problems, and in some cases conditions that may be linked to chronic stress. Not because one situation was unbearable, but because three hundred "minor" situations added up.
 
 ## The cost of pretending
 
