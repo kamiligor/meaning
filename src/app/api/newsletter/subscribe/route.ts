@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -24,6 +25,20 @@ export async function POST(request: NextRequest) {
 
   if (!email || !EMAIL_REGEX.test(email)) {
     return NextResponse.json({ error: "invalid_email" }, { status: 400 });
+  }
+
+  const { allowed, retryAfterMs } = checkRateLimit(
+    `newsletter:${email}`,
+    RATE_LIMITS.newsletter
+  );
+  if (!allowed) {
+    return NextResponse.json(
+      { error: "rate_limited" },
+      {
+        status: 429,
+        headers: { "Retry-After": String(Math.ceil(retryAfterMs / 1000)) },
+      }
+    );
   }
 
   const res = await fetch("https://connect.mailerlite.com/api/subscribers", {

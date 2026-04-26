@@ -86,7 +86,7 @@ const INTRO_FILE_MAP: Record<string, string> = {
 };
 
 let cachedExercises: Map<string, Exercise> | null = null;
-let cachedModules: Map<string, Module[]> = new Map();
+const cachedModules: Map<string, Module[]> = new Map();
 let cachedIntroductions: Map<string, ModuleIntroduction> | null = null;
 
 function getExercisesDir(): string {

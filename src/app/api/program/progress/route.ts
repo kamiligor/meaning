@@ -1,9 +1,14 @@
 import { NextResponse } from "next/server";
 import { requireProgramUser } from "@/lib/program-auth";
+import { isProgramAdmin } from "@/lib/admin-email";
 
 export async function GET() {
   try {
     const { user, supabase } = await requireProgramUser();
+
+    if (!isProgramAdmin(user.email)) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
 
     const { data, error } = await supabase
       .from("user_progress")

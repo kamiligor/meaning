@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireProgramUser } from "@/lib/program-auth";
+import { isProgramAdmin } from "@/lib/admin-email";
 
 const VALID_STATUSES = ["not_started", "in_progress", "completed", "skipped"];
 const EXERCISE_ID_REGEX = /^[a-z_0-9]+$/;
@@ -10,6 +11,11 @@ export async function PUT(
 ) {
   try {
     const { user, supabase } = await requireProgramUser();
+
+    if (!isProgramAdmin(user.email)) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+
     const { exerciseId } = await params;
 
     if (!EXERCISE_ID_REGEX.test(exerciseId)) {

@@ -15,6 +15,10 @@ import { LikeProvider } from "@/components/feed/like-context";
 import { SiteHeader } from "@/components/site-header";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { getCategoryUrl, getCategoryLabel } from "@/lib/categories";
+import { JsonLd } from "@/components/json-ld";
+
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://justmeaning.com";
 
 export async function generateStaticParams() {
   const allPosts = getPublishedPosts("en").concat(getPublishedPosts("pl"));
@@ -65,21 +69,25 @@ export default async function PostPage({ params }: PageProps) {
   const d = t(locale);
   const feedUrl = "/";
 
-  const supabase = await createServerSupabaseClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  const isLoggedIn = !!user;
-
+  let isLoggedIn = false;
   let liked = false;
-  if (user) {
-    const { data } = await supabase
-      .from("user_interactions")
-      .select("id")
-      .eq("user_id", user.id)
-      .eq("interaction_type", "like")
-      .eq("target_type", "post")
-      .eq("target_id", slug)
-      .maybeSingle();
-    liked = !!data;
+  try {
+    const supabase = await createServerSupabaseClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    isLoggedIn = !!user;
+    if (user) {
+      const { data } = await supabase
+        .from("user_interactions")
+        .select("id")
+        .eq("user_id", user.id)
+        .eq("interaction_type", "like")
+        .eq("target_type", "post")
+        .eq("target_id", slug)
+        .maybeSingle();
+      liked = !!data;
+    }
+  } catch {
+    // Supabase unreachable — continue as logged out
   }
 
   const postSlides = getPostSlides(post);
@@ -99,8 +107,85 @@ export default async function PostPage({ params }: PageProps) {
     } catch {}
   }
 
+  const group = post.translationGroup || post.slug;
+  const ogImageUrl = `${SITE_URL}/api/slides/${group}/${post.locale}/slide-1.png`;
+  const postUrl = `${SITE_URL}/post/${post.slug}`;
+  const categoryLabel = post.category
+    ? getCategoryLabel(post.category, locale)
+    : null;
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: cleanHeadline,
+    description: post.caption || `${post.topicTag}: ${cleanHeadline}`,
+    image: [ogImageUrl],
+    datePublished: post.publishedAt || undefined,
+    dateModified: post.publishedAt || undefined,
+    inLanguage: post.locale === "pl" ? "pl-PL" : "en-US",
+    mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
+    author: {
+      "@type": "Organization",
+      name: "Just Meaning",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Just Meaning",
+      url: SITE_URL,
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.png` },
+    },
+    ...(categoryLabel && { articleSection: categoryLabel }),
+    ...(refs.length > 0 && {
+      citation: refs.map((r) => ({
+        "@type": "CreativeWork",
+        name: r.title,
+        author: { "@type": "Person", name: r.author },
+        ...(r.url && { url: r.url }),
+      })),
+    }),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: locale === "pl" ? "Strona główna" : "Home",
+        item: SITE_URL,
+      },
+      ...(post.category && categoryLabel
+        ? [
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: categoryLabel,
+              item: `${SITE_URL}${getCategoryUrl(post.category, locale)}`,
+            },
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: cleanHeadline,
+              item: postUrl,
+            },
+          ]
+        : [
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: cleanHeadline,
+              item: postUrl,
+            },
+          ]),
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-[#FAFBFC]">
+      <JsonLd data={articleSchema} />
+      <JsonLd data={breadcrumbSchema} />
       {/* Header */}
       <SiteHeader
         locale={locale}

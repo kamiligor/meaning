@@ -1,11 +1,11 @@
-import type { Post } from "@/db/schema";
+import type { PostData } from "@/lib/posts";
 import type { ColorPalette } from "@/lib/palettes";
 import type { ContentSection } from "@/lib/content-sections";
 import { SLIDE_WIDTH, SLIDE_HEIGHT } from "@/lib/constants";
 import { Watermark } from "./components/watermark";
 import { HighlightText } from "./components/text-utils";
 
-export function SlideContentTemplate(post: Post, palette: ColorPalette, section?: ContentSection) {
+export function SlideContentTemplate(post: PostData, palette: ColorPalette, section?: ContentSection) {
   return (
     <div
       style={{
@@ -15,7 +15,7 @@ export function SlideContentTemplate(post: Post, palette: ColorPalette, section?
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "flex-start",
-        padding: "120px 120px",
+        padding: "70px 80px",
         background: palette.textDark,
         position: "relative",
         overflow: "hidden",
@@ -110,8 +110,8 @@ export function SlideContentTemplate(post: Post, palette: ColorPalette, section?
         <span
           style={{
             color: palette.primaryLight,
-            fontSize: 16,
-            letterSpacing: 5,
+            fontSize: 20,
+            letterSpacing: 4,
             textTransform: "uppercase" as const,
             fontWeight: 600,
           }}
@@ -124,10 +124,10 @@ export function SlideContentTemplate(post: Post, palette: ColorPalette, section?
       <div
         style={{
           fontFamily: "Fraunces",
-          fontSize: 46,
+          fontSize: 60,
           fontWeight: 600,
-          lineHeight: 1.5,
-          maxWidth: 850,
+          lineHeight: 1.38,
+          maxWidth: 920,
           display: "flex",
         }}
       >

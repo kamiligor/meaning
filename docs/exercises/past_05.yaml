@@ -30,11 +30,11 @@ exercise:
 
     W tym ćwiczeniu napiszesz list do młodszej wersji siebie, w dowolnym wieku.
     Możesz pisać do pięciolatka, do nastolatka, do siebie sprzed roku. Wybierz
-    moment, w którym tamta osoba potrzebowała ciepła, i napisz jej z tym ciepłem.
+    moment, w którym tamta osoba potrzebowała kogoś obok, i napisz do niej.
 
     Ten list nie jest o radach. Nie chodzi o to, żeby powiedzieć „zrób tak i tak,
-    będzie lepiej". Chodzi o ciepło. O to, żeby tamta osoba poczuła się widziana
-    i rozumiana przez kogoś, kto zna całą historię. Przez Ciebie.
+    będzie lepiej". Chodzi o to, żeby tamta osoba nie była w tym sama. Żeby
+    poczuła się widziana i rozumiana przez kogoś, kto zna całą historię. Przez Ciebie.
 
   prompt_questions:
     - text: "Do jakiej wersji siebie chcesz napisać? Ile ma lat ta osoba w tym liście? Co wtedy przeżywała?"
@@ -43,7 +43,7 @@ exercise:
     - text: "Napisz list do tej osoby. Pisz tak, jakbyś pisał do dziecka bliskiego przyjaciela, z ciepłem, bez oceniania, bez rad. Co chciałbyś, żeby ta osoba wiedziała?"
       estimated_time: "12-20 minut"
       min_chars: 150
-    - text: "Czy jest coś, czego tamta wersja Ciebie się bała lub wstydziła? Jak chciałbyś o tym powiedzieć, nie bagatelizując, ale też nie zostawiając tej osoby samej z tym?"
+    - text: "Czy jest coś, za co tamta osoba się wstydziła albo czego się bała? Napisz do niej o tym w liście. Nie musisz tego naprawiać, wystarczy że ona poczuje, że o tym wiesz i że jesteś obok."
       estimated_time: "5-8 minut"
       min_chars: 60
     - text: "Czy jest coś, co chciałbyś, żeby tamta wersja Ciebie wiedziała o przyszłości? Nie konkretne wydarzenia, ale coś o niej samej."

@@ -27,6 +27,10 @@ export const RATE_LIMITS = {
     maxRequests: 1,
     windowMs: 86_400_000,
   } as RateLimitConfig,
+  // Per-email: blocks subscription bombing without NAT collateral.
+  // MailerLite double opt-in handles spam list growth — this just stops the same
+  // address from being flooded with confirmation emails.
+  newsletter: { maxRequests: 1, windowMs: 3_600_000 } as RateLimitConfig,
 } as const;
 
 export function checkRateLimit(

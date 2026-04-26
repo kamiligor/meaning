@@ -16,42 +16,43 @@ export function useSyncRecovery(
   questionIndex: number,
   serverUpdatedAt: string | null
 ): SyncRecoveryResult {
-  const [localContent, setLocalContent] = useState<string | null>(null);
-  const [localTimestamp, setLocalTimestamp] = useState<number | null>(null);
+  const [local, setLocal] = useState<{
+    content: string | null;
+    timestamp: number | null;
+  }>({ content: null, timestamp: null });
 
+  // localStorage is browser-only — must read after hydration to avoid SSR mismatch.
+  // The single extra render is intentional and acceptable for showing recovery UI.
   useEffect(() => {
     const backup = getLocalBackup(exerciseId, questionIndex);
     if (!backup) return;
 
-    // Compare timestamps — prefer local if newer than server
     if (serverUpdatedAt) {
       const serverTime = new Date(serverUpdatedAt).getTime();
       if (backup.timestamp > serverTime) {
-        setLocalContent(backup.content);
-        setLocalTimestamp(backup.timestamp);
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setLocal({ content: backup.content, timestamp: backup.timestamp });
       } else {
-        // Server is newer, clear stale local backup
         clearLocalBackup(exerciseId, questionIndex);
       }
     } else {
-      // No server data, use local
-      setLocalContent(backup.content);
-      setLocalTimestamp(backup.timestamp);
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setLocal({ content: backup.content, timestamp: backup.timestamp });
     }
   }, [exerciseId, questionIndex, serverUpdatedAt]);
 
   const acceptLocal = () => {
-    // Content will be picked up by the editor's initial value
     clearLocalBackup(exerciseId, questionIndex);
-    setLocalContent(null);
-    setLocalTimestamp(null);
+    setLocal({ content: null, timestamp: null });
   };
 
   const dismissLocal = () => {
     clearLocalBackup(exerciseId, questionIndex);
-    setLocalContent(null);
-    setLocalTimestamp(null);
+    setLocal({ content: null, timestamp: null });
   };
+
+  const localContent = local.content;
+  const localTimestamp = local.timestamp;
 
   return {
     hasLocalBackup: localContent !== null,

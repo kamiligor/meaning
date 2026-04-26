@@ -8,8 +8,15 @@ import { cookies } from "next/headers";
 import { getLocaleFromCookies } from "@/lib/locale-cookie";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { FAVORITES_KEY } from "@/lib/categories";
+import type { Metadata } from "next";
 
 const LIMIT = 10;
+
+export const metadata: Metadata = {
+  title: "Favorites",
+  description: "Your saved posts on Just have a little meaning.",
+  robots: { index: false, follow: false },
+};
 
 export default async function FavoritesPage() {
   const supabase = await createServerSupabaseClient();

@@ -18,6 +18,8 @@ export function ShareButton({ slug, title, locale, variant }: ShareButtonProps) 
   const d = t(locale);
 
   useEffect(() => {
+    // navigator.share is browser-only; defer to after hydration to avoid SSR mismatch.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setHasNativeShare(typeof navigator !== "undefined" && !!navigator.share);
   }, []);
 

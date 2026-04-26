@@ -119,9 +119,6 @@ jh/
 │   │           ├── data-export/            # Eksport RODO (JSON)
 │   │           ├── account/                # DELETE konto
 │   │           └── profile/                # GET + PUT profil (gender_form)
-│   ├── db/
-│   │   ├── schema.ts                  # Drizzle schema (legacy, typy)
-│   │   └── index.ts                   # Turso client (legacy)
 │   ├── lib/
 │   │   ├── auth.ts                    # JWT admin auth
 │   │   ├── i18n.ts                    # Słownik en/pl
@@ -243,9 +240,7 @@ prompt_questions:
 
 Posty = pliki Markdown w repozytorium. Slajdy = deterministyczne PNG ({slug}-slide-{nr}.png).
 
-Drizzle ORM + Turso (LibSQL) to legacy. Schema w `src/db/schema.ts` zachowane dla typów, ale nowe dane idą do Supabase.
-
-## Autentykacja — Dwie warstwy
+## Autentykacja - Dwie warstwy
 
 | Warstwa | Technologia | Kto | Jak |
 |---------|------------|-----|-----|
@@ -345,4 +340,4 @@ Bez tego post nie będzie miał slajdów PNG i karuzela się nie wyświetli.
 - **Output**: `standalone`
 - **Port**: 3000
 - **Persistent volume**: `/data/slides` (PNG karuzel)
-- **ENV vars**: `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, `ADMIN_PASSWORD`, `JWT_SECRET`, `STORAGE_PATH`, `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `APP_SECRET`, `MAILERLITE_API_TOKEN`
+- **ENV vars**: `ADMIN_PASSWORD`, `ADMIN_EMAIL`, `JWT_SECRET`, `STORAGE_PATH`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `APP_SECRET`, `MAILERLITE_API_TOKEN`, `NEXT_PUBLIC_SITE_URL`

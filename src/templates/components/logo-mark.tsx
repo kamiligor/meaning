@@ -115,6 +115,7 @@ export function LogoMark({ size, variant, palette }: LogoMarkProps) {
       {/* Logo from SVG — single source of truth */}
       <img
         src={src}
+        alt="Just have a little meaning"
         style={{ height: s.height, opacity: v.opacity }}
       />
     </div>

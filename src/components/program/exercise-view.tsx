@@ -194,7 +194,7 @@ export function ExerciseView({
       {/* Introduction */}
       <div className="max-w-none text-[#4A5B6A] mb-8 leading-relaxed space-y-4">
         {splitParagraphs(exercise.introduction).map((para, i) => (
-          <p key={i}>{para}</p>
+          <p key={i} dangerouslySetInnerHTML={{ __html: para.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') }} />
         ))}
       </div>
 

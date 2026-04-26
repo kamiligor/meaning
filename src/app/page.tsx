@@ -6,17 +6,71 @@ import { SiteFooter } from "@/components/site-footer";
 import { cookies } from "next/headers";
 import { getLocaleFromCookies } from "@/lib/locale-cookie";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
+import type { Metadata } from "next";
 
 const LIMIT = 10;
+
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://justmeaning.com";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const cookieStore = await cookies();
+  const locale: Locale = getLocaleFromCookies(cookieStore);
+
+  const title =
+    locale === "pl"
+      ? "Just have a little meaning — psychologia w praktyce"
+      : "Just have a little meaning — psychology you can use";
+  const description =
+    locale === "pl"
+      ? "Krótkie, oparte na badaniach posty o psychologii, emocjach i zdrowiu psychicznym. Jeden konkretny insight na raz."
+      : "Short, research-backed posts on psychology, emotions, and mental health. One usable insight at a time.";
+
+  const firstPost = getPublishedPosts(locale)[0];
+  const ogImage = firstPost
+    ? `/api/slides/${firstPost.translationGroup || firstPost.slug}/${firstPost.locale}/slide-1.png`
+    : undefined;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: SITE_URL,
+      languages: {
+        en: `${SITE_URL}/`,
+        pl: `${SITE_URL}/`,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url: SITE_URL,
+      type: "website",
+      locale: locale === "pl" ? "pl_PL" : "en_US",
+      ...(ogImage && { images: [{ url: ogImage, width: 1080, height: 1350 }] }),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      ...(ogImage && { images: [ogImage] }),
+    },
+  };
+}
 
 export default async function Home() {
   const cookieStore = await cookies();
   const locale: Locale = getLocaleFromCookies(cookieStore);
   const d = t(locale);
 
-  const supabase = await createServerSupabaseClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  const isLoggedIn = !!user;
+  let isLoggedIn = false;
+  try {
+    const supabase = await createServerSupabaseClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    isLoggedIn = !!user;
+  } catch {
+    // Supabase unreachable — continue as logged out
+  }
 
   const allPosts = getPublishedPosts(locale);
 

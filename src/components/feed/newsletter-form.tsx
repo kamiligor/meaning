@@ -19,6 +19,8 @@ export function NewsletterForm({ locale, variant }: NewsletterFormProps) {
   const [hidden, setHidden] = useState(true);
 
   useEffect(() => {
+    // localStorage is browser-only; defer to after hydration to avoid SSR mismatch.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setHidden(localStorage.getItem(STORAGE_KEY) === "true");
   }, []);
 

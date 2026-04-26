@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { t, type Locale } from "@/lib/i18n";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { isProgramAdmin } from "@/lib/admin-email";
 import type { ReactNode } from "react";
 
 interface SiteHeaderProps {
@@ -18,9 +19,16 @@ export async function SiteHeader({
   backLabel,
   langSwitcher,
 }: SiteHeaderProps) {
-  const supabase = await createServerSupabaseClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  const isLoggedIn = !!user;
+  let isLoggedIn = false;
+  let showProgramLink = false;
+  try {
+    const supabase = await createServerSupabaseClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    isLoggedIn = !!user;
+    showProgramLink = isProgramAdmin(user?.email);
+  } catch {
+    // Supabase unreachable — continue as logged out
+  }
   const d = t(locale);
   const isCompact = variant === "compact";
 
@@ -79,17 +87,19 @@ export async function SiteHeader({
         </div>
 
         {/* Right zone — nav links + auth + lang switcher */}
-        <div className="flex items-center gap-5 md:gap-6">
+        <div className="flex items-center gap-3 md:gap-6">
 
-          {/* Nav links — desktop only */}
-          <nav className="hidden md:flex items-center gap-5" aria-label="Main navigation">
-            <Link
-              href="/program"
-              className="text-[11px] font-medium tracking-widest uppercase text-[#8A99A8] hover:text-[#1E2A36] transition-colors duration-200 whitespace-nowrap"
-            >
-              <span className="hidden lg:inline">{d.navProgram}</span>
-              <span className="lg:hidden">{d.navProgramShort}</span>
-            </Link>
+          {/* Nav links — visible on mobile too (compact short labels) */}
+          <nav className="flex items-center gap-3 md:gap-5" aria-label="Main navigation">
+            {showProgramLink && (
+              <Link
+                href="/program"
+                className="text-[11px] font-medium tracking-widest uppercase text-[#8A99A8] hover:text-[#1E2A36] transition-colors duration-200 whitespace-nowrap"
+              >
+                <span className="hidden lg:inline">{d.navProgram}</span>
+                <span className="lg:hidden">{d.navProgramShort}</span>
+              </Link>
+            )}
             <Link
               href={locale === "pl" ? "/misja" : "/mission"}
               className="text-[11px] font-medium tracking-widest uppercase text-[#8A99A8] hover:text-[#1E2A36] transition-colors duration-200 whitespace-nowrap"

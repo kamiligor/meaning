@@ -12,10 +12,9 @@ const SWIPE_THRESHOLD = 40;
 
 export function CarouselViewer({ slides, alt, priority }: CarouselViewerProps) {
   const [current, setCurrent] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const pointerStart = useRef<{ x: number; y: number; id: number } | null>(null);
-  const dragging = useRef(false);
+  const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState(0);
+  const pointerStart = useRef<{ x: number; y: number; id: number } | null>(null);
 
   const total = slides.length;
 
@@ -32,20 +31,20 @@ export function CarouselViewer({ slides, alt, priority }: CarouselViewerProps) {
   function handlePointerDown(e: React.PointerEvent) {
     if (e.pointerType === "mouse" && e.button !== 0) return;
     pointerStart.current = { x: e.clientX, y: e.clientY, id: e.pointerId };
-    dragging.current = true;
+    setIsDragging(true);
     setDragOffset(0);
     (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
   }
 
   function handlePointerMove(e: React.PointerEvent) {
-    if (!dragging.current || !pointerStart.current) return;
+    if (!pointerStart.current) return;
     if (e.pointerId !== pointerStart.current.id) return;
     const dx = e.clientX - pointerStart.current.x;
     setDragOffset(dx);
   }
 
   function handlePointerUp(e: React.PointerEvent) {
-    if (!dragging.current || !pointerStart.current) return;
+    if (!pointerStart.current) return;
     if (e.pointerId !== pointerStart.current.id) return;
     const dx = e.clientX - pointerStart.current.x;
     if (dx < -SWIPE_THRESHOLD) {
@@ -53,8 +52,8 @@ export function CarouselViewer({ slides, alt, priority }: CarouselViewerProps) {
     } else if (dx > SWIPE_THRESHOLD) {
       prev();
     }
-    dragging.current = false;
     pointerStart.current = null;
+    setIsDragging(false);
     setDragOffset(0);
   }
 
@@ -68,11 +67,8 @@ export function CarouselViewer({ slides, alt, priority }: CarouselViewerProps) {
     }
   }
 
-  const translateX = -(current * 100) + (dragOffset / (containerRef.current?.offsetWidth || 1)) * 100;
-
   return (
     <div
-      ref={containerRef}
       className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-[#F1F4F6] select-none"
       tabIndex={0}
       onKeyDown={handleKeyDown}
@@ -86,8 +82,8 @@ export function CarouselViewer({ slides, alt, priority }: CarouselViewerProps) {
       <div
         className="absolute inset-0 flex h-full"
         style={{
-          transform: `translateX(${translateX}%)`,
-          transition: dragging.current ? "none" : "transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+          transform: `translateX(${-current * 100}%) translateX(${dragOffset}px)`,
+          transition: isDragging ? "none" : "transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
           willChange: "transform",
         }}
       >

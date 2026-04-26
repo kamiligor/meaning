@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { requireProgramUser } from "@/lib/program-auth";
+import { isProgramAdmin } from "@/lib/admin-email";
 import type { GenderForm } from "@/lib/personalize";
 
 const VALID_GENDER_FORMS: GenderForm[] = ["feminine", "masculine", "neutral"];
@@ -7,6 +8,10 @@ const VALID_GENDER_FORMS: GenderForm[] = ["feminine", "masculine", "neutral"];
 export async function GET() {
   try {
     const { user, supabase } = await requireProgramUser();
+
+    if (!isProgramAdmin(user.email)) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
 
     const { data, error } = await supabase
       .from("user_profiles")
@@ -36,6 +41,11 @@ export async function GET() {
 export async function PUT(request: Request) {
   try {
     const { user, supabase } = await requireProgramUser();
+
+    if (!isProgramAdmin(user.email)) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+
     const body = await request.json();
 
     const updates: Record<string, unknown> = {

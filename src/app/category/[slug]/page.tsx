@@ -8,11 +8,74 @@ import { cookies } from "next/headers";
 import { getLocaleFromCookies } from "@/lib/locale-cookie";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { getCategoryByLocalizedSlug } from "@/lib/categories";
+import type { Metadata } from "next";
 
 const LIMIT = 10;
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://justmeaning.com";
+
 interface PageProps {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const cat = getCategoryByLocalizedSlug(slug);
+  if (!cat) return { title: "Not Found" };
+
+  const cookieStore = await cookies();
+  const locale: Locale = getLocaleFromCookies(cookieStore);
+  const label = locale === "pl" ? cat.pl.label : cat.en.label;
+
+  const title =
+    locale === "pl"
+      ? `${label} — Just have a little meaning`
+      : `${label} — Just have a little meaning`;
+  const description =
+    locale === "pl"
+      ? `Posty o ${label.toLowerCase()}. Krótkie, oparte na badaniach insighty z psychologii.`
+      : `Posts about ${label.toLowerCase()}. Short, research-backed insights from psychology.`;
+
+  const firstPost = getPublishedPosts(locale).find(
+    (p) => p.category === cat.key
+  );
+  const ogImage = firstPost
+    ? `/api/slides/${firstPost.translationGroup || firstPost.slug}/${firstPost.locale}/slide-1.png`
+    : undefined;
+
+  const path =
+    locale === "pl"
+      ? `/kategoria/${cat.pl.slug}`
+      : `/category/${cat.en.slug}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${SITE_URL}${path}`,
+      languages: {
+        en: `${SITE_URL}/category/${cat.en.slug}`,
+        pl: `${SITE_URL}/kategoria/${cat.pl.slug}`,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${SITE_URL}${path}`,
+      type: "website",
+      locale: locale === "pl" ? "pl_PL" : "en_US",
+      ...(ogImage && { images: [{ url: ogImage, width: 1080, height: 1350 }] }),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      ...(ogImage && { images: [ogImage] }),
+    },
+  };
 }
 
 export default async function CategoryPage({ params }: PageProps) {
@@ -24,9 +87,14 @@ export default async function CategoryPage({ params }: PageProps) {
   const locale: Locale = getLocaleFromCookies(cookieStore);
   const d = t(locale);
 
-  const supabase = await createServerSupabaseClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  const isLoggedIn = !!user;
+  let isLoggedIn = false;
+  try {
+    const supabase = await createServerSupabaseClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    isLoggedIn = !!user;
+  } catch {
+    // Supabase unreachable — continue as logged out
+  }
 
   const allPosts = getPublishedPosts(locale).filter(
     (p) => p.category === cat.key

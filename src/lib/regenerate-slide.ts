@@ -10,7 +10,6 @@ import { SlideCTATemplate } from "@/templates/slide-cta";
 import { WEB_TITLE_SLIDE, WEB_QUOTE_SLIDE } from "./content-sections";
 import { saveFile } from "./storage";
 import { getPostByGroupAndLocale, type PostData } from "./posts";
-import type { Post } from "@/db/schema";
 import type { ColorPalette } from "@/lib/palettes";
 
 /**
@@ -35,9 +34,8 @@ export async function regenerateSlide(filename: string): Promise<Buffer | null> 
   if (!post) return null;
 
   const palette = getPalette(post.colorPalette || "sage");
-  const p = post as unknown as Post;
 
-  const jsx = getTemplateForSlide(p, palette, parsed.slideNumber, post);
+  const jsx = getTemplateForSlide(post, palette, parsed.slideNumber);
   if (!jsx) return null;
 
   const fonts = await loadFonts();
@@ -51,10 +49,9 @@ export async function regenerateSlide(filename: string): Promise<Buffer | null> 
 }
 
 function getTemplateForSlide(
-  post: Post,
+  post: PostData,
   palette: ColorPalette,
   slideNumber: number,
-  postData: PostData,
 ) {
   if (slideNumber === WEB_TITLE_SLIDE) {
     return SlideTitleTemplate(post, palette, { arrowDown: true });
@@ -66,7 +63,7 @@ function getTemplateForSlide(
     return SlideTitleTemplate(post, palette);
   }
 
-  const sections = postData.contentSections;
+  const sections = post.contentSections;
   const quoteNum = sections.length + 2;
   const ctaNum = sections.length + 3;
 

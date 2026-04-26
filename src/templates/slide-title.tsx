@@ -1,11 +1,11 @@
-import type { Post } from "@/db/schema";
+import type { PostData } from "@/lib/posts";
 import type { ColorPalette } from "@/lib/palettes";
 import { SLIDE_WIDTH, SLIDE_HEIGHT } from "@/lib/constants";
 import { Watermark } from "./components/watermark";
 import { iconMap } from "./components/svg-icons";
 import { AccentText } from "./components/text-utils";
 
-export function SlideTitleTemplate(post: Post, palette: ColorPalette, options?: { arrowDown?: boolean }) {
+export function SlideTitleTemplate(post: PostData, palette: ColorPalette, options?: { arrowDown?: boolean }) {
   const IconComponent = post.iconType && post.iconType !== "none"
     ? iconMap[post.iconType]
     : null;
@@ -59,8 +59,8 @@ export function SlideTitleTemplate(post: Post, palette: ColorPalette, options?: 
           top: 70,
           display: "flex",
           color: palette.primary,
-          fontSize: 18,
-          letterSpacing: 5,
+          fontSize: 22,
+          letterSpacing: 4,
           textTransform: "uppercase" as const,
           fontWeight: 600,
           background: palette.primaryPale,
@@ -83,10 +83,10 @@ export function SlideTitleTemplate(post: Post, palette: ColorPalette, options?: 
         style={{
           fontFamily: "Fraunces",
           fontWeight: 800,
-          fontSize: 82,
+          fontSize: 88,
           lineHeight: 1.12,
           color: palette.textDark,
-          maxWidth: 800,
+          maxWidth: 860,
           padding: "0 60px",
           display: "flex",
           textAlign: "center" as const,
@@ -104,7 +104,7 @@ export function SlideTitleTemplate(post: Post, palette: ColorPalette, options?: 
         style={{
           marginTop: 50,
           color: palette.textLight,
-          fontSize: 20,
+          fontSize: 24,
           letterSpacing: 3,
           textTransform: "uppercase" as const,
           fontWeight: 500,

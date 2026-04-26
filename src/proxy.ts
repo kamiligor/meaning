@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { jwtVerify } from "jose";
 import { createServerClient } from "@supabase/ssr";
+import { isProgramAdmin } from "@/lib/admin-email";
 
 const COOKIE_NAME = "jh-admin-token";
 
@@ -56,9 +57,9 @@ function isProgramPublicPath(pathname: string): boolean {
   return PUBLIC_PROGRAM_PATHS.includes(pathname);
 }
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  let response = NextResponse.next({ request });
+  const response = NextResponse.next({ request });
 
   // --- Locale: forward cookie as header for server components ---
   const locale = request.cookies.get("jh-locale")?.value ?? "en";
@@ -76,6 +77,30 @@ export async function middleware(request: NextRequest) {
     "Permissions-Policy",
     "camera=(), microphone=(), geolocation=()"
   );
+
+  // Content-Security-Policy
+  // 'unsafe-inline' for scripts: required by Next.js hydration scripts and JSON-LD
+  // (no nonce setup here yet — adding nonces requires per-page wiring).
+  // 'unsafe-inline' for styles: required by Tailwind/next-font inline styles.
+  // connect-src includes Supabase (auth + DB) and same-origin (API routes).
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
+  const supabaseHost = supabaseUrl
+    ? new URL(supabaseUrl).origin
+    : "";
+  const csp = [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline'",
+    "style-src 'self' 'unsafe-inline'",
+    "img-src 'self' data: blob:",
+    "font-src 'self' data:",
+    `connect-src 'self'${supabaseHost ? ` ${supabaseHost} wss://${new URL(supabaseUrl).host}` : ""}`,
+    "frame-ancestors 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "object-src 'none'",
+    "upgrade-insecure-requests",
+  ].join("; ");
+  response.headers.set("Content-Security-Policy", csp);
 
   // --- Admin auth (JWT) ---
   if (pathname.startsWith("/admin") && !pathname.startsWith("/admin/login")) {
@@ -113,10 +138,14 @@ export async function middleware(request: NextRequest) {
     pathname === "/ulubione" ||
     isAuthRoute
   ) {
-    const supabase = createSupabaseMiddlewareClient(request, response);
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+    let user = null;
+    try {
+      const supabase = createSupabaseMiddlewareClient(request, response);
+      const { data } = await supabase.auth.getUser();
+      user = data.user;
+    } catch {
+      // Supabase unreachable — treat as not logged in
+    }
 
     // Redirect logged-in users away from auth pages
     if (isAuthRoute && user) {
@@ -132,16 +161,22 @@ export async function middleware(request: NextRequest) {
       !isProgramPublicPath(pathname);
 
     if (needsProfileCheck || (pathname === "/program" && user)) {
-      const { data: profile } = await supabase
-        .from("user_profiles")
-        .select("has_paid")
-        .eq("user_id", user!.id)
-        .single();
-      hasPaid = profile?.has_paid ?? false;
+      try {
+        const supabase = createSupabaseMiddlewareClient(request, response);
+        const { data: profile } = await supabase
+          .from("user_profiles")
+          .select("has_paid")
+          .eq("user_id", user!.id)
+          .single();
+        hasPaid = profile?.has_paid ?? false;
+      } catch {
+        hasPaid = false;
+      }
     }
 
     // Redirect paid users from /program landing to dashboard
-    if (pathname === "/program" && user && hasPaid) {
+    // TEMPORARY: program is admin-only until public launch — see ADMIN_EMAIL env
+    if (pathname === "/program" && user && isProgramAdmin(user.email) && hasPaid) {
       return NextResponse.redirect(new URL("/program/dashboard", request.url));
     }
 
@@ -157,21 +192,26 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(loginUrl);
       }
 
-      // Program content requires paid access (not /profil or /ulubione)
+      // Program content requires admin email (TEMPORARY: admin-only until public launch)
       if (pathname.startsWith("/program") && !isProgramPublicPath(pathname)) {
+        if (!isProgramAdmin(user.email)) {
+          return NextResponse.redirect(new URL("/", request.url));
+        }
+        // After admin gate: also require paid access
         if (!hasPaid) {
           return NextResponse.redirect(new URL("/program", request.url));
         }
       }
     }
 
-    // Protect program API mutations
-    if (
-      pathname.startsWith("/api/program/") &&
-      request.method !== "GET"
-    ) {
+    // Protect program API (all methods — GET requests not covered by admin-API mutation block)
+    if (pathname.startsWith("/api/program/")) {
       if (!user) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
+      // TEMPORARY: program is admin-only until public launch — see ADMIN_EMAIL env
+      if (!isProgramAdmin(user.email)) {
+        return NextResponse.json({ error: "Forbidden" }, { status: 403 });
       }
     }
   }
@@ -189,6 +229,7 @@ export const config = {
     "/register",
     "/lost-password",
     "/profil",
+    "/favorites",
     "/ulubione",
     "/mission",
     "/misja",

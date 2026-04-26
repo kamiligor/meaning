@@ -1,4 +1,5 @@
 import { requireProgramUser } from "@/lib/program-auth";
+import { isProgramAdmin } from "@/lib/admin-email";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LogoutButton } from "./logout-button";
 import { SiteHeader } from "@/components/site-header";
@@ -16,11 +17,11 @@ export default async function ProfilPage() {
 
   const { data: profile } = await supabase
     .from("user_profiles")
-    .select("gender_form, created_at, has_paid")
+    .select("gender_form, created_at")
     .eq("user_id", user.id)
     .single();
 
-  const hasPaid = profile?.has_paid === true;
+  const isAdmin = isProgramAdmin(user.email);
 
   const email = user.email ?? "";
   const createdAt = profile?.created_at
@@ -52,7 +53,7 @@ export default async function ProfilPage() {
           </CardContent>
         </Card>
 
-        {hasPaid && (
+        {isAdmin && (
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="text-base">The Life Writing Program</CardTitle>

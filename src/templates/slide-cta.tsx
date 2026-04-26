@@ -1,10 +1,10 @@
-import type { Post } from "@/db/schema";
+import type { PostData } from "@/lib/posts";
 import type { ColorPalette } from "@/lib/palettes";
 import { SLIDE_WIDTH, SLIDE_HEIGHT } from "@/lib/constants";
 import { LogoMark } from "./components/logo-mark";
 import { AccentText } from "./components/text-utils";
 
-export function SlideCTATemplate(post: Post, palette: ColorPalette) {
+export function SlideCTATemplate(post: PostData, palette: ColorPalette) {
   const hashtags: string[] = (() => {
     try {
       return JSON.parse(post.hashtags);
@@ -56,7 +56,7 @@ export function SlideCTATemplate(post: Post, palette: ColorPalette) {
       {/* Handle name */}
       <div
         style={{
-          fontSize: 24,
+          fontSize: 32,
           fontWeight: 600,
           color: palette.textDark,
           letterSpacing: 0.5,
@@ -70,7 +70,7 @@ export function SlideCTATemplate(post: Post, palette: ColorPalette) {
       {/* Handle bio */}
       <div
         style={{
-          fontSize: 18,
+          fontSize: 24,
           color: palette.textLight,
           letterSpacing: 1,
           marginBottom: 50,
@@ -83,11 +83,11 @@ export function SlideCTATemplate(post: Post, palette: ColorPalette) {
       <div
         style={{
           fontFamily: "Fraunces",
-          fontSize: 58,
+          fontSize: 78,
           fontWeight: 800,
           color: palette.textDark,
-          lineHeight: 1.25,
-          maxWidth: 680,
+          lineHeight: 1.2,
+          maxWidth: 820,
           marginBottom: 55,
           textAlign: "center" as const,
           display: "flex",
@@ -106,10 +106,10 @@ export function SlideCTATemplate(post: Post, palette: ColorPalette) {
           display: "flex",
           alignItems: "center",
           gap: 12,
-          padding: "22px 56px",
+          padding: "26px 65px",
           background: palette.primary,
           color: "#fff",
-          fontSize: 18,
+          fontSize: 24,
           letterSpacing: 4,
           textTransform: "uppercase" as const,
           fontWeight: 600,
@@ -136,10 +136,10 @@ export function SlideCTATemplate(post: Post, palette: ColorPalette) {
             key={i}
             style={{
               color: palette.textLight,
-              fontSize: 15,
+              fontSize: 20,
               letterSpacing: 1,
               background: palette.bgCool,
-              padding: "10px 22px",
+              padding: "12px 24px",
               borderRadius: 22,
               fontWeight: 500,
             }}

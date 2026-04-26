@@ -22,6 +22,14 @@ function parseMarkedText(text: string): { word: string; isAccent: boolean }[] {
       }
     }
   }
+  // Merge standalone punctuation (e.g. "." after "{going}") into previous word
+  for (let i = result.length - 1; i > 0; i--) {
+    if (/^[.,!?;:]+$/.test(result[i].word)) {
+      result[i - 1].word += result[i].word;
+      result.splice(i, 1);
+    }
+  }
+
   return result;
 }
 

@@ -1,11 +1,16 @@
 import { NextResponse } from "next/server";
 import { requireProgramUser } from "@/lib/program-auth";
+import { isProgramAdmin } from "@/lib/admin-email";
 import { decrypt } from "@/lib/encryption";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 
 export async function GET() {
   try {
     const { user, supabase } = await requireProgramUser();
+
+    if (!isProgramAdmin(user.email)) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
 
     const { allowed, retryAfterMs } = checkRateLimit(
       `data-export:${user.id}`,

@@ -1,15 +1,22 @@
 import { redirect } from "next/navigation";
 import { getPublishedPosts, getPostSlides } from "@/lib/posts";
 import { InfiniteFeed } from "@/components/feed/infinite-feed";
-import { t, type Locale } from "@/lib/i18n";
+import { type Locale } from "@/lib/i18n";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { cookies } from "next/headers";
 import { getLocaleFromCookies } from "@/lib/locale-cookie";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { FAVORITES_KEY } from "@/lib/categories";
+import type { Metadata } from "next";
 
 const LIMIT = 10;
+
+export const metadata: Metadata = {
+  title: "Ulubione",
+  description: "Twoje zapisane posty na Just have a little meaning.",
+  robots: { index: false, follow: false },
+};
 
 export default async function FavoritesPage() {
   const supabase = await createServerSupabaseClient();
@@ -19,7 +26,6 @@ export default async function FavoritesPage() {
 
   const cookieStore = await cookies();
   const locale: Locale = getLocaleFromCookies(cookieStore);
-  const d = t(locale);
 
   const allPosts = getPublishedPosts(locale);
   const hasMore = allPosts.length > LIMIT;

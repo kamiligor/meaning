@@ -1,11 +1,11 @@
-import type { Post } from "@/db/schema";
+import type { PostData } from "@/lib/posts";
 import type { ColorPalette } from "@/lib/palettes";
 import { SLIDE_WIDTH, SLIDE_HEIGHT } from "@/lib/constants";
 import { Watermark } from "./components/watermark";
 import { iconMap, SunIcon } from "./components/svg-icons";
 import { AccentText } from "./components/text-utils";
 
-export function SlideQuoteTemplate(post: Post, palette: ColorPalette, options?: { hideIcon?: boolean }) {
+export function SlideQuoteTemplate(post: PostData, palette: ColorPalette, options?: { hideIcon?: boolean }) {
   const QuoteIcon = post.quoteIconType && iconMap[post.quoteIconType]
     ? iconMap[post.quoteIconType]
     : SunIcon;
@@ -28,8 +28,8 @@ export function SlideQuoteTemplate(post: Post, palette: ColorPalette, options?: 
       {/* Concentric circles */}
       <div
         style={{
-          width: 480,
-          height: 480,
+          width: 380,
+          height: 380,
           borderRadius: "50%",
           border: "1px solid rgba(123,158,140,0.15)",
           display: "flex",
@@ -81,8 +81,8 @@ export function SlideQuoteTemplate(post: Post, palette: ColorPalette, options?: 
         {/* Middle circle */}
         <div
           style={{
-            width: 380,
-            height: 380,
+            width: 290,
+            height: 290,
             borderRadius: "50%",
             border: "1px solid rgba(123,158,140,0.12)",
             display: "flex",
@@ -93,8 +93,8 @@ export function SlideQuoteTemplate(post: Post, palette: ColorPalette, options?: 
           {/* Inner circle with gradient (Satori doesn't support radial-gradient, using linear) */}
           <div
             style={{
-              width: 280,
-              height: 280,
+              width: 200,
+              height: 200,
               borderRadius: "50%",
               background: `linear-gradient(135deg, ${palette.primaryPale} 0%, rgba(181,206,222,0.3) 100%)`,
               display: "flex",
@@ -102,7 +102,7 @@ export function SlideQuoteTemplate(post: Post, palette: ColorPalette, options?: 
               justifyContent: "center",
             }}
           >
-            {!options?.hideIcon && <QuoteIcon color={palette.primary} size={80} />}
+            {!options?.hideIcon && <QuoteIcon color={palette.primary} size={65} />}
           </div>
         </div>
       </div>
@@ -111,20 +111,20 @@ export function SlideQuoteTemplate(post: Post, palette: ColorPalette, options?: 
       <div
         style={{
           fontFamily: "Fraunces",
-          fontSize: 50,
+          fontSize: 72,
           fontWeight: 700,
           color: palette.textDark,
-          lineHeight: 1.4,
-          maxWidth: 780,
-          padding: "0 80px",
-          marginTop: 65,
+          lineHeight: 1.3,
+          maxWidth: 920,
+          padding: "0 70px",
+          marginTop: 55,
           textAlign: "center" as const,
           display: "flex",
           justifyContent: "center",
         }}
       >
         <AccentText
-          text={post.quote}
+          text={post.quote ?? ""}
           accentStyle={{ color: palette.primary }}
         />
       </div>
@@ -146,7 +146,7 @@ export function SlideQuoteTemplate(post: Post, palette: ColorPalette, options?: 
           style={{
             marginTop: 22,
             color: palette.textLight,
-            fontSize: 17,
+            fontSize: 24,
             letterSpacing: 4,
             textTransform: "uppercase" as const,
             fontWeight: 500,
