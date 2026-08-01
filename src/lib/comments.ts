@@ -2,7 +2,28 @@ import type { Locale } from "./i18n";
 
 export const COMMENT_MAX_LENGTH = 2000;
 
-export type CommentStatus = "pending" | "approved" | "rejected";
+export type CommentStatus = "visible" | "hidden";
+
+/**
+ * Why a reader flagged a comment. `self_harm` is separated out on purpose:
+ * it usually calls for a reply and a helpline rather than a moderation action.
+ */
+export const REPORT_REASONS = [
+  "spam",
+  "harassment",
+  "self_harm",
+  "misinformation",
+  "other",
+] as const;
+
+export type ReportReason = (typeof REPORT_REASONS)[number];
+
+export function isReportReason(value: unknown): value is ReportReason {
+  return (
+    typeof value === "string" &&
+    (REPORT_REASONS as readonly string[]).includes(value)
+  );
+}
 
 export interface CommentRow {
   id: number;
@@ -25,8 +46,6 @@ export interface PublicComment {
   createdAt: string;
   editedAt: string | null;
   deleted: boolean;
-  /** Own comments are visible to their author while awaiting moderation. */
-  pending: boolean;
   isOwn: boolean;
   replies: PublicComment[];
 }
@@ -56,7 +75,6 @@ function toPublic(
     createdAt: row.created_at,
     editedAt: row.edited_at,
     deleted,
-    pending: row.status === "pending",
     isOwn: viewerId !== null && row.user_id === viewerId,
     replies: [],
   };

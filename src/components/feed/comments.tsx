@@ -2,7 +2,20 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { t, type Locale } from "@/lib/i18n";
-import { COMMENT_MAX_LENGTH, type PublicComment } from "@/lib/comments";
+import {
+  COMMENT_MAX_LENGTH,
+  REPORT_REASONS,
+  type PublicComment,
+  type ReportReason,
+} from "@/lib/comments";
+
+const REASON_KEYS: Record<ReportReason, keyof ReturnType<typeof t>> = {
+  spam: "reportSpam",
+  harassment: "reportHarassment",
+  self_harm: "reportSelfHarm",
+  misinformation: "reportMisinformation",
+  other: "reportOther",
+};
 
 interface CommentsProps {
   slug: string;
@@ -94,7 +107,12 @@ export function Comments({
         <ul className="flex flex-col gap-6">
           {comments.map((c) => (
             <li key={c.id}>
-              <CommentBody comment={c} locale={locale} onDelete={remove} />
+              <CommentBody
+                comment={c}
+                locale={locale}
+                onDelete={remove}
+                canReport={isLoggedIn}
+              />
 
               {canWrite && !c.deleted && (
                 <div className="mt-2 ml-1">
@@ -128,6 +146,7 @@ export function Comments({
                         comment={r}
                         locale={locale}
                         onDelete={remove}
+                        canReport={isLoggedIn}
                       />
                     </li>
                   ))}
@@ -145,10 +164,12 @@ function CommentBody({
   comment,
   locale,
   onDelete,
+  canReport,
 }: {
   comment: PublicComment;
   locale: Locale;
   onDelete: (id: number) => void;
+  canReport: boolean;
 }) {
   const d = t(locale);
 
@@ -179,9 +200,85 @@ function CommentBody({
         {comment.body}
       </p>
 
-      {comment.pending && (
-        <p className="mt-1 text-xs text-[#c9a227]">{d.commentsPendingNote}</p>
+      {canReport && !comment.isOwn && (
+        <ReportControl id={comment.id} locale={locale} />
       )}
+    </div>
+  );
+}
+
+/** Report button that expands into a reason picker on demand. */
+function ReportControl({ id, locale }: { id: number; locale: Locale }) {
+  const d = t(locale);
+  const [open, setOpen] = useState(false);
+  const [note, setNote] = useState("");
+  const [done, setDone] = useState(false);
+  const [sending, setSending] = useState(false);
+
+  if (done) {
+    return <p className="mt-1 text-xs text-[#7B9E8C]">{d.commentsReported}</p>;
+  }
+
+  if (!open) {
+    return (
+      <button
+        onClick={() => setOpen(true)}
+        className="mt-1 text-xs text-[#b3bec8] hover:text-[#8A99A8] transition-colors"
+      >
+        {d.commentsReport}
+      </button>
+    );
+  }
+
+  async function send(reason: ReportReason) {
+    if (sending) return;
+    setSending(true);
+    try {
+      await fetch(`/api/comments/${id}/report`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ reason, note }),
+      });
+      setDone(true);
+    } finally {
+      setSending(false);
+    }
+  }
+
+  return (
+    <div className="mt-2 rounded-lg border border-[#e2e7eb] p-3">
+      <p className="text-xs font-medium text-[#1E2A36] mb-2">
+        {d.commentsReportTitle}
+      </p>
+
+      <div className="flex flex-col items-start gap-1 mb-2">
+        {REPORT_REASONS.map((reason) => (
+          <button
+            key={reason}
+            onClick={() => send(reason)}
+            disabled={sending}
+            className="text-xs text-[#6C7C8B] hover:text-[#7B9E8C] disabled:opacity-40 transition-colors"
+          >
+            {d[REASON_KEYS[reason]]}
+          </button>
+        ))}
+      </div>
+
+      <textarea
+        value={note}
+        onChange={(e) => setNote(e.target.value)}
+        maxLength={500}
+        rows={2}
+        placeholder={d.commentsReportNote}
+        className="w-full rounded border border-[#e2e7eb] px-2 py-1 text-xs text-[#1E2A36] placeholder:text-[#b3bec8] focus:outline-none focus:border-[#7B9E8C] resize-y"
+      />
+
+      <button
+        onClick={() => setOpen(false)}
+        className="mt-2 text-xs text-[#8A99A8] hover:text-[#1E2A36] transition-colors"
+      >
+        {d.commentsCancel}
+      </button>
     </div>
   );
 }
@@ -220,6 +317,10 @@ function CommentForm({
 
       if (res.status === 429) {
         setError(d.commentsTooMany);
+        return;
+      }
+      if (res.status === 403) {
+        setError(d.commentsBanned);
         return;
       }
       if (!res.ok) {

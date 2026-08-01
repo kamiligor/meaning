@@ -45,12 +45,11 @@ export async function GET(
       data: { user },
     } = await supabase.auth.getUser();
 
-    // RLS returns approved comments plus the viewer's own pending ones.
+    // RLS already filters out hidden comments.
     const { data, error } = await supabase
       .from("post_comments")
       .select("*")
       .eq("post_slug", slug)
-      .neq("status", "rejected")
       .order("created_at", { ascending: true });
 
     if (error) {
@@ -90,6 +89,18 @@ export async function POST(
 
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    // RLS blocks banned users anyway; checking here turns a generic failure
+    // into a message the person can understand.
+    const { data: ban } = await supabase
+      .from("comment_bans")
+      .select("user_id")
+      .eq("user_id", user.id)
+      .maybeSingle();
+
+    if (ban) {
+      return NextResponse.json({ error: "Banned" }, { status: 403 });
     }
 
     const { allowed, retryAfterMs } = checkRateLimit(`comments:${user.id}`, {
@@ -142,8 +153,7 @@ export async function POST(
       return NextResponse.json({ error: "Database error" }, { status: 500 });
     }
 
-    // Held for moderation, so the UI can say so instead of implying it is live.
-    return NextResponse.json({ id: data.id, pending: true }, { status: 201 });
+    return NextResponse.json({ id: data.id }, { status: 201 });
   } catch (err) {
     console.error("[comments POST] Unexpected error:", err);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
