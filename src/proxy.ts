@@ -23,6 +23,11 @@ const PROGRAM_ONLY_PREFIXES = ["/program"];
 const FAVORITES_PATHS = ["/favorites", "/ulubione"];
 
 function isProgramOnlyPath(pathname: string): boolean {
+  // The auth callback must finish on the domain the login started from.
+  // Supabase sets the PKCE verifier as a cookie on that origin, and cookies
+  // do not cross domains, so bouncing the callback elsewhere loses the code.
+  if (pathname.startsWith("/program/auth/")) return false;
+
   return PROGRAM_ONLY_PREFIXES.some(
     (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)
   );

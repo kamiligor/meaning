@@ -2,16 +2,18 @@ import { NextRequest, NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
+import { publicOrigin } from "@/lib/domains";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
+  const origin = publicOrigin(request.headers, request.nextUrl.origin);
   const code = searchParams.get("code");
   const rawNext = searchParams.get("next") ?? "/";
   // Prevent open redirect: only allow relative paths starting with /
   const next = rawNext.startsWith("/") && !rawNext.startsWith("//") ? rawNext : "/";
 
   if (!code) {
-    return NextResponse.redirect(new URL("/program", request.url));
+    return NextResponse.redirect(new URL("/program", origin));
   }
 
   const cookieStore = await cookies();
@@ -35,7 +37,7 @@ export async function GET(request: NextRequest) {
   const { error } = await supabase.auth.exchangeCodeForSession(code);
 
   if (error) {
-    return NextResponse.redirect(new URL("/program?error=auth", request.url));
+    return NextResponse.redirect(new URL("/program?error=auth", origin));
   }
 
   // Create default user profile if not exists
@@ -87,5 +89,5 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  return NextResponse.redirect(new URL(next, request.url));
+  return NextResponse.redirect(new URL(next, origin));
 }

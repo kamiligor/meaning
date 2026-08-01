@@ -60,6 +60,28 @@ export function urlForLocale(
 }
 
 /**
+ * Public origin of the current request.
+ *
+ * In a standalone build behind a proxy, `request.url` is assembled from the
+ * address the server binds to (HOSTNAME=0.0.0.0, PORT=3000), so redirects
+ * built from it point at the container instead of the site. The forwarded
+ * headers carry the address the browser actually used.
+ */
+export function publicOrigin(
+  headers: { get(name: string): string | null },
+  fallback: string
+): string {
+  const host =
+    headers.get("x-forwarded-host") ?? headers.get("host");
+  if (!host) return fallback;
+
+  const proto =
+    headers.get("x-forwarded-proto")?.split(",")[0].trim() ?? "https";
+
+  return `${proto}://${host}`;
+}
+
+/**
  * Route names that differ between languages. Used by the language switcher
  * so /favorites on the English site maps to /ulubione on the Polish one.
  */
