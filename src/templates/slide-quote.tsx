@@ -156,7 +156,7 @@ export function SlideQuoteTemplate(post: PostData, palette: ColorPalette, option
         </div>
       )}
 
-      <Watermark variant="ghost" palette={palette} />
+      <Watermark variant="ghost" palette={palette} locale={post.locale} />
     </div>
   );
 }

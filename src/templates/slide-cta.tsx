@@ -50,7 +50,7 @@ export function SlideCTATemplate(post: PostData, palette: ColorPalette) {
 
       {/* Logo */}
       <div style={{ display: "flex" }}>
-        <LogoMark size="lg" variant={logoVariant} palette={palette} />
+        <LogoMark size="lg" variant={logoVariant} palette={palette} locale={post.locale} />
       </div>
 
       {/* Handle name */}

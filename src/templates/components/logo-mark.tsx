@@ -1,4 +1,6 @@
 import type { ColorPalette } from "@/lib/palettes";
+import { isLocale, type Locale } from "@/lib/i18n";
+import { logoAlt } from "@/lib/brand";
 import fs from "fs";
 import path from "path";
 
@@ -9,13 +11,19 @@ interface LogoMarkProps {
   size: LogoSize;
   variant: LogoVariant;
   palette: ColorPalette;
+  /** Post language — each has its own wordmark. */
+  locale?: string;
 }
 
-// Read base SVG once at module load (build-time only, used by Satori)
-const baseSvg = fs.readFileSync(
-  path.join(process.cwd(), "public", "logo.svg"),
-  "utf-8",
-);
+// Read base SVGs once at module load (build-time only, used by Satori)
+function readLogo(file: string): string {
+  return fs.readFileSync(path.join(process.cwd(), "public", file), "utf-8");
+}
+
+const baseSvgByLocale: Record<Locale, string> = {
+  en: readLogo("logo.svg"),
+  pl: readLogo("logo-pl.svg"),
+};
 
 const sizes = {
   sm: { height: 48, padding: 16, bracketWidth: 10 },
@@ -34,8 +42,12 @@ function recolor(
     .replace(/fill="#7B9E8C"/g, `fill="${meaningColor}"`);
 }
 
-function getLogoSrc(variant: LogoVariant, palette: ColorPalette): string {
-  let svg = baseSvg;
+function getLogoSrc(
+  variant: LogoVariant,
+  palette: ColorPalette,
+  locale: Locale,
+): string {
+  let svg = baseSvgByLocale[locale];
 
   switch (variant) {
     case "light":
@@ -66,10 +78,11 @@ function getStyle(variant: LogoVariant, palette: ColorPalette) {
   }
 }
 
-export function LogoMark({ size, variant, palette }: LogoMarkProps) {
+export function LogoMark({ size, variant, palette, locale }: LogoMarkProps) {
   const s = sizes[size];
   const v = getStyle(variant, palette);
-  const src = getLogoSrc(variant, palette);
+  const lang: Locale = isLocale(locale ?? "") ? (locale as Locale) : "en";
+  const src = getLogoSrc(variant, palette, lang);
 
   return (
     <div
@@ -115,7 +128,7 @@ export function LogoMark({ size, variant, palette }: LogoMarkProps) {
       {/* Logo from SVG — single source of truth */}
       <img
         src={src}
-        alt="Just have a little meaning"
+        alt={logoAlt(lang)}
         style={{ height: s.height, opacity: v.opacity }}
       />
     </div>

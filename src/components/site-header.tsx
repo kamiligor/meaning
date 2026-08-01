@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { t, type Locale } from "@/lib/i18n";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { logoSvgPath, logoAlt } from "@/lib/brand";
 import { isProgramAdmin } from "@/lib/admin-email";
 import type { ReactNode } from "react";
 
@@ -73,12 +74,12 @@ export async function SiteHeader({
           <a
             href="/"
             className="shrink-0 block h-12 md:h-14"
-            aria-label="just have a little meaning — home"
+            aria-label={`${logoAlt(locale)} — home`}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/logo.svg"
-              alt="just have a little meaning"
+              src={logoSvgPath(locale)}
+              alt={logoAlt(locale)}
               className="h-full w-auto"
             />
           </a>

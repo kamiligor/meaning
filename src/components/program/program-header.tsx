@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getProgramUser } from "@/lib/program-auth";
 import { getLocale } from "@/lib/locale";
 import { t } from "@/lib/i18n";
+import { logoSvgPath, logoAlt } from "@/lib/brand";
 
 export async function ProgramHeader() {
   let isLoggedIn = false;
@@ -22,12 +23,12 @@ export async function ProgramHeader() {
           <a
             href="/"
             className="shrink-0 block h-12 md:h-14"
-            aria-label="just have a little meaning — home"
+            aria-label={`${logoAlt(locale)} — home`}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/logo.svg"
-              alt="just have a little meaning"
+              src={logoSvgPath(locale)}
+              alt={logoAlt(locale)}
               className="h-full w-auto"
             />
           </a>

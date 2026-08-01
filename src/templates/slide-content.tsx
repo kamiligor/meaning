@@ -139,7 +139,7 @@ export function SlideContentTemplate(post: PostData, palette: ColorPalette, sect
         />
       </div>
 
-      <Watermark variant="ghost-dark" palette={palette} />
+      <Watermark variant="ghost-dark" palette={palette} locale={post.locale} />
     </div>
   );
 }

@@ -6,6 +6,8 @@ import { createClient } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
 import { Shield, Lock, Heart, SkipForward } from "lucide-react";
 import type { GenderForm } from "@/lib/personalize";
+import { logoSvgPath, logoAlt } from "@/lib/brand";
+import { PROGRAM_LOCALE } from "@/lib/domains";
 
 function OnboardingHeader() {
   return (
@@ -14,12 +16,12 @@ function OnboardingHeader() {
         <Link
           href="/"
           className="shrink-0 block h-12 md:h-14"
-          aria-label="just have a little meaning — home"
+          aria-label={`${logoAlt(PROGRAM_LOCALE)} — home`}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/logo.svg"
-            alt="just have a little meaning"
+            src={logoSvgPath(PROGRAM_LOCALE)}
+            alt={logoAlt(PROGRAM_LOCALE)}
             className="h-full w-auto"
           />
         </Link>

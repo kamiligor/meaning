@@ -6,9 +6,10 @@ type WatermarkVariant = "ghost" | "ghost-dark";
 interface WatermarkProps {
   variant: WatermarkVariant;
   palette: ColorPalette;
+  locale?: string;
 }
 
-export function Watermark({ variant, palette }: WatermarkProps) {
+export function Watermark({ variant, palette, locale }: WatermarkProps) {
   return (
     <div
       style={{
@@ -20,7 +21,7 @@ export function Watermark({ variant, palette }: WatermarkProps) {
         justifyContent: "center",
       }}
     >
-      <LogoMark size="sm" variant={variant} palette={palette} />
+      <LogoMark size="sm" variant={variant} palette={palette} locale={locale} />
     </div>
   );
 }

@@ -4,16 +4,24 @@
 
 | Element | Wartość |
 |---------|--------|
-| **Domena** | justmeaning.com |
-| **Hasło / tagline** | Just have a little meaning (zawsze po angielsku) |
+| **Domena EN** | justmeaning.com |
+| **Domena PL** | poprostusens.pl |
+| **Znak EN** | Just have a little meaning (`public/logo.svg`) |
+| **Znak PL** | po prostu sens (`public/logo-pl.svg`) |
 | **Stopka** | JUST HAVE A LITTLE MEANING |
 | **Instagram** | @justhavealittlemeaning (po angielsku) |
 | **Nazwa programu** | The Life Writing Program (zawsze po angielsku) |
 | **Opis EN** | A guided writing process designed to help you understand your past, clarify your present, and intentionally shape your future. |
 | **Opis PL** | Program pisania, który pomaga zrozumieć swoją przeszłość, uporządkować teraźniejszość i świadomie zaplanować przyszłość. |
-| **Języki strony** | en/pl (multilanguage) |
+| **Języki strony** | en/pl, po jednej domenie na język |
 
-Nazwy i hasło są ZAWSZE w języku angielskim — niezależnie od języka strony.
+Nazwa programu jest ZAWSZE po angielsku, niezależnie od języka strony.
+
+Znak słowny jest jedynym elementem marki tłumaczonym na polski: polska domena
+używa „po prostu sens", angielska „Just have a little meaning". Oba generuje
+`npx tsx src/scripts/generate-logo.ts`, a wybór robi `src/lib/brand.ts` na
+podstawie języka. Dotyczy to również slajdów — logo jest wtapiane w PNG, więc po
+zmianie znaku trzeba przegenerować slajdy danego języka.
 
 ## O Projekcie
 

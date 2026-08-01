@@ -1,6 +1,7 @@
 import { notFound, permanentRedirect } from "next/navigation";
 import { getLocale, getHost } from "@/lib/locale";
 import { urlForLocale, SITE_HOSTS } from "@/lib/domains";
+import { logoPngPath } from "@/lib/brand";
 import { getPostBySlug, getPublishedPosts, getPostSlides, getTranslations } from "@/lib/posts";
 import { ContentText } from "@/components/feed/content-text";
 import { CarouselViewer } from "@/components/feed/carousel-viewer";
@@ -156,7 +157,7 @@ export default async function PostPage({ params }: PageProps) {
       "@type": "Organization",
       name: "Just Meaning",
       url: siteUrl,
-      logo: { "@type": "ImageObject", url: `${siteUrl}/logo.png` },
+      logo: { "@type": "ImageObject", url: `${siteUrl}${logoPngPath(locale)}` },
     },
     ...(categoryLabel && { articleSection: categoryLabel }),
     ...(refs.length > 0 && {
