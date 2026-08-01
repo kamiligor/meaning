@@ -8,7 +8,7 @@
 | **Domena PL** | poprostusens.pl |
 | **Znak EN** | Just have a little meaning (`public/logo.svg`) |
 | **Znak PL** | po prostu sens (`public/logo-pl.svg`) |
-| **Stopka** | JUST HAVE A LITTLE MEANING |
+| **Stopka** | JUST HAVE A LITTLE MEANING (EN) / PO PROSTU SENS (PL) |
 | **Instagram** | @justhavealittlemeaning (po angielsku) |
 | **Nazwa programu** | The Life Writing Program (zawsze po angielsku) |
 | **Opis EN** | A guided writing process designed to help you understand your past, clarify your present, and intentionally shape your future. |

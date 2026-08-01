@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import type { Locale } from "@/lib/i18n";
 import { equivalentPath, urlForLocale } from "@/lib/domains";
+import { logoAlt } from "@/lib/brand";
 
 export function SiteFooter({ locale }: { locale: Locale }) {
   const pathname = usePathname();
@@ -30,9 +31,9 @@ export function SiteFooter({ locale }: { locale: Locale }) {
           @justhavealittlemeaning
         </a>
 
-        {/* Center — tagline */}
+        {/* Center — wordmark, in the language of this domain */}
         <p className="text-xs text-[#8A99A8] tracking-widest uppercase order-1 md:order-2">
-          Just have a little meaning
+          {logoAlt(locale)}
         </p>
 
         {/* Right — language switcher */}
