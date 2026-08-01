@@ -99,8 +99,6 @@ export function Comments({
         </p>
       )}
 
-      <p className="text-xs text-[#8A99A8] mb-8">{d.commentsSafetyNote}</p>
-
       {comments === null ? null : comments.length === 0 ? (
         <p className="text-sm text-[#8A99A8]">{d.commentsEmpty}</p>
       ) : (

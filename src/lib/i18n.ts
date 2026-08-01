@@ -233,8 +233,6 @@ const dict = {
     commentsError: "Could not post the comment. Try again.",
     commentsTooMany: "Give it a minute before posting again.",
     commentsNameNeeded: "Set a display name in your profile before commenting.",
-    commentsSafetyNote:
-      "Comments are not crisis support. If you need to talk to someone now, the helplines are listed below.",
   },
   pl: {
     siteTitle: "just have a little meaning",
@@ -466,8 +464,6 @@ const dict = {
     commentsError: "Nie udało się dodać komentarza. Spróbuj ponownie.",
     commentsTooMany: "Odczekaj chwilę przed kolejnym komentarzem.",
     commentsNameNeeded: "Ustaw nazwę w profilu, zanim skomentujesz.",
-    commentsSafetyNote:
-      "Komentarze nie są miejscem pomocy w kryzysie. Jeśli potrzebujesz porozmawiać teraz, numery wsparcia znajdziesz niżej.",
   },
 };
 
