@@ -198,6 +198,32 @@ export function ExerciseView({
         ))}
       </div>
 
+      {/* Values list (exercise present_02) */}
+      {exercise.valuesList && exercise.valuesList.length > 0 && (
+        <div className="mb-8 rounded-lg border border-[#e2e7eb] bg-[#FAFBFC] p-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5">
+            {exercise.valuesList.map((group) => (
+              <div key={group.category}>
+                <h3 className="text-xs font-semibold uppercase tracking-wide text-[#8A99A8] mb-2">
+                  {group.category}
+                </h3>
+                <ul className="space-y-1">
+                  {group.values.map((value) => (
+                    <li
+                      key={value}
+                      className="flex items-start gap-2 text-sm text-[#1E2A36]"
+                    >
+                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-[#7B9E8C]" aria-hidden="true" />
+                      <span>{value}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Prompt instruction (gate exercise) */}
       {exercise.promptInstruction && (
         <div className="bg-[#e8f0eb] rounded-lg p-4 mb-6 text-sm text-[#1E2A36]">

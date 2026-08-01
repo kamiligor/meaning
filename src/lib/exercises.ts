@@ -11,6 +11,11 @@ export interface PromptQuestion {
   minChars: number;
 }
 
+export interface ValueGroup {
+  category: string;
+  values: string[];
+}
+
 export interface Exercise {
   id: string;
   module: string;
@@ -22,6 +27,7 @@ export interface Exercise {
   contraindications: string | null;
   introduction: string;
   promptQuestions: PromptQuestion[];
+  valuesList: ValueGroup[] | null;
   promptInstruction: string | null;
   stuckHelpers: string[];
   reflectionPrompt: string;
@@ -153,6 +159,15 @@ function parseExerciseYaml(content: string): Exercise {
     contraindications: (e.contraindications as string) || null,
     introduction: e.introduction as string,
     promptQuestions: rawQuestions.map(parsePromptQuestion),
+    valuesList: Array.isArray(e.values_list)
+      ? (e.values_list as unknown[]).map((raw) => {
+          const g = raw as Record<string, unknown>;
+          return {
+            category: String(g.category ?? ""),
+            values: Array.isArray(g.values) ? g.values.map(String) : [],
+          };
+        })
+      : null,
     promptInstruction: (e.prompt_instruction as string) || null,
     stuckHelpers: e.stuck_helpers as string[],
     reflectionPrompt: e.reflection_prompt as string,

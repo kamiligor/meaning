@@ -25,21 +25,42 @@ exercise:
     wszystkie mieć. Chodzi o to, żeby wiedzieć, które z nich rezonują z Tobą i jak bardzo
     Twoje obecne życie pozwala im się wyrażać.
 
-    W tym ćwiczeniu popracujesz z listą wartości. Znajdziesz ją w dokumencie
-    „Lista Wartości” (docs/framework/lista-wartosci.md). Wybierz te, które czujesz jako swoje
-    Nie te, które „powinny” być wybrane, ale te, które naprawdę coś w Tobie poruszają.
+    Poniżej znajdziesz listę wartości pogrupowaną w kategorie. Kategorie to tylko
+    uporządkowanie, każda pozycja na liście to osobna wartość. Z jednej kategorii możesz
+    wybrać kilka wartości, z innej żadnej, kieruj się tylko tym, co naprawdę Twoje.
+    Lista nie jest wyczerpująca, jeśli czegoś brakuje, dopisz swoje. Przeczytaj ją powoli
+    i zwróć uwagę, które słowa coś w Tobie poruszają: ciepło, tęsknotę, napięcie.
+    Wybieraj te, które czujesz jako swoje, nie te, które „powinny” być wybrane.
+
+  values_list:
+    - category: "Relacje i bliskość"
+      values: ["Bliskość", "Lojalność", "Miłość", "Wspólnota", "Empatia", "Rodzina"]
+    - category: "Rozwój osobisty"
+      values: ["Samopoznanie", "Rozwój", "Odwaga", "Autentyczność", "Pokora", "Cierpliwość"]
+    - category: "Praca i tworzenie"
+      values: ["Twórczość", "Kompetencja", "Pracowitość", "Wpływ", "Przedsiębiorczość"]
+    - category: "Wolność i autonomia"
+      values: ["Wolność", "Niezależność", "Ciekawość", "Przygoda"]
+    - category: "Dobrostan i równowaga"
+      values: ["Spokój wewnętrzny", "Zdrowie", "Radość", "Równowaga", "Wdzięczność"]
+    - category: "Sprawiedliwość i etyka"
+      values: ["Uczciwość", "Sprawiedliwość", "Odpowiedzialność", "Szacunek"]
+    - category: "Sens i duchowość"
+      values: ["Sens", "Duchowość", "Służba", "Piękno", "Mądrość"]
 
   prompt_questions:
     - text: >
-        Z poniższej listy wartości wybierz 5-7, które czujesz jako naprawdę swoje.
+        Z podanej wyżej listy wartości wybierz 5-7, które czujesz jako naprawdę swoje.
         Nie wybieraj tych, które brzmią „dobrze”, wybierz te, przy których coś w Tobie reaguje.
         Zapisz je i przy każdej napisz jedno zdanie: dlaczego właśnie ta wartość?
       estimated_time: “8-12 minut”
       min_chars: 100
     - text: >
-        Dla każdej wybranej wartości oceń w skali 1-10: na ile Twoje obecne życie jest z nią zgodne?
-        Nie oceniaj siebie, to nie egzamin. Po prostu uczciwie opisz, jak to wygląda w praktyce.
-        Jeśli wartością jest „wolność”, a codzienność przynosi poczucie uwięzienia w pracy, napisz to.
+        Przy każdej wybranej wartości najpierw w jednym, dwóch zdaniach opisz, jak to
+        wygląda w Twojej codzienności. Dopiero potem, już po namyśle, podaj liczbę od 1
+        do 10: na ile Twoje obecne życie jest z tą wartością zgodne? To nie egzamin, nie
+        oceniasz siebie, po prostu uczciwie nazywasz stan. Jeśli wartością jest „wolność”,
+        a codzienność przynosi poczucie uwięzienia w pracy, napisz to.
       estimated_time: “8-12 minut”
       min_chars: 150
     - text: >
@@ -49,7 +70,7 @@ exercise:
       estimated_time: “7-10 minut”
       min_chars: 80
     - text: >
-        Czy zauważasz wartości, które są ze sobą w konflikcie? (np. „bezpieczeństwo” i „przygoda”,
+        Czy zauważasz wartości, które są ze sobą w konflikcie? (np. „spokój wewnętrzny” i „przygoda”,
         „lojalność” i „wolność”). Jeśli tak, opisz ten konflikt. Nie musisz go rozwiązywać.
         Samo nazwanie go ma wartość.
       estimated_time: “5-7 minut”
