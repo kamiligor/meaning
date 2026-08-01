@@ -160,13 +160,18 @@ export async function proxy(request: NextRequest) {
   }
 
   // --- Admin API mutations (JWT) ---
+  // Deny by default: any /api/ write needs the admin token unless it is one of
+  // the reader-facing endpoints below, which authenticate the user themselves.
   if (
     pathname.startsWith("/api/") &&
     !pathname.startsWith("/api/auth/") &&
     !pathname.startsWith("/api/slides/") &&
     !pathname.startsWith("/api/newsletter/") &&
     !pathname.startsWith("/api/program/") &&
+    !pathname.startsWith("/api/profile/") &&
+    !pathname.startsWith("/api/comments/") &&
     !pathname.match(/^\/api\/posts\/[^/]+\/like$/) &&
+    !pathname.match(/^\/api\/posts\/[^/]+\/comments$/) &&
     request.method !== "GET"
   ) {
     if (!(await isAdminAuthenticated(request))) {

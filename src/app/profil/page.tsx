@@ -2,6 +2,7 @@ import { requireProgramUser } from "@/lib/program-auth";
 import { isProgramAdmin } from "@/lib/admin-email";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LogoutButton } from "./logout-button";
+import { DisplayNameForm } from "./display-name-form";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { t, type Locale } from "@/lib/i18n";
@@ -15,7 +16,7 @@ export default async function ProfilPage() {
 
   const { data: profile } = await supabase
     .from("user_profiles")
-    .select("gender_form, created_at")
+    .select("gender_form, created_at, display_name")
     .eq("user_id", user.id)
     .single();
 
@@ -48,6 +49,15 @@ export default async function ProfilPage() {
                 <span className="text-[#1E2A36]">{createdAt}</span>
               </div>
             )}
+          </CardContent>
+        </Card>
+
+        <Card className="mb-6">
+          <CardContent className="pt-6">
+            <DisplayNameForm
+              locale={locale}
+              initialName={profile?.display_name ?? null}
+            />
           </CardContent>
         </Card>
 

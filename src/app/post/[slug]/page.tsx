@@ -12,6 +12,7 @@ import { t, isLocale, type Locale } from "@/lib/i18n";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { NewsletterForm } from "@/components/feed/newsletter-form";
+import { Comments } from "@/components/feed/comments";
 import { ShareButton } from "@/components/feed/share-button";
 import { LikeButton } from "@/components/feed/like-button";
 import { LikeProvider } from "@/components/feed/like-context";
@@ -91,11 +92,19 @@ export default async function PostPage({ params }: PageProps) {
 
   let isLoggedIn = false;
   let liked = false;
+  let hasDisplayName = false;
   try {
     const supabase = await createServerSupabaseClient();
     const { data: { user } } = await supabase.auth.getUser();
     isLoggedIn = !!user;
     if (user) {
+      const { data: profile } = await supabase
+        .from("user_profiles")
+        .select("display_name")
+        .eq("user_id", user.id)
+        .maybeSingle();
+      hasDisplayName = !!profile?.display_name;
+
       const { data } = await supabase
         .from("user_interactions")
         .select("id")
@@ -326,6 +335,13 @@ export default async function PostPage({ params }: PageProps) {
           </div>
 
         </article>
+
+        <Comments
+          slug={post.slug}
+          locale={locale}
+          isLoggedIn={isLoggedIn}
+          hasDisplayName={hasDisplayName}
+        />
 
         {/* Newsletter */}
         <div className="mt-10">

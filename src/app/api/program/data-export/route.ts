@@ -26,7 +26,8 @@ export async function GET() {
       );
     }
 
-    const [responsesResult, progressResult, profileResult] = await Promise.all([
+    const [responsesResult, progressResult, profileResult, commentsResult] =
+      await Promise.all([
       supabase
         .from("exercise_responses")
         .select("*")
@@ -39,9 +40,14 @@ export async function GET() {
         .eq("user_id", user.id),
       supabase
         .from("user_profiles")
-        .select("gender_form, created_at, has_paid")
+        .select("gender_form, created_at, has_paid, display_name")
         .eq("user_id", user.id)
         .single(),
+      supabase
+        .from("post_comments")
+        .select("post_slug, locale, body, status, created_at, edited_at")
+        .eq("user_id", user.id)
+        .order("created_at"),
     ]);
 
     if (responsesResult.error || progressResult.error) {
@@ -75,10 +81,20 @@ export async function GET() {
     const profile = profileResult.data
       ? {
           genderForm: profileResult.data.gender_form,
+          displayName: profileResult.data.display_name,
           createdAt: profileResult.data.created_at,
           hasPaid: profileResult.data.has_paid,
         }
       : null;
+
+    const comments = (commentsResult.data ?? []).map((row) => ({
+      postSlug: row.post_slug,
+      locale: row.locale,
+      body: row.body,
+      status: row.status,
+      createdAt: row.created_at,
+      editedAt: row.edited_at,
+    }));
 
     const exportData = {
       exportedAt: new Date().toISOString(),
@@ -87,6 +103,7 @@ export async function GET() {
       profile,
       responses: decryptedResponses,
       progress,
+      comments,
     };
 
     return new NextResponse(JSON.stringify(exportData, null, 2), {
