@@ -2,8 +2,7 @@ import { Suspense } from "react";
 import { AuthForm } from "@/components/auth/auth-form";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { cookies } from "next/headers";
-import { getLocaleFromCookies } from "@/lib/locale-cookie";
+import { getLocale } from "@/lib/locale";
 import type { Locale } from "@/lib/i18n";
 
 export const metadata = {
@@ -11,8 +10,7 @@ export const metadata = {
 };
 
 export default async function LoginPage() {
-  const cookieStore = await cookies();
-  const locale: Locale = getLocaleFromCookies(cookieStore);
+  const locale: Locale = await getLocale();
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAFBFC]">

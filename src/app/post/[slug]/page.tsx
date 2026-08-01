@@ -1,4 +1,6 @@
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
+import { getLocale, getHost } from "@/lib/locale";
+import { urlForLocale, SITE_HOSTS } from "@/lib/domains";
 import { getPostBySlug, getPublishedPosts, getPostSlides, getTranslations } from "@/lib/posts";
 import { ContentText } from "@/components/feed/content-text";
 import { CarouselViewer } from "@/components/feed/carousel-viewer";
@@ -16,9 +18,6 @@ import { SiteHeader } from "@/components/site-header";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { getCategoryUrl, getCategoryLabel } from "@/lib/categories";
 import { JsonLd } from "@/components/json-ld";
-
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://justmeaning.com";
 
 export async function generateStaticParams() {
   const allPosts = getPublishedPosts("en").concat(getPublishedPosts("pl"));
@@ -38,8 +37,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const cleanHeadline = post.headline.replace(/\{|\}/g, "");
   const group = post.translationGroup || post.slug;
   const ogImage = `/api/slides/${group}/${post.locale}/slide-1.png`;
+  const postLocale: Locale = isLocale(post.locale) ? post.locale : "en";
+
+  // The post is canonical on its own language's domain, whichever host asked.
+  const languages: Record<string, string> = {};
+  for (const tr of getTranslations(post.translationGroup)) {
+    languages[tr.locale] = urlForLocale(tr.locale as Locale, `/post/${tr.slug}`);
+  }
 
   return {
+    metadataBase: new URL(`https://${SITE_HOSTS[postLocale]}`),
+    alternates: {
+      canonical: urlForLocale(postLocale, `/post/${post.slug}`),
+      languages,
+    },
     title: `${cleanHeadline} | just have a little meaning`,
     description: post.caption || `${post.topicTag}: ${cleanHeadline}`,
     openGraph: {
@@ -66,6 +77,14 @@ export default async function PostPage({ params }: PageProps) {
   if (!post || post.status !== "published") notFound();
 
   const locale: Locale = isLocale(post.locale) ? post.locale : "en";
+  const siteUrl = `https://${SITE_HOSTS[locale]}`;
+  const host = await getHost();
+
+  // Each language has its own domain — send the post to the one that owns it.
+  if (locale !== (await getLocale())) {
+    permanentRedirect(urlForLocale(locale, `/post/${slug}`, host));
+  }
+
   const d = t(locale);
   const feedUrl = "/";
 
@@ -94,7 +113,11 @@ export default async function PostPage({ params }: PageProps) {
   const cleanHeadline = post.headline.replace(/\{|\}/g, "");
 
   const translations = getTranslations(post.translationGroup)
-    .sort((a, b) => a.locale.localeCompare(b.locale));
+    .sort((a, b) => a.locale.localeCompare(b.locale))
+    .map((tr) => ({
+      locale: tr.locale,
+      href: urlForLocale(tr.locale as Locale, `/post/${tr.slug}`, host),
+    }));
 
   // Find web quote slide
   const webQuoteSlide = postSlides.find((s) => s.slideNumber === WEB_QUOTE_SLIDE);
@@ -108,8 +131,8 @@ export default async function PostPage({ params }: PageProps) {
   }
 
   const group = post.translationGroup || post.slug;
-  const ogImageUrl = `${SITE_URL}/api/slides/${group}/${post.locale}/slide-1.png`;
-  const postUrl = `${SITE_URL}/post/${post.slug}`;
+  const ogImageUrl = `${siteUrl}/api/slides/${group}/${post.locale}/slide-1.png`;
+  const postUrl = `${siteUrl}/post/${post.slug}`;
   const categoryLabel = post.category
     ? getCategoryLabel(post.category, locale)
     : null;
@@ -127,13 +150,13 @@ export default async function PostPage({ params }: PageProps) {
     author: {
       "@type": "Organization",
       name: "Just Meaning",
-      url: SITE_URL,
+      url: siteUrl,
     },
     publisher: {
       "@type": "Organization",
       name: "Just Meaning",
-      url: SITE_URL,
-      logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.png` },
+      url: siteUrl,
+      logo: { "@type": "ImageObject", url: `${siteUrl}/logo.png` },
     },
     ...(categoryLabel && { articleSection: categoryLabel }),
     ...(refs.length > 0 && {
@@ -154,7 +177,7 @@ export default async function PostPage({ params }: PageProps) {
         "@type": "ListItem",
         position: 1,
         name: locale === "pl" ? "Strona główna" : "Home",
-        item: SITE_URL,
+        item: siteUrl,
       },
       ...(post.category && categoryLabel
         ? [
@@ -162,7 +185,7 @@ export default async function PostPage({ params }: PageProps) {
               "@type": "ListItem",
               position: 2,
               name: categoryLabel,
-              item: `${SITE_URL}${getCategoryUrl(post.category, locale)}`,
+              item: `${siteUrl}${getCategoryUrl(post.category, locale)}`,
             },
             {
               "@type": "ListItem",

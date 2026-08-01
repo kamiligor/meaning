@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { getProgramUser } from "@/lib/program-auth";
-import { cookies } from "next/headers";
-import { getLocaleFromCookies } from "@/lib/locale-cookie";
+import { getLocale } from "@/lib/locale";
 import { t } from "@/lib/i18n";
 
 export async function ProgramHeader() {
@@ -12,9 +11,7 @@ export async function ProgramHeader() {
   } catch {
     // Not logged in
   }
-
-  const cookieStore = await cookies();
-  const locale = getLocaleFromCookies(cookieStore);
+  const locale = await getLocale();
   const d = t(locale);
 
   return (

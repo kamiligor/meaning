@@ -1,18 +1,19 @@
 import type { MetadataRoute } from "next";
+import { getLocale } from "@/lib/locale";
+import { urlForLocale, SITE_HOSTS } from "@/lib/domains";
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://justmeaning.com";
+export default async function robots(): Promise<MetadataRoute.Robots> {
+  const locale = await getLocale();
 
-export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/admin", "/api/", "/program"],
+        disallow: ["/admin", "/api/", "/profil", "/program"],
       },
     ],
-    sitemap: `${SITE_URL}/sitemap.xml`,
-    host: SITE_URL,
+    sitemap: urlForLocale(locale, "/sitemap.xml"),
+    host: `https://${SITE_HOSTS[locale]}`,
   };
 }

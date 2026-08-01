@@ -4,7 +4,8 @@ import { useState, useRef, useEffect } from "react";
 
 interface Translation {
   locale: string;
-  slug: string;
+  /** Absolute URL — translations live on the other language's domain. */
+  href: string;
 }
 
 const LANG_LABELS: Record<string, { flag: string; label: string }> = {
@@ -15,11 +16,9 @@ const LANG_LABELS: Record<string, { flag: string; label: string }> = {
 export function PostLangSwitcher({
   current,
   translations,
-  basePath = "/post",
 }: {
   current: string;
   translations: Translation[];
-  basePath?: string;
 }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -65,7 +64,7 @@ export function PostLangSwitcher({
                 key={t.locale}
                 onClick={() => {
                   setOpen(false);
-                  window.location.href = `${basePath}/${t.slug}`;
+                  window.location.href = t.href;
                 }}
                 className={`w-full text-left px-3 py-2 text-xs flex items-center gap-2 transition hover:bg-[#F5F7F9] ${
                   t.locale === current

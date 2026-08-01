@@ -5,13 +5,11 @@ import { LogoutButton } from "./logout-button";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { t, type Locale } from "@/lib/i18n";
-import { cookies } from "next/headers";
-import { getLocaleFromCookies } from "@/lib/locale-cookie";
+import { getLocale } from "@/lib/locale";
 import Link from "next/link";
 
 export default async function ProfilPage() {
-  const cookieStore = await cookies();
-  const locale: Locale = getLocaleFromCookies(cookieStore);
+  const locale: Locale = await getLocale();
   const d = t(locale);
   const { user, supabase } = await requireProgramUser();
 

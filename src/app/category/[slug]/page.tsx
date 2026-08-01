@@ -4,16 +4,13 @@ import { InfiniteFeed } from "@/components/feed/infinite-feed";
 import { t, type Locale } from "@/lib/i18n";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { cookies } from "next/headers";
-import { getLocaleFromCookies } from "@/lib/locale-cookie";
+import { getLocale } from "@/lib/locale";
+import { urlForLocale } from "@/lib/domains";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { getCategoryByLocalizedSlug } from "@/lib/categories";
 import type { Metadata } from "next";
 
 const LIMIT = 10;
-
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://justmeaning.com";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -26,8 +23,7 @@ export async function generateMetadata({
   const cat = getCategoryByLocalizedSlug(slug);
   if (!cat) return { title: "Not Found" };
 
-  const cookieStore = await cookies();
-  const locale: Locale = getLocaleFromCookies(cookieStore);
+  const locale: Locale = await getLocale();
   const label = locale === "pl" ? cat.pl.label : cat.en.label;
 
   const title =
@@ -55,16 +51,16 @@ export async function generateMetadata({
     title,
     description,
     alternates: {
-      canonical: `${SITE_URL}${path}`,
+      canonical: urlForLocale(locale, path),
       languages: {
-        en: `${SITE_URL}/category/${cat.en.slug}`,
-        pl: `${SITE_URL}/kategoria/${cat.pl.slug}`,
+        en: urlForLocale("en", `/category/${cat.en.slug}`),
+        pl: urlForLocale("pl", `/kategoria/${cat.pl.slug}`),
       },
     },
     openGraph: {
       title,
       description,
-      url: `${SITE_URL}${path}`,
+      url: urlForLocale(locale, path),
       type: "website",
       locale: locale === "pl" ? "pl_PL" : "en_US",
       ...(ogImage && { images: [{ url: ogImage, width: 1080, height: 1350 }] }),
@@ -82,9 +78,7 @@ export default async function CategoryPage({ params }: PageProps) {
   const { slug } = await params;
   const cat = getCategoryByLocalizedSlug(slug);
   if (!cat) notFound();
-
-  const cookieStore = await cookies();
-  const locale: Locale = getLocaleFromCookies(cookieStore);
+  const locale: Locale = await getLocale();
   const d = t(locale);
 
   let isLoggedIn = false;

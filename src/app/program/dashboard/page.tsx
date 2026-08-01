@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { cookies } from "next/headers";
 import { requireProgramUser } from "@/lib/program-auth";
 import { getModules, getGateExercise, getIntroExerciseId } from "@/lib/exercises";
 import { ProgramHeader } from "@/components/program/program-header";
@@ -16,14 +15,12 @@ import { Lock, CheckCircle2, Play, BookOpen, SkipForward } from "lucide-react";
 import { ProfileInitializer } from "@/components/program/profile-initializer";
 import { getUserGenderForm } from "@/lib/user-profile";
 import { getUserProgress, getModuleStatus, findNextExercise } from "@/lib/progress";
-import { getLocaleFromCookies } from "@/lib/locale-cookie";
+import { getLocale } from "@/lib/locale";
 import { t } from "@/lib/i18n";
 
 export default async function DashboardPage() {
   const { user, supabase } = await requireProgramUser();
-
-  const cookieStore = await cookies();
-  const locale = getLocaleFromCookies(cookieStore);
+  const locale = await getLocale();
   const d = t(locale);
 
   const genderForm = await getUserGenderForm(supabase, user.id);

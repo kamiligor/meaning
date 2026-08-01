@@ -4,8 +4,7 @@ import { InfiniteFeed } from "@/components/feed/infinite-feed";
 import { type Locale } from "@/lib/i18n";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { cookies } from "next/headers";
-import { getLocaleFromCookies } from "@/lib/locale-cookie";
+import { getLocale } from "@/lib/locale";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { FAVORITES_KEY } from "@/lib/categories";
 import type { Metadata } from "next";
@@ -24,8 +23,7 @@ export default async function FavoritesPage() {
 
   if (!user) redirect("/login?next=/ulubione");
 
-  const cookieStore = await cookies();
-  const locale: Locale = getLocaleFromCookies(cookieStore);
+  const locale: Locale = await getLocale();
 
   const allPosts = getPublishedPosts(locale);
   const hasMore = allPosts.length > LIMIT;

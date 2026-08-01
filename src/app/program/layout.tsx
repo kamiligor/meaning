@@ -1,6 +1,5 @@
-import { cookies } from "next/headers";
 import { SafetyBanner } from "@/components/program/safety-banner";
-import { isLocale, type Locale } from "@/lib/i18n";
+import { getLocale } from "@/lib/locale";
 
 export const metadata = {
   title: "The Life Writing Program | just have a little meaning",
@@ -13,9 +12,7 @@ export default async function ProgramLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const cookieStore = await cookies();
-  const rawLocale = cookieStore.get("locale")?.value ?? "pl";
-  const locale: Locale = isLocale(rawLocale) ? rawLocale : "pl";
+  const locale = await getLocale();
 
   return (
     <div className="min-h-screen bg-[#FAFBFC] flex flex-col">

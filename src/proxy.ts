@@ -2,8 +2,31 @@ import { NextRequest, NextResponse } from "next/server";
 import { jwtVerify } from "jose";
 import { createServerClient } from "@supabase/ssr";
 import { isProgramAdmin } from "@/lib/admin-email";
+import {
+  PROGRAM_LOCALE,
+  equivalentPath,
+  localeFromHost,
+  urlForLocale,
+} from "@/lib/domains";
 
 const COOKIE_NAME = "jh-admin-token";
+
+/**
+ * Accounts are shared across both domains — one Supabase user, one set of
+ * likes and progress — but sessions are not, because cookies are per-domain.
+ * Only The Life Writing Program is tied to a single domain, because its
+ * exercises exist in Polish only.
+ */
+const PROGRAM_ONLY_PREFIXES = ["/program"];
+
+/** Favorites has a localized route name on each domain. */
+const FAVORITES_PATHS = ["/favorites", "/ulubione"];
+
+function isProgramOnlyPath(pathname: string): boolean {
+  return PROGRAM_ONLY_PREFIXES.some(
+    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)
+  );
+}
 
 function getJwtSecret() {
   const secret = process.env.JWT_SECRET;
@@ -59,10 +82,32 @@ function isProgramPublicPath(pathname: string): boolean {
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const response = NextResponse.next({ request });
+  const host = request.headers.get("host");
+  const locale = localeFromHost(host);
 
-  // --- Locale: forward cookie as header for server components ---
-  const locale = request.cookies.get("jh-locale")?.value ?? "en";
+  // --- The program lives on the Polish domain only ---
+  if (locale !== PROGRAM_LOCALE && isProgramOnlyPath(pathname)) {
+    const target = urlForLocale(
+      PROGRAM_LOCALE,
+      `${pathname}${request.nextUrl.search}`,
+      host
+    );
+    return NextResponse.redirect(target, 308);
+  }
+
+  // --- Keep route names in the language of the domain serving them ---
+  const localizedPath = equivalentPath(pathname, locale);
+  if (localizedPath !== pathname) {
+    const url = request.nextUrl.clone();
+    url.pathname = localizedPath;
+    return NextResponse.redirect(url, 308);
+  }
+
+  // --- Locale: the domain decides the language, for server components ---
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-locale", locale);
+
+  let response = NextResponse.next({ request: { headers: requestHeaders } });
   response.headers.set("x-locale", locale);
 
   // --- Security headers ---
@@ -135,7 +180,7 @@ export async function proxy(request: NextRequest) {
     pathname.startsWith("/api/posts/") ||
     pathname.startsWith("/post/") ||
     pathname === "/profil" ||
-    pathname === "/ulubione" ||
+    FAVORITES_PATHS.includes(pathname) ||
     isAuthRoute
   ) {
     let user = null;
@@ -180,11 +225,11 @@ export async function proxy(request: NextRequest) {
       return NextResponse.redirect(new URL("/program/dashboard", request.url));
     }
 
-    // Protect program pages (except public ones) and /profil
+    // Protect program pages (except public ones), /profil and favorites
     if (
       (pathname.startsWith("/program") && !isProgramPublicPath(pathname)) ||
       pathname === "/profil" ||
-      pathname === "/ulubione"
+      FAVORITES_PATHS.includes(pathname)
     ) {
       if (!user) {
         const loginUrl = new URL("/login", request.url);
@@ -220,19 +265,9 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
+  // Every page needs the locale header, so match everything except static
+  // assets and the Flutter build served from /public/words.
   matcher: [
-    "/",
-    "/admin/:path*",
-    "/api/:path*",
-    "/program/:path*",
-    "/login",
-    "/register",
-    "/lost-password",
-    "/profil",
-    "/favorites",
-    "/ulubione",
-    "/mission",
-    "/misja",
-    "/post/:path*",
+    "/((?!_next/static|_next/image|favicon.ico|words|.*\\.(?:png|jpg|jpeg|gif|svg|webp|ico|woff|woff2|ttf)$).*)",
   ],
 };

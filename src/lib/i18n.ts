@@ -5,6 +5,7 @@ export const LOCALES: Locale[] = ["en", "pl"];
 const dict = {
   en: {
     siteTitle: "just have a little meaning",
+    siteDescription: "Psychology life hacks & mental health tips",
     noPostsTitle: "No posts yet",
     noPostsSubtitle: "Check back soon for new content",
     endOfFeed: "You've seen all the posts",
@@ -206,6 +207,7 @@ const dict = {
   },
   pl: {
     siteTitle: "just have a little meaning",
+    siteDescription: "Psychologiczne life hacki i zdrowie psychiczne",
     noPostsTitle: "Brak postów",
     noPostsSubtitle: "Wróć wkrótce po nowe treści",
     endOfFeed: "To już wszystkie posty",

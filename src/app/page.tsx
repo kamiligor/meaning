@@ -3,19 +3,15 @@ import { InfiniteFeed } from "@/components/feed/infinite-feed";
 import { t, type Locale } from "@/lib/i18n";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { cookies } from "next/headers";
-import { getLocaleFromCookies } from "@/lib/locale-cookie";
+import { getLocale } from "@/lib/locale";
+import { urlForLocale } from "@/lib/domains";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import type { Metadata } from "next";
 
 const LIMIT = 10;
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://justmeaning.com";
-
 export async function generateMetadata(): Promise<Metadata> {
-  const cookieStore = await cookies();
-  const locale: Locale = getLocaleFromCookies(cookieStore);
+  const locale: Locale = await getLocale();
 
   const title =
     locale === "pl"
@@ -35,16 +31,16 @@ export async function generateMetadata(): Promise<Metadata> {
     title,
     description,
     alternates: {
-      canonical: SITE_URL,
+      canonical: urlForLocale(locale, "/"),
       languages: {
-        en: `${SITE_URL}/`,
-        pl: `${SITE_URL}/`,
+        en: urlForLocale("en", "/"),
+        pl: urlForLocale("pl", "/"),
       },
     },
     openGraph: {
       title,
       description,
-      url: SITE_URL,
+      url: urlForLocale(locale, "/"),
       type: "website",
       locale: locale === "pl" ? "pl_PL" : "en_US",
       ...(ogImage && { images: [{ url: ogImage, width: 1080, height: 1350 }] }),
@@ -59,8 +55,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  const cookieStore = await cookies();
-  const locale: Locale = getLocaleFromCookies(cookieStore);
+  const locale: Locale = await getLocale();
   const d = t(locale);
 
   let isLoggedIn = false;

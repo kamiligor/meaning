@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
-import { cookies } from "next/headers";
-import { getLocaleFromCookies } from "@/lib/locale-cookie";
-import { LocaleInitializer } from "@/components/locale-initializer";
+import { getLocale } from "@/lib/locale";
+import { SITE_HOSTS } from "@/lib/domains";
+import { t } from "@/lib/i18n";
 import { JsonLd } from "@/components/json-ld";
 
 const outfit = Outfit({
@@ -11,32 +11,42 @@ const outfit = Outfit({
   subsets: ["latin", "latin-ext"],
 });
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://justmeaning.com";
+const BRAND = "Just have a little meaning";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: {
-    default: "Just have a little meaning",
-    template: "%s — Just have a little meaning",
-  },
-  description:
-    "Psychology life hacks and mental health insights you can actually use.",
-  openGraph: {
-    type: "website",
-    siteName: "Just have a little meaning",
-    title: "Just have a little meaning",
-    description:
-      "Psychology life hacks and mental health insights you can actually use.",
-    url: SITE_URL,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Just have a little meaning",
-    description:
-      "Psychology life hacks and mental health insights you can actually use.",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const d = t(locale);
+  const siteUrl = `https://${SITE_HOSTS[locale]}`;
+
+  return {
+    metadataBase: new URL(siteUrl),
+    title: {
+      default: BRAND,
+      template: `%s — ${BRAND}`,
+    },
+    description: d.siteDescription,
+    alternates: {
+      canonical: "/",
+      languages: {
+        en: `https://${SITE_HOSTS.en}`,
+        pl: `https://${SITE_HOSTS.pl}`,
+      },
+    },
+    openGraph: {
+      type: "website",
+      siteName: BRAND,
+      title: BRAND,
+      description: d.siteDescription,
+      url: siteUrl,
+      locale: locale === "pl" ? "pl_PL" : "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: BRAND,
+      description: d.siteDescription,
+    },
+  };
+}
 
 export default async function RootLayout({
   children,
@@ -45,31 +55,31 @@ export default async function RootLayout({
   children: React.ReactNode;
   auth: React.ReactNode;
 }>) {
-  const cookieStore = await cookies();
-  const locale = getLocaleFromCookies(cookieStore);
+  const locale = await getLocale();
+  const d = t(locale);
+  const siteUrl = `https://${SITE_HOSTS[locale]}`;
 
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Just Meaning",
-    alternateName: "Just have a little meaning",
-    url: SITE_URL,
-    logo: `${SITE_URL}/logo.png`,
+    alternateName: BRAND,
+    url: siteUrl,
+    logo: `${siteUrl}/logo.png`,
     sameAs: ["https://www.instagram.com/justhavealittlemeaning"],
-    description:
-      "Psychology life hacks and mental health insights you can actually use.",
+    description: d.siteDescription,
   };
 
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Just have a little meaning",
-    url: SITE_URL,
-    inLanguage: ["en", "pl"],
+    name: BRAND,
+    url: siteUrl,
+    inLanguage: locale,
     publisher: {
       "@type": "Organization",
       name: "Just Meaning",
-      url: SITE_URL,
+      url: siteUrl,
     },
   };
 
@@ -78,7 +88,6 @@ export default async function RootLayout({
       <body className={`${outfit.variable} font-sans antialiased`}>
         <JsonLd data={organizationSchema} />
         <JsonLd data={websiteSchema} />
-        <LocaleInitializer />
         {children}
         {auth}
       </body>

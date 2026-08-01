@@ -1,41 +1,53 @@
 import type { MetadataRoute } from "next";
-import { getAllPosts } from "@/lib/posts";
-import { CATEGORIES } from "@/lib/categories";
+import { getPublishedPosts } from "@/lib/posts";
+import { getLocale } from "@/lib/locale";
+import { urlForLocale, PROGRAM_LOCALE } from "@/lib/domains";
+import { CATEGORIES, getCategoryUrl } from "@/lib/categories";
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://justmeaning.com";
-
-export default function sitemap(): MetadataRoute.Sitemap {
+/**
+ * One sitemap per domain: each host lists only the pages it serves, in its
+ * own language. Listing both languages under one host would point crawlers
+ * at URLs that redirect to the other domain.
+ */
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const locale = await getLocale();
+  const url = (path: string) => urlForLocale(locale, path);
   const now = new Date();
 
   const staticEntries: MetadataRoute.Sitemap = [
-    { url: `${SITE_URL}/`, lastModified: now, changeFrequency: "daily", priority: 1.0 },
-    { url: `${SITE_URL}/mission`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${SITE_URL}/misja`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    { url: url("/"), lastModified: now, changeFrequency: "daily", priority: 1.0 },
+    {
+      url: url(locale === "pl" ? "/misja" : "/mission"),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
   ];
 
-  const categoryEntries: MetadataRoute.Sitemap = CATEGORIES.flatMap((cat) => [
-    {
-      url: `${SITE_URL}/category/${cat.en.slug}`,
+  if (locale === PROGRAM_LOCALE) {
+    staticEntries.push({
+      url: url("/program"),
       lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.7,
-    },
-    {
-      url: `${SITE_URL}/kategoria/${cat.pl.slug}`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.7,
-    },
-  ]);
+      changeFrequency: "monthly",
+      priority: 0.8,
+    });
+  }
 
-  const posts = getAllPosts({ status: "published" });
-  const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `${SITE_URL}/post/${post.slug}`,
-    lastModified: post.publishedAt ? new Date(post.publishedAt) : now,
-    changeFrequency: "monthly",
-    priority: 0.8,
+  const categoryEntries: MetadataRoute.Sitemap = CATEGORIES.map((cat) => ({
+    url: url(getCategoryUrl(cat.key, locale)),
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 0.7,
   }));
+
+  const postEntries: MetadataRoute.Sitemap = getPublishedPosts(locale).map(
+    (post) => ({
+      url: url(`/post/${post.slug}`),
+      lastModified: post.publishedAt ? new Date(post.publishedAt) : now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    })
+  );
 
   return [...staticEntries, ...categoryEntries, ...postEntries];
 }

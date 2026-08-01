@@ -1,14 +1,20 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import type { Locale } from "@/lib/i18n";
-import { setLocaleCookieClient } from "@/lib/locale-cookie";
+import { equivalentPath, urlForLocale } from "@/lib/domains";
 
 export function SiteFooter({ locale }: { locale: Locale }) {
-  function switchLocale(code: Locale) {
-    if (code === locale) return;
-    localStorage.setItem("jh-locale", code);
-    setLocaleCookieClient(code);
-    window.location.reload();
+  const pathname = usePathname();
+  const [host, setHost] = useState<string | null>(null);
+
+  // Host is only known in the browser; until then fall back to the
+  // production domains, which is what server-rendered HTML should contain.
+  useEffect(() => setHost(window.location.host), []);
+
+  function otherLocaleUrl(code: Locale): string {
+    return urlForLocale(code, equivalentPath(pathname, code), host);
   }
 
   return (
@@ -34,23 +40,25 @@ export function SiteFooter({ locale }: { locale: Locale }) {
           {locale === "en" ? (
             <span className="text-xs font-semibold tracking-wider px-2 py-1 text-[#7B9E8C]">EN</span>
           ) : (
-            <button
-              onClick={() => switchLocale("en")}
+            <a
+              href={otherLocaleUrl("en")}
+              hrefLang="en"
               className="text-xs font-semibold tracking-wider px-2 py-1 rounded transition-colors duration-200 cursor-pointer text-[#8A99A8] hover:text-[#7B9E8C]"
             >
               EN
-            </button>
+            </a>
           )}
           <span className="text-[#d1d8de] text-xs" aria-hidden="true">|</span>
           {locale === "pl" ? (
             <span className="text-xs font-semibold tracking-wider px-2 py-1 text-[#7B9E8C]">PL</span>
           ) : (
-            <button
-              onClick={() => switchLocale("pl")}
+            <a
+              href={otherLocaleUrl("pl")}
+              hrefLang="pl"
               className="text-xs font-semibold tracking-wider px-2 py-1 rounded transition-colors duration-200 cursor-pointer text-[#8A99A8] hover:text-[#7B9E8C]"
             >
               PL
-            </button>
+            </a>
           )}
         </div>
       </div>

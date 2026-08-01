@@ -1,12 +1,11 @@
 import { notFound, redirect } from "next/navigation";
-import { cookies } from "next/headers";
 import { getModules, getIntroExerciseId } from "@/lib/exercises";
 import { requireProgramUser } from "@/lib/program-auth";
 import { getUserProgress } from "@/lib/progress";
 import { ProgramHeader } from "@/components/program/program-header";
 import { SiteFooter } from "@/components/site-footer";
 import { IntroductionLesson } from "@/components/program/introduction-lesson";
-import { getLocaleFromCookies } from "@/lib/locale-cookie";
+import { getLocale } from "@/lib/locale";
 import { getUserGenderForm } from "@/lib/user-profile";
 import type { Locale } from "@/lib/i18n";
 
@@ -16,8 +15,7 @@ interface Props {
 
 export default async function ModulePage({ params }: Props) {
   const { slug } = await params;
-  const cookieStore = await cookies();
-  const locale: Locale = getLocaleFromCookies(cookieStore);
+  const locale: Locale = await getLocale();
   const { user, supabase } = await requireProgramUser();
 
   const genderForm = await getUserGenderForm(supabase, user.id);

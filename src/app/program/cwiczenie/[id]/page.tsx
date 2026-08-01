@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { cookies } from "next/headers";
 import { requireProgramUser } from "@/lib/program-auth";
 import { loadExercise, getExerciseModuleInfo } from "@/lib/exercises";
 import { ExerciseView } from "@/components/program/exercise-view";
@@ -8,7 +7,7 @@ import { getUserGenderForm } from "@/lib/user-profile";
 import { getNextExerciseUrl } from "@/lib/program-navigation";
 import { getDecryptedResponses } from "@/lib/exercise-responses";
 import { syncExerciseProgress } from "@/lib/progress";
-import { getLocaleFromCookies } from "@/lib/locale-cookie";
+import { getLocale } from "@/lib/locale";
 import { t } from "@/lib/i18n";
 
 interface Props {
@@ -18,9 +17,7 @@ interface Props {
 export default async function ExercisePage({ params }: Props) {
   const { id } = await params;
   const { user, supabase } = await requireProgramUser();
-
-  const cookieStore = await cookies();
-  const locale = getLocaleFromCookies(cookieStore);
+  const locale = await getLocale();
   const d = t(locale);
 
   const genderForm = await getUserGenderForm(supabase, user.id);
