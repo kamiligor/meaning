@@ -17,7 +17,7 @@ export default async function ProfilPage() {
 
   const { data: profile } = await supabase
     .from("user_profiles")
-    .select("gender_form, created_at, display_name")
+    .select("gender_form, created_at, display_name, display_name_changed_at")
     .eq("user_id", user.id)
     .single();
 
@@ -58,6 +58,7 @@ export default async function ProfilPage() {
             <DisplayNameForm
               locale={locale}
               initialName={profile?.display_name ?? null}
+              changedAt={profile?.display_name_changed_at ?? null}
             />
           </CardContent>
         </Card>

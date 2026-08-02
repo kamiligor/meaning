@@ -13,6 +13,54 @@ ALTER TABLE user_profiles
   ADD COLUMN IF NOT EXISTS display_name TEXT
     CHECK (display_name IS NULL OR char_length(btrim(display_name)) BETWEEN 2 AND 40);
 
+ALTER TABLE user_profiles
+  ADD COLUMN IF NOT EXISTS display_name_changed_at TIMESTAMPTZ;
+
+-- Names are unique regardless of case, so "Anna" cannot sit beside "anna" and
+-- be mistaken for the same person. NULLs stay distinct in a unique index, so
+-- everyone who has not picked a name yet is unaffected.
+CREATE UNIQUE INDEX IF NOT EXISTS idx_user_profiles_display_name
+  ON user_profiles (lower(display_name));
+
+-- One name change per day.
+--
+-- The rule lives here rather than only in the API because RLS lets a user
+-- update their own profile row directly with the anon key, which would walk
+-- straight past a check in the route.
+CREATE OR REPLACE FUNCTION enforce_display_name_cooldown()
+RETURNS TRIGGER AS $$
+BEGIN
+  -- A profile row is usually created at sign-up with no name yet; the clock
+  -- starts only if one arrives with it.
+  IF TG_OP = 'INSERT' THEN
+    IF NEW.display_name IS NOT NULL THEN
+      NEW.display_name_changed_at := NOW();
+    END IF;
+    RETURN NEW;
+  END IF;
+
+  IF NEW.display_name IS DISTINCT FROM OLD.display_name THEN
+    IF OLD.display_name_changed_at IS NOT NULL
+       AND OLD.display_name_changed_at > NOW() - INTERVAL '24 hours' THEN
+      RAISE EXCEPTION 'Display name can only be changed once every 24 hours'
+        USING ERRCODE = 'check_violation';
+    END IF;
+
+    NEW.display_name_changed_at := NOW();
+  ELSE
+    -- Without this a client could rewind the timestamp on its own, leaving the
+    -- name untouched, and then rename freely on the next request.
+    NEW.display_name_changed_at := OLD.display_name_changed_at;
+  END IF;
+
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER user_profiles_display_name_cooldown
+  BEFORE INSERT OR UPDATE ON user_profiles
+  FOR EACH ROW EXECUTE FUNCTION enforce_display_name_cooldown();
+
 -- Users barred from commenting. Kept separate from the comments themselves so
 -- a ban survives deleting every comment its holder wrote.
 CREATE TABLE comment_bans (
