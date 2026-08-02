@@ -18,6 +18,8 @@ export interface PostData {
   category: string | null;
   tags: string[];
   publishedAt: string | null;
+  /** Last edit, taken from the file itself — posts get corrected after launch. */
+  updatedAt: string | null;
 
   // Title slide
   topicTag: string;
@@ -162,6 +164,7 @@ function parsePostFile(filePath: string): PostData | null {
       category: data.category || null,
       tags: Array.isArray(data.tags) ? data.tags : [],
       publishedAt: data.publishedAt || null,
+      updatedAt: fs.statSync(filePath).mtime.toISOString(),
 
       topicTag: data.topicTag,
       headline: data.headline,
@@ -263,6 +266,35 @@ export function getAllPosts(opts?: {
 
 export function getPublishedPosts(locale: string): PostData[] {
   return getAllPosts({ status: "published", locale });
+}
+
+/**
+ * Posts worth reading after this one, in the same language.
+ *
+ * Ranked by how much they share with the current post: same category counts
+ * for more than an overlapping tag, and recency breaks ties. Every post links
+ * onward, so no post is a dead end for a reader or a crawler.
+ */
+export function getRelatedPosts(post: PostData, limit = 3): PostData[] {
+  const candidates = getPublishedPosts(post.locale).filter(
+    (p) => p.slug !== post.slug
+  );
+
+  const tags = new Set(post.tags);
+
+  const scored = candidates.map((p) => {
+    let score = 0;
+    if (post.category && p.category === post.category) score += 3;
+    score += p.tags.filter((tag) => tags.has(tag)).length;
+    return { post: p, score };
+  });
+
+  scored.sort((a, b) => {
+    if (b.score !== a.score) return b.score - a.score;
+    return (b.post.publishedAt ?? "").localeCompare(a.post.publishedAt ?? "");
+  });
+
+  return scored.slice(0, limit).map((s) => s.post);
 }
 
 export function getTranslations(

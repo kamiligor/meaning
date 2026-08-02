@@ -2,11 +2,18 @@ import { notFound, permanentRedirect } from "next/navigation";
 import { getLocale, getHost } from "@/lib/locale";
 import { urlForLocale, SITE_HOSTS } from "@/lib/domains";
 import { logoPngPath } from "@/lib/brand";
-import { getPostBySlug, getPublishedPosts, getPostSlides, getTranslations } from "@/lib/posts";
+import {
+  getPostBySlug,
+  getPublishedPosts,
+  getPostSlides,
+  getTranslations,
+  getRelatedPosts,
+} from "@/lib/posts";
 import { ContentText } from "@/components/feed/content-text";
 import { CarouselViewer } from "@/components/feed/carousel-viewer";
 import { PostLangSwitcher } from "@/components/feed/post-lang-switcher";
 import { WEB_QUOTE_SLIDE } from "@/lib/content-sections";
+import { slideAltTexts } from "@/lib/slide-alt";
 import Image from "next/image";
 import { t, isLocale, type Locale } from "@/lib/i18n";
 import type { Metadata } from "next";
@@ -120,6 +127,8 @@ export default async function PostPage({ params }: PageProps) {
   }
 
   const postSlides = getPostSlides(post);
+  const slideAlts = slideAltTexts(post);
+  const related = getRelatedPosts(post);
   const cleanHeadline = post.headline.replace(/\{|\}/g, "");
 
   const translations = getTranslations(post.translationGroup)
@@ -154,7 +163,7 @@ export default async function PostPage({ params }: PageProps) {
     description: post.caption || `${post.topicTag}: ${cleanHeadline}`,
     image: [ogImageUrl],
     datePublished: post.publishedAt || undefined,
-    dateModified: post.publishedAt || undefined,
+    dateModified: post.updatedAt || post.publishedAt || undefined,
     inLanguage: post.locale === "pl" ? "pl-PL" : "en-US",
     mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
     author: {
@@ -252,7 +261,8 @@ export default async function PostPage({ params }: PageProps) {
               slides={postSlides
                 .filter((s) => s.slideNumber < 100)
                 .sort((a, b) => a.slideNumber - b.slideNumber)
-                .slice(0, -1)}
+                .slice(0, -1)
+                .map((s) => ({ ...s, alt: slideAlts.get(s.slideNumber) }))}
               alt={cleanHeadline}
             />
             {/* Like + Share */}
@@ -335,6 +345,34 @@ export default async function PostPage({ params }: PageProps) {
           </div>
 
         </article>
+
+        {related.length > 0 && (
+          <nav
+            className="mt-12 pt-8 border-t border-[#F1F4F6]"
+            aria-label={d.readNext}
+          >
+            <h2 className="text-sm font-semibold tracking-widest uppercase text-[#8A99A8] mb-4">
+              {d.readNext}
+            </h2>
+            <ul className="flex flex-col gap-3">
+              {related.map((r) => (
+                <li key={r.slug}>
+                  <Link
+                    href={`/post/${r.slug}`}
+                    className="group flex flex-col gap-0.5"
+                  >
+                    <span className="text-[15px] font-medium text-[#1E2A36] group-hover:text-[#7B9E8C] transition-colors">
+                      {r.headline.replace(/\{|\}/g, "")}
+                    </span>
+                    <span className="text-xs uppercase tracking-wider text-[#b3bec8]">
+                      {r.topicTag}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
 
         <Comments
           slug={post.slug}

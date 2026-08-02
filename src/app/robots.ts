@@ -9,7 +9,10 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
     rules: [
       {
         userAgent: "*",
-        allow: "/",
+        // Slide PNGs live under /api/, and they are the only image every post
+        // has — they are what open-graph previews and the Article schema point
+        // at. Blocking the whole prefix hid every one of them from crawlers.
+        allow: ["/", "/api/slides/"],
         disallow: ["/admin", "/api/", "/profil", "/program"],
       },
     ],

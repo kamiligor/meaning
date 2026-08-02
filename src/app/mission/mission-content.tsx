@@ -19,7 +19,7 @@ const content = {
     paragraphs: [
       "W psychologii jest mnóstwo badań, o których większość ludzi nigdy nie słyszy. Nie dlatego, że są tajne. Dlatego, że są zamknięte w akademickich czasopismach, napisane językiem, którego nikt nie czyta dla przyjemności.",
       "Uważamy, że to szkoda. Bo część z tego jest naprawdę przydatna.",
-      "Just have a little meaning zaczęło się od prostego pomysłu: wziąć to, co nauka faktycznie mówi o pamięci, emocjach, tożsamości i zachowaniu, i przełożyć to na przystępny język. Bez żargonu. Bez obietnic. Tylko rzeczy, które uznaliśmy za warte uwagi.",
+      "Po prostu sens zaczęło się od prostego pomysłu: wziąć to, co nauka faktycznie mówi o pamięci, emocjach, tożsamości i zachowaniu, i przełożyć to na przystępny język. Bez żargonu. Bez obietnic. Tylko rzeczy, które uznaliśmy za warte uwagi.",
       "Tłumaczymy wyniki badań z psychologii i neurobiologii na formaty, które są praktyczne i uczciwe. Krótki post. Ćwiczenie, które pomaga się zatrzymać i pomyśleć. Artykuł, który wyjaśnia, dlaczego Twój mózg robi to, co robi.",
     ],
     closing:

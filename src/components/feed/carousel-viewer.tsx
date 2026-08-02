@@ -3,7 +3,13 @@
 import { useState, useRef, useCallback } from "react";
 
 interface CarouselViewerProps {
-  slides: { filename: string; slideNumber: number }[];
+  /**
+   * `alt` carries the words printed on that slide. These are images of text,
+   * so the text itself is the correct description — and without it the slide
+   * copy exists nowhere but inside the PNG, unreadable to screen readers and
+   * to anything that crawls the page.
+   */
+  slides: { filename: string; slideNumber: number; alt?: string }[];
   alt: string;
   priority?: boolean;
 }
@@ -91,7 +97,7 @@ export function CarouselViewer({ slides, alt, priority }: CarouselViewerProps) {
           <div key={slide.slideNumber} className="w-full h-full shrink-0">
             <img
               src={`/api/slides/${slide.filename}`}
-              alt={`${alt} - Slide ${slide.slideNumber}`}
+              alt={slide.alt ?? `${alt} - Slide ${slide.slideNumber}`}
               className="w-full h-full object-cover pointer-events-none"
               draggable={false}
               fetchPriority={priority && slide.slideNumber === slides[0]?.slideNumber ? "high" : undefined}

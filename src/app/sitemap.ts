@@ -43,7 +43,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const postEntries: MetadataRoute.Sitemap = getPublishedPosts(locale).map(
     (post) => ({
       url: url(`/post/${post.slug}`),
-      lastModified: post.publishedAt ? new Date(post.publishedAt) : now,
+      lastModified: post.updatedAt ? new Date(post.updatedAt) : now,
       changeFrequency: "monthly",
       priority: 0.8,
     })
