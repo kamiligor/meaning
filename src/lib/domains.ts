@@ -90,7 +90,14 @@ const EQUIVALENT_PATHS: Record<string, { en: string; pl: string }> = {
   "/ulubione": { en: "/favorites", pl: "/ulubione" },
   "/mission": { en: "/mission", pl: "/misja" },
   "/misja": { en: "/mission", pl: "/misja" },
+  "/standards": { en: "/standards", pl: "/zasady" },
+  "/zasady": { en: "/standards", pl: "/zasady" },
 };
+
+/** Editorial standards, referenced from the Organization schema. */
+export function standardsPath(locale: Locale): string {
+  return locale === "pl" ? "/zasady" : "/standards";
+}
 
 /** Translate a pathname to its equivalent on the other language's site. */
 export function equivalentPath(pathname: string, target: Locale): string {

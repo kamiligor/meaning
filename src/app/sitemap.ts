@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getPublishedPosts } from "@/lib/posts";
 import { getLocale } from "@/lib/locale";
-import { urlForLocale, PROGRAM_LOCALE } from "@/lib/domains";
+import { urlForLocale, PROGRAM_LOCALE, standardsPath } from "@/lib/domains";
 import { CATEGORIES, getCategoryUrl } from "@/lib/categories";
 
 /**
@@ -23,6 +23,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.5,
     },
   ];
+
+  staticEntries.push({
+    url: url(standardsPath(locale)),
+    lastModified: now,
+    changeFrequency: "yearly",
+    priority: 0.4,
+  });
 
   if (locale === PROGRAM_LOCALE) {
     staticEntries.push({

@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import type { Locale } from "@/lib/i18n";
-import { equivalentPath, urlForLocale } from "@/lib/domains";
+import { equivalentPath, urlForLocale, standardsPath } from "@/lib/domains";
+import { t } from "@/lib/i18n";
 import { logoAlt } from "@/lib/brand";
 
 export function SiteFooter({ locale }: { locale: Locale }) {
@@ -32,9 +33,17 @@ export function SiteFooter({ locale }: { locale: Locale }) {
         </a>
 
         {/* Center — wordmark, in the language of this domain */}
-        <p className="text-xs text-[#8A99A8] tracking-widest uppercase order-1 md:order-2">
-          {logoAlt(locale)}
-        </p>
+        <div className="flex flex-col items-center gap-1 order-1 md:order-2">
+          <p className="text-xs text-[#8A99A8] tracking-widest uppercase">
+            {logoAlt(locale)}
+          </p>
+          <a
+            href={standardsPath(locale)}
+            className="text-[11px] text-[#b3bec8] hover:text-[#7B9E8C] transition-colors"
+          >
+            {t(locale).navStandards}
+          </a>
+        </div>
 
         {/* Right — language switcher */}
         <div className="flex items-center gap-1 order-3">

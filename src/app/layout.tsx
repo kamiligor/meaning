@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import { getLocale } from "@/lib/locale";
-import { SITE_HOSTS } from "@/lib/domains";
+import { SITE_HOSTS, standardsPath } from "@/lib/domains";
 import { logoPngPath } from "@/lib/brand";
 import { t } from "@/lib/i18n";
 import { JsonLd } from "@/components/json-ld";
@@ -69,6 +69,8 @@ export default async function RootLayout({
     logo: `${siteUrl}${logoPngPath(locale)}`,
     sameAs: ["https://www.instagram.com/justhavealittlemeaning"],
     description: d.siteDescription,
+    // Stands in for a named author: the rules the writing is held to.
+    publishingPrinciples: `${siteUrl}${standardsPath(locale)}`,
   };
 
   const websiteSchema = {
