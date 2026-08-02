@@ -1,16 +1,13 @@
 import { NextResponse } from "next/server";
 import { requireProgramUser } from "@/lib/program-auth";
-import { isProgramAdmin } from "@/lib/admin-email";
 import { decrypt } from "@/lib/encryption";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 
 export async function GET() {
   try {
+    // Access to one's own data is a right of every account holder, not a
+    // program feature, so this sits outside the pre-launch admin gate.
     const { user, supabase } = await requireProgramUser();
-
-    if (!isProgramAdmin(user.email)) {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-    }
 
     const { allowed, retryAfterMs } = checkRateLimit(
       `data-export:${user.id}`,

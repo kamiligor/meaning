@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { requireProgramUser } from "@/lib/program-auth";
-import { isProgramAdmin } from "@/lib/admin-email";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
 
@@ -50,11 +49,9 @@ async function wipeComments(
 
 export async function DELETE(request: Request) {
   try {
+    // Erasure is a right of every account holder, not a program feature, so
+    // this is deliberately not behind the pre-launch admin gate.
     const { user } = await requireProgramUser();
-
-    if (!isProgramAdmin(user.email)) {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-    }
 
     const { allowed, retryAfterMs } = checkRateLimit(
       `account-deletion:${user.id}`,
@@ -86,6 +83,11 @@ export async function DELETE(request: Request) {
     const payload = await request.json().catch(() => null);
     const keepComments = payload?.keepComments === true;
 
+    // Wiping before the account goes is deliberate. Afterwards user_id is
+    // already NULL and there is no way left to find which comments were
+    // theirs. If deleteUser then fails, the text is gone but the account
+    // remains and can be deleted again — the opposite order would risk
+    // leaving their words published without consent.
     if (!keepComments) {
       await wipeComments(supabaseAdmin, user.id);
     }
