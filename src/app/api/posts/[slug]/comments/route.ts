@@ -58,9 +58,12 @@ export async function GET(
     }
 
     const rows = (data ?? []) as CommentRow[];
-    const names = await loadAuthorNames(supabase, [
-      ...new Set(rows.map((r) => r.user_id)),
-    ]);
+    const names = await loadAuthorNames(
+      supabase,
+      [...new Set(rows.map((r) => r.user_id))].filter(
+        (id): id is string => id !== null
+      )
+    );
 
     return NextResponse.json({
       comments: buildCommentTree(rows, names, user?.id ?? null, locale),

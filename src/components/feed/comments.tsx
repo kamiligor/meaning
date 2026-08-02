@@ -171,20 +171,22 @@ function CommentBody({
 }) {
   const d = t(locale);
 
-  if (comment.deleted) {
-    return <p className="text-sm italic text-[#b3bec8]">{d.commentsDeleted}</p>;
-  }
-
   return (
     <div>
       <div className="flex items-baseline gap-2 flex-wrap">
-        <span className="text-sm font-semibold text-[#1E2A36]">
+        <span
+          className={
+            comment.authorGone
+              ? "text-sm font-semibold text-[#b3bec8] italic"
+              : "text-sm font-semibold text-[#1E2A36]"
+          }
+        >
           {comment.authorName}
         </span>
         <span className="text-xs text-[#b3bec8]">
           {formatDate(comment.createdAt, locale)}
         </span>
-        {comment.isOwn && (
+        {comment.isOwn && !comment.deleted && (
           <button
             onClick={() => onDelete(comment.id)}
             className="text-xs text-[#b3bec8] hover:text-[#c26a6a] transition-colors"
@@ -194,13 +196,37 @@ function CommentBody({
         )}
       </div>
 
-      <p className="mt-1 text-[15px] leading-relaxed text-[#4A5B6A] whitespace-pre-wrap">
-        {comment.body}
-      </p>
+      {comment.deleted ? (
+        <RedactedBody label={d.commentsDeleted} />
+      ) : (
+        <p className="mt-1 text-[15px] leading-relaxed text-[#4A5B6A] whitespace-pre-wrap">
+          {comment.body}
+        </p>
+      )}
 
-      {canReport && !comment.isOwn && (
+      {canReport && !comment.isOwn && !comment.deleted && (
         <ReportControl id={comment.id} locale={locale} />
       )}
+    </div>
+  );
+}
+
+/**
+ * Stands in for a comment whose text is gone. The bars are drawn, not blurred
+ * over the original: the body is empty by the time it leaves the server, so
+ * there is nothing to recover from the markup.
+ */
+function RedactedBody({ label }: { label: string }) {
+  return (
+    <div className="mt-2 flex flex-col gap-1.5" role="img" aria-label={label}>
+      <span
+        className="block h-2.5 w-full max-w-[22rem] rounded-sm bg-[#eef1f4]"
+        aria-hidden="true"
+      />
+      <span
+        className="block h-2.5 w-2/5 max-w-[12rem] rounded-sm bg-[#eef1f4]"
+        aria-hidden="true"
+      />
     </div>
   );
 }

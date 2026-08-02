@@ -229,7 +229,7 @@ const dict = {
     commentsReply: "Reply",
     commentsCancel: "Cancel",
     commentsDelete: "Delete",
-    commentsDeleted: "Comment deleted",
+    commentsDeleted: "Comment removed",
     commentsError: "Could not post the comment. Try again.",
     commentsTooMany: "Give it a minute before posting again.",
     commentsNameNeeded: "Set a display name in your profile before commenting.",

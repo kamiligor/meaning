@@ -29,11 +29,16 @@ CREATE POLICY "Users can read own ban"
   ON comment_bans FOR SELECT
   USING (auth.uid() = user_id);
 
+-- user_id goes NULL when the account behind it is deleted, instead of taking
+-- the comment down with it. That keeps other people's replies alive, since
+-- they hang off the parent row. A NULL author means one of two things, told
+-- apart by deleted_at: content removed with the account (anchor only), or
+-- content the person chose to leave behind.
 CREATE TABLE post_comments (
   id         BIGSERIAL PRIMARY KEY,
   post_slug  TEXT NOT NULL,
   locale     TEXT NOT NULL CHECK (locale IN ('en', 'pl')),
-  user_id    UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  user_id    UUID REFERENCES auth.users(id) ON DELETE SET NULL,
   parent_id  BIGINT REFERENCES post_comments(id) ON DELETE CASCADE,
   body       TEXT NOT NULL CHECK (char_length(btrim(body)) BETWEEN 1 AND 2000),
   status     TEXT NOT NULL DEFAULT 'visible'

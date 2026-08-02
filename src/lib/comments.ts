@@ -29,7 +29,8 @@ export interface CommentRow {
   id: number;
   post_slug: string;
   locale: string;
-  user_id: string;
+  /** NULL once the account behind the comment is gone. */
+  user_id: string | null;
   parent_id: number | null;
   body: string;
   status: CommentStatus;
@@ -46,6 +47,8 @@ export interface PublicComment {
   createdAt: string;
   editedAt: string | null;
   deleted: boolean;
+  /** The account is gone; the comment is signed "deleted user". */
+  authorGone: boolean;
   isOwn: boolean;
   replies: PublicComment[];
 }
@@ -60,6 +63,11 @@ export function fallbackAuthorName(locale: Locale): string {
   return locale === "pl" ? "Czytelnik" : "Reader";
 }
 
+/** Signature left on comments whose account no longer exists. */
+export function goneAuthorName(locale: Locale): string {
+  return locale === "pl" ? "Użytkownik usunięty" : "Deleted user";
+}
+
 function toPublic(
   row: CommentRow,
   names: Map<string, string>,
@@ -67,14 +75,22 @@ function toPublic(
   locale: Locale
 ): PublicComment {
   const deleted = row.deleted_at !== null;
+  const authorGone = row.user_id === null;
+
+  const authorName = authorGone
+    ? goneAuthorName(locale)
+    : names.get(row.user_id!) ?? fallbackAuthorName(locale);
 
   return {
     id: row.id,
-    authorName: names.get(row.user_id) ?? fallbackAuthorName(locale),
+    authorName,
+    // The body is already empty in the database for removed comments; this
+    // only guards against ever sending one that slipped through.
     body: deleted ? "" : row.body,
     createdAt: row.created_at,
     editedAt: row.edited_at,
     deleted,
+    authorGone,
     isOwn: viewerId !== null && row.user_id === viewerId,
     replies: [],
   };
