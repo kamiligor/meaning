@@ -26,13 +26,10 @@ export async function generateMetadata(): Promise<Metadata> {
       template: `%s — ${BRAND}`,
     },
     description: d.siteDescription,
-    alternates: {
-      canonical: "/",
-      languages: {
-        en: `https://${SITE_HOSTS.en}`,
-        pl: `https://${SITE_HOSTS.pl}`,
-      },
-    },
+    // No alternates here on purpose. Metadata cascades, so a canonical set on
+    // the root layout is inherited by every page that does not override it —
+    // which told search engines that /misja and /zasady were duplicates of the
+    // home page. Each page declares its own.
     openGraph: {
       type: "website",
       siteName: BRAND,

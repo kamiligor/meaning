@@ -45,6 +45,8 @@ export interface PostData {
   contentSections: ContentSection[]; // <!-- slide-only --> sections (for slides)
   webSections: ContentSection[];     // unmarked sections (for web page)
   caption: string | null;
+  /** Optional short summary for search results; falls back to the caption. */
+  description: string | null;
   references: string | null; // JSON string for compat
 
   // Legacy compat fields used by templates
@@ -185,6 +187,7 @@ function parsePostFile(filePath: string): PostData | null {
       contentSections: slideSections,
       webSections,
       caption,
+      description: data.description || null,
       references: refs,
 
       // Legacy compat

@@ -14,6 +14,7 @@ import { CarouselViewer } from "@/components/feed/carousel-viewer";
 import { PostLangSwitcher } from "@/components/feed/post-lang-switcher";
 import { WEB_QUOTE_SLIDE } from "@/lib/content-sections";
 import { slideAltTexts } from "@/lib/slide-alt";
+import { postDescription } from "@/lib/post-description";
 import Image from "next/image";
 import { t, isLocale, type Locale } from "@/lib/i18n";
 import type { Metadata } from "next";
@@ -44,6 +45,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!post) return { title: "Not Found" };
 
   const cleanHeadline = post.headline.replace(/\{|\}/g, "");
+  const description = postDescription(post);
   const group = post.translationGroup || post.slug;
   const ogImage = `/api/slides/${group}/${post.locale}/slide-1.png`;
   const postLocale: Locale = isLocale(post.locale) ? post.locale : "en";
@@ -61,10 +63,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       languages,
     },
     title: `${cleanHeadline} | just have a little meaning`,
-    description: post.caption || `${post.topicTag}: ${cleanHeadline}`,
+    description,
     openGraph: {
       title: cleanHeadline,
-      description: post.caption || `${post.topicTag}: ${cleanHeadline}`,
+      description,
       type: "article",
       publishedTime: post.publishedAt || undefined,
       locale: post.locale === "pl" ? "pl_PL" : "en_US",
@@ -73,7 +75,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     twitter: {
       card: "summary_large_image",
       title: cleanHeadline,
-      description: post.caption || `${post.topicTag}: ${cleanHeadline}`,
+      description,
       images: [ogImage],
     },
   };
@@ -129,6 +131,7 @@ export default async function PostPage({ params }: PageProps) {
   const postSlides = getPostSlides(post);
   const slideAlts = slideAltTexts(post);
   const related = getRelatedPosts(post);
+  const description = postDescription(post);
   const cleanHeadline = post.headline.replace(/\{|\}/g, "");
 
   const translations = getTranslations(post.translationGroup)
@@ -160,7 +163,7 @@ export default async function PostPage({ params }: PageProps) {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: cleanHeadline,
-    description: post.caption || `${post.topicTag}: ${cleanHeadline}`,
+    description,
     image: [ogImageUrl],
     datePublished: post.publishedAt || undefined,
     dateModified: post.updatedAt || post.publishedAt || undefined,
