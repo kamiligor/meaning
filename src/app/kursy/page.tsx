@@ -11,7 +11,7 @@ import { getLocale } from "@/lib/locale";
 export const metadata = {
   title: "Darmowe mini kursy | po prostu sens",
   description:
-    "Krótkie, darmowe kursy praktyki: niescrollowanie i wdzięczność. Jeden dzień naraz, kilka minut dziennie, zero presji.",
+    "Darmowe kursy rozłożone na kilka dni, po kilka minut dziennie. Każdy dzień kończy się jednym zadaniem do zrobienia w realnym życiu.",
 };
 
 export default async function CoursesHubPage() {
@@ -48,9 +48,12 @@ export default async function CoursesHubPage() {
             Mini kursy
           </h1>
           <p className="text-[#4A5B6A] leading-relaxed">
-            Krótkie, darmowe kursy jednej umiejętności. Jeden dzień naraz,
-            kilka minut dziennie: dawka wiedzy, mały quiz i jedno konkretne
-            zadanie. Bez pass, liczników i presji.
+            Każdy kurs tutaj jest darmowy i rozłożony na kilka dni, po kilka
+            minut dziennie, nie więcej. Dzień po dniu dostajesz krótkie
+            wyjaśnienie, mały quiz i jedno konkretne zadanie do zrobienia
+            w realnym życiu, nie tylko na papierze. Jeśli zdarzy się przerwa,
+            nic się nie psuje i nikt nie liczy zaległości. Kurs po prostu
+            czeka, aż wrócisz.
           </p>
         </div>
 
