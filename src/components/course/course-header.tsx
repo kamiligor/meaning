@@ -34,6 +34,12 @@ export function CourseHeader({ currentSlug }: { currentSlug: string }) {
             {course.name}
           </Link>
         ))}
+        <Link
+          href="/profil"
+          className="ml-auto text-sm text-[#8A99A8] hover:text-[#7B9E8C] whitespace-nowrap transition-colors"
+        >
+          Moje konto
+        </Link>
       </nav>
     </header>
   );

@@ -38,6 +38,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.8,
     });
+    // Mini courses live on the Polish domain only, like the program.
+    for (const coursePath of ["/kurs-niescrollowania", "/kurs-wdziecznosci"]) {
+      staticEntries.push({
+        url: url(coursePath),
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.7,
+      });
+    }
   }
 
   const categoryEntries: MetadataRoute.Sitemap = CATEGORIES.map((cat) => ({

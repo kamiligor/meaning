@@ -471,8 +471,8 @@ const dict = {
     // SAFETY BANNER
     safetyBannerText: "Ten program nie zastępuje psychoterapii.",
     safetyBannerHotline: "Potrzebujesz wsparcia?",
-    displayNameLabel: "Nazwa wyswietlana",
-    displayNameHint: "Pokazuje sie przy twoich komentarzach. Adres e-mail nigdy nie jest publiczny.",
+    displayNameLabel: "Nazwa wyświetlana",
+    displayNameHint: "Pokazuje się przy twoich komentarzach. Adres e-mail nigdy nie jest publiczny.",
     displayNameSave: "Zapisz",
     displayNameSaved: "Zapisano",
     displayNameTaken: "Ktoś już używa tej nazwy.",

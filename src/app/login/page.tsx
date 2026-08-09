@@ -17,7 +17,7 @@ export default async function LoginPage() {
       <SiteHeader locale={locale} />
       <main className="flex-1 flex items-center justify-center px-4">
         <Suspense>
-          <AuthForm mode="login" />
+          <AuthForm mode="login" locale={locale} />
         </Suspense>
       </main>
       <SiteFooter locale={locale} />

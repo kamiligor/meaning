@@ -65,7 +65,7 @@ export function CourseCheckin({
     <section className="mb-10">
       <div className="bg-white border border-[#e2e7eb] rounded-xl p-6">
         <h2 className="text-sm font-medium text-[#8A99A8] uppercase tracking-wider mb-3">
-          Najpierw wczoraj
+          Zanim ruszysz dalej
         </h2>
         <p className="text-lg font-medium text-[#1E2A36] mb-5">
           {checkin.question}
@@ -77,6 +77,7 @@ export function CourseCheckin({
               key={option.value}
               type="button"
               onClick={() => setChoice(option.value)}
+              aria-pressed={choice === option.value}
               className={`w-full text-left rounded-xl border-2 p-4 transition-colors ${
                 choice === option.value
                   ? "border-[#7B9E8C] bg-[#e8f0eb]"

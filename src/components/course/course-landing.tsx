@@ -7,7 +7,14 @@ import { getCourseState, currentDay, isDayUnlocked } from "@/lib/course";
 import { EnrollForm } from "@/components/course/enroll-form";
 
 /** Shared landing page for every mini course; content comes from the registry. */
-export async function CourseLanding({ slug }: { slug: string }) {
+export async function CourseLanding({
+  slug,
+  autoOpenEnroll = false,
+}: {
+  slug: string;
+  /** Open the enrollment form right away (returning from login). */
+  autoOpenEnroll?: boolean;
+}) {
   const course = getCourse(slug);
   if (!course) return null;
 
@@ -41,7 +48,9 @@ export async function CourseLanding({ slug }: { slug: string }) {
 
           {!user && (
             <>
-              <Link href={`/login?next=${course.path}`}>
+              <Link
+                href={`/login?next=${encodeURIComponent(`${course.path}?zapisz=1`)}`}
+              >
                 <Button size="lg">Zapisz się za darmo</Button>
               </Link>
               <p className="text-sm text-[#8A99A8] mt-3">
@@ -55,6 +64,7 @@ export async function CourseLanding({ slug }: { slug: string }) {
               courseSlug={course.slug}
               coursePath={course.path}
               askBaseline={course.askBaseline}
+              initialOpen={autoOpenEnroll}
             />
           )}
 

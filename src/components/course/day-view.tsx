@@ -16,6 +16,22 @@ import {
 
 export type DayNavEntry = OutlineDayEntry;
 
+export interface OtherCourseEntry {
+  name: string;
+  path: string;
+  continueDay: number;
+  completedDays: number;
+  totalDays: number;
+  finished: boolean;
+}
+
+export interface CourseSummaryDay {
+  day: number;
+  title: string;
+  checkinLabel: string | null;
+  note: string | null;
+}
+
 interface DayViewProps {
   courseSlug: string;
   day: number;
@@ -27,6 +43,9 @@ interface DayViewProps {
   nextDayUnlocked: boolean;
   baseline: { screenTimeMin: number | null; pickups: number | null };
   daysNav: DayNavEntry[];
+  otherCourses: OtherCourseEntry[];
+  /** "Mirror" data for the completed final day. */
+  summary: CourseSummaryDay[] | null;
 }
 
 type Step = "knowledge" | "quiz" | "challenge";
@@ -147,6 +166,8 @@ export function DayView({
   nextDayUnlocked,
   baseline,
   daysNav,
+  otherCourses,
+  summary,
 }: DayViewProps) {
   const router = useRouter();
   const course = getCourse(courseSlug);
@@ -290,12 +311,18 @@ export function DayView({
       {!isFinalDay &&
         (nextDayUnlocked ? (
           <section className="mb-10 text-center">
+            <p className="text-[#1E2A36] font-medium mb-4">
+              Dzień {day} z {totalDays} za tobą.
+            </p>
             <Link href={`${course.path}/dzien/${day + 1}`}>
               <Button variant="outline">Przejdź do dnia {day + 1}</Button>
             </Link>
           </section>
         ) : (
           <section className="mb-10 text-center">
+            <p className="text-[#1E2A36] font-medium mb-2">
+              Dzień {day} z {totalDays} za tobą.
+            </p>
             <p className="text-[#4A5B6A] leading-relaxed">
               Dzień {day + 1} odblokuje się jutro.{" "}
               {isChallenge
@@ -309,6 +336,7 @@ export function DayView({
       {isFinalDay && !feedbackGiven && (
         <FeedbackForm
           courseSlug={courseSlug}
+          totalDays={totalDays}
           onDone={() => {
             setFeedbackGiven(true);
             router.refresh();
@@ -317,18 +345,82 @@ export function DayView({
       )}
 
       {isFinalDay && feedbackGiven && (
-        <section className="text-center bg-[#f0f7f2] border border-[#c5d8cc] rounded-xl p-8">
+        <section className="text-center bg-[#f0f7f2] border border-[#c5d8cc] rounded-xl p-8 mb-10">
           <h3 className="text-lg font-semibold text-[#1E2A36] mb-2">
             Dziękujemy za te {totalDays === 5 ? "pięć" : "siedem"} dni
           </h3>
-          <p className="text-[#4A5B6A] leading-relaxed mb-6 max-w-md mx-auto">
-            Jeśli w trakcie kursu wypłynęło coś, co chcesz naprawdę rozpakować,
-            od tego jest The Life Writing Program: ta sama uważność na własne
-            życie, tylko rozpisana na konkretne pytania, z piórem w ręku.
+          {otherCourses.some((c) => !c.finished) ? (
+            <>
+              <p className="text-[#4A5B6A] leading-relaxed mb-6 max-w-md mx-auto">
+                Masz jeszcze w toku drugi kurs. Najlepszy następny krok to
+                dokończyć to, co już się zaczęło.
+              </p>
+              <div className="flex flex-col items-center gap-3">
+                {otherCourses
+                  .filter((c) => !c.finished)
+                  .map((c) => (
+                    <Link key={c.path} href={`${c.path}/dzien/${c.continueDay}`}>
+                      <Button>
+                        {c.name}: dzień {c.continueDay} z {c.totalDays}
+                      </Button>
+                    </Link>
+                  ))}
+                <Link
+                  href="/program"
+                  className="text-sm text-[#7B9E8C] hover:underline"
+                >
+                  Albo zobacz The Life Writing Program
+                </Link>
+              </div>
+            </>
+          ) : (
+            <>
+              <p className="text-[#4A5B6A] leading-relaxed mb-6 max-w-md mx-auto">
+                Jeśli w trakcie kursu wypłynęło coś, co chcesz naprawdę
+                rozpakować, od tego jest The Life Writing Program: ta sama
+                uważność na własne życie, tylko rozpisana na konkretne pytania,
+                z piórem w ręku.
+              </p>
+              <Link href="/program">
+                <Button>Zobacz The Life Writing Program</Button>
+              </Link>
+            </>
+          )}
+        </section>
+      )}
+
+      {/* Mirror, not medal: the person's own week, handed back */}
+      {isFinalDay && summary && summary.length > 0 && (
+        <section className="mb-10">
+          <h2 className="text-sm font-medium text-[#8A99A8] uppercase tracking-wider mb-4">
+            Twój tydzień w tym kursie
+          </h2>
+          <div className="space-y-3">
+            {summary.map((entry) => (
+              <div
+                key={entry.day}
+                className="bg-white border border-[#e2e7eb] rounded-xl px-5 py-4"
+              >
+                <p className="font-medium text-[#1E2A36]">
+                  Dzień {entry.day}: {entry.title}
+                </p>
+                {entry.checkinLabel && (
+                  <p className="text-sm text-[#4A5B6A] mt-1">
+                    Jak poszło: {entry.checkinLabel}
+                  </p>
+                )}
+                {entry.note && (
+                  <p className="text-sm text-[#4A5B6A] italic mt-1.5 border-l-2 border-[#c5d8cc] pl-3">
+                    {entry.note}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-[#8A99A8] mt-3 leading-relaxed">
+            Notatki widzisz tylko ty, są odszyfrowywane na twoje konto.
+            Zostają tu, możesz wracać.
           </p>
-          <Link href="/program">
-            <Button>Zobacz The Life Writing Program</Button>
-          </Link>
         </section>
       )}
     </>
@@ -344,6 +436,7 @@ export function DayView({
           daysNav={daysNav}
           live={{ quizPassed, completed, step }}
           onStepSelect={(s) => !completed && setStep(s)}
+          otherCourses={otherCourses}
         />
       </aside>
 
@@ -406,7 +499,7 @@ export function DayView({
             <>
               <section className="mb-8">
                 <h2 className="text-sm font-medium text-[#8A99A8] uppercase tracking-wider mb-4">
-                  Szybki quiz (bez punktów, obiecujemy)
+                  {day === 1 ? "Szybki quiz (bez punktów, obiecujemy)" : "Szybki quiz"}
                 </h2>
                 {quizPassed ? (
                   <CourseQuiz questions={content.quiz} mode="review" />

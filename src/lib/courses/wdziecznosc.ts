@@ -19,7 +19,7 @@ export const wdziecznoscCourse: Course = {
     "Wdzięczność to nie cecha charakteru, z którą trzeba się urodzić. To umiejętność, którą się trenuje, i jedna z najlepiej przebadanych dróg do bycia szczęśliwszym. Przez siedem dni przechodzisz od jednej praktyki dziennie do wdzięczności wplecionej w zwykłe chwile. Bez udawania, że wszystko jest super.",
   howItWorks: [
     "Jeden dzień naraz. Kolejny dzień odblokowuje się następnego dnia kalendarzowego, bo praktyka potrzebuje całego dnia, żeby się wydarzyć.",
-    "Każdy dzień to cztery krótkie kroki: opis, jak poszło wczoraj, dawka wiedzy, mały quiz bez punktów i jedna konkretna praktyka.",
+    "Każdy dzień to krótkie kroki: dawka wiedzy, mały quiz bez punktów i jedna konkretna praktyka, a od drugiego dnia także opis, jak poszło ostatnio.",
     "Praktyki są małe z założenia: trzy zapisane rzeczy, jedno odwrócone narzekanie, jedno zdanie rano. Duży efekt bierze się z powtarzania, nie z rozmachu.",
     "Przerwa niczego nie psuje. Nie ma pass, liczników ani spóźnień. Kurs po prostu czeka, aż wrócisz.",
   ],
@@ -35,7 +35,7 @@ export const wdziecznoscCourse: Course = {
       knowledge: [
         "Są ludzie, którym wdzięczność zdaje się przychodzić sama. Łatwo pomyśleć, że to kwestia charakteru: jedni tacy są, inni nie. Arthur Brooks, profesor Harvardu, który od lat bada, skąd bierze się szczęście, twierdzi coś innego: wdzięczność jest umiejętnością, nie cechą wrodzoną. Trenuje się ją tak samo jak mięsień, a efekty są mierzalne.",
         "Najbardziej znany dowód pochodzi z klasycznego badania z 2003 roku. Dwaj psychologowie poprosili jedną grupę, żeby co tydzień spisywała rzeczy, za które jest wdzięczna, a drugą, żeby spisywała uciążliwości i problemy. Po kilku tygodniach grupa spisująca dobre rzeczy była wyraźnie bardziej zadowolona z życia, bardziej optymistyczna, a nawet zgłaszała mniej dolegliwości fizycznych. Ta sama rzeczywistość, inna uwaga, inne życie.",
-        "Ten kurs to siedem dni treningu w czterech krokach: najpierw przekonasz się, po co to w ogóle robić, potem zakotwiczysz jedną praktykę dziennie, potem kilka małych pauz w ciągu dnia, a na końcu spróbujesz najtrudniejszego: znajdowania dobrego także w tym, co nie poszło. Lekko. Celem jest szczęśliwsze życie, nie kolejne zadanie domowe.",
+        "Ten kurs to siedem dni treningu w czterech krokach: najpierw przekonasz się, po co to w ogóle robić, potem zakotwiczysz jedną praktykę dziennie, potem kilka małych pauz w ciągu dnia, a na końcu spróbujesz najtrudniejszego: znajdowania dobrego także w tym, co nie poszło. I lekko: celem jest szczęśliwsze życie, nie kolejne zadanie domowe.",
       ],
       quiz: [
         {
@@ -88,7 +88,7 @@ export const wdziecznoscCourse: Course = {
       challenge: {
         lead: "Trzy rzeczy, teraz",
         body: [
-          "Pierwsza praktyka jest najprostsza z możliwych: zapisz trzy rzeczy, za które jesteś wdzięczny w tej chwili. Na kartce, w notatce, gdziekolwiek. Mogą być duże (ktoś bliski, zdrowie) albo małe (ciepła woda, dzisiejsza kawa, że autobus przyjechał). Małe działają tak samo dobrze.",
+          "Pierwsza praktyka jest najprostsza z możliwych: zapisz trzy rzeczy, za które dziękujesz w tej chwili. Na kartce, w notatce, gdziekolwiek. Mogą być duże (ktoś bliski, zdrowie) albo małe (ciepła woda, dzisiejsza kawa, że autobus przyjechał). Małe działają tak samo dobrze.",
           "Po zapisaniu zatrzymaj się na dziesięć sekund i zauważ, czy coś się zmieniło: w nastroju, w ciele, w tym, na co patrzysz. To pierwszy przedsmak mechanizmu, który będziemy trenować przez tydzień.",
         ],
         minimal: "Jeśli dziś nie wyjdzie nic więcej, wystarczy jedna rzecz, wymieniona w myślach.",
@@ -100,7 +100,7 @@ export const wdziecznoscCourse: Course = {
       day: 2,
       title: "Alternatywą nie jest neutralność",
       checkinAboutPrevious: {
-        question: "Jak poszły wczorajsze trzy rzeczy?",
+        question: "Jak poszły twoje trzy rzeczy?",
         options: [
           {
             value: "written",
@@ -174,7 +174,7 @@ export const wdziecznoscCourse: Course = {
         lead: "Odwróć jedno narzekanie",
         body: [
           "Dziś złap się na jednym narzekaniu. Na głos albo w myślach, obojętne: korki, pogoda, zmywanie, powolny internet. Nie tłum go i nie oceniaj, po prostu zauważ.",
-          "A potem odwróć: zapytaj, co to narzekanie zdradza, że masz. Korki oznaczają auto i miejsce, do którego warto jechać. Zmywanie oznacza, że było co jeść. Powolny internet oznacza internet. Nie chodzi o skasowanie narzekania, tylko o dopisanie drugiej kolumny, której skaner negatywności sam nigdy nie wypełni.",
+          "A potem odwróć: zapytaj, co to narzekanie zdradza, że masz. Korki oznaczają auto i miejsce, do którego warto jechać. Zmywanie oznacza, że było co jeść. Powolny internet oznacza internet. Cisza w mieszkaniu oznacza własny kąt. Nie chodzi o skasowanie narzekania, tylko o dopisanie drugiej kolumny, której skaner negatywności sam nigdy nie wypełni.",
         ],
         minimal:
           "Jeśli w ciągu dnia nic się nie złapie, wieczorem przypomnij sobie jedno narzekanie z dzisiaj i odwróć je wstecz.",
@@ -186,7 +186,7 @@ export const wdziecznoscCourse: Course = {
       day: 3,
       title: "Poranna kotwica",
       checkinAboutPrevious: {
-        question: "Jak poszło wczorajsze odwracanie narzekania?",
+        question: "Jak poszło odwracanie narzekania?",
         options: [
           {
             value: "flipped",
@@ -351,7 +351,7 @@ export const wdziecznoscCourse: Course = {
             value: "three",
             label: "Były trzy, ze szczegółami",
             response:
-              "Masz już obie kotwice: poranną i wieczorną. To jest komplet, na którym można jechać latami. Dziś coś pomiędzy.",
+              "Masz już obie kotwice: poranną i wieczorną. Ten komplet wystarcza na lata. Dziś coś pomiędzy.",
           },
           {
             value: "one",
@@ -369,7 +369,7 @@ export const wdziecznoscCourse: Course = {
         textLabel: "Chcesz coś dopisać? (opcjonalnie, tylko dla ciebie)",
       },
       knowledge: [
-        "Tradycje religijne wiedzą od tysięcy lat coś, co psychologia odkrywa na nowo: modlitwa kilka razy dziennie to nie tylko obrzęd, to technologia utrzymywania uwagi przy tym, co ważne. Rytm małych powtórzeń działa lepiej niż jeden wielki zryw, bo nie pozwala uwadze odpłynąć na cały dzień.",
+        "Tradycje religijne wiedzą od tysięcy lat coś, co psychologia odkrywa na nowo: modlitwa kilka razy dziennie to także szkoła uwagi: sposób, żeby uwaga wracała do tego, co ważne. Rytm małych powtórzeń działa lepiej niż jeden wielki zryw, bo nie pozwala uwadze odpłynąć na cały dzień.",
         "Thich Nhat Hanh proponował świecką wersję tego rytmu: dzwonki uważności. W jego wspólnocie co jakiś czas rozbrzmiewał dzwon i wszyscy zatrzymywali się na jeden oddech. Ale dzwonem może być cokolwiek: próg drzwi, czajnik, sygnał telefonu, pierwsze kroki po wyjściu z domu. Każdy taki punkt dnia może być małym otwarciem na wdzięczność.",
         "Zauważ, że to trzeci poziom kursu: najpierw było raz dziennie rano, potem raz wieczorem, dziś kilka małych pauz pomiędzy. Nie dokładamy czasu, każda pauza to jeden oddech. Dokładamy częstotliwość, bo z niej robi się nawyk.",
       ],
@@ -413,7 +413,7 @@ export const wdziecznoscCourse: Course = {
         lead: "Trzy pauzy na oddech",
         body: [
           "Ustaw dziś trzy delikatne sygnały w ciągu dnia. Mogą to być trzy ciche alarmy w telefonie (to dobry przykład telefonu w roli narzędzia, nie pożeracza) albo trzy stałe kotwice: śniadanie, obiad, kolacja.",
-          "Przy każdym sygnale zatrzymaj się na jeden oddech i nazwij jedną rzecz, za którą jesteś wdzięczny właśnie teraz, w tym miejscu, w tej sytuacji. Nie wczoraj, nie ogólnie: teraz. To całe zadanie, trzy oddechy na cały dzień.",
+          "Przy każdym sygnale zatrzymaj się na jeden oddech i nazwij jedną rzecz, za którą dziękujesz właśnie teraz, w tym miejscu, w tej sytuacji. Nie wczoraj, nie ogólnie: teraz. To całe zadanie, trzy oddechy na cały dzień.",
         ],
         minimal: "Wersja minimalna: jedna pauza przy jednym posiłku.",
         evening:
@@ -424,7 +424,7 @@ export const wdziecznoscCourse: Course = {
       day: 6,
       title: "Wdzięczność wyrażona",
       checkinAboutPrevious: {
-        question: "Jak poszły wczorajsze trzy pauzy?",
+        question: "Jak poszły trzy pauzy?",
         options: [
           {
             value: "all",
@@ -499,18 +499,19 @@ export const wdziecznoscCourse: Course = {
         body: [
           "Dziś wyślij jednej osobie jedną szczerą wiadomość z podziękowaniem. Za coś konkretnego: rzecz, którą zrobiła, słowa, które kiedyś padły, coś, co zauważasz od dawna, ale nigdy nie zostało powiedziane. Trzy zdania wystarczą. Sms, mail, wiadomość głosowa, forma bez znaczenia.",
           "Wersja odważniejsza: podziękuj komuś na głos, w momencie, konkretnie. Nie „dzięki”, tylko za co dokładnie. Zobacz, co to robi z rozmową.",
+          "Dwie rzeczy na zapas. Jeśli nikt nie przychodzi ci do głowy, podziękuj komuś na żywo przy okazji: kasjerce, kierowcy, sąsiadowi. To pełnoprawna wersja tego zadania, nie gorsza. I druga: odpowiedź nie jest potrzebna. Wiadomość robi swoje po obu stronach już w momencie wysłania, echo bywa dodatkiem, nie miarą.",
         ],
         minimal:
           "Wersja minimalna: przy najbliższej okazji podziękuj konkretniej niż zwykle, choćby przy kasie albo w drzwiach.",
         evening:
-          "Wieczorem: co wróciło? Czasem odpowiedź na takie podziękowanie mówi więcej o relacji niż miesiące zwykłych rozmów.",
+          "Wieczorem: jeśli coś wróciło, zatrzymaj się przy tym na chwilę. A jeśli nie, wiadomość i tak zrobiła swoje.",
       },
     },
     {
       day: 7,
       title: "Dobre w tym, co jest",
       checkinAboutPrevious: {
-        question: "Jak poszło wczorajsze podziękowanie?",
+        question: "Jak poszło podziękowanie?",
         options: [
           {
             value: "sent",
@@ -535,7 +536,7 @@ export const wdziecznoscCourse: Course = {
       },
       knowledge: [
         "Ostatni poziom nie polega na dokładaniu kolejnych praktyk, tylko na zmianie spojrzenia. Thich Nhat Hanh nazywał to współistnieniem: każda rzecz, którą masz, istnieje dzięki niewidzialnej sieci ludzi i przyczyn. W kartce papieru, pisał, można zobaczyć chmurę, bo bez deszczu nie urosłoby drzewo, i drwala, i jego codzienny chleb. Kto naprawdę widzi tę sieć, temu wdzięczność nie każe się zmuszać. Przychodzi sama.",
-        "A co z dniami, które są po prostu złe? Tu Peterson mówi rzecz najtrudniejszą z całego kursu: bądź wdzięczny pomimo cierpienia. Nie dlatego, że cierpienie jest dobre, i nie zamiast go czuć. Wdzięczność pomimo to świadoma postawa, wybierana właśnie wtedy, kiedy nie przychodzi sama. Według niego to nie naiwność, tylko forma odwagi.",
+        "A co z dniami, które są po prostu złe? Tu Peterson mówi rzecz najtrudniejszą z całego kursu: wdzięczność pomimo cierpienia. Nie dlatego, że cierpienie jest dobre, i nie zamiast go czuć. Wdzięczność pomimo to świadoma postawa, wybierana właśnie wtedy, kiedy nie przychodzi sama. Według niego to nie naiwność, tylko forma odwagi.",
         "I domknięcie klamry z pierwszych dni: to nie jest toksyczna pozytywność. Nie szukamy dobrego zamiast trudnego, tylko obok trudnego. Trudne zostaje trudne, nazwane po imieniu. Pytanie brzmi jedynie: czy oprócz tego jest tu coś, za co mogę uczciwie podziękować? Jeśli odpowiedź jest mała, to znaczy, że jest prawdziwa.",
       ],
       quiz: [

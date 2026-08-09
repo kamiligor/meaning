@@ -3,9 +3,14 @@ import { notFound, redirect } from "next/navigation";
 import { Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getProgramUser } from "@/lib/program-auth";
-import { getCourse, getDay } from "@/lib/courses";
-import { getCourseState, isDayUnlocked } from "@/lib/course";
-import { DayView } from "@/components/course/day-view";
+import { courses, getCourse, getDay } from "@/lib/courses";
+import { getCourseState, currentDay, isDayUnlocked } from "@/lib/course";
+import { decrypt } from "@/lib/encryption";
+import {
+  DayView,
+  type OtherCourseEntry,
+  type CourseSummaryDay,
+} from "@/components/course/day-view";
 
 /** Shared day page for every mini course: auth, unlock gate, then DayView. */
 export async function CourseDayPage({
@@ -85,6 +90,67 @@ export async function CourseDayPage({
     quizPassed: !!state.days[d]?.quizPassed,
   }));
 
+  // The person's other enrolled courses, for the sidebar shortcut and the
+  // completion screen ("finish the course you already started" beats
+  // "buy the program").
+  const otherCourses: OtherCourseEntry[] = [];
+  for (const other of courses) {
+    if (other.slug === course.slug) continue;
+    const otherState = await getCourseState(supabase, user.id, other.slug);
+    if (!otherState.enrollment) continue;
+    const otherTotal = other.days.length;
+    const completedDays = Object.values(otherState.days).filter(
+      (d) => d.completedAt
+    ).length;
+    otherCourses.push({
+      name: other.name,
+      path: other.path,
+      continueDay: currentDay(otherState.days, otherTotal),
+      completedDays,
+      totalDays: otherTotal,
+      finished: completedDays >= otherTotal,
+    });
+  }
+
+  // "Mirror, not medal": on the completed final day, hand the person their
+  // own week back — check-in answers and decrypted notes.
+  let summary: CourseSummaryDay[] | null = null;
+  if (day === totalDays && dayState?.completedAt) {
+    const { data: rows } = await supabase
+      .from("course_day_progress")
+      .select("day, checkin_choice, checkin_ciphertext, checkin_iv, checkin_salt")
+      .eq("user_id", user.id)
+      .eq("course_slug", course.slug)
+      .order("day");
+
+    summary = (rows ?? []).map((row) => {
+      const followingDay = getDay(course, row.day + 1);
+      const checkinLabel =
+        followingDay?.checkinAboutPrevious?.options.find(
+          (o) => o.value === row.checkin_choice
+        )?.label ?? null;
+      let note: string | null = null;
+      if (row.checkin_ciphertext && row.checkin_iv && row.checkin_salt) {
+        try {
+          note = decrypt(
+            row.checkin_ciphertext,
+            row.checkin_iv,
+            row.checkin_salt,
+            user.id
+          );
+        } catch {
+          note = null;
+        }
+      }
+      return {
+        day: row.day,
+        title: getDay(course, row.day)?.title ?? "",
+        checkinLabel,
+        note,
+      };
+    });
+  }
+
   return (
     <DayView
       courseSlug={course.slug}
@@ -100,6 +166,8 @@ export async function CourseDayPage({
         pickups: state.enrollment.baselinePickups,
       }}
       daysNav={daysNav}
+      otherCourses={otherCourses}
+      summary={summary}
     />
   );
 }

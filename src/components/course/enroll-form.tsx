@@ -9,6 +9,8 @@ interface EnrollFormProps {
   coursePath: string;
   /** Whether to ask for the screen-time baseline numbers (niescrollowanie). */
   askBaseline: boolean;
+  /** Open the form immediately (arriving back from login). */
+  initialOpen?: boolean;
 }
 
 /**
@@ -16,9 +18,14 @@ interface EnrollFormProps {
  * back in the final-day summary), a reminders opt-out, and the activity
  * notice.
  */
-export function EnrollForm({ courseSlug, coursePath, askBaseline }: EnrollFormProps) {
+export function EnrollForm({
+  courseSlug,
+  coursePath,
+  askBaseline,
+  initialOpen = false,
+}: EnrollFormProps) {
   const router = useRouter();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(initialOpen);
   const [screenTime, setScreenTime] = useState("");
   const [pickups, setPickups] = useState("");
   const [reminders, setReminders] = useState(true);
@@ -33,14 +40,15 @@ export function EnrollForm({ courseSlug, coursePath, askBaseline }: EnrollFormPr
     );
   }
 
+  // An untouched field means "not provided", never zero.
   const toNumber = (value: string): number | undefined => {
+    if (!value.trim()) return undefined;
     const parsed = Number(value.replace(",", "."));
     if (!Number.isFinite(parsed) || parsed < 0) return undefined;
     return Math.round(parsed);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const enroll = async (skipBaseline: boolean) => {
     setLoading(true);
     setError("");
 
@@ -50,8 +58,10 @@ export function EnrollForm({ courseSlug, coursePath, askBaseline }: EnrollFormPr
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           courseSlug,
-          baselineScreenTimeMin: askBaseline ? toNumber(screenTime) : undefined,
-          baselinePickups: askBaseline ? toNumber(pickups) : undefined,
+          baselineScreenTimeMin:
+            askBaseline && !skipBaseline ? toNumber(screenTime) : undefined,
+          baselinePickups:
+            askBaseline && !skipBaseline ? toNumber(pickups) : undefined,
           remindersEnabled: reminders,
         }),
       });
@@ -64,6 +74,11 @@ export function EnrollForm({ courseSlug, coursePath, askBaseline }: EnrollFormPr
     }
   };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    void enroll(false);
+  };
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -74,10 +89,15 @@ export function EnrollForm({ courseSlug, coursePath, askBaseline }: EnrollFormPr
           <h2 className="text-lg font-medium text-[#1E2A36] mb-1">
             Zanim zaczniesz: dwie liczby
           </h2>
-          <p className="text-sm text-[#4A5B6A] mb-4 leading-relaxed">
-            Zajrzyj do ustawień telefonu (czas ekranowy) i przepisz dwie
-            wartości z ostatnich dni. Wrócą do ciebie w bilansie piątego dnia.
-            Możesz też pominąć ten krok.
+          <p className="text-sm text-[#4A5B6A] mb-2 leading-relaxed">
+            Zajrzyj do ustawień telefonu i przepisz dwie wartości z ostatnich
+            dni. Znajdziesz je w: iPhone: Ustawienia → Czas przed ekranem;
+            Android: Ustawienia → Cyfrowa równowaga. Wrócą do ciebie
+            w bilansie piątego dnia.
+          </p>
+          <p className="text-sm text-[#8A99A8] mb-4 leading-relaxed">
+            Jakiekolwiek są te liczby, są tylko punktem startu. Nikt ich nie
+            ocenia.
           </p>
 
           <label className="block mb-3">
@@ -147,6 +167,17 @@ export function EnrollForm({ courseSlug, coursePath, askBaseline }: EnrollFormPr
       <Button type="submit" className="w-full" disabled={loading}>
         {loading ? "Zapisywanie..." : "Zaczynam dzień 1"}
       </Button>
+
+      {askBaseline && (
+        <button
+          type="button"
+          onClick={() => void enroll(true)}
+          disabled={loading}
+          className="w-full mt-2 text-sm text-[#8A99A8] hover:text-[#7B9E8C] py-2"
+        >
+          Pomiń liczby i zacznij
+        </button>
+      )}
     </form>
   );
 }

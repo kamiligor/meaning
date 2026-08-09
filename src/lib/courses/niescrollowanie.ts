@@ -17,7 +17,7 @@ export const niescrollowanieCourse: Course = {
     "Nie zabieramy telefonu i nie obiecujemy detoksu. Przez pięć dni trenujesz jedną umiejętność: bycie z własnymi myślami, zaczynając od trzech minut, kończąc na kwadransie. To eksperyment, nie odwyk.",
   howItWorks: [
     "Jeden dzień naraz. Kolejny dzień odblokowuje się następnego dnia kalendarzowego, bo wyzwanie potrzebuje całego dnia, żeby się wydarzyć.",
-    "Każdy dzień to cztery krótkie kroki: opis, jak poszło wczoraj, dawka wiedzy, mały quiz bez punktów i jedno konkretne wyzwanie.",
+    "Każdy dzień to krótkie kroki: dawka wiedzy, mały quiz bez punktów i jedno konkretne wyzwanie, a od drugiego dnia także opis, jak poszło ostatnio.",
     "Wyzwania rosną powoli: pierwszego dnia zmienia się tylko jedna myśl, ostatniego siedzisz kwadrans z jednym pytaniem.",
     "Przerwa niczego nie psuje. Nie ma pass, liczników ani spóźnień. Kurs po prostu czeka, aż wrócisz.",
   ],
@@ -122,7 +122,7 @@ export const niescrollowanieCourse: Course = {
       day: 2,
       title: "Ochota to nie rozkaz",
       checkinAboutPrevious: {
-        question: "Jak poszło wczorajsze przypominanie sobie, że nuda to stan pożądany?",
+        question: "Jak poszło przypominanie sobie, że nuda to stan pożądany?",
         options: [
           {
             value: "often",
@@ -208,7 +208,7 @@ export const niescrollowanieCourse: Course = {
       day: 3,
       title: "Czekanie jest twoje",
       checkinAboutPrevious: {
-        question: "Jak poszły wczorajsze kreski i fale?",
+        question: "Jak poszły kreski i fale?",
         options: [
           {
             value: "full",
@@ -296,7 +296,7 @@ export const niescrollowanieCourse: Course = {
       day: 4,
       title: "Co zostaje w pamięci",
       checkinAboutPrevious: {
-        question: "Jak poszło wczorajsze czekanie bez telefonu?",
+        question: "Jak poszło czekanie bez telefonu?",
         options: [
           {
             value: "many",
@@ -367,8 +367,8 @@ export const niescrollowanieCourse: Course = {
       challenge: {
         lead: "Jedna zamiana",
         body: [
-          "Zadanie ma dwie części. Po pierwsze, mały audyt: przejrzyj ekran główny telefonu i przy każdej aplikacji zadaj sobie jedno pytanie: uzupełnia czy zastępuje? Te z drugiej kategorii przenieś do folderu na ostatnią stronę, gdzieś, gdzie trzeba specjalnie po nie sięgnąć. Nic nie trzeba usuwać, samo przeniesienie robi większą różnicę, niż się wydaje.",
-          "Po drugie, zamień dziś jedną sesję scrollowania na coś, co ma szansę zostać w pamięci: rozmowę, wspólny posiłek bez telefonów na stole, telefon do kogoś, z kim dawno się nie rozmawiało.",
+          "Zadanie ma dwie części. Po pierwsze, mały audyt: przejrzyj ekran główny telefonu i przy każdej aplikacji zadaj sobie jedno pytanie: uzupełnia czy zastępuje? Te z drugiej kategorii przenieś do folderu na ostatnią stronę (przytrzymaj palcem ikonę, aż da się ją przeciągnąć), gdzieś, gdzie trzeba specjalnie po nie sięgnąć. Nic nie trzeba usuwać, samo przeniesienie robi większą różnicę, niż się wydaje.",
+          "Po drugie, zamień dziś jedną sesję scrollowania na coś, co ma szansę zostać w pamięci: rozmowę, wspólny posiłek bez telefonów na stole, telefon do kogoś, z kim dawno się nie rozmawiało. A jeśli dziś nie ma wokół ludzi, wystarczy posiłek bez telefonu na stole, choćby w pojedynkę: chodzi o obecność, nie o towarzystwo.",
           "Trening dnia rośnie do 10-12 minut, najlepiej jako spacer, bez telefonu i bez słuchawek w uszach.",
         ],
         minimal:
@@ -381,7 +381,7 @@ export const niescrollowanieCourse: Course = {
       day: 5,
       title: "Kwadrans, który zostaje",
       checkinAboutPrevious: {
-        question: "Jak poszedł wczorajszy audyt i zamiana?",
+        question: "Jak poszedł audyt i zamiana?",
         options: [
           {
             value: "both",
@@ -399,7 +399,7 @@ export const niescrollowanieCourse: Course = {
             value: "none",
             label: "Nie dziś",
             response:
-              "W porządku. Finał kursu nie wymaga niczego z wczoraj. Piętnaście minut i jedno pytanie, to wszystko.",
+              "W porządku. Finał kursu nie wymaga niczego z poprzednich dni. Piętnaście minut i jedno pytanie, to wszystko.",
           },
         ],
         textLabel: "Chcesz coś dopisać? (opcjonalnie, tylko dla ciebie)",

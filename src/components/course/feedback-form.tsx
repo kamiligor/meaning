@@ -4,17 +4,20 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
 const RATING_OPTIONS = [
-  { value: "worth_it", label: "Tak, było warte tych 5 dni" },
+  { value: "worth_it", label: "Tak, był tego wart" },
   { value: "mixed", label: "Częściowo" },
   { value: "not_for_me", label: "To nie było dla mnie" },
 ] as const;
 
+const DAY_WORDS: Record<number, string> = { 5: "pięciu", 7: "siedmiu" };
+
 interface FeedbackFormProps {
   courseSlug: string;
+  totalDays: number;
   onDone: () => void;
 }
 
-export function FeedbackForm({ courseSlug, onDone }: FeedbackFormProps) {
+export function FeedbackForm({ courseSlug, totalDays, onDone }: FeedbackFormProps) {
   const [rating, setRating] = useState<string | null>(null);
   const [hardest, setHardest] = useState("");
   const [suggestion, setSuggestion] = useState("");
@@ -61,7 +64,7 @@ export function FeedbackForm({ courseSlug, onDone }: FeedbackFormProps) {
         </p>
 
         <p className="font-medium text-[#1E2A36] mb-3">
-          Czy kurs był wart tych pięciu dni?
+          Czy kurs był wart tych {DAY_WORDS[totalDays] ?? totalDays} dni?
         </p>
         <div className="space-y-2.5 mb-5">
           {RATING_OPTIONS.map((option) => (
@@ -69,6 +72,7 @@ export function FeedbackForm({ courseSlug, onDone }: FeedbackFormProps) {
               key={option.value}
               type="button"
               onClick={() => setRating(option.value)}
+              aria-pressed={rating === option.value}
               className={`w-full text-left rounded-xl border-2 p-3.5 transition-colors ${
                 rating === option.value
                   ? "border-[#7B9E8C] bg-[#e8f0eb]"
