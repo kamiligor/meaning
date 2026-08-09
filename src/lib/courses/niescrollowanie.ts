@@ -14,7 +14,7 @@ export const niescrollowanieCourse: Course = {
   metaDescription:
     "Darmowy 5-dniowy mini kurs: codziennie dawka wiedzy, krótki quiz i jedno wyzwanie. Trening bycia z własnymi myślami zamiast scrollowania.",
   heroDescription:
-    "Nie zabieramy telefonu i nie obiecujemy detoksu. Przez pięć dni trenujesz jedną umiejętność: bycie z własnymi myślami, zaczynając od trzech minut, kończąc na kwadransie. To eksperyment, nie odwyk.",
+    "Przez pięć dni trenujesz jedną umiejętność: bycie z własnymi myślami, zaczynając od trzech minut, kończąc na kwadransie. To eksperyment, nie odwyk.",
   howItWorks: [
     "Jeden dzień naraz. Kolejny dzień odblokowuje się następnego dnia kalendarzowego, bo wyzwanie potrzebuje całego dnia, żeby się wydarzyć.",
     "Każdy dzień to krótkie kroki: dawka wiedzy, mały quiz bez punktów i jedno konkretne wyzwanie, a od drugiego dnia także opis, jak poszło ostatnio.",
