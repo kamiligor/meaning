@@ -297,7 +297,12 @@ export async function proxy(request: NextRequest) {
       return NextResponse.redirect(loginUrl);
     }
 
-    if (pathname.startsWith("/api/course/") && !user) {
+    // The reminders cron authenticates itself with CRON_SECRET.
+    if (
+      pathname.startsWith("/api/course/") &&
+      pathname !== "/api/course/reminders" &&
+      !user
+    ) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
   }

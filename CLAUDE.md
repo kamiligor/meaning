@@ -348,4 +348,4 @@ Bez tego post nie będzie miał slajdów PNG i karuzela się nie wyświetli.
 - **Output**: `standalone`
 - **Port**: 3000
 - **Persistent volume**: `/data/slides` (PNG karuzel)
-- **ENV vars**: `ADMIN_PASSWORD`, `ADMIN_EMAIL`, `JWT_SECRET`, `STORAGE_PATH`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `APP_SECRET`, `MAILERLITE_API_TOKEN`, `NEXT_PUBLIC_SITE_URL`
+- **ENV vars**: `ADMIN_PASSWORD`, `ADMIN_EMAIL`, `JWT_SECRET`, `STORAGE_PATH`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `APP_SECRET`, `MAILERLITE_API_TOKEN`, `NEXT_PUBLIC_SITE_URL`, `CRON_SECRET` (przypomnienia kursów, patrz `docs/specs/kurs-przypomnienia-mailerlite.md`)
