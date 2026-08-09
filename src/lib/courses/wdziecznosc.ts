@@ -16,7 +16,7 @@ export const wdziecznoscCourse: Course = {
   metaDescription:
     "Darmowy 7-dniowy mini kurs praktykowania wdzięczności: codziennie dawka wiedzy, krótki quiz i jedna mała praktyka. Bez wymuszonej pozytywności.",
   heroDescription:
-    "Wdzięczność to nie cecha charakteru, z którą trzeba się urodzić. To umiejętność, którą się trenuje, i jedna z najlepiej przebadanych dróg do bycia szczęśliwszym. Przez siedem dni przechodzisz od jednej praktyki dziennie do wdzięczności wplecionej w zwykłe chwile. Bez udawania, że wszystko jest super.",
+    "Wdzięczność to umiejętność, którą się trenuje, i jedna z najlepiej przebadanych dróg do bycia szczęśliwszym. Przez siedem dni przechodzisz od jednej praktyki dziennie do wdzięczności wplecionej w zwykłe chwile. Bez udawania, że wszystko jest super.",
   howItWorks: [
     "Jeden dzień naraz. Kolejny dzień odblokowuje się następnego dnia kalendarzowego, bo praktyka potrzebuje całego dnia, żeby się wydarzyć.",
     "Każdy dzień to krótkie kroki: dawka wiedzy, mały quiz bez punktów i jedna konkretna praktyka, a od drugiego dnia także opis, jak poszło ostatnio.",
