@@ -1,0 +1,125 @@
+import Link from "next/link";
+import { Check } from "lucide-react";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { Button } from "@/components/ui/button";
+import { getProgramUser } from "@/lib/program-auth";
+import { courses } from "@/lib/courses";
+import { getCourseState, currentDay } from "@/lib/course";
+import { getLocale } from "@/lib/locale";
+
+export const metadata = {
+  title: "Darmowe mini kursy | po prostu sens",
+  description:
+    "Krótkie, darmowe kursy praktyki: niescrollowanie i wdzięczność. Jeden dzień naraz, kilka minut dziennie, zero presji.",
+};
+
+export default async function CoursesHubPage() {
+  const locale = await getLocale();
+  const { user, supabase } = await getProgramUser();
+
+  const tiles = [];
+  for (const course of courses) {
+    const state = user
+      ? await getCourseState(supabase, user.id, course.slug)
+      : null;
+    const enrollment = state?.enrollment ?? null;
+    const totalDays = course.days.length;
+    const completedDays = state
+      ? Object.values(state.days).filter((d) => d.completedAt).length
+      : 0;
+    tiles.push({
+      course,
+      enrolled: !!enrollment,
+      completedDays,
+      totalDays,
+      finished: completedDays >= totalDays,
+      continueDay: state ? currentDay(state.days, totalDays) : 1,
+    });
+  }
+
+  return (
+    <div className="min-h-screen flex flex-col bg-[#FAFBFC]">
+      <SiteHeader locale={locale} />
+
+      <main className="flex-1 max-w-5xl mx-auto w-full px-5 md:px-8 py-12">
+        <div className="max-w-2xl mb-10">
+          <h1 className="text-3xl font-semibold text-[#1E2A36] mb-3">
+            Mini kursy
+          </h1>
+          <p className="text-[#4A5B6A] leading-relaxed">
+            Krótkie, darmowe kursy jednej umiejętności. Jeden dzień naraz,
+            kilka minut dziennie: dawka wiedzy, mały quiz i jedno konkretne
+            zadanie. Bez pass, liczników i presji.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {tiles.map(({ course, enrolled, completedDays, totalDays, finished, continueDay }) => (
+            <div
+              key={course.slug}
+              className="relative flex flex-col bg-white border border-[#e2e7eb] border-t-2 border-t-[#7B9E8C] rounded-xl p-6 transition-shadow duration-150 hover:shadow-[0_4px_16px_rgba(123,158,140,0.10)]"
+            >
+              {/* Free badge, always visible in the corner */}
+              <span className="absolute top-4 right-4 inline-flex items-center rounded-full bg-[#e8f0eb] px-3 py-1 text-xs font-semibold text-[#7B9E8C]">
+                Darmowy
+              </span>
+
+              <h2 className="text-xl font-semibold text-[#1E2A36] mb-1 pr-24">
+                {course.name}
+              </h2>
+              <p className="text-sm text-[#7B9E8C] font-medium mb-3">
+                {course.tagline}
+              </p>
+              <p className="text-sm text-[#4A5B6A] leading-relaxed mb-4 flex-1">
+                {course.heroDescription}
+              </p>
+              <p className="text-xs text-[#8A99A8] mb-5">
+                {totalDays} dni · kilka minut dziennie
+              </p>
+
+              {finished ? (
+                <div className="flex items-center justify-between gap-3">
+                  <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[#7B9E8C]">
+                    <Check className="h-4 w-4" strokeWidth={2.5} />
+                    Ukończony
+                  </span>
+                  <Link href={course.path}>
+                    <Button variant="outline" size="sm">
+                      Wróć do kursu
+                    </Button>
+                  </Link>
+                </div>
+              ) : enrolled ? (
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-sm text-[#8A99A8]">
+                    Ukończone dni: {completedDays} z {totalDays}
+                  </span>
+                  <Link href={`${course.path}/dzien/${continueDay}`}>
+                    <Button size="sm">Kontynuuj: dzień {continueDay}</Button>
+                  </Link>
+                </div>
+              ) : (
+                <Link href={course.path}>
+                  <Button className="w-full">Zobacz kurs</Button>
+                </Link>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <p className="text-sm text-[#8A99A8] mt-10 max-w-2xl leading-relaxed">
+          Kursy są darmowe i wymagają tylko darmowego konta, żeby pamiętać
+          twój postęp. Jeśli po którymś z nich zechcesz pójść głębiej, od tego
+          jest{" "}
+          <Link href="/program" className="text-[#7B9E8C] hover:underline">
+            The Life Writing Program
+          </Link>
+          .
+        </p>
+      </main>
+
+      <SiteFooter locale={locale} />
+    </div>
+  );
+}

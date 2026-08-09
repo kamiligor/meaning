@@ -39,7 +39,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     });
     // Mini courses live on the Polish domain only, like the program.
-    for (const coursePath of ["/kurs-niescrollowania", "/kurs-wdziecznosci"]) {
+    for (const coursePath of ["/kursy", "/kurs-niescrollowania", "/kurs-wdziecznosci"]) {
       staticEntries.push({
         url: url(coursePath),
         lastModified: now,

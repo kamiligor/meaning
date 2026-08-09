@@ -24,7 +24,7 @@ const COURSE_PREFIXES = ["/kurs-niescrollowania", "/kurs-wdziecznosci"];
  * The Life Writing Program and the mini courses are tied to a single domain,
  * because their content exists in Polish only.
  */
-const PROGRAM_ONLY_PREFIXES = ["/program", ...COURSE_PREFIXES];
+const PROGRAM_ONLY_PREFIXES = ["/program", "/kursy", ...COURSE_PREFIXES];
 
 /** Favorites has a localized route name on each domain. */
 const FAVORITES_PATHS = ["/favorites", "/ulubione"];

@@ -46,20 +46,12 @@ export function SiteFooter({ locale }: { locale: Locale }) {
             </a>
             {/* Mini courses exist in Polish only */}
             {locale === "pl" && (
-              <>
-                <a
-                  href="/kurs-niescrollowania"
-                  className="text-[11px] text-[#b3bec8] hover:text-[#7B9E8C] transition-colors"
-                >
-                  Kurs niescrollowania
-                </a>
-                <a
-                  href="/kurs-wdziecznosci"
-                  className="text-[11px] text-[#b3bec8] hover:text-[#7B9E8C] transition-colors"
-                >
-                  Kurs wdzięczności
-                </a>
-              </>
+              <a
+                href="/kursy"
+                className="text-[11px] text-[#b3bec8] hover:text-[#7B9E8C] transition-colors"
+              >
+                Darmowe kursy
+              </a>
             )}
           </div>
         </div>
