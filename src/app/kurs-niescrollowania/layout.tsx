@@ -13,10 +13,7 @@ export default function CourseLayout({
 }) {
   return (
     <div className="min-h-screen bg-[#FAFBFC] flex flex-col">
-      <CourseHeader
-        name={niescrollowanieCourse.name}
-        path={niescrollowanieCourse.path}
-      />
+      <CourseHeader currentSlug={niescrollowanieCourse.slug} />
       <div className="flex-1">{children}</div>
     </div>
   );

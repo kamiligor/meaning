@@ -3,6 +3,7 @@ import {
   courseCalendarDay,
   currentDay,
   isDayUnlocked,
+  parseQuizAnswers,
   type CourseDayState,
 } from "@/lib/course";
 import { courses } from "@/lib/courses";
@@ -15,9 +16,33 @@ function dayState(day: number, completedAt: string | null): CourseDayState {
     startedAt: completedAt,
     completedAt,
     checkinChoice: null,
-    quizAnswers: null,
+    quizFirstAttempts: null,
+    quizPassed: false,
   };
 }
+
+describe("parseQuizAnswers", () => {
+  it("treats the legacy array shape as passed", () => {
+    expect(parseQuizAnswers([0, 2, 1])).toEqual({ first: [0, 2, 1], passed: true });
+  });
+
+  it("parses the current object shape", () => {
+    expect(parseQuizAnswers({ first: [1, 0], passed: false })).toEqual({
+      first: [1, 0],
+      passed: false,
+    });
+    expect(parseQuizAnswers({ first: [1, 0], passed: true })).toEqual({
+      first: [1, 0],
+      passed: true,
+    });
+  });
+
+  it("handles empty and malformed values", () => {
+    expect(parseQuizAnswers(null)).toEqual({ first: null, passed: false });
+    expect(parseQuizAnswers(undefined)).toEqual({ first: null, passed: false });
+    expect(parseQuizAnswers({ passed: "yes" })).toEqual({ first: null, passed: false });
+  });
+});
 
 describe("courseCalendarDay", () => {
   it("uses the Warsaw calendar, not UTC", () => {

@@ -9,7 +9,9 @@ interface DayUpdateBody {
   courseSlug?: string;
   day?: number;
   start?: boolean;
+  /** First pick per question, recorded when the quiz gets passed. */
   quizAnswers?: number[];
+  quizPassed?: boolean;
   complete?: boolean;
   checkin?: { day?: number; choice?: string; text?: string };
 }
@@ -109,6 +111,19 @@ export async function PUT(request: NextRequest) {
     if (body.start || body.complete || body.quizAnswers) {
       const existing = state.days[day];
 
+      // The quiz gates day completion: the challenge only opens after every
+      // question got answered correctly, in this request or an earlier one.
+      const quizPassed =
+        existing?.quizPassed ||
+        (body.quizPassed === true && Array.isArray(body.quizAnswers));
+
+      if (body.complete && !quizPassed) {
+        return NextResponse.json(
+          { error: "Quiz not passed yet" },
+          { status: 403 }
+        );
+      }
+
       const update: Record<string, unknown> = {
         user_id: user.id,
         course_slug: course.slug,
@@ -120,7 +135,11 @@ export async function PUT(request: NextRequest) {
         const answers = body.quizAnswers
           .filter((a) => Number.isInteger(a) && a >= 0 && a < 10)
           .slice(0, 10);
-        update.quiz_answers = answers;
+        update.quiz_answers = {
+          // First attempts are the analytics signal; never overwrite them.
+          first: existing?.quizFirstAttempts ?? answers,
+          passed: quizPassed,
+        };
       }
 
       // completed_at is written once; revisiting a finished day never moves it,

@@ -13,7 +13,7 @@ export default function CourseLayout({
 }) {
   return (
     <div className="min-h-screen bg-[#FAFBFC] flex flex-col">
-      <CourseHeader name={wdziecznoscCourse.name} path={wdziecznoscCourse.path} />
+      <CourseHeader currentSlug={wdziecznoscCourse.slug} />
       <div className="flex-1">{children}</div>
     </div>
   );

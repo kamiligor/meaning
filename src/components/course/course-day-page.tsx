@@ -78,13 +78,20 @@ export async function CourseDayPage({
   const dayState = state.days[day];
   const previousDayState = state.days[day - 1];
 
+  const daysNav = course.days.map(({ day: d }) => ({
+    day: d,
+    completed: !!state.days[d]?.completedAt,
+    unlocked: isDayUnlocked(d, state.days, totalDays),
+    quizPassed: !!state.days[d]?.quizPassed,
+  }));
+
   return (
     <DayView
       courseSlug={course.slug}
       day={day}
       started={!!dayState?.startedAt}
       completed={!!dayState?.completedAt}
-      savedQuizAnswers={dayState?.quizAnswers ?? null}
+      quizPassed={!!dayState?.quizPassed}
       checkinDone={day === 1 || !!previousDayState?.checkinChoice}
       feedbackGiven={feedbackGiven}
       nextDayUnlocked={isDayUnlocked(day + 1, state.days, totalDays)}
@@ -92,6 +99,7 @@ export async function CourseDayPage({
         screenTimeMin: state.enrollment.baselineScreenTimeMin,
         pickups: state.enrollment.baselinePickups,
       }}
+      daysNav={daysNav}
     />
   );
 }

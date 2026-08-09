@@ -15,7 +15,32 @@ export interface CourseDayState {
   startedAt: string | null;
   completedAt: string | null;
   checkinChoice: string | null;
-  quizAnswers: number[] | null;
+  /** First pick per quiz question — the interesting analytics signal. */
+  quizFirstAttempts: number[] | null;
+  /** The quiz gates day completion: true once every question was answered correctly. */
+  quizPassed: boolean;
+}
+
+/**
+ * quiz_answers is a JSONB column that changed shape: originally a plain
+ * array of picks (quizzes could not be failed then, so an array counts as
+ * passed), now `{ first: number[], passed: boolean }`.
+ */
+export function parseQuizAnswers(raw: unknown): {
+  first: number[] | null;
+  passed: boolean;
+} {
+  if (Array.isArray(raw)) {
+    return { first: raw as number[], passed: true };
+  }
+  if (raw && typeof raw === "object") {
+    const obj = raw as { first?: unknown; passed?: unknown };
+    return {
+      first: Array.isArray(obj.first) ? (obj.first as number[]) : null,
+      passed: obj.passed === true,
+    };
+  }
+  return { first: null, passed: false };
 }
 
 export interface CourseEnrollmentState {
@@ -112,12 +137,14 @@ export async function getCourseState(
 
   const days: Record<number, CourseDayState> = {};
   for (const row of daysResult.data ?? []) {
+    const quiz = parseQuizAnswers(row.quiz_answers);
     days[row.day] = {
       day: row.day,
       startedAt: row.started_at,
       completedAt: row.completed_at,
       checkinChoice: row.checkin_choice,
-      quizAnswers: row.quiz_answers,
+      quizFirstAttempts: quiz.first,
+      quizPassed: quiz.passed,
     };
   }
 
