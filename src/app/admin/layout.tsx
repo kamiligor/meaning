@@ -29,6 +29,12 @@ export default function AdminLayout({
               Posts
             </a>
             <a
+              href="/admin/kurs"
+              className="text-[#a3c4b3] text-sm font-medium hover:text-white transition"
+            >
+              Kurs
+            </a>
+            <a
               href="/"
               className="text-[#8A99A8] text-sm hover:text-white transition"
               target="_blank"

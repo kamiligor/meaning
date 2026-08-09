@@ -23,8 +23,15 @@ export async function GET() {
       );
     }
 
-    const [responsesResult, progressResult, profileResult, commentsResult] =
-      await Promise.all([
+    const [
+      responsesResult,
+      progressResult,
+      profileResult,
+      commentsResult,
+      courseEnrollmentsResult,
+      courseDaysResult,
+      courseFeedbackResult,
+    ] = await Promise.all([
       supabase
         .from("exercise_responses")
         .select("*")
@@ -45,6 +52,20 @@ export async function GET() {
         .select("post_slug, locale, body, status, created_at, edited_at")
         .eq("user_id", user.id)
         .order("created_at"),
+      supabase
+        .from("course_enrollments")
+        .select("*")
+        .eq("user_id", user.id),
+      supabase
+        .from("course_day_progress")
+        .select("*")
+        .eq("user_id", user.id)
+        .order("course_slug")
+        .order("day"),
+      supabase
+        .from("course_feedback")
+        .select("course_slug, rating, hardest, suggestion, created_at")
+        .eq("user_id", user.id),
     ]);
 
     if (responsesResult.error || progressResult.error) {
@@ -93,6 +114,35 @@ export async function GET() {
       editedAt: row.edited_at,
     }));
 
+    const courseEnrollments = (courseEnrollmentsResult.data ?? []).map((row) => ({
+      courseSlug: row.course_slug,
+      enrolledAt: row.enrolled_at,
+      completedAt: row.completed_at,
+      baselineScreenTimeMin: row.baseline_screen_time_min,
+      baselinePickups: row.baseline_pickups,
+      remindersEnabled: row.reminders_enabled,
+    }));
+
+    const courseDays = (courseDaysResult.data ?? []).map((row) => ({
+      courseSlug: row.course_slug,
+      day: row.day,
+      startedAt: row.started_at,
+      completedAt: row.completed_at,
+      checkinChoice: row.checkin_choice,
+      checkinNote: row.checkin_ciphertext
+        ? decrypt(row.checkin_ciphertext, row.checkin_iv, row.checkin_salt, user.id)
+        : null,
+      quizAnswers: row.quiz_answers,
+    }));
+
+    const courseFeedback = (courseFeedbackResult.data ?? []).map((row) => ({
+      courseSlug: row.course_slug,
+      rating: row.rating,
+      hardest: row.hardest,
+      suggestion: row.suggestion,
+      createdAt: row.created_at,
+    }));
+
     const exportData = {
       exportedAt: new Date().toISOString(),
       userId: user.id,
@@ -101,6 +151,9 @@ export async function GET() {
       responses: decryptedResponses,
       progress,
       comments,
+      courseEnrollments,
+      courseDays,
+      courseFeedback,
     };
 
     return new NextResponse(JSON.stringify(exportData, null, 2), {

@@ -12,12 +12,19 @@ import {
 const COOKIE_NAME = "jh-admin-token";
 
 /**
+ * Mini-course route prefixes. Kept as a literal list (not imported from the
+ * course registry) so the middleware bundle stays free of course content.
+ * Must match the `path` of every course in src/lib/courses.
+ */
+const COURSE_PREFIXES = ["/kurs-niescrollowania", "/kurs-wdziecznosci"];
+
+/**
  * Accounts are shared across both domains — one Supabase user, one set of
  * likes and progress — but sessions are not, because cookies are per-domain.
- * Only The Life Writing Program is tied to a single domain, because its
- * exercises exist in Polish only.
+ * The Life Writing Program and the mini courses are tied to a single domain,
+ * because their content exists in Polish only.
  */
-const PROGRAM_ONLY_PREFIXES = ["/program"];
+const PROGRAM_ONLY_PREFIXES = ["/program", ...COURSE_PREFIXES];
 
 /** Favorites has a localized route name on each domain. */
 const FAVORITES_PATHS = ["/favorites", "/ulubione"];
@@ -112,7 +119,7 @@ export async function proxy(request: NextRequest) {
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-locale", locale);
 
-  let response = NextResponse.next({ request: { headers: requestHeaders } });
+  const response = NextResponse.next({ request: { headers: requestHeaders } });
   response.headers.set("x-locale", locale);
 
   // --- Security headers ---
@@ -168,6 +175,7 @@ export async function proxy(request: NextRequest) {
     !pathname.startsWith("/api/slides/") &&
     !pathname.startsWith("/api/newsletter/") &&
     !pathname.startsWith("/api/program/") &&
+    !pathname.startsWith("/api/course/") &&
     !pathname.startsWith("/api/profile/") &&
     !pathname.startsWith("/api/comments/") &&
     !pathname.match(/^\/api\/posts\/[^/]+\/like$/) &&
@@ -187,6 +195,8 @@ export async function proxy(request: NextRequest) {
   if (
     pathname.startsWith("/program") ||
     pathname.startsWith("/api/program") ||
+    COURSE_PREFIXES.some((prefix) => pathname.startsWith(prefix)) ||
+    pathname.startsWith("/api/course") ||
     pathname.startsWith("/api/posts/") ||
     pathname.startsWith("/post/") ||
     pathname === "/profil" ||
@@ -264,10 +274,31 @@ export async function proxy(request: NextRequest) {
       if (!user) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
       }
+      // Data export and account deletion are rights of every account holder
+      // (course participants included), not program features, so they stay
+      // outside the pre-launch admin gate.
+      const isAccountRight =
+        pathname === "/api/program/data-export" ||
+        pathname === "/api/program/account";
       // TEMPORARY: program is admin-only until public launch — see ADMIN_EMAIL env
-      if (!isProgramAdmin(user.email)) {
+      if (!isAccountRight && !isProgramAdmin(user.email)) {
         return NextResponse.json({ error: "Forbidden" }, { status: 403 });
       }
+    }
+
+    // --- Mini courses: free and public, only need a logged-in account ---
+    // Landings stay public; day pages need a user.
+    if (
+      COURSE_PREFIXES.some((prefix) => pathname.startsWith(`${prefix}/`)) &&
+      !user
+    ) {
+      const loginUrl = new URL("/login", request.url);
+      loginUrl.searchParams.set("next", pathname);
+      return NextResponse.redirect(loginUrl);
+    }
+
+    if (pathname.startsWith("/api/course/") && !user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
   }
 
