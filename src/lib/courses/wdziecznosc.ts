@@ -88,7 +88,7 @@ export const wdziecznoscCourse: Course = {
       challenge: {
         lead: "Trzy rzeczy, teraz",
         body: [
-          "Pierwsza praktyka jest najprostsza z możliwych: zapisz trzy rzeczy, za które dziękujesz w tej chwili. Na kartce, w notatce, gdziekolwiek. Mogą być duże (ktoś bliski, zdrowie) albo małe (ciepła woda, dzisiejsza kawa, że autobus przyjechał). Małe działają tak samo dobrze.",
+          "Pierwsza praktyka jest najprostsza z możliwych: zapisz trzy rzeczy, za które dziękujesz w tej chwili. Zapisuj, gdzie ci wygodnie, ale najlepiej w notatniku pod praktyką (otworzy się, gdy ją przyjmiesz): masz wtedy wszystko w jednym miejscu, a notatki wrócą do ciebie w podsumowaniu kursu. Mogą być duże (ktoś bliski, zdrowie) albo małe (ciepła woda, dzisiejsza kawa, że autobus przyjechał). Małe działają tak samo dobrze.",
           "Po zapisaniu zatrzymaj się na dziesięć sekund i zauważ, czy coś się zmieniło: w nastroju, w ciele, w tym, na co patrzysz. To pierwszy przedsmak mechanizmu, który będziemy trenować przez tydzień.",
         ],
         minimal: "Jeśli dziś nie wyjdzie nic więcej, wystarczy jedna rzecz, wymieniona w myślach.",
@@ -334,7 +334,7 @@ export const wdziecznoscCourse: Course = {
         lead: "Trzy dobre momenty",
         body: [
           "Dziś przed snem, już po odłożeniu telefonu, przypomnij sobie trzy dobre momenty z mijającego dnia. Nie osiągnięcia, momenty: czyjś uśmiech, smak obiadu, chwila spokoju w tramwaju. Przy każdym zatrzymaj się na kilka sekund, zamiast od razu lecieć do następnego.",
-          "Jeśli lubisz pisać, zapisz je. Notes przy łóżku robi z tego rytuał, a po miesiącu taka lista to zaskakująco dobra lektura. Ale zapis jest opcją, nie warunkiem.",
+          "Jeśli lubisz pisać, zapisz je, choćby w notatniku pod praktyką. Po miesiącu taka lista to zaskakująco dobra lektura. Ale zapis jest opcją, nie warunkiem.",
         ],
         minimal: "Wersja minimalna: jeden dobry moment, przypomniany już w łóżku.",
         evening:
