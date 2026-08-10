@@ -155,6 +155,28 @@ export async function PUT(request: NextRequest) {
         );
       }
 
+      // The notebook is the day's task: closing the day requires at least
+      // something written — in this request or saved earlier.
+      if (body.complete && !existing?.completedAt) {
+        const noteInRequest =
+          typeof body.note === "string" && body.note.trim().length > 0;
+        if (!noteInRequest) {
+          const { data: noteRow } = await supabase
+            .from("course_day_progress")
+            .select("checkin_ciphertext")
+            .eq("user_id", user.id)
+            .eq("course_slug", course.slug)
+            .eq("day", day)
+            .maybeSingle();
+          if (!noteRow?.checkin_ciphertext) {
+            return NextResponse.json(
+              { error: "Note required" },
+              { status: 403 }
+            );
+          }
+        }
+      }
+
       const update: Record<string, unknown> = {
         user_id: user.id,
         course_slug: course.slug,

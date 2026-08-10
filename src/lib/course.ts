@@ -2,8 +2,10 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 
 /**
  * Course pacing: a day unlocks at 06:00 on the day after the previous one
- * was completed — mornings, not midnights, because a course about healthy
- * phone habits should not invite opening it at 00:01. The gate is
+ * was STARTED (and only once that day is closed) — mornings, not midnights,
+ * because a course about healthy phone habits should not invite opening it
+ * at 00:01, and anchoring to the start means closing a day the next morning
+ * (after a full day of practice) never pushes the course back. The gate is
  * content-driven (the challenge needs a day to happen), not gamification —
  * nothing ever resets and no day expires. The 06:00 gate applies only to
  * that first morning; once a day has been open, it never re-locks.
@@ -126,7 +128,10 @@ export function isDayUnlocked(
   const previous = days[day - 1];
   if (!previous?.completedAt) return false;
 
-  return isMorningGateOpen(previous.completedAt, now);
+  // The clock hangs off when the previous day was STARTED, not closed:
+  // its challenge runs during that day, so closing it the next morning
+  // (after the night's worth of practice) must not push everything back.
+  return isMorningGateOpen(previous.startedAt ?? previous.completedAt, now);
 }
 
 /**

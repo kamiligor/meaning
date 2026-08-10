@@ -116,6 +116,25 @@ describe("isDayUnlocked", () => {
     expect(isDayUnlocked(2, days, TOTAL, now)).toBe(true);
   });
 
+  it("anchors the unlock clock to when the day was started, not closed", () => {
+    // Day 1 started Aug 9, closed the next morning at 08:00 Warsaw: day 2
+    // opens right away — closing late must not cost a day.
+    const days = {
+      1: {
+        ...dayState(1, "2026-08-10T06:00:00Z"),
+        startedAt: "2026-08-09T10:00:00Z",
+      },
+    };
+    expect(isDayUnlocked(2, days, TOTAL, new Date("2026-08-10T06:05:00Z"))).toBe(
+      true
+    );
+    // But an unclosed day never unlocks the next one, whenever it started.
+    const unclosed = {
+      1: { ...dayState(1, null), startedAt: "2026-08-09T10:00:00Z" },
+    };
+    expect(isDayUnlocked(2, unclosed, TOTAL, now)).toBe(false);
+  });
+
   it("rejects days outside the course", () => {
     expect(isDayUnlocked(0, {}, TOTAL, now)).toBe(false);
     expect(isDayUnlocked(6, {}, TOTAL, now)).toBe(false);

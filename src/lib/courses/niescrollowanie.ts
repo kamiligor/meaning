@@ -114,7 +114,7 @@ export const niescrollowanieCourse: Course = {
           "Dzisiejsze zadanie to zauważać i notować te momenty: gdzie to było, co się działo i co się wtedy odezwało, nuda, stres czy zwykłe przyzwyczajenie. Notuj w notatniku poniżej, na bieżąco albo wieczorem, jak ci wygodnie.",
         ],
         minimal:
-          "Jeśli dziś nie wyjdzie nic więcej, wystarczy zauważyć jeden taki moment.",
+          "Jeśli dziś nie wyjdzie nic więcej, wystarczy zauważyć jeden taki moment i zapisać go jednym zdaniem.",
         evening:
           "Wieczorem lub jutro rano przejrzyj notatki: w ilu sytuacjach ręka szła po telefon? Która z nich zaskoczyła cię najbardziej?",
       },

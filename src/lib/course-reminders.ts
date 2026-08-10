@@ -48,7 +48,10 @@ export function decideReminder(
   // (enrollment for day 1, the previous day's completion otherwise) lies
   // behind the morning gate — i.e. the day is actually unlocked and waiting.
   // Day 1 has no 06:00 gate (it is open from enrollment), so a plain
-  // calendar-day check is enough there.
+  // calendar-day check is enough there. Unlocking itself anchors to the
+  // previous day's START; completion is never earlier, so this check can
+  // only fire later — a reminder never points at a locked day, and someone
+  // who closed a day this morning is not nagged about the next one today.
   let dueDay: number | null = null;
   const today = courseCalendarDay(now);
   for (let day = 1; day <= state.totalDays; day++) {

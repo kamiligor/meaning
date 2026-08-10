@@ -91,7 +91,7 @@ export const wdziecznoscCourse: Course = {
           "Pierwsza praktyka jest najprostsza z możliwych: zapisz w notatniku poniżej trzy rzeczy, za które dziękujesz w tej chwili. Mogą być duże (ktoś bliski, zdrowie) albo małe (ciepła woda, dzisiejsza kawa, że autobus przyjechał). Małe działają tak samo dobrze.",
           "Po zapisaniu zatrzymaj się na dziesięć sekund i zauważ, czy coś się zmieniło: w nastroju, w ciele, w tym, na co patrzysz. To pierwszy przedsmak mechanizmu, który będziemy trenować przez tydzień.",
         ],
-        minimal: "Jeśli dziś nie wyjdzie nic więcej, wystarczy jedna rzecz, wymieniona w myślach.",
+        minimal: "Jeśli dziś nie wyjdzie nic więcej, wystarczy jedna rzecz, jedno zdanie w notatniku.",
         evening:
           "Wieczorem lub jutro rano: która z trzech rzeczy była najmniej oczywista? Takie znaleziska są najcenniejsze, bo pokazują, ile dobrego umyka na co dzień.",
       },
@@ -334,7 +334,7 @@ export const wdziecznoscCourse: Course = {
         lead: "Trzy dobre momenty",
         body: [
           "Dziś przed snem, już po odłożeniu telefonu, przypomnij sobie trzy dobre momenty z mijającego dnia. Nie osiągnięcia, momenty: czyjś uśmiech, smak obiadu, chwila spokoju w tramwaju. Przy każdym zatrzymaj się na kilka sekund, zamiast od razu lecieć do następnego.",
-          "Jeśli lubisz pisać, zapisz je, choćby w notatniku poniżej. Po miesiącu taka lista to zaskakująco dobra lektura. Ale zapis jest opcją, nie warunkiem.",
+          "Zapisz je w notatniku poniżej, choćby hasłowo. Po miesiącu taka lista to zaskakująco dobra lektura.",
         ],
         minimal: "Wersja minimalna: jeden dobry moment, przypomniany już w łóżku.",
         evening:

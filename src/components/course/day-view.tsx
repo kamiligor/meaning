@@ -94,6 +94,7 @@ function DayNote({
   onNoteChange,
   savedNote,
   eveningPrompt,
+  footer,
 }: {
   courseSlug: string;
   day: number;
@@ -102,6 +103,8 @@ function DayNote({
   onNoteChange: (note: string) => void;
   savedNote: string | null;
   eveningPrompt?: string;
+  /** Rendered under the save row — the "close the day" action lives here. */
+  footer?: React.ReactNode;
 }) {
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState<number | null>(null);
@@ -132,7 +135,7 @@ function DayNote({
             )}
             <label className="block">
               <span className="text-sm font-medium text-[#1E2A36]">
-                Notatnik tego dnia (opcjonalnie)
+                Notatnik tego dnia
               </span>
               <textarea
                 value={note}
@@ -160,6 +163,9 @@ function DayNote({
               </Button>
             </div>
             {error && <p className="text-red-500 text-xs mt-2">{error}</p>}
+            {footer && (
+              <div className="border-t border-[#e2e7eb] mt-4 pt-4">{footer}</div>
+            )}
           </div>
         </div>
       </div>
@@ -317,9 +323,13 @@ export function DayView({
   const handleComplete = async () => {
     setCompleting(true);
     setError("");
-    const ok = await putDay({ courseSlug, day, complete: true });
+    // Closing the day also saves the notebook — one click, nothing lost.
+    const ok = await putDay({ courseSlug, day, note: noteDraft, complete: true });
     if (ok) {
       setCompleted(true);
+      // Re-fetch server props: with the unlock clock anchored to the day's
+      // start, the next day may already be open right now.
+      router.refresh();
     } else {
       setError("Nie udało się zapisać. Sprawdź połączenie i spróbuj ponownie.");
     }
@@ -394,6 +404,8 @@ export function DayView({
     </section>
   );
 
+  /* Closing the day sits right under the notebook: the note is the task,
+     so the button stays disabled until at least something is written. */
   const noteSection = (
     <DayNote
       courseSlug={courseSlug}
@@ -402,21 +414,28 @@ export function DayView({
       onNoteChange={setNoteDraft}
       savedNote={savedNote}
       eveningPrompt={content.challenge.evening}
+      footer={
+        !completed && (
+          <>
+            <Button
+              onClick={handleComplete}
+              disabled={completing || !noteDraft.trim()}
+              className="w-full"
+            >
+              {completing ? "Zapisywanie..." : closeLabel}
+            </Button>
+            <p className="text-xs text-[#8A99A8] text-center mt-2">
+              {noteDraft.trim()
+                ? "Do notatnika możesz wracać także po zakończeniu dnia."
+                : "Żeby zakończyć dzień, zapisz choć jedno zdanie."}
+            </p>
+            {error && (
+              <p className="text-red-500 text-xs mt-2 text-center">{error}</p>
+            )}
+          </>
+        )
+      }
     />
-  );
-
-  /* Closing the day is a plain bookkeeping action (progress, unlock clock),
-     placed below the notebook so writing naturally comes first. */
-  const closeDaySection = !completed && (
-    <section className="mb-10">
-      <Button onClick={handleComplete} disabled={completing} className="w-full">
-        {completing ? "Zapisywanie..." : closeLabel}
-      </Button>
-      <p className="text-xs text-[#8A99A8] text-center mt-2">
-        Do notatnika możesz wracać także po zakończeniu dnia.
-      </p>
-      {error && <p className="text-red-500 text-xs mt-2 text-center">{error}</p>}
-    </section>
   );
 
   const afterCompletion = completed && (
@@ -647,7 +666,6 @@ export function DayView({
               {baselineSection}
               {challengeSection}
               {noteSection}
-              {closeDaySection}
               {afterCompletion}
             </>
           )}

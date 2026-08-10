@@ -63,10 +63,15 @@ Program. Szkic techniczny:
   (AES-256-GCM); metadane postępu (daty, wybory quizu) zostają jawne,
   bo to one służą analityce.
 - **Tempo:** dzień 2 odblokowuje się o 6:00 rano następnego dnia po
-  ukończeniu dnia 1 (daty w `course_day_progress`), i tak dalej. Poranek,
+  ROZPOCZĘCIU dnia 1 (daty w `course_day_progress`), pod warunkiem że
+  dzień 1 jest zakończony; i tak dalej. Kotwicą jest start, nie zamknięcie,
+  bo dzień wolno domknąć nawet następnego ranka (notatka po całym dniu
+  praktyki) i nie może to przesuwać kursu o dobę. Poranek,
   nie północ: kurs o zdrowych nawykach nie powinien zapraszać do otwierania
   go o 00:01. Bramka 6:00 dotyczy tylko pierwszego poranka; raz otwarte dni
   nie zamykają się z powrotem, a ukończone można przeglądać o każdej porze.
+  Zakończenie dnia wymaga choć zdania w notatniku dnia (notatka jest
+  zadaniem), quiz pozostaje drugą bramką.
   Bez presji: brak deadline'ów, przerwa nie resetuje niczego, kurs po prostu
   czeka. Blokada jest merytoryczna (wyzwanie potrzebuje doby), nie
   gamifikacyjna.
