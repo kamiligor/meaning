@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Check, Lock, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getCourse, getDay } from "@/lib/courses";
+import { isEveningNoteOpen } from "@/lib/course";
 import { CourseQuiz } from "@/components/course/course-quiz";
 import { CourseCheckin } from "@/components/course/course-checkin";
 import { FeedbackForm } from "@/components/course/feedback-form";
@@ -46,6 +47,12 @@ interface DayViewProps {
   otherCourses: OtherCourseEntry[];
   /** "Mirror" data for the completed final day. */
   summary: CourseSummaryDay[] | null;
+  /** When this day's challenge was accepted; gates the evening note. */
+  completedAtIso: string | null;
+  /** The day's own saved evening note (decrypted server-side). */
+  savedNote: string | null;
+  /** Previous day's note, prefilled into the check-in textarea. */
+  previousNote: string | null;
 }
 
 type Step = "knowledge" | "quiz" | "challenge";
@@ -61,6 +68,98 @@ async function putDay(body: Record<string, unknown>): Promise<boolean> {
   } catch {
     return false;
   }
+}
+
+/**
+ * Evening note about the day's own challenge: locked until 18:00 of the day
+ * the challenge was accepted, then a simple encrypted textarea.
+ */
+function EveningNote({
+  courseSlug,
+  day,
+  completedAtIso,
+  savedNote,
+  eveningPrompt,
+}: {
+  courseSlug: string;
+  day: number;
+  completedAtIso: string;
+  savedNote: string | null;
+  eveningPrompt?: string;
+}) {
+  const [note, setNote] = useState(savedNote ?? "");
+  const [saving, setSaving] = useState(false);
+  const [savedAt, setSavedAt] = useState<number | null>(null);
+  const [error, setError] = useState("");
+
+  const open = isEveningNoteOpen(completedAtIso);
+
+  const handleSave = async () => {
+    setSaving(true);
+    setError("");
+    const ok = await putDay({ courseSlug, day, note });
+    if (ok) {
+      setSavedAt(1);
+    } else {
+      setError("Nie udało się zapisać. Sprawdź połączenie i spróbuj ponownie.");
+    }
+    setSaving(false);
+  };
+
+  return (
+    <section className="mb-10">
+      <div className="bg-[#f8faf9] border border-[#e2e7eb] rounded-xl p-5">
+        <div className="flex items-start gap-3">
+          <Moon className="h-5 w-5 text-[#7B9E8C] shrink-0 mt-0.5" />
+          <div className="flex-1">
+            {eveningPrompt && (
+              <p className="text-sm text-[#4A5B6A] leading-relaxed mb-3">
+                {eveningPrompt}
+              </p>
+            )}
+            {open ? (
+              <>
+                <label className="block">
+                  <span className="text-sm font-medium text-[#1E2A36]">
+                    Zapisz, co dziś zauważysz (opcjonalnie)
+                  </span>
+                  <textarea
+                    value={note}
+                    onChange={(e) => {
+                      setNote(e.target.value);
+                      setSavedAt(null);
+                    }}
+                    rows={3}
+                    maxLength={2000}
+                    className="mt-2 w-full border border-[#e2e7eb] rounded-lg px-4 py-2.5 text-sm text-[#1E2A36] bg-white focus:outline-none focus:ring-2 focus:ring-[#7B9E8C] focus:ring-offset-1 resize-none"
+                  />
+                </label>
+                <div className="flex items-center justify-between gap-3 mt-2">
+                  <span className="text-xs text-[#8A99A8]">
+                    Ta notatka jest szyfrowana i wraca do ciebie w podsumowaniu
+                    kursu.
+                  </span>
+                  <Button
+                    size="sm"
+                    onClick={handleSave}
+                    disabled={saving || (note === (savedNote ?? "") && !savedAt)}
+                  >
+                    {saving ? "Zapisywanie..." : savedAt ? "Zapisano" : "Zapisz"}
+                  </Button>
+                </div>
+                {error && <p className="text-red-500 text-xs mt-2">{error}</p>}
+              </>
+            ) : (
+              <p className="text-sm text-[#8A99A8] leading-relaxed">
+                Wieczorem (po 18:00) otworzy się tu pole na notatkę: momenty,
+                które dziś zauważysz. Wróć, kiedy dzień zdąży się wydarzyć.
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 /** Clickable day navigation: done and unlocked days link, locked ones don't. */
@@ -168,6 +267,9 @@ export function DayView({
   daysNav,
   otherCourses,
   summary,
+  completedAtIso,
+  savedNote,
+  previousNote,
 }: DayViewProps) {
   const router = useRouter();
   const course = getCourse(courseSlug);
@@ -175,6 +277,7 @@ export function DayView({
 
   const [checkinDone, setCheckinDone] = useState(initialCheckinDone);
   const [completed, setCompleted] = useState(initialCompleted);
+  const [completedAt, setCompletedAt] = useState<string | null>(completedAtIso);
   const [quizPassed, setQuizPassed] = useState(initialQuizPassed);
   const [feedbackGiven, setFeedbackGiven] = useState(initialFeedbackGiven);
   const [step, setStep] = useState<Step>(initialQuizPassed ? "challenge" : "knowledge");
@@ -216,6 +319,7 @@ export function DayView({
     const ok = await putDay({ courseSlug, day, complete: true });
     if (ok) {
       setCompleted(true);
+      setCompletedAt(new Date().toISOString());
     } else {
       setError("Nie udało się zapisać. Sprawdź połączenie i spróbuj ponownie.");
     }
@@ -297,15 +401,14 @@ export function DayView({
 
   const afterCompletion = completed && (
     <>
-      {content.challenge.evening && (
-        <section className="mb-10">
-          <div className="flex items-start gap-3 bg-[#f8faf9] border border-[#e2e7eb] rounded-xl p-5">
-            <Moon className="h-5 w-5 text-[#7B9E8C] shrink-0 mt-0.5" />
-            <p className="text-sm text-[#4A5B6A] leading-relaxed">
-              {content.challenge.evening}
-            </p>
-          </div>
-        </section>
+      {completedAt && (
+        <EveningNote
+          courseSlug={courseSlug}
+          day={day}
+          completedAtIso={completedAt}
+          savedNote={savedNote}
+          eveningPrompt={content.challenge.evening}
+        />
       )}
 
       {!isFinalDay &&
@@ -460,6 +563,7 @@ export function DayView({
           courseSlug={courseSlug}
           day={day}
           checkin={content.checkinAboutPrevious}
+          initialNote={previousNote}
           onDone={() => setCheckinDone(true)}
         />
       )}

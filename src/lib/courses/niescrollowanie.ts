@@ -110,7 +110,7 @@ export const niescrollowanieCourse: Course = {
         lead: "Nuda to stan pożądany",
         body: [
           "Dziś niczego nie odkładasz i niczego sobie nie zabraniasz. Wyzwanie dzieje się wyłącznie w głowie: za każdym razem, kiedy złapiesz się na nudzie i ręka już będzie szła po telefon, przypomnij sobie jedno zdanie: nuda to stan pożądany, mózg właśnie dostał czas dla siebie.",
-          "Możesz potem i tak wziąć telefon. Chodzi tylko o to przypomnienie, o zmianę etykiety na tym uczuciu: z „coś jest nie tak” na „to jest ten moment”.",
+          "Telefon możesz potem wziąć albo zostawić, wybór należy do ciebie. Jeśli któryś raz zostanie w kieszeni, tym lepiej, ale dziś chodzi przede wszystkim o samo przypomnienie, o zmianę etykiety na tym uczuciu: z „coś jest nie tak” na „to jest ten moment”.",
         ],
         minimal:
           "Jeśli dziś nie wyjdzie nic więcej, wystarczy przypomnieć sobie to zdanie choć raz.",

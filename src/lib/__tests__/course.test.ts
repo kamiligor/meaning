@@ -3,6 +3,7 @@ import {
   courseCalendarDay,
   currentDay,
   isDayUnlocked,
+  isEveningNoteOpen,
   parseQuizAnswers,
   type CourseDayState,
 } from "@/lib/course";
@@ -53,6 +54,35 @@ describe("courseCalendarDay", () => {
     expect(courseCalendarDay(new Date("2026-01-01T22:30:00Z"))).toBe(
       "2026-01-01"
     );
+  });
+});
+
+describe("isEveningNoteOpen", () => {
+  // Summer: Warsaw = UTC+2. Challenge accepted 08:00 local.
+  const completed = "2026-08-10T06:00:00Z";
+
+  it("stays locked before 18:00 on the completion day", () => {
+    expect(isEveningNoteOpen(completed, new Date("2026-08-10T13:00:00Z"))).toBe(
+      false
+    );
+  });
+
+  it("opens at 18:00 Warsaw on the completion day", () => {
+    expect(isEveningNoteOpen(completed, new Date("2026-08-10T16:30:00Z"))).toBe(
+      true
+    );
+  });
+
+  it("stays open on every later day", () => {
+    expect(isEveningNoteOpen(completed, new Date("2026-08-12T07:00:00Z"))).toBe(
+      true
+    );
+  });
+
+  it("opens immediately when the day was completed in the evening", () => {
+    expect(
+      isEveningNoteOpen("2026-08-10T18:30:00Z", new Date("2026-08-10T18:35:00Z"))
+    ).toBe(true);
   });
 });
 

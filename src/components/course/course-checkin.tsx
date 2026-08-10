@@ -9,6 +9,8 @@ interface CourseCheckinProps {
   /** The day whose page shows this check-in; it describes day - 1. */
   day: number;
   checkin: CourseCheckinContent;
+  /** Evening note written the day before, prefilled for editing. */
+  initialNote?: string | null;
   onDone: () => void;
 }
 
@@ -16,10 +18,11 @@ export function CourseCheckin({
   courseSlug,
   day,
   checkin,
+  initialNote,
   onDone,
 }: CourseCheckinProps) {
   const [choice, setChoice] = useState<string | null>(null);
-  const [text, setText] = useState("");
+  const [text, setText] = useState(initialNote ?? "");
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState("");

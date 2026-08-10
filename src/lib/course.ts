@@ -67,6 +67,30 @@ export function courseCalendarDay(date: Date): string {
   }).format(date);
 }
 
+/**
+ * The evening note opens at 18:00 (course timezone) on the day the challenge
+ * was accepted — late enough for the day to have happened, fresh enough to
+ * remember it — and stays open afterwards.
+ */
+export function isEveningNoteOpen(
+  completedAt: string,
+  now: Date = new Date()
+): boolean {
+  const completedDay = courseCalendarDay(new Date(completedAt));
+  const today = courseCalendarDay(now);
+  if (today > completedDay) return true;
+  if (today < completedDay) return false;
+
+  const hour = Number(
+    new Intl.DateTimeFormat("en-GB", {
+      timeZone: COURSE_TIMEZONE,
+      hour: "2-digit",
+      hour12: false,
+    }).format(now)
+  );
+  return hour >= 18;
+}
+
 export function isDayUnlocked(
   day: number,
   days: Record<number, CourseDayState>,

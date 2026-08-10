@@ -14,6 +14,11 @@ interface DayUpdateBody {
   quizPassed?: boolean;
   complete?: boolean;
   checkin?: { day?: number; choice?: string; text?: string };
+  /**
+   * Evening note about the day's own challenge (opens the evening of the
+   * completed day). Same encrypted storage as the check-in note.
+   */
+  note?: string;
 }
 
 function isValidDay(course: Course, day: unknown): day is number {
@@ -66,6 +71,35 @@ export async function PUT(request: NextRequest) {
       !isDayUnlocked(day, state.days, course.days.length)
     ) {
       return NextResponse.json({ error: "Day is locked" }, { status: 403 });
+    }
+
+    if (typeof body.note === "string") {
+      if (!state.days[day]?.completedAt) {
+        return NextResponse.json(
+          { error: "Day not completed yet" },
+          { status: 403 }
+        );
+      }
+      const text = body.note.slice(0, 2000);
+      const encrypted = text.trim() ? encrypt(text, user.id) : null;
+
+      const { error } = await supabase.from("course_day_progress").upsert(
+        {
+          user_id: user.id,
+          course_slug: course.slug,
+          day,
+          checkin_ciphertext: encrypted?.ciphertext ?? null,
+          checkin_iv: encrypted?.iv ?? null,
+          checkin_salt: encrypted?.salt ?? null,
+          updated_at: new Date().toISOString(),
+        },
+        { onConflict: "user_id,course_slug,day" }
+      );
+
+      if (error) {
+        console.error("[course day] Note database error:", error.code);
+        return NextResponse.json({ error: "Database error" }, { status: 500 });
+      }
     }
 
     // Check-in describes how the previous day's challenge went, so it is

@@ -83,6 +83,27 @@ export async function CourseDayPage({
   const dayState = state.days[day];
   const previousDayState = state.days[day - 1];
 
+  // Encrypted notes: the day's own evening note and the previous day's note
+  // (prefilled into the check-in textarea).
+  const { data: noteRows } = await supabase
+    .from("course_day_progress")
+    .select("day, checkin_ciphertext, checkin_iv, checkin_salt")
+    .eq("user_id", user.id)
+    .eq("course_slug", course.slug)
+    .in("day", [day - 1, day]);
+
+  const noteFor = (d: number): string | null => {
+    const row = noteRows?.find((r) => r.day === d);
+    if (!row?.checkin_ciphertext || !row.checkin_iv || !row.checkin_salt) {
+      return null;
+    }
+    try {
+      return decrypt(row.checkin_ciphertext, row.checkin_iv, row.checkin_salt, user.id);
+    } catch {
+      return null;
+    }
+  };
+
   const daysNav = course.days.map(({ day: d }) => ({
     day: d,
     completed: !!state.days[d]?.completedAt,
@@ -168,6 +189,9 @@ export async function CourseDayPage({
       daysNav={daysNav}
       otherCourses={otherCourses}
       summary={summary}
+      completedAtIso={dayState?.completedAt ?? null}
+      savedNote={noteFor(day)}
+      previousNote={noteFor(day - 1)}
     />
   );
 }
