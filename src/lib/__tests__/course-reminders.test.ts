@@ -47,6 +47,18 @@ describe("decideReminder", () => {
     expect(decideReminder(s, NOW)).toBeNull();
   });
 
+  it("stays quiet before the 06:00 unlock on the first morning", () => {
+    // Day 1 done Aug 9; a cron run at 03:00 UTC (05:00 in Warsaw) on Aug 10
+    // must not announce day 2 — it is still behind the morning gate.
+    const s = state({ days: { 1: "2026-08-09T18:00:00Z" } });
+    expect(decideReminder(s, new Date("2026-08-10T03:00:00Z"))).toBeNull();
+    // 04:30 UTC = 06:30 in Warsaw: the day is open, the reminder may go out.
+    expect(decideReminder(s, new Date("2026-08-10T04:30:00Z"))).toEqual({
+      type: "day",
+      day: 2,
+    });
+  });
+
   it("sends at most one mail per calendar day", () => {
     const s = state({
       days: { 1: "2026-08-09T18:00:00Z" },

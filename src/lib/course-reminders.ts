@@ -1,6 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { courses } from "@/lib/courses";
-import { courseCalendarDay } from "@/lib/course";
+import { courseCalendarDay, isMorningGateOpen } from "@/lib/course";
 import {
   sendGroupTriggeredMail,
   REMINDER_GROUP_NAME,
@@ -45,15 +45,21 @@ export function decideReminder(
   if (state.completedAt) return null;
 
   // The day worth reminding about: first uncompleted day whose anchor
-  // (enrollment for day 1, the previous day's completion otherwise) lies on
-  // an earlier calendar day — i.e. the day is unlocked and waiting.
+  // (enrollment for day 1, the previous day's completion otherwise) lies
+  // behind the morning gate — i.e. the day is actually unlocked and waiting.
+  // Day 1 has no 06:00 gate (it is open from enrollment), so a plain
+  // calendar-day check is enough there.
   let dueDay: number | null = null;
   const today = courseCalendarDay(now);
   for (let day = 1; day <= state.totalDays; day++) {
     if (state.days[day]) continue;
     const anchor = day === 1 ? state.enrolledAt : state.days[day - 1];
     if (!anchor) return null;
-    if (courseCalendarDay(new Date(anchor)) < today) dueDay = day;
+    const due =
+      day === 1
+        ? courseCalendarDay(new Date(anchor)) < today
+        : isMorningGateOpen(anchor, now);
+    if (due) dueDay = day;
     break;
   }
   if (dueDay === null) return null;

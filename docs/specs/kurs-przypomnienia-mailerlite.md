@@ -52,7 +52,9 @@ Przebieg jest idempotentny w obrębie doby — powtórne odpalenie nic nie doda.
    > → {$kurs_link}
    > To ostatnia wiadomość od nas w tej sprawie. Wracasz, kiedy chcesz.
 
-5. **Cron (Coolify → Scheduled Tasks):** codziennie, np. 08:00 Europe/Warsaw:
+5. **Cron (Coolify → Scheduled Tasks):** codziennie, np. 08:00 Europe/Warsaw
+   (dni kursu odblokowują się o 6:00, więc cron po tej godzinie; logika
+   i tak pilnuje bramki 6:00, wcześniejszy bieg po prostu nic nie wyśle):
 
    ```
    curl -sf -X POST https://poprostusens.pl/api/course/reminders \

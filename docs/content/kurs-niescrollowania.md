@@ -62,9 +62,12 @@ Program. Szkic techniczny:
   zawierać treści osobiste, więc szyfrujemy je jak odpowiedzi ćwiczeń
   (AES-256-GCM); metadane postępu (daty, wybory quizu) zostają jawne,
   bo to one służą analityce.
-- **Tempo:** dzień 2 odblokowuje się następnego dnia kalendarzowego po
-  ukończeniu dnia 1 (daty w `course_day_progress`), i tak dalej. Bez
-  presji: brak deadline'ów, przerwa nie resetuje niczego, kurs po prostu
+- **Tempo:** dzień 2 odblokowuje się o 6:00 rano następnego dnia po
+  ukończeniu dnia 1 (daty w `course_day_progress`), i tak dalej. Poranek,
+  nie północ: kurs o zdrowych nawykach nie powinien zapraszać do otwierania
+  go o 00:01. Bramka 6:00 dotyczy tylko pierwszego poranka; raz otwarte dni
+  nie zamykają się z powrotem, a ukończone można przeglądać o każdej porze.
+  Bez presji: brak deadline'ów, przerwa nie resetuje niczego, kurs po prostu
   czeka. Blokada jest merytoryczna (wyzwanie potrzebuje doby), nie
   gamifikacyjna.
 - **Komponenty:** strona dnia = 4 sekcje (check-in, wiedza, quiz,

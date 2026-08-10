@@ -91,6 +91,27 @@ function calendarDaysApart(from: string, to: string): number {
   );
 }
 
+/**
+ * Whether "the morning after" an anchor moment has arrived: at least the
+ * next calendar day, and past 06:00 if it is that first day. Shared by the
+ * unlock logic and the reminder job so mail never points at a sleeping day.
+ */
+export function isMorningGateOpen(
+  anchorIso: string,
+  now: Date = new Date()
+): boolean {
+  const anchorDay = courseCalendarDay(new Date(anchorIso));
+  const today = courseCalendarDay(now);
+  const daysApart = calendarDaysApart(anchorDay, today);
+
+  if (daysApart < 1) return false;
+  // First morning after the anchor: the gate opens at 06:00, not at midnight.
+  if (daysApart === 1 && hourInCourseTimezone(now) < COURSE_UNLOCK_HOUR) {
+    return false;
+  }
+  return true;
+}
+
 export function isDayUnlocked(
   day: number,
   days: Record<number, CourseDayState>,
@@ -105,16 +126,7 @@ export function isDayUnlocked(
   const previous = days[day - 1];
   if (!previous?.completedAt) return false;
 
-  const previousDay = courseCalendarDay(new Date(previous.completedAt));
-  const today = courseCalendarDay(now);
-  const daysApart = calendarDaysApart(previousDay, today);
-
-  if (daysApart < 1) return false;
-  // First morning after completion: the day opens at 06:00, not at midnight.
-  if (daysApart === 1 && hourInCourseTimezone(now) < COURSE_UNLOCK_HOUR) {
-    return false;
-  }
-  return true;
+  return isMorningGateOpen(previous.completedAt, now);
 }
 
 /**
