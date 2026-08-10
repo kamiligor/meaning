@@ -59,7 +59,7 @@ export async function CourseDayPage({
               {course.challengeNoun === "wyzwanie" ? "Wyzwanie" : "Praktyka"}{" "}
               z poprzedniego dnia potrzebuje całego dnia, żeby się wydarzyć.
               Ten dzień odblokuje się jutro
-              <UnlockCountdown until="midnight" />. Do zobaczenia.
+              <UnlockCountdown />. Do zobaczenia.
             </>
           ) : (
             `Najpierw dzień ${day - 1}. Kurs idzie jeden dzień naraz, bez wyjątków, ale też bez pośpiechu.`
@@ -197,7 +197,6 @@ export async function CourseDayPage({
       daysNav={daysNav}
       otherCourses={otherCourses}
       summary={summary}
-      completedAtIso={dayState?.completedAt ?? null}
       savedNote={noteFor(day)}
       previousNote={noteFor(day - 1)}
     />

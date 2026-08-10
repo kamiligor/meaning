@@ -3,10 +3,10 @@
 import { useSyncExternalStore } from "react";
 
 /**
- * Countdown TO an unlock (evening note at 18:00, next day at midnight),
- * Warsaw clock. Deliberately one-directional: the platform bans pressure
- * timers, and counting toward something opening is anticipation, not a
- * deadline. Returns null once the moment has passed (and on the server).
+ * Countdown TO an unlock (the next day, opening at midnight Warsaw time).
+ * Deliberately one-directional: the platform bans pressure timers, and
+ * counting toward something opening is anticipation, not a deadline.
+ * Returns null once the moment has passed (and on the server).
  */
 
 function minutesNowInWarsaw(): number {
@@ -20,8 +20,8 @@ function minutesNowInWarsaw(): number {
   return hours * 60 + minutes;
 }
 
-function formatLeft(until: "evening" | "midnight"): string | null {
-  const target = until === "evening" ? 18 * 60 : 24 * 60;
+function formatLeft(): string | null {
+  const target = 24 * 60;
   const diff = target - minutesNowInWarsaw();
   if (diff <= 0) return null;
   const hours = Math.floor(diff / 60);
@@ -36,16 +36,12 @@ function subscribeMinute(onTick: () => void): () => void {
 }
 
 /** Re-renders every minute; null before hydration and after the unlock. */
-export function useCountdown(until: "evening" | "midnight"): string | null {
-  return useSyncExternalStore(
-    subscribeMinute,
-    () => formatLeft(until),
-    () => null
-  );
+export function useCountdown(): string | null {
+  return useSyncExternalStore(subscribeMinute, formatLeft, () => null);
 }
 
-export function UnlockCountdown({ until }: { until: "evening" | "midnight" }) {
-  const left = useCountdown(until);
+export function UnlockCountdown() {
+  const left = useCountdown();
   if (!left) return null;
   return <span> (za {left})</span>;
 }

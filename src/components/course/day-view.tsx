@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { Check, Lock, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getCourse, getDay } from "@/lib/courses";
-import { isEveningNoteOpen } from "@/lib/course";
 import { useCountdown } from "@/components/course/unlock-countdown";
 import { CourseQuiz } from "@/components/course/course-quiz";
 import { CourseCheckin } from "@/components/course/course-checkin";
@@ -48,9 +47,7 @@ interface DayViewProps {
   otherCourses: OtherCourseEntry[];
   /** "Mirror" data for the completed final day. */
   summary: CourseSummaryDay[] | null;
-  /** When this day's challenge was accepted; gates the evening note. */
-  completedAtIso: string | null;
-  /** The day's own saved evening note (decrypted server-side). */
+  /** The day's own saved note (decrypted server-side). */
   savedNote: string | null;
   /** Previous day's note, prefilled into the check-in textarea. */
   previousNote: string | null;
@@ -72,19 +69,17 @@ async function putDay(body: Record<string, unknown>): Promise<boolean> {
 }
 
 /**
- * Evening note about the day's own challenge: locked until 18:00 of the day
- * the challenge was accepted, then a simple encrypted textarea.
+ * The day's notebook: open as soon as the challenge is accepted, so moments
+ * can be jotted down live during the day (or in the evening, both work).
  */
-function EveningNote({
+function DayNote({
   courseSlug,
   day,
-  completedAtIso,
   savedNote,
   eveningPrompt,
 }: {
   courseSlug: string;
   day: number;
-  completedAtIso: string;
   savedNote: string | null;
   eveningPrompt?: string;
 }) {
@@ -92,11 +87,6 @@ function EveningNote({
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState<number | null>(null);
   const [error, setError] = useState("");
-
-  // The minute tick re-renders the component, so the field flips open at
-  // 18:00 without a reload; the string itself feeds the countdown line.
-  const eveningLeft = useCountdown("evening");
-  const open = isEveningNoteOpen(completedAtIso);
 
   const handleSave = async () => {
     setSaving(true);
@@ -121,45 +111,36 @@ function EveningNote({
                 {eveningPrompt}
               </p>
             )}
-            {open ? (
-              <>
-                <label className="block">
-                  <span className="text-sm font-medium text-[#1E2A36]">
-                    Zapisz, co dziś zauważysz (opcjonalnie)
-                  </span>
-                  <textarea
-                    value={note}
-                    onChange={(e) => {
-                      setNote(e.target.value);
-                      setSavedAt(null);
-                    }}
-                    rows={3}
-                    maxLength={2000}
-                    className="mt-2 w-full border border-[#e2e7eb] rounded-lg px-4 py-2.5 text-sm text-[#1E2A36] bg-white focus:outline-none focus:ring-2 focus:ring-[#7B9E8C] focus:ring-offset-1 resize-none"
-                  />
-                </label>
-                <div className="flex items-center justify-between gap-3 mt-2">
-                  <span className="text-xs text-[#8A99A8]">
-                    Ta notatka jest szyfrowana i wraca do ciebie w podsumowaniu
-                    kursu.
-                  </span>
-                  <Button
-                    size="sm"
-                    onClick={handleSave}
-                    disabled={saving || (note === (savedNote ?? "") && !savedAt)}
-                  >
-                    {saving ? "Zapisywanie..." : savedAt ? "Zapisano" : "Zapisz"}
-                  </Button>
-                </div>
-                {error && <p className="text-red-500 text-xs mt-2">{error}</p>}
-              </>
-            ) : (
-              <p className="text-sm text-[#8A99A8] leading-relaxed">
-                Wieczorem (po 18:00{eveningLeft ? `, za ${eveningLeft}` : ""})
-                otworzy się tu pole na notatkę: momenty, które dziś zauważysz.
-                Wróć, kiedy dzień zdąży się wydarzyć.
-              </p>
-            )}
+            <label className="block">
+              <span className="text-sm font-medium text-[#1E2A36]">
+                Notatnik tego dnia (opcjonalnie)
+              </span>
+              <textarea
+                value={note}
+                onChange={(e) => {
+                  setNote(e.target.value);
+                  setSavedAt(null);
+                }}
+                rows={3}
+                maxLength={2000}
+                placeholder="Dopisuj w ciągu dnia, kiedy coś zauważysz, albo wróć wieczorem."
+                className="mt-2 w-full border border-[#e2e7eb] rounded-lg px-4 py-2.5 text-sm text-[#1E2A36] placeholder:text-[#8A99A8] bg-white focus:outline-none focus:ring-2 focus:ring-[#7B9E8C] focus:ring-offset-1 resize-none"
+              />
+            </label>
+            <div className="flex items-center justify-between gap-3 mt-2">
+              <span className="text-xs text-[#8A99A8]">
+                Ta notatka jest szyfrowana i wraca do ciebie w podsumowaniu
+                kursu.
+              </span>
+              <Button
+                size="sm"
+                onClick={handleSave}
+                disabled={saving || (note === (savedNote ?? "") && !savedAt)}
+              >
+                {saving ? "Zapisywanie..." : savedAt ? "Zapisano" : "Zapisz"}
+              </Button>
+            </div>
+            {error && <p className="text-red-500 text-xs mt-2">{error}</p>}
           </div>
         </div>
       </div>
@@ -272,7 +253,6 @@ export function DayView({
   daysNav,
   otherCourses,
   summary,
-  completedAtIso,
   savedNote,
   previousNote,
 }: DayViewProps) {
@@ -282,8 +262,7 @@ export function DayView({
 
   const [checkinDone, setCheckinDone] = useState(initialCheckinDone);
   const [completed, setCompleted] = useState(initialCompleted);
-  const [completedAt, setCompletedAt] = useState<string | null>(completedAtIso);
-  const midnightLeft = useCountdown("midnight");
+  const midnightLeft = useCountdown();
   const [quizPassed, setQuizPassed] = useState(initialQuizPassed);
   const [feedbackGiven, setFeedbackGiven] = useState(initialFeedbackGiven);
   const [step, setStep] = useState<Step>(initialQuizPassed ? "challenge" : "knowledge");
@@ -325,7 +304,6 @@ export function DayView({
     const ok = await putDay({ courseSlug, day, complete: true });
     if (ok) {
       setCompleted(true);
-      setCompletedAt(new Date().toISOString());
     } else {
       setError("Nie udało się zapisać. Sprawdź połączenie i spróbuj ponownie.");
     }
@@ -407,15 +385,12 @@ export function DayView({
 
   const afterCompletion = completed && (
     <>
-      {completedAt && (
-        <EveningNote
-          courseSlug={courseSlug}
-          day={day}
-          completedAtIso={completedAt}
-          savedNote={savedNote}
-          eveningPrompt={content.challenge.evening}
-        />
-      )}
+      <DayNote
+        courseSlug={courseSlug}
+        day={day}
+        savedNote={savedNote}
+        eveningPrompt={content.challenge.evening}
+      />
 
       {!isFinalDay &&
         (nextDayUnlocked ? (
