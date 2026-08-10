@@ -393,7 +393,7 @@ const dict = {
     exerciseStuckLabel: "Nie wiem, co napisać? Podpowiedzi",
     exerciseFinish: "Zakończ ćwiczenie",
     exerciseSaveExit: "Zapisz i wyjdź",
-    exerciseWhyWorks: "Dlaczego to działa? (nauka za ćwiczeniem)",
+    exerciseWhyWorks: "Dlaczego to działa? (nauka stojąca za ćwiczeniem)",
     exerciseLabel: "Ćwiczenie",
     exerciseMinutes: "minut",
 

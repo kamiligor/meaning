@@ -16,7 +16,7 @@ export const wdziecznoscCourse: Course = {
   metaDescription:
     "Darmowy 7-dniowy mini kurs praktykowania wdzięczności: codziennie dawka wiedzy, krótki quiz i jedna mała praktyka. Bez wymuszonej pozytywności.",
   heroDescription:
-    "Wdzięczność to umiejętność, którą się trenuje, i jedna z najlepiej przebadanych dróg do bycia szczęśliwszym. Przez siedem dni przechodzisz od jednej praktyki dziennie do wdzięczności wplecionej w zwykłe chwile. Bez udawania, że wszystko jest super.",
+    "Wdzięczność to umiejętność, którą się trenuje, i jedna z najlepiej przebadanych dróg do większego szczęścia. Przez siedem dni przechodzisz od jednej praktyki dziennie do wdzięczności wplecionej w zwykłe chwile. Bez udawania, że wszystko jest super.",
   howItWorks: [
     "Jeden dzień naraz. Kolejny dzień odblokowuje się następnego dnia kalendarzowego, bo praktyka potrzebuje całego dnia, żeby się wydarzyć.",
     "Każdy dzień to krótkie kroki: dawka wiedzy, mały quiz bez punktów i jedna konkretna praktyka, a od drugiego dnia także opis, jak poszło ostatnio.",
@@ -535,7 +535,7 @@ export const wdziecznoscCourse: Course = {
         textLabel: "Chcesz coś dopisać? (opcjonalnie, tylko dla ciebie)",
       },
       knowledge: [
-        "Ostatni poziom nie polega na dokładaniu kolejnych praktyk, tylko na zmianie spojrzenia. Thich Nhat Hanh nazywał to współistnieniem: każda rzecz, którą masz, istnieje dzięki niewidzialnej sieci ludzi i przyczyn. W kartce papieru, pisał, można zobaczyć chmurę, bo bez deszczu nie urosłoby drzewo, i drwala, i jego codzienny chleb. Kto naprawdę widzi tę sieć, temu wdzięczność nie każe się zmuszać. Przychodzi sama.",
+        "Ostatni poziom nie polega na dokładaniu kolejnych praktyk, tylko na zmianie spojrzenia. Thich Nhat Hanh nazywał to współistnieniem: każda rzecz, którą masz, istnieje dzięki niewidzialnej sieci ludzi i przyczyn. W kartce papieru, pisał, można zobaczyć chmurę, bo bez deszczu nie urosłoby drzewo, i drwala, i jego codzienny chleb. Kto naprawdę widzi tę sieć, ten nie musi się zmuszać do wdzięczności. Przychodzi sama.",
         "A co z dniami, które są po prostu złe? Tu Peterson mówi rzecz najtrudniejszą z całego kursu: wdzięczność pomimo cierpienia. Nie dlatego, że cierpienie jest dobre, i nie zamiast go czuć. Wdzięczność pomimo to świadoma postawa, wybierana właśnie wtedy, kiedy nie przychodzi sama. Według niego to nie naiwność, tylko forma odwagi.",
         "I domknięcie klamry z pierwszych dni: to nie jest toksyczna pozytywność. Nie szukamy dobrego zamiast trudnego, tylko obok trudnego. Trudne zostaje trudne, nazwane po imieniu. Pytanie brzmi jedynie: czy oprócz tego jest tu coś, za co mogę uczciwie podziękować? Jeśli odpowiedź jest mała, to znaczy, że jest prawdziwa.",
       ],
@@ -585,7 +585,7 @@ export const wdziecznoscCourse: Course = {
         lead: "Małe dobre w złym momencie",
         body: [
           "Ostatnia praktyka nie ma wyznaczonej godziny, ma wyzwalacz. Następnym razem, kiedy coś dziś pójdzie nie tak (a coś pójdzie: spóźnienie, przykra wiadomość, rozlana kawa), zatrzymaj się na jeden oddech i zapytaj: za co tu mogę uczciwie podziękować? I pozwól, żeby odpowiedź była mała. „Przynajmniej złapało mnie to w domu.” „Jest ktoś, do kogo mogę z tym zadzwonić.” Mała odpowiedź wystarczy, bo jest prawdziwa.",
-          "A na dalej, żeby siedem dni nie rozpłynęło się w dwa tygodnie, prosty plan z tego tygodnia: rano jedno zdanie przed telefonem, wieczorem trzy dobre momenty, raz w tygodniu jedno wyrażone podziękowanie. Każdą z tych praktyk przypnij do czegoś, co i tak robisz: kawy, mycia zębów, drogi do pracy. Jeśli chcesz miary, potraktuj to jako wyzwanie na 30 dni i po miesiącu sprawdź, co się zmieniło.",
+          "Na przyszłość, żeby siedem dni nie rozpłynęło się w dwa tygodnie, prosty plan z tego tygodnia: rano jedno zdanie przed telefonem, wieczorem trzy dobre momenty, raz w tygodniu jedno wyrażone podziękowanie. Każdą z tych praktyk przypnij do czegoś, co i tak robisz: kawy, mycia zębów, drogi do pracy. Jeśli chcesz miary, potraktuj to jako wyzwanie na 30 dni i po miesiącu sprawdź, co się zmieniło.",
         ],
         minimal:
           "Wersja minimalna na dziś i na zawsze: wybierz jedną, dokładnie jedną praktykę z tego tygodnia, która zostaje z tobą na stałe.",

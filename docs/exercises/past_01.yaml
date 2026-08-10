@@ -34,7 +34,7 @@ exercise:
     - text: "Czy są okresy w Twoim życiu, z których nic nie przychodzi Ci do głowy? To też jest informacja. Zapisz to."
       estimated_time: "2-4 minut"
       min_chars: 20
-    - text: "Gdybyś miał wybrać 3 momenty, które najbardziej uczyniły Cię osobą, którą jesteś dzisiaj, które by to były?"
+    - text: "Gdybyś miał wybrać 3 momenty, które najbardziej ukształtowały to, kim jesteś dzisiaj, które by to były?"
       estimated_time: "5-7 minut"
       min_chars: 20
 

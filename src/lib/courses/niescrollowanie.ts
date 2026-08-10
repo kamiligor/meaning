@@ -32,7 +32,7 @@ export const niescrollowanieCourse: Course = {
       title: "Stan domyślny",
       knowledge: [
         "Przypomnij sobie moment tuż po przebudzeniu, zanim ręka sięgnie po telefon. Głowa sama z siebie już coś robi: przelatuje po wczorajszej rozmowie, planuje dzień, wraca do sprawy sprzed tygodnia. To nie jest szum. To stan domyślny mózgu (ang. default mode network), tryb, w który wchodzi zawsze, kiedy nie dostaje zadania z zewnątrz. W tym trybie mózg porządkuje wspomnienia i planuje przyszłość. Arthur Brooks, profesor Harvardu, który od lat bada, skąd bierze się szczęście, podkreśla, że tylko wtedy mózg zadaje sobie pytania o to, co ważne. Nuda to nie przestój. To czas, w którym mózg pracuje nad twoimi sprawami, a nie nad tym, co właśnie podsunął mu ekran.",
-        "Problem w tym, że ten tryb prawie nigdy nie dostaje szansy. Brooks przywołuje dane, z których wynika, że przeciętny człowiek zagląda w telefon jakieś 205 razy dziennie. Nie 205 razy, kiedy naprawdę czegoś potrzebuje. W większości to odruchy, których nie pamięta się minutę później: czekasz na windę, parzysz herbatę, głowa robi się pusta na sekundę i ręka sama sięga po telefon.",
+        "Problem w tym, że dziś ten tryb prawie nigdy nie dostaje szansy. Brooks przywołuje dane, z których wynika, że przeciętny człowiek zagląda w telefon jakieś 205 razy dziennie. Nie 205 razy, kiedy naprawdę czegoś potrzebuje. W większości to odruchy, których nie pamięta się minutę później: czekasz na windę, parzysz herbatę, głowa robi się pusta na sekundę i ręka sama sięga po telefon.",
         "I tu jest haczyk. W badaniu z 2021 roku, które Brooks cytuje, ludzie sięgający po telefon w chwilach nudy kończyli te chwile bardziej znudzeni i bardziej zmęczeni, nie mniej. Nuda, scroll, głębsza nuda, głębszy scroll. Koło się zamyka. A chwile nudy są prawie jedynym momentem, w którym mózg ma czas zadać sobie pytania o to, co ważne. Kto nigdy się nie nudzi, temu trudniej wiedzieć, po co właściwie to wszystko robi.",
         "Nuda ma też praktyczny skutek uboczny, który polubisz: rzeczy odkładane tygodniami nagle robią się ciekawe. Kiedy pod ręką nie ma nic łatwiejszego, zaległy mail, porządek w szufladzie albo trudna rozmowa przestają przegrywać każde porównanie z telefonem i stają się najciekawszą dostępną opcją. Dlatego Brooks radzi trenować coraz dłuższe odcinki nudy, docelowo powyżej piętnastu minut dziennie. Brzmi dużo, ale właśnie po to jest ten kurs: zaczniemy od trzech minut i do piątego dnia dojdziemy do kwadransa.",
       ],
@@ -110,8 +110,8 @@ export const niescrollowanieCourse: Course = {
       challenge: {
         lead: "Nuda to stan pożądany",
         body: [
-          "Za każdym razem, kiedy poczujesz ochotę sięgnięcia po telefon, zatrzymaj się na sekundę i zauważ sytuację: co właśnie robisz? Czekasz? Nudzisz się? Jeśli to nuda, przypomnij sobie jedno zdanie: **nuda to dla ciebie dobry stan**, mózg właśnie dostał czas dla siebie.",
-          "Dzisiejsze zadanie to zauważać i notować te momenty: gdzie było, co się działo, co wtedy czuć. Możesz zapisywać je w notatniku pod wyzwaniem (otworzy się, gdy je przyjmiesz) albo we własnym notesie, ważne, żeby był pod ręką.",
+          "Za każdym razem, kiedy poczujesz ochotę na telefon, zatrzymaj się na sekundę i zauważ sytuację: co właśnie robisz? Czekasz? Nudzisz się? Jeśli to nuda, przypomnij sobie jedno zdanie: **nuda to stan pożądany**, mózg właśnie dostał czas dla siebie.",
+          "Dzisiejsze zadanie to zauważać i notować te momenty: gdzie to było, co się działo i co się wtedy odezwało, nuda, stres czy zwykłe przyzwyczajenie. Możesz zapisywać je w notatniku pod wyzwaniem (otworzy się, gdy je przyjmiesz) albo we własnym notesie, ważne, żeby był pod ręką.",
         ],
         minimal:
           "Jeśli dziś nie wyjdzie nic więcej, wystarczy zauważyć jeden taki moment.",
@@ -221,7 +221,7 @@ export const niescrollowanieCourse: Course = {
       challenge: {
         lead: "Policz fale",
         body: [
-          "Licz dziś kreskami, na kartce, w notatce, jak wygodnie, każdą ochotę sięgnięcia po telefon. Nie liczysz użyć, liczysz same ochoty, nawet jeśli w połowie z nich faktycznie po niego sięgniesz. Tego zadania nie da się oblać.",
+          "Licz dziś kreskami, na kartce, w notatce, jak wygodnie, każdą ochotę na telefon. Nie liczysz użyć, liczysz same ochoty, nawet jeśli w połowie z nich faktycznie po niego sięgniesz. Tego zadania nie da się oblać.",
           "Przy trzech dowolnych z tych ochot zostań z nią minutę, zanim zdecydujesz, co dalej. Obserwuj, gdzie ją czuć i co robi: narasta, faluje, opada?",
           "Wieczorem pierwszy trening: trzy minuty siedzenia bez niczego. Bez telefonu, bez muzyki, bez celu. Najgorsza bywa pierwsza minuta, kiedy głowa zaczyna podsuwać wszystko, co jeszcze trzeba zrobić. Zobacz, co podsunie twoja.",
         ],
@@ -261,7 +261,7 @@ export const niescrollowanieCourse: Course = {
         "Kolejka w sklepie, działa jedna kasa na dwanaście osób. Telefon w kieszeni zaczyna ciążyć już po kilku sekundach i zwykle ląduje w ręku, zanim zapadnie jakakolwiek decyzja.",
         "Brooks pisze o czekaniu coś otrzeźwiającego: próba wyeliminowania czekania z życia, szybsze kasy, sprawniejsze aplikacje, kolejki online, jest z góry przegrana, bo do każdej wygody przywykamy w tydzień i znowu czekanie na cokolwiek wydaje się nie do zniesienia. Zamiast walczyć ze światem, proponuje zmienić to, kim się jest w tej kolejce.",
         "Konkretnie poleca ćwiczenie za psycholożką Ellen Langer: uważność to nic więcej niż zauważanie nowych rzeczy. W miejscu, które zna się na pamięć, zawsze jest coś jeszcze niezauważonego, jeśli poświęcić temu trzydzieści sekund.",
-        "Jest jeszcze drugie ćwiczenie, mocniejsze i, nie ma co ukrywać, trochę zawstydzające przy pierwszej próbie: kierowanie w myślach życzliwych życzeń do osób w tej samej kolejce. Nic głośnego, nic widocznego. Badania, które Brooks przytacza, pokazują, że taka praktyka zwiększa cierpliwość, a ludzie cierpliwsi są zwyczajnie bardziej zadowoleni z życia.",
+        "Jest jeszcze drugie ćwiczenie, mocniejsze i, nie ma co ukrywać, trochę zawstydzające przy pierwszej próbie: życzenie w myślach czegoś dobrego osobom w tej samej kolejce. Nic głośnego, nic widocznego. Badania, które Brooks przytacza, pokazują, że taka praktyka zwiększa cierpliwość, a ludzie cierpliwsi są zwyczajnie bardziej zadowoleni z życia.",
       ],
       quiz: [
         {
@@ -309,7 +309,7 @@ export const niescrollowanieCourse: Course = {
         lead: "Każda kolejka bez telefonu",
         body: [
           "Dziś każda chwila czekania, jaka się w ciągu dnia zdarzy, jest bez telefonu. Kolejka, przystanek, winda, czajnik, poczekalnia, toaleta, cokolwiek. W każdej takiej chwili spróbuj znaleźć coś, czego wcześniej nie było widać, choćby jedną rzecz.",
-          "Dla chętnych wersja mocniejsza: pomyśl komuś obcemu w tej samej kolejce coś dobrego.",
+          "Dla chętnych wersja mocniejsza: pomyśl coś dobrego o kimś obcym w tej samej kolejce.",
           "Trening dnia rośnie do pięciu minut siedzenia bez niczego.",
         ],
         minimal:
@@ -346,7 +346,7 @@ export const niescrollowanieCourse: Course = {
       },
       knowledge: [
         "Mały test na początek: spróbuj sobie przypomnieć, co przewijało się na twoim ekranie trzy dni temu. Konkretnie, choć jeden filmik, choć jeden post. Zwykle: nic. A rozmowę sprzed trzech dni, nawet całkiem nieważną, o niczym szczególnym, najczęściej da się przypomnieć.",
-        "To dokładnie różnica, o której pisze Brooks: przyjemność i radość to nie to samo, choć w danym momencie czują się podobnie. Przyjemność jest samotna i nie zostawia po sobie żadnego śladu, stąd nikt nie pamięta wczorajszego scrollowania. Radość to przyjemność plus dwa dodatkowe elementy: ludzie i pamięć. Coś, co robi się z kimś, i coś, co zostaje w głowie dłużej niż pięć minut.",
+        "To dokładnie różnica, o której pisze Brooks: przyjemność i radość to nie to samo, choć w danym momencie wydają się podobne. Przyjemność jest samotna i nie zostawia po sobie żadnego śladu, stąd nikt nie pamięta wczorajszego scrollowania. Radość to przyjemność plus dwa dodatkowe elementy: ludzie i pamięć. Coś, co robi się z kimś, i coś, co zostaje w głowie dłużej niż pięć minut.",
         "Z tego rozróżnienia Brooks robi prosty test na każdą aplikację, każdą technologię: czy to uzupełnienie tego, czego się naprawdę chce (bliskości, wiedzy, poczucia sensu), czy podróbka, która to zastępuje. Rozmowa z przyjacielem przez telefon uzupełnia. Przewijanie zdjęć nieznanych ludzi zastępuje, bez względu na to, jak dobrze wygląda ich życie na zdjęciu.",
       ],
       quiz: [
@@ -393,7 +393,7 @@ export const niescrollowanieCourse: Course = {
       challenge: {
         lead: "Jedna zamiana",
         body: [
-          "Zadanie ma dwie części. Po pierwsze, mały audyt: przejrzyj ekran główny telefonu i przy każdej aplikacji zadaj sobie jedno pytanie: uzupełnia czy zastępuje? Te z drugiej kategorii przenieś do folderu na ostatnią stronę (przytrzymaj palcem ikonę, aż da się ją przeciągnąć), gdzieś, gdzie trzeba specjalnie po nie sięgnąć. Nic nie trzeba usuwać, samo przeniesienie robi większą różnicę, niż się wydaje.",
+          "Zadanie ma dwie części. Po pierwsze, mały audyt: przejrzyj ekran główny telefonu i przy każdej aplikacji zadaj sobie jedno pytanie: uzupełnia czy zastępuje? Te z drugiej kategorii przenieś do folderu na ostatnią stronę (przytrzymaj palcem ikonę, aż da się ją przeciągnąć), gdzieś, gdzie trzeba specjalnie po nie sięgnąć. Nic nie trzeba usuwać, samo przeniesienie zmienia więcej, niż się wydaje.",
           "Po drugie, zamień dziś jedną sesję scrollowania na coś, co ma szansę zostać w pamięci: rozmowę, wspólny posiłek bez telefonów na stole, telefon do kogoś, z kim dawno się nie rozmawiało. A jeśli dziś nie ma wokół ludzi, wystarczy posiłek bez telefonu na stole, choćby w pojedynkę: chodzi o obecność, nie o towarzystwo.",
           "Trening dnia rośnie do 10-12 minut, najlepiej jako spacer, bez telefonu i bez słuchawek w uszach.",
         ],
@@ -433,8 +433,8 @@ export const niescrollowanieCourse: Course = {
       knowledge: [
         "Pięć dni temu ten kurs zaczynał się od trzech minut ciszy i pewnie wtedy wydawały się długie. Dziś ostatni trening: piętnaście minut, poziom, o którym Brooks mówi najczęściej, bo jego zdaniem właśnie gdzieś w tym czasie mózg przestaje krążyć wokół drobiazgów, co ugotować, co odpisać, i zaczyna dochodzić do pytań, które normalnie się zagłusza.",
         "Brooks proponuje wziąć na ten czas jedno pytanie, na które nie ma dobrej odpowiedzi, bo nie o odpowiedź tu chodzi, tylko o to, co robi z człowiekiem samo trzymanie pytania w głowie przez dłuższą chwilę.",
-        "I domknięcie wątku z dnia drugiego: skoro z bycia na bieżąco nic nie wynika, nie ma też powodu rozsypywać sprawdzania po całym dniu. Brooks radzi zamknąć wiadomości i powiadomienia w jednej stałej porze dziennie, kwadrans albo pół godziny, i poza nią po prostu nie zaglądać.",
-        "I jedna rzecz o trwałości, uczciwie: pięć dni to eksperyment, nie cała reszta życia. Brooks twierdzi, że nawyki łapią po około dwóch tygodniach, więc kurs się dziś kończy, ale rozstrzyga się w najbliższych dwóch tygodniach. Dlatego finał ma dwie części: kwadrans i decyzję, co zostaje na dłużej.",
+        "I domknięcie wątku z dnia drugiego: skoro z bycia na bieżąco nic nie wynika, nie ma też powodu rozsypywać sprawdzania po całym dniu. Brooks radzi sprawdzać wiadomości i powiadomienia tylko w jednej stałej porze dnia, kwadrans albo pół godziny, i poza nią po prostu nie zaglądać.",
+        "I jedna rzecz o trwałości, uczciwie: pięć dni to eksperyment, nie cała reszta życia. Brooks twierdzi, że nawyk zaczyna się utrwalać po około dwóch tygodniach, więc kurs się dziś kończy, ale rozstrzyga się w najbliższych dwóch tygodniach. Dlatego finał ma dwie części: kwadrans i decyzję, co zostaje na dłużej.",
       ],
       quiz: [
         {
@@ -479,12 +479,12 @@ export const niescrollowanieCourse: Course = {
       challenge: {
         lead: "Kwadrans z jednym pytaniem",
         body: [
-          "Piętnaście minut prawdziwej nudy. Bez telefonu, bez notatnika pod ręką, bez żadnego innego zadania. Weź na start jedno pytanie i pozwól myślom do niego wracać, kiedy same zechcą, niekoniecznie w prostej linii. Może to być: „co jest dla mnie naprawdę ważne?”. Może: „czego by brakowało, gdyby wszystko zostało tak, jak jest teraz?”. Po kwadransie, jeśli jest ochota, zapisz, co przyszło.",
+          "Piętnaście minut prawdziwej nudy. Bez telefonu, bez notatnika pod ręką, bez żadnego innego zadania. Weź na start jedno pytanie i pozwól myślom do niego wracać, kiedy same zechcą, niekoniecznie po kolei. Może to być: „co jest dla mnie naprawdę ważne?”. Może: „czego by brakowało, gdyby wszystko zostało tak, jak jest teraz?”. Po kwadransie, jeśli jest ochota, zapisz, co przyszło.",
           "Potem bilans: wróć do liczb z dnia zapisu, czasu ekranowego i liczby podniesień telefonu, i porównaj je z tym, co pokazują ustawienia teraz. Nie po to, żeby oceniać wynik. Po to, żeby zobaczyć, czy coś się w tym tygodniu ruszyło.",
           "Na koniec dwie decyzje, ważniejsze niż sam kwadrans. Jedna chwila nudy, która zostaje na stałe: kolejka, toaleta, spacer, kwadrans przy oknie wieczorem, cokolwiek, co było testowane w tym tygodniu i nie było najgorsze. I jedno stałe okno bez telefonu, wybrane z trzech, które Brooks poleca najczęściej: pierwsza godzina po przebudzeniu, posiłki albo godzina przed snem. Zapisz to jako proste zdanie w stylu „jeśli [sytuacja], to telefon zostaje odłożony”. A jeśli masz ochotę na trzecią zasadę: jedna stała pora na wiadomości i powiadomienia zamiast zerkania co chwilę.",
         ],
         minimal:
-          "Jeśli piętnaście minut w jednym kawałku wydaje się nie do zrobienia, rozłóż je na dwa razy po siedem albo wróć do trzech minut z początku kursu. Liczy się kontakt z ciszą, nie idealna liczba na zegarze.",
+          "Jeśli piętnaście minut jednym ciągiem wydaje się nie do zrobienia, rozłóż je na dwa razy po siedem albo wróć do trzech minut z początku kursu. Liczy się kontakt z ciszą, nie idealna liczba na zegarze.",
         acceptLabel: "Biorę kwadrans na siebie",
       },
     },
