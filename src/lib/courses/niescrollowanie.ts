@@ -111,7 +111,7 @@ export const niescrollowanieCourse: Course = {
         lead: "Nuda to stan pożądany",
         body: [
           "Za każdym razem, kiedy poczujesz ochotę na telefon, zatrzymaj się na sekundę i zauważ sytuację: co właśnie robisz? Czekasz? Nudzisz się? Jeśli to nuda, przypomnij sobie jedno zdanie: **nuda to stan pożądany**, mózg właśnie dostał czas dla siebie.",
-          "Dzisiejsze zadanie to zauważać i notować te momenty: gdzie to było, co się działo i co się wtedy odezwało, nuda, stres czy zwykłe przyzwyczajenie. Notuj, gdzie ci wygodnie, ale najlepiej w notatniku pod wyzwaniem (otworzy się, gdy je przyjmiesz): masz wtedy wszystko w jednym miejscu, a notatki wrócą do ciebie w podsumowaniu kursu.",
+          "Dzisiejsze zadanie to zauważać i notować te momenty: gdzie to było, co się działo i co się wtedy odezwało, nuda, stres czy zwykłe przyzwyczajenie. Notuj w notatniku poniżej, na bieżąco albo wieczorem, jak ci wygodnie.",
         ],
         minimal:
           "Jeśli dziś nie wyjdzie nic więcej, wystarczy zauważyć jeden taki moment.",
@@ -485,7 +485,6 @@ export const niescrollowanieCourse: Course = {
         ],
         minimal:
           "Jeśli piętnaście minut jednym ciągiem wydaje się nie do zrobienia, rozłóż je na dwa razy po siedem albo wróć do trzech minut z początku kursu. Liczy się kontakt z ciszą, nie idealna liczba na zegarze.",
-        acceptLabel: "Biorę kwadrans na siebie",
       },
     },
   ],

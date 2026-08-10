@@ -83,21 +83,26 @@ async function putDay(body: Record<string, unknown>): Promise<boolean> {
 }
 
 /**
- * The day's notebook: open as soon as the challenge is accepted, so moments
- * can be jotted down live during the day (or in the evening, both work).
+ * The day's notebook: visible right inside the challenge step (some practices
+ * are the writing itself), so moments can be jotted down live during the day
+ * or in the evening — whichever the person prefers.
  */
 function DayNote({
   courseSlug,
   day,
+  note,
+  onNoteChange,
   savedNote,
   eveningPrompt,
 }: {
   courseSlug: string;
   day: number;
+  /** Draft lives in DayView so it survives the switch to the completed view. */
+  note: string;
+  onNoteChange: (note: string) => void;
   savedNote: string | null;
   eveningPrompt?: string;
 }) {
-  const [note, setNote] = useState(savedNote ?? "");
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState<number | null>(null);
   const [error, setError] = useState("");
@@ -132,7 +137,7 @@ function DayNote({
               <textarea
                 value={note}
                 onChange={(e) => {
-                  setNote(e.target.value);
+                  onNoteChange(e.target.value);
                   setSavedAt(null);
                 }}
                 rows={3}
@@ -276,6 +281,7 @@ export function DayView({
 
   const [checkinDone, setCheckinDone] = useState(initialCheckinDone);
   const [completed, setCompleted] = useState(initialCompleted);
+  const [noteDraft, setNoteDraft] = useState(savedNote ?? "");
   const [quizPassed, setQuizPassed] = useState(initialQuizPassed);
   const [feedbackGiven, setFeedbackGiven] = useState(initialFeedbackGiven);
   const [step, setStep] = useState<Step>(initialQuizPassed ? "challenge" : "knowledge");
@@ -301,10 +307,7 @@ export function DayView({
     quiz: "Quiz",
     challenge: isChallenge ? "Wyzwanie" : "Praktyka",
   };
-  const acceptLabel =
-    content.challenge.acceptLabel ??
-    (isChallenge ? "Przyjmuję wyzwanie na dziś" : "Przyjmuję praktykę na dziś");
-  const doneLabel = isChallenge ? "Wyzwanie przyjęte" : "Praktyka przyjęta";
+  const closeLabel = isFinalDay ? "Zakończ kurs" : "Zakończ dzień";
 
   const handleQuizPassed = (firstAttempts: number[]) => {
     setQuizPassed(true);
@@ -375,36 +378,49 @@ export function DayView({
             </p>
           ))}
         </div>
-        <p className="text-sm text-[#8A99A8] leading-relaxed mb-6">
+        <p
+          className={`text-sm text-[#8A99A8] leading-relaxed ${completed ? "mb-6" : ""}`}
+        >
           {content.challenge.minimal}
         </p>
 
-        {!completed ? (
-          <>
-            <Button onClick={handleComplete} disabled={completing} className="w-full">
-              {completing ? "Zapisywanie..." : acceptLabel}
-            </Button>
-            {error && <p className="text-red-500 text-xs mt-2">{error}</p>}
-          </>
-        ) : (
+        {completed && (
           <div className="flex items-center gap-2 text-[#7B9E8C] font-medium">
             <Check className="h-5 w-5" strokeWidth={2.5} />
-            <span>{isFinalDay ? "Kurs ukończony" : doneLabel}</span>
+            <span>{isFinalDay ? "Kurs ukończony" : "Dzień zakończony"}</span>
           </div>
         )}
       </div>
     </section>
   );
 
+  const noteSection = (
+    <DayNote
+      courseSlug={courseSlug}
+      day={day}
+      note={noteDraft}
+      onNoteChange={setNoteDraft}
+      savedNote={savedNote}
+      eveningPrompt={content.challenge.evening}
+    />
+  );
+
+  /* Closing the day is a plain bookkeeping action (progress, unlock clock),
+     placed below the notebook so writing naturally comes first. */
+  const closeDaySection = !completed && (
+    <section className="mb-10">
+      <Button onClick={handleComplete} disabled={completing} className="w-full">
+        {completing ? "Zapisywanie..." : closeLabel}
+      </Button>
+      <p className="text-xs text-[#8A99A8] text-center mt-2">
+        Do notatnika możesz wracać także po zakończeniu dnia.
+      </p>
+      {error && <p className="text-red-500 text-xs mt-2 text-center">{error}</p>}
+    </section>
+  );
+
   const afterCompletion = completed && (
     <>
-      <DayNote
-        courseSlug={courseSlug}
-        day={day}
-        savedNote={savedNote}
-        eveningPrompt={content.challenge.evening}
-      />
-
       {!isFinalDay &&
         (nextDayUnlocked ? (
           <section className="mb-10 text-center">
@@ -574,6 +590,7 @@ export function DayView({
           </section>
           {baselineSection}
           {challengeSection}
+          {noteSection}
           {afterCompletion}
         </>
       )}
@@ -629,6 +646,8 @@ export function DayView({
             <>
               {baselineSection}
               {challengeSection}
+              {noteSection}
+              {closeDaySection}
               {afterCompletion}
             </>
           )}

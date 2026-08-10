@@ -41,8 +41,6 @@ export interface CourseDay {
     body: string[];
     minimal: string;
     evening?: string;
-    /** Custom accept-button label; defaults derive from the course's challengeNoun. */
-    acceptLabel?: string;
   };
 }
 

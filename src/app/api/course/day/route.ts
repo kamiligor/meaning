@@ -15,8 +15,8 @@ interface DayUpdateBody {
   complete?: boolean;
   checkin?: { day?: number; choice?: string; text?: string };
   /**
-   * Evening note about the day's own challenge (opens the evening of the
-   * completed day). Same encrypted storage as the check-in note.
+   * The day's live notebook (visible in the challenge step, before and after
+   * completing the day). Same encrypted storage as the check-in note.
    */
   note?: string;
 }
@@ -74,11 +74,8 @@ export async function PUT(request: NextRequest) {
     }
 
     if (typeof body.note === "string") {
-      if (!state.days[day]?.completedAt) {
-        return NextResponse.json(
-          { error: "Day not completed yet" },
-          { status: 403 }
-        );
+      if (!isDayUnlocked(day, state.days, course.days.length)) {
+        return NextResponse.json({ error: "Day is locked" }, { status: 403 });
       }
       const text = body.note.slice(0, 2000);
       const encrypted = text.trim() ? encrypt(text, user.id) : null;
