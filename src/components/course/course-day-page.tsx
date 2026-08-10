@@ -58,7 +58,7 @@ export async function CourseDayPage({
             <>
               {course.challengeNoun === "wyzwanie" ? "Wyzwanie" : "Praktyka"}{" "}
               z poprzedniego dnia potrzebuje całego dnia, żeby się wydarzyć.
-              Ten dzień odblokuje się o północy
+              Ten dzień odblokuje się o 6:00 rano
               <UnlockCountdown />. Do zobaczenia.
             </>
           ) : (

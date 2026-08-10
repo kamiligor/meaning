@@ -18,7 +18,7 @@ export const wdziecznoscCourse: Course = {
   heroDescription:
     "Wdzięczność to umiejętność, którą się trenuje, i jedna z najlepiej przebadanych dróg do większego szczęścia. Przez siedem dni przechodzisz od jednej praktyki dziennie do wdzięczności wplecionej w zwykłe chwile. Bez udawania, że wszystko jest super.",
   howItWorks: [
-    "Jeden dzień naraz. Kolejny dzień odblokowuje się następnego dnia kalendarzowego, bo praktyka potrzebuje całego dnia, żeby się wydarzyć.",
+    "Jeden dzień naraz. Kolejny dzień otwiera się następnego dnia o 6 rano, bo praktyka potrzebuje całego dnia, żeby się wydarzyć.",
     "Każdy dzień to krótkie kroki: dawka wiedzy, mały quiz bez punktów i jedna konkretna praktyka, a od drugiego dnia także opis, jak poszło ostatnio.",
     "Praktyki są małe z założenia: trzy zapisane rzeczy, jedno odwrócone narzekanie, jedno zdanie rano. Duży efekt bierze się z powtarzania, nie z rozmachu.",
     "Przerwa niczego nie psuje. Nie ma pass, liczników ani spóźnień. Kurs po prostu czeka, aż wrócisz.",

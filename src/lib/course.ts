@@ -1,14 +1,19 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 /**
- * Course pacing: a day unlocks on the next calendar day after the previous
- * one was completed. The gate is content-driven (the challenge needs a day
- * to happen), not gamification — nothing ever resets and no day expires.
+ * Course pacing: a day unlocks at 06:00 on the day after the previous one
+ * was completed — mornings, not midnights, because a course about healthy
+ * phone habits should not invite opening it at 00:01. The gate is
+ * content-driven (the challenge needs a day to happen), not gamification —
+ * nothing ever resets and no day expires. The 06:00 gate applies only to
+ * that first morning; once a day has been open, it never re-locks.
  *
  * Calendar days are compared in the courses' home timezone. The courses are
  * Polish-only, so Europe/Warsaw is the least surprising choice.
  */
 const COURSE_TIMEZONE = "Europe/Warsaw";
+
+export const COURSE_UNLOCK_HOUR = 6;
 
 export interface CourseDayState {
   day: number;
@@ -67,6 +72,25 @@ export function courseCalendarDay(date: Date): string {
   }).format(date);
 }
 
+function hourInCourseTimezone(date: Date): number {
+  return Number(
+    new Intl.DateTimeFormat("en-GB", {
+      timeZone: COURSE_TIMEZONE,
+      hour: "2-digit",
+      hour12: false,
+    }).format(date)
+  );
+}
+
+/** Whole calendar days between two YYYY-MM-DD strings. */
+function calendarDaysApart(from: string, to: string): number {
+  return Math.round(
+    (new Date(`${to}T00:00:00Z`).getTime() -
+      new Date(`${from}T00:00:00Z`).getTime()) /
+      86_400_000
+  );
+}
+
 export function isDayUnlocked(
   day: number,
   days: Record<number, CourseDayState>,
@@ -74,14 +98,23 @@ export function isDayUnlocked(
   now: Date = new Date()
 ): boolean {
   if (day < 1 || day > totalDays) return false;
+  // A finished day stays viewable at any hour.
+  if (days[day]?.completedAt) return true;
   if (day === 1) return true;
 
   const previous = days[day - 1];
   if (!previous?.completedAt) return false;
 
-  return (
-    courseCalendarDay(new Date(previous.completedAt)) < courseCalendarDay(now)
-  );
+  const previousDay = courseCalendarDay(new Date(previous.completedAt));
+  const today = courseCalendarDay(now);
+  const daysApart = calendarDaysApart(previousDay, today);
+
+  if (daysApart < 1) return false;
+  // First morning after completion: the day opens at 06:00, not at midnight.
+  if (daysApart === 1 && hourInCourseTimezone(now) < COURSE_UNLOCK_HOUR) {
+    return false;
+  }
+  return true;
 }
 
 /**

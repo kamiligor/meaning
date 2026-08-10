@@ -73,16 +73,40 @@ describe("isDayUnlocked", () => {
     expect(isDayUnlocked(2, days, TOTAL, now)).toBe(false);
   });
 
-  it("unlocks day 2 on the next calendar day", () => {
+  it("unlocks day 2 in the morning of the next calendar day", () => {
+    // now is 12:00 in Warsaw, past the 06:00 gate.
     const days = { 1: dayState(1, "2026-08-09T18:00:00Z") };
     expect(isDayUnlocked(2, days, TOTAL, now)).toBe(true);
   });
 
-  it("unlocks right after Warsaw midnight even when UTC date has not changed", () => {
+  it("stays locked through the night until 06:00 on the first morning", () => {
     // Completed 21:00 UTC Aug 9 (23:00 in Warsaw); at 22:30 UTC it is 00:30
-    // Aug 10 in Warsaw — next calendar day locally, same day in UTC.
+    // Aug 10 in Warsaw — the next calendar day, but before the 06:00 gate.
     const days = { 1: dayState(1, "2026-08-09T21:00:00Z") };
     expect(isDayUnlocked(2, days, TOTAL, new Date("2026-08-09T22:30:00Z"))).toBe(
+      false
+    );
+    // 04:30 UTC = 06:30 in Warsaw: morning has arrived.
+    expect(isDayUnlocked(2, days, TOTAL, new Date("2026-08-10T04:30:00Z"))).toBe(
+      true
+    );
+  });
+
+  it("does not apply the morning gate beyond the first day after", () => {
+    // Completed Aug 7; at 04:00 Warsaw on Aug 10 the day is long overdue.
+    const days = { 1: dayState(1, "2026-08-07T10:00:00Z") };
+    expect(isDayUnlocked(2, days, TOTAL, new Date("2026-08-10T02:00:00Z"))).toBe(
+      true
+    );
+  });
+
+  it("keeps a completed day viewable at any hour", () => {
+    const days = {
+      1: dayState(1, "2026-08-08T10:00:00Z"),
+      2: dayState(2, "2026-08-09T10:00:00Z"),
+    };
+    // 03:00 in Warsaw: revisiting finished content is never blocked.
+    expect(isDayUnlocked(2, days, TOTAL, new Date("2026-08-10T01:00:00Z"))).toBe(
       true
     );
   });

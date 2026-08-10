@@ -423,7 +423,7 @@ export function DayView({
               Dzień {day} z {totalDays} za tobą.
             </p>
             <p className="text-[#4A5B6A] leading-relaxed">
-              Dzień {day + 1} odblokuje się o północy
+              Dzień {day + 1} odblokuje się o 6:00 rano
               {midnightLeft ? ` (za ${midnightLeft})` : ""}.{" "}
               {isChallenge
                 ? "Dziś zostało już tylko wyzwanie"

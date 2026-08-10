@@ -3,10 +3,10 @@
 import { useSyncExternalStore } from "react";
 
 /**
- * Countdown TO an unlock (the next day, opening at midnight Warsaw time).
- * Deliberately one-directional: the platform bans pressure timers, and
- * counting toward something opening is anticipation, not a deadline.
- * Returns null once the moment has passed (and on the server).
+ * Countdown TO an unlock (the next day, opening at 06:00 Warsaw time —
+ * mornings, not midnights). Deliberately one-directional: the platform bans
+ * pressure timers, and counting toward something opening is anticipation,
+ * not a deadline. Null on the server, before hydration and past the moment.
  */
 
 function minutesNowInWarsaw(): number {
@@ -21,9 +21,9 @@ function minutesNowInWarsaw(): number {
 }
 
 function formatLeft(): string | null {
-  const target = 24 * 60;
-  const diff = target - minutesNowInWarsaw();
-  if (diff <= 0) return null;
+  const target = 6 * 60;
+  let diff = target - minutesNowInWarsaw();
+  if (diff <= 0) diff += 24 * 60;
   const hours = Math.floor(diff / 60);
   const minutes = diff % 60;
   if (hours === 0) return `${minutes} min`;

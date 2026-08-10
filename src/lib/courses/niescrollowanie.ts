@@ -16,7 +16,7 @@ export const niescrollowanieCourse: Course = {
   heroDescription:
     "Przez pięć dni trenujesz jedną umiejętność: bycie z własnymi myślami, zaczynając od trzech minut, kończąc na kwadransie. To eksperyment, nie odwyk.",
   howItWorks: [
-    "Jeden dzień naraz. Kolejny dzień odblokowuje się następnego dnia kalendarzowego, bo wyzwanie potrzebuje całego dnia, żeby się wydarzyć.",
+    "Jeden dzień naraz. Kolejny dzień otwiera się następnego dnia o 6 rano, bo wyzwanie potrzebuje całego dnia, żeby się wydarzyć.",
     "Każdy dzień to krótkie kroki: dawka wiedzy, mały quiz bez punktów i jedno konkretne wyzwanie, a od drugiego dnia także opis, jak poszło ostatnio.",
     "Wyzwania rosną powoli: pierwszego dnia zmienia się tylko jedna myśl, ostatniego siedzisz kwadrans z jednym pytaniem.",
     "Przerwa niczego nie psuje. Nie ma pass, liczników ani spóźnień. Kurs po prostu czeka, aż wrócisz.",
