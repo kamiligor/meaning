@@ -388,18 +388,9 @@ export function DayView({
             </p>
           ))}
         </div>
-        <p
-          className={`text-sm text-[#8A99A8] leading-relaxed ${completed ? "mb-6" : ""}`}
-        >
+        <p className="text-sm text-[#8A99A8] leading-relaxed">
           {content.challenge.minimal}
         </p>
-
-        {completed && (
-          <div className="flex items-center gap-2 text-[#7B9E8C] font-medium">
-            <Check className="h-5 w-5" strokeWidth={2.5} />
-            <span>{isFinalDay ? "Kurs ukończony" : "Dzień zakończony"}</span>
-          </div>
-        )}
       </div>
     </section>
   );
@@ -415,7 +406,12 @@ export function DayView({
       savedNote={savedNote}
       eveningPrompt={content.challenge.evening}
       footer={
-        !completed && (
+        completed ? (
+          <div className="flex items-center gap-2 text-[#7B9E8C] font-medium">
+            <Check className="h-5 w-5" strokeWidth={2.5} />
+            <span>{isFinalDay ? "Kurs ukończony" : "Dzień zakończony"}</span>
+          </div>
+        ) : (
           <>
             <Button
               onClick={handleComplete}
