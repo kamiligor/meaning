@@ -88,7 +88,7 @@ export const wdziecznoscCourse: Course = {
       challenge: {
         lead: "Trzy rzeczy, teraz",
         body: [
-          "Pierwsza praktyka jest najprostsza z możliwych: zapisz w notatniku poniżej trzy rzeczy, za które dziękujesz w tej chwili. Mogą być duże (ktoś bliski, zdrowie) albo małe (ciepła woda, dzisiejsza kawa, że autobus przyjechał). Małe działają tak samo dobrze.",
+          "Zapisz w notatniku poniżej trzy rzeczy, za które dziękujesz w tej chwili. Mogą być duże (ktoś bliski, zdrowie) albo małe (ciepła woda, dzisiejsza kawa, że autobus przyjechał). Małe działają tak samo dobrze.",
           "Po zapisaniu zatrzymaj się na dziesięć sekund i zauważ, czy coś się zmieniło: w nastroju, w ciele, w tym, na co patrzysz. To pierwszy przedsmak mechanizmu, który będziemy trenować przez tydzień.",
         ],
         minimal: "Jeśli dziś nie wyjdzie nic więcej, wystarczy jedna rzecz, jedno zdanie w notatniku.",
