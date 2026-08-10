@@ -11,6 +11,7 @@ import {
   type OtherCourseEntry,
   type CourseSummaryDay,
 } from "@/components/course/day-view";
+import { UnlockCountdown } from "@/components/course/unlock-countdown";
 
 /** Shared day page for every mini course: auth, unlock gate, then DayView. */
 export async function CourseDayPage({
@@ -53,9 +54,16 @@ export async function CourseDayPage({
           Dzień {day} jeszcze śpi
         </h1>
         <p className="text-[#4A5B6A] leading-relaxed mb-8">
-          {previousDone
-            ? `${course.challengeNoun === "wyzwanie" ? "Wyzwanie" : "Praktyka"} z poprzedniego dnia potrzebuje całego dnia, żeby się wydarzyć. Ten dzień odblokuje się jutro. Do zobaczenia.`
-            : `Najpierw dzień ${day - 1}. Kurs idzie jeden dzień naraz, bez wyjątków, ale też bez pośpiechu.`}
+          {previousDone ? (
+            <>
+              {course.challengeNoun === "wyzwanie" ? "Wyzwanie" : "Praktyka"}{" "}
+              z poprzedniego dnia potrzebuje całego dnia, żeby się wydarzyć.
+              Ten dzień odblokuje się jutro
+              <UnlockCountdown until="midnight" />. Do zobaczenia.
+            </>
+          ) : (
+            `Najpierw dzień ${day - 1}. Kurs idzie jeden dzień naraz, bez wyjątków, ale też bez pośpiechu.`
+          )}
         </p>
         <Link
           href={previousDone ? course.path : `${course.path}/dzien/${day - 1}`}

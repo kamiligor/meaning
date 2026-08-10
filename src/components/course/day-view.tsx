@@ -7,6 +7,7 @@ import { Check, Lock, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getCourse, getDay } from "@/lib/courses";
 import { isEveningNoteOpen } from "@/lib/course";
+import { useCountdown } from "@/components/course/unlock-countdown";
 import { CourseQuiz } from "@/components/course/course-quiz";
 import { CourseCheckin } from "@/components/course/course-checkin";
 import { FeedbackForm } from "@/components/course/feedback-form";
@@ -92,6 +93,9 @@ function EveningNote({
   const [savedAt, setSavedAt] = useState<number | null>(null);
   const [error, setError] = useState("");
 
+  // The minute tick re-renders the component, so the field flips open at
+  // 18:00 without a reload; the string itself feeds the countdown line.
+  const eveningLeft = useCountdown("evening");
   const open = isEveningNoteOpen(completedAtIso);
 
   const handleSave = async () => {
@@ -151,8 +155,9 @@ function EveningNote({
               </>
             ) : (
               <p className="text-sm text-[#8A99A8] leading-relaxed">
-                Wieczorem (po 18:00) otworzy się tu pole na notatkę: momenty,
-                które dziś zauważysz. Wróć, kiedy dzień zdąży się wydarzyć.
+                Wieczorem (po 18:00{eveningLeft ? `, za ${eveningLeft}` : ""})
+                otworzy się tu pole na notatkę: momenty, które dziś zauważysz.
+                Wróć, kiedy dzień zdąży się wydarzyć.
               </p>
             )}
           </div>
@@ -278,6 +283,7 @@ export function DayView({
   const [checkinDone, setCheckinDone] = useState(initialCheckinDone);
   const [completed, setCompleted] = useState(initialCompleted);
   const [completedAt, setCompletedAt] = useState<string | null>(completedAtIso);
+  const midnightLeft = useCountdown("midnight");
   const [quizPassed, setQuizPassed] = useState(initialQuizPassed);
   const [feedbackGiven, setFeedbackGiven] = useState(initialFeedbackGiven);
   const [step, setStep] = useState<Step>(initialQuizPassed ? "challenge" : "knowledge");
@@ -427,7 +433,8 @@ export function DayView({
               Dzień {day} z {totalDays} za tobą.
             </p>
             <p className="text-[#4A5B6A] leading-relaxed">
-              Dzień {day + 1} odblokuje się jutro.{" "}
+              Dzień {day + 1} odblokuje się jutro
+              {midnightLeft ? ` (za ${midnightLeft})` : ""}.{" "}
               {isChallenge
                 ? "Dziś zostało już tylko wyzwanie"
                 : "Dziś została już tylko praktyka"}
