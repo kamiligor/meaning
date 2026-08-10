@@ -14,7 +14,7 @@ scientific_basis:
 
 ## Twoje przyszłe ja to obcy człowiek - i to jest problem
 
-Za Tobą dwa moduły. W pierwszym była praca ze wspomnieniami, nadawanie kształtu temu, co dotąd krążyło bez formy. W drugim uczciwe spojrzenie na teraźniejszość: wartości, wzorce myślenia, miejsce, w którym naprawdę stoisz. Teraz czas na przyszłość. Ale nie taką, jaką znasz z noworocznych postanowień czy list celów, które kończą w szufladzie. Inną.
+Za Tobą dwa moduły. W pierwszym była praca ze wspomnieniami, nadawanie kształtu temu, co dotąd krążyło bez formy. W drugim uczciwe spojrzenie na teraźniejszość: wartości, wzorce myślenia, miejsce, w którym naprawdę stoisz. Teraz czas na przyszłość. Ale nie taką, jaką znasz z noworocznych postanowień czy list celów, które lądują w szufladzie. Inną.
 
 Zacznijmy od czegoś, co może Cię zaskoczyć.
 
