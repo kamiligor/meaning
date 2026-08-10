@@ -88,7 +88,7 @@ export const wdziecznoscCourse: Course = {
       challenge: {
         lead: "Trzy rzeczy, teraz",
         body: [
-          "Zapisz w notatniku poniżej trzy rzeczy, za które dziękujesz w tej chwili. Mogą być duże (ktoś bliski, zdrowie) albo małe (ciepła woda, dzisiejsza kawa, że autobus przyjechał). Małe działają tak samo dobrze.",
+          "Zapisz w notatniku poniżej trzy rzeczy, za które czujesz wdzięczność w tej chwili. Mogą być duże (ktoś bliski, zdrowie) albo małe (ciepła woda, dzisiejsza kawa, że autobus przyjechał). Małe działają tak samo dobrze.",
           "Po zapisaniu zatrzymaj się na dziesięć sekund i zauważ, czy coś się zmieniło: w nastroju, w ciele, w tym, na co patrzysz. To pierwszy przedsmak mechanizmu, który będziemy trenować przez tydzień.",
         ],
         minimal: "Jeśli dziś nie wyjdzie nic więcej, wystarczy jedna rzecz, jedno zdanie w notatniku.",
@@ -413,7 +413,7 @@ export const wdziecznoscCourse: Course = {
         lead: "Trzy pauzy na oddech",
         body: [
           "Ustaw dziś trzy delikatne sygnały w ciągu dnia. Mogą to być trzy ciche alarmy w telefonie (to dobry przykład telefonu w roli narzędzia, nie pożeracza) albo trzy stałe kotwice: śniadanie, obiad, kolacja.",
-          "Przy każdym sygnale zatrzymaj się na jeden oddech i nazwij jedną rzecz, za którą dziękujesz właśnie teraz, w tym miejscu, w tej sytuacji. Nie wczoraj, nie ogólnie: teraz. To całe zadanie, trzy oddechy na cały dzień.",
+          "Przy każdym sygnale zatrzymaj się na jeden oddech i nazwij jedną rzecz, za którą czujesz wdzięczność właśnie teraz, w tym miejscu, w tej sytuacji. Nie wczoraj, nie ogólnie: teraz. To całe zadanie, trzy oddechy na cały dzień.",
         ],
         minimal: "Wersja minimalna: jedna pauza przy jednym posiłku.",
         evening:
@@ -537,7 +537,7 @@ export const wdziecznoscCourse: Course = {
       knowledge: [
         "Ostatni poziom nie polega na dokładaniu kolejnych praktyk, tylko na zmianie spojrzenia. Thich Nhat Hanh nazywał to współistnieniem: każda rzecz, którą masz, istnieje dzięki niewidzialnej sieci ludzi i przyczyn. W kartce papieru, pisał, można zobaczyć chmurę, bo bez deszczu nie urosłoby drzewo, i drwala, i jego codzienny chleb. Kto naprawdę widzi tę sieć, ten nie musi się zmuszać do wdzięczności. Przychodzi sama.",
         "A co z dniami, które są po prostu złe? Tu Peterson mówi rzecz najtrudniejszą z całego kursu: wdzięczność pomimo cierpienia. Nie dlatego, że cierpienie jest dobre, i nie zamiast go czuć. Wdzięczność pomimo to świadoma postawa, wybierana właśnie wtedy, kiedy nie przychodzi sama. Według niego to nie naiwność, tylko forma odwagi.",
-        "I domknięcie klamry z pierwszych dni: to nie jest toksyczna pozytywność. Nie szukamy dobrego zamiast trudnego, tylko obok trudnego. Trudne zostaje trudne, nazwane po imieniu. Pytanie brzmi jedynie: czy oprócz tego jest tu coś, za co mogę uczciwie podziękować? Jeśli odpowiedź jest mała, to znaczy, że jest prawdziwa.",
+        "I domknięcie klamry z pierwszych dni: to nie jest toksyczna pozytywność. Nie szukamy dobrego zamiast trudnego, tylko obok trudnego. Trudne zostaje trudne, nazwane po imieniu. Pytanie brzmi jedynie: czy oprócz tego jest tu coś, co mogę uczciwie docenić? Jeśli odpowiedź jest mała, to znaczy, że jest prawdziwa.",
       ],
       quiz: [
         {
@@ -584,7 +584,7 @@ export const wdziecznoscCourse: Course = {
       challenge: {
         lead: "Małe dobre w złym momencie",
         body: [
-          "Ostatnia praktyka nie ma wyznaczonej godziny, ma wyzwalacz. Następnym razem, kiedy coś dziś pójdzie nie tak (a coś pójdzie: spóźnienie, przykra wiadomość, rozlana kawa), zatrzymaj się na jeden oddech i zapytaj: za co tu mogę uczciwie podziękować? I pozwól, żeby odpowiedź była mała. „Przynajmniej złapało mnie to w domu.” „Jest ktoś, do kogo mogę z tym zadzwonić.” Mała odpowiedź wystarczy, bo jest prawdziwa.",
+          "Ostatnia praktyka nie ma wyznaczonej godziny, ma wyzwalacz. Następnym razem, kiedy coś dziś pójdzie nie tak (a coś pójdzie: spóźnienie, przykra wiadomość, rozlana kawa), zatrzymaj się na jeden oddech i zapytaj: co tu mogę uczciwie docenić? I pozwól, żeby odpowiedź była mała. „Przynajmniej złapało mnie to w domu.” „Jest ktoś, do kogo mogę z tym zadzwonić.” Mała odpowiedź wystarczy, bo jest prawdziwa.",
           "Na przyszłość, żeby siedem dni nie rozpłynęło się w dwa tygodnie, prosty plan z tego tygodnia: rano jedno zdanie przed telefonem, wieczorem trzy dobre momenty, raz w tygodniu jedno wyrażone podziękowanie. Każdą z tych praktyk przypnij do czegoś, co i tak robisz: kawy, mycia zębów, drogi do pracy. Jeśli chcesz miary, potraktuj to jako wyzwanie na 30 dni i po miesiącu sprawdź, co się zmieniło.",
         ],
         minimal:
