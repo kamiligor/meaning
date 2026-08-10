@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { Check, Lock, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getCourse, getDay } from "@/lib/courses";
-import { useCountdown } from "@/components/course/unlock-countdown";
 import { CourseQuiz } from "@/components/course/course-quiz";
 import { CourseCheckin } from "@/components/course/course-checkin";
 import { FeedbackForm } from "@/components/course/feedback-form";
@@ -277,7 +276,6 @@ export function DayView({
 
   const [checkinDone, setCheckinDone] = useState(initialCheckinDone);
   const [completed, setCompleted] = useState(initialCompleted);
-  const midnightLeft = useCountdown();
   const [quizPassed, setQuizPassed] = useState(initialQuizPassed);
   const [feedbackGiven, setFeedbackGiven] = useState(initialFeedbackGiven);
   const [step, setStep] = useState<Step>(initialQuizPassed ? "challenge" : "knowledge");
@@ -423,8 +421,7 @@ export function DayView({
               Dzień {day} z {totalDays} za tobą.
             </p>
             <p className="text-[#4A5B6A] leading-relaxed">
-              Dzień {day + 1} odblokuje się o 6:00 rano
-              {midnightLeft ? ` (za ${midnightLeft})` : ""}.{" "}
+              Dzień {day + 1} odblokuje się o 6:00 rano.{" "}
               {isChallenge
                 ? "Dziś zostało już tylko wyzwanie"
                 : "Dziś została już tylko praktyka"}

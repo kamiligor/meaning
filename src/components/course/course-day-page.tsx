@@ -11,7 +11,6 @@ import {
   type OtherCourseEntry,
   type CourseSummaryDay,
 } from "@/components/course/day-view";
-import { UnlockCountdown } from "@/components/course/unlock-countdown";
 
 /** Shared day page for every mini course: auth, unlock gate, then DayView. */
 export async function CourseDayPage({
@@ -58,8 +57,7 @@ export async function CourseDayPage({
             <>
               {course.challengeNoun === "wyzwanie" ? "Wyzwanie" : "Praktyka"}{" "}
               z poprzedniego dnia potrzebuje całego dnia, żeby się wydarzyć.
-              Ten dzień odblokuje się o 6:00 rano
-              <UnlockCountdown />. Do zobaczenia.
+              Ten dzień odblokuje się o 6:00 rano. Do zobaczenia.
             </>
           ) : (
             `Najpierw dzień ${day - 1}. Kurs idzie jeden dzień naraz, bez wyjątków, ale też bez pośpiechu.`
