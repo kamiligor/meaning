@@ -196,7 +196,6 @@ export async function CourseDayPage({
       otherCourses={otherCourses}
       summary={summary}
       savedNote={noteFor(day)}
-      previousNote={noteFor(day - 1)}
     />
   );
 }

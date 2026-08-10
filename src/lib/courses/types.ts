@@ -26,7 +26,6 @@ export interface CheckinOption {
 export interface CourseCheckin {
   question: string;
   options: CheckinOption[];
-  textLabel: string;
 }
 
 export interface CourseDay {

@@ -121,7 +121,6 @@ export const wdziecznoscCourse: Course = {
               "Nic straconego, pierwsze dni tak mają. Dzisiejsza praktyka jest inna, bardziej zaczepna, niektórym wchodzi łatwiej.",
           },
         ],
-        textLabel: "Chcesz coś dopisać? (opcjonalnie, tylko dla ciebie)",
       },
       knowledge: [
         "Łatwo myśleć, że kto nie praktykuje wdzięczności, jest po prostu neutralny. Jordan Peterson stawia sprawę ostrzej: realną alternatywą dla wdzięczności nie jest neutralność, tylko resentyment, czyli hodowane latami poczucie krzywdy i gorycz, które korodują życie od środka. Wdzięczność nazywa jej antidotum i widzi w niej akt odwagi: świadome opowiedzenie się po stronie życia.",
@@ -207,7 +206,6 @@ export const wdziecznoscCourse: Course = {
               "Tak działa autopilot i nie ma w tym nic złego. Dzisiejsza praktyka nie wymaga łapania niczego w biegu, ma stałą porę.",
           },
         ],
-        textLabel: "Chcesz coś dopisać? (opcjonalnie, tylko dla ciebie)",
       },
       knowledge: [
         "Thich Nhat Hanh, wietnamski nauczyciel uważności, zaczynał dzień od gathy, czyli krótkiego wiersza recytowanego zaraz po przebudzeniu. Jego poranna gatha mówi mniej więcej tyle: budzę się i uśmiecham, przede mną dwadzieścia cztery zupełnie nowe godziny. Chodzi o jedno: przywitać dzień jako dar, zanim zacznie się szum.",
@@ -287,7 +285,6 @@ export const wdziecznoscCourse: Course = {
               "Poranki bywają bezlitosne. Dzisiejsza praktyka jest wieczorna, więc masz drugą szansę w spokojniejszej porze dnia.",
           },
         ],
-        textLabel: "Chcesz coś dopisać? (opcjonalnie, tylko dla ciebie)",
       },
       knowledge: [
         "Drugi koniec dnia to druga naturalna kotwica. Brooks nazywa to wdzięczną kontemplacją i trzyma ją w wieczornej rutynie: krótki powrót do tego, co w mijającym dniu było dobre. W jego protokole wdzięczności to osobny, piąty krok, a badania, które przywołuje, wiążą praktykowanie wdzięczności także z lepszym snem.",
@@ -366,7 +363,6 @@ export const wdziecznoscCourse: Course = {
               "Bywa. Wieczór to najłatwiejsza pora do przegapienia, bo dzień się już kończy. Dzisiejsza praktyka rozkłada ciężar inaczej: na środek dnia.",
           },
         ],
-        textLabel: "Chcesz coś dopisać? (opcjonalnie, tylko dla ciebie)",
       },
       knowledge: [
         "Tradycje religijne wiedzą od tysięcy lat coś, co psychologia odkrywa na nowo: modlitwa kilka razy dziennie to także szkoła uwagi: sposób, żeby uwaga wracała do tego, co ważne. Rytm małych powtórzeń działa lepiej niż jeden wielki zryw, bo nie pozwala uwadze odpłynąć na cały dzień.",
@@ -445,7 +441,6 @@ export const wdziecznoscCourse: Course = {
               "Środek dnia to najtrudniejszy teren, biegnie najszybciej. Dzisiejsza praktyka jest pojedyncza i konkretna, łatwiej ją upilnować.",
           },
         ],
-        textLabel: "Chcesz coś dopisać? (opcjonalnie, tylko dla ciebie)",
       },
       knowledge: [
         "Wszystko do tej pory działo się w twojej głowie. Dziś krok, który według Brooksa zmienia najwięcej: wdzięczność wyrażona. W jego protokole to aż dwa kroki: pisanie krótkich wiadomości z podziękowaniem oraz dziękowanie na głos przy nadarzającej się okazji, w momencie, nie po fakcie. Odczuwana wdzięczność robi dobrze tobie. Wyrażona robi dobrze dwojgu ludziom i wzmacnia każdą relację, której dotknie.",
@@ -532,7 +527,6 @@ export const wdziecznoscCourse: Course = {
               "Wyrażanie wdzięczności bywa dziwnie trudne, jakby było intymniejsze niż narzekanie. Wiadomość może poczekać, nie ma terminu ważności. Dziś i tak wchodzimy gdzie indziej.",
           },
         ],
-        textLabel: "Chcesz coś dopisać? (opcjonalnie, tylko dla ciebie)",
       },
       knowledge: [
         "Ostatni poziom nie polega na dokładaniu kolejnych praktyk, tylko na zmianie spojrzenia. Thich Nhat Hanh nazywał to współistnieniem: każda rzecz, którą masz, istnieje dzięki niewidzialnej sieci ludzi i przyczyn. W kartce papieru, pisał, można zobaczyć chmurę, bo bez deszczu nie urosłoby drzewo, i drwala, i jego codzienny chleb. Kto naprawdę widzi tę sieć, ten nie musi się zmuszać do wdzięczności. Przychodzi sama.",

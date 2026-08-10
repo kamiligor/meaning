@@ -13,7 +13,7 @@ interface DayUpdateBody {
   quizAnswers?: number[];
   quizPassed?: boolean;
   complete?: boolean;
-  checkin?: { day?: number; choice?: string; text?: string };
+  checkin?: { day?: number; choice?: string };
   /**
    * The day's live notebook (visible in the challenge step, before and after
    * completing the day). Same encrypted storage as the check-in note.
@@ -100,7 +100,9 @@ export async function PUT(request: NextRequest) {
     }
 
     // Check-in describes how the previous day's challenge went, so it is
-    // stored on that previous day's row.
+    // stored on that previous day's row. Choice only — free text lives in
+    // that day's notebook (the same encrypted columns), which the check-in
+    // must never overwrite.
     if (body.checkin) {
       const checkinDay = body.checkin.day;
       if (!isValidDay(course, checkinDay) || checkinDay !== day - 1) {
@@ -115,19 +117,12 @@ export async function PUT(request: NextRequest) {
         return NextResponse.json({ error: "Invalid check-in choice" }, { status: 400 });
       }
 
-      const rawText = typeof body.checkin.text === "string" ? body.checkin.text : "";
-      const text = rawText.slice(0, 2000);
-      const encrypted = text.trim() ? encrypt(text, user.id) : null;
-
       const { error } = await supabase.from("course_day_progress").upsert(
         {
           user_id: user.id,
           course_slug: course.slug,
           day: checkinDay,
           checkin_choice: choice,
-          checkin_ciphertext: encrypted?.ciphertext ?? null,
-          checkin_iv: encrypted?.iv ?? null,
-          checkin_salt: encrypted?.salt ?? null,
           updated_at: new Date().toISOString(),
         },
         { onConflict: "user_id,course_slug,day" }

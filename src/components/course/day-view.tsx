@@ -48,8 +48,6 @@ interface DayViewProps {
   summary: CourseSummaryDay[] | null;
   /** The day's own saved note (decrypted server-side). */
   savedNote: string | null;
-  /** Previous day's note, prefilled into the check-in textarea. */
-  previousNote: string | null;
 }
 
 type Step = "knowledge" | "quiz" | "challenge";
@@ -281,7 +279,6 @@ export function DayView({
   otherCourses,
   summary,
   savedNote,
-  previousNote,
 }: DayViewProps) {
   const router = useRouter();
   const course = getCourse(courseSlug);
@@ -587,7 +584,6 @@ export function DayView({
           courseSlug={courseSlug}
           day={day}
           checkin={content.checkinAboutPrevious}
-          initialNote={previousNote}
           onDone={() => setCheckinDone(true)}
         />
       )}

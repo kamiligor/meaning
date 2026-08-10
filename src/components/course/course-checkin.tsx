@@ -9,20 +9,21 @@ interface CourseCheckinProps {
   /** The day whose page shows this check-in; it describes day - 1. */
   day: number;
   checkin: CourseCheckinContent;
-  /** Evening note written the day before, prefilled for editing. */
-  initialNote?: string | null;
   onDone: () => void;
 }
 
+/**
+ * One-click check-in about yesterday's challenge. Free text lives in the
+ * previous day's notebook (same data, editable there any time), so the
+ * check-in itself stays a single choice with a tailored response.
+ */
 export function CourseCheckin({
   courseSlug,
   day,
   checkin,
-  initialNote,
   onDone,
 }: CourseCheckinProps) {
   const [choice, setChoice] = useState<string | null>(null);
-  const [text, setText] = useState(initialNote ?? "");
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState("");
@@ -40,7 +41,7 @@ export function CourseCheckin({
         body: JSON.stringify({
           courseSlug,
           day,
-          checkin: { day: day - 1, choice, text: text.trim() || undefined },
+          checkin: { day: day - 1, choice },
         }),
       });
       if (!res.ok) throw new Error("checkin failed");
@@ -74,7 +75,7 @@ export function CourseCheckin({
           {checkin.question}
         </p>
 
-        <div className="space-y-3 mb-4">
+        <div className="space-y-3 mb-5">
           {checkin.options.map((option) => (
             <button
               key={option.value}
@@ -93,20 +94,6 @@ export function CourseCheckin({
             </button>
           ))}
         </div>
-
-        <label className="block mb-5">
-          <span className="text-sm text-[#8A99A8]">{checkin.textLabel}</span>
-          <textarea
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            rows={2}
-            maxLength={2000}
-            className="mt-1 w-full border border-[#e2e7eb] rounded-lg px-4 py-2.5 text-sm text-[#1E2A36] placeholder:text-[#8A99A8] focus:outline-none focus:ring-2 focus:ring-[#7B9E8C] focus:ring-offset-1 resize-none"
-          />
-          <span className="block text-xs text-[#8A99A8] mt-1">
-            Ta notatka jest szyfrowana. Nikt jej nie przeczyta, nawet my.
-          </span>
-        </label>
 
         {error && <p className="text-red-500 text-xs mb-3">{error}</p>}
 

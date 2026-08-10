@@ -144,7 +144,6 @@ export const niescrollowanieCourse: Course = {
               "To najnormalniejszy wynik pierwszego dnia. Automatyzmy właśnie na tym polegają, że działają, zanim się je zauważy. Dziś nowa próba, z konkretniejszym narzędziem.",
           },
         ],
-        textLabel: "Chcesz coś dopisać? (opcjonalnie, tylko dla ciebie)",
       },
       knowledge: [
         "Dyskomfort nudy jest prawdziwy, to nie wymysł. W jednym z badań ludzie mieli do wyboru siedzieć kilka minut samotnie z własnymi myślami albo dać się razić prądem, i część wybrała prąd. To pokazuje, że warto ten dyskomfort traktować serio, nie wyśmiewać go w sobie.",
@@ -255,7 +254,6 @@ export const niescrollowanieCourse: Course = {
               "Nic straconego. Nie ma tu passy do zepsucia ani licznika porażek. Zaczynasz dzień tam, gdzie jesteś, a dzisiejsze wyzwanie jest konkretniejsze, więc bywa łatwiejsze.",
           },
         ],
-        textLabel: "Chcesz coś dopisać? (opcjonalnie, tylko dla ciebie)",
       },
       knowledge: [
         "Kolejka w sklepie, działa jedna kasa na dwanaście osób. Telefon w kieszeni zaczyna ciążyć już po kilku sekundach i zwykle ląduje w ręku, zanim zapadnie jakakolwiek decyzja.",
@@ -342,7 +340,6 @@ export const niescrollowanieCourse: Course = {
               "Telefon gra na swoim boisku, ma przewagę. Dzisiejsze wyzwanie zabiera mu trochę tej przewagi, bo dotyczy tego, co po scrollowaniu zostaje. Spoiler: niewiele.",
           },
         ],
-        textLabel: "Chcesz coś dopisać? (opcjonalnie, tylko dla ciebie)",
       },
       knowledge: [
         "Mały test na początek: spróbuj sobie przypomnieć, co przewijało się na twoim ekranie trzy dni temu. Konkretnie, choć jeden filmik, choć jeden post. Zwykle: nic. A rozmowę sprzed trzech dni, nawet całkiem nieważną, o niczym szczególnym, najczęściej da się przypomnieć.",
@@ -428,7 +425,6 @@ export const niescrollowanieCourse: Course = {
               "W porządku. Finał kursu nie wymaga niczego z poprzednich dni. Piętnaście minut i jedno pytanie, to wszystko.",
           },
         ],
-        textLabel: "Chcesz coś dopisać? (opcjonalnie, tylko dla ciebie)",
       },
       knowledge: [
         "Pięć dni temu ten kurs zaczynał się od trzech minut ciszy i pewnie wtedy wydawały się długie. Dziś ostatni trening: piętnaście minut, poziom, o którym Brooks mówi najczęściej, bo jego zdaniem właśnie gdzieś w tym czasie mózg przestaje krążyć wokół drobiazgów, co ugotować, co odpisać, i zaczyna dochodzić do pytań, które normalnie się zagłusza.",
