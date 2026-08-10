@@ -109,7 +109,7 @@ export const niescrollowanieCourse: Course = {
       challenge: {
         lead: "Nuda to stan pożądany",
         body: [
-          "Za każdym razem, kiedy poczujesz ochotę sięgnięcia po telefon, zatrzymaj się na sekundę i zauważ sytuację: co właśnie robisz? Czekasz? Nudzisz się? Jeśli to nuda, przypomnij sobie jedno zdanie: nuda to dobry dla ciebie stan, mózg właśnie dostał czas dla siebie.",
+          "Za każdym razem, kiedy poczujesz ochotę sięgnięcia po telefon, zatrzymaj się na sekundę i zauważ sytuację: co właśnie robisz? Czekasz? Nudzisz się? Jeśli to nuda, przypomnij sobie jedno zdanie: **nuda to dla ciebie dobry stan**, mózg właśnie dostał czas dla siebie.",
           "Dzisiejsze zadanie to zauważać i notować te momenty: gdzie było, co się działo, co wtedy czuć. Możesz zapisywać je w notatniku pod wyzwaniem (otworzy się, gdy je przyjmiesz) albo we własnym notesie, ważne, żeby był pod ręką.",
         ],
         minimal:

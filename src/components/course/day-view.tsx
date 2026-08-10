@@ -55,6 +55,21 @@ interface DayViewProps {
 
 type Step = "knowledge" | "quiz" | "challenge";
 
+/** Renders **bold** spans inside course paragraphs; no other markup. */
+function richText(text: string): React.ReactNode {
+  const parts = text.split(/\*\*(.+?)\*\*/g);
+  if (parts.length === 1) return text;
+  return parts.map((part, idx) =>
+    idx % 2 === 1 ? (
+      <strong key={idx} className="font-semibold text-[#1E2A36]">
+        {part}
+      </strong>
+    ) : (
+      part
+    )
+  );
+}
+
 async function putDay(body: Record<string, unknown>): Promise<boolean> {
   try {
     const res = await fetch("/api/course/day", {
@@ -318,7 +333,7 @@ export function DayView({
       <div className="space-y-4">
         {content.knowledge.map((paragraph, idx) => (
           <p key={idx} className="text-[#4A5B6A] leading-relaxed">
-            {paragraph}
+            {richText(paragraph)}
           </p>
         ))}
       </div>
@@ -358,7 +373,7 @@ export function DayView({
         <div className="space-y-3 mb-4">
           {content.challenge.body.map((paragraph, idx) => (
             <p key={idx} className="text-[#4A5B6A] leading-relaxed">
-              {paragraph}
+              {richText(paragraph)}
             </p>
           ))}
         </div>
