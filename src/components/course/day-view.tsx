@@ -128,11 +128,6 @@ function DayNote({
         <div className="flex items-start gap-3">
           <Moon className="h-5 w-5 text-[#7B9E8C] shrink-0 mt-0.5" />
           <div className="flex-1">
-            {eveningPrompt && (
-              <p className="text-sm text-[#4A5B6A] leading-relaxed mb-3">
-                {eveningPrompt}
-              </p>
-            )}
             <label className="block">
               <span className="text-sm font-medium text-[#1E2A36]">
                 Notatnik tego dnia
@@ -149,6 +144,13 @@ function DayNote({
                 className="mt-2 w-full border border-[#e2e7eb] rounded-lg px-4 py-2.5 text-sm text-[#1E2A36] placeholder:text-[#8A99A8] bg-white focus:outline-none focus:ring-2 focus:ring-[#7B9E8C] focus:ring-offset-1 resize-none"
               />
             </label>
+            {/* Reflection about what got written — below the input, so the
+                order matches the task: write first, look back second. */}
+            {eveningPrompt && (
+              <p className="text-sm text-[#4A5B6A] leading-relaxed mt-3">
+                {eveningPrompt}
+              </p>
+            )}
             <div className="flex items-center justify-between gap-3 mt-2">
               <span className="text-xs text-[#8A99A8]">
                 Ta notatka jest szyfrowana i wraca do ciebie w podsumowaniu
@@ -452,11 +454,8 @@ export function DayView({
               Dzień {day} z {totalDays} za tobą.
             </p>
             <p className="text-[#4A5B6A] leading-relaxed">
-              Dzień {day + 1} odblokuje się o 6:00 rano.{" "}
-              {isChallenge
-                ? "Dziś zostało już tylko wyzwanie"
-                : "Dziś została już tylko praktyka"}
-              , reszta dzieje się poza ekranem.
+              Dzień {day + 1} odblokuje się o 6:00 rano. Reszta dnia jest
+              twoja, poza ekranem.
             </p>
           </section>
         ))}
