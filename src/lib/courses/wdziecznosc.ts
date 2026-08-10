@@ -93,7 +93,7 @@ export const wdziecznoscCourse: Course = {
         ],
         minimal: "Jeśli dziś nie wyjdzie nic więcej, wystarczy jedna rzecz, wymieniona w myślach.",
         evening:
-          "Wieczorem, jeśli jest chwila: która z trzech rzeczy była najmniej oczywista? Takie znaleziska są najcenniejsze, bo pokazują, ile dobrego umyka na co dzień.",
+          "Wieczorem lub jutro rano: która z trzech rzeczy była najmniej oczywista? Takie znaleziska są najcenniejsze, bo pokazują, ile dobrego umyka na co dzień.",
       },
     },
     {

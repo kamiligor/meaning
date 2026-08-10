@@ -116,7 +116,7 @@ export const niescrollowanieCourse: Course = {
         minimal:
           "Jeśli dziś nie wyjdzie nic więcej, wystarczy zauważyć jeden taki moment.",
         evening:
-          "Wieczorem, jeśli jest chwila, przejrzyj notatki: w ilu sytuacjach ręka szła po telefon? Która z nich zaskoczyła cię najbardziej?",
+          "Wieczorem lub jutro rano przejrzyj notatki: w ilu sytuacjach ręka szła po telefon? Która z nich zaskoczyła cię najbardziej?",
       },
     },
     {
