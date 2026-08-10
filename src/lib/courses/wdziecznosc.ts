@@ -35,7 +35,7 @@ export const wdziecznoscCourse: Course = {
       knowledge: [
         "Są ludzie, którym wdzięczność zdaje się przychodzić sama. Łatwo pomyśleć, że to kwestia charakteru: jedni tacy są, inni nie. Arthur Brooks, profesor Harvardu, który od lat bada, skąd bierze się szczęście, twierdzi coś innego: wdzięczność jest umiejętnością, nie cechą wrodzoną. Trenuje się ją tak samo jak mięsień, a efekty są mierzalne.",
         "Najbardziej znany dowód pochodzi z klasycznego badania z 2003 roku. Dwaj psychologowie poprosili jedną grupę, żeby co tydzień spisywała rzeczy, za które jest wdzięczna, a drugą, żeby spisywała uciążliwości i problemy. Po kilku tygodniach grupa spisująca dobre rzeczy była wyraźnie bardziej zadowolona z życia, bardziej optymistyczna, a nawet zgłaszała mniej dolegliwości fizycznych. Ta sama rzeczywistość, inna uwaga, inne życie.",
-        "Ten kurs to siedem dni treningu w czterech krokach: najpierw przekonasz się, po co to w ogóle robić, potem zakotwiczysz jedną praktykę dziennie, potem kilka małych pauz w ciągu dnia, a na końcu spróbujesz najtrudniejszego: znajdowania dobrego także w tym, co nie poszło. I lekko: celem jest szczęśliwsze życie, nie kolejne zadanie domowe.",
+        "Ten kurs to siedem dni treningu w czterech krokach: najpierw przekonasz się, po co to w ogóle robić, potem zakotwiczysz jedną praktykę dziennie, potem kilka małych pauz w ciągu dnia, a na końcu spróbujesz najtrudniejszego: znajdowania dobrego także w tym, co nie poszło.",
       ],
       quiz: [
         {
