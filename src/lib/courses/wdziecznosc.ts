@@ -100,11 +100,11 @@ export const wdziecznoscCourse: Course = {
       day: 2,
       title: "Alternatywą nie jest neutralność",
       checkinAboutPrevious: {
-        question: "Jak poszły twoje trzy rzeczy?",
+        question: "Jak poszła twoja wczorajsza lista?",
         options: [
           {
             value: "written",
-            label: "Zapisane, wszystkie trzy",
+            label: "Zapisana, co najmniej trzy rzeczy",
             response:
               "Pierwsza lista za tobą. Właśnie na takich listach stało całe badanie z 2003 roku, więc jesteś w dobrym towarzystwie.",
           },
