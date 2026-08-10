@@ -148,6 +148,7 @@ export const niescrollowanieCourse: Course = {
       knowledge: [
         "Dyskomfort nudy jest prawdziwy, to nie wymysł. W jednym z badań ludzie mieli do wyboru siedzieć kilka minut samotnie z własnymi myślami albo dać się razić prądem, i część wybrała prąd. To pokazuje, że warto ten dyskomfort traktować serio, nie wyśmiewać go w sobie.",
         "Jest jednak różnica między dyskomfortem jako sygnałem i dyskomfortem jako rozkazem. Sygnał mówi tylko: teraz nic się nie dzieje, głowa nie ma bodźców. Rozkazem robi go dopiero ręka, która automatycznie sięga po telefon, żeby to uczucie natychmiast wyłączyć. Między jednym a drugim jest moment, w którym można coś wybrać.",
+        "Impuls ma też cichego wspólnika: przekonanie, że trzeba być na bieżąco. To ono podpowiada, że właśnie coś się dzieje i zaraz coś przepadnie. Prawda jest mniej dramatyczna: wiadomości, powiadomienia i cudze relacje spokojnie poczekają, a nic się nie stanie, jeśli przeczytasz je z kilkugodzinnym poślizgiem. Dwa pokolenia temu wiadomości sprawdzało się raz dziennie i świat się od tego nie kończył.",
         "Brooks bardzo lubi jedno słowo: metapoznanie, czyli umiejętność patrzenia na własne emocje z boku, zamiast automatycznie na nie reagować. W praktyce ochota na telefon zachowuje się jak fala: narasta, ma szczyt i opada sama, zwykle w minutę lub dwie, jeśli się jej nie nakarmi. Nie trzeba z nią walczyć. Wystarczy ją przeczekać, patrząc, co robi.",
       ],
       quiz: [
@@ -188,6 +189,30 @@ export const niescrollowanieCourse: Course = {
               correct: true,
               explanation:
                 "Dokładnie. A między sygnałem a reakcją jest moment wyboru. Ten kurs trenuje właśnie ten moment.",
+            },
+          ],
+        },
+        {
+          question:
+            "Co się stanie, jeśli sprawdzisz wiadomości kilka godzin później, a nie od razu?",
+          options: [
+            {
+              text: "Coś ważnego mnie ominie",
+              correct: false,
+              explanation:
+                "Naprawdę ważne wiadomości znajdują cię same, zwykle kilkoma drogami naraz. Reszta może poczekać albo zniknąć bez straty.",
+            },
+            {
+              text: "Nic. Wszystko spokojnie poczeka",
+              correct: true,
+              explanation:
+                "To całe odkrycie. Impuls obiecuje pilność, której nie ma, i na tym złudzeniu trzyma się większość zerkania.",
+            },
+            {
+              text: "Wypadnę z obiegu",
+              correct: false,
+              explanation:
+                "Obieg wygląda na szybki tylko z bliska. Z kilkugodzinnego dystansu widać, że prawie nic w nim nie wymagało twojej natychmiastowej obecności.",
             },
           ],
         },
@@ -407,7 +432,7 @@ export const niescrollowanieCourse: Course = {
       knowledge: [
         "Pięć dni temu ten kurs zaczynał się od trzech minut ciszy i pewnie wtedy wydawały się długie. Dziś ostatni trening: piętnaście minut, poziom, o którym Brooks mówi najczęściej, bo jego zdaniem właśnie gdzieś w tym czasie mózg przestaje krążyć wokół drobiazgów, co ugotować, co odpisać, i zaczyna dochodzić do pytań, które normalnie się zagłusza.",
         "Brooks proponuje wziąć na ten czas jedno pytanie, na które nie ma dobrej odpowiedzi, bo nie o odpowiedź tu chodzi, tylko o to, co robi z człowiekiem samo trzymanie pytania w głowie przez dłuższą chwilę.",
-        "Warto z tego tygodnia zabrać jeszcze jedną rzecz: z bycia na bieżąco nic nie wynika. Wiadomości, powiadomienia i cudze relacje spokojnie poczekają, a nic się nie stanie, jeśli przeczytasz je z kilkugodzinnym poślizgiem. Dwa pokolenia temu wiadomości sprawdzało się raz dziennie i świat się od tego nie kończył. Brooks radzi zamiast ciągłego zerkania wyznaczyć na te sprawy jedną stałą porę dziennie, kwadrans albo pół godziny, i poza nią po prostu nie zaglądać.",
+        "I domknięcie wątku z dnia drugiego: skoro z bycia na bieżąco nic nie wynika, nie ma też powodu rozsypywać sprawdzania po całym dniu. Brooks radzi zamknąć wiadomości i powiadomienia w jednej stałej porze dziennie, kwadrans albo pół godziny, i poza nią po prostu nie zaglądać.",
         "I jedna rzecz o trwałości, uczciwie: pięć dni to eksperyment, nie cała reszta życia. Brooks twierdzi, że nawyki łapią po około dwóch tygodniach, więc kurs się dziś kończy, ale rozstrzyga się w najbliższych dwóch tygodniach. Dlatego finał ma dwie części: kwadrans i decyzję, co zostaje na dłużej.",
       ],
       quiz: [
