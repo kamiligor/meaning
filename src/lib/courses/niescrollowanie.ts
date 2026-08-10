@@ -109,13 +109,13 @@ export const niescrollowanieCourse: Course = {
       challenge: {
         lead: "Nuda to stan pożądany",
         body: [
-          "Dziś niczego nie odkładasz i niczego sobie nie zabraniasz. Wyzwanie dzieje się wyłącznie w głowie: za każdym razem, kiedy złapiesz się na nudzie i ręka już będzie szła po telefon, przypomnij sobie jedno zdanie: nuda to stan pożądany, mózg właśnie dostał czas dla siebie.",
-          "Telefon możesz potem wziąć albo zostawić, wybór należy do ciebie. Jeśli któryś raz zostanie w kieszeni, tym lepiej, ale dziś chodzi przede wszystkim o samo przypomnienie, o zmianę etykiety na tym uczuciu: z „coś jest nie tak” na „to jest ten moment”.",
+          "Za każdym razem, kiedy poczujesz ochotę sięgnięcia po telefon, zatrzymaj się na sekundę i zauważ sytuację: co właśnie robisz? Czekasz? Nudzisz się? Jeśli to nuda, przypomnij sobie jedno zdanie: nuda to dobry dla ciebie stan, mózg właśnie dostał czas dla siebie.",
+          "Dzisiejsze zadanie to zauważać i notować te momenty: gdzie było, co się działo, co wtedy czuć. Możesz zapisywać je w notatniku pod wyzwaniem (otworzy się, gdy je przyjmiesz) albo we własnym notesie, ważne, żeby był pod ręką.",
         ],
         minimal:
-          "Jeśli dziś nie wyjdzie nic więcej, wystarczy przypomnieć sobie to zdanie choć raz.",
+          "Jeśli dziś nie wyjdzie nic więcej, wystarczy zauważyć jeden taki moment.",
         evening:
-          "Wieczorem, jeśli jest chwila: w ilu mniej więcej sytuacjach się przypomniało? Była taka, w której po przypomnieniu telefon został w kieszeni sam z siebie?",
+          "Wieczorem, jeśli jest chwila, przejrzyj notatki: w ilu sytuacjach ręka szła po telefon? Która z nich zaskoczyła cię najbardziej?",
       },
     },
     {
@@ -407,6 +407,7 @@ export const niescrollowanieCourse: Course = {
       knowledge: [
         "Pięć dni temu ten kurs zaczynał się od trzech minut ciszy i pewnie wtedy wydawały się długie. Dziś ostatni trening: piętnaście minut, poziom, o którym Brooks mówi najczęściej, bo jego zdaniem właśnie gdzieś w tym czasie mózg przestaje krążyć wokół drobiazgów, co ugotować, co odpisać, i zaczyna dochodzić do pytań, które normalnie się zagłusza.",
         "Brooks proponuje wziąć na ten czas jedno pytanie, na które nie ma dobrej odpowiedzi, bo nie o odpowiedź tu chodzi, tylko o to, co robi z człowiekiem samo trzymanie pytania w głowie przez dłuższą chwilę.",
+        "Warto z tego tygodnia zabrać jeszcze jedną rzecz: z bycia na bieżąco nic nie wynika. Wiadomości, powiadomienia i cudze relacje spokojnie poczekają, a nic się nie stanie, jeśli przeczytasz je z kilkugodzinnym poślizgiem. Dwa pokolenia temu wiadomości sprawdzało się raz dziennie i świat się od tego nie kończył. Brooks radzi zamiast ciągłego zerkania wyznaczyć na te sprawy jedną stałą porę dziennie, kwadrans albo pół godziny, i poza nią po prostu nie zaglądać.",
         "I jedna rzecz o trwałości, uczciwie: pięć dni to eksperyment, nie cała reszta życia. Brooks twierdzi, że nawyki łapią po około dwóch tygodniach, więc kurs się dziś kończy, ale rozstrzyga się w najbliższych dwóch tygodniach. Dlatego finał ma dwie części: kwadrans i decyzję, co zostaje na dłużej.",
       ],
       quiz: [
@@ -454,7 +455,7 @@ export const niescrollowanieCourse: Course = {
         body: [
           "Piętnaście minut prawdziwej nudy. Bez telefonu, bez notatnika pod ręką, bez żadnego innego zadania. Weź na start jedno pytanie i pozwól myślom do niego wracać, kiedy same zechcą, niekoniecznie w prostej linii. Może to być: „co jest dla mnie naprawdę ważne?”. Może: „czego by brakowało, gdyby wszystko zostało tak, jak jest teraz?”. Po kwadransie, jeśli jest ochota, zapisz, co przyszło.",
           "Potem bilans: wróć do liczb z dnia zapisu, czasu ekranowego i liczby podniesień telefonu, i porównaj je z tym, co pokazują ustawienia teraz. Nie po to, żeby oceniać wynik. Po to, żeby zobaczyć, czy coś się w tym tygodniu ruszyło.",
-          "Na koniec dwie decyzje, ważniejsze niż sam kwadrans. Jedna chwila nudy, która zostaje na stałe: kolejka, toaleta, spacer, kwadrans przy oknie wieczorem, cokolwiek, co było testowane w tym tygodniu i nie było najgorsze. I jedno stałe okno bez telefonu, wybrane z trzech, które Brooks poleca najczęściej: pierwsza godzina po przebudzeniu, posiłki albo godzina przed snem. Zapisz to jako proste zdanie w stylu „jeśli [sytuacja], to telefon zostaje odłożony”.",
+          "Na koniec dwie decyzje, ważniejsze niż sam kwadrans. Jedna chwila nudy, która zostaje na stałe: kolejka, toaleta, spacer, kwadrans przy oknie wieczorem, cokolwiek, co było testowane w tym tygodniu i nie było najgorsze. I jedno stałe okno bez telefonu, wybrane z trzech, które Brooks poleca najczęściej: pierwsza godzina po przebudzeniu, posiłki albo godzina przed snem. Zapisz to jako proste zdanie w stylu „jeśli [sytuacja], to telefon zostaje odłożony”. A jeśli masz ochotę na trzecią zasadę: jedna stała pora na wiadomości i powiadomienia zamiast zerkania co chwilę.",
         ],
         minimal:
           "Jeśli piętnaście minut w jednym kawałku wydaje się nie do zrobienia, rozłóż je na dwa razy po siedem albo wróć do trzech minut z początku kursu. Liczy się kontakt z ciszą, nie idealna liczba na zegarze.",
