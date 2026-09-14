@@ -207,3 +207,19 @@ describe("maskSmall", () => {
     expect(maskSmall(120)).toBe("120");
   });
 });
+
+describe("replaceDay", () => {
+  it("drops stored rows for the given day before adding live ones", async () => {
+    const { replaceDay } = await import("@/lib/analytics-stats");
+    const rows = [
+      { day: "2026-09-13", metric: "post_view", count: 3 },
+      { day: "2026-09-14", metric: "post_view", count: 1 },
+    ];
+    const live = [{ day: "2026-09-14", metric: "post_view", count: 2 }];
+    const merged = replaceDay(rows, "2026-09-14", live);
+    expect(merged).toEqual([
+      { day: "2026-09-13", metric: "post_view", count: 3 },
+      { day: "2026-09-14", metric: "post_view", count: 2 },
+    ]);
+  });
+});

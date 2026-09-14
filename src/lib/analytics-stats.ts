@@ -394,6 +394,15 @@ function buildPostsStats(currentRows: StoredStatsRow[], previousRows: StoredStat
  * live with the exact same logic, so the numbers never read as zero and
  * never disagree with tomorrow's aggregate.
  */
+/**
+ * "Today" is always computed live. If the aggregate job was also run for
+ * today by hand, its rows would double the live numbers, so any stored rows
+ * for that day are dropped before the live ones are appended.
+ */
+export function replaceDay<T extends { day: string }>(rows: T[], day: string, replacement: T[]): T[] {
+  return rows.filter((r) => r.day !== day).concat(replacement);
+}
+
 export async function getStats(admin: SupabaseClient, query: StatsQuery): Promise<StatsResponse> {
   const now = new Date();
   const today = warsawToday(now);
@@ -404,7 +413,7 @@ export async function getStats(admin: SupabaseClient, query: StatsQuery): Promis
   const includesToday = query.from <= today && today <= query.to;
   if (includesToday) {
     const live = await computeDayMetrics(admin, today);
-    rows = rows.concat(live.map((m) => ({ day: today, ...m })));
+    rows = replaceDay(rows, today, live.map((m) => ({ day: today, ...m })));
   }
 
   const { current: currentRows, previous: previousRows } = summarizeDaily(rows, query);
