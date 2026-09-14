@@ -1,56 +1,24 @@
 {
   "workbench.colorCustomizations": {
-    "titleBar.activeBackground": "#7B9E8C",
-    "titleBar.activeForeground": "#1C2B3D",
-    "titleBar.inactiveBackground": "#A4BEAE",
-    "titleBar.inactiveForeground": "#1C2B3D",
-    "titleBar.border": "#1C2B3D",
-
-    "activityBar.background": "#7B9E8C",
-    "activityBar.foreground": "#1C2B3D",
-    "activityBar.inactiveForeground": "#1C2B3D99",
     "activityBar.border": "#668573",
-    "activityBarBadge.background": "#1C2B3D",
-    "activityBarBadge.foreground": "#7B9E8C",
     "activityBar.activeBorder": "#1C2B3D",
-    "activityBar.activeBackground": "#668573",
-
-    "statusBar.background": "#7B9E8C",
-    "statusBar.foreground": "#1C2B3D",
-    "statusBar.border": "#668573",
     "statusBar.noFolderBackground": "#7B9E8C",
-    "statusBar.debuggingBackground": "#1C2B3D",
-    "statusBar.debuggingForeground": "#7B9E8C",
-    "statusBarItem.hoverBackground": "#668573",
-    "statusBarItem.remoteBackground": "#668573",
-    "statusBarItem.remoteForeground": "#E8ECEF",
-
-    "sideBar.border": "#7B9E8C",
     "sideBarTitle.foreground": "#7B9E8C",
     "sideBarSectionHeader.background": "#7B9E8C22",
     "sideBarSectionHeader.foreground": "#7B9E8C",
-
-    "panel.border": "#7B9E8C",
     "panelTitle.activeBorder": "#7B9E8C",
     "panelTitle.activeForeground": "#7B9E8C",
-
-    "tab.activeBorder": "#7B9E8C",
     "tab.activeBorderTop": "#7B9E8C",
     "tab.unfocusedActiveBorder": "#8B98A8",
-
-    "editorGroup.border": "#7B9E8C33",
     "editorCursor.foreground": "#7B9E8C",
     "editorLineNumber.activeForeground": "#7B9E8C",
-
     "button.background": "#7B9E8C",
     "button.foreground": "#1C2B3D",
     "button.hoverBackground": "#668573",
-
     "focusBorder": "#7B9E8C",
     "progressBar.background": "#7B9E8C",
     "badge.background": "#7B9E8C",
     "badge.foreground": "#1C2B3D",
-
     "terminal.tab.activeBorder": "#7B9E8C"
   },
   "window.title": "${rootName}${separator}${activeEditorShort} — Just have a little meaning"

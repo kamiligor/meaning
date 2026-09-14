@@ -13,15 +13,6 @@ export interface OutlineDayEntry {
 
 export type OutlineStep = "knowledge" | "quiz" | "challenge";
 
-interface OutlineOtherCourse {
-  name: string;
-  path: string;
-  continueDay: number;
-  completedDays: number;
-  totalDays: number;
-  finished: boolean;
-}
-
 interface CourseOutlineProps {
   course: Course;
   currentDay: number;
@@ -30,8 +21,6 @@ interface CourseOutlineProps {
   live: { quizPassed: boolean; completed: boolean; step: OutlineStep };
   /** Step click on the current, unfinished day switches the step in place. */
   onStepSelect: (step: OutlineStep) => void;
-  /** The person's other enrolled courses, for a quick jump. */
-  otherCourses?: OutlineOtherCourse[];
 }
 
 function StatusIcon({
@@ -79,7 +68,6 @@ export function CourseOutline({
   daysNav,
   live,
   onStepSelect,
-  otherCourses = [],
 }: CourseOutlineProps) {
   const stepLabels: [OutlineStep, string][] = [
     ["knowledge", "Wiedza"],
@@ -221,30 +209,6 @@ export function CourseOutline({
         })}
       </ol>
 
-      {otherCourses.length > 0 && (
-        <div className="mt-6 pt-4 border-t border-[#e2e7eb]">
-          <p className="text-xs text-[#8A99A8] uppercase tracking-wider mb-2">
-            Twój drugi kurs
-          </p>
-          {otherCourses.map((other) => (
-            <Link
-              key={other.path}
-              href={
-                other.finished
-                  ? other.path
-                  : `${other.path}/dzien/${other.continueDay}`
-              }
-              className="block py-1 text-[#7B9E8C] hover:underline"
-            >
-              {other.name}:{" "}
-              {other.finished
-                ? "ukończony"
-                : `dzień ${other.continueDay} z ${other.totalDays}`}{" "}
-              →
-            </Link>
-          ))}
-        </div>
-      )}
     </nav>
   );
 }

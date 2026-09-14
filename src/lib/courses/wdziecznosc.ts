@@ -33,9 +33,10 @@ export const wdziecznoscCourse: Course = {
       day: 1,
       title: "Umiejętność, nie cecha",
       knowledge: [
-        "Są ludzie, którym wdzięczność zdaje się przychodzić sama. Łatwo pomyśleć, że to kwestia charakteru: jedni tacy są, inni nie. Arthur Brooks, profesor Harvardu, który od lat bada, skąd bierze się szczęście, twierdzi coś innego: wdzięczność jest umiejętnością, nie cechą wrodzoną. Trenuje się ją tak samo jak mięsień, a efekty są mierzalne.",
-        "Najbardziej znany dowód pochodzi z klasycznego badania z 2003 roku. Dwaj psychologowie poprosili jedną grupę, żeby co tydzień spisywała rzeczy, za które jest wdzięczna, a drugą, żeby spisywała uciążliwości i problemy. Po kilku tygodniach grupa spisująca dobre rzeczy była wyraźnie bardziej zadowolona z życia, bardziej optymistyczna, a nawet zgłaszała mniej dolegliwości fizycznych. Ta sama rzeczywistość, inna uwaga, inne życie.",
-        "Ten kurs to siedem dni treningu w czterech krokach: najpierw przekonasz się, po co to w ogóle robić, potem zakotwiczysz jedną praktykę dziennie, następnie kilka małych pauz w ciągu dnia, a na końcu spróbujesz najtrudniejszego: znajdowania dobrego także w tym, co nie poszło.",
+        "Na pewno znasz kogoś, kto „po prostu taki jest”: zawsze umie się ucieszyć drobiazgiem, zawsze znajdzie coś dobrego w kiepskim dniu. I pewnie myślisz, że tobie ta cecha nie została przydzielona. Tak to wygląda z zewnątrz. Arthur Brooks, profesor Harvardu badający, skąd bierze się szczęście, twierdzi coś innego: wdzięczność to umiejętność, nie cecha wrodzona. Trenuje się ją jak mięsień. A to znaczy, że punkt startu nie przesądza o niczym.",
+        "Zacznijmy od tego, czym ta umiejętność właściwie jest, bo słowo „wdzięczność” zużyło się od nadużywania. Robert Emmons, psycholog, który przebadał ją najdokładniej, rozkłada ją na dwa ruchy. Pierwszy: zauważyć, że w moim życiu jest coś dobrego. Drugi: zauważyć, że nie wzięło się to wyłącznie ode mnie. Ktoś to zrobił, ktoś to dał, albo po prostu tak się złożyło. Wdzięczność to nie jest „pozytywne myślenie”. To dostrzeganie faktów, które i tak są, tylko na co dzień ich nie liczysz.",
+        "Najbardziej znany dowód pochodzi z 2003 roku. Badacze podzielili uczestników na trzy grupy: jedna co tydzień spisywała pięć rzeczy, za które jest wdzięczna, druga pięć uciążliwości i problemów, trzecia po prostu pięć wydarzeń z minionego tygodnia. Trwało to dziesięć tygodni. Zwróć uwagę, czego w tym badaniu nie było. Nikt nikomu nie zmieniał życia, nie dawał pieniędzy ani urlopu. Zmieniono tylko to, na co ludzie raz w tygodniu patrzyli. Po kilku tygodniach pierwsza grupa była wyraźnie bardziej zadowolona z życia, bardziej optymistyczna, zgłaszała nawet mniej dolegliwości fizycznych. Ta sama rzeczywistość, inna uwaga, inne samopoczucie.",
+        "Nie działa tu żadna magia słowa. Działa regularne kierowanie uwagi gdzie indziej niż na to, co negatywne, i to jest umiejętność, która rośnie z każdym powtórzeniem. Dlatego dzisiejsza praktyka jest najprostsza z możliwych: trzy rzeczy, teraz. Jedna wskazówka na start: im konkretniej, tym lepiej. „Że mam co jeść” działa słabo. „Że ktoś dziś rano zrobił mi kawę, bez proszenia” działa mocno, bo widzisz przy tym człowieka i gest. Badania pokazują, że im więcej szczegółów zauważysz, tym trwalej dobra rzecz zapisuje się w pamięci. To pierwszy przedsmak tego, co będziemy trenować przez tydzień.",
       ],
       quiz: [
         {
@@ -98,7 +99,7 @@ export const wdziecznoscCourse: Course = {
     },
     {
       day: 2,
-      title: "Alternatywą nie jest neutralność",
+      title: "Uraza rośnie sama",
       checkinAboutPrevious: {
         question: "Jak poszła twoja wczorajsza lista?",
         options: [
@@ -123,22 +124,23 @@ export const wdziecznoscCourse: Course = {
         ],
       },
       knowledge: [
-        "Łatwo myśleć, że kto nie praktykuje wdzięczności, jest po prostu neutralny. Jordan Peterson stawia sprawę ostrzej: realną alternatywą dla wdzięczności nie jest neutralność, tylko resentyment, czyli hodowane latami poczucie krzywdy i gorycz, które korodują życie od środka. Wdzięczność nazywa jej antidotum i widzi w niej akt odwagi: świadome opowiedzenie się po stronie życia.",
-        "Dlaczego domyślnie ciągnie nas w drugą stronę? Brooks przypomina o wbudowanym w mózg skrzywieniu negatywności: uwaga sama skanuje świat w poszukiwaniu tego, co nie gra, bo przez tysiące lat to właśnie ratowało życie. Zauważanie dobrego nie miało ewolucyjnego priorytetu. Dlatego narzekanie przychodzi samo, a wdzięczność trzeba trenować.",
-        "Dobra wiadomość jest taka, że nie jesteśmy skazani na fabryczne ustawienia. Ta sama kora przedczołowa, która pozwala planować i myśleć o myśleniu, pozwala też świadomie przekierować uwagę. Nie da się wyłączyć skanera zagrożeń. Da się dołożyć drugi skaner.",
+        "Wyobraź sobie taki dzień: dziesięć rzeczy poszło dobrze, a jedna osoba rzuciła nieprzyjemną uwagę. Co pamiętasz wieczorem? Właśnie. Złe rzeczy działają na nas mocniej niż dobre tej samej wielkości. Brooks nazywa to skrzywieniem negatywności i od razu dodaje coś ważnego: nie ma w tym twojej winy. To fabryczne ustawienie mózgu, który przez tysiące lat przeżywał dzięki temu, że każdy sygnał zagrożenia traktował poważnie, a każdy sygnał, że jest dobrze, mógł bez szkody zignorować. Dlatego narzekanie przychodzi samo, a wdzięczności trzeba się uczyć.",
+        "Brak wdzięczności nie jest przy tym stanem neutralnym i to jest najważniejsza myśl dzisiejszego dnia. Jordan Peterson, kanadyjski psycholog kliniczny, pisze wprost: wdzięczność jest alternatywą dla urazy, być może jedyną. Kiedy wdzięczności nie ma, w to puste miejsce po cichu wchodzi uraza: poczucie, że dostaliśmy mniej, niż nam się należało. Kiedy urośnie, zmienia to, co widzisz. Bliscy przestają być ludźmi, którym coś zawdzięczasz, a stają się ludźmi, którzy są ci coś winni. Wdzięczność odwraca ten rachunek. Zamiast liczyć, ile ci się należy, zaczynasz widzieć, ile ci już dano.",
+        "Dobra wiadomość jest taka, że fabryczne ustawienia nie są wyrokiem. Znasz ten efekt: kupujesz auto w konkretnym kolorze i nagle widzisz takie same na każdym skrzyżowaniu. Nie przybyło ich na drogach. Zmieniło się tylko to, czego szuka twoja uwaga, i robi to sama, bez żadnego wysiłku. Uwaga zawsze czegoś szuka. Domyślnie szuka zagrożeń, i niech szuka, bo od czasu do czasu ratuje ci to skórę. Można jej jednak dać drugie zadanie: szukać także tego, co dobre.",
+        "Jak to zrobić? Większość narzekań ma drugą stronę: skoro coś cię denerwuje, to zwykle znaczy, że masz coś, co może się zepsuć. Zmywanie oznacza, że był obiad. Powolny internet oznacza, że masz internet. Korek oznacza, że masz auto. Nie musisz przestać narzekać. Wystarczy, że raz dziennie złapiesz jedno narzekanie i dopowiesz mu drugą połowę: „zmywanie, a to znaczy, że był obiad”. Jedna zasada: druga połowa musi być prawdziwa. Nie dopisujesz dobrego na siłę, tylko sprawdzasz, czy tam jest. Jeśli go nie ma, narzekanie zostaje narzekaniem, a ty bierzesz następne. Jedno takie odwrócenie dziennie wystarczy. Nowy odruch bierze się z powtórzeń, nie z jednego wielkiego postanowienia.",
       ],
       quiz: [
         {
-          question: "Co według Petersona jest realną alternatywą dla wdzięczności?",
+          question: "Co się dzieje, kiedy nie ćwiczymy wdzięczności?",
           options: [
             {
-              text: "Neutralność: po prostu brak wdzięczności",
+              text: "Nic szczególnego, po prostu jej nie ma",
               correct: false,
               explanation:
-                "To pozorna opcja. Uwaga zostawiona samej sobie dryfuje w stronę krzywd i porównań, nie w stronę neutralności.",
+                "Tak to tylko wygląda. Uwaga zostawiona sama sobie zsuwa się w stronę krzywd i porównań, nie w stronę spokoju.",
             },
             {
-              text: "Resentyment i gorycz",
+              text: "Łatwo zbiera się gorycz i uraza",
               correct: true,
               explanation:
                 "Tak. Dlatego stawka jest wyższa, niż się wydaje: to nie wybór między czymś a niczym, tylko między dwoma kierunkami.",
@@ -152,13 +154,13 @@ export const wdziecznoscCourse: Course = {
               text: "Bo ludzie są z natury niewdzięczni",
               correct: false,
               explanation:
-                "To nie wada charakteru. To ewolucyjne ustawienie uwagi, wspólne dla wszystkich.",
+                "To nie kwestia charakteru, tylko tego, jak działa uwaga: na złe reaguje mocniej niż na dobre. U wszystkich tak samo.",
             },
             {
               text: "Bo mózg ma wbudowane skrzywienie negatywności",
               correct: true,
               explanation:
-                "Dokładnie. Skaner zagrożeń działa sam, skaner dobrego trzeba włączać ręcznie. Stąd trening.",
+                "Dokładnie. Zagrożenia zauważasz sam z siebie, dobre rzeczy trzeba zauważać celowo. Stąd trening.",
             },
             {
               text: "Bo świat jest obiektywnie coraz gorszy",
@@ -172,8 +174,8 @@ export const wdziecznoscCourse: Course = {
       challenge: {
         lead: "Odwróć jedno narzekanie",
         body: [
-          "Dziś złap się na jednym narzekaniu. Na głos albo w myślach, obojętne: korki, pogoda, zmywanie, powolny internet. Nie tłum go i nie oceniaj, po prostu zauważ.",
-          "A potem odwróć: zapytaj, co to narzekanie zdradza, że masz. Korki oznaczają auto i miejsce, do którego warto jechać. Zmywanie oznacza, że było co jeść. Powolny internet oznacza internet. Cisza w mieszkaniu oznacza własny kąt. Nie chodzi o skasowanie narzekania, tylko o dopisanie drugiej kolumny, której skaner negatywności sam nigdy nie wypełni.",
+          "Dziś złap się na jednym narzekaniu. Na głos albo w myślach, obojętne: korki, pogoda, zmywanie, powolny internet. Nie tłum go i nie oceniaj, po prostu zauważ. Zostań przy takich drobiazgach. Jeśli pierwsze, co przychodzi do głowy, to sprawa, która naprawdę cię rani, zostaw ją. Tego się nie odwraca jednym zdaniem.",
+          "A potem odwróć: zapytaj, co to narzekanie zdradza, że masz. Korki oznaczają auto. Zmywanie oznacza, że było co jeść. Powolny internet oznacza internet. Cisza w mieszkaniu oznacza własny kąt. Nie chodzi o skasowanie narzekania, tylko o dopisanie drugiej kolumny, której uwaga sama z siebie nigdy nie wypełni.",
         ],
         minimal:
           "Jeśli w ciągu dnia nic się nie złapie, wieczorem przypomnij sobie jedno narzekanie z dzisiaj i odwróć je wstecz.",
@@ -208,9 +210,10 @@ export const wdziecznoscCourse: Course = {
         ],
       },
       knowledge: [
-        "Thich Nhat Hanh, wietnamski nauczyciel uważności, zaczynał dzień od gathy, czyli krótkiego wiersza recytowanego zaraz po przebudzeniu. Jego poranna gatha mówi mniej więcej tyle: budzę się i uśmiecham, przede mną dwadzieścia cztery zupełnie nowe godziny. Chodzi o jedno: przywitać dzień jako dar, zanim zacznie się szum.",
-        "Brooks, z zupełnie innego świata, robi w praktyce to samo: wdzięczność ma u niego stałe miejsce w porannej rutynie, zanim dzień nabierze rozpędu. Logika jest prosta: pierwsza myśl dnia nadaje ton kolejnym. Jeśli pierwszym ruchem jest telefon i cudze pilne sprawy, dzień zaczyna się od reagowania. Jeśli pierwszym ruchem jest jedno zdanie wdzięczności, dzień zaczyna się od czegoś twojego.",
-        "To nie musi być rytuał na dziesięć minut. Dwie minuty to dużo, wystarczy jedno zdanie. Nie dokładamy obowiązku, podmieniamy pierwszy odruch.",
+        "Zacznijmy od pytania: co robisz w pierwszych minutach po przebudzeniu? Według ankiet około ośmiu na dziesięć osób zagląda w tym czasie do telefonu, choćby tylko po to, żeby wyłączyć budzik i rzucić okiem na powiadomienia. A jeszcze gorzej, jeśli zaczynasz scrollować. Brooks nazywa telefon znieczuleniem: sięgamy po niego zawsze wtedy, kiedy w głowie robi się pusto, a rano robimy to, zanim zdążymy cokolwiek pomyśleć. Tyle że ta pusta minuta jest cenna. To jedyny moment dnia, w którym umysł nie dostał jeszcze nic z zewnątrz i może zacząć od własnej myśli. Zamiast tego dostaje cudze pilne sprawy i cudze zdanie o świecie. Dzień zaczyna się od reagowania i tak już często zostaje.",
+        "Tradycje religijne znają ten mechanizm, bo od tysięcy lat obserwują, jak działa człowiek. I dały wdzięczności stałe miejsce właśnie na początku dnia. Muzułmanin odmawia pierwszą z pięciu codziennych modlitw o świcie, jeszcze przed wschodem słońca. Żyd zaczyna dzień od krótkiej modlitwy odmawianej jeszcze w łóżku: dziękuję, że zwróciłeś mi dziś duszę. Prawosławne modlitwy poranne zaczynają się od słów: powstawszy ze snu, dzięki składam Tobie, Najświętsza Trójco. Thich Nhat Hanh, wietnamski nauczyciel uważności, zaczynał dzień od gathy, czyli krótkiego wiersza recytowanego zaraz po przebudzeniu: budzę się i uśmiecham, przede mną dwadzieścia cztery zupełnie nowe godziny. Nikt z nich nie miał pod ręką badań, a wszyscy trafili w tę samą formę: codziennie, zaraz po przebudzeniu, zanim dzień nabierze rozpędu. Psychologia dopiero teraz mierzy to, co te tradycje wiedziały z praktyki, i wyniki się zgadzają.",
+        "Brooks przychodzi z zupełnie innego świata i robi to samo: wdzięczność ma u niego stałe miejsce w porannej rutynie. Mechanizm jest prosty. Pierwsza myśl dnia nadaje ton kolejnym. Jeśli pierwsza jest cudza, reagujesz. Jeśli pierwsza jest twoja i mówi o czymś dobrym, resztę dnia zaczynasz z innego miejsca.",
+        "Zwróć uwagę, czego tu nie robisz: nie dokładasz sobie obowiązku ani nowej pory w kalendarzu. Podmieniasz tylko pierwszy odruch, z reagowania na docenianie. Najłatwiej przyczepić nową rzecz do czegoś, co i tak się dzieje, dlatego kotwicą jest sam moment przebudzenia: otwierasz oczy i zanim zrobisz cokolwiek innego, jeszcze w łóżku, mówisz sobie jedno zdanie. Telefon może poczekać minutę. To zdanie może być pożyczone od Thich Nhat Hanha: budzę się i uśmiecham, przede mną dwadzieścia cztery nowe godziny. Może być własne, na przykład „dziękuję, że jest kolejny dzień” albo „dziękuję, że mam dla kogo wstać”. Może być jedna konkretna rzecz, którą dziś masz: ciepły dom, kawa, ktoś, kto się dziś odezwie. Nie musi brzmieć mądrze. Musi być pierwsze i wyrażać wdzięczność.",
       ],
       quiz: [
         {
@@ -249,9 +252,9 @@ export const wdziecznoscCourse: Course = {
         },
       ],
       challenge: {
-        lead: "Jedno zdanie przed telefonem",
+        lead: "Jedno zdanie po przebudzeniu",
         body: [
-          "Praktyka na najbliższy poranek (jeśli czytasz rano, zacznij od razu): zanim weźmiesz telefon do ręki, weź jeden oddech i powiedz sobie jedno zdanie podziękowania za nowy dzień. Własnymi słowami, bez formułek. Może być po cichu, może być banalne. „Dziękuję, że jest kolejny dzień” w zupełności wystarczy.",
+          "Praktyka na najbliższy poranek (jeśli czytasz rano, zacznij od razu): zaraz po otwarciu oczu, jeszcze w łóżku i zanim sięgniesz po telefon, weź jeden oddech i powiedz sobie jedno zdanie podziękowania za nowy dzień. Własnymi słowami, bez formułek. Może być po cichu, może być banalne. „Dziękuję, że jest kolejny dzień” w zupełności wystarczy.",
           "Jeśli chcesz, dodaj jedną konkretną rzecz, na którą czekasz albo którą masz: poranna kawa, czyjś głos, światło za oknem. Całość ma zająć mniej niż dwie minuty.",
         ],
         minimal:
@@ -287,9 +290,10 @@ export const wdziecznoscCourse: Course = {
         ],
       },
       knowledge: [
-        "Drugi koniec dnia to druga naturalna kotwica. Brooks nazywa to wdzięczną kontemplacją i trzyma ją w wieczornej rutynie: krótki powrót do tego, co w mijającym dniu było dobre. W jego protokole wdzięczności to osobny, piąty krok, a badania, które przywołuje, wiążą praktykowanie wdzięczności także z lepszym snem.",
-        "Mechanizm jest dość intuicyjny: umysł przed snem i tak coś przeżuwa. Zostawiony sam sobie wybiera niedokończone sprawy i jutrzejsze zmartwienia, bo tak działa skaner negatywności z dnia drugiego. Wieczorna praktyka nie ucisza myślenia, tylko podaje mu lepsze menu: trzy dobre momenty z dzisiaj zamiast trzech otwartych frontów.",
-        "Jest też wersja lżejsza, dla osób, które nie chcą praktyki codziennej: lista wdzięczności raz w tygodniu, na przykład w niedzielę wieczorem. To dokładnie ten format, który działał w badaniu z 2003 roku, i pierwszy krok protokołu Brooksa. Codziennie czy co tydzień, wybór należy do ciebie. Ważne, żeby było stałe.",
+        "Wieczór to druga naturalna kotwica. Brooks nazywa tę praktykę wdzięczną kontemplacją i trzyma ją w swojej wieczornej rutynie: krótki powrót do tego, co w mijającym dniu było dobre. A Robert Emmons, współautor badania z dnia pierwszego, w kolejnym eksperymencie kazał ludziom spisywać wdzięczność co wieczór. Spali dłużej, szybciej zasypiali i budzili się bardziej wypoczęci. To nie powinno dziwić, jeśli pomyślisz, z jaką listą w głowie zwykle zasypiasz.",
+        "Bo pomyśl, co dzieje się w twojej głowie po zgaszeniu światła. Umysł przed snem i tak coś przeżuwa, nie da się tego wyłączyć. Zostawiony sam sobie wybiera niedokończone sprawy i jutrzejsze zmartwienia, bo tak działa skrzywienie negatywności omówione w dniu drugim. Wieczorna praktyka nie ucisza myślenia i nie ma takiego zadania. Podsuwa mu inny temat. Zamiast trzech otwartych spraw dostajesz trzy dobre momenty, i to na nich zasypiasz.",
+        "Dwie wskazówki, żeby to działało dłużej niż tydzień. Po pierwsze, szukaj momentów, nie osiągnięć. Osiągnięcia są rzadkie i łatwo zamieniają praktykę w rozliczanie się z dnia. Momenty są codziennie: czyjś uśmiech, dziesięć minut słońca, że autobus przyjechał. Po drugie, nie powtarzaj wczorajszej listy. Emmons ostrzega, że to najczęstszy powód, dla którego praktyka umiera: robi się nudna. Umysł przyzwyczaja się do dobrych rzeczy tak samo szybko jak do złych, a wdzięczność działa właśnie dlatego, że mu na to nie pozwala. Więc codziennie coś nowego, choćby małego.",
+        "Jest też wersja lżejsza, dla osób, które nie chcą praktyki codziennej: lista raz w tygodniu, na przykład w niedzielę wieczorem. Zanim uznasz to za wersję dla leniwych, przypomnij sobie dzień pierwszy. To dokładnie ten format, który działał w badaniu z 2003 roku. Co więcej, w późniejszym badaniu na Uniwersytecie Missouri studenci, którzy robili to raz w tygodniu, zyskali więcej niż ci, którzy robili to trzy razy w tygodniu. Nie dlatego, że rzadziej znaczy lepiej, bo codzienne spisywanie u Emmonsa też działało. Dlatego, że ta sama lista powtarzana co dwa dni szybko robi się rutyną, a cotygodniowa zostaje świeża. Codziennie czy co tydzień, wybór należy do ciebie, pod jednym warunkiem: nie przepisuj tej samej listy. Jedno jest nienegocjowalne: stała pora. Nawyk nie bierze się z rozmachu, tylko z powtarzalności.",
       ],
       quiz: [
         {
@@ -302,7 +306,7 @@ export const wdziecznoscCourse: Course = {
                 "Myślenia nie da się wyłączyć na życzenie. Da się za to zmienić, czym się zajmuje.",
             },
             {
-              text: "Podaje myśleniu lepsze menu: dobre momenty zamiast otwartych spraw",
+              text: "Podsuwa myśleniu inny temat: dobre momenty zamiast otwartych spraw",
               correct: true,
               explanation:
                 "Tak. Umysł i tak będzie przeżuwał. Pytanie tylko, co dostanie do przeżuwania.",
@@ -365,9 +369,10 @@ export const wdziecznoscCourse: Course = {
         ],
       },
       knowledge: [
-        "Tradycje religijne wiedzą od tysięcy lat coś, co psychologia odkrywa na nowo: modlitwa kilka razy dziennie to także szkoła uwagi: sposób, żeby uwaga wracała do tego, co ważne. Rytm małych powtórzeń działa lepiej niż jeden wielki zryw, bo nie pozwala uwadze odpłynąć na cały dzień.",
-        "Thich Nhat Hanh proponował świecką wersję tego rytmu: dzwonki uważności. W jego wspólnocie co jakiś czas rozbrzmiewał dzwon i wszyscy zatrzymywali się na jeden oddech. Ale dzwonem może być cokolwiek: próg drzwi, czajnik, sygnał telefonu, pierwsze kroki po wyjściu z domu. Każdy taki punkt dnia może być małym otwarciem na wdzięczność.",
-        "Zauważ, że to trzeci poziom kursu: najpierw było raz dziennie rano, potem raz wieczorem, dziś kilka małych pauz pomiędzy. Nie dokładamy czasu, każda pauza to jeden oddech. Dokładamy częstotliwość, bo z niej robi się nawyk.",
+        "Tradycje religijne wiedzą od tysięcy lat coś, co psychologia odkrywa na nowo. Wdzięczność stoi w samym ich środku: katolicy i prawosławni nazywają swój najważniejszy obrzęd Eucharystią, czyli po grecku dziękczynieniem, a w islamie arabskie słowo na niewiarę oznacza dosłownie także niewdzięczność. Ale równie ważne jest, jak ją ćwiczą: modlitwa kilka razy dziennie to szkoła uwagi. Zwróć uwagę, że żadna z nich nie poprzestała na jednym długim nabożeństwie raz w tygodniu. Obok niedzielnej mszy, szabatu czy piątkowej modlitwy każda ma też praktykę codzienną, i to powtarzaną kilka razy dziennie. Muzułmanin modli się pięć razy dziennie, a istotą tej modlitwy nie jest prośba, tylko pochwała. Rytm małych powtórzeń działa lepiej niż jeden wielki zryw, bo nie pozwala uwadze odpłynąć na cały dzień. Nie liczy się długość jednej modlitwy, tylko to, że w ciągu dnia jest ich więcej.",
+        "Thich Nhat Hanh proponował świecką wersję: dzwonki uważności. W jego wspólnocie co jakiś czas rozbrzmiewał dzwonek i wszyscy, w połowie zdania czy w połowie kroku, zatrzymywali się na jeden oddech. Na co dzień takiego dzwonka nie ma, ale on sam radził, żeby tak samo traktować dzwonek do drzwi albo dzwoniący telefon: nie odbierać od razu, tylko przez dwa pierwsze sygnały oddychać. Dzwonkiem może być też coś, co wcale nie dzwoni: próg drzwi, czajnik, posiłek, pierwsze kroki po wyjściu z domu. Takich sygnałów masz w ciągu dnia kilkadziesiąt, tylko jeszcze ich nie zauważasz.",
+        "To trzeci poziom: rano, wieczorem, a teraz kilka małych pauz pomiędzy. I znowu zwróć uwagę, czego nie dokładamy: czasu. Każda pauza to jeden oddech i jedna rzecz, za którą w tej chwili czujesz wdzięczność, nikt nie zauważy, że ją robisz. Dokładamy częstotliwość, bo to z niej, a nie z długości, robi się nawyk. Tak samo nie zbudujesz mięśnia jednym wielkim treningiem w miesiącu.",
+        "Jak wybrać te małe kotwice? Najlepiej takie, które i tak się wydarzą: coś, co robisz codziennie o podobnej porze, najlepiej trzy razy. Posiłki są najprostsze, bo każdy z nich jest gotowym powodem. Przejścia też działają: wyjście z domu, wejście do pracy, powrót. Alarm w telefonie zostaw jako plan awaryjny, nie pierwszy wybór. Sygnał, który sam sobie zadasz, łatwo wyłączyć albo przesunąć, a posiłek czy wyjście z domu i tak się wydarzą. Najtrwalsze kotwice to te, których nie da się odwołać.",
       ],
       quiz: [
         {
@@ -408,7 +413,7 @@ export const wdziecznoscCourse: Course = {
       challenge: {
         lead: "Trzy pauzy na oddech",
         body: [
-          "Ustaw dziś trzy delikatne sygnały w ciągu dnia. Mogą to być trzy ciche alarmy w telefonie (to dobry przykład telefonu w roli narzędzia, nie pożeracza) albo trzy stałe kotwice: śniadanie, obiad, kolacja.",
+          "Wybierz dziś trzy małe kotwice: czynności, które i tak się wydarzą, najlepiej o podobnej porze. Najprościej posiłki: śniadanie, obiad, kolacja. Mogą być też przejścia: wyjście z domu, wejście do pracy, powrót. Alarmy w telefonie zostaw na wypadek, gdyby dzień nie miał żadnej stałej pory.",
           "Przy każdym sygnale zatrzymaj się na jeden oddech i nazwij jedną rzecz, za którą czujesz wdzięczność właśnie teraz, w tym miejscu, w tej sytuacji. Nie wczoraj, nie ogólnie: teraz. To całe zadanie, trzy oddechy na cały dzień.",
         ],
         minimal: "Wersja minimalna: jedna pauza przy jednym posiłku.",
@@ -443,9 +448,10 @@ export const wdziecznoscCourse: Course = {
         ],
       },
       knowledge: [
-        "Wszystko do tej pory działo się w twojej głowie. Dziś krok, który według Brooksa zmienia najwięcej: wdzięczność wyrażona. W jego protokole to aż dwa kroki: pisanie krótkich wiadomości z podziękowaniem oraz dziękowanie na głos przy nadarzającej się okazji, w momencie, nie po fakcie. Odczuwana wdzięczność robi dobrze tobie. Wyrażona robi dobrze dwojgu ludziom i wzmacnia każdą relację, której dotknie.",
-        "Jest jeden warunek i Brooks poświęca mu osobny krok protokołu: autentyczność. Podziękowanie z poczucia długu, wdzięczność na pokaz albo komplement, który jest przebraną autopromocją, psują cały efekt. Prosty test: czy umiesz podziękować za coś konkretnego? „Dziękuję, że przełożyłaś to spotkanie, uratowało mi to środę” działa. „Dzięki za wszystko” nie bardzo.",
-        "I jeszcze jedno, co łatwo przeoczyć: twoja wdzięczność nie kończy się na tobie. Podziękowany człowiek chodzi potem inaczej po świecie, częściej sam komuś dziękuje. To cichy efekt fali i jeden z najlepszych powodów, żeby praktykować dalej.",
+        "Wszystko do tej pory działo się w twojej głowie. I dobrze, bo to tam zaczyna się trening. Ale dziś krok, który według Brooksa zmienia najwięcej: wdzięczność wyrażona. Powód jest prosty. Odczuwana wdzięczność robi dobrze tobie. Wyrażona robi dobrze dwojgu ludziom, a przy okazji wzmacnia relację, która was łączy. Najgłośniejszy dowód pochodzi z laboratorium Martina Seligmana. Uczestnicy mieli tydzień na napisanie listu do kogoś, kto zrobił dla nich coś ważnego, a nigdy nie został porządnie podziękowany, i odczytanie go tej osobie twarzą w twarz. Z kilku testowanych ćwiczeń właśnie to dawało najtrwalszy wzrost szczęścia, mierzony jeszcze miesiąc później. Skoro podziękowanie działa tak mocno nawet po latach, pomyśl, ile takich listów nosisz w sobie niewysłanych.",
+        "Nie musisz jednak odwiedzać nikogo z listem. Brooks sprowadza to do dwóch codziennych nawyków i w swoim protokole daje im dwa osobne kroki. Pierwszy to krótkie wiadomości z podziękowaniem. Drugi to dziękowanie na głos przy nadarzającej się okazji, w momencie, nie tydzień po fakcie. List Seligmana nadrabia zaległości, codzienny nawyk sprawia, że zaległości przestają powstawać. Emmons mówi to samo prościej: prawie każdy ma czas, żeby raz dziennie komuś podziękować, szczerze i konkretnie.",
+        "Jest jeden warunek i Brooks poświęca mu osobny krok, więc potraktuj go poważnie: autentyczność. Pomyśl, jak w dzieciństwie kazano ci mówić „dziękuję”. Czy było w tym wtedy choć trochę wdzięczności? Właśnie. Podziękowanie z poczucia długu, wdzięczność na pokaz albo komplement, który jest przebraną autopromocją, psują cały efekt. Badania Emmonsa pokazują to samo od drugiej strony: kiedy ktoś czuje, że musi się odwdzięczyć, przestaje czuć wdzięczność, a zaczyna czuć dług. A dług nie zbliża do człowieka, tylko od niego odpycha.",
+        "Test jest prosty: czy umiesz podziękować za coś konkretnego? „Dziękuję, że przełożyłaś to spotkanie, uratowało mi to środę” przechodzi. „Dzięki za wszystko” nie bardzo. Dobra wiadomość ma dwa elementy i oba widać w tym zdaniu: co ta osoba zrobiła i co to zmieniło dla ciebie. Nie musi być długa. Trzy zdania wystarczą. A teraz najlepsza część. Podziękowany człowiek chodzi potem inaczej po świecie i sam częściej komuś dziękuje. To cichy efekt fali, i ty go dziś uruchamiasz.",
       ],
       quiz: [
         {
@@ -504,7 +510,7 @@ export const wdziecznoscCourse: Course = {
     },
     {
       day: 7,
-      title: "Dobre w tym, co jest",
+      title: "Wdzięczność mimo wszystko",
       checkinAboutPrevious: {
         question: "Jak poszło podziękowanie?",
         options: [
@@ -529,9 +535,11 @@ export const wdziecznoscCourse: Course = {
         ],
       },
       knowledge: [
-        "Ostatni poziom nie polega na dokładaniu kolejnych praktyk, tylko na zmianie spojrzenia. Thich Nhat Hanh nazywał to współistnieniem: każda rzecz, którą masz, istnieje dzięki niewidzialnej sieci ludzi i przyczyn. W kartce papieru, pisał, można zobaczyć chmurę, bo bez deszczu nie urosłoby drzewo, i drwala, i jego codzienny chleb. Kto naprawdę widzi tę sieć, ten nie musi się zmuszać do wdzięczności. Przychodzi sama.",
-        "A co z dniami, które są po prostu złe? Tu Peterson mówi rzecz najtrudniejszą z całego kursu: wdzięczność pomimo cierpienia. Nie dlatego, że cierpienie jest dobre, i nie zamiast go czuć. Wdzięczność pomimo to świadoma postawa, wybierana właśnie wtedy, kiedy nie przychodzi sama. Według niego to nie naiwność, tylko forma odwagi.",
-        "I domknięcie klamry z pierwszych dni: to nie jest toksyczna pozytywność. Nie szukamy dobrego zamiast trudnego, tylko obok trudnego. Trudne zostaje trudne, nazwane po imieniu. Pytanie brzmi jedynie: czy oprócz tego jest tu coś, co mogę uczciwie docenić? Jeśli odpowiedź jest mała, to znaczy, że jest prawdziwa.",
+        "Ostatni poziom nie polega na dokładaniu praktyk, tylko na zmianie spojrzenia. Bo bądźmy szczerzy: co z dniami, które są po prostu złe? W taki dzień prośba o trzy dobre momenty przed snem brzmi jak kpina. Viktor Frankl, psychiatra, który przeżył obozy koncentracyjne, napisał zdanie, na którym stoi cała dzisiejsza lekcja: nawet gdy nie jesteśmy w stanie zmienić sytuacji powodującej cierpienie, wciąż możemy wybrać postawę, jaką wobec niej zajmiemy. Frankl opisuje wieczór w obozie, kiedy śmiertelnie zmęczeni więźniowie jedli zupę na podłodze baraku, a jeden z nich wbiegł i zawołał, żeby biec na plac apelowy zobaczyć zachód słońca. Stali w milczeniu kilka minut, patrząc na niebo od metalicznego błękitu po krwistą czerwień, odbite nawet w błotnistych kałużach. Potem jeden powiedział do drugiego: „Jaki piękny może być świat!”. Nikt z nich nie udawał, że obóz jest dobry. Zobaczyli coś prawdziwego obok niego. Peterson mówi tu rzecz najtrudniejszą z całego kursu: bądź wdzięczny pomimo cierpienia. Nie dlatego, że cierpienie jest dobre, i nie zamiast tego, żeby je czuć. To świadoma postawa, wybierana właśnie wtedy, kiedy nie przychodzi sama. Według niego to nie naiwność. To forma odwagi.",
+        "Jedno zastrzeżenie, bo tu łatwo o nieporozumienie. To nie jest toksyczna pozytywność. Nie szukasz dobrego zamiast trudnego, tylko obok trudnego. Trudne zostaje trudne, nazwane po imieniu, i nikt nie każe ci go przemalowywać. Brooks ujmuje to bez owijania: bolesnej choroby nie wpisujesz na listę wdzięczności, wdzięczność ma być pomimo niej. Pytanie brzmi jedynie: czy oprócz tego jest tu coś, co mogę uczciwie docenić? Jeśli odpowiedź jest mała, to znaczy, że jest prawdziwa. Duże odpowiedzi w złe dni zwykle są zmyślone.",
+        "A kiedy to wchodzi w nawyk, przestaje być wysiłkiem. Thich Nhat Hanh nazywał to współistnieniem: w jednym kwiecie można zobaczyć glebę, minerały, nasiono, słońce i deszcz, bo bez każdego z nich kwiatu by nie było. Kto naprawdę widzi tę sieć, nie musi się zmuszać do wdzięczności. Przychodzi sama. Nie z poczucia, że wszystko jest dobrze, tylko z faktu, że prawie nic z tego, co masz, nie zrobiło się samo.",
+        "Na koniec to, co z tego tygodnia zabrać dalej, bo umiejętność bez powtórek zanika jak każda inna. Przez ten tydzień powstał cały rytm: zdanie po przebudzeniu, kilka pauz w ciągu dnia, trzy momenty przed snem, jedno prawdziwe podziękowanie komuś i odwrócone narzekanie, kiedy dzień nie idzie. W komplecie to jest właśnie to, co Brooks trzyma w swojej porannej i wieczornej rutynie. Jeśli po tym tygodniu cały ten rytm już siedzi, świetnie, trzymaj go. Jeśli jeszcze nie, możesz zacząć od kotwicy, która na pewno zostanie, najlepiej porannej albo wieczornej, a kolejne dokładaj, kiedy ta pierwsza stanie się nawykiem. Zmieniaj treść, żeby się nie znudziło. A jeśli wypadniesz z rytmu, wróć bez rozliczania się. Przerwa niczego nie psuje.",
+        "Ten kurs nie znika po siódmym dniu. Wszystkie dni zostają otwarte, więc kiedy praktyka się rozsypie, wróć do dnia, którego akurat potrzebujesz: do drugiego, kiedy narzekanie znów wygrywa, do czwartego, kiedy wieczory zrobiły się ciężkie, do siódmego, kiedy jest po prostu źle. Można też przejść całość od początku, kiedy potrzebujesz. Za drugim razem czyta się to inaczej, bo czyta ktoś, kto ma już trochę doświadczenia. Siedem dni temu to była umiejętność do wytrenowania. Dziś jest już trochę twoja.",
       ],
       quiz: [
         {

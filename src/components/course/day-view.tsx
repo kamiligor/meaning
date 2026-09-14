@@ -271,7 +271,7 @@ export function DayView({
   started,
   completed: initialCompleted,
   quizPassed: initialQuizPassed,
-  checkinDone: initialCheckinDone,
+  checkinDone,
   feedbackGiven: initialFeedbackGiven,
   nextDayUnlocked,
   baseline,
@@ -284,7 +284,6 @@ export function DayView({
   const course = getCourse(courseSlug);
   const content = course ? getDay(course, day) : null;
 
-  const [checkinDone, setCheckinDone] = useState(initialCheckinDone);
   const [completed, setCompleted] = useState(initialCompleted);
   const [noteDraft, setNoteDraft] = useState(savedNote ?? "");
   const [quizPassed, setQuizPassed] = useState(initialQuizPassed);
@@ -560,7 +559,6 @@ export function DayView({
           daysNav={daysNav}
           live={{ quizPassed, completed, step }}
           onStepSelect={(s) => !completed && setStep(s)}
-          otherCourses={otherCourses}
         />
       </aside>
 
@@ -578,17 +576,16 @@ export function DayView({
         </h1>
       </div>
 
-      {/* Check-in about yesterday gates the rest of the day. */}
+      {/* Check-in about yesterday: one tap above the day, never a gate. */}
       {!checkinDone && content.checkinAboutPrevious && (
         <CourseCheckin
           courseSlug={courseSlug}
           day={day}
           checkin={content.checkinAboutPrevious}
-          onDone={() => setCheckinDone(true)}
         />
       )}
 
-      {checkinDone && completed && (
+      {completed && (
         /* A finished day reads as one page — no steps on revisits. */
         <>
           {knowledgeSection}
@@ -605,7 +602,7 @@ export function DayView({
         </>
       )}
 
-      {checkinDone && !completed && (
+      {!completed && (
         <>
           <div className="lg:hidden">
             <StepIndicator labels={stepLabels} step={step} onStepClick={setStep} />

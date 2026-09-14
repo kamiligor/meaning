@@ -81,29 +81,46 @@ export default async function CoursesHubPage() {
                 {totalDays} dni · kilka minut dziennie
               </p>
 
-              {finished ? (
-                <div className="flex items-center justify-between gap-3">
-                  <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[#7B9E8C]">
-                    <Check className="h-4 w-4" strokeWidth={2.5} />
-                    Ukończony
-                  </span>
-                  <Link href={course.path}>
-                    <Button variant="outline" size="sm">
-                      Wróć do kursu
-                    </Button>
-                  </Link>
-                </div>
-              ) : enrolled ? (
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-sm text-[#8A99A8]">
-                    Ukończone dni: {completedDays} z {totalDays}
-                  </span>
-                  <Link href={`${course.path}/dzien/${continueDay}`}>
-                    <Button size="sm">Kontynuuj: dzień {continueDay}</Button>
-                  </Link>
+              {enrolled ? (
+                <div>
+                  {/* Progress bar: where the participant actually is, before the CTA */}
+                  <div className="flex items-center justify-between gap-3 mb-1.5">
+                    <span className="text-xs text-[#8A99A8]">
+                      Ukończone dni: {completedDays} z {totalDays}
+                    </span>
+                    {finished && (
+                      <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#7B9E8C]">
+                        <Check className="h-3.5 w-3.5" strokeWidth={2.5} />
+                        Ukończony
+                      </span>
+                    )}
+                  </div>
+                  <div className="h-1.5 w-full rounded-full bg-[#e8f0eb] overflow-hidden mb-4">
+                    <div
+                      className="h-full rounded-full bg-[#7B9E8C]"
+                      style={{
+                        width: `${Math.round((completedDays / totalDays) * 100)}%`,
+                      }}
+                    />
+                  </div>
+
+                  {finished ? (
+                    <Link href={course.path} className="block">
+                      <Button variant="outline" className="w-full">
+                        Wróć do kursu
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Link
+                      href={`${course.path}/dzien/${continueDay}`}
+                      className="block"
+                    >
+                      <Button className="w-full">Kontynuuj</Button>
+                    </Link>
+                  )}
                 </div>
               ) : (
-                <Link href={course.path}>
+                <Link href={course.path} className="block">
                   <Button className="w-full">Zobacz kurs</Button>
                 </Link>
               )}
