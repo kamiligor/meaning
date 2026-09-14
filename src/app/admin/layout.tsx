@@ -35,6 +35,18 @@ export default function AdminLayout({
               Kurs
             </a>
             <a
+              href="/admin/statystyki"
+              className="text-[#a3c4b3] text-sm font-medium hover:text-white transition"
+            >
+              Statystyki
+            </a>
+            <a
+              href="/admin/tagi"
+              className="text-[#a3c4b3] text-sm font-medium hover:text-white transition"
+            >
+              Tagi
+            </a>
+            <a
               href="/"
               className="text-[#8A99A8] text-sm hover:text-white transition"
               target="_blank"

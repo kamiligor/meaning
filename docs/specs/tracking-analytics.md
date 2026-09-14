@@ -232,9 +232,9 @@ psychicznego ani treści ćwiczeń. Zestaw startowy:
 
 | Tag | Rodzaj | Reguła |
 |-----|--------|--------|
-| `ukonczyl-kurs-{slug}` | auto | `course_enrollments.completed_at` ustawione |
-| `porzucil-kurs-{slug}-dzien-{n}` | auto | dzień `n` rozpoczęty, kurs nieukończony, brak startu dnia `n+1` przez 3 dni; usuwany, gdy przestaje być prawdziwy |
-| `zapisany-na-kurs-{slug}` | auto | zapis istnieje |
+| `ukonczyl-{slug}` (np. `ukonczyl-kurs-wdziecznosci`) | auto | `course_enrollments.completed_at` ustawione |
+| `porzucil-{slug}-dzien-{n}` | auto | dzień `n` rozpoczęty, kurs nieukończony, brak startu dnia `n+1` przez 3 dni; usuwany, gdy przestaje być prawdziwy |
+| `zapisany-na-{slug}` | auto | zapis istnieje |
 | `czyta-{kategoria}` | auto | co najmniej 3 zdarzenia `post_view` lub `post_read` z `user_id` w tej samej kategorii postu w 30 dniach |
 | dowolny ręczny | manual | nadany w panelu, cron nigdy go nie usuwa |
 
@@ -360,3 +360,26 @@ kampanii.
 
 Pełne porównanie, wzorce liczenia unikalnych, filtrowania botów i retencji
 oraz endpointy MailerLite: załączniki w `docs/specs/tracking-analytics/`.
+
+## 14. Uruchomienie (operacje)
+
+Stan wdrożenia i checklista uruchomienia, aktualizowane w trakcie implementacji.
+
+1. **Migracja** `supabase/migrations/20260914_analytics_and_tags.sql` w panelu
+   Supabase (SQL Editor) albo przez CLI. Bez niej beacon zwraca 204, a insert
+   loguje błąd po stronie serwera.
+2. **Zadania w Coolify** (Scheduled Tasks, jak przypomnienia kursów), wszystkie
+   z nagłówkiem `Authorization: Bearer $CRON_SECRET`:
+   - 04:30 `POST /api/analytics/aggregate` (wczorajszy dzień + retencja),
+   - 04:45 `POST /api/tags/apply` (tagi automatyczne),
+   - 05:00 `POST /api/tags/sync` (przyrostowa synchronizacja do MailerLite).
+   Ręczne doliczenie dnia: `POST /api/analytics/aggregate?day=YYYY-MM-DD`.
+3. **Zmienne środowiskowe**: nic nowego (lokalnie do testów cronów potrzebny `CRON_SECRET` w `.env.local`). Używane są `APP_SECRET` (sól dobowa),
+   `CRON_SECRET`, `SUPABASE_SERVICE_ROLE_KEY`, `MAILERLITE_API_TOKEN`.
+4. **Teksty**: CLAUDE.md punkt 3 zmieniony; opis „Zero śledzenia” na landingu
+   programu i copy newslettera w obu językach mówią o statystykach własnych i
+   mailach dobieranych do aktywności.
+5. **Do zrobienia poza kodem**: w aplikacji nie ma strony polityki
+   prywatności. Trzeba ją napisać (akapit o statystykach i o newsletterze,
+   sekcja 9) i podlinkować w stopce, zanim tagowanie pójdzie na produkcję.
+   Umowa powierzenia z MailerLite do sprawdzenia.

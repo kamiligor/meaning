@@ -178,6 +178,11 @@ export async function proxy(request: NextRequest) {
     !pathname.startsWith("/api/course/") &&
     !pathname.startsWith("/api/profile/") &&
     !pathname.startsWith("/api/comments/") &&
+    pathname !== "/api/t" &&
+    // Cron jobs authenticate with CRON_SECRET inside the handler.
+    pathname !== "/api/analytics/aggregate" &&
+    pathname !== "/api/tags/apply" &&
+    pathname !== "/api/tags/sync" &&
     !pathname.match(/^\/api\/posts\/[^/]+\/like$/) &&
     !pathname.match(/^\/api\/posts\/[^/]+\/comments$/) &&
     request.method !== "GET"

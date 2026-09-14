@@ -11,6 +11,7 @@ import {
 } from "@/lib/posts";
 import { ContentText } from "@/components/feed/content-text";
 import { CarouselViewer } from "@/components/feed/carousel-viewer";
+import { PostViewBeacon } from "@/components/feed/post-view-beacon";
 import { PostLangSwitcher } from "@/components/feed/post-lang-switcher";
 import { WEB_QUOTE_SLIDE } from "@/lib/content-sections";
 import { slideAltTexts } from "@/lib/slide-alt";
@@ -260,7 +261,9 @@ export default async function PostPage({ params }: PageProps) {
 
           {/* Carousel — same slides as feed card (no web variants, no CTA) */}
           <div className="relative">
+            <PostViewBeacon slug={post.slug} />
             <CarouselViewer
+              readTrackingSlug={post.slug}
               slides={postSlides
                 .filter((s) => s.slideNumber < 100)
                 .sort((a, b) => a.slideNumber - b.slideNumber)

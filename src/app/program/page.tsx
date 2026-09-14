@@ -216,7 +216,7 @@ export default function ProgramLandingPage() {
             {
               icon: Shield,
               title: "Zero śledzenia",
-              desc: "Brak Google Analytics, brak cookies śledzących, brak telemetrii.",
+              desc: "Brak Google Analytics i cookies śledzących. Liczymy tylko własne, zbiorcze statystyki bez identyfikowania Cię, a nic z programu pisania nie trafia do żadnych statystyk.",
             },
             {
               icon: Shield,

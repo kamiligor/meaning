@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { sendAnalyticsBeacon } from "@/lib/analytics-client";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase";
@@ -55,6 +56,7 @@ export function AuthForm({
           setError(error.message);
           return;
         }
+        sendAnalyticsBeacon("login");
         router.refresh();
         if (linkReplace) {
           router.back();

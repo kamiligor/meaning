@@ -124,3 +124,152 @@ export async function sendGroupTriggeredMail(
   }
   return true;
 }
+
+// ---------------------------------------------------------------------------
+// Campaign tags (docs/specs/tracking-analytics.md, section 8). Every tag
+// group name carries a "tag-" prefix so it can never collide with the
+// reminder/winback trigger groups above, and so cleanup on account deletion
+// only ever touches tag groups. Only e-mail and group name ever cross this
+// boundary — never response content, never behavioural detail beyond "is in
+// this named group".
+// ---------------------------------------------------------------------------
+
+export const TAG_GROUP_PREFIX = "tag-";
+
+export function tagGroupName(tag: string): string {
+  return `${TAG_GROUP_PREFIX}${tag}`;
+}
+
+export interface MailerliteSubscriber {
+  id: string;
+  status: string;
+  groupIds: string[];
+}
+
+/**
+ * A subscriber's current status and group membership, or null when no
+ * subscriber exists for this e-mail (never subscribed, or removed). Status
+ * `active` is the only one that counts as real consent (double opt-in) —
+ * everything else (unconfirmed, unsubscribed, bounced, junk) must be treated
+ * like "no subscription" by callers.
+ */
+export async function getSubscriber(
+  email: string
+): Promise<MailerliteSubscriber | null> {
+  const res = await api(`/subscribers/${encodeURIComponent(email)}`);
+  if (res.status === 404) return null;
+  const data = (
+    res.data as {
+      data?: {
+        id?: string;
+        status?: string;
+        groups?: { id: string }[];
+      };
+    }
+  ).data;
+  if (!data?.id) return null;
+  return {
+    id: data.id,
+    status: data.status ?? "unknown",
+    groupIds: (data.groups ?? []).map((g) => g.id),
+  };
+}
+
+export async function addSubscriberToGroup(
+  subscriberId: string,
+  groupId: string
+): Promise<boolean> {
+  const res = await api(`/subscribers/${subscriberId}/groups/${groupId}`, {
+    method: "POST",
+  });
+  if (res.status >= 400) {
+    console.error("[mailerlite] addSubscriberToGroup failed:", res.status);
+    return false;
+  }
+  return true;
+}
+
+export async function removeSubscriberFromGroup(
+  subscriberId: string,
+  groupId: string
+): Promise<boolean> {
+  const res = await api(`/subscribers/${subscriberId}/groups/${groupId}`, {
+    method: "DELETE",
+  });
+  if (res.status >= 400 && res.status !== 404) {
+    console.error("[mailerlite] removeSubscriberFromGroup failed:", res.status);
+    return false;
+  }
+  return true;
+}
+
+/** All groups in the account. Paginated with the API's cursor style. */
+export async function listGroups(): Promise<{ id: string; name: string }[]> {
+  const groups: { id: string; name: string }[] = [];
+  let cursor: string | null = null;
+  for (;;) {
+    const qs = new URLSearchParams({ limit: "100" });
+    if (cursor) qs.set("cursor", cursor);
+    const res = await api(`/groups?${qs.toString()}`);
+    const body = res.data as {
+      data?: { id: string; name: string }[];
+      meta?: { next_cursor?: string | null };
+    };
+    for (const g of body.data ?? []) groups.push({ id: g.id, name: g.name });
+    const next = body.meta?.next_cursor ?? null;
+    if (!next || (body.data ?? []).length === 0) break;
+    cursor = next;
+  }
+  return groups;
+}
+
+/**
+ * All e-mails currently in a group, paginated with the API's cursor style
+ * (developers.mailerlite.com/docs/groups.html — subscribers of a group).
+ * Used only by the full reconciliation, never by the incremental sync.
+ */
+export async function listGroupSubscriberEmails(
+  groupId: string
+): Promise<string[]> {
+  const emails: string[] = [];
+  let cursor: string | null = null;
+  for (;;) {
+    const qs = new URLSearchParams({ limit: "100" });
+    if (cursor) qs.set("cursor", cursor);
+    const res = await api(`/groups/${groupId}/subscribers?${qs.toString()}`);
+    const body = res.data as {
+      data?: { email?: string }[];
+      meta?: { next_cursor?: string | null };
+    };
+    for (const s of body.data ?? []) {
+      if (s.email) emails.push(s.email);
+    }
+    const next = body.meta?.next_cursor ?? null;
+    if (!next || (body.data ?? []).length === 0) break;
+    cursor = next;
+  }
+  return emails;
+}
+
+/**
+ * Removes a subscriber from a specific set of (already-existing) groups by
+ * name. Used to clean up campaign-tag groups on account deletion. Silently
+ * does nothing for a group name that does not exist or that the person is
+ * not a member of — cleanup is best-effort, not an assertion.
+ */
+export async function removeSubscriberFromGroups(
+  email: string,
+  groupNames: string[]
+): Promise<void> {
+  if (groupNames.length === 0) return;
+  const subscriber = await getSubscriber(email);
+  if (!subscriber) return;
+
+  const groups = await listGroups();
+  const targets = groups.filter(
+    (g) => groupNames.includes(g.name) && subscriber.groupIds.includes(g.id)
+  );
+  for (const group of targets) {
+    await removeSubscriberFromGroup(subscriber.id, group.id);
+  }
+}

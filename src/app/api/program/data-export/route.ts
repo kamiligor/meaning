@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { requireProgramUser } from "@/lib/program-auth";
 import { decrypt } from "@/lib/encryption";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
+import { getSupabaseAdmin } from "@/lib/supabase-admin";
 
 export async function GET() {
   try {
@@ -23,6 +24,13 @@ export async function GET() {
       );
     }
 
+    // Tags, login/read events and likes are behind RLS with no policy for
+    // the account holder (analytics_events and user_tags are service-role
+    // only by design; likes go through the admin client here too, for one
+    // consistent code path), so they are read with the admin client instead
+    // of the session-scoped one used for everything else in this export.
+    const admin = getSupabaseAdmin();
+
     const [
       responsesResult,
       progressResult,
@@ -31,6 +39,10 @@ export async function GET() {
       courseEnrollmentsResult,
       courseDaysResult,
       courseFeedbackResult,
+      tagsResult,
+      loginEventsResult,
+      postActivityResult,
+      likesResult,
     ] = await Promise.all([
       supabase
         .from("exercise_responses")
@@ -66,6 +78,29 @@ export async function GET() {
         .from("course_feedback")
         .select("course_slug, rating, hardest, suggestion, created_at")
         .eq("user_id", user.id),
+      admin
+        .from("user_tags")
+        .select("tag, source, created_at")
+        .eq("user_id", user.id)
+        .order("created_at"),
+      admin
+        .from("analytics_events")
+        .select("occurred_at")
+        .eq("user_id", user.id)
+        .eq("event_type", "login")
+        .order("occurred_at"),
+      admin
+        .from("analytics_events")
+        .select("occurred_at, event_type, target_id")
+        .eq("user_id", user.id)
+        .in("event_type", ["post_view", "post_read"])
+        .order("occurred_at"),
+      admin
+        .from("user_interactions")
+        .select("target_type, target_id, created_at")
+        .eq("user_id", user.id)
+        .eq("interaction_type", "like")
+        .order("created_at"),
     ]);
 
     if (responsesResult.error || progressResult.error) {
@@ -143,6 +178,31 @@ export async function GET() {
       createdAt: row.created_at,
     }));
 
+    // Tags, login dates and read activity — never the anonymous
+    // visitor_hash, which is a technical de-duplication key, not content
+    // for the person to review.
+    const tags = (tagsResult.data ?? []).map((row) => ({
+      tag: row.tag,
+      source: row.source,
+      createdAt: row.created_at,
+    }));
+
+    const loginEvents = (loginEventsResult.data ?? []).map(
+      (row) => row.occurred_at
+    );
+
+    const postActivity = (postActivityResult.data ?? []).map((row) => ({
+      occurredAt: row.occurred_at,
+      eventType: row.event_type,
+      targetId: row.target_id,
+    }));
+
+    const likes = (likesResult.data ?? []).map((row) => ({
+      targetType: row.target_type,
+      targetId: row.target_id,
+      createdAt: row.created_at,
+    }));
+
     const exportData = {
       exportedAt: new Date().toISOString(),
       userId: user.id,
@@ -154,6 +214,10 @@ export async function GET() {
       courseEnrollments,
       courseDays,
       courseFeedback,
+      tags,
+      loginEvents,
+      postActivity,
+      likes,
     };
 
     return new NextResponse(JSON.stringify(exportData, null, 2), {

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { requireProgramUser } from "@/lib/program-auth";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
+import { cleanupUserInMailerLite } from "@/lib/tags";
 
 /**
  * Take the person's comments down before the account goes.
@@ -90,6 +91,22 @@ export async function DELETE(request: Request) {
     // leaving their words published without consent.
     if (!keepComments) {
       await wipeComments(supabaseAdmin, user.id);
+    }
+
+    // Best-effort: `user_tags` itself is gone via ON DELETE CASCADE below,
+    // but the same tags live on as MailerLite group memberships, which the
+    // cascade cannot reach. A MailerLite outage must never block account
+    // deletion, so failures here are logged (without the e-mail) and
+    // swallowed.
+    if (user.email) {
+      try {
+        await cleanupUserInMailerLite(user.email);
+      } catch (err) {
+        console.error(
+          "[account DELETE] MailerLite cleanup failed:",
+          err instanceof Error ? err.message : "unknown error"
+        );
+      }
     }
 
     const { error } = await supabaseAdmin.auth.admin.deleteUser(user.id);
