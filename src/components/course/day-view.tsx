@@ -33,6 +33,14 @@ export interface CourseSummaryDay {
   note: string | null;
 }
 
+export interface PastNote {
+  day: number;
+  title: string;
+  /** Formatted start date of that day, or null when unknown. */
+  date: string | null;
+  note: string;
+}
+
 interface DayViewProps {
   courseSlug: string;
   day: number;
@@ -51,6 +59,8 @@ interface DayViewProps {
   summary: CourseSummaryDay[] | null;
   /** The day's own saved note (decrypted server-side). */
   savedNote: string | null;
+  /** Earlier days' notes, read-only, for the notebook tabs. */
+  pastNotes: PastNote[];
 }
 
 type Step = "knowledge" | "quiz" | "challenge";
@@ -104,9 +114,13 @@ function DayNote({
   savedNote,
   eveningPrompt,
   footer,
+  pastNotes,
+  coursePath,
 }: {
   courseSlug: string;
+  coursePath: string;
   day: number;
+  pastNotes: PastNote[];
   /** Draft lives in DayView so it survives the switch to the completed view. */
   note: string;
   onNoteChange: (note: string) => void;
@@ -118,6 +132,9 @@ function DayNote({
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState<number | null>(null);
   const [error, setError] = useState("");
+  /** Which day's note is shown; the current day is the editable one. */
+  const [viewDay, setViewDay] = useState(day);
+  const viewing = viewDay === day ? null : pastNotes.find((n) => n.day === viewDay) ?? null;
 
   const handleSave = async () => {
     setSaving(true);
@@ -137,6 +154,56 @@ function DayNote({
         <div className="flex items-start gap-3">
           <Moon className="h-5 w-5 text-[#7B9E8C] shrink-0 mt-0.5" />
           <div className="flex-1">
+            {pastNotes.length > 0 && (
+              <div
+                role="tablist"
+                aria-label="Notatki z poszczególnych dni"
+                className="flex flex-wrap gap-1.5 mb-3"
+              >
+                {[...pastNotes.map((n) => n.day), day].map((d) => {
+                  const active = d === viewDay;
+                  return (
+                    <button
+                      key={d}
+                      type="button"
+                      role="tab"
+                      aria-selected={active}
+                      onClick={() => setViewDay(d)}
+                      className={`h-7 min-w-7 px-2 rounded-full text-xs font-medium transition ${
+                        active
+                          ? "bg-[#1E2A36] text-white"
+                          : "bg-white border border-[#e2e7eb] text-[#4A5B6A] hover:border-[#7B9E8C]"
+                      }`}
+                    >
+                      {d === day ? `Dzień ${d}` : d}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+            {viewing ? (
+              <div role="tabpanel">
+                <p className="text-sm font-medium text-[#1E2A36]">
+                  Dzień {viewing.day}: {viewing.title}
+                  {viewing.date && (
+                    <span className="text-[#8A99A8] font-normal ml-2">{viewing.date}</span>
+                  )}
+                </p>
+                <p className="mt-2 text-sm text-[#4A5B6A] leading-relaxed whitespace-pre-wrap bg-white border border-[#e2e7eb] rounded-lg px-4 py-2.5">
+                  {viewing.note}
+                </p>
+                <div className="flex items-center justify-between gap-3 mt-2">
+                  <span className="text-xs text-[#8A99A8]">Tylko do odczytu.</span>
+                  <Link
+                    href={`${coursePath}/dzien/${viewing.day}`}
+                    className="text-xs font-medium text-[#7B9E8C] hover:underline"
+                  >
+                    Otwórz dzień {viewing.day}
+                  </Link>
+                </div>
+              </div>
+            ) : (
+            <>
             <label className="block">
               <span className="text-sm font-medium text-[#1E2A36]">
                 Notatnik tego dnia
@@ -164,11 +231,7 @@ function DayNote({
                 {eveningPrompt}
               </p>
             )}
-            <div className="flex items-center justify-between gap-3 mt-2">
-              <span className="text-xs text-[#8A99A8]">
-                Ta notatka jest szyfrowana i wraca do ciebie w podsumowaniu
-                kursu.
-              </span>
+            <div className="flex items-center justify-end gap-3 mt-2">
               <Button
                 size="sm"
                 onClick={handleSave}
@@ -180,6 +243,8 @@ function DayNote({
             {error && <p className="text-red-500 text-xs mt-2">{error}</p>}
             {footer && (
               <div className="border-t border-[#e2e7eb] mt-4 pt-4">{footer}</div>
+            )}
+            </>
             )}
           </div>
         </div>
@@ -295,6 +360,7 @@ export function DayView({
   otherCourses,
   summary,
   savedNote,
+  pastNotes,
 }: DayViewProps) {
   const router = useRouter();
   const course = getCourse(courseSlug);
@@ -431,7 +497,9 @@ export function DayView({
   const noteSection = (
     <DayNote
       courseSlug={courseSlug}
+      coursePath={course.path}
       day={day}
+      pastNotes={pastNotes}
       note={noteDraft}
       onNoteChange={setNoteDraft}
       savedNote={savedNote}

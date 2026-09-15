@@ -10,6 +10,7 @@ import {
   DayView,
   type OtherCourseEntry,
   type CourseSummaryDay,
+  type PastNote,
 } from "@/components/course/day-view";
 
 /** Shared day page for every mini course: auth, unlock gate, then DayView. */
@@ -90,14 +91,15 @@ export async function CourseDayPage({
   const dayState = state.days[day];
   const previousDayState = state.days[day - 1];
 
-  // Encrypted notes: the day's own evening note and the previous day's note
-  // (prefilled into the check-in textarea).
+  // Encrypted notes for every day so far: the day's own note (editable) and
+  // the earlier ones (read-only tabs in the notebook, so day 4 can look at
+  // day 1's list without leaving the page).
   const { data: noteRows } = await supabase
     .from("course_day_progress")
     .select("day, checkin_ciphertext, checkin_iv, checkin_salt")
     .eq("user_id", user.id)
     .eq("course_slug", course.slug)
-    .in("day", [day - 1, day]);
+    .lte("day", day);
 
   const noteFor = (d: number): string | null => {
     const row = noteRows?.find((r) => r.day === d);
@@ -110,6 +112,21 @@ export async function CourseDayPage({
       return null;
     }
   };
+
+  const pastNotes: PastNote[] = [];
+  for (let d = 1; d < day; d++) {
+    const text = noteFor(d);
+    if (!text) continue;
+    const startedAt = state.days[d]?.startedAt;
+    pastNotes.push({
+      day: d,
+      title: getDay(course, d)?.title ?? "",
+      date: startedAt
+        ? new Date(startedAt).toLocaleDateString("pl-PL", { day: "numeric", month: "long" })
+        : null,
+      note: text,
+    });
+  }
 
   const daysNav = course.days.map(({ day: d }) => ({
     day: d,
@@ -198,6 +215,7 @@ export async function CourseDayPage({
       otherCourses={otherCourses}
       summary={summary}
       savedNote={noteFor(day)}
+      pastNotes={pastNotes}
     />
   );
 }
