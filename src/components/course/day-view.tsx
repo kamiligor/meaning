@@ -141,6 +141,10 @@ function DayNote({
               <span className="text-sm font-medium text-[#1E2A36]">
                 Notatnik tego dnia
               </span>
+              <span className="block text-xs text-[#8A99A8] mt-1">
+                Twoje miejsce na dzisiejszą praktykę: co zapisujesz, co zauważasz, jak
+                poszło. Widzisz to tylko ty, notatki są szyfrowane i zostają po kursie.
+              </span>
               <textarea
                 value={note}
                 onChange={(e) => {
@@ -450,7 +454,7 @@ export function DayView({
             <p className="text-xs text-[#8A99A8] text-center mt-2">
               {noteDraft.trim()
                 ? "Do notatnika możesz wracać także po zakończeniu dnia."
-                : "Żeby zakończyć dzień, zapisz choć jedno zdanie."}
+                : "Żeby zakończyć dzień, zapisz choć jedno zdanie. To twój ślad z tej praktyki, do którego da się wrócić."}
             </p>
             {error && (
               <p className="text-red-500 text-xs mt-2 text-center">{error}</p>
