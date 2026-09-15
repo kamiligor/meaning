@@ -126,12 +126,48 @@ export function isDayUnlocked(
   if (day === 1) return true;
 
   const previous = days[day - 1];
-  if (!previous?.completedAt) return false;
+  // The previous day is "ready" once its quiz is passed. Closing it with the
+  // "Zakończ dzień" button is a nice ending, not a gate: people practise in
+  // the evening and go to sleep, and the next morning must not greet them
+  // with a locked day because of a button they did not press.
+  if (!previous || !(previous.completedAt || previous.quizPassed)) return false;
 
   // The clock hangs off when the previous day was STARTED, not closed:
   // its challenge runs during that day, so closing it the next morning
   // (after the night's worth of practice) must not push everything back.
-  return isMorningGateOpen(previous.startedAt ?? previous.completedAt, now);
+  const anchor = previous.startedAt ?? previous.completedAt;
+  if (!anchor) return false;
+  return isMorningGateOpen(anchor, now);
+}
+
+export type UnlockStatus =
+  | "open"
+  | "today"
+  | "tomorrow"
+  | "previous_incomplete"
+  | "none";
+
+/**
+ * When a given day opens, for copy like "otworzy się jutro o 6:00".
+ * "today" means the gate is the coming 06:00 of the current calendar day;
+ * "tomorrow" means 06:00 on the next one.
+ */
+export function unlockStatus(
+  day: number,
+  days: Record<number, CourseDayState>,
+  totalDays: number,
+  now: Date = new Date()
+): UnlockStatus {
+  if (day < 1 || day > totalDays) return "none";
+  if (isDayUnlocked(day, days, totalDays, now)) return "open";
+
+  const previous = days[day - 1];
+  const anchor = previous?.startedAt ?? previous?.completedAt ?? null;
+  if (!previous || !(previous.completedAt || previous.quizPassed) || !anchor) {
+    return "previous_incomplete";
+  }
+  const anchorDay = courseCalendarDay(new Date(anchor));
+  return anchorDay === courseCalendarDay(now) ? "tomorrow" : "today";
 }
 
 /**

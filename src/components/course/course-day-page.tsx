@@ -4,7 +4,7 @@ import { Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getProgramUser } from "@/lib/program-auth";
 import { courses, getCourse, getDay } from "@/lib/courses";
-import { getCourseState, currentDay, isDayUnlocked } from "@/lib/course";
+import { getCourseState, currentDay, isDayUnlocked, unlockStatus } from "@/lib/course";
 import { decrypt } from "@/lib/encryption";
 import {
   DayView,
@@ -43,7 +43,8 @@ export async function CourseDayPage({
   if (!content) notFound();
 
   if (!isDayUnlocked(day, state.days, totalDays)) {
-    const previousDone = !!state.days[day - 1]?.completedAt;
+    const opens = unlockStatus(day, state.days, totalDays);
+    const previousDone = opens === "today" || opens === "tomorrow";
     return (
       <div className="max-w-2xl mx-auto px-5 py-16 text-center">
         <span className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-[#e8f0eb] mb-6">
@@ -57,10 +58,10 @@ export async function CourseDayPage({
             <>
               {course.challengeNoun === "wyzwanie" ? "Wyzwanie" : "Praktyka"}{" "}
               z poprzedniego dnia potrzebuje całego dnia, żeby się wydarzyć.
-              Ten dzień odblokuje się o 6:00 rano. Do zobaczenia.
+              Ten dzień otworzy się {opens === "today" ? "dziś" : "jutro"} o 6:00. Do zobaczenia.
             </>
           ) : (
-            `Najpierw dzień ${day - 1}. Kurs idzie jeden dzień naraz, bez wyjątków, ale też bez pośpiechu.`
+            `Najpierw dzień ${day - 1} i jego quiz. Kurs idzie jeden dzień naraz, bez wyjątków, ale też bez pośpiechu.`
           )}
         </p>
         <Link
@@ -188,6 +189,7 @@ export async function CourseDayPage({
       checkinDone={day === 1 || !!previousDayState?.checkinChoice}
       feedbackGiven={feedbackGiven}
       nextDayUnlocked={isDayUnlocked(day + 1, state.days, totalDays)}
+      nextDayOpens={unlockStatus(day + 1, state.days, totalDays)}
       baseline={{
         screenTimeMin: state.enrollment.baselineScreenTimeMin,
         pickups: state.enrollment.baselinePickups,

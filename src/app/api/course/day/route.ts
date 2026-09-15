@@ -3,7 +3,7 @@ import { requireProgramUser } from "@/lib/program-auth";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { encrypt } from "@/lib/encryption";
 import { getCourse, getDay, type Course } from "@/lib/courses";
-import { getCourseState, isDayUnlocked } from "@/lib/course";
+import { getCourseState, isDayUnlocked, unlockStatus } from "@/lib/course";
 
 interface DayUpdateBody {
   courseSlug?: string;
@@ -203,6 +203,32 @@ export async function PUT(request: NextRequest) {
       if (error) {
         console.error("[course day] Database error:", error.code);
         return NextResponse.json({ error: "Database error" }, { status: 500 });
+      }
+
+      // Opening a day closes the previous one if the person never pressed
+      // "Zakończ dzień": the unlock already required its quiz, and the funnel
+      // in the admin panel should count it as done.
+      const previous = state.days[day - 1];
+      if (body.start && day > 1 && previous && !previous.completedAt) {
+        await supabase.from("course_day_progress").upsert(
+          {
+            user_id: user.id,
+            course_slug: course.slug,
+            day: day - 1,
+            completed_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          },
+          { onConflict: "user_id,course_slug,day" }
+        );
+      }
+
+      if (body.complete) {
+        // Tell the client where to go next, from fresh state.
+        const fresh = await getCourseState(supabase, user.id, course.slug);
+        return NextResponse.json({
+          saved: true,
+          nextDayOpens: unlockStatus(day + 1, fresh.days, course.days.length),
+        });
       }
     }
 

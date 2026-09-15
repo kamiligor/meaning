@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { UnlockStatus } from "@/lib/course";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Check, Lock, Moon } from "lucide-react";
@@ -41,6 +42,8 @@ interface DayViewProps {
   checkinDone: boolean;
   feedbackGiven: boolean;
   nextDayUnlocked: boolean;
+  /** When the next day opens; "open" means it can be entered right now. */
+  nextDayOpens: UnlockStatus;
   baseline: { screenTimeMin: number | null; pickups: number | null };
   daysNav: DayNavEntry[];
   otherCourses: OtherCourseEntry[];
@@ -68,15 +71,23 @@ function richText(text: string): React.ReactNode {
 }
 
 async function putDay(body: Record<string, unknown>): Promise<boolean> {
+  return (await putDayDetailed(body)).ok;
+}
+
+async function putDayDetailed(
+  body: Record<string, unknown>
+): Promise<{ ok: boolean; nextDayOpens: UnlockStatus | null }> {
   try {
     const res = await fetch("/api/course/day", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
-    return res.ok;
+    if (!res.ok) return { ok: false, nextDayOpens: null };
+    const data = (await res.json().catch(() => ({}))) as { nextDayOpens?: UnlockStatus };
+    return { ok: true, nextDayOpens: data.nextDayOpens ?? null };
   } catch {
-    return false;
+    return { ok: false, nextDayOpens: null };
   }
 }
 
@@ -274,6 +285,7 @@ export function DayView({
   checkinDone,
   feedbackGiven: initialFeedbackGiven,
   nextDayUnlocked,
+  nextDayOpens: initialNextDayOpens,
   baseline,
   daysNav,
   otherCourses,
@@ -291,6 +303,8 @@ export function DayView({
   const [step, setStep] = useState<Step>(initialQuizPassed ? "challenge" : "knowledge");
   const [completing, setCompleting] = useState(false);
   const [error, setError] = useState("");
+  const [nextDayOpens, setNextDayOpens] = useState<UnlockStatus>(initialNextDayOpens);
+  const afterCompletionRef = useRef<HTMLDivElement>(null);
   const startSent = useRef(started);
 
   useEffect(() => {
@@ -322,16 +336,31 @@ export function DayView({
     setCompleting(true);
     setError("");
     // Closing the day also saves the notebook — one click, nothing lost.
-    const ok = await putDay({ courseSlug, day, note: noteDraft, complete: true });
-    if (ok) {
-      setCompleted(true);
-      // Re-fetch server props: with the unlock clock anchored to the day's
-      // start, the next day may already be open right now.
-      router.refresh();
-    } else {
+    const result = await putDayDetailed({ courseSlug, day, note: noteDraft, complete: true });
+    if (!result.ok) {
       setError("Nie udało się zapisać. Sprawdź połączenie i spróbuj ponownie.");
+      setCompleting(false);
+      return;
     }
+
+    const opens = result.nextDayOpens ?? (nextDayUnlocked ? "open" : nextDayOpens);
+    if (!isFinalDay && opens === "open") {
+      // The next day is already open (the clock ran from this day's start):
+      // go there instead of re-rendering the same page, which reads as
+      // "nothing happened".
+      router.push(`${course.path}/dzien/${day + 1}`);
+      return;
+    }
+
+    setNextDayOpens(opens);
+    setCompleted(true);
     setCompleting(false);
+    // Bring the "what now" box into view; a refresh would jump to the top
+    // of the same day and look like nothing changed.
+    requestAnimationFrame(() => {
+      afterCompletionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    if (isFinalDay) router.refresh();
   };
 
   const knowledgeSection = (
@@ -433,9 +462,9 @@ export function DayView({
   );
 
   const afterCompletion = completed && (
-    <>
+    <div ref={afterCompletionRef} className="scroll-mt-24">
       {!isFinalDay &&
-        (nextDayUnlocked ? (
+        (nextDayOpens === "open" ? (
           <section className="mb-10 text-center">
             <p className="text-[#1E2A36] font-medium mb-4">
               Dzień {day} z {totalDays} za tobą.
@@ -450,8 +479,8 @@ export function DayView({
               Dzień {day} z {totalDays} za tobą.
             </p>
             <p className="text-[#4A5B6A] leading-relaxed">
-              Dzień {day + 1} odblokuje się o 6:00 rano. Reszta dnia jest
-              twoja, poza ekranem.
+              Dzień {day + 1} otworzy się {nextDayOpens === "today" ? "dziś" : "jutro"} o 6:00.
+              Reszta dnia jest twoja, poza ekranem.
             </p>
           </section>
         ))}
@@ -546,7 +575,7 @@ export function DayView({
           </p>
         </section>
       )}
-    </>
+    </div>
   );
 
   return (

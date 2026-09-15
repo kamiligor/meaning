@@ -3,6 +3,7 @@ import {
   courseCalendarDay,
   currentDay,
   isDayUnlocked,
+  unlockStatus,
   parseQuizAnswers,
   type CourseDayState,
 } from "@/lib/course";
@@ -10,14 +11,19 @@ import { courses } from "@/lib/courses";
 
 const TOTAL = 5;
 
-function dayState(day: number, completedAt: string | null): CourseDayState {
+function dayState(
+  day: number,
+  completedAt: string | null,
+  quizPassed = false,
+  startedAt: string | null = completedAt
+): CourseDayState {
   return {
     day,
-    startedAt: completedAt,
+    startedAt,
     completedAt,
     checkinChoice: null,
     quizFirstAttempts: null,
-    quizPassed: false,
+    quizPassed,
   };
 }
 
@@ -218,4 +224,42 @@ describe("course content sanity", () => {
       });
     });
   }
+});
+
+describe("isDayUnlocked without closing the day", () => {
+  const TOTAL = 5;
+
+  it("a passed quiz is enough: the next morning opens day 2 even if day 1 was never closed", () => {
+    const days = { 1: dayState(1, null, true, "2026-08-09T10:00:00Z") };
+    expect(isDayUnlocked(2, days, TOTAL, new Date("2026-08-09T20:00:00Z"))).toBe(false);
+    expect(isDayUnlocked(2, days, TOTAL, new Date("2026-08-10T03:00:00Z"))).toBe(false); // 05:00 in Warsaw
+    expect(isDayUnlocked(2, days, TOTAL, new Date("2026-08-10T06:05:00+02:00"))).toBe(true);
+  });
+
+  it("a started day without a passed quiz still locks the next one", () => {
+    const days = { 1: dayState(1, null, false, "2026-08-09T10:00:00Z") };
+    expect(isDayUnlocked(2, days, TOTAL, new Date("2026-08-12T12:00:00Z"))).toBe(false);
+  });
+
+  it("never opens more than one day after a long break", () => {
+    const days = { 1: dayState(1, "2026-08-01T10:00:00Z", true) };
+    const later = new Date("2026-08-20T12:00:00Z");
+    expect(isDayUnlocked(2, days, TOTAL, later)).toBe(true);
+    expect(isDayUnlocked(3, days, TOTAL, later)).toBe(false);
+  });
+});
+
+describe("unlockStatus", () => {
+  const TOTAL = 5;
+
+  it("reports why and when a day opens", () => {
+    const started = "2026-08-09T10:00:00+02:00";
+    const days = { 1: dayState(1, null, true, started) };
+    expect(unlockStatus(2, days, TOTAL, new Date("2026-08-09T20:00:00+02:00"))).toBe("tomorrow");
+    expect(unlockStatus(2, days, TOTAL, new Date("2026-08-10T04:00:00+02:00"))).toBe("today");
+    expect(unlockStatus(2, days, TOTAL, new Date("2026-08-10T07:00:00+02:00"))).toBe("open");
+    expect(unlockStatus(3, days, TOTAL, new Date("2026-08-10T07:00:00+02:00"))).toBe("previous_incomplete");
+    expect(unlockStatus(2, {}, TOTAL)).toBe("previous_incomplete");
+    expect(unlockStatus(6, days, TOTAL)).toBe("none");
+  });
 });

@@ -21,12 +21,23 @@ czeka, aż wrócisz." Każdy element poniżej musi przejść ten test:
 - Przerwa w kursie nie resetuje niczego. Po powrocie użytkownik widzi ten sam
   stan, co przed przerwą, plus odblokowane dni.
 
-## 2. Odblokowywanie dzień po dniu (bez zmian)
+## 2. Odblokowywanie dzień po dniu
 
-Zostaje obecny mechanizm: kolejny dzień otwiera się następnego dnia o 6:00
-(`isDayUnlocked` w `src/lib/course.ts`). Udostępnienie wszystkiego naraz
-zabiłoby praktykę, bo jej sensem jest noc między lekcjami. Nie dodajemy opcji
-„odblokuj wszystko".
+Kolejny dzień otwiera się następnego dnia o 6:00, licząc od otwarcia dnia
+poprzedniego (`isDayUnlocked` w `src/lib/course.ts`). Udostępnienie wszystkiego
+naraz zabiłoby praktykę, bo jej sensem jest noc między lekcjami. Nie dodajemy
+opcji „odblokuj wszystko". Po dłuższej przerwie otwiera się dokładnie jeden
+następny dzień, nigdy kilka.
+
+Zmiana z 2026-09-15: warunkiem gotowości dnia poprzedniego jest zaliczony
+quiz, nie kliknięcie „Zakończ dzień". Ludzie praktykują wieczorem i idą spać;
+poranek nie może ich witać zamkniętym dniem z powodu nieklikniętego przycisku.
+Przycisk zostaje jako domknięcie (zapisuje notatnik, pokazuje wieczorną
+dopiskę), a gdy ktoś go nie kliknie, otwarcie kolejnego dnia samo oznacza
+poprzedni jako ukończony (`/api/course/day`, przy `start`). Po kliknięciu
+„Zakończ dzień": jeśli następny dzień jest już otwarty, przenosimy tam od
+razu; jeśli nie, pokazujemy „otworzy się dziś/jutro o 6:00" (`unlockStatus`)
+i przewijamy do tej informacji zamiast odświeżać stronę.
 
 ## 3. Sidebar „Moje praktyki"
 
