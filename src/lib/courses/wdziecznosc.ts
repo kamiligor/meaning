@@ -175,7 +175,7 @@ export const wdziecznoscCourse: Course = {
         lead: "Odwróć jedno narzekanie",
         body: [
           "Dziś złap się na jednym narzekaniu. Na głos albo w myślach, obojętne: korki, pogoda, zmywanie, powolny internet. Nie tłum go i nie oceniaj, po prostu zauważ. Zostań przy takich drobiazgach. Jeśli pierwsze, co przychodzi do głowy, to sprawa, która naprawdę cię rani, zostaw ją. Tego się nie odwraca jednym zdaniem.",
-          "A potem odwróć: zapytaj, co to narzekanie zdradza, że masz. Korki oznaczają auto. Zmywanie oznacza, że było co jeść. Powolny internet oznacza internet. Cisza w mieszkaniu oznacza własny kąt. Nie chodzi o skasowanie narzekania, tylko o dopisanie drugiej kolumny, której uwaga sama z siebie nigdy nie wypełni.",
+          "A potem odwróć: zapytaj, co to narzekanie zdradza, że masz. Korki oznaczają auto. Zmywanie oznacza, że było co jeść. Powolny internet oznacza internet. Cisza w mieszkaniu oznacza własny kąt. Nie chodzi o skasowanie narzekania, tylko o dopisanie drugiej kolumny, której uwaga sama z siebie nigdy nie wypełni. Wieczorem zapisz w notatniku poniżej to jedno odwrócone narzekanie, obie kolumny.",
         ],
         minimal:
           "Jeśli w ciągu dnia nic się nie złapie, wieczorem przypomnij sobie jedno narzekanie z dzisiaj i odwróć je wstecz.",
@@ -255,7 +255,7 @@ export const wdziecznoscCourse: Course = {
         lead: "Jedno zdanie po przebudzeniu",
         body: [
           "Praktyka na najbliższy poranek (jeśli czytasz rano, zacznij od razu): zaraz po otwarciu oczu, jeszcze w łóżku i zanim sięgniesz po telefon, weź jeden oddech i powiedz sobie jedno zdanie podziękowania za nowy dzień. Własnymi słowami, bez formułek. Może być po cichu, może być banalne. „Dziękuję, że jest kolejny dzień” w zupełności wystarczy.",
-          "Jeśli chcesz, dodaj jedną konkretną rzecz, na którą czekasz albo którą masz: poranna kawa, czyjś głos, światło za oknem. Całość ma zająć mniej niż dwie minuty.",
+          "Jeśli chcesz, dodaj jedną konkretną rzecz, na którą czekasz albo którą masz: poranna kawa, czyjś głos, światło za oknem. Całość ma zająć mniej niż dwie minuty. Zdanie, które wybierzesz, zapisz w notatniku poniżej, żeby jutro rano nie szukać go od nowa.",
         ],
         minimal:
           "Wersja minimalna: jedno zdanie w myślach przy pierwszej kawie, nawet jeśli telefon już był w ręku.",
@@ -414,7 +414,7 @@ export const wdziecznoscCourse: Course = {
         lead: "Trzy pauzy na oddech",
         body: [
           "Wybierz dziś trzy małe kotwice: czynności, które i tak się wydarzą, najlepiej o podobnej porze. Najprościej posiłki: śniadanie, obiad, kolacja. Mogą być też przejścia: wyjście z domu, wejście do pracy, powrót. Alarmy w telefonie zostaw na wypadek, gdyby dzień nie miał żadnej stałej pory.",
-          "Przy każdym sygnale zatrzymaj się na jeden oddech i nazwij jedną rzecz, za którą czujesz wdzięczność właśnie teraz, w tym miejscu, w tej sytuacji. Nie wczoraj, nie ogólnie: teraz. To całe zadanie, trzy oddechy na cały dzień.",
+          "Przy każdym sygnale zatrzymaj się na jeden oddech i nazwij jedną rzecz, za którą czujesz wdzięczność właśnie teraz, w tym miejscu, w tej sytuacji. Nie wczoraj, nie ogólnie: teraz. To całe zadanie, trzy oddechy na cały dzień. Wieczorem zanotuj w notatniku poniżej, które kotwice zadziałały, a które nie.",
         ],
         minimal: "Wersja minimalna: jedna pauza przy jednym posiłku.",
         evening:
@@ -498,7 +498,7 @@ export const wdziecznoscCourse: Course = {
       challenge: {
         lead: "Jedno prawdziwe podziękowanie",
         body: [
-          "Dziś wyślij jednej osobie jedną szczerą wiadomość z podziękowaniem. Za coś konkretnego: rzecz, którą zrobiła, słowa, które kiedyś padły, coś, co zauważasz od dawna, ale nigdy nie zostało powiedziane. Trzy zdania wystarczą. Sms, mail, wiadomość głosowa, forma bez znaczenia.",
+          "Dziś wyślij jednej osobie jedną szczerą wiadomość z podziękowaniem. Za coś konkretnego: rzecz, którą zrobiła, słowa, które kiedyś padły, coś, co zauważasz od dawna, ale nigdy nie zostało powiedziane. Trzy zdania wystarczą. Sms, mail, wiadomość głosowa, forma bez znaczenia. W notatniku poniżej zapisz jednym zdaniem, komu i za co.",
           "Wersja odważniejsza: podziękuj komuś na głos, w momencie, konkretnie. Nie „dzięki”, tylko za co dokładnie. Zobacz, co to robi z rozmową.",
           "Dwie rzeczy na zapas. Jeśli nikt nie przychodzi ci do głowy, podziękuj komuś na żywo przy okazji: kasjerce, kierowcy, sąsiadowi. To pełnoprawna wersja tego zadania, nie gorsza. I druga: odpowiedź nie jest potrzebna. Wiadomość robi swoje po obu stronach już w momencie wysłania, echo bywa dodatkiem, nie miarą.",
         ],
@@ -586,8 +586,8 @@ export const wdziecznoscCourse: Course = {
       challenge: {
         lead: "Małe dobre w złym momencie",
         body: [
-          "Ostatnia praktyka nie ma wyznaczonej godziny, ma wyzwalacz. Następnym razem, kiedy coś dziś pójdzie nie tak (a coś pójdzie: spóźnienie, przykra wiadomość, rozlana kawa), zatrzymaj się na jeden oddech i zapytaj: co tu mogę uczciwie docenić? I pozwól, żeby odpowiedź była mała. „Przynajmniej złapało mnie to w domu.” „Jest ktoś, do kogo mogę z tym zadzwonić.” Mała odpowiedź wystarczy, bo jest prawdziwa.",
-          "Na przyszłość, żeby siedem dni nie rozpłynęło się w dwa tygodnie, prosty plan z tego tygodnia: rano jedno zdanie przed telefonem, wieczorem trzy dobre momenty, raz w tygodniu jedno wyrażone podziękowanie. Każdą z tych praktyk przypnij do czegoś, co i tak robisz: kawy, mycia zębów, drogi do pracy. Jeśli chcesz miary, potraktuj to jako wyzwanie na 30 dni i po miesiącu sprawdź, co się zmieniło.",
+          "Ostatnia praktyka nie ma wyznaczonej godziny, ma wyzwalacz. Następnym razem, kiedy coś dziś pójdzie nie tak (a coś pójdzie: spóźnienie, przykra wiadomość, rozlana kawa), zatrzymaj się na jeden oddech i zapytaj: co tu mogę uczciwie docenić? I pozwól, żeby odpowiedź była mała. „Przynajmniej złapało mnie to w domu.” „Jest ktoś, do kogo mogę z tym zadzwonić.” Mała odpowiedź wystarczy, bo jest prawdziwa. Wieczorem zapisz ją w notatniku poniżej. To ostatni wpis tego tygodnia i pierwszy do przeczytania, kiedy będzie źle.",
+          "Na przyszłość, żeby siedem dni nie rozpłynęło się w dwa tygodnie, prosty plan z tego tygodnia: rano jedno zdanie po przebudzeniu, wieczorem trzy dobre momenty, raz w tygodniu jedno wyrażone podziękowanie. Każdą z tych praktyk przypnij do czegoś, co i tak robisz: kawy, mycia zębów, drogi do pracy. Jeśli chcesz miary, potraktuj to jako wyzwanie na 30 dni i po miesiącu sprawdź, co się zmieniło.",
         ],
         minimal:
           "Wersja minimalna na dziś i na zawsze: wybierz jedną, dokładnie jedną praktykę z tego tygodnia, która zostaje z tobą na stałe.",
