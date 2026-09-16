@@ -92,6 +92,14 @@ export async function SiteHeader({
 
           {/* Nav links — visible on mobile too (compact short labels) */}
           <nav className="flex items-center gap-3 md:gap-5" aria-label="Main navigation">
+            {locale === "pl" && (
+              <Link
+                href="/kursy"
+                className="text-[11px] font-medium tracking-widest uppercase text-[#8A99A8] hover:text-[#1E2A36] transition-colors duration-200 whitespace-nowrap"
+              >
+                {d.navCourses}
+              </Link>
+            )}
             {showProgramLink && (
               <Link
                 href="/program"

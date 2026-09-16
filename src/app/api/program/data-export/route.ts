@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { requireProgramUser } from "@/lib/program-auth";
 import { decrypt } from "@/lib/encryption";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
+import { getSupabaseAdmin } from "@/lib/supabase-admin";
 
 export async function GET() {
   try {
@@ -23,8 +24,26 @@ export async function GET() {
       );
     }
 
-    const [responsesResult, progressResult, profileResult, commentsResult] =
-      await Promise.all([
+    // Tags, login/read events and likes are behind RLS with no policy for
+    // the account holder (analytics_events and user_tags are service-role
+    // only by design; likes go through the admin client here too, for one
+    // consistent code path), so they are read with the admin client instead
+    // of the session-scoped one used for everything else in this export.
+    const admin = getSupabaseAdmin();
+
+    const [
+      responsesResult,
+      progressResult,
+      profileResult,
+      commentsResult,
+      courseEnrollmentsResult,
+      courseDaysResult,
+      courseFeedbackResult,
+      tagsResult,
+      loginEventsResult,
+      postActivityResult,
+      likesResult,
+    ] = await Promise.all([
       supabase
         .from("exercise_responses")
         .select("*")
@@ -44,6 +63,43 @@ export async function GET() {
         .from("post_comments")
         .select("post_slug, locale, body, status, created_at, edited_at")
         .eq("user_id", user.id)
+        .order("created_at"),
+      supabase
+        .from("course_enrollments")
+        .select("*")
+        .eq("user_id", user.id),
+      supabase
+        .from("course_day_progress")
+        .select("*")
+        .eq("user_id", user.id)
+        .order("course_slug")
+        .order("day"),
+      supabase
+        .from("course_feedback")
+        .select("course_slug, rating, hardest, suggestion, created_at")
+        .eq("user_id", user.id),
+      admin
+        .from("user_tags")
+        .select("tag, source, created_at")
+        .eq("user_id", user.id)
+        .order("created_at"),
+      admin
+        .from("analytics_events")
+        .select("occurred_at")
+        .eq("user_id", user.id)
+        .eq("event_type", "login")
+        .order("occurred_at"),
+      admin
+        .from("analytics_events")
+        .select("occurred_at, event_type, target_id")
+        .eq("user_id", user.id)
+        .in("event_type", ["post_view", "post_read"])
+        .order("occurred_at"),
+      admin
+        .from("user_interactions")
+        .select("target_type, target_id, created_at")
+        .eq("user_id", user.id)
+        .eq("interaction_type", "like")
         .order("created_at"),
     ]);
 
@@ -93,6 +149,60 @@ export async function GET() {
       editedAt: row.edited_at,
     }));
 
+    const courseEnrollments = (courseEnrollmentsResult.data ?? []).map((row) => ({
+      courseSlug: row.course_slug,
+      enrolledAt: row.enrolled_at,
+      completedAt: row.completed_at,
+      baselineScreenTimeMin: row.baseline_screen_time_min,
+      baselinePickups: row.baseline_pickups,
+      remindersEnabled: row.reminders_enabled,
+    }));
+
+    const courseDays = (courseDaysResult.data ?? []).map((row) => ({
+      courseSlug: row.course_slug,
+      day: row.day,
+      startedAt: row.started_at,
+      completedAt: row.completed_at,
+      checkinChoice: row.checkin_choice,
+      checkinNote: row.checkin_ciphertext
+        ? decrypt(row.checkin_ciphertext, row.checkin_iv, row.checkin_salt, user.id)
+        : null,
+      quizAnswers: row.quiz_answers,
+    }));
+
+    const courseFeedback = (courseFeedbackResult.data ?? []).map((row) => ({
+      courseSlug: row.course_slug,
+      rating: row.rating,
+      hardest: row.hardest,
+      suggestion: row.suggestion,
+      createdAt: row.created_at,
+    }));
+
+    // Tags, login dates and read activity — never the anonymous
+    // visitor_hash, which is a technical de-duplication key, not content
+    // for the person to review.
+    const tags = (tagsResult.data ?? []).map((row) => ({
+      tag: row.tag,
+      source: row.source,
+      createdAt: row.created_at,
+    }));
+
+    const loginEvents = (loginEventsResult.data ?? []).map(
+      (row) => row.occurred_at
+    );
+
+    const postActivity = (postActivityResult.data ?? []).map((row) => ({
+      occurredAt: row.occurred_at,
+      eventType: row.event_type,
+      targetId: row.target_id,
+    }));
+
+    const likes = (likesResult.data ?? []).map((row) => ({
+      targetType: row.target_type,
+      targetId: row.target_id,
+      createdAt: row.created_at,
+    }));
+
     const exportData = {
       exportedAt: new Date().toISOString(),
       userId: user.id,
@@ -101,6 +211,13 @@ export async function GET() {
       responses: decryptedResponses,
       progress,
       comments,
+      courseEnrollments,
+      courseDays,
+      courseFeedback,
+      tags,
+      loginEvents,
+      postActivity,
+      likes,
     };
 
     return new NextResponse(JSON.stringify(exportData, null, 2), {

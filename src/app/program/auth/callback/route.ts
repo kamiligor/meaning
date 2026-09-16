@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { recordEvent } from "@/lib/analytics";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
@@ -46,6 +47,12 @@ export async function GET(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   if (user) {
+    try {
+      await recordEvent(getSupabaseAdmin(), { eventType: "login", userId: user.id });
+    } catch {
+      // Statistics never block a sign-in.
+    }
+
     const { data: existing } = await supabase
       .from("user_profiles")
       .select("user_id")

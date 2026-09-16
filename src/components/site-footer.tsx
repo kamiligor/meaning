@@ -37,12 +37,23 @@ export function SiteFooter({ locale }: { locale: Locale }) {
           <p className="text-xs text-[#8A99A8] tracking-widest uppercase">
             {logoAlt(locale)}
           </p>
-          <a
-            href={standardsPath(locale)}
-            className="text-[11px] text-[#b3bec8] hover:text-[#7B9E8C] transition-colors"
-          >
-            {t(locale).navStandards}
-          </a>
+          <div className="flex items-center gap-3">
+            <a
+              href={standardsPath(locale)}
+              className="text-[11px] text-[#b3bec8] hover:text-[#7B9E8C] transition-colors"
+            >
+              {t(locale).navStandards}
+            </a>
+            {/* Mini courses exist in Polish only */}
+            {locale === "pl" && (
+              <a
+                href="/kursy"
+                className="text-[11px] text-[#b3bec8] hover:text-[#7B9E8C] transition-colors"
+              >
+                Darmowe kursy
+              </a>
+            )}
+          </div>
         </div>
 
         {/* Right — language switcher */}

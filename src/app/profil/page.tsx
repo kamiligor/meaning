@@ -1,5 +1,7 @@
 import { requireProgramUser } from "@/lib/program-auth";
 import { isProgramAdmin } from "@/lib/admin-email";
+import { courses } from "@/lib/courses";
+import { getCourseState, currentDay } from "@/lib/course";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LogoutButton } from "./logout-button";
 import { DisplayNameForm } from "./display-name-form";
@@ -22,6 +24,35 @@ export default async function ProfilPage() {
     .single();
 
   const isAdmin = isProgramAdmin(user.email);
+
+  // Mini courses the person is enrolled in, with progress (PL domain only —
+  // the courses exist in Polish, and the proxy pins their pages to it anyway).
+  const myCourses: {
+    name: string;
+    path: string;
+    continueDay: number;
+    completedDays: number;
+    totalDays: number;
+    finished: boolean;
+  }[] = [];
+  if (locale === "pl") {
+    for (const course of courses) {
+      const state = await getCourseState(supabase, user.id, course.slug);
+      if (!state.enrollment) continue;
+      const totalDays = course.days.length;
+      const completedDays = Object.values(state.days).filter(
+        (day) => day.completedAt
+      ).length;
+      myCourses.push({
+        name: course.name,
+        path: course.path,
+        continueDay: currentDay(state.days, totalDays),
+        completedDays,
+        totalDays,
+        finished: completedDays >= totalDays,
+      });
+    }
+  }
 
   const email = user.email ?? "";
   const createdAt = profile?.created_at
@@ -62,6 +93,41 @@ export default async function ProfilPage() {
             />
           </CardContent>
         </Card>
+
+        {myCourses.length > 0 && (
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle className="text-base">Moje kursy</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              {myCourses.map((course) => (
+                <div
+                  key={course.path}
+                  className="flex items-center justify-between gap-3 text-sm"
+                >
+                  <div>
+                    <p className="text-[#1E2A36] font-medium">{course.name}</p>
+                    <p className="text-[#8A99A8]">
+                      {course.finished
+                        ? "Ukończony"
+                        : `Ukończone dni: ${course.completedDays} z ${course.totalDays}`}
+                    </p>
+                  </div>
+                  <Link
+                    href={
+                      course.finished
+                        ? course.path
+                        : `${course.path}/dzien/${course.continueDay}`
+                    }
+                    className="shrink-0 text-[#7B9E8C] hover:underline"
+                  >
+                    {course.finished ? "Zobacz" : `Dzień ${course.continueDay}`} &rarr;
+                  </Link>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        )}
 
         {isAdmin && (
           <Card className="mb-6">

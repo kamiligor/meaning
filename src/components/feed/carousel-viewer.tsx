@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
+import { sendAnalyticsBeacon } from "@/lib/analytics-client";
 
 interface CarouselViewerProps {
   /**
@@ -12,17 +13,28 @@ interface CarouselViewerProps {
   slides: { filename: string; slideNumber: number; alt?: string }[];
   alt: string;
   priority?: boolean;
+  /** When set, reaching the last slide sends one post_read beacon for this slug. */
+  readTrackingSlug?: string;
 }
 
 const SWIPE_THRESHOLD = 40;
 
-export function CarouselViewer({ slides, alt, priority }: CarouselViewerProps) {
+export function CarouselViewer({ slides, alt, priority, readTrackingSlug }: CarouselViewerProps) {
   const [current, setCurrent] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState(0);
   const pointerStart = useRef<{ x: number; y: number; id: number } | null>(null);
 
   const total = slides.length;
+  const readSent = useRef(false);
+
+  useEffect(() => {
+    if (!readTrackingSlug || readSent.current) return;
+    if (total > 1 && current === total - 1) {
+      readSent.current = true;
+      sendAnalyticsBeacon("post_read", readTrackingSlug);
+    }
+  }, [current, total, readTrackingSlug]);
 
   const goTo = useCallback(
     (index: number) => {

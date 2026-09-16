@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { sendAnalyticsBeacon } from "@/lib/analytics-client";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase";
@@ -25,6 +26,10 @@ export function AuthForm({
   const router = useRouter();
   const searchParams = useSearchParams();
   const next = searchParams.get("next") ?? "/";
+  // Keep the return destination when hopping between login/register/reset,
+  // otherwise a user sent from a course lands on the homepage after signup.
+  const withNext = (path: string) =>
+    next !== "/" ? `${path}?next=${encodeURIComponent(next)}` : path;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -51,6 +56,7 @@ export function AuthForm({
           setError(error.message);
           return;
         }
+        sendAnalyticsBeacon("login");
         router.refresh();
         if (linkReplace) {
           router.back();
@@ -62,7 +68,7 @@ export function AuthForm({
           setError(d.authPasswordMismatch);
           return;
         }
-        const { error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
           email,
           password,
           options: {
@@ -71,6 +77,14 @@ export function AuthForm({
         });
         if (error) {
           setError(error.message);
+          return;
+        }
+        // With email autoconfirm the account is usable immediately — go
+        // straight back to where the person came from instead of showing
+        // a misleading "check your email" screen.
+        if (data.session) {
+          router.refresh();
+          router.push(next);
           return;
         }
         setRegisterSent(true);
@@ -118,7 +132,7 @@ export function AuthForm({
         </p>
         <div className="text-center">
           <Link
-            href="/login"
+            href={withNext("/login")}
             replace={linkReplace}
             className="text-sm text-[#7B9E8C] hover:underline"
           >
@@ -140,7 +154,7 @@ export function AuthForm({
         </p>
         <div className="text-center">
           <Link
-            href="/login"
+            href={withNext("/login")}
             replace={linkReplace}
             className="text-sm text-[#7B9E8C] hover:underline"
           >
@@ -285,7 +299,7 @@ export function AuthForm({
           <>
             <div>
               <Link
-                href="/lost-password"
+                href={withNext("/lost-password")}
                 replace={linkReplace}
                 className="text-[#7B9E8C] hover:underline"
               >
@@ -295,7 +309,7 @@ export function AuthForm({
             <div>
               {d.authNoAccount}{" "}
               <Link
-                href="/register"
+                href={withNext("/register")}
                 replace={linkReplace}
                 className="text-[#7B9E8C] hover:underline font-medium"
               >
@@ -308,7 +322,7 @@ export function AuthForm({
           <div>
             {d.authHaveAccount}{" "}
             <Link
-              href="/login"
+              href={withNext("/login")}
               replace={linkReplace}
               className="text-[#7B9E8C] hover:underline font-medium"
             >
@@ -319,7 +333,7 @@ export function AuthForm({
         {mode === "lost-password" && (
           <div>
             <Link
-              href="/login"
+              href={withNext("/login")}
               replace={linkReplace}
               className="text-[#7B9E8C] hover:underline"
             >

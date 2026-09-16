@@ -74,7 +74,7 @@ function OnboardingContent() {
     });
 
     if (authError) {
-      setError("Cos poszlo nie tak. Sprobuj ponownie.");
+      setError("Coś poszło nie tak. Spróbuj ponownie.");
     } else {
       setSent(true);
     }
@@ -105,15 +105,15 @@ function OnboardingContent() {
             {[
               {
                 icon: Shield,
-                text: "To narzedzie do autorefleksji — nie zastepuje psychoterapii.",
+                text: "To narzędzie do autorefleksji, nie zastępuje psychoterapii.",
               },
               {
                 icon: Lock,
-                text: "Twoje teksty sa szyfrowane. Nikt ich nie przeczyta — nawet my.",
+                text: "Twoje teksty są szyfrowane. Nikt ich nie przeczyta, nawet my.",
               },
               {
                 icon: Heart,
-                text: "Nie ma zlych odpowiedzi. Nie ma ocen. Nie ma presji czasowej.",
+                text: "Nie ma złych odpowiedzi. Nie ma ocen. Nie ma presji czasowej.",
               },
               {
                 icon: SkipForward,
@@ -139,10 +139,10 @@ function OnboardingContent() {
     return (
       <div className="max-w-lg mx-auto px-4 py-12">
         <h1 className="text-2xl font-semibold text-[#1E2A36] mb-2">
-          Jak mam sie do Ciebie zwracac?
+          Jak mam się do Ciebie zwracać?
         </h1>
         <p className="text-[#8A99A8] text-sm mb-8">
-          Mozesz to zmienic pozniej w ustawieniach.
+          Możesz to zmienić później w ustawieniach.
         </p>
 
         <div className="space-y-3 mb-8">
@@ -200,8 +200,8 @@ function OnboardingContent() {
       <div className="max-w-lg mx-auto px-4 py-12">
         <div className="bg-white rounded-xl border border-[#e2e7eb] p-6 mb-6">
           <p className="text-[#1E2A36] leading-relaxed">
-            Ten program to narzedzie do autorefleksji przez pisanie.
-            Nie zastepuje psychoterapii ani innej formy profesjonalnej pomocy.
+            Ten program to narzędzie do autorefleksji przez pisanie.
+            Nie zastępuje psychoterapii ani innej formy profesjonalnej pomocy.
           </p>
         </div>
 
@@ -210,7 +210,7 @@ function OnboardingContent() {
             Wstecz
           </Button>
           <Button onClick={() => setStep("auth")} className="flex-1">
-            Rozumiem i chce kontynuowac
+            Rozumiem i chcę kontynuować
           </Button>
         </div>
       </div>
@@ -224,17 +224,17 @@ function OnboardingContent() {
         {sent ? (
           <div className="text-center py-4">
             <h2 className="text-lg font-medium text-[#1E2A36] mb-2">
-              Sprawdz skrzynke!
+              Sprawdź skrzynkę!
             </h2>
             <p className="text-[#4A5B6A] text-sm">
-              Wyslalismy link do logowania na <strong>{email}</strong>.
-              Kliknij go, zeby kontynuowac.
+              Wysłaliśmy link do logowania na <strong>{email}</strong>.
+              Kliknij go, żeby kontynuować.
             </p>
           </div>
         ) : (
           <>
             <h2 className="text-lg font-medium text-[#1E2A36] mb-4 text-center">
-              Stworz konto lub zaloguj sie
+              Stwórz konto lub zaloguj się
             </h2>
 
             <button
@@ -277,7 +277,7 @@ function OnboardingContent() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Twoj email"
+                placeholder="Twój email"
                 required
                 className="w-full border border-[#e2e7eb] rounded-lg px-4 py-2.5 text-sm text-[#1E2A36] placeholder:text-[#8A99A8] focus:outline-none focus:ring-2 focus:ring-[#7B9E8C] focus:ring-offset-1 mb-3"
               />
@@ -285,7 +285,7 @@ function OnboardingContent() {
                 <p className="text-red-500 text-xs mb-3">{error}</p>
               )}
               <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? "Wysylanie..." : "Wyslij magic link"}
+                {loading ? "Wysyłanie..." : "Wyślij magic link"}
               </Button>
             </form>
 

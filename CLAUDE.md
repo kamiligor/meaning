@@ -115,12 +115,16 @@ jh/
 │   │   │   ├── cwiczenie/[id]/       #   Widok ćwiczenia (edytor TipTap)
 │   │   │   ├── zasoby/              #   Linie wsparcia, FAQ, książki
 │   │   │   └── auth/callback/        #   Supabase OAuth callback
-│   │   ├── admin/                     # Panel admina
+│   │   ├── admin/                     # Panel admina (posty, kurs, statystyki, tagi)
 │   │   └── api/
 │   │       ├── auth/                  # Auth endpoints (login, logout, check)
 │   │       ├── posts/                 # GET lista postów (offset pagination)
 │   │       ├── slides/                # Serwowanie PNG
 │   │       ├── newsletter/            # MailerLite
+│   │       ├── t/                     # Beacon statystyk (POST, bez cookies, 204)
+│   │       ├── analytics/aggregate/   # Cron: agregat dobowy + retencja 90 dni
+│   │       ├── tags/                  # Cron: apply (tagi auto), sync (MailerLite)
+│   │       ├── admin/stats, admin/tags # Panel: statystyki i tagi (JWT admina)
 │   │       └── program/               # API programu pisania
 │   │           ├── responses/[exerciseId]  # GET + PUT (szyfrowane)
 │   │           ├── progress/               # GET all + PUT per exercise
@@ -144,6 +148,10 @@ jh/
 │   │   ├── personalize.ts             # Personalizacja (feminine/masculine/neutral)
 │   │   ├── local-storage.ts           # Offline fallback dla odpowiedzi
 │   │   ├── rate-limit.ts              # In-memory rate limiter
+│   │   ├── analytics.ts               # Hash dobowy, filtr botów, zapis zdarzeń
+│   │   ├── analytics-aggregate.ts     # Agregat dobowy (cron)
+│   │   ├── analytics-stats.ts         # Dane dla panelu statystyk
+│   │   ├── tags.ts                    # Reguły tagów + synchronizacja MailerLite
 │   │   ├── content-sections.ts        # Parsowanie sekcji slajd/web
 │   │   ├── slug.ts                    # Generator slugów (polskie znaki)
 │   │   ├── categories.ts               # Definicje kategorii + FAVORITES_KEY
@@ -267,7 +275,7 @@ Posty = pliki Markdown w repozytorium. Slajdy = deterministyczne PNG ({slug}-sli
 
 1. **Szyfrowanie treści w DB** — AES-256-GCM, APP_SECRET w env var Coolify
 2. **APP_SECRET tylko w env var** — NIGDY w kodzie, NIGDY w bazie, NIGDY w logach
-3. **Zero tracking** — brak Google Analytics, brak cookies śledzących, brak telemetrii
+3. **Zero trackingu firm trzecich** — brak Google Analytics, Meta Pixel i podobnych, brak cookies śledzących, brak fingerprintingu między domenami. Statystyki własne (first-party, `docs/specs/tracking-analytics.md`) są dozwolone wyłącznie, gdy: (a) nie zapisują niczego w przeglądarce (bez cookies i localStorage), (b) dla anonimowych przechowują tylko dobowe agregaty, a surowe zdarzenia z jednodniowym hashem kasują po 90 dniach, (c) nie zbierają treści, tytułów ćwiczeń ani czasu pracy nad ćwiczeniami programu pisania per użytkownik, (d) trafiają wyłącznie do własnej bazy. Tagowanie pod kampanie mailowe jest technicznie oddzielone od statystyk i dotyczy tylko osób z aktywną subskrypcją newslettera.
 4. **RODO/GDPR compliance** — prawo do zapomnienia, eksport danych, minimalizacja danych
 5. **Disclaimery widoczne** — „Nie zastępuje psychoterapii" na KAŻDYM ekranie ćwiczenia
 6. **Linie kryzysowe** — Telefon Zaufania (116 123), Centrum Wsparcia (800 70 2222) — łatwo dostępne
@@ -348,4 +356,4 @@ Bez tego post nie będzie miał slajdów PNG i karuzela się nie wyświetli.
 - **Output**: `standalone`
 - **Port**: 3000
 - **Persistent volume**: `/data/slides` (PNG karuzel)
-- **ENV vars**: `ADMIN_PASSWORD`, `ADMIN_EMAIL`, `JWT_SECRET`, `STORAGE_PATH`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `APP_SECRET`, `MAILERLITE_API_TOKEN`, `NEXT_PUBLIC_SITE_URL`
+- **ENV vars**: `ADMIN_PASSWORD`, `ADMIN_EMAIL`, `JWT_SECRET`, `STORAGE_PATH`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `APP_SECRET`, `MAILERLITE_API_TOKEN`, `NEXT_PUBLIC_SITE_URL`, `CRON_SECRET` (przypomnienia kursów, patrz `docs/specs/kurs-przypomnienia-mailerlite.md`)

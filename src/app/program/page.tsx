@@ -216,7 +216,7 @@ export default function ProgramLandingPage() {
             {
               icon: Shield,
               title: "Zero śledzenia",
-              desc: "Brak Google Analytics, brak cookies śledzących, brak telemetrii.",
+              desc: "Brak Google Analytics i cookies śledzących. Liczymy tylko własne, zbiorcze statystyki bez identyfikowania Cię, a nic z programu pisania nie trafia do żadnych statystyk.",
             },
             {
               icon: Shield,
@@ -343,7 +343,7 @@ export default function ProgramLandingPage() {
             },
             {
               q: "Czy muszę robić ćwiczenia po kolei?",
-              a: "Rekomendujemy pełną ścieżkę (Przeszłość, Teraźniejszość, Przyszłość), bo moduły budują na sobie. Ale to Twój wybór.",
+              a: "Rekomendujemy pełną ścieżkę (Przeszłość, Teraźniejszość, Przyszłość), bo moduły bazują jeden na drugim. Ale to Twój wybór.",
             },
             {
               q: "Co jeśli utknę i nie wiem co pisać?",
