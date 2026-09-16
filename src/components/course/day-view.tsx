@@ -132,9 +132,29 @@ function DayNote({
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState<number | null>(null);
   const [error, setError] = useState("");
-  /** Which day's note is shown; the current day is the editable one. */
+  /** Which day's note is shown. Every tab is editable; each saves to its own day. */
   const [viewDay, setViewDay] = useState(day);
+  const [pastDrafts, setPastDrafts] = useState<Record<number, string>>(() =>
+    Object.fromEntries(pastNotes.map((n) => [n.day, n.note]))
+  );
+  const [pastSaved, setPastSaved] = useState<Record<number, string>>(() =>
+    Object.fromEntries(pastNotes.map((n) => [n.day, n.note]))
+  );
+  const [pastSaving, setPastSaving] = useState(false);
   const viewing = viewDay === day ? null : pastNotes.find((n) => n.day === viewDay) ?? null;
+
+  const handleSavePast = async (d: number) => {
+    setPastSaving(true);
+    setError("");
+    const text = pastDrafts[d] ?? "";
+    const ok = await putDay({ courseSlug, day: d, note: text });
+    if (ok) {
+      setPastSaved((prev) => ({ ...prev, [d]: text }));
+    } else {
+      setError("Nie udało się zapisać. Sprawdź połączenie i spróbuj ponownie.");
+    }
+    setPastSaving(false);
+  };
 
   const handleSave = async () => {
     setSaving(true);
@@ -183,24 +203,46 @@ function DayNote({
             )}
             {viewing ? (
               <div role="tabpanel">
-                <p className="text-sm font-medium text-[#1E2A36]">
-                  Dzień {viewing.day}: {viewing.title}
-                  {viewing.date && (
-                    <span className="text-[#8A99A8] font-normal ml-2">{viewing.date}</span>
-                  )}
-                </p>
-                <p className="mt-2 text-sm text-[#4A5B6A] leading-relaxed whitespace-pre-wrap bg-white border border-[#e2e7eb] rounded-lg px-4 py-2.5">
-                  {viewing.note}
-                </p>
+                <label className="block">
+                  <span className="text-sm font-medium text-[#1E2A36]">
+                    Dzień {viewing.day}: {viewing.title}
+                    {viewing.date && (
+                      <span className="text-[#8A99A8] font-normal ml-2">{viewing.date}</span>
+                    )}
+                  </span>
+                  <textarea
+                    value={pastDrafts[viewing.day] ?? ""}
+                    onChange={(e) =>
+                      setPastDrafts((prev) => ({ ...prev, [viewing.day]: e.target.value }))
+                    }
+                    rows={3}
+                    maxLength={2000}
+                    className="mt-2 w-full border border-[#e2e7eb] rounded-lg px-4 py-2.5 text-sm text-[#1E2A36] bg-white focus:outline-none focus:ring-2 focus:ring-[#7B9E8C] focus:ring-offset-1 resize-none"
+                  />
+                </label>
                 <div className="flex items-center justify-between gap-3 mt-2">
-                  <span className="text-xs text-[#8A99A8]">Tylko do odczytu.</span>
                   <Link
                     href={`${coursePath}/dzien/${viewing.day}`}
                     className="text-xs font-medium text-[#7B9E8C] hover:underline"
                   >
                     Otwórz dzień {viewing.day}
                   </Link>
+                  <Button
+                    size="sm"
+                    onClick={() => handleSavePast(viewing.day)}
+                    disabled={
+                      pastSaving ||
+                      (pastDrafts[viewing.day] ?? "") === (pastSaved[viewing.day] ?? "")
+                    }
+                  >
+                    {pastSaving
+                      ? "Zapisywanie..."
+                      : (pastDrafts[viewing.day] ?? "") === (pastSaved[viewing.day] ?? "")
+                        ? "Zapisano"
+                        : "Zapisz"}
+                  </Button>
                 </div>
+                {error && <p className="text-red-500 text-xs mt-2">{error}</p>}
               </div>
             ) : (
             <>
