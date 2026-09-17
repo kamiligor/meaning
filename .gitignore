@@ -53,3 +53,6 @@ next-env.d.ts
 
 # Source books for course verification (copyrighted, local only)
 docs/books/
+
+# Private scratchpad, never in the repo
+NOTES.md
