@@ -6,7 +6,6 @@ import { getProgramUser } from "@/lib/program-auth";
 import { getCourse, isCourseVisible } from "@/lib/courses";
 import { getCourseState, currentDay, isDayUnlocked } from "@/lib/course";
 import { EnrollForm } from "@/components/course/enroll-form";
-import { RestartCourseButton } from "@/components/course/restart-course-button";
 
 /** Shared landing page for every mini course; content comes from the registry. */
 export async function CourseLanding({
@@ -86,11 +85,6 @@ export async function CourseLanding({
                 Ukończone dni: {completedDays} z {totalDays}
                 {completedDays >= totalDays && ". Cały kurs za tobą."}
               </p>
-              {completedDays >= totalDays && (
-                <div className="mt-4">
-                  <RestartCourseButton courseSlug={course.slug} coursePath={course.path} />
-                </div>
-              )}
             </>
           )}
         </section>

@@ -43,7 +43,6 @@ export async function GET() {
       loginEventsResult,
       postActivityResult,
       likesResult,
-      courseArchiveResult,
     ] = await Promise.all([
       supabase
         .from("exercise_responses")
@@ -102,13 +101,6 @@ export async function GET() {
         .eq("user_id", user.id)
         .eq("interaction_type", "like")
         .order("created_at"),
-      supabase
-        .from("course_day_progress_archive")
-        .select("*")
-        .eq("user_id", user.id)
-        .order("course_slug")
-        .order("run")
-        .order("day"),
     ]);
 
     if (responsesResult.error || progressResult.error) {
@@ -178,21 +170,6 @@ export async function GET() {
       quizAnswers: row.quiz_answers,
     }));
 
-    // Earlier runs of a restarted course, same shape plus the run number.
-    const courseDaysArchive = (courseArchiveResult.data ?? []).map((row) => ({
-      courseSlug: row.course_slug,
-      run: row.run,
-      day: row.day,
-      startedAt: row.started_at,
-      completedAt: row.completed_at,
-      checkinChoice: row.checkin_choice,
-      checkinNote: row.checkin_ciphertext
-        ? decrypt(row.checkin_ciphertext, row.checkin_iv, row.checkin_salt, user.id)
-        : null,
-      quizAnswers: row.quiz_answers,
-      archivedAt: row.archived_at,
-    }));
-
     const courseFeedback = (courseFeedbackResult.data ?? []).map((row) => ({
       courseSlug: row.course_slug,
       rating: row.rating,
@@ -236,7 +213,6 @@ export async function GET() {
       comments,
       courseEnrollments,
       courseDays,
-      courseDaysArchive,
       courseFeedback,
       tags,
       loginEvents,
