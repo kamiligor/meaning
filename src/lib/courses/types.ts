@@ -60,5 +60,10 @@ export interface Course {
   askBaseline: boolean;
   /** The course's word for its daily task; drives UI labels. */
   challengeNoun: "wyzwanie" | "praktyka";
+  /**
+   * Visible only to the program admin (ADMIN_EMAIL): hidden from /kursy,
+   * the sitemap and every route. Used while a course is still in review.
+   */
+  adminOnly?: boolean;
   days: CourseDay[];
 }

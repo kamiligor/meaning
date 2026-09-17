@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireProgramUser } from "@/lib/program-auth";
 import { checkRateLimit } from "@/lib/rate-limit";
-import { getCourse } from "@/lib/courses";
+import { getCourse, isCourseVisible } from "@/lib/courses";
 
 function parseBaseline(value: unknown, max: number): number | null {
   if (typeof value !== "number" || !Number.isFinite(value)) return null;
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json().catch(() => ({}));
 
     const course = typeof body.courseSlug === "string" ? getCourse(body.courseSlug) : null;
-    if (!course) {
+    if (!course || !isCourseVisible(course, user.email)) {
       return NextResponse.json({ error: "Unknown course" }, { status: 400 });
     }
 

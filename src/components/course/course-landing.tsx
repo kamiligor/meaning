@@ -1,8 +1,9 @@
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Check, ChevronRight, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getProgramUser } from "@/lib/program-auth";
-import { getCourse } from "@/lib/courses";
+import { getCourse, isCourseVisible } from "@/lib/courses";
 import { getCourseState, currentDay, isDayUnlocked } from "@/lib/course";
 import { EnrollForm } from "@/components/course/enroll-form";
 
@@ -19,6 +20,7 @@ export async function CourseLanding({
   if (!course) return null;
 
   const { user, supabase } = await getProgramUser();
+  if (!isCourseVisible(course, user?.email)) notFound();
 
   const state = user ? await getCourseState(supabase, user.id, course.slug) : null;
   const enrollment = state?.enrollment ?? null;

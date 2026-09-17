@@ -1,3 +1,4 @@
+import { visibleCourses } from "@/lib/courses";
 import type { MetadataRoute } from "next";
 import { getPublishedPosts } from "@/lib/posts";
 import { getLocale } from "@/lib/locale";
@@ -32,14 +33,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   });
 
   if (locale === PROGRAM_LOCALE) {
-    staticEntries.push({
-      url: url("/program"),
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    });
-    // Mini courses live on the Polish domain only, like the program.
-    for (const coursePath of ["/kursy", "/kurs-niescrollowania", "/kurs-wdziecznosci"]) {
+    // The program is admin-only until launch, so it stays out of the sitemap.
+    // Mini courses live on the Polish domain only; admin-only ones are skipped.
+    const coursePaths = ["/kursy", ...visibleCourses(null).map((c) => c.path)];
+    for (const coursePath of coursePaths) {
       staticEntries.push({
         url: url(coursePath),
         lastModified: now,

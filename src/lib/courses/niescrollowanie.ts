@@ -26,6 +26,8 @@ export const niescrollowanieCourse: Course = {
     "Kurs opiera się na materiałach Arthura Brooksa, profesora Harvardu badającego szczęście, oraz na badaniach nad nudą i nawykami. Nie obiecujemy nowego życia w 5 dni. Obiecujemy pierwsze doświadczenie tego, że z pustą chwilą da się być, i plan, jak to utrzymać.",
   askBaseline: true,
   challengeNoun: "wyzwanie",
+  // Text still in review: docs/content/kurs-niescrollowania-tekst.md
+  adminOnly: true,
   days: [
     {
       day: 1,

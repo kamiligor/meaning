@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { PROGRAM_LAUNCHED } from "@/lib/launch";
 import type { UnlockStatus } from "@/lib/course";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -631,15 +632,17 @@ export function DayView({
                       </Button>
                     </Link>
                   ))}
-                <Link
-                  href="/program"
-                  className="text-sm text-[#7B9E8C] hover:underline"
-                >
-                  Albo zobacz The Life Writing Program
-                </Link>
+                {PROGRAM_LAUNCHED && (
+                  <Link
+                    href="/program"
+                    className="text-sm text-[#7B9E8C] hover:underline"
+                  >
+                    Albo zobacz The Life Writing Program
+                  </Link>
+                )}
               </div>
             </>
-          ) : (
+          ) : PROGRAM_LAUNCHED ? (
             <>
               <p className="text-[#4A5B6A] leading-relaxed mb-6 max-w-md mx-auto">
                 Jeśli w trakcie kursu wypłynęło coś, co chcesz naprawdę
@@ -651,6 +654,11 @@ export function DayView({
                 <Button>Zobacz The Life Writing Program</Button>
               </Link>
             </>
+          ) : (
+            <p className="text-[#4A5B6A] leading-relaxed max-w-md mx-auto">
+              Notatki i wszystkie dni zostają otwarte. Wracaj, kiedy praktyka
+              będzie potrzebowała przypomnienia.
+            </p>
           )}
         </section>
       )}

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireProgramUser } from "@/lib/program-auth";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { encrypt } from "@/lib/encryption";
-import { getCourse, getDay, type Course } from "@/lib/courses";
+import { getCourse, getDay, type Course, isCourseVisible } from "@/lib/courses";
 import { getCourseState, isDayUnlocked, unlockStatus } from "@/lib/course";
 
 interface DayUpdateBody {
@@ -52,7 +52,7 @@ export async function PUT(request: NextRequest) {
 
     const course =
       typeof body.courseSlug === "string" ? getCourse(body.courseSlug) : null;
-    if (!course) {
+    if (!course || !isCourseVisible(course, user.email)) {
       return NextResponse.json({ error: "Unknown course" }, { status: 400 });
     }
 

@@ -1,10 +1,11 @@
 import Link from "next/link";
+import { PROGRAM_LAUNCHED } from "@/lib/launch";
 import { Check } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Button } from "@/components/ui/button";
 import { getProgramUser } from "@/lib/program-auth";
-import { courses } from "@/lib/courses";
+import { visibleCourses } from "@/lib/courses";
 import { getCourseState, currentDay } from "@/lib/course";
 import { getLocale } from "@/lib/locale";
 
@@ -19,7 +20,7 @@ export default async function CoursesHubPage() {
   const { user, supabase } = await getProgramUser();
 
   const tiles = [];
-  for (const course of courses) {
+  for (const course of visibleCourses(user?.email)) {
     const state = user
       ? await getCourseState(supabase, user.id, course.slug)
       : null;
@@ -130,12 +131,17 @@ export default async function CoursesHubPage() {
 
         <p className="text-sm text-[#8A99A8] mt-10 max-w-2xl leading-relaxed">
           Kursy są darmowe i wymagają tylko darmowego konta, żeby pamiętać
-          twój postęp. Jeśli po którymś z nich zechcesz pójść głębiej, od tego
-          jest{" "}
-          <Link href="/program" className="text-[#7B9E8C] hover:underline">
-            The Life Writing Program
-          </Link>
-          .
+          twój postęp.
+          {PROGRAM_LAUNCHED && (
+            <>
+              {" "}
+              Jeśli po którymś z nich zechcesz pójść głębiej, od tego jest{" "}
+              <Link href="/program" className="text-[#7B9E8C] hover:underline">
+                The Life Writing Program
+              </Link>
+              .
+            </>
+          )}
         </p>
       </main>
 

@@ -3,7 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import { Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getProgramUser } from "@/lib/program-auth";
-import { courses, getCourse, getDay } from "@/lib/courses";
+import { courses, getCourse, getDay, isCourseVisible } from "@/lib/courses";
 import { getCourseState, currentDay, isDayUnlocked, unlockStatus } from "@/lib/course";
 import { decrypt } from "@/lib/encryption";
 import {
@@ -31,6 +31,7 @@ export async function CourseDayPage({
   }
 
   const { user, supabase } = await getProgramUser();
+  if (!isCourseVisible(course, user?.email)) notFound();
   if (!user) {
     redirect(`/login?next=${course.path}/dzien/${day}`);
   }

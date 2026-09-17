@@ -84,9 +84,22 @@ function createSupabaseMiddlewareClient(
 
 // Program pages that DON'T require auth (exact match)
 const PUBLIC_PROGRAM_PATHS = [
-  "/program",
   "/program/auth/callback",
 ];
+
+/**
+ * Whole areas visible only to the program admin (ADMIN_EMAIL) before launch:
+ * everyone else, logged in or not, gets the 404 page, not a login prompt.
+ * The literal list must match `adminOnly` courses in src/lib/courses.
+ */
+const ADMIN_ONLY_PREFIXES = ["/kurs-niescrollowania", "/program"];
+
+function isAdminOnlyPath(pathname: string): boolean {
+  if (pathname === "/program/auth/callback") return false;
+  return ADMIN_ONLY_PREFIXES.some(
+    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)
+  );
+}
 
 function isProgramPublicPath(pathname: string): boolean {
   return PUBLIC_PROGRAM_PATHS.includes(pathname);
@@ -215,6 +228,13 @@ export async function proxy(request: NextRequest) {
       user = data.user;
     } catch {
       // Supabase unreachable — treat as not logged in
+    }
+
+    // Pre-launch areas: admin only, 404 for everyone else.
+    if (isAdminOnlyPath(pathname) && !isProgramAdmin(user?.email)) {
+      return NextResponse.rewrite(new URL("/_not-found", request.url), {
+        status: 404,
+      });
     }
 
     // Redirect logged-in users away from auth pages
