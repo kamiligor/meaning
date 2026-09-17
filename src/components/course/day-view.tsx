@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { PROGRAM_LAUNCHED } from "@/lib/launch";
+import { RestartCourseButton } from "@/components/course/restart-course-button";
 import type { UnlockStatus } from "@/lib/course";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -660,6 +661,9 @@ export function DayView({
               będzie potrzebowała przypomnienia.
             </p>
           )}
+          <div className="mt-6">
+            <RestartCourseButton courseSlug={courseSlug} coursePath={course.path} />
+          </div>
         </section>
       )}
 

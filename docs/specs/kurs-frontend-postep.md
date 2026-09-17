@@ -187,7 +187,7 @@ dzień 2: „kiedy narzekanie znów wygrywa", dzień 4: „kiedy wieczory zrobi�
 się ciężkie", dzień 7: „kiedy jest po prostu źle". Bez odblokowań i bez
 liczników, to jest biblioteczka, nie kurs.
 
-**Ponowne przejście od początku (do zrobienia).** Dziś `course_enrollments`
+**Ponowne przejście od początku (zrobione 2026-09-17, inaczej niż niżej: poprzednie przejście trafia do `course_day_progress_archive` przez funkcję `restart_course`, tabela na żywo trzyma tylko bieżące przejście, `course_enrollments.run` liczy przejścia; przycisk „Przejdź kurs jeszcze raz” na landingu i na ekranie końcowym; eksport RODO ma sekcję `courseDaysArchive`.)** Dziś `course_enrollments`
 ma `UNIQUE (user_id, course_slug)`, a ponowny zapis jest ignorowany, więc
 „zacznij od nowa" nie istnieje. Propozycja najmniejszej zmiany:
 

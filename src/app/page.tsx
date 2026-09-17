@@ -1,4 +1,5 @@
 import { getPublishedPosts, getPostSlides } from "@/lib/posts";
+import { CourseBanner } from "@/components/feed/course-banner";
 import { InfiniteFeed } from "@/components/feed/infinite-feed";
 import { t, type Locale } from "@/lib/i18n";
 import { SiteHeader } from "@/components/site-header";
@@ -94,6 +95,7 @@ export default async function Home() {
 
       {/* Feed */}
       <main className="max-w-lg mx-auto px-4 py-6">
+        {locale === "pl" && <CourseBanner slug="kurs-wdziecznosci" />}
         {postsWithSlides.length === 0 ? (
           <div className="text-center py-20">
             <p className="text-[#8A99A8] text-lg">{d.noPostsTitle}</p>
