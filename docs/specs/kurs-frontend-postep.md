@@ -1,7 +1,7 @@
 # Frontend kursów: postęp, lista praktyk, utrzymanie
 
 Specyfikacja warstwy, która ma sprawić, że ludzie nie porzucą kursu po dniu
-drugim. Uzupełnia `kurs-przypomnienia-mailerlite.md` (poczta) i dotyczy obu
+drugim. Uzupełnia `kurs-przypomnienia.md` (poczta) i dotyczy obu
 kursów (`kurs-wdziecznosci`, `kurs-niescrollowania`), bo oba jadą na tym samym
 silniku z `src/lib/courses/`.
 
@@ -169,7 +169,7 @@ kończy dzień siódmy". Liczba jest do dyskusji, ważne, żeby istniała.
 
 ## 7. Współpraca z przypomnieniami mailowymi
 
-Mail dzienny (patrz `kurs-przypomnienia-mailerlite.md`) powinien zawierać to
+Mail dzienny (patrz `kurs-przypomnienia.md`) powinien zawierać to
 samo, co sidebar: nazwę dzisiejszej praktyki i jej wersję minimalną, plus link
 prosto do dnia. Personalizacja: jeśli użytkownik przypiął kotwicę, mail
 przypomina o kotwicy, nie o całej liście. Jeśli od trzech dni nie odhaczył

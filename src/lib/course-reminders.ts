@@ -1,12 +1,9 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { courses } from "@/lib/courses";
 import { courseCalendarDay, isMorningGateOpen } from "@/lib/course";
-import {
-  sendGroupTriggeredMail,
-  REMINDER_GROUP_NAME,
-  WINBACK_GROUP_NAME,
-} from "@/lib/mailerlite";
 import { SITE_HOSTS } from "@/lib/domains";
+import { sendMail } from "@/lib/mailer";
+import { buildReminderMail, reminderOptOutUrl } from "@/lib/course-mail";
 
 /**
  * Reminder policy (docs/content/kurs-niescrollowania.md): at most one mail
@@ -197,18 +194,23 @@ export async function runCourseReminders(
       continue;
     }
 
-    const sent = await sendGroupTriggeredMail(
-      email,
-      decision.type === "day" ? REMINDER_GROUP_NAME : WINBACK_GROUP_NAME,
-      {
-        kurs_nazwa: course.name,
-        kurs_dzien: decision.day,
-        kurs_dni: course.days.length,
-        kurs_link: `${siteOrigin}${course.path}/dzien/${decision.day}`,
-      }
-    );
-
-    if (!sent) {
+    // Sent from our own SMTP mailbox (src/lib/mailer.ts); MailerLite is
+    // only used for the newsletter and campaign tags.
+    const optOutUrl = reminderOptOutUrl(siteOrigin, row.id);
+    const mail = buildReminderMail({
+      course,
+      day: decision.day,
+      kind: decision.type,
+      dayUrl: `${siteOrigin}${course.path}/dzien/${decision.day}`,
+      optOutUrl,
+    });
+    try {
+      await sendMail({ to: email, ...mail, unsubscribeUrl: optOutUrl });
+    } catch (err) {
+      console.error(
+        "[course reminders] send failed:",
+        err instanceof Error ? err.message : err
+      );
       stats.failures += 1;
       continue;
     }

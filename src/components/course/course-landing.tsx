@@ -11,10 +11,13 @@ import { EnrollForm } from "@/components/course/enroll-form";
 export async function CourseLanding({
   slug,
   autoOpenEnroll = false,
+  remindersOff = false,
 }: {
   slug: string;
   /** Open the enrollment form right away (returning from login). */
   autoOpenEnroll?: boolean;
+  /** Arrived from the opt-out link in a reminder mail. */
+  remindersOff?: boolean;
 }) {
   const course = getCourse(slug);
   if (!course) return null;
@@ -59,6 +62,13 @@ export async function CourseLanding({
                 Kurs wymaga darmowego konta, żeby pamiętać twój postęp.
               </p>
             </>
+          )}
+
+          {remindersOff && (
+            <p className="mb-6 rounded-lg border border-[#c5d8cc] bg-[#f0f7f2] px-4 py-3 text-sm text-[#4A5B6A]">
+              Przypomnienia mailowe o tym kursie są wyłączone. Kurs czeka jak
+              dotąd, bez żadnych terminów.
+            </p>
           )}
 
           {user && !enrollment && (

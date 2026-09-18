@@ -9,7 +9,10 @@
 
 const API_BASE = "https://connect.mailerlite.com/api";
 
-/** Trigger groups; created automatically if missing. */
+/**
+ * Trigger groups of the former automation-based reminders. Reminders now go
+ * out over SMTP (src/lib/mailer.ts); kept only so old groups keep resolving.
+ */
 export const REMINDER_GROUP_NAME = "kurs-przypomnienie-dnia";
 export const WINBACK_GROUP_NAME = "kurs-powrot";
 
